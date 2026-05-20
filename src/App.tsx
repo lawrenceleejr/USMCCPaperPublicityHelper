@@ -35,7 +35,7 @@ function buildHugoMarkdown(row: PaperRow, bodyText: string): string {
   return `---
 title: "${safeYamlString(title)}"
 description: "${safeYamlString(sourceLabel)}"
-externalUrl: ${externalUrl}
+externalUrl: "${safeYamlString(externalUrl)}"
 date: "${date}"
 showDate: true
 cascade:

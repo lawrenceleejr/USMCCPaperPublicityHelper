@@ -191,10 +191,6 @@ fn normalize_whitespace(text: &str) -> String {
 }
 
 fn trim_to_chars(text: &str, max_chars: usize) -> String {
-    let mut chars = text.chars();
-    if text.chars().count() <= max_chars {
-        return text.to_string();
-    }
     if max_chars == 0 {
         return String::new();
     }
@@ -202,14 +198,16 @@ fn trim_to_chars(text: &str, max_chars: usize) -> String {
         return "…".to_string();
     }
     let mut out = String::new();
-    for _ in 0..(max_chars - 1) {
-        if let Some(ch) = chars.next() {
-            out.push(ch);
-        } else {
-            break;
+    let mut count = 0usize;
+    for ch in text.chars() {
+        if count >= max_chars {
+            let mut truncated = out.chars().take(max_chars - 1).collect::<String>();
+            truncated.push('…');
+            return truncated;
         }
+        out.push(ch);
+        count += 1;
     }
-    out.push('…');
     out
 }
 
