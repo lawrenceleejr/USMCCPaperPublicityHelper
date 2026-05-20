@@ -59,10 +59,10 @@ jobs:
       - name: Build Tauri app
         run: npm run tauri build
         env:
-          # Build unsigned — no Apple Developer account required.
+          # Ad-hoc sign (identity "-") — no Apple Developer account required.
           # Users can bypass Gatekeeper with:
           #   xattr -d com.apple.quarantine "USMCC Publicity Helper.app"
-          APPLE_SIGNING_IDENTITY: ''
+          APPLE_SIGNING_IDENTITY: '-'
 
       - name: Zip .app bundle
         run: |
