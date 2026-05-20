@@ -5,6 +5,7 @@ import InputPanel from "./components/InputPanel";
 import OutputCard from "./components/OutputCard";
 import ErrorBanner from "./components/ErrorBanner";
 import Settings from "./components/Settings";
+import InstagramDesigner from "./components/InstagramDesigner";
 
 const DEFAULT_PREFS: Preferences = {
   model: "claude-sonnet-4-5",
@@ -102,6 +103,14 @@ export default function App() {
           />
           <OutputCard title="LinkedIn Post" content={content.linkedin} />
           <OutputCard title="Plain-Language Summary" content={content.plainSummary} />
+
+          {parsedRow && (
+            <InstagramDesigner
+              titleText={parsedRow.plainTitle || parsedRow.paperTitle}
+              subtitleText={content.plainSummary}
+              footerText={`${parsedRow.authors}${parsedRow.publicationDate ? ` · ${parsedRow.publicationDate}` : ""}`}
+            />
+          )}
         </div>
       )}
 
