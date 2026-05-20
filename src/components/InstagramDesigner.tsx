@@ -43,6 +43,10 @@ const CANVAS_SIZE = 1080;
 const SAFE_PADDING = 72;
 const BLOCK_PADDING = 24;
 const PREVIEW_SCALE = 0.5;
+const FONT_LOAD_TIMEOUT_MS = 3500;
+const MAX_UNDO_HISTORY = 40;
+const MAX_RECENT_FONTS = 8;
+const JPEG_EXPORT_QUALITY = 0.92;
 
 const BLOCK_LAYOUT: Record<BlockKey, { y: number; h: number }> = {
   title: { y: 120, h: 270 },
@@ -284,7 +288,7 @@ async function loadGoogleFont(fontFamily: string): Promise<void> {
   await Promise.race([
     document.fonts.load(`16px "${fontFamily}"`),
     new Promise<void>((_, reject) => {
-      window.setTimeout(() => reject(new Error("Font load timeout")), 3500);
+      window.setTimeout(() => reject(new Error("Font load timeout")), FONT_LOAD_TIMEOUT_MS);
     }),
   ]);
 }
@@ -435,7 +439,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
   const mainContrast = contrastRatio(settings.textColor, settings.backgroundColor);
 
   function pushHistory(prev: DesignSettings): void {
-    setUndoStack((stack) => [...stack.slice(-39), deepCloneSettings(prev)]);
+    setUndoStack((stack) => [...stack.slice(-(MAX_UNDO_HISTORY - 1)), deepCloneSettings(prev)]);
     setRedoStack([]);
   }
 
@@ -469,11 +473,11 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
     try {
       await loadGoogleFont(fontFamily);
       applySettings((prev) => ({ ...prev, fontFamily }));
-      setRecentFonts((prev) => [fontFamily, ...prev.filter((f) => f !== fontFamily)].slice(0, 8));
+      setRecentFonts((prev) => [fontFamily, ...prev.filter((f) => f !== fontFamily)].slice(0, MAX_RECENT_FONTS));
     } catch (error) {
       setFontError(`Could not load ${fontFamily}; using fallback.`);
       applySettings((prev) => ({ ...prev, fontFamily: "Inter" }));
-      void error;
+      console.warn(error);
     } finally {
       setFontLoading(false);
     }
@@ -618,7 +622,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
     });
 
     const mime = type === "png" ? "image/png" : "image/jpeg";
-    const quality = type === "jpeg" ? 0.92 : undefined;
+    const quality = type === "jpeg" ? JPEG_EXPORT_QUALITY : undefined;
     const data = canvas.toDataURL(mime, quality);
     const a = document.createElement("a");
     a.href = data;
