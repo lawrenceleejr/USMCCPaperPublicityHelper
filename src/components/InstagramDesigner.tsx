@@ -47,6 +47,7 @@ const FONT_LOAD_TIMEOUT_MS = 3500;
 const MAX_UNDO_HISTORY = 40;
 const MAX_RECENT_FONTS = 8;
 const JPEG_EXPORT_QUALITY = 0.92;
+const FALLBACK_FONT_STACK = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
 const BLOCK_LAYOUT: Record<BlockKey, { y: number; h: number }> = {
   title: { y: 120, h: 270 },
@@ -285,12 +286,15 @@ async function loadGoogleFont(fontFamily: string): Promise<void> {
     document.head.appendChild(link);
   }
 
+  let timeoutId: number | undefined;
   await Promise.race([
     document.fonts.load(`16px "${fontFamily}"`),
     new Promise<void>((_, reject) => {
-      window.setTimeout(() => reject(new Error("Font load timeout")), FONT_LOAD_TIMEOUT_MS);
+      timeoutId = window.setTimeout(() => reject(new Error("Font load timeout")), FONT_LOAD_TIMEOUT_MS);
     }),
-  ]);
+  ]).finally(() => {
+    if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+  });
 }
 
 function makeVariantName(count: number): string {
@@ -310,6 +314,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
   const [fontSearch, setFontSearch] = useState("");
   const [fontLoading, setFontLoading] = useState(false);
   const [fontError, setFontError] = useState<string | null>(null);
+  const [profileError, setProfileError] = useState<string | null>(null);
   const [visibleFontCount, setVisibleFontCount] = useState(12);
   const [recentFonts, setRecentFonts] = useState<string[]>(() =>
     safeJsonParse<string[]>(window.localStorage.getItem(STORAGE_KEYS.recentFonts), ["Inter"])
@@ -352,7 +357,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
   useEffect(() => {
     if (!activeVariant) return;
     setSettings(normalizeAndValidate(activeVariant.settings));
-  }, [activeVariantId]);
+  }, [activeVariant, activeVariantId]);
 
   useEffect(() => {
     setVariants((prev) =>
@@ -523,6 +528,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
   }
 
   function handleSaveProfile(): void {
+    setProfileError(null);
     const name = profileName.trim();
     if (!name) return;
     setProfiles((prev) => {
@@ -536,6 +542,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
   }
 
   function handleLoadProfile(name: string): void {
+    setProfileError(null);
     setSelectedProfileName(name);
     const profile = profiles.find((p) => p.name === name);
     if (!profile) return;
@@ -553,6 +560,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
   }
 
   async function handleImportProfiles(event: ChangeEvent<HTMLInputElement>): Promise<void> {
+    setProfileError(null);
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -578,7 +586,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
         return merged;
       });
     } catch {
-      setFontError("Could not import style profiles JSON.");
+      setProfileError("Could not import style profiles JSON.");
     } finally {
       event.target.value = "";
     }
@@ -613,7 +621,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
 
       context.fillStyle = color;
       context.textBaseline = "top";
-      context.font = `${Math.round(size)}px "${settings.fontFamily}", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif`;
+      context.font = `${Math.round(size)}px "${settings.fontFamily}", ${FALLBACK_FONT_STACK}`;
 
       const lines = wrapText(context, text.replace(/\s+/g, " ").trim(), width, maxLines);
       lines.forEach((line, index) => {
@@ -698,7 +706,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
                   onClick={() => {
                     void handleFontSelect(font);
                   }}
-                  style={{ fontFamily: `"${font}", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif` }}
+                  style={{ fontFamily: `"${font}", ${FALLBACK_FONT_STACK}` }}
                 >
                   {font}
                 </button>
@@ -876,6 +884,11 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
                 Import JSON
               </button>
             </div>
+            {profileError && (
+              <div className="ig-inline-status">
+                <span className="ig-warn">{profileError}</span>
+              </div>
+            )}
             <input
               ref={fileInputRef}
               type="file"
@@ -895,7 +908,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
                 className={`ig-canvas ${settings.showGuidelines ? "ig-guidelines-on" : ""}`}
                 style={{
                   backgroundColor: settings.backgroundColor,
-                  fontFamily: `"${settings.fontFamily}", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`,
+                  fontFamily: `"${settings.fontFamily}", ${FALLBACK_FONT_STACK}`,
                   transform: `scale(${PREVIEW_SCALE})`,
                 }}
               >
