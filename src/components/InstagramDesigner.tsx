@@ -290,15 +290,15 @@ async function loadGoogleFont(fontFamily: string): Promise<void> {
     document.head.appendChild(link);
   }
 
-  let timeoutId: ReturnType<typeof setTimeout> | undefined;
-  await Promise.race([
-    document.fonts.load(`16px "${fontFamily}"`),
-    new Promise<void>((resolve, reject) => {
-      void resolve;
-      timeoutId = window.setTimeout(() => reject(new Error("Font load timeout")), FONT_LOAD_TIMEOUT_MS);
-    }),
-  ]).finally(() => {
-    if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+  await new Promise<void>((resolve, reject) => {
+    const timeoutId = window.setTimeout(() => reject(new Error("Font load timeout")), FONT_LOAD_TIMEOUT_MS);
+    document.fonts
+      .load(`16px "${fontFamily}"`)
+      .then(() => resolve())
+      .catch(reject)
+      .finally(() => {
+        window.clearTimeout(timeoutId);
+      });
   });
 }
 
