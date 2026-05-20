@@ -293,7 +293,8 @@ async function loadGoogleFont(fontFamily: string): Promise<void> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   await Promise.race([
     document.fonts.load(`16px "${fontFamily}"`),
-    new Promise<void>((_, reject) => {
+    new Promise<void>((resolve, reject) => {
+      void resolve;
       timeoutId = window.setTimeout(() => reject(new Error("Font load timeout")), FONT_LOAD_TIMEOUT_MS);
     }),
   ]).finally(() => {
@@ -819,16 +820,18 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
           })}
 
           <div className="ig-control-group">
-            <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <label htmlFor="ig-show-guidelines" style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <input
+                id="ig-show-guidelines"
                 type="checkbox"
                 checked={settings.showGuidelines}
                 onChange={(e) => applySettings((prev) => ({ ...prev, showGuidelines: e.target.checked }))}
               />
               Show Guidelines
             </label>
-            <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <label htmlFor="ig-accessibility-mode" style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <input
+                id="ig-accessibility-mode"
                 type="checkbox"
                 checked={settings.accessibilityMode}
                 onChange={(e) => applySettings((prev) => ({ ...prev, accessibilityMode: e.target.checked }))}
