@@ -254,7 +254,7 @@ function wrapText(
   maxLines: number
 ): string[] {
   const words = text.split(/\s+/).filter(Boolean);
-  if (words.length === 0) return [""];
+  if (words.length === 0) return [];
   const lines: string[] = [];
   let current = words[0];
 
@@ -273,6 +273,10 @@ function wrapText(
   return lines.slice(0, maxLines);
 }
 
+function buildFontFamily(fontFamily: string): string {
+  return `"${fontFamily}", ${FALLBACK_FONT_STACK}`;
+}
+
 async function loadGoogleFont(fontFamily: string): Promise<void> {
   const familyParam = fontFamily.trim().split(/\s+/).join("+");
   const id = `google-font-${familyParam.toLowerCase()}`;
@@ -286,7 +290,7 @@ async function loadGoogleFont(fontFamily: string): Promise<void> {
     document.head.appendChild(link);
   }
 
-  let timeoutId: number | undefined;
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
   await Promise.race([
     document.fonts.load(`16px "${fontFamily}"`),
     new Promise<void>((_, reject) => {
@@ -621,7 +625,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
 
       context.fillStyle = color;
       context.textBaseline = "top";
-      context.font = `${Math.round(size)}px "${settings.fontFamily}", ${FALLBACK_FONT_STACK}`;
+      context.font = `${Math.round(size)}px ${buildFontFamily(settings.fontFamily)}`;
 
       const lines = wrapText(context, text.replace(/\s+/g, " ").trim(), width, maxLines);
       lines.forEach((line, index) => {
@@ -706,7 +710,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
                   onClick={() => {
                     void handleFontSelect(font);
                   }}
-                  style={{ fontFamily: `"${font}", ${FALLBACK_FONT_STACK}` }}
+                  style={{ fontFamily: buildFontFamily(font) }}
                 >
                   {font}
                 </button>
@@ -908,7 +912,7 @@ export default function InstagramDesigner({ titleText, subtitleText, footerText 
                 className={`ig-canvas ${settings.showGuidelines ? "ig-guidelines-on" : ""}`}
                 style={{
                   backgroundColor: settings.backgroundColor,
-                  fontFamily: `"${settings.fontFamily}", ${FALLBACK_FONT_STACK}`,
+                  fontFamily: buildFontFamily(settings.fontFamily),
                   transform: `scale(${PREVIEW_SCALE})`,
                 }}
               >
