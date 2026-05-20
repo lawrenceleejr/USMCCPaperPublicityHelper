@@ -90,11 +90,23 @@ export default function Settings({ prefs, onPrefsChange, onClose, onError }: Pro
           <label>Default Model</label>
           <select
             value={prefs.model}
+            disabled={!prefs.useClaude}
             onChange={(e) => onPrefsChange({ ...prefs, model: e.target.value })}
           >
             <option value="claude-sonnet-4-5">claude-sonnet-4-5</option>
             <option value="claude-opus-4-5">claude-opus-4-5</option>
           </select>
+        </div>
+
+        <div className="settings-field">
+          <label style={{ flexDirection: "row", gap: 8, display: "flex", alignItems: "center" }}>
+            <input
+              type="checkbox"
+              checked={prefs.useClaude}
+              onChange={(e) => onPrefsChange({ ...prefs, useClaude: e.target.checked })}
+            />
+            Use Claude by default
+          </label>
         </div>
 
         <div className="settings-field">

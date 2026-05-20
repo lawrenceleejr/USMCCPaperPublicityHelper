@@ -20,6 +20,7 @@ pub struct GeneratedContent {
 pub struct Preferences {
     pub model: String,
     pub include_thread: bool,
+    pub use_claude: bool,
 }
 
 impl Default for Preferences {
@@ -27,6 +28,7 @@ impl Default for Preferences {
         Self {
             model: "claude-sonnet-4-5".to_string(),
             include_thread: false,
+            use_claude: false,
         }
     }
 }
@@ -41,10 +43,8 @@ pub async fn generate(
     row: PaperRow,
     model: String,
     include_thread: bool,
+    use_claude: bool,
 ) -> Result<GeneratedContent, String> {
-    let api_key = settings::get_api_key()
-        .ok_or_else(|| "No API key set. Please add your Anthropic API key in Settings.".to_string())?;
-
     let title = &row.paper_title;
     let display_title = if row.plain_title.is_empty() {
         title.as_str()
@@ -56,63 +56,161 @@ pub async fn generate(
     let link = &row.paper_link;
     let system = prompts::SYSTEM_PROMPT;
 
-    let twitter = anthropic::call_claude(
-        &api_key,
-        &model,
-        system,
-        &prompts::twitter_prompt(display_title, authors, abstract_, link),
-        300,
-    )
-    .await?;
+    if use_claude {
+        let api_key = settings::get_api_key()
+            .ok_or_else(|| "No API key set. Please add your Anthropic API key in Settings.".to_string())?;
 
-    let twitter_thread = if include_thread {
-        let raw = anthropic::call_claude(
+        let twitter = anthropic::call_claude(
             &api_key,
             &model,
             system,
-            &prompts::twitter_thread_prompt(display_title, authors, abstract_, link),
-            1000,
+            &prompts::twitter_prompt(display_title, authors, abstract_, link),
+            300,
         )
         .await?;
-        Some(parse_thread(&raw))
+
+        let twitter_thread = if include_thread {
+            let raw = anthropic::call_claude(
+                &api_key,
+                &model,
+                system,
+                &prompts::twitter_thread_prompt(display_title, authors, abstract_, link),
+                1000,
+            )
+            .await?;
+            Some(parse_thread(&raw))
+        } else {
+            None
+        };
+
+        let bluesky = anthropic::call_claude(
+            &api_key,
+            &model,
+            system,
+            &prompts::bluesky_prompt(display_title, authors, abstract_, link),
+            350,
+        )
+        .await?;
+
+        let linkedin = anthropic::call_claude(
+            &api_key,
+            &model,
+            system,
+            &prompts::linkedin_prompt(display_title, authors, abstract_, link),
+            600,
+        )
+        .await?;
+
+        let plain_summary = anthropic::call_claude(
+            &api_key,
+            &model,
+            system,
+            &prompts::plain_summary_prompt(display_title, authors, abstract_),
+            500,
+        )
+        .await?;
+
+        Ok(GeneratedContent {
+            twitter,
+            twitter_thread,
+            bluesky,
+            linkedin,
+            plain_summary,
+        })
     } else {
-        None
-    };
+        let plain_summary = normalize_whitespace(abstract_);
+        let twitter = trim_to_chars(
+            &normalize_whitespace(&format!("{display_title}: {abstract_} {link}")),
+            280,
+        );
+        let bluesky = trim_to_chars(
+            &normalize_whitespace(&format!("{display_title}: {abstract_} {link}")),
+            300,
+        );
 
-    let bluesky = anthropic::call_claude(
-        &api_key,
-        &model,
-        system,
-        &prompts::bluesky_prompt(display_title, authors, abstract_, link),
-        350,
-    )
-    .await?;
+        let linkedin = normalize_whitespace(&format!(
+            "{display_title}. Authors: {authors}. {abstract_} {}",
+            if link.trim().is_empty() {
+                String::new()
+            } else {
+                format!("Link: {link}")
+            }
+        ));
 
-    let linkedin = anthropic::call_claude(
-        &api_key,
-        &model,
-        system,
-        &prompts::linkedin_prompt(display_title, authors, abstract_, link),
-        600,
-    )
-    .await?;
+        let twitter_thread = if include_thread {
+            let mut parts = Vec::new();
+            let part1 = trim_to_chars(
+                &normalize_whitespace(&format!(
+                    "{display_title}{}",
+                    if authors.trim().is_empty() {
+                        String::new()
+                    } else {
+                        format!(" — {authors}")
+                    }
+                )),
+                280,
+            );
+            if !part1.is_empty() {
+                parts.push(part1);
+            }
+            let part2 = trim_to_chars(
+                &normalize_whitespace(&format!(
+                    "{abstract_} {}",
+                    if link.trim().is_empty() {
+                        String::new()
+                    } else {
+                        link.to_string()
+                    }
+                )),
+                280,
+            );
+            if !part2.is_empty() {
+                parts.push(part2);
+            }
+            if parts.is_empty() {
+                None
+            } else {
+                Some(parts)
+            }
+        } else {
+            None
+        };
 
-    let plain_summary = anthropic::call_claude(
-        &api_key,
-        &model,
-        system,
-        &prompts::plain_summary_prompt(display_title, authors, abstract_),
-        500,
-    )
-    .await?;
+        Ok(GeneratedContent {
+            twitter,
+            twitter_thread,
+            bluesky,
+            linkedin,
+            plain_summary,
+        })
+    }
+}
 
-    Ok(GeneratedContent {
-        twitter,
-        twitter_thread,
-        bluesky,
-        linkedin,
-        plain_summary,
-    })
+fn normalize_whitespace(text: &str) -> String {
+    text.split_whitespace().collect::<Vec<_>>().join(" ")
+}
+
+fn trim_to_chars(text: &str, max_chars: usize) -> String {
+    let mut chars = text.chars();
+    if text.chars().count() <= max_chars {
+        return text.to_string();
+    }
+    if max_chars == 0 {
+        return String::new();
+    }
+    if max_chars == 1 {
+        return "…".to_string();
+    }
+    let mut out = String::new();
+    for _ in 0..(max_chars - 1) {
+        if let Some(ch) = chars.next() {
+            out.push(ch);
+        } else {
+            break;
+        }
+    }
+    out.push('…');
+    out
 }
 
 fn parse_thread(raw: &str) -> Vec<String> {
@@ -167,9 +265,14 @@ pub fn get_prefs(app: tauri::AppHandle) -> Preferences {
                 .get("includeThread")
                 .and_then(|v| v.as_bool())
                 .unwrap_or(false);
+            let use_claude = s
+                .get("useClaude")
+                .and_then(|v| v.as_bool())
+                .unwrap_or(false);
             Preferences {
                 model,
                 include_thread,
+                use_claude,
             }
         }
         Err(_) => Preferences::default(),
@@ -184,6 +287,7 @@ pub fn set_prefs(app: tauri::AppHandle, prefs: Preferences) -> Result<(), String
         .map_err(|e| e.to_string())?;
     store.set("model", serde_json::json!(prefs.model));
     store.set("includeThread", serde_json::json!(prefs.include_thread));
+    store.set("useClaude", serde_json::json!(prefs.use_claude));
     store.save().map_err(|e| e.to_string())
 }
 

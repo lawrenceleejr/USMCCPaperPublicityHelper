@@ -6,13 +6,23 @@ A macOS desktop app (Tauri 2 + React + Rust) that turns one row pasted from the 
 
 - Paste a tab-separated row (with or without header) from Google Sheets
 - Auto-detects and strips header line
-- Generates via Anthropic Claude:
+- Supports two generation modes:
+  - **Claude mode** (optional):
+    - Twitter/X post (≤ 280 chars, optional thread)
+    - Bluesky post (≤ 300 chars)
+    - LinkedIn post (professional tone, 100–200 words)
+    - Plain-language summary (120–180 words, general public)
+  - **Input-only mode**:
+    - Builds outputs directly from the original submission text (no API calls)
+- In Claude mode, generates via Anthropic Claude:
   - Twitter/X post (≤ 280 chars, optional thread)
   - Bluesky post (≤ 300 chars)
   - LinkedIn post (professional tone, 100–200 words)
   - Plain-language summary (120–180 words, general public)
 - One-click copy for each output
+- One-click Hugo/Blowfish markdown export (`index.md`) for website press items
 - Interactive Instagram design preview editor with fixed placement, live typography controls, guidelines, and PNG/JPEG export
+- USMCC logo branding integrated in the app UI
 - API key stored securely in macOS Keychain
 - Model choice: `claude-sonnet-4-5` or `claude-opus-4-5`
 

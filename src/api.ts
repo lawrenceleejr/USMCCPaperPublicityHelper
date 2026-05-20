@@ -13,9 +13,10 @@ export async function parseRow(text: string): Promise<PaperRow> {
 export async function generate(
   row: PaperRow,
   model: string,
-  includeThread: boolean
+  includeThread: boolean,
+  useClaude: boolean
 ): Promise<GeneratedContent> {
-  return invoke<GeneratedContent>("generate", { row, model, includeThread });
+  return invoke<GeneratedContent>("generate", { row, model, includeThread, useClaude });
 }
 
 export async function getApiKeyStatus(): Promise<ApiKeyStatus> {

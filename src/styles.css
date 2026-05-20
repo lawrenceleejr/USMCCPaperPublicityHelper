@@ -39,6 +39,24 @@ header p {
   align-items: center;
 }
 
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.export-toolbar {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* Buttons */
 button {
   cursor: pointer;
@@ -176,6 +194,15 @@ button:disabled {
   font-size: 14px;
   font-weight: 600;
   color: #1d1d1f;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.output-card-logo {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .char-count {
