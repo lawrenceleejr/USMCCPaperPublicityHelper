@@ -12,6 +12,7 @@ A macOS desktop app (Tauri 2 + React + Rust) that turns one row pasted from the 
   - LinkedIn post (professional tone, 100–200 words)
   - Plain-language summary (120–180 words, general public)
 - One-click copy for each output
+- Interactive Instagram design preview editor with fixed placement, live typography controls, guidelines, and PNG/JPEG export
 - API key stored securely in macOS Keychain
 - Model choice: `claude-sonnet-4-5` or `claude-opus-4-5`
 
