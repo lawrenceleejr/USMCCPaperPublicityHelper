@@ -10,6 +10,8 @@ jobs:
   test:
     name: Swift Tests
     runs-on: macos-14
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode
@@ -21,6 +23,8 @@ jobs:
     name: Build macOS App
     runs-on: macos-14
     needs: test
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode

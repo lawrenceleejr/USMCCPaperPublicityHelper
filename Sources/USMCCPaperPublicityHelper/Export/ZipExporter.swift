@@ -37,17 +37,28 @@ public struct ZipExporter {
             encoding: .utf8
         )
 
+        let errorPipe = Pipe()
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/zip")
         process.arguments = ["-r", destinationURL.path, folderName]
         process.currentDirectoryURL = tempDir
+        process.standardError = errorPipe
         try process.run()
         process.waitUntilExit()
 
-        try? FileManager.default.removeItem(at: tempDir)
+        let cleanupError: Error? = {
+            do { try FileManager.default.removeItem(at: tempDir); return nil }
+            catch { return error }
+        }()
 
         guard process.terminationStatus == 0 else {
-            throw ZipExporterError.zipFailed(status: process.terminationStatus)
+            let stderrData = errorPipe.fileHandleForReading.readDataToEndOfFile()
+            let stderrText = String(data: stderrData, encoding: .utf8) ?? ""
+            throw ZipExporterError.zipFailed(status: process.terminationStatus, detail: stderrText)
+        }
+
+        if let cleanupError {
+            throw ZipExporterError.cleanupFailed(underlying: cleanupError)
         }
     }
 
@@ -61,6 +72,17 @@ public struct ZipExporter {
     }
 }
 
-public enum ZipExporterError: Error {
-    case zipFailed(status: Int32)
+public enum ZipExporterError: Error, LocalizedError {
+    case zipFailed(status: Int32, detail: String)
+    case cleanupFailed(underlying: Error)
+
+    public var errorDescription: String? {
+        switch self {
+        case .zipFailed(let status, let detail):
+            let message = "zip exited with status \(status)"
+            return detail.isEmpty ? message : "\(message): \(detail)"
+        case .cleanupFailed(let underlying):
+            return "Failed to remove temporary directory: \(underlying.localizedDescription)"
+        }
+    }
 }
