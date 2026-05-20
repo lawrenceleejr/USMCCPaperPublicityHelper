@@ -10,6 +10,8 @@ jobs:
   test:
     name: Rust Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Install Rust
@@ -17,13 +19,15 @@ jobs:
       - name: Install Linux dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libdbus-1-dev pkg-config libssl-dev
+          sudo apt-get install -y libdbus-1-dev pkg-config libssl-dev libgtk-3-dev libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev
       - name: Run cargo tests
         run: cargo test --manifest-path src-tauri/Cargo.toml
 
   frontend:
     name: Frontend Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
