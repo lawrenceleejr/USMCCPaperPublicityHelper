@@ -15,7 +15,7 @@ const DEFAULT_PREFS: Preferences = {
 };
 
 function safeYamlString(value: string): string {
-  return value.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\r?\n/g, " ").trim();
+  return value.replace(/'/g, "''").replace(/\r?\n/g, " ").trim();
 }
 
 function guessDate(row: PaperRow): string {
@@ -33,10 +33,10 @@ function buildHugoMarkdown(row: PaperRow, bodyText: string): string {
   const externalUrl = row.paperLink.trim();
   const body = bodyText.trim() || row.publicAbstract.trim();
   return `---
-title: "${safeYamlString(title)}"
-description: "${safeYamlString(sourceLabel)}"
-externalUrl: "${safeYamlString(externalUrl)}"
-date: "${date}"
+title: '${safeYamlString(title)}'
+description: '${safeYamlString(sourceLabel)}'
+externalUrl: '${safeYamlString(externalUrl)}'
+date: '${date}'
 showDate: true
 cascade:
   showReadingTime: false

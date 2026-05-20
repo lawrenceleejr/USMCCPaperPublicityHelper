@@ -194,19 +194,22 @@ fn trim_to_chars(text: &str, max_chars: usize) -> String {
     if max_chars == 0 {
         return String::new();
     }
+    let text_len = text.chars().count();
+    if text_len <= max_chars {
+        return text.to_string();
+    }
     if max_chars == 1 {
         return "…".to_string();
     }
     let mut out = String::new();
-    let mut count = 0usize;
-    for ch in text.chars() {
-        if count >= max_chars {
-            let mut truncated = out.chars().take(max_chars - 1).collect::<String>();
-            truncated.push('…');
-            return truncated;
+    for (index, ch) in text.chars().enumerate() {
+        if index < max_chars {
+            out.push(ch);
+            continue;
         }
-        out.push(ch);
-        count += 1;
+        out.pop();
+        out.push('…');
+        return out;
     }
     out
 }
