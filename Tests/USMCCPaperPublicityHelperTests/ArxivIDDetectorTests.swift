@@ -27,6 +27,6 @@ final class ArxivIDDetectorTests: XCTestCase {
     }
 
     func testFiveDigitID() {
-        XCTAssertEqual(ArxivService.extractArxivID(from: "2401.123456"), "2401.123456")
+        XCTAssertEqual(ArxivService.extractArxivID(from: "2401.56789"), "2401.56789")
     }
 }
