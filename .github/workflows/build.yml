@@ -36,3 +36,49 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+
+  build-macos:
+    name: Build macOS App
+    runs-on: macos-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build Tauri app
+        run: npm run tauri build
+        env:
+          # Build unsigned — no Apple Developer account required.
+          # Users can bypass Gatekeeper with:
+          #   xattr -d com.apple.quarantine "USMCC Publicity Helper.app"
+          APPLE_SIGNING_IDENTITY: ''
+
+      - name: Zip .app bundle
+        run: |
+          cd src-tauri/target/release/bundle/macos
+          zip -r "$GITHUB_WORKSPACE/USMCC-Publicity-Helper.app.zip" "USMCC Publicity Helper.app"
+
+      - name: Upload .app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: USMCC-Publicity-Helper-macOS-app
+          path: USMCC-Publicity-Helper.app.zip
+          retention-days: 30
+
+      - name: Upload .dmg artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: USMCC-Publicity-Helper-macOS-dmg
+          path: src-tauri/target/release/bundle/dmg/*.dmg
+          retention-days: 30
