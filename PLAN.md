@@ -86,19 +86,21 @@ Style rules common to all outputs:
 
 | Layer | Choice | Why |
 |-------|--------|-----|
-| Shell | **Electron** (via `electron-forge`) | Produces a real `.app` bundle the user can double-click. Mature tooling on macOS. User explicitly said Electron is fine. |
-| Language | **TypeScript** everywhere | Same language in main and renderer; better refactors. |
-| UI | **React 18** + **Vite** | Standard; `electron-forge` has a Vite + TS + React template. |
-| Styling | Plain CSS modules or Tailwind (pick Tailwind if it's already comfortable; otherwise CSS modules are fine). No component library needed — this is a 3-screen app. |
-| AI | `@anthropic-ai/sdk` from the **main process** (never the renderer — keeps the API key off the DOM and avoids CORS). |
+| Shell | **Tauri 2** | Produces a small, real `.app` bundle (~10 MB vs. Electron's ~100 MB). Uses the system WebView (WKWebView on macOS) so it feels native. Rust backend keeps secrets and HTTP off the WebView. |
+| Frontend language | **TypeScript** + **React 18** + **Vite** | Standard frontend; Tauri's `create-tauri-app` ships a `react-ts` template. |
+| Backend language | **Rust** | Required by Tauri. Used only for a handful of `#[tauri::command]` functions — no business logic of consequence lives here. |
+| Styling | Plain CSS modules or Tailwind. No component library needed — this is a 3-screen app. |
+| HTTP / AI | **`reqwest`** (async, JSON) from Rust commands. There is no official Anthropic Rust SDK; calling `POST https://api.anthropic.com/v1/messages` directly is straightforward and keeps the API key out of the WebView. Do NOT enable Tauri's HTTP allowlist for the renderer. |
 | Model | `claude-sonnet-4-6` by default; expose a dropdown to pick `claude-opus-4-7` for higher-quality runs. |
-| Secret storage | **`keytar`** to store the Anthropic API key in the macOS Keychain. Fall back to `electron-store` only if `keytar` fails to load. |
-| State persistence | `electron-store` for non-secret prefs (last-used model, last tone setting, window size). |
-| IPC | Electron `contextBridge` + `ipcRenderer.invoke` for the few calls (`generate`, `getSettings`, `setSettings`, `getApiKey`, `setApiKey`). |
-| Packaging | `electron-forge make --platform=darwin` produces a `.app` inside a `.zip` or `.dmg`. No code signing required for personal use; document the Gatekeeper bypass (`xattr -d com.apple.quarantine`) in README. |
+| Secret storage | **`keyring`** crate (Rust) — stores the Anthropic API key in the macOS Keychain. Service `com.usmcc.publicity-helper`, account `anthropic-api-key`. |
+| Non-secret prefs | **`tauri-plugin-store`** — JSON store for last-used model, last tone, window size. Lives under `~/Library/Application Support/com.usmcc.publicity-helper/`. |
+| IPC | Tauri `invoke()` from the renderer → `#[tauri::command]` in Rust. Commands: `parse_row`, `generate`, `get_api_key_status`, `set_api_key`, `test_api_key`, `get_prefs`, `set_prefs`. |
+| Packaging | `npm run tauri build` produces `src-tauri/target/release/bundle/macos/USMCC Publicity Helper.app` and a `.dmg`. No code signing required for personal use; document the Gatekeeper bypass (`xattr -d com.apple.quarantine`) in README. For universal binary, build on Apple Silicon with `--target universal-apple-darwin` after `rustup target add x86_64-apple-darwin aarch64-apple-darwin`. |
 
 Do **not** add: a backend server, a database, auth, telemetry, or any
-non-essential dependency. This is a single-user local tool.
+non-essential dependency. This is a single-user local tool. Do **not**
+enable Tauri's HTTP, shell, or fs plugins for the renderer — the renderer
+should only be able to call the explicit commands listed above.
 
 ## 5. Project structure
 
@@ -106,59 +108,72 @@ non-essential dependency. This is a single-user local tool.
 USMCCPaperPublicityHelper/
 ├── PLAN.md                       (this file)
 ├── README.md                     (short user-facing intro; points at PLAN.md)
-├── package.json
-├── forge.config.ts               (electron-forge config; macOS target)
+├── package.json                  (frontend deps + tauri CLI)
 ├── tsconfig.json
-├── vite.main.config.ts
-├── vite.preload.config.ts
-├── vite.renderer.config.ts
-├── src/
-│   ├── main/
-│   │   ├── index.ts              (app lifecycle, window creation, IPC handlers)
-│   │   ├── anthropic.ts          (Claude SDK wrapper: one function per output channel)
-│   │   ├── prompts.ts            (prompt templates — see §7)
-│   │   ├── settings.ts           (keytar + electron-store wrappers)
-│   │   └── parseRow.ts           (TSV parser + types)
-│   ├── preload/
-│   │   └── index.ts              (contextBridge exposes a typed `window.api`)
-│   ├── renderer/
-│   │   ├── main.tsx              (React entry)
-│   │   ├── App.tsx               (top-level layout, tab switcher)
-│   │   ├── components/
-│   │   │   ├── InputPanel.tsx    (paste box + parsed-fields preview + Generate button)
-│   │   │   ├── OutputCard.tsx    (one per channel; copy button, char counter)
-│   │   │   ├── Settings.tsx      (API key, model selector, default tone)
-│   │   │   └── ErrorBanner.tsx
-│   │   ├── styles.css
-│   │   └── types.ts              (shared types mirrored from main)
-│   └── shared/
-│       └── types.ts              (PaperRow, GenerateRequest, GenerateResponse — imported by both sides)
-└── test/
-    └── parseRow.test.ts          (vitest unit tests for §2 parsing rules)
+├── vite.config.ts
+├── index.html
+├── src/                          (React frontend)
+│   ├── main.tsx                  (React entry)
+│   ├── App.tsx                   (top-level layout)
+│   ├── api.ts                    (thin wrappers around tauri `invoke(...)`)
+│   ├── components/
+│   │   ├── InputPanel.tsx        (paste box + parsed-fields preview + Generate button)
+│   │   ├── OutputCard.tsx        (one per channel; copy button, char counter)
+│   │   ├── Settings.tsx          (API key, model selector, default tone)
+│   │   └── ErrorBanner.tsx
+│   ├── types.ts                  (PaperRow, Channel, GenerateRequest, GenerateResponse — must match Rust serde shapes)
+│   └── styles.css
+├── src-tauri/                    (Rust backend)
+│   ├── Cargo.toml
+│   ├── tauri.conf.json           (bundle identifier, window size, allowlist)
+│   ├── build.rs
+│   ├── icons/                    (icon.icns + smaller PNGs, generated by `tauri icon`)
+│   └── src/
+│       ├── main.rs               (entry — registers commands and plugins)
+│       ├── commands.rs           (#[tauri::command] fns: parse_row, generate, get_api_key_status, set_api_key, test_api_key, get_prefs, set_prefs)
+│       ├── parse_row.rs          (TSV parser + PaperRow struct with serde)
+│       ├── anthropic.rs          (reqwest client; one fn per channel; parallel via tokio::join!)
+│       ├── prompts.rs            (prompt templates — see §7)
+│       └── settings.rs           (keyring wrapper for the API key)
+└── tests/                        (Rust integration tests)
+    ├── parse_row.rs              (cargo test — covers §2 parsing rules)
+    └── fixtures/
+        └── sample_row.txt
 ```
+
+Type sharing: define `PaperRow` in Rust with `#[derive(Serialize, Deserialize)]`
+and mirror it manually in `src/types.ts`. Add a comment in both files pointing
+at the other. (Optional: `ts-rs` crate to autogenerate the TS types, but only
+add it if it pays for itself.)
 
 ## 6. Implementation steps (in order)
 
 Do these in sequence; each step should leave the app runnable.
 
-1. **Scaffold.** `npm init electron-app@latest USMCCPaperPublicityHelper -- --template=vite-typescript` into a temp dir, then move the generated files into the repo root (preserving `PLAN.md` and `README.md`). Verify `npm start` opens a blank Electron window.
-2. **Type definitions.** Create `src/shared/types.ts` with `PaperRow`, `Channel` (`'twitter' | 'twitterThread' | 'bluesky' | 'linkedin' | 'plainLanguage'`), `GenerateRequest`, `GenerateResponse`.
-3. **Parser.** Implement `parseRow` in `src/main/parseRow.ts` per §2. Add `test/parseRow.test.ts` with cases: bare row, row + header, quoted multi-line abstract, missing trailing cells, missing required cells.
-4. **Settings + Keychain.** Implement `src/main/settings.ts`: `getApiKey()`, `setApiKey()`, `getPrefs()`, `setPrefs()`. Use `keytar` with service name `usmcc-publicity-helper`, account `anthropic-api-key`. Wrap in try/catch — if `keytar` throws, surface a clear error message in the UI.
-5. **Anthropic client.** In `src/main/anthropic.ts`, expose `generate(row: PaperRow, opts: { model: string; channels: Channel[]; tone?: string }): Promise<Record<Channel, string>>`. Call the SDK **once per channel in parallel** with `Promise.all`. Use the prompts in §7. Use `max_tokens: 800` for Twitter/Bluesky, `1200` for LinkedIn/plain-language, `1500` for the thread. Set `temperature: 0.7`.
-6. **IPC.** Wire `ipcMain.handle('generate', ...)`, `'getApiKey'`, `'setApiKey'`, `'getPrefs'`, `'setPrefs'`. Expose them through `contextBridge` in `src/preload/index.ts` as `window.api.generate(...)` etc.
-7. **InputPanel.** Big textarea ("Paste row from Google Sheet here"). On every change, run `parseRow` and render a small read-only preview of the parsed title, authors, category, and abstract so the user can confirm it parsed correctly. Show inline validation for missing title/abstract. Generate button is disabled until parsing succeeds and an API key is set.
-8. **OutputCards.** One `OutputCard` per channel showing: channel name, generated text in a `<textarea readOnly>`, character count vs. the channel's limit (red if over), and a Copy button (uses `navigator.clipboard.writeText`). While generating, show a skeleton/spinner per card. If one channel fails, show its error in just that card — don't kill the others.
-9. **Settings screen.** Modal or separate route. Fields: Anthropic API key (password input, masked, with a "Test" button that calls `messages.create` with a tiny prompt), default model (`claude-sonnet-4-6` / `claude-opus-4-7`), default tone (`Neutral` / `Enthusiastic` / `Formal`). Persist via the IPC handlers from step 4.
-10. **Window chrome.** `titleBarStyle: 'hiddenInset'`, sensible default size (1100×750), `app.setName('USMCC Publicity Helper')`. Set a macOS app icon (`build/icon.icns`) — a simple muon-symbol placeholder is fine.
-11. **Packaging.** `npm run make`. Confirm a `.app` appears in `out/`. Document the first-run Gatekeeper bypass in README. Optional: produce a `.dmg` via `@electron-forge/maker-dmg`.
-12. **Smoke test.** Open the packaged `.app` from Finder. Paste a sample row (provide one in `test/fixtures/sample-row.txt`). Generate. Verify all five channels return text and Copy buttons work.
+Prerequisites (one-time): `rustup` installed and `rustc` ≥ 1.77, Node ≥ 20,
+Xcode Command Line Tools. Verify with `rustc --version && node --version`.
+
+1. **Scaffold.** `npm create tauri-app@latest -- --template react-ts --identifier com.usmcc.publicity-helper --manager npm` into a temp dir, then move the generated files into the repo root (preserving `PLAN.md` and `README.md`). Verify `npm run tauri dev` opens a blank window.
+2. **Configure bundle.** In `src-tauri/tauri.conf.json`: set `productName: "USMCC Publicity Helper"`, `identifier: "com.usmcc.publicity-helper"`, window `width: 1100`, `height: 750`, `titleBarStyle: "Overlay"` (or `"Transparent"` for the hidden-inset look), `minWidth: 900`, `minHeight: 600`. Set bundle `category: "public.app-category.productivity"`. Add macOS `entitlements` and `minimumSystemVersion: "11.0"`.
+3. **Type definitions.** Create `src/types.ts` with `PaperRow`, `Channel` (`'twitter' | 'twitterThread' | 'bluesky' | 'linkedin' | 'plainLanguage'`), `GenerateRequest`, `GenerateResponse`. Mirror in `src-tauri/src/parse_row.rs` with `#[derive(Serialize, Deserialize)]` and `#[serde(rename_all = "camelCase")]` so JSON keys match the TS side.
+4. **Parser.** Implement `parse_row(text: &str) -> Result<PaperRow, ParseError>` in `src-tauri/src/parse_row.rs` per §2. Add `tests/parse_row.rs` with cases: bare row, row + header, quoted multi-line abstract, missing trailing cells, missing required cells. Expose as `#[tauri::command] fn parse_row(text: String) -> Result<PaperRow, String>` so the renderer can preview the parse live.
+5. **Settings + Keychain.** Add `keyring = "3"` to `Cargo.toml`. In `src-tauri/src/settings.rs`, implement `get_api_key`, `set_api_key`, `delete_api_key` using `keyring::Entry::new("com.usmcc.publicity-helper", "anthropic-api-key")`. Expose `get_api_key_status() -> bool`, `set_api_key(key: String) -> Result<(), String>`, `test_api_key() -> Result<(), String>`. The renderer must NEVER receive the raw key — only the status boolean.
+6. **Prefs store.** Add `tauri-plugin-store` to `Cargo.toml` and register it in `main.rs`. Add `get_prefs` / `set_prefs` commands that read/write a `prefs.json` (keys: `model`, `tone`, `channelsEnabled`).
+7. **Anthropic client.** Add `reqwest = { version = "0.12", features = ["json", "rustls-tls"] }`, `serde_json`, `tokio = { features = ["macros", "rt-multi-thread"] }`. In `src-tauri/src/anthropic.rs`, implement one async fn per channel taking `(&PaperRow, &str /*tone*/, &str /*model*/, &str /*api_key*/)` and returning `Result<String, AnthropicError>`. Each posts to `https://api.anthropic.com/v1/messages` with headers `x-api-key`, `anthropic-version: 2023-06-01`, `content-type: application/json`. Use `tokio::join!` to fan out the selected channels in parallel. Max tokens: 800 for Twitter/Bluesky, 1200 for LinkedIn/plain-language, 1500 for the thread. Temperature 0.7. Use a prompt-caching block on the shared system prompt: `{"type": "text", "text": "...", "cache_control": {"type": "ephemeral"}}`.
+8. **Generate command.** `#[tauri::command] async fn generate(row: PaperRow, channels: Vec<Channel>, model: String, tone: String) -> GenerateResponse`. Return per-channel `Result<String, String>` so one failure doesn't kill the others. Read the API key from keyring inside this command — never accept it from the renderer.
+9. **InputPanel.** Big textarea ("Paste row from Google Sheet here"). On every change, call `invoke('parse_row', { text })` and render a small read-only preview of the parsed title, authors, category, and abstract so the user can confirm it parsed correctly. Show inline validation for missing title/abstract. Generate button is disabled until parsing succeeds and `get_api_key_status` returns true.
+10. **OutputCards.** One `OutputCard` per channel showing: channel name, generated text in a `<textarea readOnly>`, character count vs. the channel's limit (red if over), and a Copy button (use the Tauri clipboard plugin: `@tauri-apps/plugin-clipboard-manager`, or `navigator.clipboard.writeText` since macOS WKWebView supports it). While generating, show a skeleton/spinner per card. If one channel fails, show its error in just that card.
+11. **Settings screen.** Modal route. Fields: Anthropic API key (password input, masked, with a "Test" button that calls `test_api_key`), default model (`claude-sonnet-4-6` / `claude-opus-4-7`), default tone (`Neutral` / `Enthusiastic` / `Formal`), channels enabled. Persist via `set_prefs` and `set_api_key`.
+12. **Icon.** Drop a 1024×1024 PNG at `src-tauri/icons/icon.png` (a muon-symbol placeholder is fine), then run `npm run tauri icon src-tauri/icons/icon.png` to generate the full icon set including `.icns`.
+13. **Packaging.** `npm run tauri build`. Confirm `src-tauri/target/release/bundle/macos/USMCC Publicity Helper.app` and `src-tauri/target/release/bundle/dmg/*.dmg` exist. Document the first-run Gatekeeper bypass in README.
+14. **Smoke test.** Open the packaged `.app` from Finder. Paste a sample row (provide one in `tests/fixtures/sample_row.txt`). Generate. Verify all five channels return text and Copy buttons work.
 
 ## 7. Prompt templates
 
-Keep all prompts in `src/main/prompts.ts` as plain template functions —
-**do not** build prompts in the renderer. All prompts share a `systemPrompt`
-that pins context once so prompt caching works.
+Keep all prompts in `src-tauri/src/prompts.rs` as plain functions returning
+`String` — **do not** build prompts in the renderer. All prompts share a
+`SYSTEM_PROMPT` constant that pins context once so prompt caching works
+across the parallel per-channel requests.
 
 ### System prompt (shared, cacheable)
 
@@ -211,15 +226,15 @@ runs reuse the cache.
 
 ## 8. Settings, secrets, and first-run UX
 
-- On first launch, if `keytar.getPassword('usmcc-publicity-helper', 'anthropic-api-key')` returns null, show the Settings modal immediately with a friendly "Add your Anthropic API key to get started" message and a link to `https://console.anthropic.com/`.
-- The key never leaves the main process. The renderer only ever sees a boolean `hasApiKey`.
-- "Test" button in settings sends a 5-token `messages.create` request and reports success/failure.
+- On first launch, if `get_api_key_status()` returns `false`, show the Settings modal immediately with a friendly "Add your Anthropic API key to get started" message and a link to `https://console.anthropic.com/`.
+- The key is stored in the macOS Keychain via the `keyring` crate. The renderer only ever sees a boolean (`hasApiKey`) — there is no `get_api_key` command exposed to the renderer.
+- "Test" button in settings invokes `test_api_key`, which sends a 5-token request to `/v1/messages` and reports success/failure.
 
 ## 9. Testing
 
-- **Unit:** `vitest` on `parseRow` (see §6 step 3). Aim for ~8 cases.
-- **Manual smoke test fixture:** commit `test/fixtures/sample-row.txt` with a realistic synthetic row (made-up authors/abstract — do NOT use real submissions). Document in README how to use it.
-- No e2e/Playwright setup — overkill for this app.
+- **Unit (Rust):** `cargo test` covers `parse_row` (see §6 step 4). Aim for ~8 cases. Run from `src-tauri/` or with `cargo test --manifest-path src-tauri/Cargo.toml`.
+- **Manual smoke test fixture:** commit `tests/fixtures/sample_row.txt` with a realistic synthetic row (made-up authors/abstract — do NOT use real submissions). Document in README how to use it.
+- No e2e setup (no Playwright, no WebDriver) — overkill for this app.
 
 ## 10. Out of scope (do not build)
 
@@ -232,8 +247,8 @@ runs reuse the cache.
 
 ## 11. Definition of done
 
-- `npm start` opens the dev app and a paste → generate → copy round-trip works against the live Claude API.
-- `npm run make` produces `out/USMCC Publicity Helper-darwin-arm64/USMCC Publicity Helper.app` (and x64 if built on Intel) that runs from Finder.
-- `npm test` passes.
-- README explains: install, add API key, paste row, generate, copy. Includes the Gatekeeper bypass note.
+- `npm run tauri dev` opens the dev app and a paste → generate → copy round-trip works against the live Claude API.
+- `npm run tauri build` produces `src-tauri/target/release/bundle/macos/USMCC Publicity Helper.app` and a `.dmg`, and the `.app` runs from Finder.
+- `cargo test --manifest-path src-tauri/Cargo.toml` passes.
+- README explains: install Rust + Node, run dev, add API key, paste row, generate, copy. Includes the Gatekeeper bypass note (`xattr -d com.apple.quarantine "/Applications/USMCC Publicity Helper.app"`).
 - All five channels produce output that respects the constraints in §3 for the sample fixture.
