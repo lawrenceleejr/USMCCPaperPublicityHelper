@@ -1,0 +1,21 @@
+.DS_Store
+*.xcuserstate
+DerivedData/
+build/
+.build/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Rust / Cargo
+target/
+
+# Node / npm
+node_modules/
+dist/
+
+# Tauri
+src-tauri/target/
+
+# Environment
+.env
+.env.local

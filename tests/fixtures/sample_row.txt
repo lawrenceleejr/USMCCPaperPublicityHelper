@@ -1,0 +1,1 @@
+2024-01-15 10:30:00	author@example.com	Novel Muon Collider Design	A Better Way to Collide Muons	C. Anderson, S. Neddermeyer	2024-01-10	accelerator	This paper presents a novel design for a muon collider. The design achieves higher luminosity with reduced beam emittance.	https://arxiv.org/abs/2401.12345	Yes	Please highlight the energy efficiency aspect.
