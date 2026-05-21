@@ -75,10 +75,10 @@ jobs:
           cp -R "$APP_PATH" "$DMG_DIR/"
           cp "docs/UNSIGNED_MAC_README.txt" "$DMG_DIR/README.txt"
           ln -s /Applications "$DMG_DIR/Applications"
+          # -ov overwrites the output file if a previous step/run already created it.
           hdiutil create \
             -volname "USMCC Publicity Helper" \
             -srcfolder "$DMG_DIR" \
-            # Overwrite if a previous workflow step/run already created the output file.
             -ov \
             -format UDZO \
             "$OUT_DMG"
