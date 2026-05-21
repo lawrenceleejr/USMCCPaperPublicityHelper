@@ -7,8 +7,10 @@ interface Props {
   onError: (msg: string) => void;
   model: string;
   includeThread: boolean;
+  useClaude: boolean;
   onModelChange: (m: string) => void;
   onIncludeThreadChange: (v: boolean) => void;
+  onUseClaudeChange: (v: boolean) => void;
   onGenerate: () => void;
   generating: boolean;
 }
@@ -18,8 +20,10 @@ export default function InputPanel({
   onError,
   model,
   includeThread,
+  useClaude,
   onModelChange,
   onIncludeThreadChange,
+  onUseClaudeChange,
   onGenerate,
   generating,
 }: Props) {
@@ -61,8 +65,17 @@ export default function InputPanel({
         </button>
 
         <label>
+          <input
+            type="checkbox"
+            checked={useClaude}
+            onChange={(e) => onUseClaudeChange(e.target.checked)}
+          />
+          Use Claude for post/summary generation
+        </label>
+
+        <label>
           Model:
-          <select value={model} onChange={(e) => onModelChange(e.target.value)}>
+          <select value={model} onChange={(e) => onModelChange(e.target.value)} disabled={!useClaude}>
             <option value="claude-sonnet-4-5">claude-sonnet-4-5</option>
             <option value="claude-opus-4-5">claude-opus-4-5</option>
           </select>

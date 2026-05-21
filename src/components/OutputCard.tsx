@@ -4,13 +4,14 @@ interface Props {
   title: string;
   content: string | string[];
   maxChars?: number;
+  logoSrc?: string;
 }
 
 function countChars(s: string): number {
   return [...s].length;
 }
 
-export default function OutputCard({ title, content, maxChars }: Props) {
+export default function OutputCard({ title, content, maxChars, logoSrc }: Props) {
   const [copied, setCopied] = useState(false);
 
   const fullText = Array.isArray(content) ? content.join("\n\n") : content;
@@ -27,7 +28,10 @@ export default function OutputCard({ title, content, maxChars }: Props) {
   return (
     <div className="output-card">
       <div className="output-card-header">
-        <h3>{title}</h3>
+        <h3>
+          {logoSrc && <img src={logoSrc} alt="" className="output-card-logo" aria-hidden="true" />}
+          {title}
+        </h3>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           {maxChars !== undefined && (
             <span className={`char-count ${isOver ? "over" : ""}`}>

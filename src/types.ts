@@ -16,6 +16,7 @@ export interface GenerateRequest {
   row: PaperRow;
   model: string;
   includeThread: boolean;
+  useClaude: boolean;
 }
 
 export interface GeneratedContent {
@@ -29,6 +30,7 @@ export interface GeneratedContent {
 export interface Preferences {
   model: string;
   includeThread: boolean;
+  useClaude: boolean;
 }
 
 export type ApiKeyStatus = "set" | "not_set";

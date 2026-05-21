@@ -61,8 +61,27 @@ jobs:
         env:
           # Ad-hoc sign (identity "-") — no Apple Developer account required.
           # Users can bypass Gatekeeper with:
-          #   xattr -d com.apple.quarantine "USMCC Publicity Helper.app"
+          #   xattr -dr com.apple.quarantine "/Applications/USMCC Publicity Helper.app"
           APPLE_SIGNING_IDENTITY: '-'
+
+      - name: Build distribution DMG with README
+        run: |
+          set -euo pipefail
+          APP_PATH="src-tauri/target/release/bundle/macos/USMCC Publicity Helper.app"
+          DMG_DIR="$RUNNER_TEMP/usmcc-dmg"
+          OUT_DMG="$GITHUB_WORKSPACE/USMCC-Publicity-Helper-macOS.dmg"
+          rm -rf "$DMG_DIR"
+          mkdir -p "$DMG_DIR"
+          cp -R "$APP_PATH" "$DMG_DIR/"
+          cp "docs/UNSIGNED_MAC_README.txt" "$DMG_DIR/README.txt"
+          ln -s /Applications "$DMG_DIR/Applications"
+          hdiutil create \
+            -volname "USMCC Publicity Helper" \
+            -srcfolder "$DMG_DIR" \
+            # Overwrite if a previous workflow step/run already created the output file.
+            -ov \
+            -format UDZO \
+            "$OUT_DMG"
 
       - name: Zip .app bundle
         run: |
@@ -80,5 +99,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: USMCC-Publicity-Helper-macOS-dmg
-          path: src-tauri/target/release/bundle/dmg/*.dmg
+          path: USMCC-Publicity-Helper-macOS.dmg
           retention-days: 30
