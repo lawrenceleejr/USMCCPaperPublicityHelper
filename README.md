@@ -50,6 +50,16 @@ A macOS desktop app (Tauri 2 + React + Rust) that turns one row pasted from the 
 
 5. **Set your Anthropic API key** in the app's Settings panel.
 
+### macOS unsigned build note
+
+If macOS blocks launch (or the app appears to close immediately), remove quarantine from the installed app:
+
+```bash
+xattr -dr com.apple.quarantine "/Applications/USMCC Publicity Helper.app"
+```
+
+The distributed DMG includes `README.txt` with the same command.
+
 ## Testing
 
 Run Rust unit tests (covers TSV parsing logic):
