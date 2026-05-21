@@ -78,6 +78,7 @@ jobs:
           hdiutil create \
             -volname "USMCC Publicity Helper" \
             -srcfolder "$DMG_DIR" \
+            # Overwrite if a previous workflow step/run already created the output file.
             -ov \
             -format UDZO \
             "$OUT_DMG"
