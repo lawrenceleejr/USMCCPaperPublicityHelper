@@ -1,1 +1,1 @@
-{}
+{"default":{"identifier":"default","description":"Default capability granting core APIs and app commands to the main window.","local":true,"windows":["main"],"permissions":["core:default","store:default","core:window:default","core:webview:default","core:app:default","core:event:default"]}}

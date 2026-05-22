@@ -1,1018 +1,1403 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import type { ChangeEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { ChangeEvent, DragEvent } from "react";
+import { fetchArxivFigures, getArxivEprintUrl } from "../api";
+import logoCircles from "../assets/LogoUSMCC_circles.png";
+import logoWhite from "../assets/LogoUSMCC_white.png";
 
 interface Props {
+  eyebrowText: string;
   titleText: string;
-  subtitleText: string;
-  footerText: string;
+  descriptionText: string;
+  authorsText: string;
+  paperLink: string;
 }
 
-type BlockKey = "title" | "subtitle" | "footer";
-type TemplateKey = "minimal" | "academic" | "bold";
+type TemplateKey =
+  | "editorial"
+  | "minimal_mono"
+  | "bold_sans"
+  | "soft_serif"
+  | "punch"
+  | "dm_pair";
 
-type BlockTypography = {
+type BlendMode =
+  | "normal"
+  | "multiply"
+  | "overlay"
+  | "soft-light"
+  | "screen"
+  | "darken"
+  | "lighten";
+
+type GradientStyle = "vertical" | "radial" | "corner_tl" | "corner_br";
+type Align = "left" | "center" | "right";
+type VAlign = "top" | "middle" | "bottom";
+type LogoVariant = "circles" | "white";
+
+interface TextBlock {
   fontSize: number;
   lineHeight: number;
   letterSpacing: number;
-};
+  weight: number;
+  italic?: boolean;
+  uppercase?: boolean;
+}
 
-type DesignSettings = {
-  template: TemplateKey;
-  fontFamily: string;
-  backgroundColor: string;
+interface Typography {
+  eyebrow: TextBlock;
+  title: TextBlock;
+  description: TextBlock;
+  authors: TextBlock;
+}
+
+interface TemplateDef {
+  name: string;
+  displayFont: string;
+  bodyFont: string;
+  baseColor: string;
+  tintColor: string;
+  tintOpacity: number;
+  tintBlend: BlendMode;
+  gradient: GradientStyle;
+  gradientColorStart: string;
+  gradientColorEnd: string;
+  gradientBlend: BlendMode;
   textColor: string;
-  subtitleColor: string;
-  footerColor: string;
-  showGuidelines: boolean;
-  accessibilityMode: boolean;
-  blocks: Record<BlockKey, BlockTypography>;
-};
+  eyebrowColor: string;
+  authorsColor: string;
+  align: Align;
+  vAlign: VAlign;
+  logoVariant: LogoVariant;
+  typography: Typography;
+}
 
-type StyleProfile = {
-  name: string;
-  settings: DesignSettings;
-};
-
-type Variant = {
+interface BgImage {
   id: string;
+  src: string;
   name: string;
-  settings: DesignSettings;
-};
+  source: "upload" | "arxiv";
+}
+
+interface PaneText {
+  eyebrow: string;
+  title: string;
+  description: string;
+  authors: string;
+  dirty: { eyebrow: boolean; title: boolean; description: boolean; authors: boolean };
+}
 
 const CANVAS_SIZE = 1080;
-const SAFE_PADDING = 72;
-const BLOCK_PADDING = 24;
-const PREVIEW_SCALE = 0.5;
-const FONT_LOAD_TIMEOUT_MS = 3500;
-const MAX_UNDO_HISTORY = 40;
-const MAX_RECENT_FONTS = 8;
-const JPEG_EXPORT_QUALITY = 0.92;
+const SAFE_PADDING = 88;
+const CROSSFADE_PX = 120;
+const LOGO_HEIGHT_PX = 80;
+const LOGO_MARGIN_PX = 44;
+const FONT_LOAD_TIMEOUT_MS = 4000;
+const MAX_PANES = 5;
+const MIN_PANES = 2;
+const DESCRIPTION_MAX_CHARS = 240;
 const FALLBACK_FONT_STACK = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
-const BLOCK_LAYOUT: Record<BlockKey, { y: number; h: number }> = {
-  title: { y: 120, h: 270 },
-  subtitle: { y: 430, h: 320 },
-  footer: { y: 800, h: 170 },
+const TEMPLATES: Record<TemplateKey, TemplateDef> = {
+  editorial: {
+    name: "Editorial",
+    displayFont: "Playfair Display",
+    bodyFont: "Inter",
+    baseColor: "#0a0a0a",
+    tintColor: "#0d1b2a",
+    tintOpacity: 0.35,
+    tintBlend: "multiply",
+    gradient: "vertical",
+    gradientColorStart: "rgba(0,0,0,0)",
+    gradientColorEnd: "rgba(0,0,0,0.88)",
+    gradientBlend: "normal",
+    textColor: "#ffffff",
+    eyebrowColor: "#f5c842",
+    authorsColor: "#cbd5e1",
+    align: "left",
+    vAlign: "bottom",
+    logoVariant: "white",
+    typography: {
+      eyebrow: { fontSize: 30, lineHeight: 1.2, letterSpacing: 6, weight: 600, uppercase: true },
+      title: { fontSize: 92, lineHeight: 1.04, letterSpacing: -1, weight: 700 },
+      description: { fontSize: 38, lineHeight: 1.35, letterSpacing: 0, weight: 400 },
+      authors: { fontSize: 28, lineHeight: 1.4, letterSpacing: 0.5, weight: 500, italic: true },
+    },
+  },
+  minimal_mono: {
+    name: "Minimal Mono",
+    displayFont: "Space Grotesk",
+    bodyFont: "Space Mono",
+    baseColor: "#f7f7f4",
+    tintColor: "#0a0a0a",
+    tintOpacity: 0.18,
+    tintBlend: "multiply",
+    gradient: "vertical",
+    gradientColorStart: "rgba(247,247,244,0.55)",
+    gradientColorEnd: "rgba(247,247,244,0)",
+    gradientBlend: "normal",
+    textColor: "#0a0a0a",
+    eyebrowColor: "#7c3aed",
+    authorsColor: "#52525b",
+    align: "left",
+    vAlign: "top",
+    logoVariant: "circles",
+    typography: {
+      eyebrow: { fontSize: 26, lineHeight: 1.2, letterSpacing: 8, weight: 600, uppercase: true },
+      title: { fontSize: 80, lineHeight: 1.06, letterSpacing: -1.5, weight: 700 },
+      description: { fontSize: 32, lineHeight: 1.45, letterSpacing: 0, weight: 400 },
+      authors: { fontSize: 24, lineHeight: 1.4, letterSpacing: 0.5, weight: 400 },
+    },
+  },
+  bold_sans: {
+    name: "Bold Sans",
+    displayFont: "Archivo Black",
+    bodyFont: "Lora",
+    baseColor: "#1a1a2e",
+    tintColor: "#7c3aed",
+    tintOpacity: 0.42,
+    tintBlend: "overlay",
+    gradient: "radial",
+    gradientColorStart: "rgba(0,0,0,0)",
+    gradientColorEnd: "rgba(0,0,0,0.78)",
+    gradientBlend: "multiply",
+    textColor: "#ffffff",
+    eyebrowColor: "#fbbf24",
+    authorsColor: "#e9d5ff",
+    align: "center",
+    vAlign: "middle",
+    logoVariant: "white",
+    typography: {
+      eyebrow: { fontSize: 30, lineHeight: 1.2, letterSpacing: 10, weight: 700, uppercase: true },
+      title: { fontSize: 100, lineHeight: 1.0, letterSpacing: -1, weight: 700 },
+      description: { fontSize: 36, lineHeight: 1.4, letterSpacing: 0, weight: 400 },
+      authors: { fontSize: 28, lineHeight: 1.4, letterSpacing: 1, weight: 500, italic: true },
+    },
+  },
+  soft_serif: {
+    name: "Soft Serif",
+    displayFont: "Cormorant Garamond",
+    bodyFont: "Source Sans 3",
+    baseColor: "#f5f0e8",
+    tintColor: "#7c2d12",
+    tintOpacity: 0.22,
+    tintBlend: "multiply",
+    gradient: "vertical",
+    gradientColorStart: "rgba(245,240,232,0)",
+    gradientColorEnd: "rgba(120,53,15,0.7)",
+    gradientBlend: "soft-light",
+    textColor: "#1c1917",
+    eyebrowColor: "#92400e",
+    authorsColor: "#57534e",
+    align: "left",
+    vAlign: "bottom",
+    logoVariant: "circles",
+    typography: {
+      eyebrow: { fontSize: 26, lineHeight: 1.2, letterSpacing: 5, weight: 600, uppercase: true },
+      title: { fontSize: 108, lineHeight: 1.0, letterSpacing: -0.5, weight: 500 },
+      description: { fontSize: 34, lineHeight: 1.4, letterSpacing: 0, weight: 400 },
+      authors: { fontSize: 28, lineHeight: 1.4, letterSpacing: 0.5, weight: 500, italic: true },
+    },
+  },
+  punch: {
+    name: "Punch",
+    displayFont: "Bebas Neue",
+    bodyFont: "Karla",
+    baseColor: "#020617",
+    tintColor: "#ef4444",
+    tintOpacity: 0.5,
+    tintBlend: "multiply",
+    gradient: "corner_tl",
+    gradientColorStart: "rgba(239,68,68,0.9)",
+    gradientColorEnd: "rgba(2,6,23,0)",
+    gradientBlend: "multiply",
+    textColor: "#ffffff",
+    eyebrowColor: "#fde047",
+    authorsColor: "#fca5a5",
+    align: "left",
+    vAlign: "top",
+    logoVariant: "white",
+    typography: {
+      eyebrow: { fontSize: 32, lineHeight: 1.2, letterSpacing: 8, weight: 700, uppercase: true },
+      title: { fontSize: 140, lineHeight: 0.92, letterSpacing: 1, weight: 400 },
+      description: { fontSize: 32, lineHeight: 1.4, letterSpacing: 0, weight: 400 },
+      authors: { fontSize: 26, lineHeight: 1.4, letterSpacing: 0.5, weight: 500 },
+    },
+  },
+  dm_pair: {
+    name: "DM Pair",
+    displayFont: "DM Serif Display",
+    bodyFont: "DM Sans",
+    baseColor: "#0c4a6e",
+    tintColor: "#082f49",
+    tintOpacity: 0.3,
+    tintBlend: "multiply",
+    gradient: "vertical",
+    gradientColorStart: "rgba(125,211,252,0)",
+    gradientColorEnd: "rgba(8,47,73,0.88)",
+    gradientBlend: "multiply",
+    textColor: "#f0f9ff",
+    eyebrowColor: "#bae6fd",
+    authorsColor: "#cbd5e1",
+    align: "left",
+    vAlign: "bottom",
+    logoVariant: "white",
+    typography: {
+      eyebrow: { fontSize: 26, lineHeight: 1.2, letterSpacing: 4, weight: 500, uppercase: true },
+      title: { fontSize: 96, lineHeight: 1.05, letterSpacing: -0.5, weight: 400 },
+      description: { fontSize: 36, lineHeight: 1.4, letterSpacing: 0, weight: 400 },
+      authors: { fontSize: 28, lineHeight: 1.4, letterSpacing: 0.5, weight: 500 },
+    },
+  },
 };
 
-const FONT_LIST = [
-  "Inter",
-  "Roboto",
-  "Open Sans",
-  "Lato",
-  "Montserrat",
-  "Poppins",
-  "Source Sans 3",
-  "Nunito",
-  "Playfair Display",
-  "Merriweather",
-  "PT Serif",
-  "Libre Baskerville",
-  "Work Sans",
-  "IBM Plex Sans",
-  "DM Sans",
-  "Bebas Neue",
-  "Oswald",
-  "Raleway",
-  "Rubik",
-  "Noto Sans",
-  "Noto Serif",
-  "Fira Sans",
-  "Karla",
-  "Manrope",
-  "Archivo",
-  "Space Grotesk",
-  "JetBrains Mono",
-  "Lora",
-  "Prompt",
-  "Cabin",
-  "Barlow",
-  "Heebo",
-  "Arimo",
-  "Hind",
-  "Inconsolata",
+const TEMPLATE_ORDER: TemplateKey[] = [
+  "editorial",
+  "bold_sans",
+  "punch",
+  "dm_pair",
+  "soft_serif",
+  "minimal_mono",
 ];
-
-const STORAGE_KEYS = {
-  settings: "igDesigner.settings.v1",
-  profiles: "igDesigner.profiles.v1",
-  variants: "igDesigner.variants.v1",
-  activeVariant: "igDesigner.activeVariant.v1",
-  recentFonts: "igDesigner.recentFonts.v1",
-};
-
-const TEMPLATE_PRESETS: Record<
-  TemplateKey,
-  Pick<DesignSettings, "backgroundColor" | "textColor" | "subtitleColor" | "footerColor"> & {
-    blocks: Record<BlockKey, Partial<BlockTypography>>;
-  }
-> = {
-  minimal: {
-    backgroundColor: "#ffffff",
-    textColor: "#111111",
-    subtitleColor: "#333333",
-    footerColor: "#666666",
-    blocks: {
-      title: { fontSize: 68, lineHeight: 1.15, letterSpacing: 0.2 },
-      subtitle: { fontSize: 40, lineHeight: 1.28, letterSpacing: 0 },
-      footer: { fontSize: 28, lineHeight: 1.2, letterSpacing: 0.2 },
-    },
-  },
-  academic: {
-    backgroundColor: "#f8f6ef",
-    textColor: "#1b263b",
-    subtitleColor: "#2b3c56",
-    footerColor: "#415a77",
-    blocks: {
-      title: { fontSize: 66, lineHeight: 1.16, letterSpacing: 0 },
-      subtitle: { fontSize: 38, lineHeight: 1.3, letterSpacing: 0 },
-      footer: { fontSize: 26, lineHeight: 1.24, letterSpacing: 0 },
-    },
-  },
-  bold: {
-    backgroundColor: "#111827",
-    textColor: "#f9fafb",
-    subtitleColor: "#d1d5db",
-    footerColor: "#9ca3af",
-    blocks: {
-      title: { fontSize: 74, lineHeight: 1.1, letterSpacing: 0.4 },
-      subtitle: { fontSize: 42, lineHeight: 1.24, letterSpacing: 0.2 },
-      footer: { fontSize: 30, lineHeight: 1.2, letterSpacing: 0.3 },
-    },
-  },
-};
-
-const DEFAULT_SETTINGS: DesignSettings = {
-  template: "minimal",
-  fontFamily: "Inter",
-  backgroundColor: TEMPLATE_PRESETS.minimal.backgroundColor,
-  textColor: TEMPLATE_PRESETS.minimal.textColor,
-  subtitleColor: TEMPLATE_PRESETS.minimal.subtitleColor,
-  footerColor: TEMPLATE_PRESETS.minimal.footerColor,
-  showGuidelines: false,
-  accessibilityMode: false,
-  blocks: {
-    title: { fontSize: 68, lineHeight: 1.15, letterSpacing: 0.2 },
-    subtitle: { fontSize: 40, lineHeight: 1.28, letterSpacing: 0 },
-    footer: { fontSize: 28, lineHeight: 1.2, letterSpacing: 0.2 },
-  },
-};
-
-const BLOCK_LIMITS: Record<BlockKey, { min: number; max: number; accessibilityMin: number }> = {
-  title: { min: 30, max: 120, accessibilityMin: 40 },
-  subtitle: { min: 22, max: 84, accessibilityMin: 30 },
-  footer: { min: 18, max: 56, accessibilityMin: 24 },
-};
-
-function clamp(value: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, value));
-}
-
-function deepCloneSettings(settings: DesignSettings): DesignSettings {
-  return JSON.parse(JSON.stringify(settings)) as DesignSettings;
-}
-
-function safeJsonParse<T>(raw: string | null, fallback: T): T {
-  if (!raw) return fallback;
-  try {
-    return JSON.parse(raw) as T;
-  } catch {
-    return fallback;
-  }
-}
-
-function useDebouncedValue<T>(value: T, delayMs: number): T {
-  const [debounced, setDebounced] = useState(value);
-
-  useEffect(() => {
-    const handle = window.setTimeout(() => setDebounced(value), delayMs);
-    return () => window.clearTimeout(handle);
-  }, [value, delayMs]);
-
-  return debounced;
-}
-
-function normalizeAndValidate(settings: DesignSettings): DesignSettings {
-  const normalized = deepCloneSettings(settings);
-  const minLineHeight = normalized.accessibilityMode ? 1.2 : 1;
-
-  (Object.keys(normalized.blocks) as BlockKey[]).forEach((key) => {
-    const limits = BLOCK_LIMITS[key];
-    const min = normalized.accessibilityMode ? limits.accessibilityMin : limits.min;
-    normalized.blocks[key].fontSize = clamp(normalized.blocks[key].fontSize, min, limits.max);
-    normalized.blocks[key].lineHeight = clamp(normalized.blocks[key].lineHeight, minLineHeight, 2);
-    normalized.blocks[key].letterSpacing = clamp(normalized.blocks[key].letterSpacing, -1, 6);
-  });
-
-  return normalized;
-}
-
-function getTemplateDefaults(template: TemplateKey, base: DesignSettings): DesignSettings {
-  const preset = TEMPLATE_PRESETS[template];
-  return normalizeAndValidate({
-    ...base,
-    template,
-    backgroundColor: preset.backgroundColor,
-    textColor: preset.textColor,
-    subtitleColor: preset.subtitleColor,
-    footerColor: preset.footerColor,
-    blocks: {
-      title: { ...base.blocks.title, ...preset.blocks.title },
-      subtitle: { ...base.blocks.subtitle, ...preset.blocks.subtitle },
-      footer: { ...base.blocks.footer, ...preset.blocks.footer },
-    },
-  });
-}
-
-function colorToRgb(color: string): [number, number, number] | null {
-  const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color.trim());
-  if (!match) return null;
-  return [parseInt(match[1], 16), parseInt(match[2], 16), parseInt(match[3], 16)];
-}
-
-function luminance(rgb: [number, number, number]): number {
-  const normalized = rgb.map((c) => {
-    const value = c / 255;
-    return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
-  }) as [number, number, number];
-  return 0.2126 * normalized[0] + 0.7152 * normalized[1] + 0.0722 * normalized[2];
-}
-
-function contrastRatio(fg: string, bg: string): number | null {
-  const fgRgb = colorToRgb(fg);
-  const bgRgb = colorToRgb(bg);
-  if (!fgRgb || !bgRgb) return null;
-  const lighter = Math.max(luminance(fgRgb), luminance(bgRgb));
-  const darker = Math.min(luminance(fgRgb), luminance(bgRgb));
-  return (lighter + 0.05) / (darker + 0.05);
-}
-
-function wrapText(
-  ctx: CanvasRenderingContext2D,
-  text: string,
-  maxWidth: number,
-  maxLines: number
-): string[] {
-  const words = text.split(/\s+/).filter(Boolean);
-  if (words.length === 0) return [];
-  const lines: string[] = [];
-  let current = words[0];
-
-  for (let i = 1; i < words.length; i += 1) {
-    const candidate = `${current} ${words[i]}`;
-    if (ctx.measureText(candidate).width <= maxWidth) {
-      current = candidate;
-    } else {
-      lines.push(current);
-      current = words[i];
-      if (lines.length >= maxLines) break;
-    }
-  }
-
-  if (lines.length < maxLines) lines.push(current);
-  return lines.slice(0, maxLines);
-}
 
 function buildFontFamily(fontFamily: string): string {
   return `"${fontFamily}", ${FALLBACK_FONT_STACK}`;
 }
 
-async function loadGoogleFont(fontFamily: string): Promise<void> {
-  const familyParam = fontFamily.trim().split(/\s+/).join("+");
-  const id = `google-font-${familyParam.toLowerCase()}`;
-  const existing = document.getElementById(id) as HTMLLinkElement | null;
-
-  if (!existing) {
+async function ensureGoogleFont(family: string, weight: number, italic = false): Promise<void> {
+  const familyParam = family.trim().split(/\s+/).join("+");
+  const styleSpec = italic ? `ital,wght@1,${weight}` : `wght@${weight}`;
+  const id = `google-font-${familyParam.toLowerCase()}-${styleSpec}`;
+  if (!document.getElementById(id)) {
     const link = document.createElement("link");
     link.id = id;
     link.rel = "stylesheet";
-    link.href = `https://fonts.googleapis.com/css2?family=${familyParam}:wght@400;500;700&display=swap`;
+    link.href = `https://fonts.googleapis.com/css2?family=${familyParam}:${styleSpec}&display=swap`;
     document.head.appendChild(link);
   }
-
-  await new Promise<void>((resolve, reject) => {
-    const timeoutId = window.setTimeout(() => reject(new Error("Font load timeout")), FONT_LOAD_TIMEOUT_MS);
+  const descriptor = `${italic ? "italic " : ""}${weight} 32px "${family}"`;
+  await new Promise<void>((resolve) => {
+    const handle = window.setTimeout(resolve, FONT_LOAD_TIMEOUT_MS);
     document.fonts
-      .load(`16px "${fontFamily}"`)
+      .load(descriptor)
       .then(() => resolve())
-      .catch(reject)
-      .finally(() => {
-        window.clearTimeout(timeoutId);
-      });
+      .catch(() => resolve())
+      .finally(() => window.clearTimeout(handle));
   });
 }
 
-function makeVariantName(count: number): string {
-  return `Variant ${count}`;
+function fileToDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(new Error("Could not read file"));
+    reader.readAsDataURL(file);
+  });
 }
 
-export default function InstagramDesigner({ titleText, subtitleText, footerText }: Props) {
-  const [settings, setSettings] = useState<DesignSettings>(() => {
-    const persisted = safeJsonParse<DesignSettings | null>(
-      window.localStorage.getItem(STORAGE_KEYS.settings),
-      null
-    );
-    return normalizeAndValidate(persisted ?? DEFAULT_SETTINGS);
+function bytesFromBase64(b64: string, mime: string): string {
+  return `data:${mime};base64,${b64}`;
+}
+
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`Failed to load image ${src.slice(0, 60)}`));
+    img.src = src;
   });
-  const [undoStack, setUndoStack] = useState<DesignSettings[]>([]);
-  const [redoStack, setRedoStack] = useState<DesignSettings[]>([]);
-  const [fontSearch, setFontSearch] = useState("");
-  const [fontLoading, setFontLoading] = useState(false);
-  const [fontError, setFontError] = useState<string | null>(null);
-  const [profileError, setProfileError] = useState<string | null>(null);
-  const [visibleFontCount, setVisibleFontCount] = useState(12);
-  const [recentFonts, setRecentFonts] = useState<string[]>(() =>
-    safeJsonParse<string[]>(window.localStorage.getItem(STORAGE_KEYS.recentFonts), ["Inter"])
+}
+
+function firstSentences(text: string, maxChars: number): string {
+  const trimmed = text.replace(/\s+/g, " ").trim();
+  if (trimmed.length <= maxChars) return trimmed;
+  const candidate = trimmed.slice(0, maxChars);
+  const lastSentenceEnd = Math.max(
+    candidate.lastIndexOf(". "),
+    candidate.lastIndexOf("! "),
+    candidate.lastIndexOf("? ")
   );
-  const [profiles, setProfiles] = useState<StyleProfile[]>(() =>
-    safeJsonParse<StyleProfile[]>(window.localStorage.getItem(STORAGE_KEYS.profiles), [])
-  );
-  const [profileName, setProfileName] = useState("My Style");
-  const [selectedProfileName, setSelectedProfileName] = useState("");
+  if (lastSentenceEnd > maxChars / 2) {
+    return candidate.slice(0, lastSentenceEnd + 1);
+  }
+  const lastSpace = candidate.lastIndexOf(" ");
+  return `${candidate.slice(0, lastSpace > 0 ? lastSpace : maxChars)}…`;
+}
+
+function kebab(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60) || "usmcc-paper";
+}
+
+function gradientCss(template: TemplateDef): string {
+  const { gradient, gradientColorStart, gradientColorEnd } = template;
+  if (gradient === "vertical") {
+    return `linear-gradient(180deg, ${gradientColorStart} 0%, ${gradientColorEnd} 100%)`;
+  }
+  if (gradient === "radial") {
+    return `radial-gradient(circle at 50% 50%, ${gradientColorStart} 0%, ${gradientColorEnd} 75%)`;
+  }
+  if (gradient === "corner_tl") {
+    return `radial-gradient(circle at 0% 0%, ${gradientColorStart} 0%, ${gradientColorEnd} 70%)`;
+  }
+  return `radial-gradient(circle at 100% 100%, ${gradientColorStart} 0%, ${gradientColorEnd} 70%)`;
+}
+
+function makePaneTextFromProps(
+  paneIndex: number,
+  paneCount: number,
+  props: Props
+): PaneText {
+  const eyebrow = paneIndex === 0 ? props.eyebrowText : "";
+  const title = paneIndex === 0 ? props.titleText : "";
+  const description =
+    paneIndex === 1 || (paneCount === 1 && paneIndex === 0)
+      ? firstSentences(props.descriptionText, DESCRIPTION_MAX_CHARS)
+      : paneIndex >= 2
+      ? ""
+      : "";
+  const authors = paneIndex === paneCount - 1 ? props.authorsText : "";
+  return {
+    eyebrow,
+    title,
+    description,
+    authors,
+    dirty: { eyebrow: false, title: false, description: false, authors: false },
+  };
+}
+
+function refreshPaneFromProps(pane: PaneText, paneIndex: number, paneCount: number, props: Props): PaneText {
+  const defaults = makePaneTextFromProps(paneIndex, paneCount, props);
+  return {
+    eyebrow: pane.dirty.eyebrow ? pane.eyebrow : defaults.eyebrow,
+    title: pane.dirty.title ? pane.title : defaults.title,
+    description: pane.dirty.description ? pane.description : defaults.description,
+    authors: pane.dirty.authors ? pane.authors : defaults.authors,
+    dirty: pane.dirty,
+  };
+}
+
+function paneSlotForImage(imageIndex: number, imageCount: number, paneCount: number) {
+  if (imageCount === 0) return { left: 0, width: paneCount * CANVAS_SIZE };
+  const slotWidth = (paneCount * CANVAS_SIZE) / imageCount;
+  return { left: imageIndex * slotWidth, width: slotWidth };
+}
+
+export default function InstagramDesigner({
+  eyebrowText,
+  titleText,
+  descriptionText,
+  authorsText,
+  paperLink,
+}: Props) {
+  const [templateKey, setTemplateKey] = useState<TemplateKey>("editorial");
+  const [displayFontOverride, setDisplayFontOverride] = useState<string | null>(null);
+  const [bodyFontOverride, setBodyFontOverride] = useState<string | null>(null);
+  const [images, setImages] = useState<BgImage[]>([]);
+  const [paneCountOverride, setPaneCountOverride] = useState<number | null>(null);
+  const [gradientStrength, setGradientStrength] = useState(1);
+  const [tintStrength, setTintStrength] = useState(1);
+  const [titleScale, setTitleScale] = useState(1);
+  const [descriptionScale, setDescriptionScale] = useState(1);
+  const [activePane, setActivePane] = useState(0);
+  const [arxivLoading, setArxivLoading] = useState(false);
+  const [arxivError, setArxivError] = useState<string | null>(null);
+  const [arxivEprintUrl, setArxivEprintUrl] = useState<string | null>(null);
+  const [exporting, setExporting] = useState(false);
+  const [exportError, setExportError] = useState<string | null>(null);
+  const dropRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const previewFrameRef = useRef<HTMLDivElement>(null);
+  const [previewScale, setPreviewScale] = useState(0.4);
 
-  const initialVariants = useMemo<Variant[]>(() => {
-    const persisted = safeJsonParse<Variant[]>(window.localStorage.getItem(STORAGE_KEYS.variants), []);
-    if (persisted.length > 0) return persisted.map((v) => ({ ...v, settings: normalizeAndValidate(v.settings) }));
-    return [{ id: "variant-1", name: "Variant 1", settings: normalizeAndValidate(DEFAULT_SETTINGS) }];
+  const propsRef = useRef<Props>({ eyebrowText, titleText, descriptionText, authorsText, paperLink });
+  useEffect(() => {
+    propsRef.current = { eyebrowText, titleText, descriptionText, authorsText, paperLink };
+  }, [eyebrowText, titleText, descriptionText, authorsText, paperLink]);
+
+  const paneCount = useMemo(() => {
+    const derived = Math.max(MIN_PANES, Math.min(MAX_PANES, images.length || MIN_PANES));
+    return paneCountOverride ?? derived;
+  }, [images.length, paneCountOverride]);
+
+  const [panes, setPanes] = useState<PaneText[]>(() =>
+    Array.from({ length: MIN_PANES }, (_, i) =>
+      makePaneTextFromProps(i, MIN_PANES, {
+        eyebrowText,
+        titleText,
+        descriptionText,
+        authorsText,
+        paperLink,
+      })
+    )
+  );
+
+  // Keep panes array in sync with paneCount, refreshing un-dirty fields from props.
+  useEffect(() => {
+    setPanes((prev) => {
+      const next: PaneText[] = [];
+      for (let i = 0; i < paneCount; i += 1) {
+        const existing = prev[i];
+        if (existing) {
+          next.push(refreshPaneFromProps(existing, i, paneCount, propsRef.current));
+        } else {
+          next.push(makePaneTextFromProps(i, paneCount, propsRef.current));
+        }
+      }
+      return next;
+    });
+    setActivePane((p) => Math.min(p, paneCount - 1));
+  }, [paneCount]);
+
+  // When props change, refresh non-dirty fields across all panes.
+  useEffect(() => {
+    setPanes((prev) =>
+      prev.map((p, i) =>
+        refreshPaneFromProps(p, i, prev.length, {
+          eyebrowText,
+          titleText,
+          descriptionText,
+          authorsText,
+          paperLink,
+        })
+      )
+    );
+  }, [eyebrowText, titleText, descriptionText, authorsText, paperLink]);
+
+  const template = TEMPLATES[templateKey];
+  const displayFont = displayFontOverride ?? template.displayFont;
+  const bodyFont = bodyFontOverride ?? template.bodyFont;
+
+  useEffect(() => {
+    void ensureGoogleFont(displayFont, template.typography.title.weight, template.typography.title.italic);
+    void ensureGoogleFont(displayFont, template.typography.eyebrow.weight, template.typography.eyebrow.italic);
+    void ensureGoogleFont(bodyFont, template.typography.description.weight, template.typography.description.italic);
+    void ensureGoogleFont(bodyFont, template.typography.authors.weight, template.typography.authors.italic);
+  }, [displayFont, bodyFont, template]);
+
+  // arXiv detection from paperLink.
+  useEffect(() => {
+    let cancelled = false;
+    setArxivEprintUrl(null);
+    if (!paperLink || !paperLink.trim()) return;
+    getArxivEprintUrl(paperLink)
+      .then((url) => {
+        if (!cancelled) setArxivEprintUrl(url);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [paperLink]);
+
+  // Scale preview to fit container.
+  useEffect(() => {
+    const update = () => {
+      const frame = previewFrameRef.current;
+      if (!frame) return;
+      const masterWidth = paneCount * CANVAS_SIZE;
+      const available = frame.clientWidth - 24;
+      setPreviewScale(Math.min(0.6, Math.max(0.15, available / masterWidth)));
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [paneCount]);
+
+  const handleFiles = useCallback(async (files: FileList | File[]) => {
+    const arr = Array.from(files).filter((f) => f.type.startsWith("image/"));
+    if (arr.length === 0) return;
+    const loaded: BgImage[] = [];
+    for (const file of arr) {
+      try {
+        const src = await fileToDataUrl(file);
+        loaded.push({
+          id: `upload-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          src,
+          name: file.name,
+          source: "upload",
+        });
+      } catch {
+        // ignore failures, continue
+      }
+    }
+    if (loaded.length > 0) setImages((prev) => [...prev, ...loaded]);
   }, []);
 
-  const [variants, setVariants] = useState<Variant[]>(initialVariants);
-  const [activeVariantId, setActiveVariantId] = useState<string>(
-    () => window.localStorage.getItem(STORAGE_KEYS.activeVariant) ?? initialVariants[0].id
+  const handleDrop = useCallback(
+    (event: DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      if (event.dataTransfer?.files) {
+        void handleFiles(event.dataTransfer.files);
+      }
+    },
+    [handleFiles]
   );
 
-  const titleRef = useRef<HTMLDivElement>(null);
-  const subtitleRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
+  const handleDragOver = useCallback((event: DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  }, []);
 
-  const [effectiveFontSizes, setEffectiveFontSizes] = useState<Record<BlockKey, number>>({
-    title: settings.blocks.title.fontSize,
-    subtitle: settings.blocks.subtitle.fontSize,
-    footer: settings.blocks.footer.fontSize,
-  });
-  const [overflowMap, setOverflowMap] = useState<Record<BlockKey, boolean>>({
-    title: false,
-    subtitle: false,
-    footer: false,
-  });
+  const onFileInput = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) void handleFiles(e.target.files);
+    e.target.value = "";
+  };
 
-  const activeVariant = variants.find((v) => v.id === activeVariantId) ?? variants[0];
-
-  useEffect(() => {
-    if (!activeVariant) return;
-    setSettings(normalizeAndValidate(activeVariant.settings));
-  }, [activeVariant, activeVariantId]);
-
-  useEffect(() => {
-    setVariants((prev) =>
-      prev.map((v) => (v.id === activeVariantId ? { ...v, settings: normalizeAndValidate(settings) } : v))
-    );
-  }, [settings, activeVariantId]);
-
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(settings));
-  }, [settings]);
-
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEYS.profiles, JSON.stringify(profiles));
-  }, [profiles]);
-
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEYS.recentFonts, JSON.stringify(recentFonts));
-  }, [recentFonts]);
-
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEYS.variants, JSON.stringify(variants));
-  }, [variants]);
-
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEYS.activeVariant, activeVariantId);
-  }, [activeVariantId]);
-
-  const debouncedSettings = useDebouncedValue(settings, 120);
-  const debouncedTitleText = useDebouncedValue(titleText, 120);
-  const debouncedSubtitleText = useDebouncedValue(subtitleText, 120);
-  const debouncedFooterText = useDebouncedValue(footerText, 120);
-
-  useEffect(() => {
-    const entries: Array<[BlockKey, HTMLDivElement | null]> = [
-      ["title", titleRef.current],
-      ["subtitle", subtitleRef.current],
-      ["footer", footerRef.current],
-    ];
-
-    const nextEffective: Record<BlockKey, number> = {
-      title: debouncedSettings.blocks.title.fontSize,
-      subtitle: debouncedSettings.blocks.subtitle.fontSize,
-      footer: debouncedSettings.blocks.footer.fontSize,
-    };
-
-    const nextOverflow: Record<BlockKey, boolean> = {
-      title: false,
-      subtitle: false,
-      footer: false,
-    };
-
-    entries.forEach(([key, el]) => {
-      if (!el) return;
-      const widthScale = el.scrollWidth > 0 ? el.clientWidth / el.scrollWidth : 1;
-      const heightScale = el.scrollHeight > 0 ? el.clientHeight / el.scrollHeight : 1;
-      const scale = Math.min(1, widthScale, heightScale);
-
-      if (scale < 1) {
-        const limit = BLOCK_LIMITS[key];
-        const min = debouncedSettings.accessibilityMode ? limit.accessibilityMin : limit.min;
-        nextEffective[key] = clamp(debouncedSettings.blocks[key].fontSize * scale, min, limit.max);
+  async function handleFetchArxivFigures() {
+    if (!paperLink) return;
+    setArxivLoading(true);
+    setArxivError(null);
+    try {
+      const figures = await fetchArxivFigures(paperLink);
+      if (figures.length === 0) {
+        setArxivError("No usable figures (png/jpg/gif) found in the arXiv source.");
+        return;
       }
-
-      nextOverflow[key] = el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1;
-    });
-
-    setEffectiveFontSizes(nextEffective);
-    setOverflowMap(nextOverflow);
-  }, [
-    debouncedSettings,
-    debouncedTitleText,
-    debouncedSubtitleText,
-    debouncedFooterText,
-  ]);
-
-  const filteredFonts = useMemo(() => {
-    const query = fontSearch.trim().toLowerCase();
-    const source = query
-      ? FONT_LIST.filter((f) => f.toLowerCase().includes(query))
-      : [...new Set([...recentFonts, ...FONT_LIST])];
-    return source.slice(0, visibleFontCount);
-  }, [fontSearch, visibleFontCount, recentFonts]);
-
-  const mainContrast = contrastRatio(settings.textColor, settings.backgroundColor);
-
-  function pushHistory(prev: DesignSettings): void {
-    setUndoStack((stack) => [...stack.slice(-(MAX_UNDO_HISTORY - 1)), deepCloneSettings(prev)]);
-    setRedoStack([]);
+      const newImages: BgImage[] = figures.map((f, i) => ({
+        id: `arxiv-${Date.now()}-${i}`,
+        src: bytesFromBase64(f.dataBase64, f.mimeType),
+        name: f.filename,
+        source: "arxiv",
+      }));
+      setImages((prev) => [...prev, ...newImages]);
+    } catch (e) {
+      setArxivError(String(e));
+    } finally {
+      setArxivLoading(false);
+    }
   }
 
-  function applySettings(update: (prev: DesignSettings) => DesignSettings, trackHistory = true): void {
-    setSettings((prev) => {
-      const nextRaw = update(prev);
-      const next = normalizeAndValidate(nextRaw);
-      if (trackHistory && JSON.stringify(prev) !== JSON.stringify(next)) {
-        pushHistory(prev);
-      }
+  function removeImage(id: string) {
+    setImages((prev) => prev.filter((i) => i.id !== id));
+  }
+
+  function moveImage(id: string, dir: -1 | 1) {
+    setImages((prev) => {
+      const idx = prev.findIndex((i) => i.id === id);
+      if (idx < 0) return prev;
+      const target = idx + dir;
+      if (target < 0 || target >= prev.length) return prev;
+      const next = [...prev];
+      [next[idx], next[target]] = [next[target], next[idx]];
       return next;
     });
   }
 
-  function updateBlock(block: BlockKey, field: keyof BlockTypography, value: number): void {
-    applySettings((prev) => ({
-      ...prev,
-      blocks: {
-        ...prev.blocks,
-        [block]: {
-          ...prev.blocks[block],
-          [field]: value,
-        },
-      },
-    }));
-  }
-
-  async function handleFontSelect(fontFamily: string): Promise<void> {
-    setFontLoading(true);
-    setFontError(null);
-    try {
-      await loadGoogleFont(fontFamily);
-      applySettings((prev) => ({ ...prev, fontFamily }));
-      setRecentFonts((prev) => [fontFamily, ...prev.filter((f) => f !== fontFamily)].slice(0, MAX_RECENT_FONTS));
-    } catch (error) {
-      setFontError(`Could not load ${fontFamily}; using fallback.`);
-      applySettings((prev) => ({ ...prev, fontFamily: "Inter" }));
-      console.warn(error);
-    } finally {
-      setFontLoading(false);
-    }
-  }
-
-  function applyTemplate(template: TemplateKey): void {
-    applySettings((prev) => getTemplateDefaults(template, prev));
-  }
-
-  function handleUndo(): void {
-    setUndoStack((stack) => {
-      if (stack.length === 0) return stack;
-      const previous = stack[stack.length - 1];
-      setRedoStack((redo) => [...redo, deepCloneSettings(settings)]);
-      setSettings(previous);
-      return stack.slice(0, -1);
+  function updatePaneField(paneIndex: number, field: keyof Omit<PaneText, "dirty">, value: string) {
+    setPanes((prev) => {
+      const next = [...prev];
+      const current = next[paneIndex];
+      if (!current) return prev;
+      next[paneIndex] = {
+        ...current,
+        [field]: value,
+        dirty: { ...current.dirty, [field]: true },
+      };
+      return next;
     });
   }
 
-  function handleRedo(): void {
-    setRedoStack((stack) => {
-      if (stack.length === 0) return stack;
-      const next = stack[stack.length - 1];
-      setUndoStack((undo) => [...undo, deepCloneSettings(settings)]);
-      setSettings(next);
-      return stack.slice(0, -1);
-    });
+  const masterWidthPx = paneCount * CANVAS_SIZE;
+
+  function applyTextStyle(
+    ctx: CanvasRenderingContext2D,
+    block: TextBlock,
+    fontFamily: string,
+    color: string,
+    scale: number
+  ) {
+    const size = Math.round(block.fontSize * scale);
+    ctx.font = `${block.italic ? "italic " : ""}${block.weight} ${size}px ${buildFontFamily(fontFamily)}`;
+    ctx.fillStyle = color;
+    // Letter-spacing on Canvas2D is supported in modern WebKit / Chromium.
+    (ctx as unknown as { letterSpacing?: string }).letterSpacing = `${block.letterSpacing}px`;
+    return size;
   }
 
-  function handleReset(): void {
-    applySettings(() => getTemplateDefaults(settings.template, DEFAULT_SETTINGS));
-  }
-
-  function handleDuplicateVariant(): void {
-    const id = `variant-${Date.now()}`;
-    const clone: Variant = {
-      id,
-      name: makeVariantName(variants.length + 1),
-      settings: deepCloneSettings(settings),
-    };
-    setVariants((prev) => [...prev, clone]);
-    setActiveVariantId(id);
-  }
-
-  function handleSaveProfile(): void {
-    setProfileError(null);
-    const name = profileName.trim();
-    if (!name) return;
-    setProfiles((prev) => {
-      const existing = prev.find((p) => p.name === name);
-      if (existing) {
-        return prev.map((p) => (p.name === name ? { ...p, settings: deepCloneSettings(settings) } : p));
+  function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
+    const cleaned = text.replace(/\s+/g, " ").trim();
+    if (!cleaned) return [];
+    const words = cleaned.split(" ");
+    const lines: string[] = [];
+    let current = words[0];
+    for (let i = 1; i < words.length; i += 1) {
+      const candidate = `${current} ${words[i]}`;
+      if (ctx.measureText(candidate).width <= maxWidth) {
+        current = candidate;
+      } else {
+        lines.push(current);
+        current = words[i];
       }
-      return [...prev, { name, settings: deepCloneSettings(settings) }];
-    });
-    setSelectedProfileName(name);
-  }
-
-  function handleLoadProfile(name: string): void {
-    setProfileError(null);
-    setSelectedProfileName(name);
-    const profile = profiles.find((p) => p.name === name);
-    if (!profile) return;
-    applySettings(() => deepCloneSettings(profile.settings));
-  }
-
-  function handleExportProfiles(): void {
-    const blob = new Blob([JSON.stringify(profiles, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = "instagram-style-profiles.json";
-    anchor.click();
-    URL.revokeObjectURL(url);
-  }
-
-  async function handleImportProfiles(event: ChangeEvent<HTMLInputElement>): Promise<void> {
-    setProfileError(null);
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    try {
-      const text = await file.text();
-      const parsed = JSON.parse(text) as StyleProfile[];
-      const sanitized = parsed
-        .filter((profile) => typeof profile?.name === "string" && !!profile.name.trim() && profile.settings)
-        .map((profile) => ({
-          name: profile.name.trim(),
-          settings: normalizeAndValidate(profile.settings),
-        }));
-
-      if (sanitized.length === 0) return;
-
-      setProfiles((prev) => {
-        const merged = [...prev];
-        sanitized.forEach((incoming) => {
-          const index = merged.findIndex((p) => p.name === incoming.name);
-          if (index >= 0) merged[index] = incoming;
-          else merged.push(incoming);
-        });
-        return merged;
-      });
-    } catch {
-      setProfileError("Could not import style profiles JSON.");
-    } finally {
-      event.target.value = "";
     }
+    lines.push(current);
+    return lines;
   }
 
-  function drawExportCanvas(type: "png" | "jpeg"): void {
+  async function renderPaneCanvas(paneIndex: number): Promise<HTMLCanvasElement> {
     const canvas = document.createElement("canvas");
     canvas.width = CANVAS_SIZE;
     canvas.height = CANVAS_SIZE;
-    const context = canvas.getContext("2d");
-    if (!context) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Canvas 2D context unavailable");
 
-    context.fillStyle = settings.backgroundColor;
-    context.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    // 1. Base color
+    ctx.fillStyle = template.baseColor;
+    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
-    const blocks: Array<{ key: BlockKey; text: string; color: string }> = [
-      { key: "title", text: titleText, color: settings.textColor },
-      { key: "subtitle", text: subtitleText, color: settings.subtitleColor },
-      { key: "footer", text: footerText, color: settings.footerColor },
-    ];
+    // 2. Background images — render entire master to a wide canvas, then crop this pane.
+    if (images.length > 0) {
+      const master = document.createElement("canvas");
+      master.width = masterWidthPx;
+      master.height = CANVAS_SIZE;
+      const mctx = master.getContext("2d");
+      if (mctx) {
+        const loaded = await Promise.all(images.map((img) => loadImage(img.src).catch(() => null)));
+        loaded.forEach((img, i) => {
+          if (!img) return;
+          const slot = paneSlotForImage(i, images.length, paneCount);
+          drawCoverImage(mctx, img, slot.left, 0, slot.width, CANVAS_SIZE);
+          applyHorizontalCrossfade(mctx, slot.left, slot.width, i, images.length);
+        });
+        ctx.drawImage(
+          master,
+          paneIndex * CANVAS_SIZE,
+          0,
+          CANVAS_SIZE,
+          CANVAS_SIZE,
+          0,
+          0,
+          CANVAS_SIZE,
+          CANVAS_SIZE
+        );
+      }
+    }
 
-    blocks.forEach(({ key, text, color }) => {
-      const layout = BLOCK_LAYOUT[key];
-      const typo = settings.blocks[key];
-      const size = effectiveFontSizes[key];
-      const left = SAFE_PADDING + BLOCK_PADDING;
-      const top = layout.y + BLOCK_PADDING;
-      const width = CANVAS_SIZE - SAFE_PADDING * 2 - BLOCK_PADDING * 2;
-      const height = layout.h - BLOCK_PADDING * 2;
-      const lineHeightPx = size * typo.lineHeight;
-      const maxLines = Math.max(1, Math.floor(height / lineHeightPx));
+    // 3. Tint layer
+    ctx.save();
+    ctx.globalAlpha = template.tintOpacity * tintStrength;
+    ctx.globalCompositeOperation = template.tintBlend as GlobalCompositeOperation;
+    ctx.fillStyle = template.tintColor;
+    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    ctx.restore();
 
-      context.fillStyle = color;
-      context.textBaseline = "top";
-      context.font = `${Math.round(size)}px ${buildFontFamily(settings.fontFamily)}`;
+    // 4. Gradient overlay
+    ctx.save();
+    ctx.globalCompositeOperation = template.gradientBlend as GlobalCompositeOperation;
+    ctx.globalAlpha = gradientStrength;
+    const gradient = makeCanvasGradient(ctx, template);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    ctx.restore();
 
-      const lines = wrapText(context, text.replace(/\s+/g, " ").trim(), width, maxLines);
-      lines.forEach((line, index) => {
-        context.fillText(line, left, top + index * lineHeightPx, width);
-      });
-    });
+    // 5. Text
+    drawPaneText(ctx, paneIndex);
 
-    const mime = type === "png" ? "image/png" : "image/jpeg";
-    const quality = type === "jpeg" ? JPEG_EXPORT_QUALITY : undefined;
-    const data = canvas.toDataURL(mime, quality);
-    const a = document.createElement("a");
-    a.href = data;
-    a.download = `instagram-design.${type}`;
-    a.click();
+    // 6. Logo
+    await drawLogo(ctx, template.logoVariant);
+
+    return canvas;
   }
 
-  const limitMessage = settings.accessibilityMode
-    ? "Accessibility mode enforces larger minimum font sizes and line height."
-    : "Standard limits applied.";
+  function makeCanvasGradient(ctx: CanvasRenderingContext2D, t: TemplateDef): CanvasGradient {
+    if (t.gradient === "vertical") {
+      const g = ctx.createLinearGradient(0, 0, 0, CANVAS_SIZE);
+      g.addColorStop(0, t.gradientColorStart);
+      g.addColorStop(1, t.gradientColorEnd);
+      return g;
+    }
+    if (t.gradient === "radial") {
+      const g = ctx.createRadialGradient(
+        CANVAS_SIZE / 2,
+        CANVAS_SIZE / 2,
+        CANVAS_SIZE * 0.1,
+        CANVAS_SIZE / 2,
+        CANVAS_SIZE / 2,
+        CANVAS_SIZE * 0.75
+      );
+      g.addColorStop(0, t.gradientColorStart);
+      g.addColorStop(1, t.gradientColorEnd);
+      return g;
+    }
+    if (t.gradient === "corner_tl") {
+      const g = ctx.createRadialGradient(0, 0, 0, 0, 0, CANVAS_SIZE);
+      g.addColorStop(0, t.gradientColorStart);
+      g.addColorStop(1, t.gradientColorEnd);
+      return g;
+    }
+    const g = ctx.createRadialGradient(CANVAS_SIZE, CANVAS_SIZE, 0, CANVAS_SIZE, CANVAS_SIZE, CANVAS_SIZE);
+    g.addColorStop(0, t.gradientColorStart);
+    g.addColorStop(1, t.gradientColorEnd);
+    return g;
+  }
 
-  const overflowCount = Object.values(overflowMap).filter(Boolean).length;
+  function drawCoverImage(
+    ctx: CanvasRenderingContext2D,
+    img: HTMLImageElement,
+    dx: number,
+    dy: number,
+    dw: number,
+    dh: number
+  ) {
+    const imageRatio = img.width / img.height;
+    const slotRatio = dw / dh;
+    let sx = 0;
+    let sy = 0;
+    let sw = img.width;
+    let sh = img.height;
+    if (imageRatio > slotRatio) {
+      sw = img.height * slotRatio;
+      sx = (img.width - sw) / 2;
+    } else {
+      sh = img.width / slotRatio;
+      sy = (img.height - sh) / 2;
+    }
+    ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
+  }
+
+  function applyHorizontalCrossfade(
+    ctx: CanvasRenderingContext2D,
+    slotLeft: number,
+    slotWidth: number,
+    imageIndex: number,
+    imageCount: number
+  ) {
+    if (imageCount < 2) return;
+    ctx.save();
+    ctx.globalCompositeOperation = "destination-out";
+    if (imageIndex > 0) {
+      const fadeWidth = Math.min(CROSSFADE_PX, slotWidth / 2);
+      const g = ctx.createLinearGradient(slotLeft, 0, slotLeft + fadeWidth, 0);
+      g.addColorStop(0, "rgba(0,0,0,1)");
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(slotLeft, 0, fadeWidth, CANVAS_SIZE);
+    }
+    if (imageIndex < imageCount - 1) {
+      const fadeWidth = Math.min(CROSSFADE_PX, slotWidth / 2);
+      const g = ctx.createLinearGradient(slotLeft + slotWidth - fadeWidth, 0, slotLeft + slotWidth, 0);
+      g.addColorStop(0, "rgba(0,0,0,0)");
+      g.addColorStop(1, "rgba(0,0,0,1)");
+      ctx.fillStyle = g;
+      ctx.fillRect(slotLeft + slotWidth - fadeWidth, 0, fadeWidth, CANVAS_SIZE);
+    }
+    ctx.restore();
+  }
+
+  function drawPaneText(ctx: CanvasRenderingContext2D, paneIndex: number) {
+    const pane = panes[paneIndex];
+    if (!pane) return;
+    const align = template.align;
+    const xAnchor =
+      align === "center"
+        ? CANVAS_SIZE / 2
+        : align === "right"
+        ? CANVAS_SIZE - SAFE_PADDING
+        : SAFE_PADDING;
+    ctx.textAlign = align;
+    ctx.textBaseline = "top";
+
+    const maxTextWidth = CANVAS_SIZE - SAFE_PADDING * 2;
+
+    type Block = {
+      text: string;
+      style: TextBlock;
+      color: string;
+      font: string;
+      isTitle?: boolean;
+      isDescription?: boolean;
+      uppercase?: boolean;
+    };
+
+    const blocks: Block[] = [];
+    if (pane.eyebrow.trim()) {
+      blocks.push({
+        text: pane.eyebrow,
+        style: template.typography.eyebrow,
+        color: template.eyebrowColor,
+        font: displayFont,
+        uppercase: template.typography.eyebrow.uppercase,
+      });
+    }
+    if (pane.title.trim()) {
+      blocks.push({
+        text: pane.title,
+        style: template.typography.title,
+        color: template.textColor,
+        font: displayFont,
+        isTitle: true,
+        uppercase: template.typography.title.uppercase,
+      });
+    }
+    if (pane.description.trim()) {
+      blocks.push({
+        text: pane.description,
+        style: template.typography.description,
+        color: template.textColor,
+        font: bodyFont,
+        isDescription: true,
+        uppercase: template.typography.description.uppercase,
+      });
+    }
+    if (pane.authors.trim()) {
+      blocks.push({
+        text: pane.authors,
+        style: template.typography.authors,
+        color: template.authorsColor,
+        font: bodyFont,
+        uppercase: template.typography.authors.uppercase,
+      });
+    }
+
+    // Layout pass: compute total height
+    const measured = blocks.map((b) => {
+      const scale = b.isTitle ? titleScale : b.isDescription ? descriptionScale : 1;
+      const size = applyTextStyle(ctx, b.style, b.font, b.color, scale);
+      const text = b.uppercase ? b.text.toUpperCase() : b.text;
+      const lines = wrapText(ctx, text, maxTextWidth);
+      const lineHeight = size * b.style.lineHeight;
+      return { ...b, size, lines, lineHeight, text };
+    });
+
+    const SPACING_BETWEEN = 18;
+    const totalHeight = measured.reduce(
+      (sum, m, i) => sum + m.lines.length * m.lineHeight + (i < measured.length - 1 ? SPACING_BETWEEN : 0),
+      0
+    );
+
+    const reserveBottom = LOGO_HEIGHT_PX + LOGO_MARGIN_PX * 2;
+    let y =
+      template.vAlign === "top"
+        ? SAFE_PADDING
+        : template.vAlign === "middle"
+        ? Math.max(SAFE_PADDING, (CANVAS_SIZE - totalHeight) / 2)
+        : Math.max(SAFE_PADDING, CANVAS_SIZE - reserveBottom - totalHeight);
+
+    measured.forEach((m, idx) => {
+      applyTextStyle(ctx, m.style, m.font, m.color, m.isTitle ? titleScale : m.isDescription ? descriptionScale : 1);
+      m.lines.forEach((line, li) => {
+        ctx.fillText(line, xAnchor, y + li * m.lineHeight);
+      });
+      y += m.lines.length * m.lineHeight + (idx < measured.length - 1 ? SPACING_BETWEEN : 0);
+    });
+  }
+
+  async function drawLogo(ctx: CanvasRenderingContext2D, variant: LogoVariant) {
+    const src = variant === "white" ? logoWhite : logoCircles;
+    try {
+      const img = await loadImage(src);
+      const targetH = LOGO_HEIGHT_PX;
+      const targetW = (img.width / img.height) * targetH;
+      ctx.drawImage(
+        img,
+        CANVAS_SIZE - targetW - LOGO_MARGIN_PX,
+        CANVAS_SIZE - targetH - LOGO_MARGIN_PX,
+        targetW,
+        targetH
+      );
+    } catch {
+      // ignore logo failure
+    }
+  }
+
+  async function downloadAll() {
+    setExporting(true);
+    setExportError(null);
+    try {
+      const slug = kebab(propsRef.current.titleText || "usmcc-paper");
+      for (let i = 0; i < paneCount; i += 1) {
+        const canvas = await renderPaneCanvas(i);
+        const url = canvas.toDataURL("image/png");
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = `usmcc-${slug}-pane-${i + 1}.png`;
+        anchor.click();
+        await new Promise((r) => window.setTimeout(r, 200));
+      }
+    } catch (e) {
+      setExportError(String(e));
+    } finally {
+      setExporting(false);
+    }
+  }
+
+  async function downloadPane(paneIndex: number) {
+    setExporting(true);
+    setExportError(null);
+    try {
+      const canvas = await renderPaneCanvas(paneIndex);
+      const url = canvas.toDataURL("image/png");
+      const anchor = document.createElement("a");
+      const slug = kebab(propsRef.current.titleText || "usmcc-paper");
+      anchor.href = url;
+      anchor.download = `usmcc-${slug}-pane-${paneIndex + 1}.png`;
+      anchor.click();
+    } catch (e) {
+      setExportError(String(e));
+    } finally {
+      setExporting(false);
+    }
+  }
 
   return (
     <section className="ig-designer">
       <div className="ig-designer-header">
         <div>
-          <h2>Instagram Design Preview</h2>
-          <p>Fixed 1080×1080 layout. Placement is locked; only typography and style are editable.</p>
+          <h2>Instagram Carousel</h2>
+          <p>
+            Multi-pane carousel with continuous background. Drop in images or fetch figures from arXiv.
+          </p>
         </div>
-        <span className="ig-lock-badge">Placement Fixed</span>
+        <span className="ig-pane-count-badge">{paneCount} panes · 1080×1080 each</span>
+      </div>
+
+      <div className="ig-template-row">
+        {TEMPLATE_ORDER.map((key) => {
+          const t = TEMPLATES[key];
+          return (
+            <button
+              key={key}
+              className={`ig-template-chip ${templateKey === key ? "active" : ""}`}
+              onClick={() => {
+                setTemplateKey(key);
+                setDisplayFontOverride(null);
+                setBodyFontOverride(null);
+              }}
+              style={{
+                background: t.baseColor,
+                color: t.textColor,
+                borderColor: templateKey === key ? t.eyebrowColor : "transparent",
+              }}
+            >
+              <span className="ig-template-name" style={{ fontFamily: buildFontFamily(t.displayFont) }}>
+                {t.name}
+              </span>
+              <span className="ig-template-pair" style={{ color: t.eyebrowColor }}>
+                {t.displayFont} + {t.bodyFont}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       <div className="ig-layout">
         <div className="ig-controls">
           <div className="ig-control-group">
-            <label>Variant</label>
-            <div className="ig-inline-row">
-              <select value={activeVariantId} onChange={(e) => setActiveVariantId(e.target.value)}>
-                {variants.map((variant) => (
-                  <option key={variant.id} value={variant.id}>
-                    {variant.name}
-                  </option>
-                ))}
-              </select>
-              <button className="btn-secondary" onClick={handleDuplicateVariant}>
-                Duplicate
-              </button>
+            <label>Background images</label>
+            <div
+              ref={dropRef}
+              className="ig-dropzone"
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              onClick={() => fileInputRef.current?.click()}
+              role="button"
+              tabIndex={0}
+            >
+              <strong>Drop images or click to upload</strong>
+              <span>PNG / JPG · multiple files OK</span>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                style={{ display: "none" }}
+                onChange={onFileInput}
+              />
             </div>
-          </div>
-
-          <div className="ig-control-group">
-            <label>Template Presets</label>
-            <div className="ig-chip-row">
-              {(["minimal", "academic", "bold"] as TemplateKey[]).map((template) => (
+            {arxivEprintUrl && (
+              <div className="ig-arxiv-row">
+                <a className="ig-arxiv-link" href={arxivEprintUrl} target="_blank" rel="noreferrer">
+                  Download LaTeX source (.tar.gz)
+                </a>
                 <button
-                  key={template}
-                  className={`ig-chip ${settings.template === template ? "active" : ""}`}
-                  onClick={() => applyTemplate(template)}
+                  className="btn-secondary"
+                  onClick={handleFetchArxivFigures}
+                  disabled={arxivLoading}
                 >
-                  {template[0].toUpperCase() + template.slice(1)}
+                  {arxivLoading ? "Fetching figures…" : "Fetch arXiv figures"}
                 </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="ig-control-group">
-            <label>Google Font Picker</label>
-            <input
-              type="text"
-              value={fontSearch}
-              onChange={(e) => {
-                setFontSearch(e.target.value);
-                setVisibleFontCount(12);
-              }}
-              placeholder="Search Google Fonts…"
-            />
-            <div className="ig-font-list" role="listbox" aria-label="Google Fonts">
-              {filteredFonts.map((font) => (
-                <button
-                  key={font}
-                  className={`ig-font-option ${settings.fontFamily === font ? "active" : ""}`}
-                  onClick={() => {
-                    void handleFontSelect(font);
-                  }}
-                  style={{ fontFamily: buildFontFamily(font) }}
-                >
-                  {font}
-                </button>
-              ))}
-            </div>
-            {filteredFonts.length >= visibleFontCount && (
-              <button className="btn-secondary" onClick={() => setVisibleFontCount((count) => count + 10)}>
-                Load More Fonts
-              </button>
-            )}
-            <div className="ig-inline-status">
-              {fontLoading && <span>Loading font…</span>}
-              {!fontLoading && fontError && <span className="ig-warn">{fontError}</span>}
-              <span>Current: {settings.fontFamily}</span>
-            </div>
-          </div>
-
-          <div className="ig-control-group">
-            <label>Colors</label>
-            <div className="ig-color-grid">
-              <label>
-                Background
-                <input
-                  type="color"
-                  value={settings.backgroundColor}
-                  onChange={(e) => applySettings((prev) => ({ ...prev, backgroundColor: e.target.value }))}
-                />
-              </label>
-              <label>
-                Title
-                <input
-                  type="color"
-                  value={settings.textColor}
-                  onChange={(e) => applySettings((prev) => ({ ...prev, textColor: e.target.value }))}
-                />
-              </label>
-              <label>
-                Subtitle
-                <input
-                  type="color"
-                  value={settings.subtitleColor}
-                  onChange={(e) => applySettings((prev) => ({ ...prev, subtitleColor: e.target.value }))}
-                />
-              </label>
-              <label>
-                Footer
-                <input
-                  type="color"
-                  value={settings.footerColor}
-                  onChange={(e) => applySettings((prev) => ({ ...prev, footerColor: e.target.value }))}
-                />
-              </label>
-            </div>
-            <div className="ig-inline-status">
-              {mainContrast !== null && (
-                <span className={mainContrast >= 4.5 ? "ig-ok" : "ig-warn"}>
-                  Contrast: {mainContrast.toFixed(2)} ({mainContrast >= 4.5 ? "WCAG AA pass" : "Below AA"})
-                </span>
-              )}
-            </div>
-          </div>
-
-          {(["title", "subtitle", "footer"] as BlockKey[]).map((block) => {
-            const limits = BLOCK_LIMITS[block];
-            const minSize = settings.accessibilityMode ? limits.accessibilityMin : limits.min;
-            return (
-              <div className="ig-control-group" key={block}>
-                <label>{block[0].toUpperCase() + block.slice(1)} Typography</label>
-                <div className="ig-slider-row">
-                  <span>Font Size</span>
-                  <input
-                    type="range"
-                    min={minSize}
-                    max={limits.max}
-                    value={settings.blocks[block].fontSize}
-                    onChange={(e) => updateBlock(block, "fontSize", Number(e.target.value))}
-                  />
-                  <strong>{Math.round(settings.blocks[block].fontSize)}px</strong>
-                </div>
-                <div className="ig-slider-row">
-                  <span>Line Height</span>
-                  <input
-                    type="range"
-                    min={settings.accessibilityMode ? 1.2 : 1}
-                    max={2}
-                    step={0.01}
-                    value={settings.blocks[block].lineHeight}
-                    onChange={(e) => updateBlock(block, "lineHeight", Number(e.target.value))}
-                  />
-                  <strong>{settings.blocks[block].lineHeight.toFixed(2)}</strong>
-                </div>
-                <div className="ig-slider-row">
-                  <span>Letter Spacing</span>
-                  <input
-                    type="range"
-                    min={-1}
-                    max={6}
-                    step={0.1}
-                    value={settings.blocks[block].letterSpacing}
-                    onChange={(e) => updateBlock(block, "letterSpacing", Number(e.target.value))}
-                  />
-                  <strong>{settings.blocks[block].letterSpacing.toFixed(1)}px</strong>
-                </div>
               </div>
-            );
-          })}
-
-          <div className="ig-control-group">
-            <label htmlFor="ig-show-guidelines" style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <input
-                id="ig-show-guidelines"
-                type="checkbox"
-                checked={settings.showGuidelines}
-                onChange={(e) => applySettings((prev) => ({ ...prev, showGuidelines: e.target.checked }))}
-              />
-              Show Guidelines
-            </label>
-            <label htmlFor="ig-accessibility-mode" style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <input
-                id="ig-accessibility-mode"
-                type="checkbox"
-                checked={settings.accessibilityMode}
-                onChange={(e) => applySettings((prev) => ({ ...prev, accessibilityMode: e.target.checked }))}
-              />
-              Accessibility Mode
-            </label>
-            <small>{limitMessage}</small>
+            )}
+            {arxivError && <div className="ig-warn">{arxivError}</div>}
+            {images.length > 0 && (
+              <div className="ig-thumb-grid">
+                {images.map((img, idx) => (
+                  <div className="ig-thumb" key={img.id}>
+                    <img src={img.src} alt={img.name} />
+                    <div className="ig-thumb-meta">
+                      <span title={img.name}>{img.name}</span>
+                      <span className="ig-thumb-source">{img.source}</span>
+                    </div>
+                    <div className="ig-thumb-actions">
+                      <button onClick={() => moveImage(img.id, -1)} disabled={idx === 0}>
+                        ←
+                      </button>
+                      <button onClick={() => moveImage(img.id, 1)} disabled={idx === images.length - 1}>
+                        →
+                      </button>
+                      <button className="ig-thumb-remove" onClick={() => removeImage(img.id)}>
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="ig-control-group">
-            <label>Workflow</label>
-            <div className="ig-inline-row">
-              <button className="btn-secondary" disabled={undoStack.length === 0} onClick={handleUndo}>
-                Undo
-              </button>
-              <button className="btn-secondary" disabled={redoStack.length === 0} onClick={handleRedo}>
-                Redo
-              </button>
-              <button className="btn-secondary" onClick={handleReset}>
-                Reset
-              </button>
+            <label>Panes</label>
+            <div className="ig-slider-row">
+              <span>Count</span>
+              <input
+                type="range"
+                min={MIN_PANES}
+                max={MAX_PANES}
+                step={1}
+                value={paneCount}
+                onChange={(e) => setPaneCountOverride(Number(e.target.value))}
+              />
+              <strong>{paneCount}</strong>
             </div>
-            <div className="ig-inline-row">
-              <button className="btn-secondary" onClick={() => drawExportCanvas("png")}>Export PNG</button>
-              <button className="btn-secondary" onClick={() => drawExportCanvas("jpeg")}>Export JPEG</button>
-            </div>
-            <small>Guides are preview-only and never included in exported files.</small>
+            <small>
+              Defaults to max(2, images). Background images are laid edge-to-edge across all panes.
+            </small>
           </div>
 
           <div className="ig-control-group">
-            <label>Style Profiles</label>
-            <div className="ig-inline-row">
+            <label>Overlay & typography</label>
+            <div className="ig-slider-row">
+              <span>Gradient</span>
+              <input
+                type="range"
+                min={0}
+                max={1.5}
+                step={0.05}
+                value={gradientStrength}
+                onChange={(e) => setGradientStrength(Number(e.target.value))}
+              />
+              <strong>{gradientStrength.toFixed(2)}</strong>
+            </div>
+            <div className="ig-slider-row">
+              <span>Tint</span>
+              <input
+                type="range"
+                min={0}
+                max={1.5}
+                step={0.05}
+                value={tintStrength}
+                onChange={(e) => setTintStrength(Number(e.target.value))}
+              />
+              <strong>{tintStrength.toFixed(2)}</strong>
+            </div>
+            <div className="ig-slider-row">
+              <span>Title size</span>
+              <input
+                type="range"
+                min={0.55}
+                max={1.45}
+                step={0.01}
+                value={titleScale}
+                onChange={(e) => setTitleScale(Number(e.target.value))}
+              />
+              <strong>{Math.round(titleScale * 100)}%</strong>
+            </div>
+            <div className="ig-slider-row">
+              <span>Body size</span>
+              <input
+                type="range"
+                min={0.7}
+                max={1.4}
+                step={0.01}
+                value={descriptionScale}
+                onChange={(e) => setDescriptionScale(Number(e.target.value))}
+              />
+              <strong>{Math.round(descriptionScale * 100)}%</strong>
+            </div>
+          </div>
+
+          <div className="ig-control-group">
+            <label>Pane {activePane + 1} text</label>
+            <div className="ig-pane-tabs">
+              {panes.map((_, i) => (
+                <button
+                  key={i}
+                  className={`ig-pane-tab ${activePane === i ? "active" : ""}`}
+                  onClick={() => setActivePane(i)}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+            <div className="ig-field">
+              <span>Eyebrow</span>
               <input
                 type="text"
-                value={profileName}
-                onChange={(e) => setProfileName(e.target.value)}
-                placeholder="Profile name"
+                value={panes[activePane]?.eyebrow ?? ""}
+                onChange={(e) => updatePaneField(activePane, "eyebrow", e.target.value)}
               />
-              <button className="btn-secondary" onClick={handleSaveProfile}>Save</button>
             </div>
+            <div className="ig-field">
+              <span>Title</span>
+              <textarea
+                rows={2}
+                value={panes[activePane]?.title ?? ""}
+                onChange={(e) => updatePaneField(activePane, "title", e.target.value)}
+              />
+            </div>
+            <div className="ig-field">
+              <span>Description</span>
+              <textarea
+                rows={4}
+                value={panes[activePane]?.description ?? ""}
+                onChange={(e) => updatePaneField(activePane, "description", e.target.value)}
+              />
+            </div>
+            <div className="ig-field">
+              <span>Authors</span>
+              <input
+                type="text"
+                value={panes[activePane]?.authors ?? ""}
+                onChange={(e) => updatePaneField(activePane, "authors", e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="ig-control-group">
+            <label>Export</label>
             <div className="ig-inline-row">
-              <select
-                value={selectedProfileName}
-                onChange={(e) => handleLoadProfile(e.target.value)}
-              >
-                <option value="">Load profile…</option>
-                {profiles.map((profile) => (
-                  <option key={profile.name} value={profile.name}>
-                    {profile.name}
-                  </option>
-                ))}
-              </select>
-              <button className="btn-secondary" onClick={handleExportProfiles} disabled={profiles.length === 0}>
-                Export JSON
+              <button className="btn-primary" onClick={downloadAll} disabled={exporting}>
+                {exporting ? "Rendering…" : `Download all ${paneCount} panes`}
               </button>
-              <button className="btn-secondary" onClick={() => fileInputRef.current?.click()}>
-                Import JSON
+              <button
+                className="btn-secondary"
+                onClick={() => downloadPane(activePane)}
+                disabled={exporting}
+              >
+                Pane {activePane + 1} only
               </button>
             </div>
-            {profileError && (
-              <div className="ig-inline-status">
-                <span className="ig-warn">{profileError}</span>
-              </div>
-            )}
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="application/json"
-              style={{ display: "none" }}
-              onChange={(e) => {
-                void handleImportProfiles(e);
-              }}
-            />
+            {exportError && <div className="ig-warn">{exportError}</div>}
+            <small>Each pane exports as a 1080×1080 PNG suitable for Instagram carousel.</small>
           </div>
         </div>
 
         <div className="ig-preview-wrap">
-          <div className="ig-preview-scale">
-            <div className="ig-canvas-frame">
-              <div
-                className={`ig-canvas ${settings.showGuidelines ? "ig-guidelines-on" : ""}`}
-                style={{
-                  backgroundColor: settings.backgroundColor,
-                  fontFamily: buildFontFamily(settings.fontFamily),
-                  transform: `scale(${PREVIEW_SCALE})`,
-                }}
-              >
-                <div className="ig-safe-area" />
-
-                <div
-                  className={`ig-text-block ${overflowMap.title ? "overflow" : ""}`}
-                  style={{
-                    left: SAFE_PADDING,
-                    top: BLOCK_LAYOUT.title.y,
-                    width: CANVAS_SIZE - SAFE_PADDING * 2,
-                    height: BLOCK_LAYOUT.title.h,
-                    padding: BLOCK_PADDING,
-                    color: settings.textColor,
-                  }}
-                >
-                  <div
-                    ref={titleRef}
-                    className="ig-text-content"
-                    style={{
-                      fontSize: `${effectiveFontSizes.title}px`,
-                      lineHeight: settings.blocks.title.lineHeight,
-                      letterSpacing: `${settings.blocks.title.letterSpacing}px`,
-                    }}
-                  >
-                    {titleText}
-                  </div>
-                </div>
-
-                <div
-                  className={`ig-text-block ${overflowMap.subtitle ? "overflow" : ""}`}
-                  style={{
-                    left: SAFE_PADDING,
-                    top: BLOCK_LAYOUT.subtitle.y,
-                    width: CANVAS_SIZE - SAFE_PADDING * 2,
-                    height: BLOCK_LAYOUT.subtitle.h,
-                    padding: BLOCK_PADDING,
-                    color: settings.subtitleColor,
-                  }}
-                >
-                  <div
-                    ref={subtitleRef}
-                    className="ig-text-content"
-                    style={{
-                      fontSize: `${effectiveFontSizes.subtitle}px`,
-                      lineHeight: settings.blocks.subtitle.lineHeight,
-                      letterSpacing: `${settings.blocks.subtitle.letterSpacing}px`,
-                    }}
-                  >
-                    {subtitleText}
-                  </div>
-                </div>
-
-                <div
-                  className={`ig-text-block ${overflowMap.footer ? "overflow" : ""}`}
-                  style={{
-                    left: SAFE_PADDING,
-                    top: BLOCK_LAYOUT.footer.y,
-                    width: CANVAS_SIZE - SAFE_PADDING * 2,
-                    height: BLOCK_LAYOUT.footer.h,
-                    padding: BLOCK_PADDING,
-                    color: settings.footerColor,
-                  }}
-                >
-                  <div
-                    ref={footerRef}
-                    className="ig-text-content"
-                    style={{
-                      fontSize: `${effectiveFontSizes.footer}px`,
-                      lineHeight: settings.blocks.footer.lineHeight,
-                      letterSpacing: `${settings.blocks.footer.letterSpacing}px`,
-                    }}
-                  >
-                    {footerText}
-                  </div>
-                </div>
-
-                {settings.showGuidelines && (
-                  <>
-                    <div className="ig-guide-grid" />
-                    <div className="ig-guide-block" style={{ top: BLOCK_LAYOUT.title.y, height: BLOCK_LAYOUT.title.h }} />
-                    <div className="ig-guide-block" style={{ top: BLOCK_LAYOUT.subtitle.y, height: BLOCK_LAYOUT.subtitle.h }} />
-                    <div className="ig-guide-block" style={{ top: BLOCK_LAYOUT.footer.y, height: BLOCK_LAYOUT.footer.h }} />
-                  </>
-                )}
+          <div className="ig-preview-frame" ref={previewFrameRef}>
+            <div
+              className="ig-preview-master"
+              style={{
+                width: masterWidthPx,
+                height: CANVAS_SIZE,
+                transform: `scale(${previewScale})`,
+                background: template.baseColor,
+              }}
+            >
+              {/* Image layer */}
+              <div className="ig-image-layer">
+                {images.map((img, i) => {
+                  const slot = paneSlotForImage(i, images.length, paneCount);
+                  const fade = Math.min(CROSSFADE_PX, slot.width / 2);
+                  const leftStop = i > 0 ? `transparent 0px, black ${fade}px` : "black 0px";
+                  const rightStop =
+                    i < images.length - 1
+                      ? `black calc(100% - ${fade}px), transparent 100%`
+                      : "black 100%";
+                  const mask = `linear-gradient(to right, ${leftStop}, ${rightStop})`;
+                  return (
+                    <img
+                      key={img.id}
+                      src={img.src}
+                      alt=""
+                      style={{
+                        position: "absolute",
+                        left: slot.left,
+                        top: 0,
+                        width: slot.width,
+                        height: CANVAS_SIZE,
+                        objectFit: "cover",
+                        WebkitMaskImage: mask,
+                        maskImage: mask,
+                      }}
+                    />
+                  );
+                })}
               </div>
+              {/* Tint layer */}
+              <div
+                className="ig-tint-layer"
+                style={{
+                  backgroundColor: template.tintColor,
+                  opacity: template.tintOpacity * tintStrength,
+                  mixBlendMode: template.tintBlend as React.CSSProperties["mixBlendMode"],
+                }}
+              />
+              {/* Gradient layer */}
+              <div
+                className="ig-gradient-layer"
+                style={{
+                  background: gradientCss(template),
+                  opacity: gradientStrength,
+                  mixBlendMode: template.gradientBlend as React.CSSProperties["mixBlendMode"],
+                }}
+              />
+              {/* Per-pane text + logo */}
+              {panes.map((pane, i) => (
+                <PanePreview
+                  key={i}
+                  pane={pane}
+                  paneIndex={i}
+                  paneCount={paneCount}
+                  template={template}
+                  displayFont={displayFont}
+                  bodyFont={bodyFont}
+                  titleScale={titleScale}
+                  descriptionScale={descriptionScale}
+                  isActive={activePane === i}
+                  onSelect={() => setActivePane(i)}
+                />
+              ))}
+              {/* Pane boundary guides */}
+              {Array.from({ length: paneCount - 1 }, (_, i) => (
+                <div
+                  key={`guide-${i}`}
+                  className="ig-pane-guide"
+                  style={{ left: (i + 1) * CANVAS_SIZE - 1 }}
+                />
+              ))}
             </div>
           </div>
-
           <div className="ig-preview-meta">
-            <span>Canvas: 1080×1080</span>
-            <span>Safe padding: {SAFE_PADDING}px</span>
-            <span>Block padding: {BLOCK_PADDING}px</span>
-            {overflowCount > 0 && <span className="ig-warn">Overflow warning in {overflowCount} block(s)</span>}
+            <span>Master: {masterWidthPx}×{CANVAS_SIZE}</span>
+            <span>Preview scale: {Math.round(previewScale * 100)}%</span>
+            <span>Display: {displayFont}</span>
+            <span>Body: {bodyFont}</span>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+interface PanePreviewProps {
+  pane: PaneText;
+  paneIndex: number;
+  paneCount: number;
+  template: TemplateDef;
+  displayFont: string;
+  bodyFont: string;
+  titleScale: number;
+  descriptionScale: number;
+  isActive: boolean;
+  onSelect: () => void;
+}
+
+function PanePreview({
+  pane,
+  paneIndex,
+  template,
+  displayFont,
+  bodyFont,
+  titleScale,
+  descriptionScale,
+  isActive,
+  onSelect,
+}: PanePreviewProps) {
+  const logoSrc = template.logoVariant === "white" ? logoWhite : logoCircles;
+  const align = template.align;
+  const vAlign = template.vAlign;
+  const justify =
+    vAlign === "top" ? "flex-start" : vAlign === "middle" ? "center" : "flex-end";
+  const textAlign = align === "center" ? "center" : align === "right" ? "right" : "left";
+  const itemsAlign =
+    align === "center" ? "center" : align === "right" ? "flex-end" : "flex-start";
+
+  function blockStyle(block: TextBlock, color: string, font: string, scale = 1): React.CSSProperties {
+    return {
+      fontFamily: buildFontFamily(font),
+      fontSize: block.fontSize * scale,
+      lineHeight: block.lineHeight,
+      letterSpacing: `${block.letterSpacing}px`,
+      fontWeight: block.weight,
+      fontStyle: block.italic ? "italic" : "normal",
+      textTransform: block.uppercase ? "uppercase" : "none",
+      color,
+      maxWidth: "100%",
+      wordBreak: "break-word",
+    };
+  }
+
+  return (
+    <div
+      className={`ig-pane ${isActive ? "active" : ""}`}
+      style={{
+        position: "absolute",
+        left: paneIndex * CANVAS_SIZE,
+        top: 0,
+        width: CANVAS_SIZE,
+        height: CANVAS_SIZE,
+      }}
+      onClick={onSelect}
+    >
+      <div
+        className="ig-pane-text"
+        style={{
+          position: "absolute",
+          left: SAFE_PADDING,
+          top: SAFE_PADDING,
+          width: CANVAS_SIZE - SAFE_PADDING * 2,
+          height: CANVAS_SIZE - SAFE_PADDING * 2 - (LOGO_HEIGHT_PX + LOGO_MARGIN_PX),
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: justify,
+          alignItems: itemsAlign,
+          textAlign,
+          gap: 18,
+        }}
+      >
+        {pane.eyebrow.trim() && (
+          <div style={blockStyle(template.typography.eyebrow, template.eyebrowColor, displayFont)}>
+            {pane.eyebrow}
+          </div>
+        )}
+        {pane.title.trim() && (
+          <div style={blockStyle(template.typography.title, template.textColor, displayFont, titleScale)}>
+            {pane.title}
+          </div>
+        )}
+        {pane.description.trim() && (
+          <div
+            style={blockStyle(
+              template.typography.description,
+              template.textColor,
+              bodyFont,
+              descriptionScale
+            )}
+          >
+            {pane.description}
+          </div>
+        )}
+        {pane.authors.trim() && (
+          <div style={blockStyle(template.typography.authors, template.authorsColor, bodyFont)}>
+            {pane.authors}
+          </div>
+        )}
+      </div>
+      <img
+        src={logoSrc}
+        alt="USMCC"
+        className="ig-pane-logo"
+        style={{
+          position: "absolute",
+          right: LOGO_MARGIN_PX,
+          bottom: LOGO_MARGIN_PX,
+          height: LOGO_HEIGHT_PX,
+          width: "auto",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import type {
   GeneratedContent,
   Preferences,
   ApiKeyStatus,
+  ArxivFigure,
 } from "./types";
 
 export async function parseRow(text: string): Promise<PaperRow> {
@@ -37,4 +38,12 @@ export async function getPrefs(): Promise<Preferences> {
 
 export async function setPrefs(prefs: Preferences): Promise<void> {
   return invoke<void>("set_prefs", { prefs });
+}
+
+export async function getArxivEprintUrl(url: string): Promise<string | null> {
+  return invoke<string | null>("arxiv_eprint_url", { url });
+}
+
+export async function fetchArxivFigures(url: string): Promise<ArxivFigure[]> {
+  return invoke<ArxivFigure[]>("fetch_arxiv_figures", { url });
 }

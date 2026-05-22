@@ -147,6 +147,15 @@ export default function App() {
 
       {content && (
         <div className="output-section">
+          {parsedRow && (
+            <InstagramDesigner
+              eyebrowText="USMCC Featured Paper"
+              titleText={parsedRow.plainTitle || parsedRow.paperTitle}
+              descriptionText={content.plainSummary || parsedRow.publicAbstract}
+              authorsText={parsedRow.authors}
+              paperLink={parsedRow.paperLink}
+            />
+          )}
           <OutputCard
             title="Twitter / X Post"
             content={content.twitter}
@@ -169,14 +178,6 @@ export default function App() {
           />
           <OutputCard title="LinkedIn Post" content={content.linkedin} logoSrc={usmccLogo} />
           <OutputCard title="Plain-Language Summary" content={content.plainSummary} logoSrc={usmccLogo} />
-
-          {parsedRow && (
-            <InstagramDesigner
-              titleText={parsedRow.plainTitle || parsedRow.paperTitle}
-              subtitleText={content.plainSummary}
-              footerText={`${parsedRow.authors}${parsedRow.publicationDate ? ` · ${parsedRow.publicationDate}` : ""}`}
-            />
-          )}
         </div>
       )}
 

@@ -1,4 +1,5 @@
 mod anthropic;
+mod arxiv;
 mod commands;
 mod parse_row;
 mod prompts;
@@ -16,6 +17,8 @@ pub fn run() {
             commands::test_api_key,
             commands::get_prefs,
             commands::set_prefs,
+            commands::arxiv_eprint_url,
+            commands::fetch_arxiv_figures,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

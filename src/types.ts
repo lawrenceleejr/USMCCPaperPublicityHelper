@@ -34,3 +34,9 @@ export interface Preferences {
 }
 
 export type ApiKeyStatus = "set" | "not_set";
+
+export interface ArxivFigure {
+  filename: string;
+  mimeType: string;
+  dataBase64: string;
+}
