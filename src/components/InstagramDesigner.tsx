@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ChangeEvent, DragEvent } from "react";
-import { fetchArxivFigures, getArxivEprintUrl } from "../api";
-import logoCircles from "../assets/LogoUSMCC_circles.png";
-import logoWhite from "../assets/LogoUSMCC_white.png";
+import { fetchArxivFigures, getArxivEprintUrl, openExternal } from "../api";
+import { pdfDataUrlToPngDataUrl } from "../pdfRender";
+import usmccLogo from "../assets/LogoUSMCC_white.png";
 
 interface Props {
   eyebrowText: string;
@@ -32,7 +32,6 @@ type BlendMode =
 type GradientStyle = "vertical" | "radial" | "corner_tl" | "corner_br";
 type Align = "left" | "center" | "right";
 type VAlign = "top" | "middle" | "bottom";
-type LogoVariant = "circles" | "white";
 
 interface TextBlock {
   fontSize: number;
@@ -67,7 +66,6 @@ interface TemplateDef {
   authorsColor: string;
   align: Align;
   vAlign: VAlign;
-  logoVariant: LogoVariant;
   typography: Typography;
 }
 
@@ -115,7 +113,6 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     authorsColor: "#cbd5e1",
     align: "left",
     vAlign: "bottom",
-    logoVariant: "white",
     typography: {
       eyebrow: { fontSize: 30, lineHeight: 1.2, letterSpacing: 6, weight: 600, uppercase: true },
       title: { fontSize: 92, lineHeight: 1.04, letterSpacing: -1, weight: 700 },
@@ -140,7 +137,6 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     authorsColor: "#52525b",
     align: "left",
     vAlign: "top",
-    logoVariant: "circles",
     typography: {
       eyebrow: { fontSize: 26, lineHeight: 1.2, letterSpacing: 8, weight: 600, uppercase: true },
       title: { fontSize: 80, lineHeight: 1.06, letterSpacing: -1.5, weight: 700 },
@@ -165,7 +161,6 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     authorsColor: "#e9d5ff",
     align: "center",
     vAlign: "middle",
-    logoVariant: "white",
     typography: {
       eyebrow: { fontSize: 30, lineHeight: 1.2, letterSpacing: 10, weight: 700, uppercase: true },
       title: { fontSize: 100, lineHeight: 1.0, letterSpacing: -1, weight: 700 },
@@ -190,7 +185,6 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     authorsColor: "#57534e",
     align: "left",
     vAlign: "bottom",
-    logoVariant: "circles",
     typography: {
       eyebrow: { fontSize: 26, lineHeight: 1.2, letterSpacing: 5, weight: 600, uppercase: true },
       title: { fontSize: 108, lineHeight: 1.0, letterSpacing: -0.5, weight: 500 },
@@ -215,7 +209,6 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     authorsColor: "#fca5a5",
     align: "left",
     vAlign: "top",
-    logoVariant: "white",
     typography: {
       eyebrow: { fontSize: 32, lineHeight: 1.2, letterSpacing: 8, weight: 700, uppercase: true },
       title: { fontSize: 140, lineHeight: 0.92, letterSpacing: 1, weight: 400 },
@@ -240,7 +233,6 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     authorsColor: "#cbd5e1",
     align: "left",
     vAlign: "bottom",
-    logoVariant: "white",
     typography: {
       eyebrow: { fontSize: 26, lineHeight: 1.2, letterSpacing: 4, weight: 500, uppercase: true },
       title: { fontSize: 96, lineHeight: 1.05, letterSpacing: -0.5, weight: 400 },
@@ -351,20 +343,19 @@ function makePaneTextFromProps(
   paneCount: number,
   props: Props
 ): PaneText {
-  const eyebrow = paneIndex === 0 ? props.eyebrowText : "";
-  const title = paneIndex === 0 ? props.titleText : "";
-  const description =
-    paneIndex === 1 || (paneCount === 1 && paneIndex === 0)
-      ? firstSentences(props.descriptionText, DESCRIPTION_MAX_CHARS)
-      : paneIndex >= 2
-      ? ""
-      : "";
-  const authors = paneIndex === paneCount - 1 ? props.authorsText : "";
+  const isFirst = paneIndex === 0;
+  const isSecond = paneIndex === 1;
+  const isLast = paneIndex === paneCount - 1;
   return {
-    eyebrow,
-    title,
-    description,
-    authors,
+    eyebrow: isFirst ? props.eyebrowText : "",
+    title: isFirst ? props.titleText : "",
+    // Pane 1 always carries authors. If there is only one pane (shouldn't happen — min is 2 —
+    // but be defensive) it also gets the description.
+    description:
+      isSecond || (isFirst && paneCount === 1)
+        ? firstSentences(props.descriptionText, DESCRIPTION_MAX_CHARS)
+        : "",
+    authors: isFirst || isLast ? props.authorsText : "",
     dirty: { eyebrow: false, title: false, description: false, authors: false },
   };
 }
@@ -402,16 +393,19 @@ export default function InstagramDesigner({
   const [tintStrength, setTintStrength] = useState(1);
   const [titleScale, setTitleScale] = useState(1);
   const [descriptionScale, setDescriptionScale] = useState(1);
+  const [imageScale, setImageScale] = useState(1);
+  const [gapEyebrowTitle, setGapEyebrowTitle] = useState(18);
+  const [gapTitleDescription, setGapTitleDescription] = useState(36);
+  const [gapDescriptionAuthors, setGapDescriptionAuthors] = useState(28);
   const [activePane, setActivePane] = useState(0);
   const [arxivLoading, setArxivLoading] = useState(false);
   const [arxivError, setArxivError] = useState<string | null>(null);
+  const [arxivInfo, setArxivInfo] = useState<string | null>(null);
   const [arxivEprintUrl, setArxivEprintUrl] = useState<string | null>(null);
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState<string | null>(null);
-  const dropRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const previewFrameRef = useRef<HTMLDivElement>(null);
-  const [previewScale, setPreviewScale] = useState(0.4);
+  const PREVIEW_SCALE = 0.4;
 
   const propsRef = useRef<Props>({ eyebrowText, titleText, descriptionText, authorsText, paperLink });
   useEffect(() => {
@@ -493,27 +487,26 @@ export default function InstagramDesigner({
     };
   }, [paperLink]);
 
-  // Scale preview to fit container.
-  useEffect(() => {
-    const update = () => {
-      const frame = previewFrameRef.current;
-      if (!frame) return;
-      const masterWidth = paneCount * CANVAS_SIZE;
-      const available = frame.clientWidth - 24;
-      setPreviewScale(Math.min(0.6, Math.max(0.15, available / masterWidth)));
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, [paneCount]);
 
   const handleFiles = useCallback(async (files: FileList | File[]) => {
-    const arr = Array.from(files).filter((f) => f.type.startsWith("image/"));
+    const isImageLike = (f: File): boolean =>
+      f.type.startsWith("image/") ||
+      f.type === "application/pdf" ||
+      /\.(png|jpe?g|gif|pdf|eps|ps)$/i.test(f.name);
+    const arr = Array.from(files).filter(isImageLike);
     if (arr.length === 0) return;
     const loaded: BgImage[] = [];
+    let epsSkipped = 0;
     for (const file of arr) {
       try {
-        const src = await fileToDataUrl(file);
+        if (/\.(eps|ps)$/i.test(file.name) || file.type === "application/postscript") {
+          epsSkipped += 1;
+          continue;
+        }
+        let src = await fileToDataUrl(file);
+        if (file.type === "application/pdf" || /\.pdf$/i.test(file.name)) {
+          src = await pdfDataUrlToPngDataUrl(src);
+        }
         loaded.push({
           id: `upload-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
           src,
@@ -525,6 +518,11 @@ export default function InstagramDesigner({
       }
     }
     if (loaded.length > 0) setImages((prev) => [...prev, ...loaded]);
+    if (epsSkipped > 0) {
+      setArxivInfo(
+        `${epsSkipped} EPS file${epsSkipped === 1 ? "" : "s"} skipped — preview unavailable in-app.`
+      );
+    }
   }, []);
 
   const handleDrop = useCallback(
@@ -546,23 +544,65 @@ export default function InstagramDesigner({
     e.target.value = "";
   };
 
+  async function handleOpenSource() {
+    if (!arxivEprintUrl) return;
+    try {
+      await openExternal(arxivEprintUrl);
+    } catch (e) {
+      setArxivError(`Could not open browser: ${e}`);
+    }
+  }
+
   async function handleFetchArxivFigures() {
     if (!paperLink) return;
     setArxivLoading(true);
     setArxivError(null);
+    setArxivInfo(null);
     try {
       const figures = await fetchArxivFigures(paperLink);
-      if (figures.length === 0) {
-        setArxivError("No usable figures (png/jpg/gif) found in the arXiv source.");
+      let skippedEps = 0;
+      let pdfConverted = 0;
+      let pdfFailed = 0;
+      const newImages: BgImage[] = [];
+      for (let i = 0; i < figures.length; i += 1) {
+        const f = figures[i];
+        if (f.mimeType === "application/postscript") {
+          skippedEps += 1;
+          continue;
+        }
+        let src = bytesFromBase64(f.dataBase64, f.mimeType);
+        if (f.mimeType === "application/pdf") {
+          try {
+            src = await pdfDataUrlToPngDataUrl(src);
+            pdfConverted += 1;
+          } catch {
+            pdfFailed += 1;
+            continue;
+          }
+        }
+        newImages.push({
+          id: `arxiv-${Date.now()}-${i}`,
+          src,
+          name: f.filename,
+          source: "arxiv",
+        });
+      }
+      if (newImages.length === 0) {
+        setArxivError(
+          `arXiv returned ${figures.length} file(s) but none could be used as backgrounds.` +
+            (skippedEps > 0
+              ? ` (${skippedEps} EPS — preview unavailable in-app; download the LaTeX source to use them.)`
+              : "")
+        );
         return;
       }
-      const newImages: BgImage[] = figures.map((f, i) => ({
-        id: `arxiv-${Date.now()}-${i}`,
-        src: bytesFromBase64(f.dataBase64, f.mimeType),
-        name: f.filename,
-        source: "arxiv",
-      }));
       setImages((prev) => [...prev, ...newImages]);
+      const notes: string[] = [];
+      notes.push(`Added ${newImages.length} figure${newImages.length === 1 ? "" : "s"}.`);
+      if (pdfConverted > 0) notes.push(`${pdfConverted} PDF rasterised.`);
+      if (pdfFailed > 0) notes.push(`${pdfFailed} PDF failed to rasterise.`);
+      if (skippedEps > 0) notes.push(`${skippedEps} EPS skipped (download source to use).`);
+      setArxivInfo(notes.join(" "));
     } catch (e) {
       setArxivError(String(e));
     } finally {
@@ -696,7 +736,7 @@ export default function InstagramDesigner({
     drawPaneText(ctx, paneIndex);
 
     // 6. Logo
-    await drawLogo(ctx, template.logoVariant);
+    await drawLogo(ctx);
 
     return canvas;
   }
@@ -743,17 +783,23 @@ export default function InstagramDesigner({
   ) {
     const imageRatio = img.width / img.height;
     const slotRatio = dw / dh;
-    let sx = 0;
-    let sy = 0;
-    let sw = img.width;
-    let sh = img.height;
+    // Base "cover" source rectangle that fills the slot exactly.
+    let baseSw: number;
+    let baseSh: number;
     if (imageRatio > slotRatio) {
-      sw = img.height * slotRatio;
-      sx = (img.width - sw) / 2;
+      baseSw = img.height * slotRatio;
+      baseSh = img.height;
     } else {
-      sh = img.width / slotRatio;
-      sy = (img.height - sh) / 2;
+      baseSw = img.width;
+      baseSh = img.width / slotRatio;
     }
+    // imageScale > 1 → zoom into the image (sample less source).
+    // imageScale < 1 → zoom out (clamp so source can't exceed the image).
+    const scale = Math.max(0.25, Math.min(4, imageScale));
+    const sw = Math.min(img.width, baseSw / scale);
+    const sh = Math.min(img.height, baseSh / scale);
+    const sx = (img.width - sw) / 2;
+    const sy = (img.height - sh) / 2;
     ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
   }
 
@@ -861,11 +907,22 @@ export default function InstagramDesigner({
       return { ...b, size, lines, lineHeight, text };
     });
 
-    const SPACING_BETWEEN = 18;
-    const totalHeight = measured.reduce(
-      (sum, m, i) => sum + m.lines.length * m.lineHeight + (i < measured.length - 1 ? SPACING_BETWEEN : 0),
-      0
+    const gapBetween = (prevKind: string, nextKind: string): number => {
+      if (prevKind === "eyebrow" && nextKind === "title") return gapEyebrowTitle;
+      if (prevKind === "title" && nextKind === "description") return gapTitleDescription;
+      if (prevKind === "description" && nextKind === "authors") return gapDescriptionAuthors;
+      if (prevKind === "title" && nextKind === "authors") return gapDescriptionAuthors;
+      return 18;
+    };
+
+    const kinds = measured.map((m) =>
+      m.isTitle ? "title" : m.isDescription ? "description" : m.style === template.typography.eyebrow ? "eyebrow" : "authors"
     );
+
+    const totalHeight = measured.reduce((sum, m, i) => {
+      const gap = i < measured.length - 1 ? gapBetween(kinds[i], kinds[i + 1]) : 0;
+      return sum + m.lines.length * m.lineHeight + gap;
+    }, 0);
 
     const reserveBottom = LOGO_HEIGHT_PX + LOGO_MARGIN_PX * 2;
     let y =
@@ -880,14 +937,14 @@ export default function InstagramDesigner({
       m.lines.forEach((line, li) => {
         ctx.fillText(line, xAnchor, y + li * m.lineHeight);
       });
-      y += m.lines.length * m.lineHeight + (idx < measured.length - 1 ? SPACING_BETWEEN : 0);
+      const nextGap = idx < measured.length - 1 ? gapBetween(kinds[idx], kinds[idx + 1]) : 0;
+      y += m.lines.length * m.lineHeight + nextGap;
     });
   }
 
-  async function drawLogo(ctx: CanvasRenderingContext2D, variant: LogoVariant) {
-    const src = variant === "white" ? logoWhite : logoCircles;
+  async function drawLogo(ctx: CanvasRenderingContext2D) {
     try {
-      const img = await loadImage(src);
+      const img = await loadImage(usmccLogo);
       const targetH = LOGO_HEIGHT_PX;
       const targetW = (img.width / img.height) * targetH;
       ctx.drawImage(
@@ -987,7 +1044,6 @@ export default function InstagramDesigner({
           <div className="ig-control-group">
             <label>Background images</label>
             <div
-              ref={dropRef}
               className="ig-dropzone"
               onDrop={handleDrop}
               onDragOver={handleDragOver}
@@ -1008,9 +1064,14 @@ export default function InstagramDesigner({
             </div>
             {arxivEprintUrl && (
               <div className="ig-arxiv-row">
-                <a className="ig-arxiv-link" href={arxivEprintUrl} target="_blank" rel="noreferrer">
+                <button
+                  type="button"
+                  className="ig-arxiv-link"
+                  onClick={handleOpenSource}
+                  title={arxivEprintUrl}
+                >
                   Download LaTeX source (.tar.gz)
-                </a>
+                </button>
                 <button
                   className="btn-secondary"
                   onClick={handleFetchArxivFigures}
@@ -1021,6 +1082,7 @@ export default function InstagramDesigner({
               </div>
             )}
             {arxivError && <div className="ig-warn">{arxivError}</div>}
+            {arxivInfo && <div className="ig-info">{arxivInfo}</div>}
             {images.length > 0 && (
               <div className="ig-thumb-grid">
                 {images.map((img, idx) => (
@@ -1067,7 +1129,7 @@ export default function InstagramDesigner({
           </div>
 
           <div className="ig-control-group">
-            <label>Overlay & typography</label>
+            <label>Overlay & background</label>
             <div className="ig-slider-row">
               <span>Gradient</span>
               <input
@@ -1093,6 +1155,22 @@ export default function InstagramDesigner({
               <strong>{tintStrength.toFixed(2)}</strong>
             </div>
             <div className="ig-slider-row">
+              <span>Image zoom</span>
+              <input
+                type="range"
+                min={0.5}
+                max={2.5}
+                step={0.05}
+                value={imageScale}
+                onChange={(e) => setImageScale(Number(e.target.value))}
+              />
+              <strong>{Math.round(imageScale * 100)}%</strong>
+            </div>
+          </div>
+
+          <div className="ig-control-group">
+            <label>Typography</label>
+            <div className="ig-slider-row">
               <span>Title size</span>
               <input
                 type="range"
@@ -1115,6 +1193,42 @@ export default function InstagramDesigner({
                 onChange={(e) => setDescriptionScale(Number(e.target.value))}
               />
               <strong>{Math.round(descriptionScale * 100)}%</strong>
+            </div>
+            <div className="ig-slider-row">
+              <span>Eye→Title</span>
+              <input
+                type="range"
+                min={0}
+                max={120}
+                step={2}
+                value={gapEyebrowTitle}
+                onChange={(e) => setGapEyebrowTitle(Number(e.target.value))}
+              />
+              <strong>{gapEyebrowTitle}px</strong>
+            </div>
+            <div className="ig-slider-row">
+              <span>Title→Desc</span>
+              <input
+                type="range"
+                min={0}
+                max={160}
+                step={2}
+                value={gapTitleDescription}
+                onChange={(e) => setGapTitleDescription(Number(e.target.value))}
+              />
+              <strong>{gapTitleDescription}px</strong>
+            </div>
+            <div className="ig-slider-row">
+              <span>Desc→Auth</span>
+              <input
+                type="range"
+                min={0}
+                max={140}
+                step={2}
+                value={gapDescriptionAuthors}
+                onChange={(e) => setGapDescriptionAuthors(Number(e.target.value))}
+              />
+              <strong>{gapDescriptionAuthors}px</strong>
             </div>
           </div>
 
@@ -1185,93 +1299,115 @@ export default function InstagramDesigner({
         </div>
 
         <div className="ig-preview-wrap">
-          <div className="ig-preview-frame" ref={previewFrameRef}>
+          <div className="ig-preview-frame">
             <div
-              className="ig-preview-master"
+              className="ig-preview-scroll"
               style={{
-                width: masterWidthPx,
-                height: CANVAS_SIZE,
-                transform: `scale(${previewScale})`,
-                background: template.baseColor,
+                width: masterWidthPx * PREVIEW_SCALE,
+                height: CANVAS_SIZE * PREVIEW_SCALE,
               }}
             >
-              {/* Image layer */}
-              <div className="ig-image-layer">
-                {images.map((img, i) => {
-                  const slot = paneSlotForImage(i, images.length, paneCount);
-                  const fade = Math.min(CROSSFADE_PX, slot.width / 2);
-                  const leftStop = i > 0 ? `transparent 0px, black ${fade}px` : "black 0px";
-                  const rightStop =
-                    i < images.length - 1
-                      ? `black calc(100% - ${fade}px), transparent 100%`
-                      : "black 100%";
-                  const mask = `linear-gradient(to right, ${leftStop}, ${rightStop})`;
-                  return (
-                    <img
-                      key={img.id}
-                      src={img.src}
-                      alt=""
-                      style={{
-                        position: "absolute",
-                        left: slot.left,
-                        top: 0,
-                        width: slot.width,
-                        height: CANVAS_SIZE,
-                        objectFit: "cover",
-                        WebkitMaskImage: mask,
-                        maskImage: mask,
-                      }}
-                    />
-                  );
-                })}
-              </div>
-              {/* Tint layer */}
               <div
-                className="ig-tint-layer"
+                className="ig-preview-master"
                 style={{
-                  backgroundColor: template.tintColor,
-                  opacity: template.tintOpacity * tintStrength,
-                  mixBlendMode: template.tintBlend as React.CSSProperties["mixBlendMode"],
+                  width: masterWidthPx,
+                  height: CANVAS_SIZE,
+                  transform: `scale(${PREVIEW_SCALE})`,
+                  background: template.baseColor,
                 }}
-              />
-              {/* Gradient layer */}
-              <div
-                className="ig-gradient-layer"
-                style={{
-                  background: gradientCss(template),
-                  opacity: gradientStrength,
-                  mixBlendMode: template.gradientBlend as React.CSSProperties["mixBlendMode"],
-                }}
-              />
-              {/* Per-pane text + logo */}
-              {panes.map((pane, i) => (
-                <PanePreview
-                  key={i}
-                  pane={pane}
-                  paneIndex={i}
-                  paneCount={paneCount}
-                  template={template}
-                  displayFont={displayFont}
-                  bodyFont={bodyFont}
-                  titleScale={titleScale}
-                  descriptionScale={descriptionScale}
-                  isActive={activePane === i}
-                  onSelect={() => setActivePane(i)}
-                />
-              ))}
-              {/* Pane boundary guides */}
-              {Array.from({ length: paneCount - 1 }, (_, i) => (
+              >
+                {/* Image layer — each image lives in a slot-sized clipping div so transform scale
+                    visually zooms within the slot without breaking the cross-fade mask. */}
+                <div className="ig-image-layer">
+                  {images.map((img, i) => {
+                    const slot = paneSlotForImage(i, images.length, paneCount);
+                    const fade = Math.min(CROSSFADE_PX, slot.width / 2);
+                    const leftStop = i > 0 ? `transparent 0px, black ${fade}px` : "black 0px";
+                    const rightStop =
+                      i < images.length - 1
+                        ? `black calc(100% - ${fade}px), transparent 100%`
+                        : "black 100%";
+                    const mask = `linear-gradient(to right, ${leftStop}, ${rightStop})`;
+                    return (
+                      <div
+                        key={img.id}
+                        style={{
+                          position: "absolute",
+                          left: slot.left,
+                          top: 0,
+                          width: slot.width,
+                          height: CANVAS_SIZE,
+                          overflow: "hidden",
+                          WebkitMaskImage: mask,
+                          maskImage: mask,
+                        }}
+                      >
+                        <img
+                          src={img.src}
+                          alt=""
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            transform: `scale(${imageScale})`,
+                            transformOrigin: "center center",
+                          }}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+                {/* Tint layer */}
                 <div
-                  key={`guide-${i}`}
-                  className="ig-pane-guide"
-                  style={{ left: (i + 1) * CANVAS_SIZE - 1 }}
+                  className="ig-tint-layer"
+                  style={{
+                    backgroundColor: template.tintColor,
+                    opacity: template.tintOpacity * tintStrength,
+                    mixBlendMode: template.tintBlend as React.CSSProperties["mixBlendMode"],
+                  }}
                 />
-              ))}
+                {/* Gradient layer */}
+                <div
+                  className="ig-gradient-layer"
+                  style={{
+                    background: gradientCss(template),
+                    opacity: gradientStrength,
+                    mixBlendMode: template.gradientBlend as React.CSSProperties["mixBlendMode"],
+                  }}
+                />
+                {/* Per-pane text + logo */}
+                {panes.map((pane, i) => (
+                  <PanePreview
+                    key={i}
+                    pane={pane}
+                    paneIndex={i}
+                    paneCount={paneCount}
+                    template={template}
+                    displayFont={displayFont}
+                    bodyFont={bodyFont}
+                    titleScale={titleScale}
+                    descriptionScale={descriptionScale}
+                    gapEyebrowTitle={gapEyebrowTitle}
+                    gapTitleDescription={gapTitleDescription}
+                    gapDescriptionAuthors={gapDescriptionAuthors}
+                    isActive={activePane === i}
+                    onSelect={() => setActivePane(i)}
+                  />
+                ))}
+                {/* Pane boundary guides */}
+                {Array.from({ length: paneCount - 1 }, (_, i) => (
+                  <div
+                    key={`guide-${i}`}
+                    className="ig-pane-guide"
+                    style={{ left: (i + 1) * CANVAS_SIZE - 1 }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
           <div className="ig-preview-meta">
             <span>Master: {masterWidthPx}×{CANVAS_SIZE}</span>
-            <span>Preview scale: {Math.round(previewScale * 100)}%</span>
+            <span>Scroll →</span>
             <span>Display: {displayFont}</span>
             <span>Body: {bodyFont}</span>
           </div>
@@ -1290,6 +1426,9 @@ interface PanePreviewProps {
   bodyFont: string;
   titleScale: number;
   descriptionScale: number;
+  gapEyebrowTitle: number;
+  gapTitleDescription: number;
+  gapDescriptionAuthors: number;
   isActive: boolean;
   onSelect: () => void;
 }
@@ -1302,10 +1441,12 @@ function PanePreview({
   bodyFont,
   titleScale,
   descriptionScale,
+  gapEyebrowTitle,
+  gapTitleDescription,
+  gapDescriptionAuthors,
   isActive,
   onSelect,
 }: PanePreviewProps) {
-  const logoSrc = template.logoVariant === "white" ? logoWhite : logoCircles;
   const align = template.align;
   const vAlign = template.vAlign;
   const justify =
@@ -1314,7 +1455,13 @@ function PanePreview({
   const itemsAlign =
     align === "center" ? "center" : align === "right" ? "flex-end" : "flex-start";
 
-  function blockStyle(block: TextBlock, color: string, font: string, scale = 1): React.CSSProperties {
+  function blockStyle(
+    block: TextBlock,
+    color: string,
+    font: string,
+    scale = 1,
+    marginBottom = 0
+  ): React.CSSProperties {
     return {
       fontFamily: buildFontFamily(font),
       fontSize: block.fontSize * scale,
@@ -1326,8 +1473,30 @@ function PanePreview({
       color,
       maxWidth: "100%",
       wordBreak: "break-word",
+      marginBottom,
     };
   }
+
+  type Kind = "eyebrow" | "title" | "description" | "authors";
+  const present: Kind[] = [];
+  if (pane.eyebrow.trim()) present.push("eyebrow");
+  if (pane.title.trim()) present.push("title");
+  if (pane.description.trim()) present.push("description");
+  if (pane.authors.trim()) present.push("authors");
+
+  const gapBetween = (a: Kind, b: Kind): number => {
+    if (a === "eyebrow" && b === "title") return gapEyebrowTitle;
+    if (a === "title" && b === "description") return gapTitleDescription;
+    if (a === "description" && b === "authors") return gapDescriptionAuthors;
+    if (a === "title" && b === "authors") return gapDescriptionAuthors;
+    return 18;
+  };
+
+  const marginFor = (kind: Kind): number => {
+    const idx = present.indexOf(kind);
+    const next = present[idx + 1];
+    return next ? gapBetween(kind, next) : 0;
+  };
 
   return (
     <div
@@ -1354,16 +1523,31 @@ function PanePreview({
           justifyContent: justify,
           alignItems: itemsAlign,
           textAlign,
-          gap: 18,
         }}
       >
         {pane.eyebrow.trim() && (
-          <div style={blockStyle(template.typography.eyebrow, template.eyebrowColor, displayFont)}>
+          <div
+            style={blockStyle(
+              template.typography.eyebrow,
+              template.eyebrowColor,
+              displayFont,
+              1,
+              marginFor("eyebrow")
+            )}
+          >
             {pane.eyebrow}
           </div>
         )}
         {pane.title.trim() && (
-          <div style={blockStyle(template.typography.title, template.textColor, displayFont, titleScale)}>
+          <div
+            style={blockStyle(
+              template.typography.title,
+              template.textColor,
+              displayFont,
+              titleScale,
+              marginFor("title")
+            )}
+          >
             {pane.title}
           </div>
         )}
@@ -1373,20 +1557,29 @@ function PanePreview({
               template.typography.description,
               template.textColor,
               bodyFont,
-              descriptionScale
+              descriptionScale,
+              marginFor("description")
             )}
           >
             {pane.description}
           </div>
         )}
         {pane.authors.trim() && (
-          <div style={blockStyle(template.typography.authors, template.authorsColor, bodyFont)}>
+          <div
+            style={blockStyle(
+              template.typography.authors,
+              template.authorsColor,
+              bodyFont,
+              1,
+              marginFor("authors")
+            )}
+          >
             {pane.authors}
           </div>
         )}
       </div>
       <img
-        src={logoSrc}
+        src={usmccLogo}
         alt="USMCC"
         className="ig-pane-logo"
         style={{

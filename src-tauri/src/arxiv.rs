@@ -54,6 +54,7 @@ pub async fn fetch_figures(arxiv_id: &str) -> Result<Vec<ArxivFigure>, String> {
     let url = eprint_url(arxiv_id);
     let client = Client::builder()
         .user_agent(USER_AGENT)
+        .redirect(reqwest::redirect::Policy::limited(10))
         .timeout(std::time::Duration::from_secs(180))
         .build()
         .map_err(|e| format!("Could not build HTTP client: {e}"))?;
@@ -61,11 +62,19 @@ pub async fn fetch_figures(arxiv_id: &str) -> Result<Vec<ArxivFigure>, String> {
         .get(&url)
         .send()
         .await
-        .map_err(|e| format!("Failed to fetch arXiv source: {e}"))?;
+        .map_err(|e| format!("Network error fetching {url}: {e}"))?;
     let status = response.status();
     if !status.is_success() {
-        return Err(format!("arXiv returned status {status} for {url}"));
+        return Err(format!(
+            "arXiv returned HTTP {status} for {url}. Some papers do not publish source."
+        ));
     }
+    let content_type = response
+        .headers()
+        .get(reqwest::header::CONTENT_TYPE)
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("")
+        .to_string();
     let bytes = response
         .bytes()
         .await
@@ -77,16 +86,71 @@ pub async fn fetch_figures(arxiv_id: &str) -> Result<Vec<ArxivFigure>, String> {
             MAX_TARBALL_BYTES
         ));
     }
-    extract_figures_from_gzipped_tar(&bytes)
+    extract_figures_from_response(&bytes, &content_type)
 }
 
-fn extract_figures_from_gzipped_tar(bytes: &[u8]) -> Result<Vec<ArxivFigure>, String> {
+fn extract_figures_from_response(bytes: &[u8], content_type: &str) -> Result<Vec<ArxivFigure>, String> {
+    // Try gzipped tar (the common case)
+    if let Ok(figures) = try_extract_gzipped_tar(bytes) {
+        if !figures.is_empty() {
+            return Ok(figures);
+        }
+        // Fall through and report the most helpful error below.
+    }
+    // Try raw tar (uncompressed archive — rare but possible)
+    if let Ok(figures) = try_extract_tar(bytes) {
+        if !figures.is_empty() {
+            return Ok(figures);
+        }
+    }
+    // Detect single-file cases: a paper that submits only a .tex file is served as a plain
+    // gzip of the tex source (1f 8b magic, but no tar inside). A PDF-only submission is
+    // served as a literal PDF.
+    let magic = sniff_magic(bytes);
+    Err(match magic {
+        Magic::Gzip => {
+            "arXiv returned a gzipped single file (no tarball, no image figures). \
+             This usually means the submission is a single .tex file with no graphics."
+                .to_string()
+        }
+        Magic::Pdf => {
+            "arXiv returned a PDF-only submission (no LaTeX source). Image figures cannot \
+             be extracted; download the PDF directly to use its rasters."
+                .to_string()
+        }
+        Magic::Tar => "Archive parsed but contained no png/jpg/gif/pdf/eps files.".to_string(),
+        Magic::Unknown => format!(
+            "Could not recognise the arXiv source format (content-type {content_type:?}, \
+             {} bytes). The submission may have been withdrawn or be source-restricted.",
+            bytes.len()
+        ),
+    })
+}
+
+fn try_extract_gzipped_tar(bytes: &[u8]) -> Result<Vec<ArxivFigure>, String> {
+    if bytes.len() < 2 || bytes[0] != 0x1f || bytes[1] != 0x8b {
+        return Err("not gzipped".to_string());
+    }
     let gz = GzDecoder::new(bytes);
     let mut archive = Archive::new(gz);
+    collect_image_entries(&mut archive)
+}
+
+fn try_extract_tar(bytes: &[u8]) -> Result<Vec<ArxivFigure>, String> {
+    if bytes.len() < 512 {
+        return Err("too short to be a tar".to_string());
+    }
+    // POSIX tar header has "ustar" at byte 257. Some tars omit it; check anyway.
+    let mut archive = Archive::new(bytes);
+    collect_image_entries(&mut archive)
+}
+
+fn collect_image_entries<R: std::io::Read>(
+    archive: &mut Archive<R>,
+) -> Result<Vec<ArxivFigure>, String> {
     let entries = archive
         .entries()
-        .map_err(|e| format!("Could not open tar archive (is this a gzipped tar?): {e}"))?;
-
+        .map_err(|e| format!("Could not iterate tar entries: {e}"))?;
     let mut figures = Vec::new();
     for entry in entries {
         let mut entry = match entry {
@@ -105,6 +169,8 @@ fn extract_figures_from_gzipped_tar(bytes: &[u8]) -> Result<Vec<ArxivFigure>, St
             Some("png") => "image/png",
             Some("jpg") | Some("jpeg") => "image/jpeg",
             Some("gif") => "image/gif",
+            Some("pdf") => "application/pdf",
+            Some("eps") | Some("ps") => "application/postscript",
             _ => continue,
         };
         let declared_size = entry.header().size().unwrap_or(0) as usize;
@@ -133,6 +199,26 @@ fn extract_figures_from_gzipped_tar(bytes: &[u8]) -> Result<Vec<ArxivFigure>, St
         }
     }
     Ok(figures)
+}
+
+enum Magic {
+    Gzip,
+    Pdf,
+    Tar,
+    Unknown,
+}
+
+fn sniff_magic(bytes: &[u8]) -> Magic {
+    if bytes.len() >= 2 && bytes[0] == 0x1f && bytes[1] == 0x8b {
+        return Magic::Gzip;
+    }
+    if bytes.len() >= 4 && &bytes[0..4] == b"%PDF" {
+        return Magic::Pdf;
+    }
+    if bytes.len() >= 262 && &bytes[257..262] == b"ustar" {
+        return Magic::Tar;
+    }
+    Magic::Unknown
 }
 
 #[cfg(test)]

@@ -121,16 +121,16 @@ pub async fn generate(
     } else {
         let plain_summary = normalize_whitespace(abstract_);
         let twitter = trim_to_chars(
-            &normalize_whitespace(&format!("{display_title}: {abstract_} {link}")),
+            &normalize_whitespace(&format!("USMCC Featured Paper — {display_title}: {abstract_} {link}")),
             280,
         );
         let bluesky = trim_to_chars(
-            &normalize_whitespace(&format!("{display_title}: {abstract_} {link}")),
+            &normalize_whitespace(&format!("USMCC Featured Paper — {display_title}: {abstract_} {link}")),
             300,
         );
 
         let linkedin = normalize_whitespace(&format!(
-            "{display_title}. Authors: {authors}. {abstract_} {}",
+            "USMCC Featured Paper: {display_title}. Authors: {authors}. {abstract_} {}",
             if link.trim().is_empty() {
                 String::new()
             } else {
@@ -142,11 +142,11 @@ pub async fn generate(
             let mut parts = Vec::new();
             let part1 = trim_to_chars(
                 &normalize_whitespace(&format!(
-                    "{display_title}{}",
+                    "USMCC Featured Paper — {display_title}{}",
                     if authors.trim().is_empty() {
                         String::new()
                     } else {
-                        format!(" — {authors}")
+                        format!(" · {authors}")
                     }
                 )),
                 280,

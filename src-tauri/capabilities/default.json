@@ -1,7 +1,7 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Default capability granting core APIs and app commands to the main window.",
+  "description": "Default capability granting core APIs, store, and opener to the main window.",
   "windows": ["main"],
   "permissions": [
     "core:default",
@@ -9,6 +9,15 @@
     "core:window:default",
     "core:webview:default",
     "core:app:default",
-    "core:event:default"
+    "core:event:default",
+    {
+      "identifier": "opener:allow-open-url",
+      "allow": [
+        { "url": "https://arxiv.org/*" },
+        { "url": "https://*.arxiv.org/*" },
+        { "url": "https://*" },
+        { "url": "http://*" }
+      ]
+    }
   ]
 }

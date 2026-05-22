@@ -1,4 +1,5 @@
 import { invoke } from "@tauri-apps/api/core";
+import { openUrl } from "@tauri-apps/plugin-opener";
 import type {
   PaperRow,
   GeneratedContent,
@@ -6,6 +7,10 @@ import type {
   ApiKeyStatus,
   ArxivFigure,
 } from "./types";
+
+export async function openExternal(url: string): Promise<void> {
+  await openUrl(url);
+}
 
 export async function parseRow(text: string): Promise<PaperRow> {
   return invoke<PaperRow>("parse_row", { text });

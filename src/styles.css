@@ -533,6 +533,20 @@ button:disabled {
   font-size: 12px;
   color: #0071e3;
   text-decoration: underline;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.ig-arxiv-link:hover {
+  color: #003e7a;
+}
+
+.ig-info {
+  color: #1d8f4f;
+  font-size: 12px;
+  margin-top: 6px;
 }
 
 .ig-thumb-grid {
@@ -664,15 +678,23 @@ button:disabled {
   background: #1d1d1f;
   border-radius: 12px;
   padding: 12px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   min-height: 480px;
 }
 
-.ig-preview-master {
+.ig-preview-scroll {
   position: relative;
+  flex: none;
+}
+
+.ig-preview-master {
+  position: absolute;
+  top: 0;
+  left: 0;
   transform-origin: top left;
   overflow: hidden;
   border-radius: 6px;
