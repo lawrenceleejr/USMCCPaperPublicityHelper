@@ -169,6 +169,11 @@ export default function App() {
 
   return (
     <div className="app">
+      {/* Always-on, top-of-window invisible strip that's the drag handle.
+          Fixed-position so it works regardless of scroll/layout, and stays
+          above content but below the OS traffic-light controls (which are
+          drawn by macOS, not the webview). */}
+      <div className="window-drag-strip" data-tauri-drag-region aria-hidden="true" />
       <header data-tauri-drag-region>
         <div className="header-actions" data-tauri-drag-region>
           <div className="header-brand" data-tauri-drag-region>

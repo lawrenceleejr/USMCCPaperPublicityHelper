@@ -107,6 +107,10 @@ interface PaneText {
   title: string;
   description: string;
   authors: string;
+  // Mirror the template's horizontal alignment for this pane and move the
+  // logo to the opposite corner. Useful when the background image's focal
+  // subject sits on the side the template wants the text on.
+  flipped: boolean;
   dirty: { eyebrow: boolean; title: boolean; description: boolean; authors: boolean };
 }
 
@@ -145,6 +149,24 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintOpacity: 0.35,
     tintBlend: "multiply",
     gradientLayers: [
+      // Baseline spotlight: normal-blend radial that darkens everything
+      // outside the text-reading zone. Works identically whether the backdrop
+      // is the solid base colour or a varied photographic image, so the
+      // "natural spotlight" character of the design survives once background
+      // images are added.
+      {
+        kind: "radial",
+        cx: 0.3,
+        cy: 0.7,
+        r: 1.1,
+        stops: [
+          { offset: 0, color: "rgba(0,0,0,0)" },
+          { offset: 0.5, color: "rgba(0,0,0,0)" },
+          { offset: 1, color: "rgba(0,0,0,0.5)" },
+        ],
+        blend: "normal",
+        opacity: 1,
+      },
       // Warm gold highlight from upper-left — a "rim light" feeling that the
       // photographic studio crowd will recognise.
       {
@@ -206,6 +228,22 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintOpacity: 0.18,
     tintBlend: "multiply",
     gradientLayers: [
+      // Baseline soft halo around the text-reading zone (top-left) so the
+      // design feels intentional over any backdrop. Light template, so the
+      // halo is brighter rather than darker.
+      {
+        kind: "radial",
+        cx: 0.25,
+        cy: 0.25,
+        r: 0.95,
+        stops: [
+          { offset: 0, color: "rgba(255,255,255,0.40)" },
+          { offset: 0.45, color: "rgba(255,255,255,0.10)" },
+          { offset: 1, color: "rgba(0,0,0,0.18)" },
+        ],
+        blend: "normal",
+        opacity: 1,
+      },
       // Bright paper-wash with a soft fade-down toward a hint of shadow at the bottom.
       {
         kind: "linear",
@@ -253,6 +291,21 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintOpacity: 0.42,
     tintBlend: "overlay",
     gradientLayers: [
+      // Baseline centre spotlight — title is centre-middle; darken outer area
+      // with normal blend so the spotlight reads against any backdrop.
+      {
+        kind: "radial",
+        cx: 0.5,
+        cy: 0.5,
+        r: 1.0,
+        stops: [
+          { offset: 0, color: "rgba(0,0,0,0)" },
+          { offset: 0.55, color: "rgba(0,0,0,0)" },
+          { offset: 1, color: "rgba(0,0,0,0.55)" },
+        ],
+        blend: "normal",
+        opacity: 1,
+      },
       // Big violet spotlight, centred high — title sits in the brightest cone.
       {
         kind: "radial",
@@ -302,6 +355,21 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintOpacity: 0.22,
     tintBlend: "multiply",
     gradientLayers: [
+      // Baseline spotlight around the bottom-left reading zone. Warm light
+      // template — slight cream lift around text + soft umber edge fall-off.
+      {
+        kind: "radial",
+        cx: 0.3,
+        cy: 0.7,
+        r: 1.05,
+        stops: [
+          { offset: 0, color: "rgba(255,236,200,0.28)" },
+          { offset: 0.5, color: "rgba(255,236,200,0.05)" },
+          { offset: 1, color: "rgba(64,28,8,0.45)" },
+        ],
+        blend: "normal",
+        opacity: 1,
+      },
       // Sunrise-temperature linear: cream → wheat → umber → deep brown.
       {
         kind: "linear",
@@ -350,6 +418,21 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintOpacity: 0.5,
     tintBlend: "multiply",
     gradientLayers: [
+      // Baseline spotlight around the top-left reading zone — pull the eye
+      // there even when the background is a varied image.
+      {
+        kind: "radial",
+        cx: 0.25,
+        cy: 0.25,
+        r: 1.05,
+        stops: [
+          { offset: 0, color: "rgba(0,0,0,0)" },
+          { offset: 0.5, color: "rgba(0,0,0,0)" },
+          { offset: 1, color: "rgba(0,0,0,0.55)" },
+        ],
+        blend: "normal",
+        opacity: 1,
+      },
       // Diagonal red sweep from upper-left toward deep navy in the lower-right.
       {
         kind: "linear",
@@ -411,6 +494,20 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintOpacity: 0.3,
     tintBlend: "multiply",
     gradientLayers: [
+      // Baseline cool spotlight at the bottom-left reading zone.
+      {
+        kind: "radial",
+        cx: 0.3,
+        cy: 0.7,
+        r: 1.1,
+        stops: [
+          { offset: 0, color: "rgba(125,211,252,0.10)" },
+          { offset: 0.55, color: "rgba(0,0,0,0)" },
+          { offset: 1, color: "rgba(2,20,35,0.5)" },
+        ],
+        blend: "normal",
+        opacity: 1,
+      },
       // Cool sky-blue spotlight upper-centre — feels like sun on open water.
       {
         kind: "radial",
@@ -553,6 +650,54 @@ function kebab(text: string): string {
     .slice(0, 60) || "usmcc-paper";
 }
 
+// --- WCAG contrast helpers ---------------------------------------------------
+
+function srgbChannelToLinear(c: number): number {
+  const cs = c / 255;
+  return cs <= 0.03928 ? cs / 12.92 : Math.pow((cs + 0.055) / 1.055, 2.4);
+}
+
+function relativeLuminance(r: number, g: number, b: number): number {
+  const R = srgbChannelToLinear(r);
+  const G = srgbChannelToLinear(g);
+  const B = srgbChannelToLinear(b);
+  return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+}
+
+function parseColorToRgb(color: string): [number, number, number] | null {
+  const hex = color.trim();
+  const m6 = /^#?([0-9a-f]{6})$/i.exec(hex);
+  if (m6) {
+    const v = parseInt(m6[1], 16);
+    return [(v >> 16) & 0xff, (v >> 8) & 0xff, v & 0xff];
+  }
+  const m3 = /^#?([0-9a-f]{3})$/i.exec(hex);
+  if (m3) {
+    const r = parseInt(m3[1][0] + m3[1][0], 16);
+    const g = parseInt(m3[1][1] + m3[1][1], 16);
+    const b = parseInt(m3[1][2] + m3[1][2], 16);
+    return [r, g, b];
+  }
+  const rgba = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i.exec(color);
+  if (rgba) {
+    return [parseInt(rgba[1], 10), parseInt(rgba[2], 10), parseInt(rgba[3], 10)];
+  }
+  return null;
+}
+
+function wcagContrast(lumA: number, lumB: number): number {
+  const lighter = Math.max(lumA, lumB);
+  const darker = Math.min(lumA, lumB);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+interface PaneContrast {
+  bgLuminance: number;
+  // Sampled average RGB of the text-zone backdrop, for display.
+  bgRgb: [number, number, number];
+  ratios: { title: number; eyebrow: number; description: number; authors: number };
+}
+
 function gradientLayerCss(layer: GradientLayer): string {
   const stops = layer.stops
     .map((s) => `${s.color} ${Math.round(s.offset * 100)}%`)
@@ -626,6 +771,7 @@ function makePaneTextFromProps(
         ? firstSentences(props.descriptionText, DESCRIPTION_MAX_CHARS)
         : "",
     authors: isFirst || isLast ? props.authorsText : "",
+    flipped: false,
     dirty: { eyebrow: false, title: false, description: false, authors: false },
   };
 }
@@ -637,6 +783,7 @@ function refreshPaneFromProps(pane: PaneText, paneIndex: number, paneCount: numb
     title: pane.dirty.title ? pane.title : defaults.title,
     description: pane.dirty.description ? pane.description : defaults.description,
     authors: pane.dirty.authors ? pane.authors : defaults.authors,
+    flipped: pane.flipped,
     dirty: pane.dirty,
   };
 }
@@ -673,6 +820,8 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   const [activePane, setActivePane] = useState(0);
   const [arxivLoading, setArxivLoading] = useState(false);
   const [pdfLoading, setPdfLoading] = useState(false);
+  const [paneContrast, setPaneContrast] = useState<PaneContrast | null>(null);
+  const [contrastMeasuring, setContrastMeasuring] = useState(false);
   const [arxivError, setArxivError] = useState<string | null>(null);
   const [arxivInfo, setArxivInfo] = useState<string | null>(null);
   const [arxivEprintUrl, setArxivEprintUrl] = useState<string | null>(null);
@@ -927,6 +1076,30 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arxivEprintUrl]);
 
+  // Debounced contrast measurement for the active pane. Re-runs when the
+  // template, image set, gradient/tint sliders, or pane selection change.
+  useEffect(() => {
+    let cancelled = false;
+    const handle = window.setTimeout(() => {
+      setContrastMeasuring(true);
+      measurePaneContrast(activePane)
+        .then((result) => {
+          if (!cancelled) setPaneContrast(result);
+        })
+        .catch(() => {
+          if (!cancelled) setPaneContrast(null);
+        })
+        .finally(() => {
+          if (!cancelled) setContrastMeasuring(false);
+        });
+    }, 350);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(handle);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePane, templateKey, images, gradientStrength, tintStrength, imageScale, paneCount]);
+
   function removeImage(id: string) {
     setImages((prev) => prev.filter((i) => i.id !== id));
   }
@@ -993,6 +1166,117 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     return lines;
   }
 
+  /**
+   * Renders just the background (base + images + tint + gradient) of a pane at
+   * a small size and samples the text-reading zone to estimate effective
+   * contrast vs each text color. Used to drive the live contrast readout in
+   * the pane editor — never participates in the actual export.
+   */
+  async function measurePaneContrast(paneIndex: number): Promise<PaneContrast> {
+    const SAMPLE_SIZE = 270;
+    const scale = SAMPLE_SIZE / CANVAS_SIZE;
+    const canvas = document.createElement("canvas");
+    canvas.width = SAMPLE_SIZE;
+    canvas.height = SAMPLE_SIZE;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Canvas 2D context unavailable");
+
+    // Base
+    ctx.fillStyle = template.baseColor;
+    ctx.fillRect(0, 0, SAMPLE_SIZE, SAMPLE_SIZE);
+
+    // Background images — render the full master at sample-scale, then crop
+    // this pane's section, mirroring the export pipeline.
+    if (images.length > 0) {
+      const master = document.createElement("canvas");
+      master.width = SAMPLE_SIZE * paneCount;
+      master.height = SAMPLE_SIZE;
+      const mctx = master.getContext("2d");
+      if (mctx) {
+        const loaded = await Promise.all(images.map((i) => loadImage(i.src).catch(() => null)));
+        loaded.forEach((img, i) => {
+          if (!img) return;
+          const slot = paneSlotForImage(i, images.length, paneCount);
+          drawCoverImage(mctx, img, slot.left * scale, 0, slot.width * scale, SAMPLE_SIZE);
+          applyHorizontalCrossfade(mctx, slot.left * scale, slot.width * scale, i, images.length);
+        });
+        ctx.drawImage(
+          master,
+          paneIndex * SAMPLE_SIZE,
+          0,
+          SAMPLE_SIZE,
+          SAMPLE_SIZE,
+          0,
+          0,
+          SAMPLE_SIZE,
+          SAMPLE_SIZE
+        );
+      }
+    }
+
+    // Tint
+    ctx.save();
+    ctx.globalAlpha = template.tintOpacity * tintStrength;
+    ctx.globalCompositeOperation = template.tintBlend as GlobalCompositeOperation;
+    ctx.fillStyle = template.tintColor;
+    ctx.fillRect(0, 0, SAMPLE_SIZE, SAMPLE_SIZE);
+    ctx.restore();
+
+    // Gradient layers
+    template.gradientLayers.forEach((layer) => {
+      paintGradientLayer(ctx, layer, SAMPLE_SIZE, gradientStrength);
+    });
+
+    // Sample the text-reading zone based on vAlign.
+    const padPx = Math.round(SAFE_PADDING * scale);
+    const yBounds = (() => {
+      if (template.vAlign === "top") {
+        return [padPx, Math.round(SAMPLE_SIZE * 0.5)];
+      }
+      if (template.vAlign === "middle") {
+        return [Math.round(SAMPLE_SIZE * 0.3), Math.round(SAMPLE_SIZE * 0.7)];
+      }
+      return [Math.round(SAMPLE_SIZE * 0.5), SAMPLE_SIZE - padPx];
+    })();
+    const sample = ctx.getImageData(
+      padPx,
+      yBounds[0],
+      SAMPLE_SIZE - padPx * 2,
+      yBounds[1] - yBounds[0]
+    );
+    let rSum = 0;
+    let gSum = 0;
+    let bSum = 0;
+    let count = 0;
+    for (let i = 0; i < sample.data.length; i += 4) {
+      rSum += sample.data[i];
+      gSum += sample.data[i + 1];
+      bSum += sample.data[i + 2];
+      count += 1;
+    }
+    const r = rSum / count;
+    const g = gSum / count;
+    const b = bSum / count;
+    const bgLum = relativeLuminance(r, g, b);
+
+    const ratioFor = (textColor: string): number => {
+      const rgb = parseColorToRgb(textColor);
+      if (!rgb) return 0;
+      const textLum = relativeLuminance(rgb[0], rgb[1], rgb[2]);
+      return wcagContrast(textLum, bgLum);
+    };
+    return {
+      bgLuminance: bgLum,
+      bgRgb: [r, g, b],
+      ratios: {
+        title: ratioFor(template.textColor),
+        eyebrow: ratioFor(template.eyebrowColor),
+        description: ratioFor(template.textColor),
+        authors: ratioFor(template.authorsColor),
+      },
+    };
+  }
+
   async function renderPaneCanvas(paneIndex: number): Promise<HTMLCanvasElement> {
     const canvas = document.createElement("canvas");
     canvas.width = CANVAS_SIZE;
@@ -1049,7 +1333,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     drawPaneText(ctx, paneIndex);
 
     // 6. Logo
-    await drawLogo(ctx);
+    await drawLogo(ctx, panes[paneIndex]?.flipped ?? false);
 
     return canvas;
   }
@@ -1117,7 +1401,15 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   function drawPaneText(ctx: CanvasRenderingContext2D, paneIndex: number) {
     const pane = panes[paneIndex];
     if (!pane) return;
-    const align = template.align;
+    const baseAlign = template.align;
+    // Mirror left/right when the pane has its alignment flipped. Centre stays.
+    const align: Align = pane.flipped
+      ? baseAlign === "left"
+        ? "right"
+        : baseAlign === "right"
+        ? "left"
+        : "center"
+      : baseAlign;
     const xAnchor =
       align === "center"
         ? CANVAS_SIZE / 2
@@ -1224,18 +1516,17 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     });
   }
 
-  async function drawLogo(ctx: CanvasRenderingContext2D) {
+  async function drawLogo(ctx: CanvasRenderingContext2D, flipped: boolean) {
     try {
       const img = await loadImage(usmccLogo);
       const targetH = LOGO_HEIGHT_PX;
       const targetW = (img.width / img.height) * targetH;
-      ctx.drawImage(
-        img,
-        CANVAS_SIZE - targetW - LOGO_MARGIN_PX,
-        CANVAS_SIZE - targetH - LOGO_MARGIN_PX,
-        targetW,
-        targetH
-      );
+      // Default: bottom-right. Flipped: bottom-left.
+      const x = flipped
+        ? LOGO_MARGIN_PX
+        : CANVAS_SIZE - targetW - LOGO_MARGIN_PX;
+      const y = CANVAS_SIZE - targetH - LOGO_MARGIN_PX;
+      ctx.drawImage(img, x, y, targetW, targetH);
     } catch {
       // ignore logo failure
     }
@@ -1551,9 +1842,89 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                   onClick={() => setActivePane(i)}
                 >
                   {i + 1}
+                  {panes[i]?.flipped ? " ↔" : ""}
                 </button>
               ))}
             </div>
+            <button
+              className="ig-pane-flip-toggle"
+              onClick={() =>
+                setPanes((prev) => {
+                  const next = [...prev];
+                  const current = next[activePane];
+                  if (current) next[activePane] = { ...current, flipped: !current.flipped };
+                  return next;
+                })
+              }
+              title="Mirror this pane's text alignment and move the logo to the opposite corner. Useful when the background's focal subject is on the side the template wants to put text on."
+            >
+              {panes[activePane]?.flipped ? "↔ Flip back to default side" : "↔ Flip this pane"}
+            </button>
+
+            {paneContrast && (
+              <div className="ig-contrast" aria-live="polite">
+                <div className="ig-contrast-header">
+                  <span
+                    className="ig-contrast-swatch"
+                    style={{
+                      backgroundColor: `rgb(${Math.round(paneContrast.bgRgb[0])}, ${Math.round(
+                        paneContrast.bgRgb[1]
+                      )}, ${Math.round(paneContrast.bgRgb[2])})`,
+                    }}
+                    aria-hidden="true"
+                  />
+                  <span>
+                    Avg backdrop luminance{" "}
+                    <strong>{paneContrast.bgLuminance.toFixed(2)}</strong>
+                    {contrastMeasuring ? " · measuring…" : ""}
+                  </span>
+                </div>
+                {(
+                  [
+                    { key: "title", label: "Title", ratio: paneContrast.ratios.title, large: true },
+                    {
+                      key: "eyebrow",
+                      label: "Eyebrow",
+                      ratio: paneContrast.ratios.eyebrow,
+                      large: false,
+                    },
+                    {
+                      key: "description",
+                      label: "Body",
+                      ratio: paneContrast.ratios.description,
+                      large: true,
+                    },
+                    {
+                      key: "authors",
+                      label: "Authors",
+                      ratio: paneContrast.ratios.authors,
+                      large: false,
+                    },
+                  ] as { key: string; label: string; ratio: number; large: boolean }[]
+                ).map((row) => {
+                  // WCAG AA threshold: 3:1 for large text (>= 24px / >= 18px bold),
+                  // 4.5:1 for normal body text.
+                  const required = row.large ? 3 : 4.5;
+                  const passesAA = row.ratio >= required;
+                  const passesAAA = row.ratio >= (row.large ? 4.5 : 7);
+                  const status = passesAAA ? "aaa" : passesAA ? "aa" : "fail";
+                  const label =
+                    status === "aaa"
+                      ? "AAA"
+                      : status === "aa"
+                      ? "AA"
+                      : `Needs ≥${required}:1`;
+                  return (
+                    <div className={`ig-contrast-row ${status}`} key={row.key}>
+                      <span className="ig-contrast-label">{row.label}</span>
+                      <span className="ig-contrast-ratio">{row.ratio.toFixed(1)}:1</span>
+                      <span className="ig-contrast-badge">{label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
             <div className="ig-field">
               <span>Eyebrow</span>
               <input
@@ -1761,7 +2132,14 @@ function PanePreview({
   isActive,
   onSelect,
 }: PanePreviewProps) {
-  const align = template.align;
+  const baseAlign = template.align;
+  const align: Align = pane.flipped
+    ? baseAlign === "left"
+      ? "right"
+      : baseAlign === "right"
+      ? "left"
+      : "center"
+    : baseAlign;
   const vAlign = template.vAlign;
   const justify =
     vAlign === "top" ? "flex-start" : vAlign === "middle" ? "center" : "flex-end";
@@ -1898,7 +2276,9 @@ function PanePreview({
         className="ig-pane-logo"
         style={{
           position: "absolute",
-          right: LOGO_MARGIN_PX,
+          ...(pane.flipped
+            ? { left: LOGO_MARGIN_PX }
+            : { right: LOGO_MARGIN_PX }),
           bottom: LOGO_MARGIN_PX,
           height: LOGO_HEIGHT_PX,
           width: "auto",
