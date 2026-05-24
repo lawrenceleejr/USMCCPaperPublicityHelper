@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
 import type { ChangeEvent, DragEvent } from "react";
-import { fetchArxivFigures, getArxivEprintUrl, openExternal } from "../api";
-import { pdfDataUrlToPngDataUrl } from "../pdfRender";
+import { fetchArxivFigures, fetchArxivPdf, getArxivEprintUrl, openExternal } from "../api";
+import { pdfDataUrlToPngDataUrl, pdfFirstPageTopFractionPng } from "../pdfRender";
 import usmccLogo from "../assets/LogoUSMCC_white.png";
 
 export interface InstagramDesignerHandle {
@@ -672,9 +672,13 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   const [gapDescriptionAuthors, setGapDescriptionAuthors] = useState(28);
   const [activePane, setActivePane] = useState(0);
   const [arxivLoading, setArxivLoading] = useState(false);
+  const [pdfLoading, setPdfLoading] = useState(false);
   const [arxivError, setArxivError] = useState<string | null>(null);
   const [arxivInfo, setArxivInfo] = useState<string | null>(null);
   const [arxivEprintUrl, setArxivEprintUrl] = useState<string | null>(null);
+  // Track which arXiv URL we've auto-fetched figures for, so we only auto-fetch
+  // once per unique paper (the user can always re-fetch manually).
+  const [autoFetchedUrl, setAutoFetchedUrl] = useState<string | null>(null);
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -745,10 +749,13 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     void ensureGoogleFont(bodyFont, template.typography.authors.weight, template.typography.authors.italic);
   }, [displayFont, bodyFont, template]);
 
-  // arXiv detection from paperLink.
+  // arXiv detection from paperLink. When the paper changes, clear previously
+  // auto-fetched figures so the carousel doesn't keep stale plots from another
+  // paper. User uploads are preserved.
   useEffect(() => {
     let cancelled = false;
     setArxivEprintUrl(null);
+    setImages((prev) => prev.filter((i) => i.source !== "arxiv"));
     if (!paperLink || !paperLink.trim()) return;
     getArxivEprintUrl(paperLink)
       .then((url) => {
@@ -882,6 +889,43 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       setArxivLoading(false);
     }
   }
+
+  async function handleAddPaperPdfTopHalf() {
+    if (!paperLink) return;
+    setPdfLoading(true);
+    setArxivError(null);
+    setArxivInfo(null);
+    try {
+      const pdf = await fetchArxivPdf(paperLink);
+      const dataUrl = bytesFromBase64(pdf.dataBase64, pdf.mimeType);
+      const cropped = await pdfFirstPageTopFractionPng(dataUrl, 0.5);
+      setImages((prev) => [
+        ...prev,
+        {
+          id: `arxiv-pdf-${Date.now()}`,
+          src: cropped,
+          name: `${pdf.filename.replace(/\.pdf$/i, "")}-top-half.png`,
+          source: "arxiv",
+        },
+      ]);
+      setArxivInfo("Added the top half of page 1 from the paper PDF.");
+    } catch (e) {
+      setArxivError(`Could not fetch paper PDF: ${e}`);
+    } finally {
+      setPdfLoading(false);
+    }
+  }
+
+  // Auto-fetch figures the first time an arXiv URL resolves for this paper.
+  // Tracks the URL we've already triggered for so re-renders don't refire and
+  // a new paper triggers a fresh fetch.
+  useEffect(() => {
+    if (!arxivEprintUrl) return;
+    if (autoFetchedUrl === arxivEprintUrl) return;
+    setAutoFetchedUrl(arxivEprintUrl);
+    void handleFetchArxivFigures();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [arxivEprintUrl]);
 
   function removeImage(id: string) {
     setImages((prev) => prev.filter((i) => i.id !== id));
@@ -1335,6 +1379,14 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                   disabled={arxivLoading}
                 >
                   {arxivLoading ? "Fetching figures…" : "Fetch arXiv figures"}
+                </button>
+                <button
+                  className="btn-secondary"
+                  onClick={handleAddPaperPdfTopHalf}
+                  disabled={pdfLoading}
+                  title="Download the paper PDF from arXiv and add the top half of page 1 as a background."
+                >
+                  {pdfLoading ? "Downloading PDF…" : "Top half of paper PDF"}
                 </button>
               </div>
             )}

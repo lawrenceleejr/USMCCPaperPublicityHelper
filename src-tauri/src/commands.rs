@@ -305,6 +305,13 @@ pub async fn fetch_arxiv_figures(url: String) -> Result<Vec<ArxivFigure>, String
     arxiv::fetch_figures(&id).await
 }
 
+#[tauri::command]
+pub async fn fetch_arxiv_pdf(url: String) -> Result<ArxivFigure, String> {
+    let id = arxiv::extract_arxiv_id(&url)
+        .ok_or_else(|| "Paper link is not a recognized arXiv URL.".to_string())?;
+    arxiv::fetch_paper_pdf(&id).await
+}
+
 // Unused import suppression
 #[allow(dead_code)]
 fn _placeholder() {}

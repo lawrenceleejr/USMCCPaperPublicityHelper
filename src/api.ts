@@ -52,3 +52,7 @@ export async function getArxivEprintUrl(url: string): Promise<string | null> {
 export async function fetchArxivFigures(url: string): Promise<ArxivFigure[]> {
   return invoke<ArxivFigure[]>("fetch_arxiv_figures", { url });
 }
+
+export async function fetchArxivPdf(url: string): Promise<ArxivFigure> {
+  return invoke<ArxivFigure>("fetch_arxiv_pdf", { url });
+}

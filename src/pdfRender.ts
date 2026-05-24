@@ -53,3 +53,30 @@ export async function pdfDataUrlToPngDataUrl(dataUrl: string): Promise<string> {
     await pdf.destroy();
   }
 }
+
+/**
+ * Renders page 1 of the PDF, then crops to the top `fraction` of the page
+ * (default 0.5 — top half). Useful for grabbing a paper's title block + first
+ * figure as a single composed image.
+ */
+export async function pdfFirstPageTopFractionPng(
+  dataUrl: string,
+  fraction = 0.5
+): Promise<string> {
+  const fullPng = await pdfDataUrlToPngDataUrl(dataUrl);
+  const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+    const i = new Image();
+    i.onload = () => resolve(i);
+    i.onerror = () => reject(new Error("Could not decode rasterised PDF page"));
+    i.src = fullPng;
+  });
+  const w = img.width;
+  const h = Math.max(1, Math.floor(img.height * Math.min(1, Math.max(0.05, fraction))));
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Canvas context unavailable");
+  ctx.drawImage(img, 0, 0, w, h, 0, 0, w, h);
+  return canvas.toDataURL("image/png");
+}

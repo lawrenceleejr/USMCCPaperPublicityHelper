@@ -50,6 +50,52 @@ pub fn eprint_url(arxiv_id: &str) -> String {
     format!("https://arxiv.org/e-print/{arxiv_id}")
 }
 
+pub fn pdf_url(arxiv_id: &str) -> String {
+    format!("https://arxiv.org/pdf/{arxiv_id}.pdf")
+}
+
+pub async fn fetch_paper_pdf(arxiv_id: &str) -> Result<ArxivFigure, String> {
+    let url = pdf_url(arxiv_id);
+    let client = Client::builder()
+        .user_agent(USER_AGENT)
+        .redirect(reqwest::redirect::Policy::limited(10))
+        .timeout(std::time::Duration::from_secs(180))
+        .build()
+        .map_err(|e| format!("Could not build HTTP client: {e}"))?;
+    let response = client
+        .get(&url)
+        .send()
+        .await
+        .map_err(|e| format!("Network error fetching {url}: {e}"))?;
+    let status = response.status();
+    if !status.is_success() {
+        return Err(format!("arXiv returned HTTP {status} for {url}"));
+    }
+    let bytes = response
+        .bytes()
+        .await
+        .map_err(|e| format!("Failed to read PDF body: {e}"))?;
+    if bytes.len() > MAX_TARBALL_BYTES {
+        return Err(format!(
+            "Paper PDF is {} bytes; exceeds {}-byte cap",
+            bytes.len(),
+            MAX_TARBALL_BYTES
+        ));
+    }
+    // Sanity-check the magic bytes so we don't ship an HTML error page to the
+    // frontend as if it were a PDF.
+    if bytes.len() < 4 || &bytes[0..4] != b"%PDF" {
+        return Err(
+            "Response was not a PDF (the paper may not have a public PDF on arXiv).".to_string(),
+        );
+    }
+    Ok(ArxivFigure {
+        filename: format!("{arxiv_id}.pdf"),
+        mime_type: "application/pdf".to_string(),
+        data_base64: base64::engine::general_purpose::STANDARD.encode(&bytes),
+    })
+}
+
 pub async fn fetch_figures(arxiv_id: &str) -> Result<Vec<ArxivFigure>, String> {
     let url = eprint_url(arxiv_id);
     let client = Client::builder()

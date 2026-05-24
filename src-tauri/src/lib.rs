@@ -20,6 +20,7 @@ pub fn run() {
             commands::set_prefs,
             commands::arxiv_eprint_url,
             commands::fetch_arxiv_figures,
+            commands::fetch_arxiv_pdf,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
