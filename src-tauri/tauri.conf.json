@@ -13,10 +13,13 @@
     "windows": [
       {
         "title": "USMCC Publicity Helper",
-        "width": 960,
-        "height": 720,
+        "width": 1200,
+        "height": 820,
         "resizable": true,
-        "fullscreen": false
+        "fullscreen": false,
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "backgroundColor": "#0d1828"
       }
     ],
     "security": {

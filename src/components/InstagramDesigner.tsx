@@ -29,9 +29,34 @@ type BlendMode =
   | "darken"
   | "lighten";
 
-type GradientStyle = "vertical" | "radial" | "corner_tl" | "corner_br";
 type Align = "left" | "center" | "right";
 type VAlign = "top" | "middle" | "bottom";
+
+interface GradientStop {
+  offset: number;
+  color: string;
+}
+
+// A single gradient pass. Templates compose several with different blend modes
+// to get layered, hand-crafted-looking light rather than a single linear ramp.
+type GradientLayer =
+  | {
+      kind: "linear";
+      // CSS angle convention: 0 = bottom → top, 90 = left → right, 180 = top → bottom.
+      angle: number;
+      stops: GradientStop[];
+      blend: BlendMode;
+      opacity: number;
+    }
+  | {
+      kind: "radial";
+      cx: number;
+      cy: number;
+      r: number;
+      stops: GradientStop[];
+      blend: BlendMode;
+      opacity: number;
+    };
 
 interface TextBlock {
   fontSize: number;
@@ -57,10 +82,7 @@ interface TemplateDef {
   tintColor: string;
   tintOpacity: number;
   tintBlend: BlendMode;
-  gradient: GradientStyle;
-  gradientColorStart: string;
-  gradientColorEnd: string;
-  gradientBlend: BlendMode;
+  gradientLayers: GradientLayer[];
   textColor: string;
   eyebrowColor: string;
   authorsColor: string;
@@ -87,8 +109,11 @@ interface PaneText {
 const CANVAS_SIZE = 1080;
 const SAFE_PADDING = 88;
 const CROSSFADE_PX = 120;
-const LOGO_HEIGHT_PX = 80;
-const LOGO_MARGIN_PX = 44;
+// Logo sizing follows a 15% mark height with x-height padding (≈50% of mark height)
+// from the edge — proportions that read as deliberate, not slapped-on. The text
+// safe-area below reserves logo height + padding so titles never collide.
+const LOGO_HEIGHT_PX = 160;
+const LOGO_MARGIN_PX = 80;
 const FONT_LOAD_TIMEOUT_MS = 4000;
 const MAX_PANES = 5;
 const MIN_PANES = 2;
@@ -104,10 +129,47 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintColor: "#0d1b2a",
     tintOpacity: 0.35,
     tintBlend: "multiply",
-    gradient: "vertical",
-    gradientColorStart: "rgba(0,0,0,0)",
-    gradientColorEnd: "rgba(0,0,0,0.88)",
-    gradientBlend: "normal",
+    gradientLayers: [
+      // Warm gold highlight from upper-left — a "rim light" feeling that the
+      // photographic studio crowd will recognise.
+      {
+        kind: "radial",
+        cx: 0.2,
+        cy: 0.15,
+        r: 0.75,
+        stops: [
+          { offset: 0, color: "rgba(245,200,66,0.22)" },
+          { offset: 0.55, color: "rgba(245,200,66,0)" },
+        ],
+        blend: "screen",
+        opacity: 1,
+      },
+      // Multi-stop dark wash at the bottom for type readability.
+      {
+        kind: "linear",
+        angle: 180,
+        stops: [
+          { offset: 0.3, color: "rgba(0,0,0,0)" },
+          { offset: 0.7, color: "rgba(0,0,0,0.55)" },
+          { offset: 1, color: "rgba(0,0,0,0.92)" },
+        ],
+        blend: "multiply",
+        opacity: 1,
+      },
+      // Soft vignette so the corners recede.
+      {
+        kind: "radial",
+        cx: 0.5,
+        cy: 0.5,
+        r: 0.95,
+        stops: [
+          { offset: 0.55, color: "rgba(0,0,0,0)" },
+          { offset: 1, color: "rgba(0,0,0,0.55)" },
+        ],
+        blend: "multiply",
+        opacity: 0.9,
+      },
+    ],
     textColor: "#ffffff",
     eyebrowColor: "#f5c842",
     authorsColor: "#cbd5e1",
@@ -128,10 +190,33 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintColor: "#0a0a0a",
     tintOpacity: 0.18,
     tintBlend: "multiply",
-    gradient: "vertical",
-    gradientColorStart: "rgba(247,247,244,0.55)",
-    gradientColorEnd: "rgba(247,247,244,0)",
-    gradientBlend: "normal",
+    gradientLayers: [
+      // Bright paper-wash with a soft fade-down toward a hint of shadow at the bottom.
+      {
+        kind: "linear",
+        angle: 180,
+        stops: [
+          { offset: 0, color: "rgba(255,255,255,0.55)" },
+          { offset: 0.5, color: "rgba(247,247,244,0)" },
+          { offset: 1, color: "rgba(0,0,0,0.10)" },
+        ],
+        blend: "normal",
+        opacity: 1,
+      },
+      // Cool top-right accent — barely there, just enough to feel intentional.
+      {
+        kind: "radial",
+        cx: 0.85,
+        cy: 0.12,
+        r: 0.55,
+        stops: [
+          { offset: 0, color: "rgba(124,58,237,0.14)" },
+          { offset: 1, color: "rgba(124,58,237,0)" },
+        ],
+        blend: "multiply",
+        opacity: 1,
+      },
+    ],
     textColor: "#0a0a0a",
     eyebrowColor: "#7c3aed",
     authorsColor: "#52525b",
@@ -152,10 +237,35 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintColor: "#7c3aed",
     tintOpacity: 0.42,
     tintBlend: "overlay",
-    gradient: "radial",
-    gradientColorStart: "rgba(0,0,0,0)",
-    gradientColorEnd: "rgba(0,0,0,0.78)",
-    gradientBlend: "multiply",
+    gradientLayers: [
+      // Big violet spotlight, centred high — title sits in the brightest cone.
+      {
+        kind: "radial",
+        cx: 0.5,
+        cy: 0.3,
+        r: 0.7,
+        stops: [
+          { offset: 0, color: "rgba(168,85,247,0.52)" },
+          { offset: 0.55, color: "rgba(124,58,237,0.1)" },
+          { offset: 1, color: "rgba(124,58,237,0)" },
+        ],
+        blend: "screen",
+        opacity: 1,
+      },
+      // Heavy outer vignette pulls the eye to the centre.
+      {
+        kind: "radial",
+        cx: 0.5,
+        cy: 0.5,
+        r: 0.95,
+        stops: [
+          { offset: 0.45, color: "rgba(0,0,0,0)" },
+          { offset: 1, color: "rgba(0,0,0,0.8)" },
+        ],
+        blend: "multiply",
+        opacity: 1,
+      },
+    ],
     textColor: "#ffffff",
     eyebrowColor: "#fbbf24",
     authorsColor: "#e9d5ff",
@@ -176,10 +286,34 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintColor: "#7c2d12",
     tintOpacity: 0.22,
     tintBlend: "multiply",
-    gradient: "vertical",
-    gradientColorStart: "rgba(245,240,232,0)",
-    gradientColorEnd: "rgba(120,53,15,0.7)",
-    gradientBlend: "soft-light",
+    gradientLayers: [
+      // Sunrise-temperature linear: cream → wheat → umber → deep brown.
+      {
+        kind: "linear",
+        angle: 175,
+        stops: [
+          { offset: 0, color: "rgba(255,236,180,0.40)" },
+          { offset: 0.35, color: "rgba(245,200,140,0.10)" },
+          { offset: 0.7, color: "rgba(120,53,15,0.25)" },
+          { offset: 1, color: "rgba(64,28,8,0.7)" },
+        ],
+        blend: "multiply",
+        opacity: 1,
+      },
+      // Soft top-centre warm glow, like an early-morning sun behind cloud.
+      {
+        kind: "radial",
+        cx: 0.5,
+        cy: 0.05,
+        r: 0.55,
+        stops: [
+          { offset: 0, color: "rgba(255,228,180,0.45)" },
+          { offset: 1, color: "rgba(255,228,180,0)" },
+        ],
+        blend: "screen",
+        opacity: 1,
+      },
+    ],
     textColor: "#1c1917",
     eyebrowColor: "#92400e",
     authorsColor: "#57534e",
@@ -200,10 +334,47 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintColor: "#ef4444",
     tintOpacity: 0.5,
     tintBlend: "multiply",
-    gradient: "corner_tl",
-    gradientColorStart: "rgba(239,68,68,0.9)",
-    gradientColorEnd: "rgba(2,6,23,0)",
-    gradientBlend: "multiply",
+    gradientLayers: [
+      // Diagonal red sweep from upper-left toward deep navy in the lower-right.
+      {
+        kind: "linear",
+        angle: 135,
+        stops: [
+          { offset: 0, color: "rgba(239,68,68,0.85)" },
+          { offset: 0.4, color: "rgba(239,68,68,0.25)" },
+          { offset: 0.7, color: "rgba(2,6,23,0.30)" },
+          { offset: 1, color: "rgba(2,6,23,0.85)" },
+        ],
+        blend: "multiply",
+        opacity: 1,
+      },
+      // Yellow flash in the top-left — electric punctuation.
+      {
+        kind: "radial",
+        cx: 0.12,
+        cy: 0.10,
+        r: 0.4,
+        stops: [
+          { offset: 0, color: "rgba(253,224,71,0.55)" },
+          { offset: 1, color: "rgba(253,224,71,0)" },
+        ],
+        blend: "screen",
+        opacity: 1,
+      },
+      // Deep shadow at the lower-right corner grounds the composition.
+      {
+        kind: "radial",
+        cx: 0.95,
+        cy: 0.95,
+        r: 0.7,
+        stops: [
+          { offset: 0, color: "rgba(0,0,0,0.6)" },
+          { offset: 1, color: "rgba(0,0,0,0)" },
+        ],
+        blend: "multiply",
+        opacity: 1,
+      },
+    ],
     textColor: "#ffffff",
     eyebrowColor: "#fde047",
     authorsColor: "#fca5a5",
@@ -224,10 +395,47 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     tintColor: "#082f49",
     tintOpacity: 0.3,
     tintBlend: "multiply",
-    gradient: "vertical",
-    gradientColorStart: "rgba(125,211,252,0)",
-    gradientColorEnd: "rgba(8,47,73,0.88)",
-    gradientBlend: "multiply",
+    gradientLayers: [
+      // Cool sky-blue spotlight upper-centre — feels like sun on open water.
+      {
+        kind: "radial",
+        cx: 0.5,
+        cy: 0.2,
+        r: 0.65,
+        stops: [
+          { offset: 0, color: "rgba(125,211,252,0.40)" },
+          { offset: 0.6, color: "rgba(125,211,252,0.05)" },
+          { offset: 1, color: "rgba(125,211,252,0)" },
+        ],
+        blend: "screen",
+        opacity: 1,
+      },
+      // Deep-ocean fall-off at the bottom so the type sits on still water.
+      {
+        kind: "linear",
+        angle: 180,
+        stops: [
+          { offset: 0.25, color: "rgba(8,47,73,0)" },
+          { offset: 0.65, color: "rgba(8,47,73,0.35)" },
+          { offset: 1, color: "rgba(8,47,73,0.92)" },
+        ],
+        blend: "multiply",
+        opacity: 1,
+      },
+      // Soft corner vignette.
+      {
+        kind: "radial",
+        cx: 0.5,
+        cy: 0.5,
+        r: 1.0,
+        stops: [
+          { offset: 0.55, color: "rgba(0,0,0,0)" },
+          { offset: 1, color: "rgba(0,0,0,0.45)" },
+        ],
+        blend: "multiply",
+        opacity: 1,
+      },
+    ],
     textColor: "#f0f9ff",
     eyebrowColor: "#bae6fd",
     authorsColor: "#cbd5e1",
@@ -324,18 +532,59 @@ function kebab(text: string): string {
     .slice(0, 60) || "usmcc-paper";
 }
 
-function gradientCss(template: TemplateDef): string {
-  const { gradient, gradientColorStart, gradientColorEnd } = template;
-  if (gradient === "vertical") {
-    return `linear-gradient(180deg, ${gradientColorStart} 0%, ${gradientColorEnd} 100%)`;
+function gradientLayerCss(layer: GradientLayer): string {
+  const stops = layer.stops
+    .map((s) => `${s.color} ${Math.round(s.offset * 100)}%`)
+    .join(", ");
+  if (layer.kind === "linear") {
+    return `linear-gradient(${layer.angle}deg, ${stops})`;
   }
-  if (gradient === "radial") {
-    return `radial-gradient(circle at 50% 50%, ${gradientColorStart} 0%, ${gradientColorEnd} 75%)`;
+  // ellipse with matching x/y radius = circle on a square canvas, which is what
+  // the preview master is. Using percentages lets the same string work at any
+  // scaled size.
+  return `radial-gradient(${Math.round(layer.r * 100)}% ${Math.round(layer.r * 100)}% at ${Math.round(
+    layer.cx * 100
+  )}% ${Math.round(layer.cy * 100)}%, ${stops})`;
+}
+
+function paintGradientLayer(
+  ctx: CanvasRenderingContext2D,
+  layer: GradientLayer,
+  size: number,
+  globalAlpha: number
+) {
+  ctx.save();
+  ctx.globalCompositeOperation = layer.blend as GlobalCompositeOperation;
+  ctx.globalAlpha = Math.max(0, Math.min(1, layer.opacity * globalAlpha));
+  let grad: CanvasGradient;
+  if (layer.kind === "linear") {
+    // CSS angle: 0 = south→north, 90 = west→east. Canvas direction vector
+    // matching that convention is (sin θ, -cos θ).
+    const rad = (layer.angle * Math.PI) / 180;
+    const dx = Math.sin(rad);
+    const dy = -Math.cos(rad);
+    // Length matching CSS gradient line for a square box:
+    //   length = (|sin θ| + |cos θ|) × size
+    const length = (Math.abs(Math.sin(rad)) + Math.abs(Math.cos(rad))) * size;
+    const half = length / 2;
+    const cx = size / 2;
+    const cy = size / 2;
+    grad = ctx.createLinearGradient(
+      cx - dx * half,
+      cy - dy * half,
+      cx + dx * half,
+      cy + dy * half
+    );
+  } else {
+    const cxPx = layer.cx * size;
+    const cyPx = layer.cy * size;
+    const rPx = layer.r * size;
+    grad = ctx.createRadialGradient(cxPx, cyPx, 0, cxPx, cyPx, rPx);
   }
-  if (gradient === "corner_tl") {
-    return `radial-gradient(circle at 0% 0%, ${gradientColorStart} 0%, ${gradientColorEnd} 70%)`;
-  }
-  return `radial-gradient(circle at 100% 100%, ${gradientColorStart} 0%, ${gradientColorEnd} 70%)`;
+  layer.stops.forEach((s) => grad.addColorStop(s.offset, s.color));
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, size, size);
+  ctx.restore();
 }
 
 function makePaneTextFromProps(
@@ -723,14 +972,10 @@ export default function InstagramDesigner({
     ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
     ctx.restore();
 
-    // 4. Gradient overlay
-    ctx.save();
-    ctx.globalCompositeOperation = template.gradientBlend as GlobalCompositeOperation;
-    ctx.globalAlpha = gradientStrength;
-    const gradient = makeCanvasGradient(ctx, template);
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
-    ctx.restore();
+    // 4. Gradient overlay — multiple layered passes per template.
+    template.gradientLayers.forEach((layer) => {
+      paintGradientLayer(ctx, layer, CANVAS_SIZE, gradientStrength);
+    });
 
     // 5. Text
     drawPaneText(ctx, paneIndex);
@@ -741,37 +986,6 @@ export default function InstagramDesigner({
     return canvas;
   }
 
-  function makeCanvasGradient(ctx: CanvasRenderingContext2D, t: TemplateDef): CanvasGradient {
-    if (t.gradient === "vertical") {
-      const g = ctx.createLinearGradient(0, 0, 0, CANVAS_SIZE);
-      g.addColorStop(0, t.gradientColorStart);
-      g.addColorStop(1, t.gradientColorEnd);
-      return g;
-    }
-    if (t.gradient === "radial") {
-      const g = ctx.createRadialGradient(
-        CANVAS_SIZE / 2,
-        CANVAS_SIZE / 2,
-        CANVAS_SIZE * 0.1,
-        CANVAS_SIZE / 2,
-        CANVAS_SIZE / 2,
-        CANVAS_SIZE * 0.75
-      );
-      g.addColorStop(0, t.gradientColorStart);
-      g.addColorStop(1, t.gradientColorEnd);
-      return g;
-    }
-    if (t.gradient === "corner_tl") {
-      const g = ctx.createRadialGradient(0, 0, 0, 0, 0, CANVAS_SIZE);
-      g.addColorStop(0, t.gradientColorStart);
-      g.addColorStop(1, t.gradientColorEnd);
-      return g;
-    }
-    const g = ctx.createRadialGradient(CANVAS_SIZE, CANVAS_SIZE, 0, CANVAS_SIZE, CANVAS_SIZE, CANVAS_SIZE);
-    g.addColorStop(0, t.gradientColorStart);
-    g.addColorStop(1, t.gradientColorEnd);
-    return g;
-  }
 
   function drawCoverImage(
     ctx: CanvasRenderingContext2D,
@@ -1366,15 +1580,18 @@ export default function InstagramDesigner({
                     mixBlendMode: template.tintBlend as React.CSSProperties["mixBlendMode"],
                   }}
                 />
-                {/* Gradient layer */}
-                <div
-                  className="ig-gradient-layer"
-                  style={{
-                    background: gradientCss(template),
-                    opacity: gradientStrength,
-                    mixBlendMode: template.gradientBlend as React.CSSProperties["mixBlendMode"],
-                  }}
-                />
+                {/* Gradient overlay — one div per layer, each with its own blend mode and opacity. */}
+                {template.gradientLayers.map((layer, idx) => (
+                  <div
+                    key={`grad-${idx}`}
+                    className="ig-gradient-layer"
+                    style={{
+                      backgroundImage: gradientLayerCss(layer),
+                      opacity: layer.opacity * gradientStrength,
+                      mixBlendMode: layer.blend as React.CSSProperties["mixBlendMode"],
+                    }}
+                  />
+                ))}
                 {/* Per-pane text + logo */}
                 {panes.map((pane, i) => (
                   <PanePreview

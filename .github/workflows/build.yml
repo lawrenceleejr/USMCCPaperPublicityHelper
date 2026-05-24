@@ -64,7 +64,7 @@ jobs:
           #   xattr -dr com.apple.quarantine "/Applications/USMCC Publicity Helper.app"
           APPLE_SIGNING_IDENTITY: '-'
 
-      - name: Build distribution DMG with README
+      - name: Build distribution DMG with README + quarantine helper
         run: |
           set -euo pipefail
           APP_PATH="src-tauri/target/release/bundle/macos/USMCC Publicity Helper.app"
@@ -74,6 +74,11 @@ jobs:
           mkdir -p "$DMG_DIR"
           cp -R "$APP_PATH" "$DMG_DIR/"
           cp "docs/UNSIGNED_MAC_README.txt" "$DMG_DIR/README.txt"
+          # Double-clickable Terminal script that removes the quarantine flag.
+          # The .command extension is what macOS uses for Finder-launchable
+          # shell scripts; it must be executable.
+          cp "docs/Allow Quarantine.command" "$DMG_DIR/Allow Quarantine.command"
+          chmod +x "$DMG_DIR/Allow Quarantine.command"
           ln -s /Applications "$DMG_DIR/Applications"
           # -ov overwrites the output file if a previous step/run already created it.
           hdiutil create \

@@ -14,11 +14,22 @@ body {
 .app {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 16px;
+  /* Top padding clears the macOS overlay traffic-light buttons so the header
+     content isn't covered. The Overlay title-bar style in tauri.conf.json
+     makes the system bar transparent so the body background flows under it. */
+  padding: 44px 16px 24px;
 }
 
 header {
-  margin-bottom: 24px;
+  /* Keep the header visually attached to the title-bar region above. */
+  margin-bottom: 20px;
+  -webkit-app-region: drag;
+}
+
+header button,
+header a,
+header .btn-secondary {
+  -webkit-app-region: no-drag;
 }
 
 header h1 {
@@ -427,7 +438,10 @@ button:disabled {
 
 .ig-layout {
   display: grid;
-  grid-template-columns: minmax(280px, 340px) 1fr;
+  /* minmax(0, 1fr) for the preview column so it can shrink below its intrinsic
+     content width. Without this the scaled-master wrapper forces the grid
+     track wider than the viewport and the carousel can't scroll. */
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
   gap: 16px;
 }
 
