@@ -124,10 +124,21 @@ const MIN_PANES = 2;
 const DESCRIPTION_MAX_CHARS = 240;
 const FALLBACK_FONT_STACK = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
+// Faces shipped with macOS / iOS that we should not try to load from Google Fonts.
+const SYSTEM_FONTS = new Set<string>([
+  "Heiti SC",
+  "Heiti TC",
+  "PingFang SC",
+  "PingFang TC",
+  "Hiragino Sans",
+  "Hiragino Mincho ProN",
+  "Apple SD Gothic Neo",
+]);
+
 const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   editorial: {
     name: "Editorial",
-    displayFont: "Playfair Display",
+    displayFont: "Heiti SC",
     bodyFont: "Inter",
     baseColor: "#0a0a0a",
     tintColor: "#0d1b2a",
@@ -188,7 +199,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   },
   minimal_mono: {
     name: "Minimal Mono",
-    displayFont: "Space Grotesk",
+    displayFont: "Heiti SC",
     bodyFont: "Space Mono",
     baseColor: "#f7f7f4",
     tintColor: "#0a0a0a",
@@ -235,7 +246,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   },
   bold_sans: {
     name: "Bold Sans",
-    displayFont: "Archivo Black",
+    displayFont: "Heiti SC",
     bodyFont: "Lora",
     baseColor: "#1a1a2e",
     tintColor: "#7c3aed",
@@ -284,7 +295,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   },
   soft_serif: {
     name: "Soft Serif",
-    displayFont: "Cormorant Garamond",
+    displayFont: "Heiti SC",
     bodyFont: "Source Sans 3",
     baseColor: "#f5f0e8",
     tintColor: "#7c2d12",
@@ -332,7 +343,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   },
   punch: {
     name: "Punch",
-    displayFont: "Bebas Neue",
+    displayFont: "Heiti SC",
     bodyFont: "Karla",
     baseColor: "#020617",
     tintColor: "#ef4444",
@@ -393,7 +404,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   },
   dm_pair: {
     name: "DM Pair",
-    displayFont: "DM Serif Display",
+    displayFont: "Heiti SC",
     bodyFont: "DM Sans",
     baseColor: "#0c4a6e",
     tintColor: "#082f49",
@@ -468,6 +479,12 @@ function buildFontFamily(fontFamily: string): string {
 }
 
 async function ensureGoogleFont(family: string, weight: number, italic = false): Promise<void> {
+  // System fonts (especially Heiti SC, used as the default title face) are not on
+  // Google Fonts. Skip the network fetch — document.fonts.load will resolve from
+  // the OS font set if it's installed, and the CSS fallback stack handles the rest.
+  if (SYSTEM_FONTS.has(family)) {
+    return;
+  }
   const familyParam = family.trim().split(/\s+/).join("+");
   const styleSpec = italic ? `ital,wght@1,${weight}` : `wght@${weight}`;
   const id = `google-font-${familyParam.toLowerCase()}-${styleSpec}`;
