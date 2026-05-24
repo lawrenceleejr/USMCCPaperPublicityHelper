@@ -21,15 +21,10 @@ body {
 }
 
 header {
-  /* Keep the header visually attached to the title-bar region above. */
+  /* Top of the window is the drag handle. The element is marked with
+     data-tauri-drag-region in App.tsx so the user can grab anywhere here to
+     move the window even with the macOS overlay title bar. */
   margin-bottom: 20px;
-  -webkit-app-region: drag;
-}
-
-header button,
-header a,
-header .btn-secondary {
-  -webkit-app-region: no-drag;
 }
 
 header h1 {
@@ -223,6 +218,17 @@ button:disabled {
 
 .char-count.over {
   color: #ff3b30;
+}
+
+.output-card-status {
+  background: #ecf4fe;
+  color: #003e7a;
+  border-left: 3px solid #0071e3;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.45;
+  margin-bottom: 10px;
 }
 
 .output-card pre {

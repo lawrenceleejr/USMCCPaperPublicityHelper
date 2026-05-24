@@ -1,8 +1,12 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
 import type { ChangeEvent, DragEvent } from "react";
 import { fetchArxivFigures, getArxivEprintUrl, openExternal } from "../api";
 import { pdfDataUrlToPngDataUrl } from "../pdfRender";
 import usmccLogo from "../assets/LogoUSMCC_white.png";
+
+export interface InstagramDesignerHandle {
+  renderFirstPanePng(): Promise<string>;
+}
 
 interface Props {
   eyebrowText: string;
@@ -626,13 +630,16 @@ function paneSlotForImage(imageIndex: number, imageCount: number, paneCount: num
   return { left: imageIndex * slotWidth, width: slotWidth };
 }
 
-export default function InstagramDesigner({
-  eyebrowText,
-  titleText,
-  descriptionText,
-  authorsText,
-  paperLink,
-}: Props) {
+const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function InstagramDesigner(
+  {
+    eyebrowText,
+    titleText,
+    descriptionText,
+    authorsText,
+    paperLink,
+  }: Props,
+  ref
+) {
   const [templateKey, setTemplateKey] = useState<TemplateKey>("editorial");
   const [displayFontOverride, setDisplayFontOverride] = useState<string | null>(null);
   const [bodyFontOverride, setBodyFontOverride] = useState<string | null>(null);
@@ -1212,6 +1219,25 @@ export default function InstagramDesigner({
     }
   }
 
+  // Always-fresh reference to renderPaneCanvas so the imperative handle picks
+  // up the latest closure (state, images, etc.) without re-running on every
+  // dependency change.
+  const renderPaneRef = useRef<((paneIndex: number) => Promise<HTMLCanvasElement>) | null>(null);
+  renderPaneRef.current = renderPaneCanvas;
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      async renderFirstPanePng(): Promise<string> {
+        const fn = renderPaneRef.current;
+        if (!fn) throw new Error("Designer not ready");
+        const canvas = await fn(0);
+        return canvas.toDataURL("image/png");
+      },
+    }),
+    []
+  );
+
   return (
     <section className="ig-designer">
       <div className="ig-designer-header">
@@ -1632,7 +1658,9 @@ export default function InstagramDesigner({
       </div>
     </section>
   );
-}
+});
+
+export default InstagramDesigner;
 
 interface PanePreviewProps {
   pane: PaneText;
