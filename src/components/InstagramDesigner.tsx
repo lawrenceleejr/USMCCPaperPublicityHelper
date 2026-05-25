@@ -116,7 +116,28 @@ interface PaneText {
 
 const CANVAS_SIZE = 1080;
 const SAFE_PADDING = 88;
-const CROSSFADE_PX = 120;
+// Soft cross-fade width between adjacent images. ~22% of a slot makes the
+// transition feel deliberate rather than mechanical; combined with the
+// smoothstep alpha curve below it reads as a feathered edge rather than a
+// hard ramp.
+const CROSSFADE_PX = 240;
+
+/**
+ * Smoothstep alpha stops used by both the CSS mask-image and the canvas
+ * destination-out crossfade. Approximates 3t² − 2t³ in seven stops, which is
+ * indistinguishable from the true curve to the eye while keeping the CSS
+ * string short. Stops are paired so the same array can be reversed for the
+ * trailing edge of the previous image.
+ */
+const CROSSFADE_STOPS_OPAQUE_TO_TRANSPARENT: { t: number; a: number }[] = [
+  { t: 0, a: 1 },
+  { t: 0.1, a: 0.972 },
+  { t: 0.25, a: 0.844 },
+  { t: 0.5, a: 0.5 },
+  { t: 0.75, a: 0.156 },
+  { t: 0.9, a: 0.028 },
+  { t: 1, a: 0 },
+];
 // Logo sizing follows a 15% mark height with x-height padding (≈50% of mark height)
 // from the edge — proportions that read as deliberate, not slapped-on. The text
 // safe-area below reserves logo height + padding so titles never collide.
@@ -698,6 +719,54 @@ interface PaneContrast {
   ratios: { title: number; eyebrow: number; description: number; authors: number };
 }
 
+/**
+ * Returns the mask gradient CSS used by the backdrop-blur layer. The shape
+ * matches where each template puts the text-reading dark area: peak opacity
+ * at the bottom / top / middle, fading to transparent everywhere else, so the
+ * blur eases in cleanly rather than cutting on/off.
+ */
+function blurMaskCss(vAlign: VAlign): string {
+  if (vAlign === "top") {
+    return "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%, rgba(0,0,0,0) 100%)";
+  }
+  if (vAlign === "middle") {
+    return "radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0) 80%)";
+  }
+  return "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,1) 65%, rgba(0,0,0,1) 100%)";
+}
+
+/** Mirror of blurMaskCss for canvas — same geometry, but written as
+ *  CanvasGradient stops. Caller decides whether to use a linear or radial. */
+function applyBlurMaskGradient(
+  ctx: CanvasRenderingContext2D,
+  vAlign: VAlign,
+  size: number
+) {
+  ctx.globalCompositeOperation = "destination-in";
+  if (vAlign === "top") {
+    const g = ctx.createLinearGradient(0, 0, 0, size);
+    g.addColorStop(0, "rgba(0,0,0,1)");
+    g.addColorStop(0.35, "rgba(0,0,0,1)");
+    g.addColorStop(0.75, "rgba(0,0,0,0)");
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = g;
+  } else if (vAlign === "middle") {
+    const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size * 0.8);
+    g.addColorStop(0, "rgba(0,0,0,1)");
+    g.addColorStop(0.45, "rgba(0,0,0,0.6)");
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = g;
+  } else {
+    const g = ctx.createLinearGradient(0, 0, 0, size);
+    g.addColorStop(0, "rgba(0,0,0,0)");
+    g.addColorStop(0.25, "rgba(0,0,0,0)");
+    g.addColorStop(0.65, "rgba(0,0,0,1)");
+    g.addColorStop(1, "rgba(0,0,0,1)");
+    ctx.fillStyle = g;
+  }
+  ctx.fillRect(0, 0, size, size);
+}
+
 function gradientLayerCss(layer: GradientLayer): string {
   const stops = layer.stops
     .map((s) => `${s.color} ${Math.round(s.offset * 100)}%`)
@@ -811,6 +880,11 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   const [paneCountOverride, setPaneCountOverride] = useState<number | null>(null);
   const [gradientStrength, setGradientStrength] = useState(1);
   const [tintStrength, setTintStrength] = useState(1);
+  // Maximum backdrop-blur radius (in 1080-canvas px) applied behind the text
+  // zone. The blur is masked with the same vertical gradient the dark overlay
+  // uses, so where the gradient darkens the most, the underlying image
+  // becomes the most blurred. 0 = sharp throughout.
+  const [backdropBlurPx, setBackdropBlurPx] = useState(0);
   const [titleScale, setTitleScale] = useState(1);
   const [descriptionScale, setDescriptionScale] = useState(1);
   const [imageScale, setImageScale] = useState(1);
@@ -1039,8 +1113,8 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     }
   }
 
-  async function handleAddPaperPdfTopHalf() {
-    if (!paperLink) return;
+  async function handleAddPaperPdfTopHalf(prepend = false): Promise<BgImage | null> {
+    if (!paperLink) return null;
     setPdfLoading(true);
     setArxivError(null);
     setArxivInfo(null);
@@ -1048,31 +1122,36 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       const pdf = await fetchArxivPdf(paperLink);
       const dataUrl = bytesFromBase64(pdf.dataBase64, pdf.mimeType);
       const cropped = await pdfFirstPageTopFractionPng(dataUrl, 0.5);
-      setImages((prev) => [
-        ...prev,
-        {
-          id: `arxiv-pdf-${Date.now()}`,
-          src: cropped,
-          name: `${pdf.filename.replace(/\.pdf$/i, "")}-top-half.png`,
-          source: "arxiv",
-        },
-      ]);
+      const image: BgImage = {
+        id: `arxiv-pdf-${Date.now()}`,
+        src: cropped,
+        name: `${pdf.filename.replace(/\.pdf$/i, "")}-top-half.png`,
+        source: "arxiv",
+      };
+      setImages((prev) => (prepend ? [image, ...prev] : [...prev, image]));
       setArxivInfo("Added the top half of page 1 from the paper PDF.");
+      return image;
     } catch (e) {
       setArxivError(`Could not fetch paper PDF: ${e}`);
+      return null;
     } finally {
       setPdfLoading(false);
     }
   }
 
-  // Auto-fetch figures the first time an arXiv URL resolves for this paper.
-  // Tracks the URL we've already triggered for so re-renders don't refire and
-  // a new paper triggers a fresh fetch.
+  // Auto-fetch figures + paper PDF top-half the first time an arXiv URL
+  // resolves for this paper. The PDF is added first so it lands at index 0
+  // of the carousel (its top half — title block, abstract, first figure —
+  // makes a strong cover slide); figure plots follow.
   useEffect(() => {
     if (!arxivEprintUrl) return;
     if (autoFetchedUrl === arxivEprintUrl) return;
     setAutoFetchedUrl(arxivEprintUrl);
-    void handleFetchArxivFigures();
+    void (async () => {
+      // PDF first so it ends up at index 0 even after the figure fetch appends.
+      await handleAddPaperPdfTopHalf(true);
+      await handleFetchArxivFigures();
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arxivEprintUrl]);
 
@@ -1227,52 +1306,131 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       paintGradientLayer(ctx, layer, SAMPLE_SIZE, gradientStrength);
     });
 
-    // Sample the text-reading zone based on vAlign.
-    const padPx = Math.round(SAFE_PADDING * scale);
-    const yBounds = (() => {
+    // Sample the actual rendered position of each text block. Falls back to a
+    // pane-band sample if the text block hasn't been laid out yet.
+    const layout = computeTextLayout(paneIndex);
+    const sampleBox = (
+      bx: number,
+      by: number,
+      bw: number,
+      bh: number
+    ): { rgb: [number, number, number]; lum: number } | null => {
+      // Translate canvas coords → sample-scale coords. Clamp to the canvas so
+      // partial overflow at the safe-area boundary doesn't error out.
+      const sx = Math.max(0, Math.floor(bx * scale));
+      const sy = Math.max(0, Math.floor(by * scale));
+      const sw = Math.max(1, Math.min(SAMPLE_SIZE - sx, Math.ceil(bw * scale)));
+      const sh = Math.max(1, Math.min(SAMPLE_SIZE - sy, Math.ceil(bh * scale)));
+      if (sw < 1 || sh < 1) return null;
+      let data: ImageData;
+      try {
+        data = ctx.getImageData(sx, sy, sw, sh);
+      } catch {
+        return null;
+      }
+      let rSum = 0;
+      let gSum = 0;
+      let bSum = 0;
+      let n = 0;
+      for (let i = 0; i < data.data.length; i += 4) {
+        rSum += data.data[i];
+        gSum += data.data[i + 1];
+        bSum += data.data[i + 2];
+        n += 1;
+      }
+      const r = rSum / n;
+      const g = gSum / n;
+      const b = bSum / n;
+      return { rgb: [r, g, b], lum: relativeLuminance(r, g, b) };
+    };
+
+    const contrastFor = (
+      textColor: string,
+      bxCanvas: number,
+      byCanvas: number,
+      bwCanvas: number,
+      bhCanvas: number
+    ): { ratio: number; bgLum: number; bgRgb: [number, number, number] } => {
+      const sample = sampleBox(bxCanvas, byCanvas, bwCanvas, bhCanvas);
+      const bgLum = sample?.lum ?? 0;
+      const bgRgb = sample?.rgb ?? ([0, 0, 0] as [number, number, number]);
+      const rgb = parseColorToRgb(textColor);
+      if (!rgb) return { ratio: 0, bgLum, bgRgb };
+      const textLum = relativeLuminance(rgb[0], rgb[1], rgb[2]);
+      return { ratio: wcagContrast(textLum, bgLum), bgLum, bgRgb };
+    };
+
+    // Default fallback rect when a role isn't present (use the vAlign band).
+    const padPx = SAFE_PADDING;
+    const fallback: { x: number; y: number; w: number; h: number } = (() => {
       if (template.vAlign === "top") {
-        return [padPx, Math.round(SAMPLE_SIZE * 0.5)];
+        return { x: padPx, y: padPx, w: CANVAS_SIZE - 2 * padPx, h: CANVAS_SIZE * 0.4 };
       }
       if (template.vAlign === "middle") {
-        return [Math.round(SAMPLE_SIZE * 0.3), Math.round(SAMPLE_SIZE * 0.7)];
+        return {
+          x: padPx,
+          y: CANVAS_SIZE * 0.3,
+          w: CANVAS_SIZE - 2 * padPx,
+          h: CANVAS_SIZE * 0.4,
+        };
       }
-      return [Math.round(SAMPLE_SIZE * 0.5), SAMPLE_SIZE - padPx];
+      return {
+        x: padPx,
+        y: CANVAS_SIZE * 0.5,
+        w: CANVAS_SIZE - 2 * padPx,
+        h: CANVAS_SIZE * 0.4 - padPx,
+      };
     })();
-    const sample = ctx.getImageData(
-      padPx,
-      yBounds[0],
-      SAMPLE_SIZE - padPx * 2,
-      yBounds[1] - yBounds[0]
-    );
-    let rSum = 0;
-    let gSum = 0;
-    let bSum = 0;
-    let count = 0;
-    for (let i = 0; i < sample.data.length; i += 4) {
-      rSum += sample.data[i];
-      gSum += sample.data[i + 1];
-      bSum += sample.data[i + 2];
-      count += 1;
-    }
-    const r = rSum / count;
-    const g = gSum / count;
-    const b = bSum / count;
-    const bgLum = relativeLuminance(r, g, b);
 
-    const ratioFor = (textColor: string): number => {
-      const rgb = parseColorToRgb(textColor);
-      if (!rgb) return 0;
-      const textLum = relativeLuminance(rgb[0], rgb[1], rgb[2]);
-      return wcagContrast(textLum, bgLum);
+    const rectFor = (role: PaneTextRole): { x: number; y: number; w: number; h: number } => {
+      const block = layout?.blocks.find((b) => b.role === role);
+      if (block) {
+        return { x: block.x, y: block.y, w: block.width, h: block.height };
+      }
+      return { ...fallback };
     };
+
+    const colorByRole: Record<PaneTextRole, string> = {
+      eyebrow: template.eyebrowColor,
+      title: template.textColor,
+      description: template.textColor,
+      authors: template.authorsColor,
+    };
+
+    const measurements: Record<
+      PaneTextRole,
+      { ratio: number; bgLum: number; bgRgb: [number, number, number] }
+    > = {
+      eyebrow: (() => {
+        const r = rectFor("eyebrow");
+        return contrastFor(colorByRole.eyebrow, r.x, r.y, r.w, r.h);
+      })(),
+      title: (() => {
+        const r = rectFor("title");
+        return contrastFor(colorByRole.title, r.x, r.y, r.w, r.h);
+      })(),
+      description: (() => {
+        const r = rectFor("description");
+        return contrastFor(colorByRole.description, r.x, r.y, r.w, r.h);
+      })(),
+      authors: (() => {
+        const r = rectFor("authors");
+        return contrastFor(colorByRole.authors, r.x, r.y, r.w, r.h);
+      })(),
+    };
+
+    // For the swatch + overall lum field, use the title's sample as the
+    // representative backdrop — it's the most prominent text and the user
+    // most likely thinks of "the area behind the headline".
+    const titleSample = measurements.title;
     return {
-      bgLuminance: bgLum,
-      bgRgb: [r, g, b],
+      bgLuminance: titleSample.bgLum,
+      bgRgb: titleSample.bgRgb,
       ratios: {
-        title: ratioFor(template.textColor),
-        eyebrow: ratioFor(template.eyebrowColor),
-        description: ratioFor(template.textColor),
-        authors: ratioFor(template.authorsColor),
+        title: measurements.title.ratio,
+        eyebrow: measurements.eyebrow.ratio,
+        description: measurements.description.ratio,
+        authors: measurements.authors.ratio,
       },
     };
   }
@@ -1324,15 +1482,42 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
     ctx.restore();
 
-    // 4. Gradient overlay — multiple layered passes per template.
+    // 4. Backdrop blur (image + tint) under the text zone. Done BEFORE the
+    //    gradient layers so the gradient itself stays sharp. Snapshot the
+    //    current canvas state, blur it via ctx.filter into a side canvas,
+    //    mask with the blur-mask gradient, then composite back.
+    if (backdropBlurPx > 0) {
+      const snapshot = document.createElement("canvas");
+      snapshot.width = CANVAS_SIZE;
+      snapshot.height = CANVAS_SIZE;
+      const sctx = snapshot.getContext("2d");
+      if (sctx) {
+        sctx.drawImage(canvas, 0, 0);
+        const blurred = document.createElement("canvas");
+        blurred.width = CANVAS_SIZE;
+        blurred.height = CANVAS_SIZE;
+        const bctx = blurred.getContext("2d");
+        if (bctx) {
+          bctx.filter = `blur(${backdropBlurPx}px)`;
+          bctx.drawImage(snapshot, 0, 0);
+          bctx.filter = "none";
+          applyBlurMaskGradient(bctx, template.vAlign, CANVAS_SIZE);
+          bctx.globalCompositeOperation = "source-over";
+          // Paint the masked-blur back on top of the unblurred image+tint.
+          ctx.drawImage(blurred, 0, 0);
+        }
+      }
+    }
+
+    // 5. Gradient overlay — multiple layered passes per template.
     template.gradientLayers.forEach((layer) => {
       paintGradientLayer(ctx, layer, CANVAS_SIZE, gradientStrength);
     });
 
-    // 5. Text
+    // 6. Text
     drawPaneText(ctx, paneIndex);
 
-    // 6. Logo
+    // 7. Logo
     await drawLogo(ctx, panes[paneIndex]?.flipped ?? false);
 
     return canvas;
@@ -1379,30 +1564,65 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     if (imageCount < 2) return;
     ctx.save();
     ctx.globalCompositeOperation = "destination-out";
+    // Cap the fade at slightly less than the slot so the centre of each image
+    // always reads at full opacity, even on narrow slots.
+    const fadeWidth = Math.min(CROSSFADE_PX, slotWidth * 0.45);
     if (imageIndex > 0) {
-      const fadeWidth = Math.min(CROSSFADE_PX, slotWidth / 2);
+      // Trailing → leading edge of THIS image (its left inner edge): start
+      // fully erased, ramp to opaque on the inner side. Smoothstep curve so
+      // adjacent images mix as a feathered overlap rather than a hard ramp.
       const g = ctx.createLinearGradient(slotLeft, 0, slotLeft + fadeWidth, 0);
-      g.addColorStop(0, "rgba(0,0,0,1)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
+      CROSSFADE_STOPS_OPAQUE_TO_TRANSPARENT.forEach(({ t, a }) => {
+        g.addColorStop(t, `rgba(0,0,0,${a})`);
+      });
       ctx.fillStyle = g;
       ctx.fillRect(slotLeft, 0, fadeWidth, CANVAS_SIZE);
     }
     if (imageIndex < imageCount - 1) {
-      const fadeWidth = Math.min(CROSSFADE_PX, slotWidth / 2);
-      const g = ctx.createLinearGradient(slotLeft + slotWidth - fadeWidth, 0, slotLeft + slotWidth, 0);
-      g.addColorStop(0, "rgba(0,0,0,0)");
-      g.addColorStop(1, "rgba(0,0,0,1)");
+      const g = ctx.createLinearGradient(
+        slotLeft + slotWidth - fadeWidth,
+        0,
+        slotLeft + slotWidth,
+        0
+      );
+      // Reverse the smoothstep stops for the right inner edge.
+      CROSSFADE_STOPS_OPAQUE_TO_TRANSPARENT.forEach(({ t, a }) => {
+        g.addColorStop(1 - t, `rgba(0,0,0,${a})`);
+      });
       ctx.fillStyle = g;
       ctx.fillRect(slotLeft + slotWidth - fadeWidth, 0, fadeWidth, CANVAS_SIZE);
     }
     ctx.restore();
   }
 
-  function drawPaneText(ctx: CanvasRenderingContext2D, paneIndex: number) {
+  type PaneTextRole = "eyebrow" | "title" | "description" | "authors";
+
+  interface TextBlockLayout {
+    role: PaneTextRole;
+    color: string;
+    // Bounding box in canvas coords (pre-flip-aware).
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  }
+
+  /**
+   * Compute the same layout `drawPaneText` will use, but without drawing.
+   * Returned bboxes are inflated by a small margin so that a sample taken
+   * inside the bbox represents what's actually behind the rendered glyphs.
+   * Both `drawPaneText` and the contrast meter use this so the meter
+   * reports the contrast for the *actual* visible text region rather than
+   * a guessed band of the pane.
+   */
+  function computeTextLayout(paneIndex: number): {
+    blocks: TextBlockLayout[];
+    align: Align;
+    xAnchor: number;
+  } | null {
     const pane = panes[paneIndex];
-    if (!pane) return;
+    if (!pane) return null;
     const baseAlign = template.align;
-    // Mirror left/right when the pane has its alignment flipped. Centre stays.
     const align: Align = pane.flipped
       ? baseAlign === "left"
         ? "right"
@@ -1416,85 +1636,86 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
         : align === "right"
         ? CANVAS_SIZE - SAFE_PADDING
         : SAFE_PADDING;
+    const maxTextWidth = CANVAS_SIZE - SAFE_PADDING * 2;
+
+    // We need a 2D context to call measureText/wrapText, but it doesn't have
+    // to be on a real canvas — an offscreen one is fine.
+    const tmp = document.createElement("canvas");
+    tmp.width = CANVAS_SIZE;
+    tmp.height = CANVAS_SIZE;
+    const ctx = tmp.getContext("2d");
+    if (!ctx) return null;
     ctx.textAlign = align;
     ctx.textBaseline = "top";
 
-    const maxTextWidth = CANVAS_SIZE - SAFE_PADDING * 2;
-
     type Block = {
+      role: PaneTextRole;
       text: string;
       style: TextBlock;
       color: string;
       font: string;
-      isTitle?: boolean;
-      isDescription?: boolean;
-      uppercase?: boolean;
+      scale: number;
     };
-
     const blocks: Block[] = [];
     if (pane.eyebrow.trim()) {
       blocks.push({
+        role: "eyebrow",
         text: pane.eyebrow,
         style: template.typography.eyebrow,
         color: template.eyebrowColor,
         font: displayFont,
-        uppercase: template.typography.eyebrow.uppercase,
+        scale: 1,
       });
     }
     if (pane.title.trim()) {
       blocks.push({
+        role: "title",
         text: pane.title,
         style: template.typography.title,
         color: template.textColor,
         font: displayFont,
-        isTitle: true,
-        uppercase: template.typography.title.uppercase,
+        scale: titleScale,
       });
     }
     if (pane.description.trim()) {
       blocks.push({
+        role: "description",
         text: pane.description,
         style: template.typography.description,
         color: template.textColor,
         font: bodyFont,
-        isDescription: true,
-        uppercase: template.typography.description.uppercase,
+        scale: descriptionScale,
       });
     }
     if (pane.authors.trim()) {
       blocks.push({
+        role: "authors",
         text: pane.authors,
         style: template.typography.authors,
         color: template.authorsColor,
         font: bodyFont,
-        uppercase: template.typography.authors.uppercase,
+        scale: 1,
       });
     }
 
-    // Layout pass: compute total height
     const measured = blocks.map((b) => {
-      const scale = b.isTitle ? titleScale : b.isDescription ? descriptionScale : 1;
-      const size = applyTextStyle(ctx, b.style, b.font, b.color, scale);
-      const text = b.uppercase ? b.text.toUpperCase() : b.text;
+      const size = applyTextStyle(ctx, b.style, b.font, b.color, b.scale);
+      const text = b.style.uppercase ? b.text.toUpperCase() : b.text;
       const lines = wrapText(ctx, text, maxTextWidth);
       const lineHeight = size * b.style.lineHeight;
-      return { ...b, size, lines, lineHeight, text };
+      return { ...b, size, lines, lineHeight };
     });
 
-    const gapBetween = (prevKind: string, nextKind: string): number => {
-      if (prevKind === "eyebrow" && nextKind === "title") return gapEyebrowTitle;
-      if (prevKind === "title" && nextKind === "description") return gapTitleDescription;
-      if (prevKind === "description" && nextKind === "authors") return gapDescriptionAuthors;
-      if (prevKind === "title" && nextKind === "authors") return gapDescriptionAuthors;
+    const gapBetween = (a: PaneTextRole, b: PaneTextRole): number => {
+      if (a === "eyebrow" && b === "title") return gapEyebrowTitle;
+      if (a === "title" && b === "description") return gapTitleDescription;
+      if (a === "description" && b === "authors") return gapDescriptionAuthors;
+      if (a === "title" && b === "authors") return gapDescriptionAuthors;
       return 18;
     };
 
-    const kinds = measured.map((m) =>
-      m.isTitle ? "title" : m.isDescription ? "description" : m.style === template.typography.eyebrow ? "eyebrow" : "authors"
-    );
-
     const totalHeight = measured.reduce((sum, m, i) => {
-      const gap = i < measured.length - 1 ? gapBetween(kinds[i], kinds[i + 1]) : 0;
+      const gap = i < measured.length - 1 ? gapBetween(m.role, measured[i + 1].role) : 0;
       return sum + m.lines.length * m.lineHeight + gap;
     }, 0);
 
@@ -1506,13 +1727,97 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
         ? Math.max(SAFE_PADDING, (CANVAS_SIZE - totalHeight) / 2)
         : Math.max(SAFE_PADDING, CANVAS_SIZE - reserveBottom - totalHeight);
 
+    const layouts: TextBlockLayout[] = [];
     measured.forEach((m, idx) => {
-      applyTextStyle(ctx, m.style, m.font, m.color, m.isTitle ? titleScale : m.isDescription ? descriptionScale : 1);
-      m.lines.forEach((line, li) => {
-        ctx.fillText(line, xAnchor, y + li * m.lineHeight);
+      const blockHeight = m.lines.length * m.lineHeight;
+      // Width: take the actual measured longest line (better than full bandwidth
+      // for non-full-width text, so the contrast sample lands on real glyphs).
+      let widest = 0;
+      m.lines.forEach((line) => {
+        const w = ctx.measureText(line).width;
+        if (w > widest) widest = w;
       });
-      const nextGap = idx < measured.length - 1 ? gapBetween(kinds[idx], kinds[idx + 1]) : 0;
-      y += m.lines.length * m.lineHeight + nextGap;
+      const blockWidth = Math.max(40, Math.min(maxTextWidth, widest));
+      const bx =
+        align === "center"
+          ? xAnchor - blockWidth / 2
+          : align === "right"
+          ? xAnchor - blockWidth
+          : xAnchor;
+      layouts.push({
+        role: m.role,
+        color: m.color,
+        x: bx,
+        y,
+        width: blockWidth,
+        height: blockHeight,
+      });
+      const nextGap = idx < measured.length - 1 ? gapBetween(m.role, measured[idx + 1].role) : 0;
+      y += blockHeight + nextGap;
+    });
+    return { blocks: layouts, align, xAnchor };
+  }
+
+  function drawPaneText(ctx: CanvasRenderingContext2D, paneIndex: number) {
+    const pane = panes[paneIndex];
+    if (!pane) return;
+    const layout = computeTextLayout(paneIndex);
+    if (!layout) return;
+    ctx.textAlign = layout.align;
+    ctx.textBaseline = "top";
+    const maxTextWidth = CANVAS_SIZE - SAFE_PADDING * 2;
+
+    const roleData: Record<PaneTextRole, { style: TextBlock; font: string; scale: number; text: string }> = {
+      eyebrow: {
+        style: template.typography.eyebrow,
+        font: displayFont,
+        scale: 1,
+        text: pane.eyebrow,
+      },
+      title: {
+        style: template.typography.title,
+        font: displayFont,
+        scale: titleScale,
+        text: pane.title,
+      },
+      description: {
+        style: template.typography.description,
+        font: bodyFont,
+        scale: descriptionScale,
+        text: pane.description,
+      },
+      authors: {
+        style: template.typography.authors,
+        font: bodyFont,
+        scale: 1,
+        text: pane.authors,
+      },
+    };
+
+    layout.blocks.forEach((block) => {
+      const r = roleData[block.role];
+      const style = r.style;
+      applyTextStyle(ctx, style, r.font, block.color, r.scale);
+      const text = style.uppercase ? r.text.toUpperCase() : r.text;
+      const lines = wrapText(ctx, text, maxTextWidth);
+      const size = Math.round(style.fontSize * r.scale);
+      const lineHeight = size * style.lineHeight;
+      // Subtle shadow for the eyebrow so it stays readable on busy
+      // photographic backgrounds where its accent color can otherwise blend
+      // into bright highlights. Only the eyebrow gets it — title is large
+      // enough to read on its own, and the body fonts shouldn't carry a glow.
+      const shadow = block.role === "eyebrow";
+      if (shadow) {
+        ctx.save();
+        ctx.shadowColor = "rgba(0,0,0,0.6)";
+        ctx.shadowBlur = 14;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 1;
+      }
+      lines.forEach((line, li) => {
+        ctx.fillText(line, layout.xAnchor, block.y + li * lineHeight);
+      });
+      if (shadow) ctx.restore();
     });
   }
 
@@ -1673,7 +1978,9 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                 </button>
                 <button
                   className="btn-secondary"
-                  onClick={handleAddPaperPdfTopHalf}
+                  onClick={() => {
+                    void handleAddPaperPdfTopHalf(false);
+                  }}
                   disabled={pdfLoading}
                   title="Download the paper PDF from arXiv and add the top half of page 1 as a background."
                 >
@@ -1765,6 +2072,18 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                 onChange={(e) => setImageScale(Number(e.target.value))}
               />
               <strong>{Math.round(imageScale * 100)}%</strong>
+            </div>
+            <div className="ig-slider-row">
+              <span>Backdrop blur</span>
+              <input
+                type="range"
+                min={0}
+                max={48}
+                step={1}
+                value={backdropBlurPx}
+                onChange={(e) => setBackdropBlurPx(Number(e.target.value))}
+              />
+              <strong>{backdropBlurPx}px</strong>
             </div>
           </div>
 
@@ -2001,13 +2320,23 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                 <div className="ig-image-layer">
                   {images.map((img, i) => {
                     const slot = paneSlotForImage(i, images.length, paneCount);
-                    const fade = Math.min(CROSSFADE_PX, slot.width / 2);
-                    const leftStop = i > 0 ? `transparent 0px, black ${fade}px` : "black 0px";
-                    const rightStop =
-                      i < images.length - 1
-                        ? `black calc(100% - ${fade}px), transparent 100%`
-                        : "black 100%";
-                    const mask = `linear-gradient(to right, ${leftStop}, ${rightStop})`;
+                    const fade = Math.min(CROSSFADE_PX, slot.width * 0.45);
+                    const hasLeft = i > 0;
+                    const hasRight = i < images.length - 1;
+                    // Smoothstep-approximating mask. The mask ramps in / out
+                    // over CROSSFADE_PX with the same curve we use in canvas
+                    // export, so the preview and the PNG export look identical.
+                    const leftRamp = hasLeft
+                      ? CROSSFADE_STOPS_OPAQUE_TO_TRANSPARENT.map(
+                          ({ t, a }) => `rgba(0,0,0,${a}) ${(1 - t) * fade}px`
+                        ).join(", ") + ", "
+                      : "rgba(0,0,0,1) 0px, ";
+                    const rightRamp = hasRight
+                      ? CROSSFADE_STOPS_OPAQUE_TO_TRANSPARENT.map(
+                          ({ t, a }) => `rgba(0,0,0,${a}) calc(100% - ${(1 - t) * fade}px)`
+                        ).join(", ")
+                      : "rgba(0,0,0,1) 100%";
+                    const mask = `linear-gradient(to right, ${leftRamp}${rightRamp})`;
                     return (
                       <div
                         key={img.id}
@@ -2046,6 +2375,20 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                     mixBlendMode: template.tintBlend as React.CSSProperties["mixBlendMode"],
                   }}
                 />
+                {/* Backdrop blur layer — sits above image+tint, below gradient.
+                    Uses backdrop-filter so only the area under the mask is
+                    blurred; mask geometry matches the template's text-zone. */}
+                {backdropBlurPx > 0 && (
+                  <div
+                    className="ig-blur-layer"
+                    style={{
+                      backdropFilter: `blur(${backdropBlurPx}px)`,
+                      WebkitBackdropFilter: `blur(${backdropBlurPx}px)`,
+                      maskImage: blurMaskCss(template.vAlign),
+                      WebkitMaskImage: blurMaskCss(template.vAlign),
+                    }}
+                  />
+                )}
                 {/* Gradient overlay — one div per layer, each with its own blend mode and opacity. */}
                 {template.gradientLayers.map((layer, idx) => (
                   <div
@@ -2219,13 +2562,20 @@ function PanePreview({
       >
         {pane.eyebrow.trim() && (
           <div
-            style={blockStyle(
-              template.typography.eyebrow,
-              template.eyebrowColor,
-              displayFont,
-              1,
-              marginFor("eyebrow")
-            )}
+            style={{
+              ...blockStyle(
+                template.typography.eyebrow,
+                template.eyebrowColor,
+                displayFont,
+                1,
+                marginFor("eyebrow")
+              ),
+              // Subtle dark glow ensures the eyebrow remains legible against
+              // bright or busy photographic backgrounds where the accent
+              // color alone can wash out. Matches the canvas-export shadow.
+              textShadow:
+                "0 1px 2px rgba(0,0,0,0.55), 0 0 14px rgba(0,0,0,0.45)",
+            }}
           >
             {pane.eyebrow}
           </div>

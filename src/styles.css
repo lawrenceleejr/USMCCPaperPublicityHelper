@@ -838,14 +838,16 @@ button:disabled {
 
 .ig-image-layer,
 .ig-tint-layer,
-.ig-gradient-layer {
+.ig-gradient-layer,
+.ig-blur-layer {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
 .ig-tint-layer,
-.ig-gradient-layer {
+.ig-gradient-layer,
+.ig-blur-layer {
   width: 100%;
   height: 100%;
 }
