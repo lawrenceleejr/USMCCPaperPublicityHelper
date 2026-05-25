@@ -21,17 +21,18 @@ body {
 }
 
 /* Fixed strip across the very top of the window that's always a drag handle.
-   Tauri 2's drag region works by the click target carrying
-   data-tauri-drag-region — so an invisible always-on strip is the simplest
-   way to make the title-bar zone drag the window, even where the user clicks
-   in empty padding above the visible header. Left-offset so macOS' own
-   traffic-light buttons keep their hit area. */
+   We rely on a manual onMouseDown handler in App.tsx that calls
+   startDragging() via the @tauri-apps/api/window plugin — the auto-injected
+   data-tauri-drag-region behaviour has been unreliable in our WKWebView,
+   so the JS API is the source of truth. The data attribute stays on for
+   forward-compat with the auto handler. Left-offset of 80 px clears macOS'
+   own traffic-light cluster so those buttons keep their click target. */
 .window-drag-strip {
   position: fixed;
   top: 0;
   left: 80px;
   right: 0;
-  height: 28px;
+  height: 40px;
   z-index: 9999;
   background: transparent;
 }

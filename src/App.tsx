@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { PaperRow, GeneratedContent, Preferences } from "./types";
+import { getCurrentWindow } from "@tauri-apps/api/window";
 import { generate, getPrefs, openExternal, setPrefs } from "./api";
 import InputPanel from "./components/InputPanel";
 import OutputCard from "./components/OutputCard";
@@ -10,6 +11,26 @@ import type { InstagramDesignerHandle } from "./components/InstagramDesigner";
 import usmccLogo from "./assets/LogoUSMCC_circles.png";
 
 type DraftPlatform = "twitter" | "bluesky" | "linkedin";
+
+/**
+ * Manual window-drag starter. We attach this to the title-bar zones in
+ * addition to data-tauri-drag-region because the auto-injected drag handler
+ * has been silently failing in our WKWebView setup. Calling startDragging
+ * directly via the window plugin works as long as the capability has
+ * core:window:allow-start-dragging (granted in capabilities/default.json).
+ *
+ * The check on event.target skips real interactive elements (buttons, links,
+ * inputs, textareas, contenteditable regions) so they keep their own
+ * click / focus behaviour and don't accidentally start dragging.
+ */
+function startWindowDragFromMouseDown(e: React.MouseEvent<HTMLElement>) {
+  if (e.button !== 0) return;
+  const target = e.target as HTMLElement | null;
+  if (target?.closest("button, a, input, textarea, select, [contenteditable=true]")) {
+    return;
+  }
+  void getCurrentWindow().startDragging();
+}
 
 async function copyImageDataUrlToClipboard(dataUrl: string): Promise<void> {
   const blob = await (await fetch(dataUrl)).blob();
@@ -173,8 +194,13 @@ export default function App() {
           Fixed-position so it works regardless of scroll/layout, and stays
           above content but below the OS traffic-light controls (which are
           drawn by macOS, not the webview). */}
-      <div className="window-drag-strip" data-tauri-drag-region aria-hidden="true" />
-      <header data-tauri-drag-region>
+      <div
+        className="window-drag-strip"
+        data-tauri-drag-region
+        aria-hidden="true"
+        onMouseDown={startWindowDragFromMouseDown}
+      />
+      <header data-tauri-drag-region onMouseDown={startWindowDragFromMouseDown}>
         <div className="header-actions" data-tauri-drag-region>
           <div className="header-brand" data-tauri-drag-region>
             <img src={usmccLogo} alt="USMCC logo" className="app-logo" data-tauri-drag-region />
