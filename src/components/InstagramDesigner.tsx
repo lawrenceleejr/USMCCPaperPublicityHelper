@@ -346,40 +346,48 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     descriptionFont: "IBM Plex Sans",
     bodyFont: "Lora",
     baseColor: "#1a1a2e",
-    tintColor: "#7c3aed",
-    tintOpacity: 0.42,
-    tintBlend: "overlay",
+    // Multiply with a deeper purple so even white-page paper figures darken
+    // enough for the white title to read. Overlay (the previous setting)
+    // mathematically leaves white alone, which was the readability bug.
+    tintColor: "#3c1d6e",
+    tintOpacity: 0.6,
+    tintBlend: "multiply",
     gradientLayers: [
-      // Baseline centre spotlight — title is centre-middle; darken outer area
-      // with normal blend so the spotlight reads against any backdrop.
+      // Solid normal-blend plum spotlight at the centre. This is the key fix
+      // for white-background images: the title sits in the centre, so we
+      // paint a deep plum disc that darkens whatever's underneath (image or
+      // base colour) by raw alpha — not by a blend mode that can no-op on
+      // white. White headline reads cleanly even on a paper figure.
       {
         kind: "radial",
         cx: 0.5,
         cy: 0.5,
-        r: 1.0,
+        r: 0.95,
         stops: [
-          { offset: 0, color: "rgba(0,0,0,0)" },
-          { offset: 0.55, color: "rgba(0,0,0,0)" },
-          { offset: 1, color: "rgba(0,0,0,0.55)" },
+          { offset: 0, color: "rgba(20,15,40,0.85)" },
+          { offset: 0.45, color: "rgba(20,15,40,0.55)" },
+          { offset: 0.8, color: "rgba(20,15,40,0.15)" },
+          { offset: 1, color: "rgba(20,15,40,0)" },
         ],
         blend: "normal",
         opacity: 1,
       },
-      // Big violet spotlight, centred high — title sits in the brightest cone.
+      // Violet halo riding on top of the dark plum centre — gives Bold Sans
+      // its signature electric feel without sacrificing readability.
       {
         kind: "radial",
         cx: 0.5,
         cy: 0.3,
         r: 0.7,
         stops: [
-          { offset: 0, color: "rgba(168,85,247,0.52)" },
-          { offset: 0.55, color: "rgba(124,58,237,0.1)" },
+          { offset: 0, color: "rgba(168,85,247,0.45)" },
+          { offset: 0.55, color: "rgba(124,58,237,0.10)" },
           { offset: 1, color: "rgba(124,58,237,0)" },
         ],
         blend: "screen",
         opacity: 1,
       },
-      // Heavy outer vignette pulls the eye to the centre.
+      // Outer vignette pulls the eye to the centre.
       {
         kind: "radial",
         cx: 0.5,
@@ -387,7 +395,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
         r: 0.95,
         stops: [
           { offset: 0.45, color: "rgba(0,0,0,0)" },
-          { offset: 1, color: "rgba(0,0,0,0.8)" },
+          { offset: 1, color: "rgba(0,0,0,0.75)" },
         ],
         blend: "multiply",
         opacity: 1,
@@ -942,6 +950,40 @@ function refreshPaneFromProps(pane: PaneText, paneIndex: number, paneCount: numb
   };
 }
 
+interface SliderProps {
+  value: number;
+  defaultValue: number;
+  onChange: (next: number) => void;
+  min: number;
+  max: number;
+  step?: number;
+  title?: string;
+}
+
+/**
+ * Range input that resets to its `defaultValue` on double-click — standard
+ * macOS-style "knob → default" affordance. The component is intentionally
+ * dumb; callers own the state.
+ */
+function Slider({ value, defaultValue, onChange, min, max, step, title }: SliderProps) {
+  return (
+    <input
+      type="range"
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      onChange={(e) => onChange(Number(e.target.value))}
+      onDoubleClick={() => onChange(defaultValue)}
+      title={
+        title
+          ? `${title}\nDouble-click to reset to default (${defaultValue}).`
+          : `Double-click to reset to default (${defaultValue}).`
+      }
+    />
+  );
+}
+
 function paneSlotForImage(imageIndex: number, imageCount: number, paneCount: number) {
   if (imageCount === 0) return { left: 0, width: paneCount * CANVAS_SIZE };
   const slotWidth = (paneCount * CANVAS_SIZE) / imageCount;
@@ -979,6 +1021,10 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   // Capped server-side at 45% of a slot so the centre of each image is
   // always at full opacity.
   const [crossfadePx, setCrossfadePx] = useState(280);
+  // Strength of the dark glow rendered behind every text block (0 = no shadow,
+  // 1 = strong). Boost this when the carousel sits over busy photographic
+  // backgrounds where flat text colors blend into the image.
+  const [textShadowStrength, setTextShadowStrength] = useState(0.4);
   const [titleScale, setTitleScale] = useState(1);
   const [descriptionScale, setDescriptionScale] = useState(1);
   const [imageScale, setImageScale] = useState(1);
@@ -1909,22 +1955,23 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       const lines = wrapText(ctx, text, maxTextWidth);
       const size = Math.round(style.fontSize * r.scale);
       const lineHeight = size * style.lineHeight;
-      // Subtle shadow for the eyebrow so it stays readable on busy
-      // photographic backgrounds where its accent color can otherwise blend
-      // into bright highlights. Only the eyebrow gets it — title is large
-      // enough to read on its own, and the body fonts shouldn't carry a glow.
-      const shadow = block.role === "eyebrow";
-      if (shadow) {
+      // Dark glow behind every text block. Strength is user-controlled — at
+      // 0 there's no shadow, at 1 the glow is strong enough that bright
+      // colored accents still read over busy photographic highlights. The
+      // eyebrow used to be the only block with a glow; the slider lets the
+      // user dial it across every role uniformly.
+      const wantShadow = textShadowStrength > 0;
+      if (wantShadow) {
         ctx.save();
-        ctx.shadowColor = "rgba(0,0,0,0.6)";
-        ctx.shadowBlur = 14;
+        ctx.shadowColor = `rgba(0,0,0,${(textShadowStrength * 0.85).toFixed(3)})`;
+        ctx.shadowBlur = textShadowStrength * 24;
         ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 1;
+        ctx.shadowOffsetY = textShadowStrength * 2;
       }
       lines.forEach((line, li) => {
         ctx.fillText(line, layout.xAnchor, block.y + li * lineHeight);
       });
-      if (shadow) ctx.restore();
+      if (wantShadow) ctx.restore();
     });
   }
 
@@ -2152,18 +2199,19 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
             <label>Panes</label>
             <div className="ig-slider-row">
               <span>Count</span>
-              <input
-                type="range"
+              <Slider
                 min={MIN_PANES}
                 max={MAX_PANES}
                 step={1}
                 value={paneCount}
-                onChange={(e) => setPaneCountOverride(Number(e.target.value))}
+                defaultValue={MIN_PANES}
+                onChange={(v) => setPaneCountOverride(v)}
               />
               <strong>{paneCount}</strong>
             </div>
             <small>
-              Defaults to max(2, images). Background images are laid edge-to-edge across all panes.
+              Defaults to max({MIN_PANES}, selected images). Double-click any slider handle to
+              reset that control to its default.
             </small>
           </div>
 
@@ -2171,74 +2219,74 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
             <label>Overlay & background</label>
             <div className="ig-slider-row">
               <span>Gradient</span>
-              <input
-                type="range"
+              <Slider
                 min={0}
                 max={1.5}
                 step={0.05}
                 value={gradientStrength}
-                onChange={(e) => setGradientStrength(Number(e.target.value))}
+                defaultValue={1}
+                onChange={setGradientStrength}
               />
               <strong>{gradientStrength.toFixed(2)}</strong>
             </div>
             <div className="ig-slider-row">
               <span>Tint</span>
-              <input
-                type="range"
+              <Slider
                 min={0}
                 max={1.5}
                 step={0.05}
                 value={tintStrength}
-                onChange={(e) => setTintStrength(Number(e.target.value))}
+                defaultValue={1}
+                onChange={setTintStrength}
               />
               <strong>{tintStrength.toFixed(2)}</strong>
             </div>
             <div className="ig-slider-row">
               <span>Image zoom</span>
-              <input
-                type="range"
+              <Slider
                 min={0.5}
                 max={2.5}
                 step={0.05}
                 value={imageScale}
-                onChange={(e) => setImageScale(Number(e.target.value))}
+                defaultValue={1}
+                onChange={setImageScale}
               />
               <strong>{Math.round(imageScale * 100)}%</strong>
             </div>
             <div className="ig-slider-row">
               <span>Backdrop blur</span>
-              <input
-                type="range"
+              <Slider
                 min={0}
                 max={48}
                 step={1}
                 value={backdropBlurPx}
-                onChange={(e) => setBackdropBlurPx(Number(e.target.value))}
+                defaultValue={0}
+                onChange={setBackdropBlurPx}
               />
               <strong>{backdropBlurPx}px</strong>
             </div>
             <div className="ig-slider-row">
               <span>Blur falloff</span>
-              <input
-                type="range"
+              <Slider
                 min={0}
                 max={1}
                 step={0.01}
                 value={blurFalloff}
-                onChange={(e) => setBlurFalloff(Number(e.target.value))}
+                defaultValue={0.5}
+                onChange={setBlurFalloff}
                 title="0 = blur fades across the whole pane (gentle); 1 = sharp edge"
               />
               <strong>{Math.round(blurFalloff * 100)}%</strong>
             </div>
             <div className="ig-slider-row">
               <span>Img blend</span>
-              <input
-                type="range"
+              <Slider
                 min={40}
                 max={CROSSFADE_PX_MAX}
                 step={4}
                 value={crossfadePx}
-                onChange={(e) => setCrossfadePx(Number(e.target.value))}
+                defaultValue={280}
+                onChange={setCrossfadePx}
                 title="Width of the soft transition between adjacent background images, in master-canvas pixels."
               />
               <strong>{crossfadePx}px</strong>
@@ -2249,61 +2297,74 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
             <label>Typography</label>
             <div className="ig-slider-row">
               <span>Title size</span>
-              <input
-                type="range"
+              <Slider
                 min={0.55}
                 max={1.45}
                 step={0.01}
                 value={titleScale}
-                onChange={(e) => setTitleScale(Number(e.target.value))}
+                defaultValue={1}
+                onChange={setTitleScale}
               />
               <strong>{Math.round(titleScale * 100)}%</strong>
             </div>
             <div className="ig-slider-row">
               <span>Body size</span>
-              <input
-                type="range"
+              <Slider
                 min={0.7}
                 max={1.4}
                 step={0.01}
                 value={descriptionScale}
-                onChange={(e) => setDescriptionScale(Number(e.target.value))}
+                defaultValue={1}
+                onChange={setDescriptionScale}
               />
               <strong>{Math.round(descriptionScale * 100)}%</strong>
             </div>
             <div className="ig-slider-row">
+              <span>Text shadow</span>
+              <Slider
+                min={0}
+                max={1}
+                step={0.01}
+                value={textShadowStrength}
+                defaultValue={0.4}
+                onChange={setTextShadowStrength}
+                title="Dark glow behind every text block. Crank up over busy or bright backdrops where flat colors blend in."
+              />
+              <strong>{Math.round(textShadowStrength * 100)}%</strong>
+            </div>
+            <div className="ig-slider-row">
               <span>Eye→Title</span>
-              <input
-                type="range"
+              <Slider
                 min={0}
                 max={120}
                 step={2}
                 value={gapEyebrowTitle}
-                onChange={(e) => setGapEyebrowTitle(Number(e.target.value))}
+                defaultValue={18}
+                onChange={setGapEyebrowTitle}
               />
               <strong>{gapEyebrowTitle}px</strong>
             </div>
             <div className="ig-slider-row">
               <span>Title→Desc</span>
-              <input
-                type="range"
+              <Slider
                 min={0}
                 max={160}
                 step={2}
                 value={gapTitleDescription}
-                onChange={(e) => setGapTitleDescription(Number(e.target.value))}
+                defaultValue={36}
+                onChange={setGapTitleDescription}
               />
               <strong>{gapTitleDescription}px</strong>
             </div>
             <div className="ig-slider-row">
               <span>Desc→Auth</span>
-              <input
-                type="range"
+              <Slider
                 min={0}
                 max={140}
                 step={2}
                 value={gapDescriptionAuthors}
-                onChange={(e) => setGapDescriptionAuthors(Number(e.target.value))}
+                defaultValue={28}
+                onChange={setGapDescriptionAuthors}
               />
               <strong>{gapDescriptionAuthors}px</strong>
             </div>
@@ -2584,6 +2645,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                     gapEyebrowTitle={gapEyebrowTitle}
                     gapTitleDescription={gapTitleDescription}
                     gapDescriptionAuthors={gapDescriptionAuthors}
+                    textShadowStrength={textShadowStrength}
                     isActive={activePane === i}
                     onSelect={() => setActivePane(i)}
                   />
@@ -2626,6 +2688,7 @@ interface PanePreviewProps {
   gapEyebrowTitle: number;
   gapTitleDescription: number;
   gapDescriptionAuthors: number;
+  textShadowStrength: number;
   isActive: boolean;
   onSelect: () => void;
 }
@@ -2642,6 +2705,7 @@ function PanePreview({
   gapEyebrowTitle,
   gapTitleDescription,
   gapDescriptionAuthors,
+  textShadowStrength,
   isActive,
   onSelect,
 }: PanePreviewProps) {
@@ -2659,6 +2723,17 @@ function PanePreview({
   const textAlign = align === "center" ? "center" : align === "right" ? "right" : "left";
   const itemsAlign =
     align === "center" ? "center" : align === "right" ? "flex-end" : "flex-start";
+
+  // Build the CSS text-shadow string corresponding to the strength slider.
+  // Two stacked shadows (a tight near-black drop + a wider soft glow) give
+  // the same readability boost as the canvas equivalent without the heavy
+  // bloom you'd get from a single oversized blur.
+  const textShadowCss = (() => {
+    if (textShadowStrength <= 0) return "none";
+    const tight = `0 ${(textShadowStrength * 2).toFixed(2)}px ${(textShadowStrength * 6).toFixed(2)}px rgba(0,0,0,${(textShadowStrength * 0.75).toFixed(3)})`;
+    const wide = `0 0 ${(textShadowStrength * 18).toFixed(2)}px rgba(0,0,0,${(textShadowStrength * 0.55).toFixed(3)})`;
+    return `${tight}, ${wide}`;
+  })();
 
   function blockStyle(
     block: TextBlock,
@@ -2679,6 +2754,7 @@ function PanePreview({
       maxWidth: "100%",
       wordBreak: "break-word",
       marginBottom,
+      textShadow: textShadowCss,
     };
   }
 
@@ -2732,20 +2808,13 @@ function PanePreview({
       >
         {pane.eyebrow.trim() && (
           <div
-            style={{
-              ...blockStyle(
-                template.typography.eyebrow,
-                template.eyebrowColor,
-                displayFont,
-                1,
-                marginFor("eyebrow")
-              ),
-              // Subtle dark glow ensures the eyebrow remains legible against
-              // bright or busy photographic backgrounds where the accent
-              // color alone can wash out. Matches the canvas-export shadow.
-              textShadow:
-                "0 1px 2px rgba(0,0,0,0.55), 0 0 14px rgba(0,0,0,0.45)",
-            }}
+            style={blockStyle(
+              template.typography.eyebrow,
+              template.eyebrowColor,
+              displayFont,
+              1,
+              marginFor("eyebrow")
+            )}
           >
             {pane.eyebrow}
           </div>
