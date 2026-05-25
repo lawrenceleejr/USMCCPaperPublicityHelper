@@ -13,19 +13,20 @@
     "windows": [
       {
         "title": "USMCC Publicity Helper",
-        "width": 960,
-        "height": 720,
+        "width": 1200,
+        "height": 820,
         "resizable": true,
-        "fullscreen": false
+        "fullscreen": false,
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "backgroundColor": "#0d1828"
       }
     ],
     "security": {
       "csp": null
     }
   },
-  "plugins": {
-    "store": {}
-  },
+  "plugins": {},
   "bundle": {
     "active": true,
     "targets": "all",
@@ -35,6 +36,9 @@
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
-    ]
+    ],
+    "macOS": {
+      "entitlements": "Entitlements.plist"
+    }
   }
 }

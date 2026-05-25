@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 use crate::anthropic;
+use crate::arxiv::{self, ArxivFigure};
 use crate::parse_row::{self, PaperRow};
 use crate::prompts;
 use crate::settings;
@@ -120,16 +121,16 @@ pub async fn generate(
     } else {
         let plain_summary = normalize_whitespace(abstract_);
         let twitter = trim_to_chars(
-            &normalize_whitespace(&format!("{display_title}: {abstract_} {link}")),
+            &normalize_whitespace(&format!("USMCC Featured Paper — {display_title}: {abstract_} {link}")),
             280,
         );
         let bluesky = trim_to_chars(
-            &normalize_whitespace(&format!("{display_title}: {abstract_} {link}")),
+            &normalize_whitespace(&format!("USMCC Featured Paper — {display_title}: {abstract_} {link}")),
             300,
         );
 
         let linkedin = normalize_whitespace(&format!(
-            "{display_title}. Authors: {authors}. {abstract_} {}",
+            "USMCC Featured Paper: {display_title}. Authors: {authors}. {abstract_} {}",
             if link.trim().is_empty() {
                 String::new()
             } else {
@@ -141,11 +142,11 @@ pub async fn generate(
             let mut parts = Vec::new();
             let part1 = trim_to_chars(
                 &normalize_whitespace(&format!(
-                    "{display_title}{}",
+                    "USMCC Featured Paper — {display_title}{}",
                     if authors.trim().is_empty() {
                         String::new()
                     } else {
-                        format!(" — {authors}")
+                        format!(" · {authors}")
                     }
                 )),
                 280,
@@ -290,6 +291,25 @@ pub fn set_prefs(app: tauri::AppHandle, prefs: Preferences) -> Result<(), String
     store.set("includeThread", serde_json::json!(prefs.include_thread));
     store.set("useClaude", serde_json::json!(prefs.use_claude));
     store.save().map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub fn arxiv_eprint_url(url: String) -> Option<String> {
+    arxiv::extract_arxiv_id(&url).map(|id| arxiv::eprint_url(&id))
+}
+
+#[tauri::command]
+pub async fn fetch_arxiv_figures(url: String) -> Result<Vec<ArxivFigure>, String> {
+    let id = arxiv::extract_arxiv_id(&url)
+        .ok_or_else(|| "Paper link is not a recognized arXiv URL.".to_string())?;
+    arxiv::fetch_figures(&id).await
+}
+
+#[tauri::command]
+pub async fn fetch_arxiv_pdf(url: String) -> Result<ArxivFigure, String> {
+    let id = arxiv::extract_arxiv_id(&url)
+        .ok_or_else(|| "Paper link is not a recognized arXiv URL.".to_string())?;
+    arxiv::fetch_paper_pdf(&id).await
 }
 
 // Unused import suppression

@@ -9,8 +9,9 @@ Rules you NEVER break:\n\
 
 pub fn twitter_prompt(title: &str, authors: &str, abstract_: &str, link: &str) -> String {
     format!(
-        "Write a single Twitter/X post for this physics paper.\n\
+        "Write a single Twitter/X post for a USMCC Featured Paper.\n\
         Constraints: ≤ 280 characters including the link, one emoji maximum, at most 2 hashtags.\n\
+        Open the post with the phrase \"USMCC Featured Paper:\" (or a close natural variant) so readers know this is the collaboration spotlighting a publication.\n\
         End with this link: {link}\n\n\
         Title: {title}\n\
         Authors: {authors}\n\
@@ -20,8 +21,9 @@ pub fn twitter_prompt(title: &str, authors: &str, abstract_: &str, link: &str) -
 
 pub fn twitter_thread_prompt(title: &str, authors: &str, abstract_: &str, link: &str) -> String {
     format!(
-        "Write a Twitter/X thread (2–5 tweets) about this physics paper.\n\
+        "Write a Twitter/X thread (2–5 tweets) about a USMCC Featured Paper.\n\
         Each tweet must be ≤ 280 characters. Separate tweets with a blank line and a tweet number like \"1/\".\n\
+        Tweet 1 must explicitly identify this as a USMCC Featured Paper.\n\
         The last tweet must include this link: {link}\n\n\
         Title: {title}\n\
         Authors: {authors}\n\
@@ -31,8 +33,9 @@ pub fn twitter_thread_prompt(title: &str, authors: &str, abstract_: &str, link: 
 
 pub fn bluesky_prompt(title: &str, authors: &str, abstract_: &str, link: &str) -> String {
     format!(
-        "Write a single Bluesky post for this physics paper.\n\
-        Constraints: ≤ 300 characters, no hashtags, end with this link: {link}\n\n\
+        "Write a single Bluesky post for a USMCC Featured Paper.\n\
+        Constraints: ≤ 300 characters, no hashtags, end with this link: {link}\n\
+        Open with \"USMCC Featured Paper:\" (or a close natural variant) so readers know this is the collaboration spotlighting a publication.\n\n\
         Title: {title}\n\
         Authors: {authors}\n\
         Abstract: {abstract_}"
@@ -41,8 +44,10 @@ pub fn bluesky_prompt(title: &str, authors: &str, abstract_: &str, link: &str) -
 
 pub fn linkedin_prompt(title: &str, authors: &str, abstract_: &str, link: &str) -> String {
     format!(
-        "Write a LinkedIn post for this physics paper.\n\
-        Constraints: 100–200 words, professional tone, no emoji. End with the link and author credit.\n\
+        "Write a LinkedIn post for a USMCC Featured Paper.\n\
+        Constraints: 100–200 words, professional tone, no emoji.\n\
+        Begin with a clear \"USMCC Featured Paper:\" framing so the post is immediately identifiable as collaboration-spotlighted work.\n\
+        End with the link and author credit.\n\
         Link: {link}\n\n\
         Title: {title}\n\
         Authors: {authors}\n\

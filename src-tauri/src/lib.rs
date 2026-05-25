@@ -1,4 +1,5 @@
 mod anthropic;
+mod arxiv;
 mod commands;
 mod parse_row;
 mod prompts;
@@ -8,6 +9,7 @@ mod settings;
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_store::Builder::new().build())
+        .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             commands::parse_row,
             commands::generate,
@@ -16,6 +18,9 @@ pub fn run() {
             commands::test_api_key,
             commands::get_prefs,
             commands::set_prefs,
+            commands::arxiv_eprint_url,
+            commands::fetch_arxiv_figures,
+            commands::fetch_arxiv_pdf,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

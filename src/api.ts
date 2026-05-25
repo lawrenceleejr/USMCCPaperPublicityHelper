@@ -1,10 +1,16 @@
 import { invoke } from "@tauri-apps/api/core";
+import { openUrl } from "@tauri-apps/plugin-opener";
 import type {
   PaperRow,
   GeneratedContent,
   Preferences,
   ApiKeyStatus,
+  ArxivFigure,
 } from "./types";
+
+export async function openExternal(url: string): Promise<void> {
+  await openUrl(url);
+}
 
 export async function parseRow(text: string): Promise<PaperRow> {
   return invoke<PaperRow>("parse_row", { text });
@@ -37,4 +43,16 @@ export async function getPrefs(): Promise<Preferences> {
 
 export async function setPrefs(prefs: Preferences): Promise<void> {
   return invoke<void>("set_prefs", { prefs });
+}
+
+export async function getArxivEprintUrl(url: string): Promise<string | null> {
+  return invoke<string | null>("arxiv_eprint_url", { url });
+}
+
+export async function fetchArxivFigures(url: string): Promise<ArxivFigure[]> {
+  return invoke<ArxivFigure[]>("fetch_arxiv_figures", { url });
+}
+
+export async function fetchArxivPdf(url: string): Promise<ArxivFigure> {
+  return invoke<ArxivFigure>("fetch_arxiv_pdf", { url });
 }
