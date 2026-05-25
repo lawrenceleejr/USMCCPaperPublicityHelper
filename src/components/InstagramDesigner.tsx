@@ -202,14 +202,20 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
         blend: "screen",
         opacity: 1,
       },
-      // Multi-stop dark wash at the bottom for type readability.
+      // Multi-stop dark wash at the bottom for type readability. The radial
+      // origin sits below the canvas so the dark band has a gently curved,
+      // atmospheric edge rather than a perfectly horizontal seam.
       {
-        kind: "linear",
-        angle: 180,
+        kind: "radial",
+        cx: 0.5,
+        cy: 1.35,
+        r: 1.4,
         stops: [
-          { offset: 0.3, color: "rgba(0,0,0,0)" },
-          { offset: 0.7, color: "rgba(0,0,0,0.55)" },
-          { offset: 1, color: "rgba(0,0,0,0.92)" },
+          { offset: 0, color: "rgba(0,0,0,0.92)" },
+          { offset: 0.3, color: "rgba(0,0,0,0.7)" },
+          { offset: 0.55, color: "rgba(0,0,0,0.32)" },
+          { offset: 0.85, color: "rgba(0,0,0,0)" },
+          { offset: 1, color: "rgba(0,0,0,0)" },
         ],
         blend: "multiply",
         opacity: 1,
@@ -265,16 +271,33 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
         blend: "normal",
         opacity: 1,
       },
-      // Bright paper-wash with a soft fade-down toward a hint of shadow at the bottom.
+      // Paper-wash: bright dome at the top centre arching down into a slight
+      // shadow at the bottom. Two off-canvas radials replace the straight
+      // vertical so the wash has a subtle curvature.
       {
-        kind: "linear",
-        angle: 180,
+        kind: "radial",
+        cx: 0.5,
+        cy: -0.3,
+        r: 1.3,
         stops: [
-          { offset: 0, color: "rgba(255,255,255,0.55)" },
-          { offset: 0.5, color: "rgba(247,247,244,0)" },
-          { offset: 1, color: "rgba(0,0,0,0.10)" },
+          { offset: 0, color: "rgba(255,255,255,0.65)" },
+          { offset: 0.55, color: "rgba(247,247,244,0.08)" },
+          { offset: 1, color: "rgba(247,247,244,0)" },
         ],
         blend: "normal",
+        opacity: 1,
+      },
+      {
+        kind: "radial",
+        cx: 0.5,
+        cy: 1.25,
+        r: 1.2,
+        stops: [
+          { offset: 0, color: "rgba(0,0,0,0.16)" },
+          { offset: 0.55, color: "rgba(0,0,0,0.04)" },
+          { offset: 1, color: "rgba(0,0,0,0)" },
+        ],
+        blend: "multiply",
         opacity: 1,
       },
       // Cool top-right accent — barely there, just enough to feel intentional.
@@ -391,15 +414,20 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
         blend: "normal",
         opacity: 1,
       },
-      // Sunrise-temperature linear: cream → wheat → umber → deep brown.
+      // Sunrise temperature curve. The horizon is rendered as a large radial
+      // anchored well below the canvas, so the warm-to-umber transition bows
+      // upward at the centre — a painterly horizon rather than a ruled band.
       {
-        kind: "linear",
-        angle: 175,
+        kind: "radial",
+        cx: 0.5,
+        cy: 1.5,
+        r: 1.7,
         stops: [
-          { offset: 0, color: "rgba(255,236,180,0.40)" },
-          { offset: 0.35, color: "rgba(245,200,140,0.10)" },
-          { offset: 0.7, color: "rgba(120,53,15,0.25)" },
-          { offset: 1, color: "rgba(64,28,8,0.7)" },
+          { offset: 0, color: "rgba(64,28,8,0.7)" },
+          { offset: 0.25, color: "rgba(120,53,15,0.4)" },
+          { offset: 0.55, color: "rgba(245,200,140,0.18)" },
+          { offset: 0.85, color: "rgba(255,236,180,0.20)" },
+          { offset: 1, color: "rgba(255,236,180,0.30)" },
         ],
         blend: "multiply",
         opacity: 1,
@@ -454,15 +482,21 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
         blend: "normal",
         opacity: 1,
       },
-      // Diagonal red sweep from upper-left toward deep navy in the lower-right.
+      // Red sweep that pools out of the upper-left corner. A large off-canvas
+      // radial centred well past the top-left gives a curved fall-off across
+      // the diagonal — looser and more painterly than a ruled 135° line.
       {
-        kind: "linear",
-        angle: 135,
+        kind: "radial",
+        cx: -0.25,
+        cy: -0.25,
+        r: 1.9,
         stops: [
-          { offset: 0, color: "rgba(239,68,68,0.85)" },
-          { offset: 0.4, color: "rgba(239,68,68,0.25)" },
+          { offset: 0, color: "rgba(239,68,68,0.92)" },
+          { offset: 0.25, color: "rgba(239,68,68,0.45)" },
+          { offset: 0.5, color: "rgba(239,68,68,0.10)" },
           { offset: 0.7, color: "rgba(2,6,23,0.30)" },
-          { offset: 1, color: "rgba(2,6,23,0.85)" },
+          { offset: 0.9, color: "rgba(2,6,23,0.7)" },
+          { offset: 1, color: "rgba(2,6,23,0.92)" },
         ],
         blend: "multiply",
         opacity: 1,
@@ -543,14 +577,20 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
         blend: "screen",
         opacity: 1,
       },
-      // Deep-ocean fall-off at the bottom so the type sits on still water.
+      // Deep-ocean fall-off. Big off-canvas radial in the lower half so the
+      // dark band curves up to meet the highlight rather than running as a
+      // ruled line — closer to how light fades on actual water than a linear
+      // ramp would suggest.
       {
-        kind: "linear",
-        angle: 180,
+        kind: "radial",
+        cx: 0.5,
+        cy: 1.45,
+        r: 1.5,
         stops: [
-          { offset: 0.25, color: "rgba(8,47,73,0)" },
-          { offset: 0.65, color: "rgba(8,47,73,0.35)" },
-          { offset: 1, color: "rgba(8,47,73,0.92)" },
+          { offset: 0, color: "rgba(8,47,73,0.95)" },
+          { offset: 0.35, color: "rgba(8,47,73,0.55)" },
+          { offset: 0.7, color: "rgba(8,47,73,0.10)" },
+          { offset: 1, color: "rgba(8,47,73,0)" },
         ],
         blend: "multiply",
         opacity: 1,
@@ -2326,10 +2366,19 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                     // Smoothstep-approximating mask. The mask ramps in / out
                     // over CROSSFADE_PX with the same curve we use in canvas
                     // export, so the preview and the PNG export look identical.
+                    // CSS linear-gradient stops MUST be specified with
+                    // monotonically increasing positions, otherwise browsers
+                    // clamp out-of-order stops onto the previous position and
+                    // a smooth feather collapses into a hard edge. For the
+                    // left ramp we walk the smoothstep table in reverse so
+                    // positions go 0 → fade; the right ramp is already in
+                    // order because position = 100% − (1−t)·fade increases
+                    // monotonically with t.
                     const leftRamp = hasLeft
-                      ? CROSSFADE_STOPS_OPAQUE_TO_TRANSPARENT.map(
-                          ({ t, a }) => `rgba(0,0,0,${a}) ${(1 - t) * fade}px`
-                        ).join(", ") + ", "
+                      ? [...CROSSFADE_STOPS_OPAQUE_TO_TRANSPARENT]
+                          .reverse()
+                          .map(({ t, a }) => `rgba(0,0,0,${a}) ${(1 - t) * fade}px`)
+                          .join(", ") + ", "
                       : "rgba(0,0,0,1) 0px, ";
                     const rightRamp = hasRight
                       ? CROSSFADE_STOPS_OPAQUE_TO_TRANSPARENT.map(
