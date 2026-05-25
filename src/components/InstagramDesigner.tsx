@@ -81,6 +81,11 @@ interface Typography {
 interface TemplateDef {
   name: string;
   displayFont: string;
+  // Sans-serif face used specifically for the description paragraph. Kept
+  // separate from `bodyFont` (which now only carries the authors line) so the
+  // description always reads as a clean modern sans regardless of whether
+  // the template's body face is a serif, mono, or anything else.
+  descriptionFont: string;
   bodyFont: string;
   baseColor: string;
   tintColor: string;
@@ -100,6 +105,12 @@ interface BgImage {
   src: string;
   name: string;
   source: "upload" | "arxiv";
+  /**
+   * Whether this image participates in the carousel. Unselected images stay
+   * in the thumbnail list so the user can re-enable them without having to
+   * re-fetch from arXiv or re-upload from disk.
+   */
+  selected: boolean;
 }
 
 interface PaneText {
@@ -116,11 +127,12 @@ interface PaneText {
 
 const CANVAS_SIZE = 1080;
 const SAFE_PADDING = 88;
-// Soft cross-fade width between adjacent images. ~22% of a slot makes the
-// transition feel deliberate rather than mechanical; combined with the
-// smoothstep alpha curve below it reads as a feathered edge rather than a
-// hard ramp.
-const CROSSFADE_PX = 240;
+// Upper bound on the soft cross-fade between adjacent images. The actual
+// width is user-controlled (`crossfadePx` state slider); this constant just
+// caps the slider so a 5-pane carousel can't ask for a fade wider than a
+// pane. Combined with the smoothstep alpha curve below the blend reads as
+// a feathered photographic edge rather than a hard ramp.
+const CROSSFADE_PX_MAX = 480;
 
 /**
  * Smoothstep alpha stops used by both the CSS mask-image and the canvas
@@ -145,7 +157,7 @@ const LOGO_HEIGHT_PX = 160;
 const LOGO_MARGIN_PX = 80;
 const FONT_LOAD_TIMEOUT_MS = 4000;
 const MAX_PANES = 5;
-const MIN_PANES = 2;
+const MIN_PANES = 3;
 const DESCRIPTION_MAX_CHARS = 240;
 const FALLBACK_FONT_STACK = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
@@ -164,6 +176,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   editorial: {
     name: "Editorial",
     displayFont: "Heiti SC",
+    descriptionFont: "IBM Plex Sans",
     bodyFont: "Inter",
     baseColor: "#0a0a0a",
     tintColor: "#0d1b2a",
@@ -249,6 +262,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   minimal_mono: {
     name: "Minimal Mono",
     displayFont: "Heiti SC",
+    descriptionFont: "IBM Plex Sans",
     bodyFont: "Space Mono",
     baseColor: "#f7f7f4",
     tintColor: "#0a0a0a",
@@ -329,6 +343,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   bold_sans: {
     name: "Bold Sans",
     displayFont: "Heiti SC",
+    descriptionFont: "IBM Plex Sans",
     bodyFont: "Lora",
     baseColor: "#1a1a2e",
     tintColor: "#7c3aed",
@@ -393,6 +408,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   soft_serif: {
     name: "Soft Serif",
     displayFont: "Heiti SC",
+    descriptionFont: "IBM Plex Sans",
     bodyFont: "Source Sans 3",
     baseColor: "#f5f0e8",
     tintColor: "#7c2d12",
@@ -461,6 +477,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   punch: {
     name: "Punch",
     displayFont: "Heiti SC",
+    descriptionFont: "IBM Plex Sans",
     bodyFont: "Karla",
     baseColor: "#020617",
     tintColor: "#ef4444",
@@ -543,6 +560,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   dm_pair: {
     name: "DM Pair",
     displayFont: "Heiti SC",
+    descriptionFont: "IBM Plex Sans",
     bodyFont: "DM Sans",
     baseColor: "#0c4a6e",
     tintColor: "#082f49",
@@ -760,19 +778,44 @@ interface PaneContrast {
 }
 
 /**
+ * Returns the transition band [inner, outer] for the blur mask given a
+ * 0..1 falloff slider. inner = where the band starts to ramp; outer = where
+ * it reaches full blur. Falloff 0 = wide / gentle transition; falloff 1 =
+ * narrow / sharp transition. Default 0.5 keeps the previously-fixed geometry.
+ */
+function blurMaskBand(falloff: number): { inner: number; outer: number } {
+  const clamped = Math.max(0, Math.min(1, falloff));
+  // At falloff 0: inner=0.10, outer=0.90 (huge transition)
+  // At falloff 0.5: inner≈0.275, outer≈0.725 (matches old 25/75 area)
+  // At falloff 1: inner=0.45, outer=0.55 (sharp)
+  const halfWidth = 0.4 * (1 - clamped) + 0.05;
+  return { inner: 0.5 - halfWidth, outer: 0.5 + halfWidth };
+}
+
+/**
  * Returns the mask gradient CSS used by the backdrop-blur layer. The shape
  * matches where each template puts the text-reading dark area: peak opacity
  * at the bottom / top / middle, fading to transparent everywhere else, so the
  * blur eases in cleanly rather than cutting on/off.
+ *
+ * `falloff` controls how concentrated the transition band is — see
+ * `blurMaskBand`.
  */
-function blurMaskCss(vAlign: VAlign): string {
+function blurMaskCss(vAlign: VAlign, falloff: number): string {
+  const { inner, outer } = blurMaskBand(falloff);
+  const innerPct = (inner * 100).toFixed(1);
+  const outerPct = (outer * 100).toFixed(1);
   if (vAlign === "top") {
-    return "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%, rgba(0,0,0,0) 100%)";
+    // Solid blur at the top, falling off downward.
+    return `linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${innerPct}%, rgba(0,0,0,0) ${outerPct}%, rgba(0,0,0,0) 100%)`;
   }
   if (vAlign === "middle") {
-    return "radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0) 80%)";
+    // Radial centred at the pane's centre. The same falloff value maps to a
+    // tighter / looser drop-off in the radial direction.
+    return `radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.65) ${innerPct}%, rgba(0,0,0,0) ${outerPct}%)`;
   }
-  return "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,1) 65%, rgba(0,0,0,1) 100%)";
+  // bottom (default): clear at top, blur band at the bottom.
+  return `linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) ${innerPct}%, rgba(0,0,0,1) ${outerPct}%, rgba(0,0,0,1) 100%)`;
 }
 
 /** Mirror of blurMaskCss for canvas — same geometry, but written as
@@ -780,27 +823,29 @@ function blurMaskCss(vAlign: VAlign): string {
 function applyBlurMaskGradient(
   ctx: CanvasRenderingContext2D,
   vAlign: VAlign,
-  size: number
+  size: number,
+  falloff: number
 ) {
+  const { inner, outer } = blurMaskBand(falloff);
   ctx.globalCompositeOperation = "destination-in";
   if (vAlign === "top") {
     const g = ctx.createLinearGradient(0, 0, 0, size);
     g.addColorStop(0, "rgba(0,0,0,1)");
-    g.addColorStop(0.35, "rgba(0,0,0,1)");
-    g.addColorStop(0.75, "rgba(0,0,0,0)");
+    g.addColorStop(inner, "rgba(0,0,0,1)");
+    g.addColorStop(outer, "rgba(0,0,0,0)");
     g.addColorStop(1, "rgba(0,0,0,0)");
     ctx.fillStyle = g;
   } else if (vAlign === "middle") {
     const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size * 0.8);
     g.addColorStop(0, "rgba(0,0,0,1)");
-    g.addColorStop(0.45, "rgba(0,0,0,0.6)");
-    g.addColorStop(1, "rgba(0,0,0,0)");
+    g.addColorStop(inner, "rgba(0,0,0,0.65)");
+    g.addColorStop(outer, "rgba(0,0,0,0)");
     ctx.fillStyle = g;
   } else {
     const g = ctx.createLinearGradient(0, 0, 0, size);
     g.addColorStop(0, "rgba(0,0,0,0)");
-    g.addColorStop(0.25, "rgba(0,0,0,0)");
-    g.addColorStop(0.65, "rgba(0,0,0,1)");
+    g.addColorStop(inner, "rgba(0,0,0,0)");
+    g.addColorStop(outer, "rgba(0,0,0,1)");
     g.addColorStop(1, "rgba(0,0,0,1)");
     ctx.fillStyle = g;
   }
@@ -925,6 +970,15 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   // uses, so where the gradient darkens the most, the underlying image
   // becomes the most blurred. 0 = sharp throughout.
   const [backdropBlurPx, setBackdropBlurPx] = useState(0);
+  // Falloff of the backdrop-blur mask. 0 = blur fades over the entire pane
+  // (gentle); 1 = blur fades over a very small band (a sharp edge). Default
+  // 0.5 reproduces the previous fixed mask geometry.
+  const [blurFalloff, setBlurFalloff] = useState(0.5);
+  // Width of the crossfade between adjacent background images, in master-
+  // canvas pixels. Wider = more natural blend, narrower = more distinct.
+  // Capped server-side at 45% of a slot so the centre of each image is
+  // always at full opacity.
+  const [crossfadePx, setCrossfadePx] = useState(280);
   const [titleScale, setTitleScale] = useState(1);
   const [descriptionScale, setDescriptionScale] = useState(1);
   const [imageScale, setImageScale] = useState(1);
@@ -952,10 +1006,18 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     propsRef.current = { eyebrowText, titleText, descriptionText, authorsText, paperLink };
   }, [eyebrowText, titleText, descriptionText, authorsText, paperLink]);
 
+  // Only images flagged `selected: true` actually appear in the carousel.
+  // Unselected images stay in the thumbnail grid so the user can flip them
+  // back on without re-fetching.
+  const selectedImages = useMemo(() => images.filter((i) => i.selected), [images]);
+
   const paneCount = useMemo(() => {
-    const derived = Math.max(MIN_PANES, Math.min(MAX_PANES, images.length || MIN_PANES));
+    const derived = Math.max(
+      MIN_PANES,
+      Math.min(MAX_PANES, selectedImages.length || MIN_PANES)
+    );
     return paneCountOverride ?? derived;
-  }, [images.length, paneCountOverride]);
+  }, [selectedImages.length, paneCountOverride]);
 
   const [panes, setPanes] = useState<PaneText[]>(() =>
     Array.from({ length: MIN_PANES }, (_, i) =>
@@ -1004,13 +1066,14 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   const template = TEMPLATES[templateKey];
   const displayFont = displayFontOverride ?? template.displayFont;
   const bodyFont = bodyFontOverride ?? template.bodyFont;
+  const descriptionFont = template.descriptionFont;
 
   useEffect(() => {
     void ensureGoogleFont(displayFont, template.typography.title.weight, template.typography.title.italic);
     void ensureGoogleFont(displayFont, template.typography.eyebrow.weight, template.typography.eyebrow.italic);
-    void ensureGoogleFont(bodyFont, template.typography.description.weight, template.typography.description.italic);
+    void ensureGoogleFont(descriptionFont, template.typography.description.weight, template.typography.description.italic);
     void ensureGoogleFont(bodyFont, template.typography.authors.weight, template.typography.authors.italic);
-  }, [displayFont, bodyFont, template]);
+  }, [displayFont, bodyFont, descriptionFont, template]);
 
   // arXiv detection from paperLink. When the paper changes, clear previously
   // auto-fetched figures so the carousel doesn't keep stale plots from another
@@ -1055,6 +1118,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
           src,
           name: file.name,
           source: "upload",
+          selected: true,
         });
       } catch {
         // ignore failures, continue
@@ -1128,6 +1192,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
           src,
           name: f.filename,
           source: "arxiv",
+          selected: true,
         });
       }
       if (newImages.length === 0) {
@@ -1167,6 +1232,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
         src: cropped,
         name: `${pdf.filename.replace(/\.pdf$/i, "")}-top-half.png`,
         source: "arxiv",
+        selected: true,
       };
       setImages((prev) => (prepend ? [image, ...prev] : [...prev, image]));
       setArxivInfo("Added the top half of page 1 from the paper PDF.");
@@ -1305,19 +1371,20 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     ctx.fillRect(0, 0, SAMPLE_SIZE, SAMPLE_SIZE);
 
     // Background images — render the full master at sample-scale, then crop
-    // this pane's section, mirroring the export pipeline.
-    if (images.length > 0) {
+    // this pane's section, mirroring the export pipeline. Unselected images
+    // are skipped.
+    if (selectedImages.length > 0) {
       const master = document.createElement("canvas");
       master.width = SAMPLE_SIZE * paneCount;
       master.height = SAMPLE_SIZE;
       const mctx = master.getContext("2d");
       if (mctx) {
-        const loaded = await Promise.all(images.map((i) => loadImage(i.src).catch(() => null)));
+        const loaded = await Promise.all(selectedImages.map((i) => loadImage(i.src).catch(() => null)));
         loaded.forEach((img, i) => {
           if (!img) return;
-          const slot = paneSlotForImage(i, images.length, paneCount);
+          const slot = paneSlotForImage(i, selectedImages.length, paneCount);
           drawCoverImage(mctx, img, slot.left * scale, 0, slot.width * scale, SAMPLE_SIZE);
-          applyHorizontalCrossfade(mctx, slot.left * scale, slot.width * scale, i, images.length);
+          applyHorizontalCrossfade(mctx, slot.left * scale, slot.width * scale, i, selectedImages.length);
         });
         ctx.drawImage(
           master,
@@ -1487,18 +1554,18 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
     // 2. Background images — render entire master to a wide canvas, then crop this pane.
-    if (images.length > 0) {
+    if (selectedImages.length > 0) {
       const master = document.createElement("canvas");
       master.width = masterWidthPx;
       master.height = CANVAS_SIZE;
       const mctx = master.getContext("2d");
       if (mctx) {
-        const loaded = await Promise.all(images.map((img) => loadImage(img.src).catch(() => null)));
+        const loaded = await Promise.all(selectedImages.map((img) => loadImage(img.src).catch(() => null)));
         loaded.forEach((img, i) => {
           if (!img) return;
-          const slot = paneSlotForImage(i, images.length, paneCount);
+          const slot = paneSlotForImage(i, selectedImages.length, paneCount);
           drawCoverImage(mctx, img, slot.left, 0, slot.width, CANVAS_SIZE);
-          applyHorizontalCrossfade(mctx, slot.left, slot.width, i, images.length);
+          applyHorizontalCrossfade(mctx, slot.left, slot.width, i, selectedImages.length);
         });
         ctx.drawImage(
           master,
@@ -1541,7 +1608,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
           bctx.filter = `blur(${backdropBlurPx}px)`;
           bctx.drawImage(snapshot, 0, 0);
           bctx.filter = "none";
-          applyBlurMaskGradient(bctx, template.vAlign, CANVAS_SIZE);
+          applyBlurMaskGradient(bctx, template.vAlign, CANVAS_SIZE, blurFalloff);
           bctx.globalCompositeOperation = "source-over";
           // Paint the masked-blur back on top of the unblurred image+tint.
           ctx.drawImage(blurred, 0, 0);
@@ -1606,7 +1673,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     ctx.globalCompositeOperation = "destination-out";
     // Cap the fade at slightly less than the slot so the centre of each image
     // always reads at full opacity, even on narrow slots.
-    const fadeWidth = Math.min(CROSSFADE_PX, slotWidth * 0.45);
+    const fadeWidth = Math.min(crossfadePx, slotWidth * 0.45);
     if (imageIndex > 0) {
       // Trailing → leading edge of THIS image (its left inner edge): start
       // fully erased, ramp to opaque on the inner side. Smoothstep curve so
@@ -1723,7 +1790,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
         text: pane.description,
         style: template.typography.description,
         color: template.textColor,
-        font: bodyFont,
+        font: descriptionFont,
         scale: descriptionScale,
       });
     }
@@ -1822,7 +1889,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       },
       description: {
         style: template.typography.description,
-        font: bodyFont,
+        font: descriptionFont,
         scale: descriptionScale,
         text: pane.description,
       },
@@ -2033,8 +2100,30 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
             {images.length > 0 && (
               <div className="ig-thumb-grid">
                 {images.map((img, idx) => (
-                  <div className="ig-thumb" key={img.id}>
-                    <img src={img.src} alt={img.name} />
+                  <div
+                    className={`ig-thumb ${img.selected ? "selected" : "deselected"}`}
+                    key={img.id}
+                  >
+                    <button
+                      type="button"
+                      className="ig-thumb-toggle"
+                      onClick={() =>
+                        setImages((prev) =>
+                          prev.map((i) =>
+                            i.id === img.id ? { ...i, selected: !i.selected } : i
+                          )
+                        )
+                      }
+                      title={
+                        img.selected
+                          ? "Hide from carousel (keep in list)"
+                          : "Use in carousel"
+                      }
+                      aria-pressed={img.selected}
+                    >
+                      <img src={img.src} alt={img.name} />
+                      {!img.selected && <span className="ig-thumb-off">off</span>}
+                    </button>
                     <div className="ig-thumb-meta">
                       <span title={img.name}>{img.name}</span>
                       <span className="ig-thumb-source">{img.source}</span>
@@ -2043,7 +2132,10 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                       <button onClick={() => moveImage(img.id, -1)} disabled={idx === 0}>
                         ←
                       </button>
-                      <button onClick={() => moveImage(img.id, 1)} disabled={idx === images.length - 1}>
+                      <button
+                        onClick={() => moveImage(img.id, 1)}
+                        disabled={idx === images.length - 1}
+                      >
                         →
                       </button>
                       <button className="ig-thumb-remove" onClick={() => removeImage(img.id)}>
@@ -2124,6 +2216,32 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                 onChange={(e) => setBackdropBlurPx(Number(e.target.value))}
               />
               <strong>{backdropBlurPx}px</strong>
+            </div>
+            <div className="ig-slider-row">
+              <span>Blur falloff</span>
+              <input
+                type="range"
+                min={0}
+                max={1}
+                step={0.01}
+                value={blurFalloff}
+                onChange={(e) => setBlurFalloff(Number(e.target.value))}
+                title="0 = blur fades across the whole pane (gentle); 1 = sharp edge"
+              />
+              <strong>{Math.round(blurFalloff * 100)}%</strong>
+            </div>
+            <div className="ig-slider-row">
+              <span>Img blend</span>
+              <input
+                type="range"
+                min={40}
+                max={CROSSFADE_PX_MAX}
+                step={4}
+                value={crossfadePx}
+                onChange={(e) => setCrossfadePx(Number(e.target.value))}
+                title="Width of the soft transition between adjacent background images, in master-canvas pixels."
+              />
+              <strong>{crossfadePx}px</strong>
             </div>
           </div>
 
@@ -2358,11 +2476,11 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                 {/* Image layer — each image lives in a slot-sized clipping div so transform scale
                     visually zooms within the slot without breaking the cross-fade mask. */}
                 <div className="ig-image-layer">
-                  {images.map((img, i) => {
-                    const slot = paneSlotForImage(i, images.length, paneCount);
-                    const fade = Math.min(CROSSFADE_PX, slot.width * 0.45);
+                  {selectedImages.map((img, i) => {
+                    const slot = paneSlotForImage(i, selectedImages.length, paneCount);
+                    const fade = Math.min(crossfadePx, slot.width * 0.45);
                     const hasLeft = i > 0;
-                    const hasRight = i < images.length - 1;
+                    const hasRight = i < selectedImages.length - 1;
                     // Smoothstep-approximating mask. The mask ramps in / out
                     // over CROSSFADE_PX with the same curve we use in canvas
                     // export, so the preview and the PNG export look identical.
@@ -2433,8 +2551,8 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                     style={{
                       backdropFilter: `blur(${backdropBlurPx}px)`,
                       WebkitBackdropFilter: `blur(${backdropBlurPx}px)`,
-                      maskImage: blurMaskCss(template.vAlign),
-                      WebkitMaskImage: blurMaskCss(template.vAlign),
+                      maskImage: blurMaskCss(template.vAlign, blurFalloff),
+                      WebkitMaskImage: blurMaskCss(template.vAlign, blurFalloff),
                     }}
                   />
                 )}
@@ -2459,6 +2577,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                     paneCount={paneCount}
                     template={template}
                     displayFont={displayFont}
+                    descriptionFont={descriptionFont}
                     bodyFont={bodyFont}
                     titleScale={titleScale}
                     descriptionScale={descriptionScale}
@@ -2500,6 +2619,7 @@ interface PanePreviewProps {
   paneCount: number;
   template: TemplateDef;
   displayFont: string;
+  descriptionFont: string;
   bodyFont: string;
   titleScale: number;
   descriptionScale: number;
@@ -2515,6 +2635,7 @@ function PanePreview({
   paneIndex,
   template,
   displayFont,
+  descriptionFont,
   bodyFont,
   titleScale,
   descriptionScale,
@@ -2647,7 +2768,7 @@ function PanePreview({
             style={blockStyle(
               template.typography.description,
               template.textColor,
-              bodyFont,
+              descriptionFont,
               descriptionScale,
               marginFor("description")
             )}
