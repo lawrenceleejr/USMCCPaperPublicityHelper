@@ -2,7 +2,13 @@ name: Build and Test
 
 on:
   push:
-    branches: [main]
+    # main: keep building the integration branch.
+    # claude/**: Claude pushes development work here; building on every push
+    #   surfaces compile/test/bundle regressions immediately without needing
+    #   a PR.
+    branches:
+      - main
+      - 'claude/**'
   pull_request:
   workflow_dispatch:
 
