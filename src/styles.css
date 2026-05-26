@@ -903,6 +903,14 @@ button:disabled {
   outline-offset: -2px;
 }
 
+.ig-pane-text {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .ig-pane-guide {
   position: absolute;
   top: 0;
