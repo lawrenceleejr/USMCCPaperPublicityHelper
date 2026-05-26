@@ -132,7 +132,7 @@ const SAFE_PADDING = 88;
 // caps the slider so a 5-pane carousel can't ask for a fade wider than a
 // pane. Combined with the smoothstep alpha curve below the blend reads as
 // a feathered photographic edge rather than a hard ramp.
-const CROSSFADE_PX_MAX = 480;
+const CROSSFADE_PX_MAX = 800;
 
 /**
  * Smoothstep alpha stops used by both the CSS mask-image and the canvas
@@ -176,7 +176,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
   editorial: {
     name: "Editorial",
     displayFont: "Heiti SC",
-    descriptionFont: "IBM Plex Sans",
+    descriptionFont: "Inter",
     bodyFont: "Inter",
     baseColor: "#0a0a0a",
     tintColor: "#0d1b2a",
@@ -255,14 +255,14 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     typography: {
       eyebrow: { fontSize: 30, lineHeight: 1.2, letterSpacing: 6, weight: 600, uppercase: true },
       title: { fontSize: 92, lineHeight: 1.04, letterSpacing: -1, weight: 700 },
-      description: { fontSize: 38, lineHeight: 1.35, letterSpacing: 0, weight: 400 },
+      description: { fontSize: 38, lineHeight: 1.35, letterSpacing: 0.5, weight: 500 },
       authors: { fontSize: 28, lineHeight: 1.4, letterSpacing: 0.5, weight: 500, italic: true },
     },
   },
   minimal_mono: {
     name: "Minimal Mono",
     displayFont: "Heiti SC",
-    descriptionFont: "IBM Plex Sans",
+    descriptionFont: "Inter",
     bodyFont: "Space Mono",
     baseColor: "#f7f7f4",
     tintColor: "#0a0a0a",
@@ -336,14 +336,14 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     typography: {
       eyebrow: { fontSize: 26, lineHeight: 1.2, letterSpacing: 8, weight: 600, uppercase: true },
       title: { fontSize: 80, lineHeight: 1.06, letterSpacing: -1.5, weight: 700 },
-      description: { fontSize: 32, lineHeight: 1.45, letterSpacing: 0, weight: 400 },
+      description: { fontSize: 32, lineHeight: 1.4, letterSpacing: 0.5, weight: 500 },
       authors: { fontSize: 24, lineHeight: 1.4, letterSpacing: 0.5, weight: 400 },
     },
   },
   bold_sans: {
     name: "Bold Sans",
     displayFont: "Heiti SC",
-    descriptionFont: "IBM Plex Sans",
+    descriptionFont: "Inter",
     bodyFont: "Lora",
     baseColor: "#1a1a2e",
     // Multiply with a deeper purple so even white-page paper figures darken
@@ -409,14 +409,14 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     typography: {
       eyebrow: { fontSize: 30, lineHeight: 1.2, letterSpacing: 10, weight: 700, uppercase: true },
       title: { fontSize: 100, lineHeight: 1.0, letterSpacing: -1, weight: 700 },
-      description: { fontSize: 36, lineHeight: 1.4, letterSpacing: 0, weight: 400 },
+      description: { fontSize: 36, lineHeight: 1.4, letterSpacing: 0.5, weight: 500 },
       authors: { fontSize: 28, lineHeight: 1.4, letterSpacing: 1, weight: 500, italic: true },
     },
   },
   soft_serif: {
     name: "Soft Serif",
     displayFont: "Heiti SC",
-    descriptionFont: "IBM Plex Sans",
+    descriptionFont: "Inter",
     bodyFont: "Source Sans 3",
     baseColor: "#f5f0e8",
     tintColor: "#7c2d12",
@@ -478,14 +478,14 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     typography: {
       eyebrow: { fontSize: 26, lineHeight: 1.2, letterSpacing: 5, weight: 600, uppercase: true },
       title: { fontSize: 108, lineHeight: 1.0, letterSpacing: -0.5, weight: 500 },
-      description: { fontSize: 34, lineHeight: 1.4, letterSpacing: 0, weight: 400 },
+      description: { fontSize: 34, lineHeight: 1.4, letterSpacing: 0.5, weight: 500 },
       authors: { fontSize: 28, lineHeight: 1.4, letterSpacing: 0.5, weight: 500, italic: true },
     },
   },
   punch: {
     name: "Punch",
     displayFont: "Heiti SC",
-    descriptionFont: "IBM Plex Sans",
+    descriptionFont: "Inter",
     bodyFont: "Karla",
     baseColor: "#020617",
     tintColor: "#ef4444",
@@ -561,14 +561,14 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     typography: {
       eyebrow: { fontSize: 32, lineHeight: 1.2, letterSpacing: 8, weight: 700, uppercase: true },
       title: { fontSize: 140, lineHeight: 0.92, letterSpacing: 1, weight: 400 },
-      description: { fontSize: 32, lineHeight: 1.4, letterSpacing: 0, weight: 400 },
+      description: { fontSize: 32, lineHeight: 1.4, letterSpacing: 0.5, weight: 500 },
       authors: { fontSize: 26, lineHeight: 1.4, letterSpacing: 0.5, weight: 500 },
     },
   },
   dm_pair: {
     name: "DM Pair",
     displayFont: "Heiti SC",
-    descriptionFont: "IBM Plex Sans",
+    descriptionFont: "Inter",
     bodyFont: "DM Sans",
     baseColor: "#0c4a6e",
     tintColor: "#082f49",
@@ -643,7 +643,7 @@ const TEMPLATES: Record<TemplateKey, TemplateDef> = {
     typography: {
       eyebrow: { fontSize: 26, lineHeight: 1.2, letterSpacing: 4, weight: 500, uppercase: true },
       title: { fontSize: 96, lineHeight: 1.05, letterSpacing: -0.5, weight: 400 },
-      description: { fontSize: 36, lineHeight: 1.4, letterSpacing: 0, weight: 400 },
+      description: { fontSize: 36, lineHeight: 1.4, letterSpacing: 0.5, weight: 500 },
       authors: { fontSize: 28, lineHeight: 1.4, letterSpacing: 0.5, weight: 500 },
     },
   },
@@ -1375,6 +1375,11 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     ctx.fillStyle = color;
     // Letter-spacing on Canvas2D is supported in modern WebKit / Chromium.
     (ctx as unknown as { letterSpacing?: string }).letterSpacing = `${block.letterSpacing}px`;
+    // Enable proper OpenType kerning so the exported PNG matches the high-end
+    // typography of the HTML preview (where .ig-pane-text applies the same
+    // features in CSS). Without this Canvas2D defaults to "auto" which some
+    // engines treat as "off".
+    (ctx as unknown as { fontKerning?: string }).fontKerning = "normal";
     return size;
   }
 
@@ -2233,7 +2238,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
               <span>Tint</span>
               <Slider
                 min={0}
-                max={1.5}
+                max={2}
                 step={0.05}
                 value={tintStrength}
                 defaultValue={1}
