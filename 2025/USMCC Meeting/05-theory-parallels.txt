@@ -1,0 +1,858 @@
+# Theory: Parallels
+
+and [INAUDIBLE] tell us about towards realistic predictions for weak bosons as part of the muon.
+Thank you very much. Uh, thank you for the invitation. And I do have two sides.
+So just poke me and tell me that I'm going too late, and I'll just stop.
+Um, okay. I'm really happy to finally be at one of the US muon collider meetings.
+I've been working on the on collider stuff and in the context of, uh, PDFs and just, uh, 2 to 2 processes for a while.
+So I'm actually happy to share some of the stuff that some is old, some of you, um, but it's built over a period of time and,
+um, information and ideas and, uh, the, the big picture is this, which I think for, uh, actually quick question.
+Can you in the back here so you can hear me are great.
+Um, this is a picture that I literally stole from Peskin and Schroeder from the, uh, the cover of the his textbook.
+Um, he was actually happy that I did, um, and and the the big idea of my, uh, my program.
+What we're trying to do is to realize at the end of a four consequence, uh, quantum field theory.
+Gauge theory. And it's this picture and this idea that physical particles, physical muons, electrons,
+are dressed in the sense that that means that they they have a bit of fuzziness inside them that,
+you know, quantum mechanics says that if you have the same, you know, quantum numbers, you know,
+that that the what you observed is a collection is a linear combinations of eigenstates.
+Um, special relativity says that if you have enough energy, some of these more heavier states can be populated into reality.
+And so the the idea is, uh, you know, muons carry weak gauge charges, like the electron, like quarks.
+And so therefore, at sufficiently high energies, w neutrino pairs are populated in element, you know, in physical particles.
+And this is the core idea behind the effective approximation, all that stuff.
+Um, the tricky thing is, unlike QED and QCD, electric uh, sectors spontaneously broken.
+What does that mean? It means that they have a mass and these are the vacuum expectation value.
+And therefore you know, these these you need energy star populated.
+So the the ultra open question that we actually haven't seen it, this goes back to oh when a new low was seen last night.
+Is that is is it actually true.
+Is there some hard scattering scale a collision scale above which massive Z bosons behave like masses, photons, masses, gluons.
+You know, electro symmetry breaking is broken. It's not going to be restored unless you get to a higher temperature.
+But it can behave and act cinematically like photons and gluons.
+And so the question is whether or not this is actually there.
+Um, it's kind of funny because we have to gently stumbled on to some evidence, uh, that the hard, scattered scale might be at 1 or 2 TeV.
+Um, and I think, you know, this this is a I think many people on these posit, uh, been seen by many people.
+Uh, you know, I, I want to give some context to the plot. And so what I'm showing, for example,
+is a cross section as a function of collider energy for s channel processes and their vector boson scattering analogies.
+And so the, the dashed lines going down are the S channel diagrams.
+I collectively just call them s channel. And those that are rising are vector boson scattering.
+And so you have single Higgs production, Z Higgs, WW Higgs Z.z.
+And you see this, uh, trend that eventually the scattering rate cross section for vector boson scattering is going to,
+uh, dominate and exceed the scattering rate for channel processes.
+And this is, uh, now understood. Well, this is well understood.
+If you look at these sort of vector boson like topologies, there are more final state lays.
+And so what does that mean? It means that there are more propagators with momentum flowing.
+And so if you do this phase space integration over the propagators, you're generating these logarithms.
+And the idea is that if you go to a larger collider energies, you're getting a larger hard scale scale, uh, in very mass scale.
+And so you don't go like one over X, you go like log of the very mass scale.
+So at some point you just wrap it up and the increased space means the collinear, uh,
+emissions of W and Z is compensated for the, uh, we couplings, the increase of couplings.
+So this is known I mean, this is a this is stuff back from the 80s and through the 90s and 2000.
+There are many papers by the Wisconsins, by the Michigans, by the Brookhaven,
+by the companies that had anecdotal evidence for their individual process.
+But now we have resources. We have the Belgian server.
+Serves a CMS customer. Um, so we we just through processing power.
+And what did we do? We looked at cross section as Funtion clutter energy for top production or RTC gigs.
+And again we saw this this trend. You know there there are typos on try boson.
+Um I'm not sure if the for boson production actually made it to the paper.
+I don't think so because we've got some instabilities. Uh, here's a charge, you know, for production.
+Uh, just for reference. And, uh, here's a single plus Z to show that this isn't just standard model.
+Strict standard model, you know, simple, uh, simpler extensions, well known extensions that,
+um, have this behavior to, you know, what we had, what we were able to say, you know,
+rather, um, rather broadly is, uh, you know, there is this universal trend, you know,
+there's evidence for trend that vector boson scatter rates will always exceed as channel rates.
+Um, and so, you know, we we we got this we, we had all of these results.
+And then the question is, was this obvious? And I'm sure there's a very clever person there, clever people.
+Chris Melnikov. Uh, apparently this is a very obvious term, as I learned a few weeks ago.
+Uh, but it wasn't to me. Um, I'm not smart enough.
+Uh, but there is intuition and it goes back to a prestigious paper and the, the, the, the conjecture that we that formed up,
+that formed at the end of the day was that this increasing vector boson scattering rate,
+this is a manifestation of the growing photonic content that we, uh, we, we know in, uh, the renormalization program of the Standard Model.
+You. So. Okay. What does that mean? How do we how do we actually support evidence for this conjecture?
+And so the idea was to crudely compare the scatter rates for your favorite final state by
+trying to write your vector boson scatter cross-section in terms of the original process.
+And this way you can just take a ratio and say, if this picture is larger than something, then it works out.
+Um, and so, you know, uh, because we know kinematics and dimensional analysis,
+we just kind of estimated that the mass channel process, like phase space closure over the channel propagator.
+We assume that we are well beyond the WS mass. And it looks like that.
+So, um, f is the invariant mass of the your favorite final state with cuts without cuts, whatever you want to do.
+For the vector scanner process. Again, we wanted to just do this crude approximation.
+So we estimated the scanner rates using a essentially the Z PDFs.
+And so the differential scattering will look like the PDFs here.
+You know if we go back to the vector topology you see inside this big process, there's a smaller sub process that looks like a 2 to 1 scattering.
+So we just treated that like two and scattering. Uh.
+And we, we, we just kind of massaged things and assumed that the WWE and mass was still larger than the mass and all that stuff.
+And then we just plugged in things and made sure that we introduced enough factors so that we can expect as expressed,
+the factor wasn't scattered rate in terms of the s kind of right. So we do we just multiply two divided by factors of one.
+Um, what we do for QCD uh, to gauge uh gauge theory.
+Uh, for masses uh masses gauge theory is that the PDFs are largest when the energy fraction carried by the the vector boson is small,
+it's the energy itself is large, but the relative energy, the fraction is small.
+And so you can just take the, the the crude approximation, the low x uh, small z limit.
+And this is the PDFs that we plugged into there.
+Um, what's kind of stupid is that if you plug this into this formula, it actually is a solvable integral like you keep running in Mathematica.
+It's not expected that. And like, oh, you got an analytic stuff.
+It looks messy. Um, but it's solvable if you, you make this assumption that the scattered mass is quite large and it looks like this.
+And so what does this say?
+It's saying that vector grows on scattered rate becomes larger than the channel rate when you're hard scattering rate and you're
+invariant or on term when the collider energy your w mass and the hard scattering scale that that you're interested in obeys is sort of,
+uh, formula. Um, this is just a naive, crude approximation.
+But what was really surprising is that it worked to the 10% level.
+Now order magnitude. That's great. You know, uh, factor of uh, 100 is it's not ideal, but we were able to estimate.
+Clearly when this crossover points to the 10% level, and this actually causes more problems than we anticipated.
+Because essentially we're saying that the naive approximation of the vector presence scattering use,
+you know, trying to model a vector boson, scattering the full matrix only with PDFs.
+It works too well. So then the scientists in us, you know, we remember chatting with Fargo.
+We were just like, this works too. Well, it's it's no longer an accident, no longer coincidence.
+And so what did we do? We actually implement started implementing this into mad graph.
+So, uh, since, uh, 2000, you have something available at lowest order.
+Wizard. Congrats to them. They finally have the paper out.
+I know they've been pushing it for a while. It's just a people power and all that stuff.
+And so the the factorization formula that we use is very similar to to what we see for the collisions.
+And that's intentional there where we're trying to make this parallel, um, and that you have muons colliding to your favorite funnel data.
+So it looks like that and it's inclusive. So you assume that you're just includes respect to these spectators.
+And so just one P to the hard scattered scale. Plus you have your uncertainties.
+And if you actually expand this and go through your favorite textbook and um, collider physics, uh,
+our Phillips, for example, uh, you start recognizing the, the you have the face based integrals.
+These are convolutions or the PDFs and the heart, uh, scattering.
+Major tournament leading order. You have some perturbative parallel corrections because the PDEs are analytic.
+You can you know, it's the the weak theory. So they're perturbative.
+You can calculate them, but you're still doing things in the collinear approximation.
+And then there's the stuff because we're only working at leading order.
+And that's fine. You know it's it's the electroweak theory. We don't expect to have to go to next to leading order electroweak theory for Collider.
+That doesn't exist yet. Um, when it exists, maybe we'll be interested.
+Um, I was into um, so here here's an example.
+You know, here's a Higgs production, uh, with the vector was on fusion, uh,
+summing over all polarizations of your favorite processes, uh, as a function collider energy.
+So w h gamma age double two, Higgs is three, Higgs is four, Higgs is top production.
+And, uh, there are many, many more plots. The money which actually got us, uh, which which I spent way too much time thinking about, uh, was this.
+And so here we're considering, for example, longitudinal scattering into Higgs.
+It turns out that the Higgs production, um, you plus B minus or, uh, new equations technically is what we did.
+It's at it's dominated at like the 90% level or 99 and 95% level by which, you know, scattering.
+So we can essentially ignore the transverse contribution here.
+And so, uh, for, for ignore this top curve up here, what I want to draw your attention is the, the lower curve.
+So the saga's line is I'm sorry, this is the invariant mass of the di Higgs system,
+uh, which by momentum conservation is the number of mass of the system.
+And the solid line here is the full matrix element.
+That's the correct answer. The dashed line.
+That's the the using the PDF picture.
+And, you know, a larger bird mass is bang on.
+And then when you get to, uh, lower and error masses, you get this discrepancy from having high two handed high differential cards.
+We, we we took things further and we were really, really we we couldn't quite figure this out.
+And then we had the really silly idea. Uh, okay. Suppose it's really tied to the massiveness of and sees, um, how am I with time?
+Two minutes. All right. Um, if it's really tied to the massiveness of these, uh, then, you know, let's just reduce the bad.
+We let's, you know, this upper curve.
+We just took the that divided by a factor of ten and systematically changed, uh, couplings and all that stuff and that that discrepancy disappeared.
+So the takeaway was that the disagreement between the picture and the information was tied to these masses,
+and this was sort of an accidental, uh, um, evidence.
+And so what we, you know, and then I had my kid, I disappeared for a couple of years, hemmed and hawed, walked back and forth ages and ages,
+and had a fun thought with, uh, you know, who was just walking around, um, that maybe maybe it really or these power frictions.
+And so what what do I mean? When you derive these PDFs, you're doing the leading log approximation,
+but they're, you know, you're you're doing a linear expansion in the opening angle.
+And so there are these order one terms if you include the four leading powers.
+So this would be. To get back at some.
+Okay. Okay. Um. And the idea was to keep track of these extra terms.
+Um, the unexpected results. Um, is, uh, introducing these extra terms.
+This causes all kinds of pathologies. Like things went to [INAUDIBLE], the PDFs went to negative PDFs at leading order.
+Are positive definite by construction. So the fact that things were going negative, this is telling us that we're getting into kinematic regimes that,
+um, we're unphysical, such as we're violating the assumptions that the produce vector boson was on show.
+We were finding out that the if you had poor choices at the cutoff scale, you're actually taking yourself out of the collinear limit.
+And so the point is that we, we we turned this on its head.
+We, you know, we consider these sort of corrections to be toxic. You want them to be zero.
+And if you want them to be negligible then that forces you to a well-defined kinematic regime.
+And version two, uh, long story short, is that we got it bang on within 10%.
+So, uh, here are some more plots. Here's some more plots.
+Um, and the results suggest the following conjecture. When, uh, initial state vector boson carries a large part, uh, energy in the proton,
+etc. mass frame when it carries a small relative pt uh relative to its parent, and when the the the mental variables are comparable to hard process,
+it seems that we're actually seen in our calculations, finally,
+that full achievable processes can be decomposed into fragmentation functions and in other words, factorized subprocesses.
+Um, there there are many things, you know, the to to show further evidence.
+And so the final slide essentially in my talk is that while there are many challenging tasks,
+uh, remain, there's no clear roadmap for achieving fully differential,
+fully exclusive simulation Monte Carlo simulations that we're so familiar with that you only see, um,
+at least at lowest order, because we the PDFs are well known and people have been working on these for a while.
+The the hard matrix elements, I think this is now under control.
+So this is the new stuff. Uh, we're missing a full, complete part on shower, but I'll let you guess what my grant application is about.
+Um, but the cool thing is that it's it's like, yeah, applicable to the LHC.
+So thank you. And, well, welcome to the Pittsburgh session. Thank you.
+This was then. This is for now, actually. Okay, so we have time for a couple of questions.
+So when you do it is splitting functions, right? Um, so the final state doesn't necessarily need to be on shell.
+But then you discuss something where you, you needed the, um, the w that we're using beyond the shell that needed or so you're talking about.
+You know, if you have an interesting beyond producing a vector boson and you want to do WW scattering, uh,
+whether or not that's considered on shell, um, in the that's, uh, here, let me, let me go to the factorization formula.
+That's uh, I like that question because it's, uh, it's tricky.
+Um, by construction, you assume that it's on shell here, and that means you're doing on shell.
+You're treating it like an asymptotic state. And that's the crux of factorization, is that you're treating things like asymptotic states, masses.
+Particles are massless in the asymptotic limit. That's why there's no factorization theorem because these are not massless.
+And you know, in least in the asymptotic limit, when they're infinitely long, they or after infinite amount of time it's probably the indicates.
+That is the subtlety.
+Uh, so formally they should be treated as on shell states that the, the, the scattering scale is small compared to their lifetime.
+So under that assumption, uh, the, the impulse approximation, actually, if you go back to classical physics, um, it's on show here.
+Um, there's a bit of trickery about, uh, what's going on here.
+This, uh, the two derive things. You, uh.
+Uh, where.
+Uh, for the PBS is splitting, uh, when you do the phase based integration over the kinematics of the final state, that is actually the virtuality.
+So what you should do is keep it small so that it's that the difference between its virtuality and its mass is negligible, and that's that.
+So it's not it can be slightly off shell and but it it's your results should be robust about that.
+And the issue that the conflict that we were finding in other papers is that they were taking this factorization scale to be arbitrary, large.
+And so you're technically taking it to be not only a large but large virtuality.
+And you have an inconsistency and a breakdown of the calculation.
+That's why things that a lot of people's results couldn't match onto each other. Oh thank you.
+So one very fast comment. Oh comment.
+Order your PDF to interactive.
+I mean what's the reason I know how to deal with, uh, the I mean, the reason is that these corrections are pathological.
+I mean, it's a you're violating I mean, the fact that it goes negative, that's kind of a bit of a lock, but, um,
+but at the end of the day, things are blowing up because you're going you're taking yourself out of the linear limit.
+Um. Whether or not it's negative or positive.
+But here's an example. So this is the PDA as a function momentum fraction.
+And you see that the PDFs are actually turning on as you're closing phase space as you're getting to a smaller positive energy.
+So this is this is momentum conservation.
+But the PDFs have these higher order terms that if you include them there, they're consistently taking into account momentum conservation.
+So if you go down to small energies you don't have enough energy to produce an onshore W.
+And so what happens is it's shutting off. But because that's also when these higher order terms it doesn't stay zero.
+It goes way past zero. All right, so we should thank Richard again.
+And next speaker, for those of you who is running away.
+As I am stressed and just planners there, make sure that it's doing what it's supposed to do.
+There's also a physical pointer over here. People are like, oh, now you tell me how to get it.
+So we're ready when you are. All right. So hello everyone.
+Uh, 20, 23rd March. We had, uh, Santa Barbara.
+Uh, there was a lot of worship. And then some people, including Gentile, then, were saying things like, oh, he's not there.
+Oh, no, he's not here. He's everywhere. They're saying things like, uh, you know, these people like what?
+It feels like nuclear and and astro that they get so much money and all they do is tell them what it's.
+Worth. Whereas we put the bar up like, oh, you know, supersymmetry and extra dimensions and sort of nature and like.
+But what, like what what kind of. That's sort of like where these papers, uh, we're born is like.
+So what are these deliverables that are guaranteed for the new collider that are within the standard model and that, you know, could be very exciting?
+Uh, maybe I didn't do a good job on that. And then you can complain to me, and, uh, that's fine, but if not, then.
+Okay. So, uh. Uh, yeah, yeah.
+So, uh, I like to show this slide, uh, because I like to quote, uh, my friend Chris, uh, you know, I learned particle physics with this book.
+Uh, so say my my friend Chris, uh, sounds very good. It feels good.
+Uh, but, uh, we will use something. What's going to happen at the LHC?
+We knew that, uh, we. Like I did find something pretty much like the Higgs or the weak interaction going bananas at that one thing,
+like something was going to happen that outside guaranteed, uh, deliverable.
+And then so we find the Higgs and we cross this, uh, kind of like the questions that we had before the LHC.
+Uh, but now we have so many more questions, and it seems like the Higgs plays a central role in many of these questions.
+They they had anything to do with the electroweak symmetry breaking.
+Uh, the flavor, either you call us, they break this function.
+So, like, the Higgs is at the center of many of these questions.
+So the one obvious path for the next collider is to, you know, put the Higgs on the microscope and then study to death.
+And this is what these people have been doing.
+Uh, this, that you see this the very good paper is here showing us how the new collider will will bring down the Higgs prediction.
+Uh, the company's down to the percent of some percent level.
+Yeah. There's another another plot like that. What now? Even the invisible branching of the 21% level of precision.
+But, uh. But that's very good. That's amazing. That's awesome.
+And and ideas. What else? And I'm not saying anything new.
+Okay. So in the literature you're going to see people talking about this.
+Uh, uh, but these are electroweak, uh, is this paper by Adrien and I work with, uh, André.
+A very nice work. Uh, there's also, uh, people talk about electroweak radiation, and then you, us, uh, muon stops and things like that.
+Right? So, uh, I just want I want to add a couple more, uh, to this list and, uh, let's see, let's see.
+So for this first one, this, um, this is a little trivial, what we say here, but, uh,
+let's bear with me and then maybe you get ideas to how to, uh, how to do this better.
+Okay. So so we just had, uh, we just had, uh, talk about this splitting functions and how from a particular initial state,
+you can have any other, uh, initial state.
+So the means that they do that. Right? It's it's split, split, split.
+And you can have. So then the initial state of uh, uh, the gauge bosons, maybe some of you are not, um, familiar with this, but, uh, yeah.
+Like this. Do a bit. This would be like the photon contents of the muon beam.
+Uh, w, uh, gauge bosons here, they dominate when, uh, x is small.
+Yeah. Uh, and then but then there's, there's two and one is the dominate with X is is large or approaches uh,
+one which is of course the muon content of the muon beam and then the neutrino content of the beam.
+Because, uh, to get a neutrino, you just need one split time and that's it you already got into.
+So this component is large. Uh, and here you can see the high energies.
+Then, uh, the, the neutrino content now is even, uh, larger than even the photon content.
+So it's easier to split again, the Trino than to admit the photon at this, uh, large x.
+Yeah.
+So you say some prediction of the standard model, and we ask this question of like, uh, uh, so there's this other initial states, uh, even gluons.
+Uh oh. I should have cited you. So. I think I sent you somewhere here.
+I thought you found that, huh? Yeah. So then does it go on and then hits us as well?
+Yeah. So we we ask the question.
+So what would represent a measurement of, for example, the neutrino content of the moon.
+Well that. Doesn't make sense.
+You you might argue it doesn't make sense, but we're trying to make sense of it.
+And so we did the simplest the dumbest thing that you can think of just uh, imagine do.
+So from the neutrino content of the beam, you get a process where the W is in this channel.
+And then if you have something to tag, like an electron, uh, you, you can,
+you can draw the distributions of the PT of the electron missions that rapidity,
+uh, you see things like, for example, we're calling signal, which is this is the collinear contribution of a full collinear neutrino.
+And the background is everything else.
+And uh, what we see here is that as you increase the g, meaning you are approaching one in this direction, this is happening here.
+So the all these both on induced content contributions, they, they go tiny.
+Whereas this one kind of like, uh, it decreases but not as fast.
+Yeah. So you can, you can draw a map between these distributions, but also you can, you can do it with, uh,
+fully constructible final states that assume you can construct the W and even Typekit that is a W, uh, let's say from now until three years ago.
+And then, uh, so then then then then you can fully reconstruct the final state, meaning you can know exactly what's the X.
+So you measure this final state, you know what fraction of momentum is coming from, from, from each, uh, of the initial state, right.
+Uh, so then so, I mean, you can compare rates, but you could also do with spectral spectral shapes.
+Right. And in particular for the, uh, w gamma, there's this, uh, radiation on the, the zero,
+which is, uh, an exact zero in the cross-section for some angular value here.
+And, uh, so this is how things look at their true level.
+Nicely beautiful. Three level. Uh, here we try to see how would this look?
+Uh, the glider.
+Uh, so you, you require one of the values to be within this nozzle cone, and then you reconstruct the other w with the width of the neutral vector.
+Wilson. And then, uh, go go through the center of mass of the system and measure the angle of either of the D.
+And yeah, you kind of see the zero. So it's like a couple orders of magnitude in a dip.
+So we're saying a combination of rates and this map between, uh,
+x and and so on and a combination of that and spectral features, then that corresponds to a measurement of the entropy of.
+So. So now for electric restoration.
+Um, so I noticed that and, and and said they, they showed, uh, blood flow from our paper, but that blood doesn't mean anything, really.
+So here I'm trying. I made a new plot that would hopefully mean something.
+And then again, you can yell at me if you want. And, uh, let's see what happened.
+And then this is like. So we have the idea.
+We have the they, the the intuition, uh, the notion that, uh, uh, uh, at high energies or more specifically, right at, at high temperatures,
+right in a hot universe, the heat potential does this flow from, from this shape into a shape where the symmetry is restored?
+We understand like intuitively, we can compute the the x potential and we understand this.
+But but then the question is, uh. How could we?
+How could we measure in a collider? That would be sort of like a map of that.
+I will. What? Does it make sense? Yeah. So same as the previous, uh, idea.
+Does that even make sense? Uh. Let's see. So, so the the idea is to have, like, some sort of order parameter, right?
+That, you know, when in condensed matter, that is nice order parameters that work when the temperature drops below a certain critical temperature,
+you see one phase and above you see another phase. So, uh, if you want to do this with the standard model, you need to heat up the universe.
+And we cannot do that. Right. So what can we do with a on a collider.
+So so here's where we're going back to this uh, uh, diversion distributions.
+Yeah. And, you know, showing you these are the transfer components of the the transfer polarizations of the gauge motions.
+Yeah. You did you see again the the radiation zero, uh, here in red.
+And I'm showing you that only do you know that only two, uh, polarizations of the gauge bosons and they have this, uh, symmetric shape.
+And then W Higgs, look at W Higgs, uh, and at low energies this is like uh invariant mass.
+You can think of this as invariant mass of the final state. Yeah.
+So it's low energies. Uh, clearly the energy to the gauge bosons in cross-section doesn't match with the W Higgs.
+And. But then when you go to high energies. You see that they do manage.
+Right. And we understand these, right?
+Because, uh, we understand, uh, the theory and we know that, uh, these longitudinal modes, they are coming from something like these.
+There's a vertex where this thing here is it's coming from.
+If you look at the the Higgs doublet right here, is this the charged Goldstone and this is the,
+uh, CPE or the, uh, component of the neutral, uh, component of the Higgs here.
+And whereas this transition w the Higgs is coming from, uh, the same the Goldstone down to the CB,
+uh, CB even so, it's basically so it's the gauge interaction.
+It's interaction in actual is this is that is the W connecting two members of uh, it's a two multiplied uh,
+and and because there's no like numerical coefficient here distinguishing these two, uh, what you get is exactly it's exactly the same.
+You should have the same uh, like these two transition. They should just be the same.
+Just given by the symmetry. Uh, so so this is this.
+So the fact that these two are matching is, is, in a sense,
+is a manifestation of the restoration of that symmetry that the w connecting two components of the,
+of openness to two involvements and uh, and okay, but then uh, and then,
+and then you say, well, why would the then why, why at low energies uh, doesn't happen.
+Yeah. So the polarization vector included a mode, you can think of it like this is like,
+uh, is a component that looks like a pure goldstone, but then there is,
+uh, component that has, uh, some energy dependance and it you just need to go to high enough energies to see how this,
+uh, becomes just, uh, uh, irrelevant.
+And, uh, and so that's, that's what's happening here. So but can we tag that between the components.
+Is a vector both of them. Um, maybe not. Right. Uh, so maybe, maybe we cannot measure this ratio.
+Uh, maybe we can replace that and, and have a ratio of these cross-sections inside the radiation zero region.
+So if you focus on this angular region what dominates is the longitudinal mode.
+So there is some contamination from the transport modes okay.
+But it's kind of like a proxy for uh, pure longitudinal modes, uh production.
+So maybe maybe that ratio. Tell us something about. The other day.
+Not. So these two cross-sections being different at low energies in equal at high energies.
+And that's more or less what's happening here. That maybe this I am a better version of this plot.
+Uh, well you can still improve. So this is more or less that.
+So say this is the environments of the final state w x, either Z or Higgs.
+And so you go at low energies. Now this ratio, even if it's the pure thing that we can um, measure, uh that ratio uh, is different from one.
+But then as you go to high energies,
+that ratio should match one for some reason is not matching one here is like I think I added some other amount like that.
+That's, that's I was doing this, I know this for this other mode.
+And I also know the contribution. Maybe I added those to that until I get back to you.
+But yeah, the fact that it plateaus now, it's telling you, is a manifestation of this restoration of the issue to this two transitions as you do it.
+And this is what I'm saying. So in the proxy ratio, uh, it's kind of doing the same thing.
+So when, when I say when, when you start plateauing, I say, uh, bingo.
+That's that's where the symmetry is being restored. Uh, so kind of like drawing this parallel here.
+Uh, so I think this is a little better than what we showed in the until.
+But, uh, maybe it was getting put out. So I would like to hear your suggestions to improve this.
+Uh, and that's it. Uh, yeah. So thank you.
+Thank you. So we have time for questions. Uh, okay. Yeah.
+Thank you. Wonderful. Can you go back to your this year? These these plots?
+I had one before, and not one. One before.
+Oh, okay. Yeah. I didn't figure out this and this.
+Are you my interest in this course and for the issue?
+I mean, location, should it depend on your kinematics? Means still variable.
+What do you. When you increase that? Everybody seems the same.
+Location doesn't change. What's the kind of reason for that?
+Uh, something, uh, three level delegation only depends on on charges on gay charges.
+But you the agree to itself goes to zero. And it's just that you make some approximation here.
+It must be mass somewhere. No, no, no three levels.
+It's an exact zero. And it just the charges. Yeah.
+Okay. Why do you have the approximation there? So, uh.
+Oh, wait. Uh, you know, take them off of US limits or what?
+Uh oh, wait, that's a good point. Where you as the approximation.
+So there there usually are some things. If you work in the center of mass frame, then it's fine, but it is, uh, frame dependent.
+But then it's something that you usually can reconstruct as, so it stays consistent so long as you are in the same frame.
+And it is a it's an exact cancellation. Um, essentially two antennas, two electric antennas are canceling.
+That I don't remember was approximation in this. Okay.
+Thank you. I think you said most of Idaho would.
+I don't think it's expect to. Go back to you.
+So Richard has a question. Yeah. Can you go to the where you show the Higgs potential, please?
+I'm not convinced that you're actually proving a regime in which you have restored electric symmetry, because the W's do still have mass.
+You're just in a regime in which the mass energy terms are zero are tiny or tiny that you can be.
+And that's different from being in the in the unbroken phase, because the masses are still not, are finite.
+Um, furthermore, I am unsure how well you'll be able to see this, because if you then go to your,
+uh, polarization vector expression, um, polarization vector, uh, and one more.
+Yes. Uh, so if you're dropping the mass over e terms, which are, uh,
+due to the fact that it's a gauge boson, it's been one gauge bosons have always been one gauge.
+Bosons have a longitudinal. It's just whether or not it vanishes when it's on show is, uh, is different.
+Sorry. If that's vanishing, then you have the momentum term like the goldstone.
+But neither of these are coupling to massless particles. So the question is what do you see.
+How do you observe this if it's not a coupling to quarks or leptons?
+I mean, I'm just saying when you see this, this line.
+Getting flagged with the uncertainties that you are in the regime of.
+But how do you. Do you have any thoughts on how to observe it? What do you mean?
+This is the observable, the ratio of the cross-section. So the devices are going to decay to electrons and muons.
+Oh you mean the the final states. And so then.
+But that means you're proportional to the mass and the masses are zero.
+No no no I haven't I looked into the yeah I don't know either way.
+So you stop at production level. Yeah. Yeah. You can you can see that.
+Yeah. Someone needs to do this. Guys are doing it properly.
+So, uh, they will do the decay properly. That.
+Yeah. Was there another question?
+Somebody look like they have. All right.
+So we should thank our. Look I think you can. This is not true.
+All right, so our next speaker is, uh, is a young man who is at CP3 and, uh,
+Belgium, and he's going to tell us about precision physics at the New England.
+Okay. Thanks, everyone. Um, so today I'm going to talk about precision physics at Collider.
+So I'm going to do a little bit minor revision on what it has just to say that don't care about the calculations.
+And so I think I can skip this, this page because I think I everybody knows what we are talking about here.
+We want have a such a ring. That can be the dream machine which gives us a chance to to go to the collision theories.
+And basically people are talking about this thing. So such as such a high need a machine may help us um neoplasm your madness,
+annihilation channel the direct production and also the babies and people say okay,
+the animation gives us a chance to directly probe the t the physics.
+So you have a chance to to go to go higher, go higher to test whether you have the Hubble space or the babies will scan the full, uh,
+undress spectrum and give us a chance to, uh, precisely test the standard model itself and also have some hopefully we can have some interact.
+Hence funny, funny physics. And then the question comes is how much do we need to include the higher order corrections?
+I mean, you'll actually make across, uh, corrections. So if you go back to take a look at Sasha ten TV, uh, anime, um, Miele Collider.
+So firstly, it's the hair. It gives us a hair machinery, and then the electroweak fraction becomes larger because they have such a large so-called.
+So that half log, which is log, um, your machinery square has divided by the square.
+And then you go this way. So you actually have questions become relevant in both your your signal and your background estimations.
+You know. You know, you're similar in all your simulation for the DSM and the standard model.
+So this is important. You need to take a look. And on the other side of the.
+Uh, they don't claim like such a machine is also a precision frontier.
+Of course, if you do is to aim at higher precisions. Of course, electroweak correction is your essential step.
+And then in this way the next week and next, the next leading order electric correction may not be sufficient.
+You may even want to go to higher order. So not from that leading others.
+So in both case, we'll say the electroweak correction at muon collider is just like the QCD in that video.
+Now the correction I have to IFC, which is super necessary.
+You cannot you cannot really ignore that. And by seeing this.
+So that card I'm talking about this thing. So in the QCD you know it's for the real version.
+And the real corrections there is the, uh, infrared divergence path,
+which you can read that it has evolved over absolute pause and they do cancel each other.
+And the same thing also happens in QED. Um, very fake.
+If you assume there is, uh, effective mass for the force, um, you can regulate such a call in this way.
+Log Q square divided by lambda squared.
+And when you go to the electroweak physics, because of this non-zero w mass and z mass, this uh regulator is natural.
+So you don't have to introduce the effective photon mass because that is massive.
+This massive. So you have such a, um, um, long term.
+And if you go to the kind of a classical, um, the master formula of, uh, then around the periphery,
+and this is how they write out these, uh, um, I believe they write out spell logs where a single up term for the,
+uh, for the soul that comes in this way, if they assume that, you know, all these that,
+uh, scalar productions are kind of similar at the, uh, as level you will have.
+Um, this kind of thing. Just log as divided by, uh, I'm not just square.
+And then if I do a very rough estimate, um, that. This is.
+That was all looks that this, uh, the, uh, the, uh, Soviet curve in terms of the machinery up to ten TV and the green one is a single log here.
+I ran one order of magnitude smaller, and this red one is other one, just the copy, which is hard to read person.
+However, if you take a look, for example, E plus B minus two miles up your manners, you'll see here this one is double of this one,
+a single log high where you have, uh, five point number five times, uh, 40, uh, 15 times another log T divided by u.
+This one could be at level ten.
+So if I plot out ten times single log, this dashed green curve is at the same order of double log, which means you cannot just include the single log.
+Uh, the double. Um, you should also include the single log if you really want to take a look at so that.
+And then here I want to show how much electronic corrections I've seen.
+So basically from our kind of intuition, you know, at our speeds and that's really all the quality is large.
+That's why you see here, uh, 30, uh, 50 person.
+However, you can see this one is your actual big correction is a few person is not that much large.
+But if you go to look at the differential cross-sections, this one is actually the electroweak correction.
+It's not so small. So I just want to see the electronics.
+And that cleaning order is important enough.
+I see. So if you go to the moon, father, I take a look from the paper from the, uh, the massage school.
+So this is a 3D TV machine. This is an estimation for ten TV machine.
+You will see that he serves around, like, from ten persons to almost 50% corrections from the next in the order electroweak correction.
+So that means that sink is important if you do care about your precision.
+And then here comes the question what is? If you said, if I do claim that the next reading order is important,
+it's largely because of this tool that how can we really use this approximation as a good approximation to the negative questions?
+And if they do care about such a scene expanding the VSM, can they also use this so that hope to have to improve our analysis?
+And of course if this is sort of obvious. So like shall we do the summation.
+So here is some setup we do if we care about this, this uh, pertaining to luminosity, if we care about this, uh, annihilation first.
+So why do we care that you might require some final state to be larger than 80% of the fan of the machinery so that we have this.
+This is what to about power production? Uh, we look here is for leading order.
+The orange curve is for naturally the other.
+So you will see that here in a small kitty region, you have a large cross-section of, uh, large corrections from the negative.
+The other candidate is from the real, uh, correction for the fourth energy.
+And then if you look at the ratio between this, uh, red one is for so that for the green, uh,
+orange bar is for the negative, the other it is the okay to overlap with each other here.
+Are they also this is tentative. This is relative to overlap with each other also.
+And also just that. That means the two uh the so that help can mimic the real uh the full calculation.
+And also it's capture this correct correct behavior for the scale.
+And of course it's not absolutely flat. That means if we do assume this, that was obvious.
+Love is divided by that B square. This shape this shape is from the single law.
+It doesn't work. Oh. Um, and then if I show the, uh, the, you know, a mask, uh, distribution you can see here.
+Okay. I ran out of the last of in that is orange curve is close to the ground for the full uh, nothing.
+The other is close to this. Um, so that curve at only the last bit.
+The reason is for here, this curve, this shape is because of the PDF.
+Because of the, uh, initial state radiation. That's your fault.
+If you have a full time radiation, radiate out before the heart, each happens, and that's thing.
+It's, uh, it happens for both leading order and the cleaning order.
+Uh, however, for naturally the older electrolytic crashes, there is mu mu to a tiki bar on the fourth.
+Um, there is the hard for them for the, uh, radiation, for the hard collision and for process.
+So this thing we don't have such this thing. And, uh, the other thing.
+So that is the electric. Electric. So that helps on captured that it's a virtual correction.
+It doesn't give you anything about the real correction. So that's why for this that large.
+Space for this spectrum.
+The of is not a good approximation to the real, the to the full, and that quality all their attractions only at the last a bit.
+It is good approximation. And then there's, uh, another example for production is sensing that you have that,
+that you have a ladder not with the other corrections in here because of the real, uh, because of the, uh, there's a real correction.
+And also here, I remind you this, the our ideal is that there's a scalar production between this former,
+uh, the, the former mentor of the, of the final state idol state.
+And then if there's also such kind of log.
+So that log is divided by two. Uh, love as divided by you for the 2 to 2 process.
+And here, um, you're going to see if you compare this green one with this red one because those are two different things.
+Either you included this law or you didn't include this law before the green one.
+If you are you if you include this lock for the red one, if you compare both of them versus to,
+let's say, the orange one, you will see you have to include this kind of see.
+This locks the other to mimic the the real fool in that video you actually crash.
+And then another example for the same thing is.
+If you notice here there's something I called the inductive curve, which means it's negative, but I have to follow it out in the log in the log scale.
+I had to make uh uh uh uh uh, absolute value for that.
+So that means you have negative cross-sections in the differential distributions.
+How to deal with that. One. I saw this at three a TV machine.
+It does crossover. If you, um, had it here.
+So you're okay with it? So what do you. If you have to put it in the exponential just to mimic the proper summation, you'll say, okay, in this way,
+if I do the reservation for the electric vehicle so that off I for, I will have better, uh, precision.
+However, if you go to ten the machine, you will you will see you will have to do this three summation in order to fix
+this negative cross-section in order to have some meaningful distributions.
+Otherwise you cannot really, uh, measure the negative cross-section in the distributions.
+Another example is the Higgs Higgs production.
+This is where the electronics. So the curve is not a good approximation.
+It comes this these fields um to me okay.
+So look at if you look at here this this red curve is one.
+So that curve even goes to negative. The uh orange curve is for not the in order for uh, for calculation.
+I'm not I didn't understand why they, they cannot they don't agree with each other until one day we realize,
+okay, this is the, the the these transverse momentum distribution for the large,
+uh, for the large PTZ region, the data, uh, production is you have a very large DT for the one of the D and then the other two Higgs.
+They tend to be kind of collinear to each other. Yeah.
+That is to say the Uma mass between them is small.
+Uh, in there, if you have such kind of term, the divide divided by the entire mass of this to,
+uh, to Higgs, this mass suppressed term becomes huge in that way.
+The so that curve obviously the the the diner the reigning algorithm fit you cannot
+really estimate the full and actually any other calculation from this sort of.
+Um, but I want to show you something more about that. That I really don't really have the enough time.
+I want to say. So unlike the, um, QED, there is no exact cancellation between the real and the virtual.
+Correct? Uh, corrections aside, but there is still some cancellation between.
+In this way, I would say at such a high degree in machine electronic, it's like QCD or 3D because you need to have nothing in the calculation.
+And it is still different from that because, for example, we call that high maples and radiation.
+You see here is for the tea bar production. And then um, the uh, luxury for linear order, uh, orange curve is for next leading order.
+And then you'll see this part per one is for two parts production where you have additional Z radiation.
+The wrong one is for two things for that. And you have additional Higgs, uh, radiation.
+Uh, you will see for the for this full spectrum. They are small, much, much smaller compared to the vanilla and the gradient other only.
+But you go to the, the very beginning I'll go to these bins and you can see it's kind of a huge,
+uh, signals from the um, that's the same seeing if I try to make this a.
+Yeah you are. Musk has to be lighter to have, uh, you are mass of tiki bar to be a lighter than a 50% of a machine, you'll see the same thing.
+That's the real corrections is meaningful.
+Only in here. Only in here. This is kind of a general pardon that if I applaud the GMR mass distribution, here is its annual tariff reduction.
+You will see this. Is this where you care a lot for the for the uh.
+Uh, direct productions. There is the something generated because of your initial degradation.
+You're going to say that, um, only in this range, the the and the Higgs, um, radiation makes a big correction.
+Uh, in this where in this place there is think.
+Okay. I'm terrible. It's the direct production. Most the radiation is small compared to the local.
+Okay, so the summer is here. We are thinking about such and such, uh, whose side are very cool.
+One, uh, option at CERN mountain at Fermilab. And the conclusion is the machine is cool.
+Hi all. There is actually a corrections is important and the necessary the electric vehicle.
+So that could be a good approximation only in some cases.
+And then they are larger than this log is large.
+Doing the reservation is meaningful not only to get higher precision level,
+but to fix your negative cross-sections in the tissue, uh, in the distributions.
+And also there are some other case, for example, the D six production where you have this, uh, mass suppress the term that the electroweak.
+So that comes up doesn't work well even film. And for the direct production, this, uh, heavy boson radiation is always smaller than the loops.
+Thank you. So we have time for one urgent question.
+If there is one. Everybody looks happy.
+I'll ask a third of all. Nice. Go ahead.
+Can you go back to the z h slide? Uh, sure.
+I just like as well as it has. Yeah.
+Well, you. You. Well, okay. I'm sorry.
+Yeah. You're here. Okay, so you're saying that the electric ceuticals, uh uh uh uh uh, approximation is not a good approximation in this.
+Completely in this region.
+Now, I wonder, how can you say what makes you say that and not the reverse that the next two leading order result is the one that's not trustworthy?
+The reason why I say this is that when you do the X, when you use this to recall, this is an exponentiated term.
+So that means you're summing or a tower of contribution.
+So it's an all orders result. And so in a very particular result in a region of the kinematics the setup is more accurate.
+It is an all orders result. So my question is how do you know that it's the electric suit account factor.
+That's not a good approximation in this region and not the analytic.
+Because you you went for the argument of look how large the key corrections are in typos.
+And but that's a great example of a kinematic configuration in which it's the QC
+predictions are not good because of a special uh for reasons zeros for example.
+So. Huh. What makes you say it's the Su to call that's wrong.
+So, you know, you said then that cleaning of food and actually the other, uh, corrections there, uh, you know,
+there are some long term that facility of, uh, there are some other terms that use a higher power, uh, constant term.
+So by seeing this sort of whole field, I'm not seeing the solar system.
+All I'm saying that these constant terms, other that we call it mass stress term,
+is also like so there be it there is some cancellation between the so that that's why you you by by taking only the the southern half.
+You don't take the full contribution to this uh, full calculation.
+Um, yeah. It actually you don't know you already.
+If you do a nasty calculation and you say, okay, you don't agree with the, uh,
+the experimental result measurement, all of it, obviously it gives you something negative, not not reasonable.
+And if you could, uh, you have double check that everything is correct.
+You have two things to do. Why is this kind of, uh, possible that the, um, calculated lauter logs are uncorrelated, and that's not linear.
+Other may be the game changer. It gives you a better correction.
+Or maybe there's, you know, this, uh, this, uh, that the constant terms the in this other games you do that for us.
+They, they try to guess why this happens.
+Uh, by this happens and it happens only in this particular, uh, kind of magical region.
+And then they also calculate very well. Also, sorry I didn't have the plot.
+We also plot is uh, uh, delta r between these uh, V and peaks and the, uh, that are between the double Higgs.
+Um, you see that this thing only happens when the two Higgs are close to each other,
+and that is the only, uh, I think that's the most possible explanation for for this,
+because you have almost a very, very small denominator in this term, and then you don't you don't really have that thing in,
+you know, that what you would you say that, uh, the higher order, higher log for the, for the solar where you get that for momentum conservation,
+you know that it very mass has to be small because they're a highly that the pair system is recoiling against a.
+Yes. Yes. That's our set. All right, so we should keep talking about this at the break.
+But let's take the younger get. Right.
+So the next speaker is Arthur Walsh from Pittsburgh.
+That's why I said it's a Pittsburgh session. Sorry, I don't know if.
+Jeffrey. Did you get the point?
+It's right, I do. Very tired.
+Okay, so we're ready. What do you want? Oh. Um. Okay. Um. Hi.
+I'm Arthur, um, from user Pittsburgh. I'm going to talk about this article, production of milk by the reporting of this tall, unmanned and cooking.
+So our motivation to look like higher part of the economy on a platter is very simple.
+If we look at the time when we see that, uh,
+a photo can be it from a laptop and the phone home can split into cars and car can further radiate had grew up.
+So in this way we can produce other car conclusions says initial state in know that's
+collider which allows all kinds of quality productions and we wonder how big they are.
+Um. And of course, our calculation is all to do with all this stuff and cleaner, simpler things.
+So I only want to focus on the hardest scattering of the quark and gluons.
+Therefore, we choose to use a higher distribution function, uh, to describe these,
+uh, initial states, which is basically the same as that for Hadron Collider.
+So we have vanilla repeat in terms of lasing functions.
+And by color looking with another PDS we can write down this uh result for factorized PDF uh at scale mu.
+And by taking that derivative with respect to the scale mean,
+we can just take a of equation which we rely on to solve for this parton distribution function.
+And this is the idea that goes into our calculation of the semi solution for that, uh, perception.
+Uh, for example, this scattering of particle A and B. So this is of them.
+And here's the results from Tala and Yama and Coconspirator.
+So as we can see, there's indeed quite a few foraging groups in the Myanmar.
+So with this PDA, I feel like to see what are the, uh, color BSM particles that we can produce.
+Uh, and Mural Collider. And here shows a complete list of all the particles that we consider in our paper.
+So we have vector like fa cups, fa stereotype car rental, car rental of author writer.
+And we know. And the divide.
+This argument has three groups. So the part in the first group have both electronic components of common z and W, and also those two carbon groups.
+And in addition to these copying the part in the same group cutoffs also to
+Latam and the particle in the third group doesn't have any electroweak coupling,
+but it covers only two cardinal gluons. So in the following I talk about one particle from each category.
+As an example, to show you what is the sensitivity from the outside of.
+Uh, so the first example would be this vector like part. So the vector like car has some model independent gauge couplings.
+And those are some model dependent couplings to uh W and B and z and top quark.
+So the model independent coupling would give you pair production.
+So we have you know navigation follow fusion and also quark annihilation and gluon fusion.
+Other, more dependent power will give you some single production. So we have this 2 to 1 versus BW, t BW to t.
+And also this we all know relation to a vector like part in the top part.
+And here shows a cross-section. So in the first call I make it as a function of the mass of the vector, like ten TV collider.
+And the second plot I show the cross-section as a function of the center mass energy.
+And so we can see that for power productions, uh, the, the middle annihilation dominates,
+which is followed by this caviar gamma fusion and quark gluon fusion.
+And we also see that there's 2 to 1 versus BW to T is also quite sizable.
+And of course, they also see the interesting feature in the second floor where the beyond dilation
+channel decrease with respect to energy because they typically scale up one over s.
+Well, for the part of initiated process, the increase because they go as long as.
+So with this first section I would like to see what's the sensitivity.
+So the case, however,
+where I'll be looking at is this tend to be which is effectively background free because of the clean environment in On the outsider.
+So it applies institution comes in some tag efficiencies and here shows the sensitivity.
+And it choose to use five and 15 events as our benchmark for this, uh, for execution and discovery.
+So it shows the centrality ends up playing a match versus call playing, which is this bwt.
+Uh, vertex. So this vertical line is from power production.
+Visualize that half of this entire mass energy. Now these curves are from single production.
+So as we can see, uh, on Collider does a much better job than having me ask for this simple and first example of Vector Park.
+So the second example would be a more interesting scalar natural cart.
+So the scalar laptop car also have some model independent gauge coupling.
+So what's interesting about this is its coupling to uh, to uh, that um, and the part.
+So this would open up a new channel email nomination with a double insertion this vertex.
+So now power production will also give you some sensitivity on this comes in London.
+And of course this also gives us a very interesting single production.
+Very run of the mill radiates a quark, then collide with another mule to give you this little quark.
+And here shows a cross-section. So again we see that for power production the organization dominates.
+Well, we also find this to the single production, uh, this quark.
+And then you go to a lot of parts, quite sizable. And again I like to see what's a sensitivity.
+So to catch how you're looking at is this, that top quark that is a lantern on the quark supplies institution, cousin tiny efficiency.
+And here shows a sensitivity for power production and a single production, respectively.
+So for power production, we see that there is an over turn in the sensitivity curve.
+And this is because in this region, the C channel and S channel, uh, I can interfere destructively, which would hurt your sensitivity a bit.
+But overall you see that the collider has a much better sensitivity, however we are seeing.
+And here I would also like to briefly mention that to go on.
+So let's talk is, uh, fermion and co-host to Latam and gluons or this dimension of five operator and of course this will also give us,
+uh, very interesting single production here. What does that mean already?
+It's a global. That, Clive, is another move on to give you this that talk about.
+And here I'll just directly show this intuitive where we can say, you know, Collider does a much better job.
+So this is very interesting because by studying the gluon content inside of Mu, you can achieve a much better sensitivity than the Hadron Collider,
+which is to say the gluon from the muon is more useful than a glove from a proton in this case.
+Um, so that's for that to go on. So the last example would be the vector object.
+So vector octet doesn't have any electric charge. It covers all into quarks and gluons.
+And here we choose to turn on the coupling to top quark.
+So for uh production we have this Q1 fusion.
+And also this move induced gamma fusion is a top quark in the loop.
+And you can also, uh, single produce a vector octet from the radiation of the top quark.
+And here shows a cross-section.
+So for pair production we see that this, uh, you can do is to count gamma fusion have a similar size compared to a car and gluon fusion.
+So this, uh, for single production, this mirror annihilation channel is quite sizable.
+And again, I would like to estimate the sensitivity. So our signal would be this.
+Fourth. How fourth. How final. Say there a pair of top comes from the decay of a vector octet.
+So the background would be some similar diagram. But now this third call comes from the radiation of a gluon.
+So it would be good if we can just calculate the very mass of this pair of top quark, which were equal to the mass of the vector orbital,
+so that you can distinguish a single in the background, but in reality you cannot distinguish these four tops.
+So it's just like has a combinatorial mass, which means we calculate the mass of all the possible combinations of hair on top.
+And here shows uh uh uh signal versus background distribution.
+And that's we can see the signal is quite sizable and distinguishable from the type of.
+And so this, this analysis, uh, he applies amphitheater cars and tiny efficiencies.
+And here shows us sensitivity. And as you can see, the middle cleaner still gives you a much better result than a hadron collider.
+This is also very interesting because for a particle that couples only to a car can glue on,
+the muon collider can still give you a better result and a hydroplane.
+And this is because muon collider has a much cleaner environment and also higher supervised energy.
+So that's the last example. And conclusion is that for even for color particle, in many cases the outsider has a much better reach compared to ours.
+Okay. This. Well.
+Thank you. So we have time for questions. I know you said in the when you show the the four tops in the final stage.
+Yeah. And uh, because I if you look for like t t bar hits across section and something very small.
+So what what's the cross section here. The signal is, uh, blue is, uh, uh, the signal is this tiger.
+Oh, that's the environmental t yeah, yeah. The power of the attitude or t bar.
+Uh, it could be either way or some. You cannot even distinguish top end devices.
+Yeah. Why do you have a residency team?
+Oh, because that would that come from the decay of the belt where it goes?
+Uh, yeah. Yeah yeah yeah yeah, yeah.
+So it's not bad. Other questions?
+Yeah, yeah. Can you go back to the production?
+I think it was with the, the first scenario you considered and you show me the show cards and you make this,
+uh, statement effectively background free. Uh, how strong is that?
+How good is that? Because I'm thinking, you know, you you have a pair of boobs in the final state, so that is literally good bar.
+Um, and I'm sure you're posing in a very mask cut window of, uh, on the WB system to be in there,
+but I can imagine there's this pathological configuration because it's just a 2 to 2 process.
+At the end of the day, the quote is that you are miss tagging or miss reconstructing the image.
+And the bottom from one T is associated with the W from the second.
+And since that, they're essentially back to back and have different kinematics, I can imagine that there's some window that the passer cut.
+Is that really, really small or. No, we we didn't estimate the size has been.
+You have some missing energy. Uh uh, miss uh, typings mismatch.
+Yeah. Uh, yeah. But they apply some efficiency of this, uh, to this whole curve anyway.
+And just as a over magnitude estimation, a partial level.
+All right. So we should thank our three again. Thank you. Our last speaker and you know, we.
+And the winner and the clicker are there. Yeah, yeah, it's all the time.
+Okay, so the last speaker is, uh, you can go from, uh, I apologize from a big pack and Ellen and you.
+Yeah. Can you tell us about probing anomalies? Quite a couple things that have been collected.
+Go ahead. Uh, without the natural. Um.
+Well, I'm from, uh, Daniel Normal University, and, uh, now I it get back.
+Uh, I, uh, today I will show some, uh, our, uh, recent work about, uh, uh, uh, problem,
+anomalous cutting coupling item, your collider, uh, that this work, uh, corroborates what it's, uh, we are.
+And, uh, Tony. Uh, due to the, uh, uh, uh, of, uh, clearly, uh, you know, physical signals.
+So, uh, uh, okay, so I showed up, uh, where?
+Next we. Of course, we can build an even larger collider.
+Go ahead. Higher energy and discover new particles.
+But no one can guarantee. So we can do some precision measurements to discover new physics indirectly.
+Uh, how to interpret that, uh, moment to results of the direct and indirect search for, uh, for gas?
+Um, uh, of course, would differ. Uh, we have, uh, some, uh, uh.
+Resident peak. Uh, on the master script, we can use the, uh, uh, some, uh, the model, uh, the other way to use the.
+Yeah. Some model, just like sushi. And to heat up a model as well to describe the, uh, phenomena of the new particles.
+But if the, uh, heavy particle, uh, mass, uh, out of the range of the collider, uh, the deviation in the in and tells, uh, you know, the details,
+you know, shows up first so we can use the model independent way, just like some, uh, simplified models on for the effect for your theory to,
+uh, uh, describe, uh, to, uh, describe the, uh, new interaction of that model, uh, particles just like, uh, anomalous couplings in this,
+uh, uh, uh, in in the research, uh, multi-person, uh, physics, uh, is a very, uh, useful key to, uh, to the, uh, new, new, new physics.
+Uh, uh, search. There are lots of, uh, results from, uh, multiple some measurements, I thought, or see, just like,
+uh, the, the possum production and the triple symposia and, uh, both models in future are starting.
+So the arc has also been seen as a large, awesome collider.
+The muon Collider is more, uh, aligned with, uh, the, uh, large awesome, awesome Boson Collider.
+Um, it kind of shows the, uh, uh, more opportunity for foster theoreticians and, uh, experimentalists.
+Uh, just like the professor talk shows, the, uh, longitudinal lectures are very useful.
+And, uh, for more, uh, referrals under the auspices of the, the, the machine learning and, uh,
+uh, uh, optimizer social analysis, uh, or even global fit is very useful for, um, for the study.
+So it will uh, the more the high energy and the higher the luminosity will show, the more opportunities.
+The standard model if it's zero, is, uh, is very useful for the, uh, in interactors, uh, search.
+Uh, it's a bottom up approach with a general, uh, parameterizing, uh, parameter decision.
+And, uh, the if you define to operators, uh, constrained by the star model field and with uh coefficients,
+a with the inverse, the power of the, uh, you know, fitness scale lambda.
+So the, uh, the leading order of the new physics always shows that the dimension is six because it's the latest, uh uh, uh, stuff.
+Right. But in some specific case, uh, the leading order of, uh, of the device of of, uh,
+you know, physics will show shows and, uh, dimension eight, uh, numbers, of course.
+Good. Is, uh, one of the, uh, that's the specific case.
+Okay. Uh, uh, dimension eight.
+Operator. Uh, describe the by three types of, uh, operator just like, uh, ice type on t type under assault is, uh, made by the, uh,
+uh, convert, uh, uh, derivatives of text and the T types is, uh, made by the, uh, uh, fields dress and the, um, types.
+It's a mix of them. Uh, the glory could.
+Uh, could you see? It's one of the best stories.
+If it, uh, uh, it could receive. It's, uh, uh, associated with, uh, glory.
+Could feel it. The glory to that security is a natural, essential focal point field theory supported by string theory.
+And then it's, uh, uh, uh, made by the eight kinds of, uh, operator.
+Uh, I do, uh, we do some, uh, uh, study about some multi-person physics study that you can either, um,
+for the, uh, accuracy and the accuracy, uh, including with, uh, bypass process and the triple sum process.
+We put that, uh, uh, using the bypass of WW to come, come to find that, uh, it will receive us, uh, both, uh, maybe us and, uh,
+triple listen will, uh, contribute to this, you know, so we compared, uh, make up comparison of the sun should also be fun.
+Uh, the higher energy, uh, there'll be we will, uh, the contribution of, uh, maybe as it will be dominance, but, uh, below the ten TV, uh, the triple.
+So even side compared with uh, uh uh, so many in this work we concentrate on the previous process.
+So we use the some causal select device as a signal.
+Uh, you hand it, uh uh, the ability, uh uh.
+Uh. Uh, effective.
+Your theory will be, uh, use the for certain, uh, under a certain, uh, under skill.
+So we use the parallel universes to get, uh, in third bodies for our process, uh, wisdom.
+We can catch, uh, constrained, uh, uh, coefficients of the, uh, operator.
+And with the some of the rules, we can, uh, get, uh, uh, the spike, uh, it could receive code coefficients compared to the 30.
+Or see, the specifications can be improved by 2 or 3, uh, orders of magnitude two of 42.
+Uh, uh, you know, can either under buy for orders of May 3rd of the for 30 TV.
+Uh, your clients. We also.
+We also use the um, machine learning algorithm, which called, uh, this data flow, uh, local outlier factor shot from uh, was to optimize the, our,
+uh, even this such a spreadsheet as an unsupervised machine learning algorithm, uh, outcome ultimately discovered, uh, anomalies, you know, uh, uh.
+Uh model independent under operator Independent Way.
+And the results, it shows a, uh, a slightly, uh, better than traditionally.
+For the other, uh, process. The exclusive dub dub to top.
+Uh, scoring. Uh, this, uh, this, of course, has come, uh, upsets over the backgrounds and the the initial stages of the Cyprus process will, you know,
+much clearer uh, on the premium teams related articles and trains when you train them, um, make us as concentrated on the, uh, for w, uh, vertex.
+Until various processes contribute to the signal. How we can extract it.
+Uh, certain, uh, process. The machine learning helps.
+So we use the artificial neural network to, uh, extracting the software.
+Since the input variable is made up by a 14 dimensional, uh, vector.
+Uh 12. Component commands are made by the formal mentor of the charge and absence under the missing movement, under two components,
+uh, made by the flavor of the charge absence after the and after the training and, uh, data type, uh, output.
+So one variable we made, we namely,
+it's a double score which can tell us the whether the event is from uh uh w w w uh plus w minus two to the minus support process.
+Uh, from the figure we can, we can see, uh, it kind of, uh, this, uh, distinguished, uh, the sub process with, uh, w w to top down with some forces.
+After that, we can extract, uh, the certain, uh, forces, and then we used, uh,
+uh, the kind of let's go observers to just a like, uh, the signal from the bike.
+Well, um, the, uh, expected constraints are, uh, coefficients can, uh.
+We retired and on the at the 30th.
+We'll try to make, uh, the constraints. Uh, for order of magnitude stronger than those from the receipt.
+We also do the tribalism. Uh, we'll vote um, tool.
+Uh, married? Uh uh, accuracy.
+Uh, using the new, um, the auto, uh, impossible method to, uh, train travel the week.
+Uh uh uh, this process will have some, some features.
+Um. It's a big difference between, uh, between, uh, Gib Collider and uh, Mill Collider because the, um, uh,
+Collider, the, uh, the tree Travolta uh, or the or, uh, we can see the on the, uh and yeah, I know uh, yes.
+True for will be surprised, uh, because the, uh, the initial steps need, uh, uh, antiparticle, but, uh, the collider and from the si quark.
+So it will surprise. But, I mean, either we can make it, uh, more powerful.
+So this process, the, uh, come, uh, uh, of, uh, opportunity to, uh, to migrate.
+Uh, uh, it could be. See, uh, this process is only affected by the, uh, type operator.
+With some, uh, Kennametal uh, operator.
+Uh uh uh uh, of the rules. We we can't get the through the constraints.
+And the result shows the, uh, tripod and production of the mule is more sensitive to the, uh, the 889 operators for three TV.
+Uh, it will show the two orders might feel stronger than, uh, receipt and the for us 30 TV.
+It's a real the about six order of mighty strong to that receipt.
+It also quite, uh, two kinds of machine learning offering uh which, uh, uh, K-means and, uh, support, uh, support the vector machine.
+Uh, it's a tool for machine learning to optimize the, uh, even the selection strategy.
+Oh, this the, uh, uh, uh, algorithm come shows that it's a very useful tool distinguishes on the by blogs.
+So, uh, the technical detail, I want to show it here because the time and the, the last, uh, uh, pro uh, that's the work I will show you.
+It's, uh, to, uh, to, um, to find the g g currency.
+Many discovery, um, the electroweak, uh, accuracy last circle.
+I think it was, um, it's, um, some work about, uh, teachers that I received is a due to come gamma g due to think,
+um, under our, uh, other I, uh, some, uh, such as the accuracy measurement side.
+So your colleagues are using you plus me, my for government and the the, uh, this, uh, this signal will have some, uh, some, some feature, um,
+because the curiosity is notified by the, uh,
+the machine operator and the it's a have a clean signal with no done model background, but, uh, only by the background.
+Uh, is, uh, from the, uh, gamma signal.
+We are affected by the thermal background, the, uh, to look up because we kind of distinguish the,
+uh, grown chat or the contract, but so it's the there is no, uh,
+interference between the signal and the background make the more simple after the, uh, uh,
+given such you restoration strategy and, uh, uh, we can get the some we can't get the, the constraints compared to the stability.
+Uh, so receive it rc TV Collider I you has the constraints by, uh, 25%.
+Uh, and, uh, started 30 remote behind the wheel for the, uh, about the current limits on the,
+um, uh, noticed here is that the limits are, um, so, um, is the, uh, uh.
+Uh, the, uh, inverse of the, uh, it's some kind of, uh, new, new the new physics is new physics.
+Uh, so it's, uh, different views of the, uh.
+So in summary the bookseller. And this research has a lot to either couple of ways.
+These high energy state from both the USA and the independent search for new physics and the most important metrics that measure aid,
+provide a window of opportunity for indirectly a new phase II, the collider and machine learning.
+So rise upwards so you can search for new physics. Continue to unlock resource of the high level of physics.
+Thank you, thank you. So we have time for a couple of questions or comments.
+I have a quick question. Uh, going back to the partial wave analysis that you did with the, uh, the WW mechanics.
+Yeah. A quick question. Did you do the partial wave over the full amplitude?
+Did the electrons come in new new gamma, gamma come out?
+You only did it on the W2. Gamma gamma. So the process.
+Okay. But this is on the the either.
+So we can. So I think there are some energy dependent, gauge dependent terms that should vanish in the high energy limit.
+Um, but they might be floating around in there because the, uh, new mute again, the new new channel,
+there are some ESR, FSR diagrams and they cancel against the vector boson scattering channels.
+It's not uh, it turns out it's not gauge invariant, uh, at arbitrary energies.
+That's not that's not obvious. Like, you know. And I found this out like, more recently.
+Okay, so if you're in the high energy limit, you should be fine.
+Because those those that gauge dependance gets suppressed, as it turns out.
+Um, and so if you're going out to 1432, you should be fine.
+It might be something might be fun to look at and look into this investigated and get published.
+All right. We should thank the speaker again. So as a quick reminder, there's a coffee break.

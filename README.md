@@ -62,20 +62,36 @@ The distributed DMG includes `README.txt` with the same command.
 
 ## Transcript Scraper
 
-`scripts/scrape-transcripts.mjs` downloads the talk transcripts from the USMCC
-meeting recordings page (the talks are Panopto videos; the script pulls the same
+`scraper/scrape-transcripts.mjs` downloads the talk transcripts from a USMCC
+Indico recordings page (the talks are Panopto videos; the script pulls the same
 SRT captions the viewer's "Download transcript" button serves).
 
 ```bash
 npm run scrape:transcripts
-# or point it at a different Indico page / output dir:
-node scripts/scrape-transcripts.mjs <eventUrl> <outDir>
+# point it at a specific Indico page / output dir:
+node scraper/scrape-transcripts.mjs <eventUrl> <outDir>
+# write only cleaned .txt files (used for the committed transcripts below):
+node scraper/scrape-transcripts.mjs <eventUrl> <outDir> --txt-only
 ```
 
-Requires Node 18+ (uses built-in `fetch`, no extra dependencies). For each
-recording it writes a raw `.srt` and a cleaned plain-text `.txt` into
-`transcripts/` (gitignored), plus an `index.json` manifest. The `.txt` files are
-handy as source material for the publicity generator.
+Requires Node 18+ (uses built-in `fetch`, no extra dependencies). By default each
+recording is written as a raw `.srt` plus a cleaned plain-text `.txt`, with an
+`index.json` manifest; `--txt-only` skips the `.srt` and manifest. The `.txt`
+files are handy as source material for the publicity generator.
+
+### Committed transcripts
+
+Cleaned text transcripts for past events are checked in under `2025/`:
+
+- `2025/USMCC Meeting/` — [Second US Muon Collider Collaboration Meeting](https://indico.uchicago.edu/event/479/page/59-recordingslivestream)
+- `2025/USMCC School/` — [US Muon Collider School](https://indico.uchicago.edu/event/478/page/56-recordings)
+
+Regenerate them with:
+
+```bash
+node scraper/scrape-transcripts.mjs "https://indico.uchicago.edu/event/479/page/59-recordingslivestream" "2025/USMCC Meeting" --txt-only
+node scraper/scrape-transcripts.mjs "https://indico.uchicago.edu/event/478/page/56-recordings" "2025/USMCC School" --txt-only
+```
 
 ## Testing
 

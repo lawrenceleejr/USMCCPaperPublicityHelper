@@ -1,0 +1,811 @@
+# PM:  Neutrino Theory + Expermient: Parallels
+
+Uh, we'll start with, uh, Adrian Thompson from University of Northwestern.
+Uh, he will tell us about electroweak observables at the Mayo Clinic. Awesome.
+So thanks very much. I want to thank the organizers for having me. It's really nice to be able to contribute to, uh, you know, Collider Physics.
+And, uh, since I'm starting off the neutrino session, I'll tell you about one specific application or one physics target that,
+uh, you could do with neutrino neutrino beams from your collider.
+Uh, and we heard a little bit yesterday from a test and the discussion session, one of the parallels.
+You'll hear more about that in this section and, uh, in the plenary afterwards.
+So for this talk, I'll start with some physics motivation. The main character for us will be a neutrino electron scattering.
+So this has been a channel that has been, uh, kind of found its place in the history of the development of the Standard Model for a while.
+It's attractive for a few reasons. One of them is the fact that this only happens from, uh, through W and the exchange with the target electron,
+and, uh, that comes about just because of the charges of the particles involved.
+I'll also point out to you that the electrons are just, you know, leptons, they're simple objects.
+Uh, you're not dealing with E from quarks wrapped up.
+That means bound states. You're also not thinking about atomic physics,
+because we're talking about this process at energies where you can just approximate everything with time.
+So in some sense, this, uh, every level at leading order, this can be said to be a purely weak process.
+Any, uh, you know,
+funny business that could be showing up from our uncertainties about capacity or electromagnetism are going to be showing up at one level.
+And so in that sense, your null hypothesis is sort of under control.
+You expect things to be fluctuating at the percent level.
+You expect to know this very well. So this makes it for a very good microscope a very good stress test of the electroweak, uh, interactions.
+You can also parameterize your knowledge of the cross-section through these couplings that enter in the left and right couplings,
+uh, to the, uh, fermions in the Standard Model, which come from the, uh, left and right, uh, components of those fermions.
+Those, in turn depend on the quantum numbers in the Standard Model.
+And this week mixing in science where they today. So we can ask a few questions about measuring this process.
+You can parametrize. You know your sensitivity in terms of the overall couplings.
+You can also parametrize this as a measurement of sense where you.
+Another way that this, uh, channel kind of differs from other measurements of the weak mixing angle, uh, is the same kind of, uh, uh, property.
+So if you look at some other measurements, like atomic parity violation and, uh, electron proton scattering, neutrino notice,
+uh, these can be shown here along with the running of sensor data and various, um, uh, momentum transfer scales.
+And if you look at all these processes, they all involve, you know, strong in a large contributions from the strong force from electromagnetism.
+And if you kind of, uh, paint a sort of funny Venn diagram here,
+this is just to point out that electron scattering is unique in the sense that it is somewhat insulated from these other types of physics,
+and all these other forces are showing up. So that's what makes it sort of unique as a measurement of, uh, weak physics or.
+So if you want to carry out an experiment like this, you would benefit by having a flux that you understand super, super well.
+And one flux that we understand well is that neutrino flux from muon became.
+So you can imagine doing an experiment with mu plus. And you minus decays like at the muon Collider and Spa train.
+That gives you a flux of new bars, new bars and ease of use. You know this decay rate to one part in a million or so.
+So in terms of uncertainties from the decay, the lifetime, that's very much under control.
+And if you couple that again with your electron scattering experiments,
+this combination of flux and cross-section is also sort of purely weak at leading order.
+Muon decay is just driven by a charged current exchange.
+And we can look at the neutral current aspects of the cross-section that show up in this electron scattering.
+So this is the type of experiment that we like to do. Uh one one experiment that you can do to get the sensitivity to the electric picture.
+And uh, in our work, what we did is we took inspiration from a lot of the, you know, existing work that's been done on, uh,
+neutrino factories and the recent, uh, development that we're all here for it, uh, developments with the, uh, you know, one collider.
+Uh, you can take inspiration from other factories, like new song, uh, and map.
+Um, and in terms of the colliders, what we did is considered a few benchmark inspired by the ICC,
+uh, new Collider benchmarks, in addition to muon storage rings like Tristan.
+Uh, there's a lot of physics targets that you can talk about.
+Back in the early days, people certainly had a laundry list of things that they'd like to look for, like charm, physics, uh, c k matrix elements.
+Uh, but for this talk,
+I'll just focus on the electric precision aspect of neutrino scattering that will kind of emphasize why this is a nice channel to look at.
+Um, I'll also highlight something that was discussed in the parallel session, uh,
+yesterday in the discussion, the fact that if you want to think about neutrinos from a muon collider,
+one of the principal things you might want to worry about is or to be, uh,
+opportunistic about is the flux or slice of neutrinos that are passing into your detector that's surrounding the collision point.
+So this is one consideration. This slice is basically highly localized because at the energies, the muons are, you know, extremely, uh,
+that the beam divergence is extremely small because like one over the boost and the rates inside the detector are fairly appreciable,
+which can be a source of background for you, but it can also give you access to lots of, you know,
+rich, uh, type of channels and cross-sections that you might be interested in for the physics.
+But if we want to do our electron scattering experiments in this detector, this is also a really busy environment.
+It has all the beams, all the, you know, all the other, uh, tracks zipping every which way.
+And so that makes it a little bit challenging or not.
+Uh, not straightforward to, to clean your dream of physics or clean electric precision in this environment.
+So what we'd like to instead consider is a companion detector that is separated from this immediate collision point,
+separated by rock and, you know, other types of shielding, perhaps.
+Uh, so you can get rid of all the bits, but you can still, um, collect a high fluence of neutrinos.
+And so this is the kind of concept that we'd like to think about again.
+I don't know if this spring diagram is up to date, but just imagine you have some kind of ring or whatever it is.
+Uh, you can think of your muon functions as they circulate around.
+They trace out tangential, uh, beams or rays of neutrinos that are highly collimated in one direction.
+And the B minuses will be tracing out rays in the other direction.
+And if you just put a detector anywhere in the plane of the ring, you can catch some of the flux also.
+Sure. But, uh, you can also just imagine using the straight sections.
+This is certainly, uh, an idea that has been focused on a lot.
+Uh, I guess one advantage of putting a detector like this here is that you will automatically get fluxes from both,
+uh, bunches, the new plus enemy minus beams,
+which can be advantageous if you're trying to get cross-section information, because now you have, you know, all these different flux components.
+And if you have direction reconstruction in this detector, you can tell the difference between these two types of things.
+Okay. And this is just to highlight the different kind of concepts that you can think about.
+So again, what we kind of considered in our paper was just putting some detector around the ring in the plane of the ring like this.
+Something like a hockey puck that doesn't need to be, you know, super tall because the beam divergence is small like centimeter sized.
+Uh, but we would want something that's super broad, like the size of this room or like ten meters across,
+so that you can capture all the high energy particles that are going into your detector.
+But of course, and alternatively, you can collect an equivalent or maybe even greater flux of neutrinos by just considering the straight sections.
+It just means that if you want as rich of a, uh, you know, flux composition,
+you need to put detectors on both sides and you get an equal amount in flux information.
+And so here's our like a neutrino lighthouse concept, right? The, uh, the beam spot of neutrinos is sort of sweeping across your detector.
+The nice thing about that, too, is that if you're away from the ring. So you got rid of all the bits, uh, you can use the timing to your advantage.
+Um, so if you're thinking about something like in ten of the 12 muons bunch going at 30kHz,
+that means you're getting a beams, uh, bunch crossing every 30 microseconds or so.
+So if your detector has that timing capability, which seems reasonable, and, uh, as Matthias showed in his, uh, his work, um,
+you'll get, on average, like less than one neutrino event per bunch crossing from, say, like the highest cross-section diffs.
+And that means per bunch crossing, you have a very clean, you know, you're only expecting like one neutrino event in that little timing window.
+The only other thing you really have to worry about, I think, are like cosmetics atmospherics that are crossing into that, uh, tiny with.
+So if you're doing this approach where you're not using the straight sections, but you're using terms such as what's the acceptance?
+You can work out from geometry that it goes something like the width of your detector divided by two pi d,
+where d is that distance from the center of the ring to the center of your detector.
+So what we imagine is like putting this like, you know, 50 to 100m away from the edge.
+So you just remove all the elements. Um, but you still have a pretty good acceptance.
+So here are some numbers. For example, if you take a ten kilometers circumference ring big detector like 20m to 10m,
+your useful muon fraction that leads to, you know, neutrinos passing into the future volume is something like point 2%.
+So at like ten of the 20 muons per year and a ten year exposure,
+you can get something like ten of 18 neutrinos passing into your volume, uh, in that time frame.
+So this is this this could be basically the size of the detector that you would need to compete with the straight sections,
+integrating more flexibility. Okay. Then we just considered some, uh, varieties of benchmarks for the energy.
+And at this point I'm totally agnostic to the technology.
+The detector, although something that we're kicking around, is the possibility of tDCS versus like tracking accelerometers.
+So this is still an open discussion. This slide is just to remind you that we're doing electron scattering.
+So imagine you just take the tree level cross-section.
+That cross-section will depend on those left and right couplings in the standard model accordingly.
+And that means you'll be sensitive to the different flux components, will give you different types of sensitivity and degeneracy,
+and the measurements of these parameters and the weak mixing angle. But at the end of the day,
+you're just basically taking the fraction of useful muons and then doing a flux times
+cross-section in the detector and looking for the outgoing electron energy spectrum.
+So one of the nice things about this spectrum that you can help visualize your, uh,
+you know, how to visualize the sensitivity is to trade off the electron recoil energy,
+let's say IR, for the momentum transfer to you, which you can determine on an event by event basis just through this relationship.
+And if you plot the spectra against the running of the weak mixing angle, what you'll find is that the peak of the spectra,
+as I go from lower energy muon beams to higher energy mu want to means that peak is sort of tracing over the shoulder of the running.
+So as I go to higher energy, um, machines, I can start to pick up more and more of the running of the weak mixing.
+And in particular, if I go to the five TV or the 1.5 beans,
+I can start to hit this region of around one GV in the momentum transfer and also start to hit a complimentary region to this,
+uh, new TeV measurement that is sitting on top of infusing my weight from that theoretical prediction.
+Uh. Let's see. Was it, uh, Chrome or. Well, uh.
+This one. Okay. Thanks.
+Yeah. Okay. Thanks. Well. Nice. Five minutes.
+Okay, I'm on time. Okay, so you can do a bunch of tests.
+I'll skip that for now, and I'll just show you what the sensitivities look like.
+Let's imagine that you want to look at Gbenga, which are the vector and axial vector versions of those left and right couplings.
+Okay. So they're just related by a transformation like this. And we're doing this just an easier, you know, more easily compare with the literature.
+If you look at the sensitivity to the overall couplings compared with the existing measurements like LSD.
+So also is a big band like this. Texarkana was a big band like this in this quadrant of the parameter space in turn two.
+And here are the sensitivities that we project statistics only from integrating the neutrino flux from this, you know, inclined or storage range.
+And if you zoom in here, you can see that if you're comparing the collider there's a storage ring.
+So you're removing one component of the flux that will give you different kinds of
+degeneracy or correlations in the measurement of the of the couplings because of that added,
+uh, flux information. But the sensitivity just from statistics alone is on the 1.05%.
+So this is ridiculously good. This probably means that you would be living in a sort of systematics dominated world.
+It would be up to how good the detector or calorimetry and reconstruction effects would be.
+Um, that's that's my guess. But this is what the theoretical uncertainty would look like.
+Uh, for this, uh, you know, benchmark intensity that we need.
+You can do other things. I'm going to skip past this quickly.
+You can also measure like you can imagine, breaking up the assumption that the electron and muon couplings in the standard model of the same.
+They should be the same battery level, but not at the level. So you can also, um, do a kind of measurement like this.
+You can also look at observables like the charge radius, which is sort of another parameterized shift, flavor dependent shift in the couplings.
+And it turns out that you can exclude the charge radius equals zero hypothesis by more than several sigma.
+So I'm just skipping past that. The uh, part that all sort of focus on is the sensitivity to the running of the weak mixing angle.
+So you can ask the question. Am I sensitive to this running? Am I sensitive to the momentum transfer dependance?
+And lo. And here's one way to visualize it. I can plot my spectra from you plus b minus as a function of q,
+and then just take a residual from the no running hypothesis to the with running uh uh cross-section.
+And what you'll see is a wiggle, a systematic wiggle that gives you that residual away from from the null hypothesis.
+So you're looking for this sort of, uh, global difference in the, in the shape of the spectra.
+And with that, what you can do is imagine, uh, just binning up your spectra into different chunks in the momentum transfer regions.
+And in each region, I can extract out a fixed, uh, test hypothesis for the weak mixing angle.
+And so here's what it looks like across the different energy benchmarks that we assumed with the fluxes that we assumed,
+uh, in the quarter TV machine, you can see the measurements here.
+And they're sort of comparable to some of the existing, uh, sizes of the errors from other extracted measurements.
+Uh, and as they go to higher and higher energies, I start to move over this shoulder to the, uh, one GeV momentum transfer scale.
+And I get, uh, very good precision also at the, like, 7% level.
+So I can compare this in a more you know, if I zoom out a little bit more in this plot,
+I can compare this with some other future projections, if you like.
+So there's a bunch of low energy measurements, which I've only included a partial set of, uh, molar in P2, for example, uh, the electron ion collider.
+And here's what the stats only mean, what collider would look like with our integrated fluxes at a quarter GV.
+And as I move to higher energies, you can see that I kind of scan over this little shoulder a bit.
+So this is the kind of, uh, picture that we're looking at. Another.
+Thank you. Uh, another reason why this is important. You know, for for this, we just focused on, you know, the standard physics.
+But if you're also thinking about ways that BSM can kind of perturb, uh,
+the standard picture is to induce wiggles in the range of sense within W, and that can happen, for example,
+if you add some non-trivial kinetic mixing, some extra huge forces that are present,
+um, and uh, contributing on top of the weak center to the running of the coupling.
+And so this would be a nice way to test that in addition to testing, you know,
+the Q equals, uh, one GeV region that is sort of neighboring the new terminology.
+Okay. So I'll just kind of. And here, uh, I want to point out a couple other things that we are still thinking about.
+Uh, so the main takeaway, of course, is that it seems like you would have access to electroweak observables at the Somerset level.
+Um, you have access to lots of other kind of related observables, but there's still lots to do in the future.
+For example, there was some discussion yesterday about the, uh, sort of the beam profile,
+whether or not this beam would be wiggled and how much that impacts the sensitivity.
+Um, there was, uh, you know, some discussion about where you would actually put this detector.
+Would you use the straight sections? Would you use the curved sections? What kind of detector technology?
+All this type of detection is still on the table. And there's a lot of other physics targets that will point out for you.
+Uh, we also thought about, uh, later, including neutrino tridents, which people in this room have worked on.
+Um, you can also look for, you know, sort of, uh, strange channels that only show up at the fi TV machine, like inverse tau decay.
+So you can actually just tell production through the charged current channel. And there's a number of things that I'll point you to.
+So people have thought about oscillations. We'll hear more about that in the next few talks.
+Neutrino NSI uh and other neutrino related things in the actual collision rather than looking for coordinates.
+Okay. So I'll just end there and, uh, thank you very much. Thank you.
+Adrian. Very exciting questions. Maybe a question about systematics.
+So you have this nice like you. Plus you're saying both beams from the new possible minus.
+Yeah. So if you had, like a systematic on the overall luminosity of the collider, does that sort of cancel out in the measurement of.
+Oh because both beams that can you ignore that like a ratio sort of thing between the sides?
+Uh, yeah. I'm not sure exactly how it would show up in like if you have the systematic and overall luminosity,
+you know, like, I mean, we'll probably know it to like percent level.
+Okay. And so that's I think I think we can know better okay.
+Okay. We're measuring the current in the ring. Right.
+So we know how to measure current pretty well. I could be wrong but that's maybe 9% but probably more than the statistical maybe
+something that competes with the very high precision from the statistical uncertainty.
+I can see that maybe giving you another. Yeah. I think yeah, I think the but if I may, there is a ratio.
+Yes. A new plus rate minus the new minus rate. It's proportional to sine theta one.
+So you you just don't start. I mean even if there is some answer you can get a there's a lot of shape information as well.
+But they're also taking advantage of this I guess. Yeah.
+More questions. Yeah, yeah, I saw your this detector size which you 20 meter.
+Yeah. Yeah 20 meter on and then you when you qubit city that's how huge.
+No no. So it can be shallow. So imagine like a hockey puck. So it could be like one meter high 20 meter diameter.
+So like the size of this room but maybe this height. So it can be a lot less of all is not 20 by 20.
+But okay. Because if the beam is going like this, you know, along the edge of the hockey puck, the the beam spot is maybe a few centimeters.
+So if I make it a meter, that gives me way, you know, a lot of buffer. So yeah.
+Yeah. But part of this coming up this you big this size big garden can't get read more this on your tangent direction right.
+If I make it bigger in this way. Yes. Bigger laterally then that I'll integrate more of the curved sections.
+Yeah. Okay. More questions.
+It's not in discussing coffee break. Thanks, Adrian. Next up, we have Julia.
+Thank you. Thank you. 55 to 250.
+Okay. Okay. Next up, we have Julia Verlaine from Colorado State University.
+She was telling us about a modern look at neutrino factories. Take it away.
+Okay. Uh, thanks a lot.
+So I'm going to talk about, uh, Neutrino Factory and, uh, physics cars, both in Sun and Oscillations, as well as in finance and physics.
+Um, so this is the neutrino session and connection to the muon collider.
+So we have already heard about what kind of collider to for Adreno physics.
+And we will hear more about that uh, later today.
+Um, but now I want to talk about what the tune of physics can do for me on Collider.
+Uh, in fact, I want to motivated, actually in a factory as a possible first stage of a new collider.
+Uh, because as I will show in a few slides and a trio of activity requires, um, lower energy muons,
+GV beyond and not to heavy muons, which we are aiming for at the mill collider.
+So what is the neutrino factory? So the layout of a neutrino factory could look like this.
+So it's has this kind of racetrack decide whether or not Spider-mans are going through.
+And they are decaying along the straight line here to lead to, uh, monitoring us and electron neutrinos.
+Um, so this leads to a very collimated beam with a very well known composition coming out of the straight, uh, lines here of this racetrack this time.
+And we're going to have muon neutrinos and electron neutrino, so we can look for electron neutrino energy disappearance.
+But we can also have a pure searches, uh, for mu uh, neutrinos.
+Electron neutrinos. Electron neutrinos go into military MOS and Bose electron.
+All the energy in us going to Tesla trainers.
+And this last channel, there is no uh, no background going to be for that because we do not have any neutrinos in the source, of course.
+Uh, we are also, um, the neutrino beam and Cheena factory also has as many neutrinos as antineutrinos, but of course, of different flavor.
+Uh, so we have a very intense source of electron and muon neutrinos are from, um, such a setup.
+So this is not the first time people are talking about Neutrino Factory.
+Indeed. And the Trina factory has been close to that more than 20 years ago.
+Um, uh, where we wanted to measure CP violation under the assumption of a very small, uh,
+fatal one three angle, which was expected to be actually of the order of like one degree or even smaller.
+Now, we already know where this mixing angle is actually 8.5 degrees, so it's much larger than expected.
+Um, and but upcoming experiments would finally tell us if we have CP violation in the lepton sector or not.
+Um, it is previous studies, it was found that a distinction between neutrinos and antineutrinos,
+uh, charge identification was actually very important.
+Um, in this, uh, paper, we actually revisited previous studies.
+And we also um, what is charge?
+Identification is still as important as it was previously pointed out, or if it could actually do without charge identification.
+So in this study, together with Peter Jensen from uh, last year, we, uh, had and what a look at the oscillation physics case for Neutrino Factory.
+I also want to point out in the context of Snowmass, a non oscillation case was studied uh, recently.
+So for our study of, uh, Neutrino Factory, we look at two different setups.
+So we are assuming that the FA detector of the setup is going to be placed at soft.
+This is just because we have a very big underground lab.
+Um, so let's put our FA detector there. For a neutrino source we look at the to, uh, accelerate enough to happen to us.
+One is Fermilab. The other one is, uh, Brookhaven National Lab, where there's currently AGS and Rec.
+And in the future, the electron. I am collider the first time between Fermilab and South.
+Uh, it's a 1800km to a baseline for the family.
+Uh, for the Brookhaven setup is merely a factor of two, uh, bigger.
+There is also a similar study of Neutrino Factory, but closed in.
+Just had this reference. And our assumption for the study instead of cost unit hypercar are going to be successful.
+So I want to ask the question, what actually could potentially happen and what is required to improve our precision
+on the oscillation parameters combining due to hypercar and neutrino Factory?
+So it's not anymore about discovering CP violation or discovering unknown parameters in our standard three level oscillation scenario,
+but improving the precision on them. We are assuming during hypercar and other oscillation experiments are going to
+do a great job in measuring all of the parameters in the very near future.
+Okay, so the first question is, well,
+what should be the energy of the muons or neutrinos at a neutrino factory to maximize the precision on the CP identifying quantity data?
+And um, this is shown here. So it's fine for the five minute observe set up uh, that we need uh, a maximum, you know,
+energy of five GB if we have, uh, if we place our neutrino factory in Brookhaven, the optimal muon energies eight GB.
+Um, we find that the running time of neutrino versus antineutrino on, uh, is, uh, one 1 to 1 hour, depending on the physics cases.
+Values must slightly change.
+So you see that the optimal energy required in a neutrino factor is actually much lower than what we envisioned for a moon collider.
+It's around the GV scale. Um, but this could mean that a neutrino factory could be the first stage on our way to water muon collider.
+Uh, doing maybe some R&D with GV muons, um, to develop a lock up plan for the high energy collider.
+Yeah, sure. The flux of the neutrinos at, um, an entry in a factory compared to the flux at Dumont.
+So I don't know if you know factory short yet. Rad. Uh, you have me on a train.
+Us which have a maximum energy up to the, um, arena and academy, um, energy of five GV.
+But you also have a very intense flux of electron neutrino.
+Whereas if you and the flux is dominated by muon neutrinos,
+but a much smaller contribution from Auntie may not be enough depending on that one polarization and even smaller, uh, fractional electron neutrinos.
+The next question is how many muon decays do we actually require to improve the precision on data?
+And this is shown here on this side. Um, so on the x axis that is the number of muon decays.
+And on the y axis is the precision on data. Assuming that the true value of that has either zero shown in solid a -90 degree degrees shown in dashed.
+So the assumption which goes into the plot is that we would have 480 kiloton years.
+Can I talk megawatt years of Dune? And then we add a neutrino factory on top of that.
+So here, um, these lines, they start at some 18 degrees or some nine degrees, which, uh, can be achieved by Dune.
+And then we just improve the precision by adding the neutrino factory.
+Oh yeah. I also show the lines of different colors. And this, uh, the different colors indicate different assumptions.
+Charge identification. Blue means no charge identification.
+Uh, various, uh, orange and purple mean we can 100% distinguish electron neutrino from an electron neutrino block.
+And Parker, we are not us until we got neutrinos. And, um, for comparison, I show here in, uh, gray and brown, um, the sensitivity.
+If we just double the running time of dual and then even in brown,
+if we double the running time and even reduce the systematic normalization uncertainty and flux, uh, for you.
+And you see, to improve the precision which we can get from Dune compact, uh,
+doubling the running time of Dune compared to adding that a train factory to Dune, uh, can be achieved if we have a total of 10 to 22 million decays.
+Uh, so for this reason, we are going to study as benchmarks.
+Dune. Okay, both with the running time of ten years,
+and then also the scenario of adding a neutrino factory to the mix to see where can we potentially have improvements.
+Um, so we did the study for all of the oscillation parameters for time sake.
+I'm only going to show some of the results.
+Um, so these are the results for the sensitivity or for the precision on the oscillation parameters or that I'm sorry,
+one squared and size equated to a three. So the two parameters from the atmospheric neutrino oscillation sector, uh, you see in uh,
+uh, gray, we see the sensitivity of dual and hyper K and then in a different blue orange.
+And you see the sensitivity, uh, improves if we add a Katrina factory.
+And for these two parameters for the atmospheric neutrino oscillations, charge identification does not play a big role at all.
+Uh, but you see that the contours do shrink slightly, depending on what we assume to be the true value of theta two three.
+Um, compared to the case without a neutrino factory,
+and the improvement is even more visible if we compare the constraints on desktop, uh, and uh, theta one three,
+where again, we see that, uh, the addition of a neutrino factory to tuning hyper K will improve the precision and,
+uh, exactly will reduce the uncertainties even more.
+Uh, so we assume that default, it's still liquid argon form factor.
+But, um, since we assume a neutrino factory would start after doing, there might be even more improvements in the liquid argon technology,
+um, such that these contours here at the neutrino factory could even be improved more in the future.
+We also see that while torch identification does play some role, it is not as important as previously thought.
+This is because the liquid argon technology, um, um, is already very good, and we have some kind of tools to distinguish neutrinos itinerary in us.
+Um, so using like a magnetized detector, for example, to keep this 100% of charge identification is not as important as, uh, 4 to 20 years ago.
+Okay, so I know a factory could be a very appealing possibility for the, um, next, next generation oscillation program after hyper k a deal.
+And in particular, if these two upcoming experiments disagree and further oscillation studies are required.
+Um, in particular, if this, uh, upcoming studies require higher energy, longer baseline, smaller flux.
+Um, so I come to you because you have a better known, um, neutrino flux, tunable energy and as well access to more oscillation channels.
+Um, now, for the last five minutes, let me talk about some of you understand what scenarios which can be from the neutrino factory.
+So the neutrino factory has access to several channels, which has CPSC and team and safety conjugates of each other,
+which means we can probe CPT invariance at Neutrino Factory and um, together with depth and truth and comm.
+We recently studied the scenario of CP violation and, uh, neutrino nonstandard interactions.
+So starting with cp t um, so we are treating the oscillation parameters for neutrinos and do not treat those differently.
+And again we started studying the combination of dual adeno tremor factory and just doubling the running time of tune and a lot of plots.
+So again on the x and y axis you see the observation parameters for Notrillionesponding neutrinos.
+Um, we show the results for six of them. And the important context to compare is, uh, the results for Dune,
+which doubled running time 20 years in blue and uh, in, uh, purple, yellow and green.
+The addition of a neutrino factory for ten years of fuel, as you see here in red,
+that only Dune has some degenerate regions which can be excluded with the addition of a neutrino factory.
+And we again see the challenge identification, some impact, but it's not super important.
+Um, but it's, uh, the addition of a neutrino factory for sure improves the constraints,
+thanks to the presence of additional oscillation channels at a neutrino factory,
+which, uh, uh, electron neutrino disappearance and monitoring appearance.
+Electron neutrino.
+Um, the other beyond the Standard Model scenario we studied are neutrino nonstandard interactions, which are parametrized in this way.
+Um, neutrinos have new interactions with matter for millions of forks down quarks, electrons.
+Strengths of this interaction is parametrized by this enzyme parameter epsilon.
+Relative to the Fermi constant. We have a total of five, and aside parameters we can probe and oscillations the diagonal ones, which are real.
+And so we also have an advanced which can be complex. Uh, and here are some besides the blue tune and the other colors.
+You see the addition of Trina Factory. And again, we see that, um, the Trina factory can improve the constraints on one on non-zero.
+And this time, thanks to the additional additional oscillation channels.
+And this, uh, becomes even more apparent if you study the case of 200 psi parameters at a time,
+in particular in these two combinations of two non zero.
+And this I permit us to do has some has reasons what it helps uh what our,
+our sizable degeneracy is which can be excluded when we add a Trina factory into the mix.
+And again this is thanks to these two, uh, new oscillation channels.
+Okay. So let me conclude. So Neutrino Factory is an interesting possibility for a future oscillation experiment after tuning a pipe.
+Okay. Uh, it improves the position on several fundamental oscillation parameters as well as, um, the BSM scenarios of safety violation.
+And as I, as it excludes self degeneracy, is pressing for dual and could be a stepping stone in our way to high energy muon collider.
+Rench. Questions for Julia.
+I. Thanks so much for this.
+Um, I was wondering if you had looked at all in the energy at going for, like, the second oscillation maximum at lower energy.
+Does that help at all or not really? Yeah. So we looked, uh, at that.
+Um, however, we assumed that the energy resolution or the energy tracked off of the detector a similar to the one for June.
+So we didn't get too much out of, um, the, the, the other oscillation maximum.
+But in principle, especially if there are like a few more improvements for the like liquid argon technology for threshold can be a little bit lower.
+I think there are some interesting possibilities there as well. Yeah.
+Uh, just a really quick question. I don't know much about how neutrinos constrain the CP violating, um, kind of delta,
+but I was wondering why in, uh, slide nine and you mentioned this before, too.
+Why is it only why can it only be zero and -95?
+Oh, very good question. Yeah. So this um, so here we assume that like 2 or 2 true values of that source of data can be anything.
+So currently we have only very weak constraints on this parameter.
+Second experiments nobody took uh aiming to measure delta.
+However we don't have any strong hints right now. However the slight hint we have from Nova is pointing towards -90 degrees,
+so that might be a good guess for what becomes, you know, for a true parameter.
+But we also know that the sensitivity to delta is actually much better, such as actually zero degrees.
+This is what we're seeing here. So which shows these two potential best true benchmark values.
+But of course this was just some guess data can be anything at this point.
+But you and have okay for sure going to measure delta.
+Thank you. I have one quick question.
+I'm sure that's provocative. What would it take to go really far beyond.
+So if you go back and slide like that is a progress, but maybe for thinking of really big, how do we push that even further?
+Yes, yes. So you see that this seems to kind of Peter out a little bit, I think without knowing exactly maybe indeed going to 2D,
+uh, second oscillation maximum might be something very interesting to do.
+And then yeah, statistics maybe uh, um, here increasing the number of new indicators might be very,
+very tough at some point, uh, increasing the volume of the polytech dot the systematic uncertainty.
+So the flux uncertainty basically we assumed was of the order of like 2%.
+If you go to 1%, this will also increase. Uh, but I think we're kind of already pushing it a little bit.
+Okay. Any more questions? If not, let's thank Julie again.
+Next up, we have a double feature talk. Uh.
+Uh. Our speakers. Here.
+So we'll start with Greg Putnam, uh, on the new of kaleidoscope.
+And then I think we have Nick Kemp also. So we just take out take it away.
+I don't get more time. Right. That's the time to do this.
+I'll be quick. Okay. Hi, everybody. I'm Craig. I'm a postdoc at Fermilab.
+Yeah, my post at Harvard. Okay. And, um, this is an idea of what sorts of oscillation physics.
+And would you do with the neutrinos from it? From a muon collider?
+So TeV mu, an accelerator, not cheap. Um, and we'll get into that.
+And the basic idea is combining neon Collider with, uh, neutrino telescope.
+We've named it okay. Collide. Um, so.
+Okay, so, um, you know, I tell you what we're going to talk about.
+So. Right, you get, uh, you have the accelerator ring of muons at the EV scale.
+Um, uh, where there's a significant number, uh, you know, once each individual bunches, you get a good luminosity.
+And, um, as we're talking about in this session, um, you get a really intense, really interesting flux of neutrinos from the muon decay.
+And there's a lot of, uh, interesting things and ideas that, like, people are diving back into that.
+I'm really excited to, to learn about and continue to look into, uh, the, um,
+measurements you could do with those two EV neutrinos, um, from, uh, from a detector nearby, um, like what agent introduced.
+But with neutrinos, you know, it's often about the journey, not the destination.
+It's about how they oscillate in between. Um, so could you set something up with a long baseline for, uh, uh, TeV neutrinos?
+Um. Oh, yeah. There's there's, uh, they'll appear up here.
+Okay. It's coming. Okay. So fortunately, once this renders, you know, if you click again.
+Oh. Oh, okay. I see made it. Okay. Fortunately, for completely different reasons.
+We're positioning TV neutrino detectors all around the Earth.
+Right. As neutrino telescopes to detect, uh, atmospheric and atmosphere and, uh, astrophysical neutrinos.
+Um, uh, and doing physics with that. Um, the beam, the neutrino beam that you get from a TV, um, your accelerator happens to match this really well.
+So. Right, you would send the beam through the Earth to the telescope, and the energy more or less matches, right?
+It's at the the neutrinos are the TeV scale, which is basically win the efficiency, the ability of these detectors to identify the neutrinos turns on.
+And the size of the beam is matched very well. Um, the beam is really, really collimated, right?
+The neutrino beam is really, really collimated.
+And so after it's traveled thousands of kilometers, uh, the width of the beam is on the order of hundreds of meters.
+Um, and these telescopes are like about a cubic kilometer in size.
+So it matches. So, um, very quickly refreshing people or introducing people.
+Um, here is one of these neutrino telescopes.
+Uh, example being IceCube, which is the kind of most established, uh, most significant neutrino telescope.
+These are instrumented as, uh, strings of teeth into ice or into water that track that detect the drink of light,
+uh, from charged particles produced in neutrino interactions. Um, and it's about, like, order of magnitude, cubic kilometer in size.
+These existing, uh, detectors, like IceCube, have a really strong program of searching for nonstandard neutrino oscillation.
+So not like, uh, the usual, uh, three flavor and tune oscillations that Yulia was just talking about.
+Um, but various scenarios where there would be nonstandard neutrino oscillations with the existing flux that they have,
+which are TeV atmospheric neutrinos. And these scenarios go across, uh, sterile neutrinos, um, neutrino matter potential.
+And there it's invariance violation where already, um, these sorts of searches, uh, are world leading.
+And the basic idea would be you take those searches and you're can activate that the beam where, uh,
+you have both an incredible number of statistics potentially, as well as the greater control, uh, that you would get from a beam.
+So is this, like, at all possible?
+Well, so, like, one thing is, like, you need to point it correctly to point that some section of the, um, you want accelerator at the beam.
+So you can imagine. Like bending the beam line such that a piece of it points at the telescope.
+Um, kind of like the hockey puck thing that Adrian introduced.
+Um, in this case, let's say you had some, like 30cm straight section, some small piece of it that was pointed right at the telescope.
+You get something like ten to the 15.
+You want the case pointing in the right direction every few years.
+Um, this is probably hard to do if you're, like, shooting it right into the ground at IceCube, so maybe that's not possible.
+Um, you could also do something, uh, potentially simpler, which is just to orient the BMW so you don't have to orient the whole, uh, accelerator.
+But maybe you just have a piece coming off of the, uh, uh, the accelerator that points in the right direction.
+In this case, let's say you make it, you, uh, have the muons coming around the rink less, um,
+but let's say you can make the decay tunnel longer so you have some dedicated ticket holder points in the direction.
+Again, you get something like ten to the 15, you to cars.
+Um, after a few years and about like order of magnitude, about 1 in 1,000,000 neutrinos that pass through the detector interact.
+This is because the cross section is really big here at the TeV scale, and the detector is really big, right?
+It's a cubic kilometer and you're still seeing the whole thing.
+So if you can wait some piece, uh, the fluttering of the excite, during which of course would be a lot to ask for.
+But if you can do that, um, you very quickly get an incredible number of neutrino interactions.
+So, uh, we'll go through a couple two of the things that you could look for, uh,
+with these neutrinos, which are again, looking going after these nonstandard oscillation scenarios.
+Uh, one of them would be a sterile neutrino. So this would be a new, uh, right handed neutrino.
+That's a the any scale had as an, as an EV mass splitting to the standard neutrinos.
+That bigger mass, uh, splitting makes the oscillations happen even more quickly.
+And so you can get oscillations, um, at this baseline.
+Importantly for this, uh, there's also a matter potential,
+just like a standard model matter potential that's experienced by the active neutrinos and not the new right handed sterile neutrino,
+which interplays with this new mixing to create a residence in the oscillation, um, at this energy.
+So this plot here has a few things going on, but it basically has all of the striking features in this,
+uh, and how to look so at this plot is showing is the number of,
+uh, muon antineutrino interactions at an example, uh, neutrino, um telescope IceCube,
+in this case in different annular radius spins as a function of energy.
+So each one of these lines, has it been, uh, 30m in the vertex interaction.
+You can see that there's this really striking, uh, spectral information and the radius, which happens because as you go to higher, uh, affects angles.
+Um, the boost from the muon decay, uh, is less and you have supply energy.
+So this is really just like the prism effect instead of neutrino oscillations.
+Um, you get this very striking effect here. Um, you can also see.
+So an important thing there is that the radius becomes a pretty good, uh, um, way to actually reconstruct the neutrino energy.
+And then you can also see what happens to the rate if you turn on a sterile neutrino and some of the,
+uh, attribute neutrinos start disappearing into the sterile state.
+Um, now, this example ejection molecule has a mixing of 1%.
+So in a vacuum this would just be a 1% oscillation.
+But because of the matter resonance, it turns into like an order, one effect, it turns into like something like a 20% effect.
+Um, and if you peek in this little inset here, the oscillation stays really big, even if you don't directly reconstruct traditional energy,
+even if you just look at the, uh,
+neutrino interaction vertex and you have something like tens of millions of neutrino interactions with which to do this.
+So why look for sterile neutrinos just super quickly? Um, so this is a plot, and I don't think the attestation is in there,
+but this is a plot of searches for right handed neutrinos for the universe having a trillion tons across many orders of magnitude of mass.
+The exist. The existence of neutrino mass means that right handed neutrinos are out there somewhere, and we should be looking for them.
+Um, there is also these ongoing, uh,
+short baseline neutrino experiments that are specifically going after this parameter space of an EV scale, sterile neutrinos.
+And you can imagine that if those, uh, very fortunately, happened to end in discovery, this could be further motivated.
+So here's what the sensitivity looks like.
+Um, what we did is we considered three baselines, uh, whether you point the thing from Fermilab to execute came through net or Q one.
+And the difference here is just the baseline, just how much of the Earth you're going through.
+Um, and the sensitivity is computed just with the. Radius of the neutrino interaction vertex.
+And you can see, you know, depending on how you mention the systematics, this is much more sensitive.
+This extends up to like three orders of magnitude more in mixing.
+Uh, beyond, uh, any existing experiment.
+Um, the rest I'll hand it over to sort of. Thank you. Okay.
+So to finish up, uh, I want to talk a little bit about active neutrino oscillations.
+Uh, and I want to specifically focus on the mutual sector.
+So if we take the flavor evolution, uh, basically, uh, equation for the muon and two neutrino states,
+you can see it's governed by the Standard model mixing parameters that you see here.
+Um, plus perhaps contributions from, uh, the modern potential in the Utah sector.
+And this potential can be sourced from both standard model and by some contributions.
+Standard model one really only comes in at the one the border. Um, but, you know, nonetheless, we can consider it.
+Uh, so if you take this and you solve this equation in the sharp baseline regime where your vacuum oscillations and your matter potential are,
+you know, in general, much shorter than your baseline, uh,
+you get the expression for, uh, muda tau oscillations that looks like this,
+where you have your contribution from vacuum oscillations and you have your
+leading contribution from these off diagonal terms of the potential in tau.
+And so what we are going to consider is, uh, new physics scenarios that produce a non-zero beam,
+Utah, um, that you can then look for in these mu tau oscillations.
+Uh, so one way to do that is through Lorentz violation.
+Uh, so certain uh, actually quite, quite a few theories of quantum gravity predict Planck scale, suppressed Lorentz violation.
+You can check out more about that in this review here. Um, but basically what happens is that leads to frame dependent neutrino oscillations,
+uh, that one can describe by an effective theory called the Standard Model extension.
+This is basically including, uh, Lorentz violating operators into the Standard Model.
+And if you do that, you have a contribution to the, uh, mu tau potential that neutrino C that depends on these new Wilson coefficients here,
+this a and this, these are all and CL parameters which you can see carry Lorentz indices, which is a bit strange.
+But that's what happens when you have a Lawrence violating theory. You can kind of see a schematic of what that looks like in, for example,
+the IceCube case where they look for Lorentz violation in, uh, atmospheric neutrinos.
+Um, so basically we're going to do the same thing with our kaleidoscopes in practice,
+what one does to look for Lorentz violation, uh, as you look for oscillations at the sidereal frequency.
+So over the course of a sidereal day, uh, you basically have a slightly shorter day by four minutes than your 24 hour day.
+Um, and if you kind of pick a sun centered celestial frame, uh, you can describe the imprint of, uh,
+the Lorentz violating neutrino interactions, um, in these, uh, basically in this expansion of the,
+uh, mutable matter potential here where we have these coefficients for that is the bees that
+describe oscillations of neutrinos at some harmonic of the sidereal frequency here.
+And these, uh, these capital berkley's, capital C's,
+A's and B's are basically experiment dependent linear combinations of these more fundamental parameters ANC.
+So that's kind of the basic strategy. Uh, in practice we can look for this in two ways.
+In a neutrino kaleidoscope. The easy case is we look for oscillations in a track sample.
+So that's up here. This is the ratio of uh basically nu mu interactions in the Lorentz violating
+case to the Standard model case as a function of time in your sidereal day.
+And so this is considering about a year of data taking.
+And you can see, uh, basically a signal that like certain combinations of modes of the sidereal frequency,
+and especially in the P1 case where we can perhaps use a long 100 meter straight section,
+uh, near the interaction point as our neutrino beam, we get a lot more stuff.
+So we have in general a lot more sensitivity to these sidereal variations.
+The challenge case is looking for new tau oscillations from a new tau enhanced sample.
+And this is over the standard model contribution which comes from the very short baseline Standard model uh tau appearance.
+But you can see that actually gives you even larger variations. So if you can get a enhanced sample with a signal to background ratio of 10%,
+which there are some techniques that might make this possible, then you can do an even better job.
+So then what do we do when we have this, uh, signal that is basically an oscillation in sidereal time?
+Uh, we perform a Fourier analysis looking at modes of that frequency.
+And that's basically what you see here. These distributions are the null hypothesis for each kaleidoscope set setup.
+And you can see the dotted lines representing your sensitivity. You're looking for an induced amplitude larger than these sensitivities.
+Um and you can see for the parameters that I picked here, uh, these kind of specific values of clocks,
+you can see that some of our kaleidoscope configurations can rule out those parameters,
+that high sensitivity, particularly the P1 case, um, so that you rinse and repeat that for all of your, uh.
+Standard Model extension parameters, and you go and compute the sensitivity, uh, of each kaleidoscope to see how you do for different Lorenz indices.
+And I just choose some examples here. So if we take the new MEU sample, which is the easy case, uh, you can improve by, uh,
+at least a couple of orders of magnitude on existing bounds from IceCube and Minos, for example.
+And then in the new Tau case, you can do even better.
+So yeah, there's also orders of magnitude improvement of these searches for the rights violation.
+And interestingly, uh, you can also potentially reach double Planck suppression, uh, effects.
+So what I mean by that is that you can, uh, also consider, uh,
+the effect of higher order operators, uh, contributing to this mutant potential that the neutrino.
+See. So we've been investigating these two operators here, the alpha A and C coefficients that mass dimension three and four.
+These are the normalizable operators. Uh, but there are many quantum gravity theories that predict contributions from these higher
+dimensional dimension five dimension six operators covered by these coefficients here.
+And generically, kind of they predict that these coefficients will exist at some scale, which is suppressed by the Planck scale to some power.
+Uh, so we've basically assessed the sensitivity of these kaleidoscopes, uh, to, um, to the dimension six, uh, parameters here.
+And I show a couple of different scenarios.
+Uh, these are basically the sensitivity to the dimension six parameter in units of, uh, inverse Planck mass or place scale squared.
+And our nominal setup that we've been talking about can get sort of close to these double Planck suppressed operators.
+Um, but if we have either a top enriched sample or a yeah, I think this is the last thing or a,
+uh, or if we bump up the energy of the collider by probably a lot.
+Uh, then you can get to, uh, basically you can access, uh, uh, values that are near this double Planck suppressed regime.
+This is really the only that's the this would be the first terrestrial access to Planck suppression or double Planck suppressed Lorentz violation.
+Right now we rely on astro to treat us. I'll skip this.
+Basically, we can look for rare interactions that produce me plus B minus pairs and detectors.
+This is something that folks on ice are actually working on.
+And we get a lot of, for example, training events, a few W boson production events depending on your kaleidoscope configuration.
+So just to summarize, uh, we were introducing this idea of neutrino kaleidoscopes.
+It's a unique opportunity to get high intensity, high energy and one baseline in a neutrino experiment.
+We studied some physics capabilities UV scale, sterols, uh, double Planck's Lorentz violet, Lorentz violation.
+That should say uh rare mu plus b minus neutrino interactions.
+I didn't talk about this, but we can also probe nonstandard matter potentials, uh, uh, with quite strong sensitivity.
+And perhaps there's more to be done. So this is, uh, kind of the first step.
+Thank you for your attention. Thank you for the very nice talk.
+Questions? Yeah. Can we go to slide 17 then?
+Yeah. Can you explain us? What is mode one amplitude.
+And what determine that? Yeah, yeah. I kind of glossed over it, but that's basically the first harmonic of the sidereal frequency.
+So if I, uh, go back to this equation here, the like potential, you can see it's basically dependent,
+has contributions that come at like one or the first or the second harmonic of the sidereal frequency.
+And so when we evaluate our sensitivity um, you basically get depending on what your, you know,
+which of your, some coefficients are not zero, you'll get combinations of those moments.
+And then you basically what you want to do is, uh, you know, under the null hypothesis, see how often you just get,
+you know, random fluctuations that have an amplitude that goes as the, uh, first harmonic of the sidereal frequency.
+And then your physics signal would sit on top and you would actually induce like, uh, you know, neutrino oscillations at that frequency.
+On top of that, if your estimate coefficient is high enough. And also, I mean, the size for these three telescopes is very different.
+How does that apply? The more you hear the sizes similar like the ice cube for P1.
+Um, she was supposed to be eight times an ice cube, right?
+Uh, so the reason you're wondering why P1 is doing a lot better here is that.
+Well, I think it's kind of like in practice, they're different sizes. All right. In practice.
+Yeah. That's true. Well, they're all about roughly a cubic kilometer. We assume that one gigaton for all of them.
+Yeah, yeah. Yeah. So.
+So can you go back one slide. Maybe I missed something. So if I only have the capital C term, what's your sensitivity?
+So if I don't have any of this supposition dependent effects basically nothing.
+Um, I, you get like, uh, you get like an overall.
+Yeah. Regime. But you but you could get I mean, what you have going.
+Maybe I'm just thinking about this wrong. So you're sensitive to this thing in the, in this absolute value squared.
+And you have a very high energy. So if you can see anything, then you can see the beat between those two terms.
+And if we know the delta m squared in the same two theta well enough then we get you could get an order one effect on a very small effect.
+But you have a large l I, so I'm not I don't know if that helps, but that's,
+that's I guess the equivalent way to think about it would be like, um, this is kind of acting like a matter of potential now.
+Yeah, that's exactly what it is. Yeah. So maybe we can go to the back and slide.
+So I mean, it's not exactly a matter potential because it doesn't depend on the matter density,
+which is unfortunate because when you depend on the matter density, you can get these interesting effects.
+Yeah, I see, I see. Um, probably you do have sensitivity.
+I, we didn't study it because, you know, we I basically looked at the estimate coefficients,
+which I think usually give you contributions to all of those terms, but I don't know if you have any other ones.
+So this is that's kind of analogous to like, uh, a matter of potential.
+And this is what that would look like. You know, I would say.
+So one of the interesting things about this idea of variation is, you know, you just have this crazy rate of,
+you know, neutrino interactions and there's basically no systematics in a sidereal variation.
+So it lets you use all of the statistical power, you know, presumably at some level,
+the muon neutrino rate is going to be somehow systematically limited if you're up to like billions, trillions of neutrino interactions.
+Um, if you wanted to go after something like that, like a matter of potential,
+something that doesn't depend on time, if you can somehow do a neutrino appearance, that would be the way to go.
+And this this plot is showing that here. So these are a few different, um, uh, octagonal matter potentials and order.
+You know, it's an order. One effect on, uh, how neutrino interaction.
+And the key point is that there's some energy dependency that's built. Right.
+Yeah. And it's also, if you didn't know the normalization or the cross-section, you could look at this, uh, energy dependance.
+Yeah. And it's also different between neutrinos and anti-Taliban, which is interesting.
+Um, yeah. I don't know because it's like to me it's like the idea of like reaching double talk.
+Supposed to be like amazing. Like, that's really cool. That's a really compelling physics case.
+And it's like, it doesn't quite work out with like TeV with IceCube.
+Maybe you can make IceCube, like much better. Or maybe if you go to 50, right.
+I don't know which of those two things is harder. Um, but that, you know, I think that's a really amazing result.
+I think that's really interesting. Okay, more pressing questions.
+If not, I think both of our speakers. Android TV center.
+All right. Next we have Tempe from the University of Pittsburgh.
+Sorry. Michigan state university. It's fine. Tell us about, like, accent, uh, particles?
+Yes. Okay. Everybody stays until the last one. I was going to the gear from neutrino to right after.
+I will talk about the axiom particle. I will also focus on this slide axiom.
+So just to recap I mean we call about an axiom. And that's an like particle because we today I mean the morning we introduced part of this axiom.
+And then he mostly focus on because he did say that we can do a more flight general axiom like particles.
+So that's kind of like particle capital. All these Standard Model does.
+So let's go to that like so.
+So of course axiom like particle can show up in many places and that one can cross many magnitude from very ultralight and up to very heavy.
+So although today we are mostly focused on this kind of probability or on this range from kind of what you make your way up to TV.
+So, so this is the just to give us the impression about the searching from different that magneto like particle, but for example with a light one.
+But we mostly focus on the light also around this region.
+Anyway, here it's cut down it up to a higher.
+So so of course it's I mean this is partial many existing at lab effect from a fire to say how to gather are hard to say.
+And even BMW kind of do a lot of studies.
+So just to give us a kind of the formally then a framework we are talking about, which we use here just to you can couple this,
+I can like particle to the PB, but we are and so this one we don't bother simply say we don't forget about the the group okay rule part.
+Yet it's also follow the usual weak part of PB WW become both hated them into your photon field or the
+and even w so so you can with only these kind of gauge spaces under these spaces with this relation.
+So in principle you only have two of them. I mean in this space don't have two dimensional degree afraid freedom.
+So basically the kind of related focus. So so so this give us this idea about Elisa.
+I found that particle decays or or or dependance.
+You'll see that a lot from this a t way to kind of sample DB issue the size of this decay.
+A ways of this one changes so drastically from very short decay does to very long decay does here to this a lot of meters.
+So although I think you will go to this topic TV, you can you can this dependance basically can go into kind of view micrometer or even beta scale.
+So so you will of course. So when you this we assume like particle because heavy basically decay promptly.
+But if you move to lightweight and basically all these kind of like particles will
+become long B and that you can even super normally able to fly out over detector.
+This is kind of of these, you know feature of a detector.
+So you have the detectors are a state I mean starting with some on they travel a distance which.
+So detector I know called the detector at some layers.
+So basically so what we e probable or what what will you use this that these are a target of of of these.
+So I you have to ensure your consent decree E I mean your decay products inside of these lot basically that's to give us the feature.
+So so these are like you see the all these been done with this long new feature bundle.
+But along these lines it up is kind of short leave. So so basically what's the gap.
+Well what's the in between everything. That's the key also. So there's a point for this talk.
+So we got to because I need to be it'll be based on I mean and besides of the plot paper also they other words I mean there
+are few other related work like a thousand people following with his collaborator on the DG in a in in strong university.
+They did some study on the habits. Yeah. I was say and also the sensitivity under this, you know,
+this is the the spectrum of the heavy particle decay and you would call it cast off the awareness.
+But I mentioned about you this particle to fly out of the detector.
+So basically you cannot probe this anymore. So, so this is to turn out to talk to our work here.
+So there you go. There. The particle fly out of a detector based on ego.
+You cannot measure anything. So these are the three targets kind of give you mola x which in the end automation about more not a photon bomb.
+What are they issue. So so here I just to give you idea about all these in one hour photo on one of the cross section.
+It gives a side compared to give you some benchmark.
+For example, although there are standard model calls, you can have also likely gamma uh gamma gamma process on me available for example.
+And they kind of decay into your condor. We only train obviously you could only meter any set.
+So similarly for other thing you can also have also this is so-called the long term flying individual you feel you left long on.
+Well for I all details are in the Foreign Legion. You cannot also later understand that you can only have this one Monaco tone signal.
+So compared to this or this one, the signal basically sends a this a this sum is night.
+Then you must come back later. Possibly because you will always sound like ma ma ma.
+And then you see this is the cross action.
+And then when this, this is the s, this is your kite under G square.
+Is this thing really heavy on time? For example the polar mass.
+So basically this is also going to cancel. And then another party load is canceled.
+Then basically you get a constant. So you need general signal for these.
+Kind of like nothing is basically nothing depends on your your energy on either.
+Energy also depends on your like I mean I cannot like models because the so this is is a light.
+So similarly for the the the the what are these are you basically what I sustained.
+But that's the signal I mean the background will be quite different. So based on this the we have so many Iranians are already like a lab or even the
+factory like etc. before we do perform some some individual tried out on foraging,
+we come across the existing one like the this is how it looks like.
+And then you turn out the left, pull the I mean left, open up more potent bounds plays a very strong law actually show this this radical,
+powerful and even stronger than hi Lumiere to say in the future.
+I mean, you've all heard this in three out of our Romney so zero nap come give with better response than others.
+But based on this, what we can do for this? This is you left some guy.
+I don't know me. All right. Oh, another patriot duel. The first one.
+We got to look at this. That was, um. You. That's some great example.
+That's this a year or so? If you say so. So you.
+This one. This requirement is more of a photo.
+You can, um, we can do something like a, like a inverted moth because you have one kind of or the full movement of the photo.
+They are body have also have the initial state of the article.
+So so you can't what are we talking. These are the we call or you might I mean what we call mass of this one.
+This is how it looks like the spectrum. This is what we call this we call mass.
+You see under under uh, this is that the I mean, think of noise, right?
+These that they will be connected. Behaves like the long deep.
+I know other background like these changes.
+Basically they can be all kind of based on this, these criteria and also central layer this this the energy will be more normal or increased.
+So you know you build this this you can you can hear the signal not going to you.
+But however for this to be on either third we want to use the same strategy.
+But but the tricky part is out of Munich, right?
+Right. It's such low energy. For example, three TV under this three TV is significantly larger than your.
+The math for you just turns out of the the kind of vocal the decay into neutrino
+behave more or less the same night the night up there you know so in this case.
+So basically we don't have a matching the I mean distinguishing a feature between these two.
+But the other thing you can you can suppress so also bit.
+But first of all we can just do to measure this this is this this is under mode one.
+Just measure the deviation not give us precise decision.
+This is how it looks like I mean you didn't come you this year compared to the next one right.
+Almond milk neither. And also we have this territory which we show here.
+And it turns out that one this milk either more or less give us a comparable with all the compared to the electron collider.
+You say this is only the land on a dish that I'm based on to the given configuration to collider energy.
+So for example, CPC or FCC year 50 to 40 give a more or less behind this same as ten to you maybe on Collider come to you and kind of time behave
+can give a slightly better you basically that's a composite conversation between this the background and cost efficiency for this.
+You know sometimes we have better quarter efficiency. But uh, but this the for my own right are quite a bit I mean slower background.
+So we composite each other on to give out. This is comparable.
+But how do they give us a better our idea of every question just because they have this luminosity significant higher than out of two.
+So that's the one of on. Similarly we can do this. What are they and what are they.
+You can of course they both the left holding.
+I don't agree. I know we can use the both channel of them of course, as the background of a double.
+I mean they, they w instead two of them. We have to perform this detail analysis and this is how it looks like then without the
+compared to the original criteria either under the I mean though without it more less,
+you have a lot less seen as a more potent case.
+You say they multiplied are comparable as the I mean you have to be on priority scheme better than this.
+You have to either here in this in this case both because this is a look we have thought they here it's a much easier.
+And also the signal in the background for this. You guys are part of case.
+You subclass that because this is all over us behavior. So that that's the one I want to ask.
+So what we want to add signal partner though we can also have some other channel to probe.
+For example this is a vector photon scattering vector Poisson scattering including photon and electron wake of a vector both of the.
+So let's look at this photon I mean photons getting really busy with you.
+Nice. Polite. So neither polite. Of course you can.
+You kind of have these actually induced the kind of signal that you channel by the background.
+You kind of have this, this kind of a light, but I induced to do induced or you can because you only have two photon.
+What are the many others. The channel what I call the annihilating or even this is for the central jumping.
+So we did this. This is kind of a same analysis under probe under projects.
+Some sensitivity for this electron collider under Bill arm.
+Are you here? You are in the basement. We found this room quite hard here.
+Just pay attention. This scale this is to it's important to bloom.
+Right. Or give us a better probe. You put on these for this this right like that.
+So you can I mean channel under control.
+That's right. I mean, that's where we can better post on scattering of course. So for this case.
+So we can only do this I can't afford because we want to do better balls on WC make
+use of this w d e course on either PDF approach or this takes another approach.
+You basically this is only valid. It becomes this one bill.
+Guys our next three to about ten TV. And over here we got to show this a second on the background to this.
+Sorry the nano there are unsuccessful.
+We see that one form for background basically standard mode of unsurvivable scatter.
+So you just go sharply for particle. This is the signal.
+Can't have this long tail. Flat tail basically that's a good guy.
+Gladly. Coming from this the axiom like particle induced lot under under that you can based on this one can optimize that
+under this is the kind of sensitivity based on three TV alternative boom either for the I mean the other two you.
+So. So we have combined all these these three Thunderbird.
+Well, they're both on the channel under there.
+So that's. Why don't we give you these here. So so it there.
+That's what we have down here. Let's start to to to combine all of them including one of photon.
+What are they on the vector buttons? Carolyn. Thanks. That's all I know for you.
+That's from Kreider. And you say that a lot on the client already.
+Yeah.
+And, uh, you basically you see, that's one we we combine them based on our basically the array and compared to the electronic items are under also.
+So you can put. Yeah. And then I'll just to put under the rotating them to these are some the basis.
+And you have these for kind of under a company parameter under that basically you say you say this one until you compare the other guys.
+Are they this in channel for this one.
+Because many there are many kind of the problem can give us one.
+And for our study basically a bridge the gap between your kind of a doing our GPM downpour.
+Well experiment under this high like the higher under direct electron um problem.
+That's the problem with the starch. Basically this gap can be filled by our conduct.
+This is what appears on one of the signal.
+And the other thing other thing, the other basically the w the basic is basically who can problem significant induced.
+You do carry thoughts, especially if oh come on is a part of what we can we can I mean we have custom precision
+in flavor like a k decay cation decay basically plays a strong role in this one,
+you know, this kind of thing. And so, so that's comparable.
+So so so let me doesn't conclude uh,
+under that we have done this the night the particle uses monopoles on and including better our possum on this together then under.
+Basically we call these kind of fakes the one for example of upper mass.
+So I to achieve a you you can put you have these two d contour.
+Basically this is this what it looks like compared to existing.
+I could actually say on the, on the high Lumi a zigzag tool.
+And obviously that's the you that fusion our chi there you have some hydrogen boom collider can take an image surance these parts under.
+But if you move to two g risk basically this monopole I mean more often or more they but they become invalid because this is not a long life anymore.
+So basically these are the kind of channel bonds.
+So they'll we only we one is coming from this background pose and scattering these one the one you are dependent of of your decay.
+Decay learn I mean decay ways. So so this will still be very the original way scale.
+So under this kind of thing you can see these kind of basically plays a strong role for these okay okay.
+So so this is this uh, the, of course uh under whether it is to go to the SA to come down to go back to pay the,
+the and also, uh, I mean others among other study what I mean so here on take question.
+Thank you for the very nice talk. Question just to see if I'm moving things correctly.
+So the improvement of these homes, uh, between the existing, uh,
+almost one magnitude you would want to work with here, that's not what you want to do.
+So between two minutes, almost one ten feet again.
+Yeah. More questions.
+I'm just going to ask. Um, so in the, in the case that you, uh, that you consider the vector boson fusion channel,
+um, do you have any thoughts of, uh, looking instead for a final state like axiomatic?
+Lulu would be interesting. Um, this is a bit more complicated parameter space because it's moving group through or.
+Yeah. Yeah. What you could do here since we are manipulating electroweak part.
+You I mean, they they are. You can just throw it off, but you convert it all that we're going coming back to that.
+I mean, the arm, but with only not a sense. Which of the book has died yet?
+Yeah. So do you have a sense if that would be doable or which is doable?
+Definitely. And for actually that's basically the only work that they have done that one.
+Yeah, okay. I have one quick question.
+You showed the plot versus mass, some point reaching versus the, uh, page 62181.
+That one. Yeah. So in principle, I guess we were seeing a lot of banged up experiments starting on that ship and so on.
+Like, how much will that take away from this, if at all?
+Yeah. Yeah. I, you know, for like a 64, I think they, they want to move this along this direction.
+Uh, but uh, I thought I mean, I need to confirm whether they can completely fill this gap for that.
+So that's something. But, uh, but this part is good.
+Um, to to say. Under not just the music policies, some others and could come back again after this.
+So I put that up. What happens is, for example, ship where the Tonga is for example, India ship can do a bit better at mass uncoupling.
+Uh, but not on the flat part that, um, collider can.
+So they can go like exactly the same shape or just moving a bit to the right.
+Um, bottom. Okay. Thank you. More questions?
+If not, let's thank Kipping and all of our speakers. We have some extra time for coffee and then the plenary afterwards.

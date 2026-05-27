@@ -1,0 +1,792 @@
+# Muon Collider Ionization Cooling Channel, Katsuya Yonehara
+
+All right, folks. So welcome back. Um, we have our next session, um, with Katsuya, who's going to tell us about ionization cooling for muon VMs.
+And we'll go, um, until 1230. Okay.
+So, Katsuya, would you like to take it away? All right. Can you hear us?
+Can you hear me? Yeah. All right. So the mic is on, right?
+Okay. So, uh.
+Yeah. Uh, my task is are giving her, like, a lecture for the organization of cooling.
+So let me start. So my name is Katsuya and Ihara.
+Uh, I'm a senior scientist at the Fermilab. Um, so I'm, um, I'm working on that.
+Right. Experimental physics. Uh, which means I'm working on that accelerator as well as particle physics.
+Uh, so during the map era, um, I, uh, work on the, um, the, uh, the cooling channel design, like a helicopter cooling channel.
+Um, but there I also work, uh, like RF breakdown, um, experiment.
+Uh, so if you, you also have, like, a question about the, like, RF cavity stuff, maybe you can, uh, grab me and ask me question.
+So I'm currently working on, uh, high power targets for the neutrino experiments.
+Uh, so therefore, um, this, like, the subjects I'm working on, is a kind of like a, um, like a spare time.
+I use, uh, to prepare, uh, so you can, uh, contact me, uh, during a, like, a lecture, but you can also email me.
+Uh, I also have, like, a slack chat, uh, for the us FCC.
+Um, if you have any question, just, uh, uh, Riker, uh, using a selection.
+All right. So, scope of the, uh, this lecture, uh, the my goal is, are, uh, because I work there like a my uncle,
+I have a business for probably, uh, more than ten years in the past, so I think.
+Ah, and now we have a very, uh, good enthusiasm.
+Um, I try to like, uh, uh, conduct, uh, convey my past experience to, like, a young folks.
+So that's like a my major goal. Uh, so, uh, therefore that this lecture, um, I expect, uh, our engineer, uh,
+students, uh, like, uh, science or something, uh, or researcher, whatever.
+Uh, but I expect, uh, because this is the second day for the accelerator school.
+Uh, I expect that you have some knowledge about, like, accelerator physics.
+If you don't have, like, a Naresh. Don't worry. Uh, you can ask me, uh, but but that is like my basic assumption.
+I also expect that you have some basic knowledge about the mechanical, uh, dynamics and, uh, electromagnetism.
+Um, so that's that's like a, uh, minimum requirement.
+So the contents of my talk. So I first got very, uh, briefly overview the beam collider, which is the stimulus like of what the data show.
+Uh, I'm sorry. So there some overlapping, uh, but I provide something different there, uh, prospects then, uh, I will discuss about that.
+I can say variation in a cooling channel. And, uh, the finally, uh, I provide you some framework.
+So the how like, actually, the physics in general is, uh, uh, uh, build up, uh,
+to express about the, uh, generic accelerator as well as a cooling down there.
+All right, so this is my recommended paper and the, uh, textbook.
+Uh, so the first one, uh, this one is a kind of entry level textbook, but this is has a very, uh, rich, uh, textbook so that you can find the,
+the basic idea with a particular set of physics, uh, uh, series of, uh, providing a very famous textbook, which is a kind of like a expert level.
+But there, uh, once you understand this one, I think you could, uh, be that this one as well.
+Uh, the bottom three, uh, papers, uh, corresponds to their, uh, more theoretical part, uh, this one, uh, uh, very relevant there for the,
+uh, Alex, guys provide this, uh, paper, which is very general, very, uh, uh, mathematical, but this contains a lot.
+So like, uh, um, uh, accelerator physics, uh, especially like, uh, if you have a,
+like, a coupling structure, uh, but you can generalize like a you are right.
+Uh uh uh, Hamiltonian. Uh, very, uh, beautiful.
+Uh, and this, uh, uh, paper is based on like, uh, dependance paper.
+And uh, uh, I also, uh, suggest maybe you, if you have a chance to, uh, uh, read this one, uh,
+this one also very like a general and very theoretical, but it's very, like a bit subjects.
+All right. So let's start the overview of the collider.
+Uh, I'm again I'm sorry. So some of the part that is overlapping what there David showing um, and uh, provide the last uh,
+yesterday, uh uh uh, the Vladimir gave some talk uh, that's also covering the most part.
+But let me go through, uh, as you know.
+So we start from the proton driver, we create, uh, like a, uh, prepare a very intense proton beam and send it to the target.
+And as Dave showing, uh, we have a front end to collect the pions, uh,
+and the means and the massaging of phase space and send it to the occluding channel.
+Now, the reason is because the initial rank of me on phase space is, uh, fairly large.
+Uh, usually I said like a basketball size at the beginning and, uh, joining the cooling,
+uh, we make a, uh, like a beam of, like a very TV time is, uh, phase space.
+So that is, that happens during this, uh, this time.
+Then we send to the accelerator why we need a such a, like, a low, uh, small beam.
+The reason is because, like, all our stories starts from the luminosity.
+Uh, I believe, Vadim, you are showing what I call this luminosity.
+Uh, calculation. So this, uh, formula, like our, uh, numerator corresponds to the the number of particles that's an enemy of the enemy of minus.
+And the f is like our liberation time. And the NBS are, uh, like a repulsion power.
+And, uh, uh, then, I mean, the denominator corresponds to, like, the size of the beam.
+So this means, like, the luminosity is forming. Like how what is a flux over there?
+A muons at the collision point. So that's a, uh, main idea.
+And as you see, we try to build the, like our, uh, luminosity, uh, more than ten to the 34, uh, uh, per square centimeter per seconds to,
+to reach this numbers, uh, we have some recognizable numbers, uh, the number of, uh, muons per batch.
+Is about a ten to the 12th. And the liberation means that like a within a, like a criteria.
+Uh, we have a, like a thousand revolutions, uh, before, uh, dump.
+And the number of repetition is like a five hertz beats like every five hail.
+I mean, uh, every seconds we send a, like, a proton beam to the target, like, a five times.
+Okay, then, uh, Sigma is, uh, the arm has to be in spot size at a collision point.
+So this is like our, uh, uh, general, uh, cable.
+What is like our, uh, record luminosity we achieve in the past and in the future for the collider.
+Um, so I show, like a Tevatron, LHC, uh, high energy, uh, electron ion collider, uh, super quickly.
+And here. Okay, that's, uh, like our, uh.
+Yeah, she's still building like a, uh, the stats from a, uh, 2031, but the other part,
+other like a collider has already built, uh, on for the, uh, antiproton LHC.
+Proton, proton, uh, high luminaries, uh, proton, proton, UIC, uh, so far, uh, electron and proton.
+And this is bucket B uh e plus e minus. Uh, here I e plus minus and uh, protons and the center of mass energy.
+So the, uh, big white bar, it's, uh, that's depend on that, uh, physics, uh, what kind of physics you achieved.
+And a single Ma here is, uh, the size of the B, uh, at the collision point.
+Uh, you see that? Okay, uh, pretty wide variations.
+And you can see, like, a proton beam is a there to make a, uh, record more than, like a ten micron, uh, mater.
+And the electron beam is quite smaller.
+Um, the reason is because, uh, uh, uh, record repetition rate is, uh, uh, relatively small for the, uh, electron beam.
+So that's the reason why, to gain the luminosity, they need a, like a, uh, a smaller beam size.
+And as you see, uh, luminosity they achieve is like a ten to the sally force.
+So our case, uh, okay.
+Muon collider, uh, that's, uh, what we are discussing now, uh, we try to build, like, a three TV or ten TV, uh, center mass.
+And we we are. We should have a, like, a beam spot size at the collision point, like less than two micrometer,
+which is a slightly larger than, like a, uh, electron beam, but it has already very challenging.
+And the reason is because the repetition rate we have, it is like a five hertz, uh, to reach the like at the side before.
+So I always see, uh, like a beam of spot size of like a other amount you to smaller uh, FCC H.H. uh, again.
+So this is a proton proton beam.
+So therefore the, uh, the like a size is, uh, close to, like, a, uh, ten micrometer, and they could reach, like, a ten to satisfy.
+All right. So, uh.
+Okay, so I gave her, like, the number.
+Very like a, uh, knife, uh, number now. So, uh, we want to build, like, our, the BMB.
+Uh, we said like, a ten to the 12 spy bands to reach their luminosity and their, uh, as you heard from our, um, uh, they talk, uh,
+we start like, our, uh, emitters, like, uh, 20, uh, medium, uh, 20 millimeter, uh, and reach down to, like, a 20, uh, micrometer, um, radio.
+I'm sorry. So this is us, uh, wrong. This is like a normalized diameters so that the node is the normalized evidences
+that you have to multiply beta gamma to the right of mechanical evidence.
+The idea is to normalize emitters. It's not, uh, uh, nothing to do with the energy.
+So the energy independent parameter. So that's the reason why like cooling channel people using a normalized emitters.
+So, um, as I said, like the proton beam, very dense proton beam, uh, we typically design, like a ten to the 15 proton power scale.
+The reason is because we know, like our, uh, in the past design, uh, neon capture rate is about like a 10%.
+So that is kind of like a optimum condition.
+So this means that, like, uh, even we send a, like, a ten to the 15 proton beam on the target,
+but most likely we collect, like, up to ten to the 14 meals possible.
+Right. And the during like a cooling channel, like a front and the cooling channels,
+I provide you that like a scale of the, uh, like a, uh, front end, a cooling channel to reach like a ten to a 12.
+We only like a boost up.
+I mean, like a, uh, transmission efficiency we should achieve, at least within, like, a, uh, front end of cooling is like a 1% range.
+Okay, so this sounds like a very, like a, um, big, like a Taurus.
+But, uh, in reality, this is very hard. The reason is because the Mumbai actually naturally decay.
+So that's like a one of the reasons. Okay. So in a cooling channel I don't go through the detail.
+So, uh, we try to shrink the, uh, beam spot size.
+So what this means, uh, this curve, uh, showing, like our, uh, the particle showing a, like,
+a longitudinal, maybe eight meters and the, uh, horizontal and vertical transverse semitones.
+So those numbers are normalized value, and we start from here.
+Okay. And the starting point, as they meant we start from Riker.
+Uh, transverse emitters is about 20 millimeter ready.
+And the joining the like a cooling. So the the phase space as is uh, like a moving from here to here and we have like a bunch of March, uh,
+statement so that initially we created like a ten to the, uh, 21 bunch structure and we merged together, uh, making like a single bunch.
+Then we could again, because, uh, during a, uh, bunch merging,
+we actually stuck a neon beam in a transverse direction as, whereas a horizontal, uh, there don't change now.
+So this means a joining a bunch of Mars. We actually increase the, like, a, uh, emitters a little bit.
+So we need to start from here, and we have a second cooling channel, uh, six dimensional cooling channel, uh, to reach the right Riker.
+Uh, like a, uh, 100, 200, uh, millimeter micrometer.
+And finally, so that we have our the so-called the final cooling, uh, and, uh,
+you can see longitudinally it's actually increase, but the transverse would still keep going down.
+So we reach, like a 20 micrometer, uh, at the end of the occluding channel.
+So that is like our, uh, design goal. So you can see, uh, from here to here, we have to reduce the, like, our, uh, ten to the minus three, right?
+So that's like our, uh, this the scale. Interestingly, uh, you might notice.
+So this is a start point and this is the end point. We actually make a record this path to make a like a only transverse recording.
+But the longitudinal actually, uh, at the end of the occluding channel, it's actually the similar as a starting point.
+So that that is like a interesting part of the cooling channel. So, uh, okay, so here is a question.
+Uh, so what I said. Oh.
+So there, uh, so that we know, like, a luminosity, uh, calculation and I provide, like,
+a number of a million beam and the the deliberation time and, uh, repetition time.
+So you have a number here and making are, uh, ten to the 34, what is like a, uh, like a, uh, spot size you need.
+And the answer is definitely, uh, two micrometer. So you know the answer.
+But but you have to provide like a how you get the, like, a two micrometer.
+And once you get the two micrometer, uh, what is the, like, a beta star you have to have.
+So the beta star is, ah, I believe I, I hope you understand, like a basic rate of physics.
+So the, uh, beta function is, ah, sort of like a member of our, uh, parameter.
+So it's showing the, like how much like a beam, a spot size, uh, you, you achieve at the, uh, collision point.
+So, uh, if you have, uh, spot size, oops, spot size, then you should be able to find what is a beta star.
+You you should have to reach the like a ten to the 34.
+Okay. So that is a like a second question. All right.
+So uh, next uh uh topic is ah does reduction.
+All right, so, uh, first I'd like to provide you what is the initial condition of the Damien's.
+Um, so Damien is actually, uh, coming from a crack addict parents.
+How do you create a Pi? We send the product to the target, uh, and the creating, uh, piles.
+And this is definitely the harder and you can interactions. Um, so this mixer, uh, a Pi office space is kind of like a distributed, right?
+Even like a proton beam is very, very narrow beam. And then, uh, pi r is decay, uh, uh, through the, uh, weak interactions.
+So, uh, this decay process also, uh, stochastic means like a we cannot predict where the pion decays explicitly.
+So just like a two process has already like an increase, like a phase space volume.
+And I also provide a some, uh, notebook. Uh, the Python lifetime is like a, uh, 26 micron, uh, 26 seconds.
+So this means that if a gamma is one record, the total length is like a, uh, like a 7.8m.
+So means, uh, write the initial, like, uh, after you create a pions, maybe 20, ten, 20m, uh, channel like a most Pi or SDK write.
+So unfortunately, we create a moon. But the mirrors of decay like a, uh, similar as, like a, like a, uh, like a electroweak interactions.
+And again, so that, uh, muon lifetime is, ah, there is a finite lifetime, which is ah, uh, 2.2 microseconds.
+So the naively, uh, a medium lifetime is a 100 times, uh, longer than the Pio, but still,
+like our, uh, the scale is like a micro, uh, microseconds if, ah, the gamma is one.
+So if I calculate, uh, what is the path length? Uh, like a for the, like a dichotomy, which is like a 700m.
+Of course, like a gamma is not one. Uh, for our case, it's typically like a, uh, 2 or 3.
+So therefore, this length is there about like a, uh, 50, 100m or something.
+Okay. But I idea so that, uh, if you have a, like a cooling channel which tolerate is like a 50 100m,
+you have already lose, uh, a Savio or 40% of the muons.
+Uh, so that's the reason why I said 1%.
+Sounds like a very, uh, victorious. But there the cooling channel is more than like a 5000 meters.
+You significantly lose the muons by only naturally the like a decay.
+I also point out here, uh, what is like a know energy spread.
+So I demonstrated so the Pi on uh, closed, right Pi, um, production, etc., uh,
+from the stochastic process, like a hadronic process, probably probabilistic process.
+And also Python decays like a stochastic. So that's actually increased the like a phase space.
+And this is like example. So the how Python distribute uh through the uh hadronic interactions.
+So uh, we collect like a soft pions which means like uh, those pions uh, coming from our so-called that, uh, delta resonance decay.
+So the delta is like our, uh, our, um, excitation energy over the excitation state of the protons.
+So the, uh, typical mass of the, uh, this resonance is like a around the, uh, 1200 DB.
+So this means that to make a pions, you should have a, like, a threshold,
+which is about like a 200 EVs if the proton beam is more than 200, and if you start creating a Pi.
+Um, yeah. And the resulting pion, uh, energy is, uh, very low energy, up to 300 MV.
+Uh, on the other hand. So the pion decay and the creating a muons and the muon.
+Uh, is, uh uh, if you look at the, uh, the Pi on this frame.
+So the kinetic energy of the ameo, uh, resulting from the, uh, uh, stationary, uh, pions is only five.
+So this means most like a, uh, initial phase space, uh, distribution come from pions, but the muon itself after decay.
+This is like a this distribution is negligible by comparing the like a pie of distribution.
+So, uh, I explain here. Uh, so this means like a, uh, again, initial million phase space is most likely caused by the pio.
+Pio. Like a process. So, uh.
+So again, the notebook, uh, Pyramus and me on bass are very similar.
+So therefore, again, so that, uh, this for me, the contribution is negligible.
+And the other notebook, uh, so, okay, so this is like a one possible suggestion, as you said, as I said.
+So the the Python initial Python phase space is actually contribute drastically for the new phase space.
+If you could make a smaller pie in phase space, then probably we can significantly mitigate.
+I mean, uh, the, the rest of the like a cooling I know becomes much simpler.
+But definitely Python has a some strong interaction we cannot use there.
+I mean, we can still apply, right, our ization cooling channel for the pions, but definitely you have to take into account the hadronic interactions.
+So maybe we have more loss of the pions and the pion has a shorter lifetime.
+So that is the like along with the difficulties. Why we have like a front end channel, what the data show.
+This is like a like a standard way to make a bump.
+But again so I don't say this is not possible.
+Maybe you can find some way like a, like a very clever way, you can find like a the initial pion small incipient phase space.
+Okay. So here is the challenge of the, uh, how Riker making alloy beats me on beam.
+So, as I said. So there, uh, you tell me, um, phase space is like a much more size.
+I mean, uh, basketball size. And we want to make a very small, tiny TV.
+Tiny space, uh, you know, beam. Uh, so, uh.
+But mio has a lifetime. So therefore, uh, we should have a, like, a very rapid cooling, uh, uh, process.
+We have to cool down transversely so you can neglect the longitudinal if you have idea,
+so that you can like a significantly cooler transversely by, uh, like a, uh, three orders of magnitude within, like a, uh, finite lifetime.
+Your wiener. Okay.
+But right now, so that, uh, our current design, we need, like, a longitudinal Cooney and we gain, like, uh, longitudinal cooling and, uh,
+depress the longitudinal phase space into the transverse phase space to make a, uh,
+like a disappointing, uh, studio that has a magnitude for the transverse gallery.
+So that's the reason why we have, like, a 60 cooling Jamil and, uh, like a cooling performance, like a ten to the minus six.
+So that's what I got. I can I show transversely, like, a ten to the minus three.
+One pressure, another ten to the minus three for the other prey.
+Right. So the total direction ten to the minus six.
+And the transmission efficiency has to be like more than 1%.
+Um. Okay. Yeah. So I mentioned here.
+So the again, we don't need a location according.
+If you have a way to like a transpose recall by the order of magnitude.
+So that's what I gather possible. Right? Our design opportunity.
+But to make a like a this like a 60 query, we realize like organization cutting is the only practical solution.
+Okay. So before moving on, I like I, um, explaining about ization, including I just say like a what is like a cooling.
+The cooling is actually this very similar conceptually very similar as a like a refrigerator or like a you are like air conditioner.
+So the idea is if you have a, like a heat objects, you want to cool down these heat objects.
+You prepare like a cold objects in the making like a heat exchange.
+Right. So that's like a cooling. We do the same thing.
+Exactly. Same thing for the ionization cooling. So I describe here the temperature with the heat.
+Uh, the hot material is like a, uh, TV.
+These are actually the temperature. And, uh, like, I was all about temperature, like a UPS.
+And definitely to make a, like, a heat flow that's like a corresponds to, uh, Q Prime.
+Okay. Uh, so heat from this heat for a happens where this temperature is higher than this temperature, right.
+If both temperature is the same, then there's, there's a, uh, uh, effectively.
+So that heat flow exchange happens between but they're, um, like a stationary state.
+It's like a, there's no, like a heat, uh, transfer at all.
+So that's a we call that equilibrium condition, right.
+All right. So the heat transfer rate, you can you know this very simple calculation.
+And uh, this one is that like a heat transfer.
+Uh Q is as a function of at a time, but but our case the beam propagates through the occluding absorber.
+So we change the, uh, a denominator to their, uh, pass ranks like a s, so, but still, like, uh, this calculation should be the same.
+All right. So in this, like, uh, like a formula, as you see, to maximize a Q prime, uh, h and a constant.
+So therefore, uh, to make a, like, a most, like, efficiently, uh, make a, uh,
+heat transfer delta t, then it asks if the delta t is zero, there's no heat transfer at all.
+So the idea of the cooling channel, we want to like a making a rate like a delta T as large as possible.
+Um, so I also describe here, uh, you can also use it like a entropy, like a concept of the entropy.
+So the entropy change is uh, uh, not sure relative.
+Some over like initial temperature versus final temperature.
+Right. So we can do the same thing for the cooling, uh, the, the beam query again, we try to recall, uh, did using a phase space, uh, volume.
+So this means that we, we should translate the phase space into the beam temperature.
+Right? So, uh, if we have a, like, a translate the beam temperature, then we try to make our, uh, delta T as large as possible.
+So that is the exactly happens if we, uh, send a, like, a D into the, uh, uh, focusing objects.
+All right. So means like a this is like a very, uh, simple cartoon.
+Uh, so this, like, a, uh, box corresponds to the focusing, uh, magnet, and the each tag line corresponds to the, the particle trajectory.
+Uh, so this picture of difference are very simple.
+Uh, but the red curve showing, like, our, uh, starts from here and, uh, going to the focusing magnet and then, uh, making a focusing means like a,
+the the beam is bent and the reaching to the right at this point, and it goes through and to,
+uh, achieve, uh, reaching the, this magnet and again, the focusing and the focusing.
+So the red curve is this kind of zigzag structure.
+The same happens to like a magenta. So the magenta starts from the opposite side.
+But again focusing on the D focusing.
+Right. So as you see the phase space this is like our uh so-called the phase space.
+Uh, the particles are showing, uh, momentum, transverse momentum and uh, horizontal sharing the, the beam position.
+So the let's start from our. Let's start from a negative, a point.
+Uh, I'm sorry. So this might be. Oh, here. Okay. So.
+We measure office space here in the middle of the focus environment.
+So this case the beam spot size is maximum.
+Okay. But momentum is minimal.
+So that's the reason why phase space is showing drag this way. Okay.
+But after like a focusing magnet. So the face space actually starts rotating like a counterclockwise or clockwise I'm sorry.
+Like a at here. Uh, so the uh, because the focusing magnetic there, the, uh, the particle transversely.
+So therefore this particle is ago it was in the like a making sound like a rotation.
+And that's like a focusing point. And the face space is kind of like a, uh, elliptical shape is, uh, by degree large, but the horizontal is smaller.
+Means like a transverse momentum is maximized at the focusing point.
+And the, uh, the beaver spot sizes is the minimum.
+Okay, so that is like our fundamental of the being focusing in a, uh, like a focused environment.
+Is that clear? Okay, so this means our, uh.
+Right, uh, that the momentum can be translated to the a temperature.
+So the higher momentum means that you have a higher temperature. So at the center, the middle of the, uh, focusing less, uh, focusing magnet.
+Transverse momentum is minimum, means the temperature is low, but the spot size is large,
+but at the focusing point is opposite, so the temperature is maximized, but the focusing the beam spot size is minimal.
+Okay, so if we put the absorber here, then you expect so that there is like a place so that we could maximize the like a heat exchange.
+Right. So that is the idea of the like a cooling channel.
+So if we put the absorber here then we could make like a lodging I mean, uh, phase space cooling.
+Again the entropy is a very similar.
+Uh, so we call like a this like a size over there, like a phase space we call the habitat.
+Uh, if we call down the B so many times, uh, the entropy also goes down.
+Okay. I hope it's clear.
+All right. So, uh, like a microscopically how we transfer the, like, the heat.
+So we use, like, a, uh, like a cooler interactions.
+So, uh, red curve, uh, that, uh, like, a bore is like a mirror and a black point.
+These are, uh, fully electrons.
+Okay, so if a muons hitting an electron, there's a some, like, uh, uh, cooler interactions in the mirror, uh, pushing that like electrons.
+And to me, on this energy, this very simple calculation.
+Uh, so the energy transfer from me on into the electrons and, uh, the transfer, uh, energies delta e, right.
+So, uh, actually this is a like a cooling.
+So the cooling rate is very simple, right?
+You divide like a, uh, transfer the energy divided by the kinetic energy.
+That's all. Okay. That is like a cooling, uh, recruiting efficiency.
+In the case of elastic, you have a, like, extra, like a, uh, um, like a, um, energy term, which is like, ah,
+exciting or making some, like, additional, like a, uh, translate, uh, transforming some other particles, whatever.
+But there is a is the same.
+So the any kind of energy loss we, we, uh, uh, takes, takes place then me um, beam actually, uh, is cooling, um, during this process.
+And if you have like a multiple, uh, cases, you know, beam definitely is losing energy.
+So therefore we, uh, clear out.
+That may not be. So, um.
+So this, like, a process.
+Uh, we have a, uh, formula, which is there, uh, as you know, like a business equation, which is like a, uh, this is a very simple structure.
+And I would tell you.
+So, uh, if we know, like, average number of collisions and we know what is like, average energy loss, like a that's a, uh, like a ionization process.
+So that's a sometimes we call like a W and a w just sometimes we call like an electron ion pair production energy so that,
+uh, we guesstimate uh rd I also point out here so d d x is like just simply like energy loss.
+But this is like energy loss per unit length means like, uh, uh, you you you can say this is like equivalent to like a force.
+Right. So this this one we sometimes call like a damping force.
+Okay. So if you read the recorded textbook for the recording, people sometimes use it like a damping force.
+That is actually d the x. Right. Okay.
+Uh, okay. So that looks like if you send a beam into the like a, uh, observer or electron cloud.
+So we could make like actually, unfortunately life is not so easy.
+So the we always have a some like a disadvantage. So that is like a heating.
+Uh, so uh what I say. Oh. So the margin for scattering, uh, takes place uh, during a, like a, uh, regular interaction process.
+So the margin for scattering actually in use are like a, like a cooler interaction.
+We just like a, uh, telling, like our we are only like a transfer.
+Like a transfer. The, the, uh, energy into the like a cooling objects.
+But definitely this cooling object have a different super force.
+So therefore, uh, like an incident particle, have a, some liquid energy.
+This cause, uh, like a heating effect that is there if you have a, like a multiple time, like a,
+like a heating, then like a this, like our, uh, heating effects, it's not negligible at all.
+That is called a magical scattering. Um, so this is like a, the simulation, uh, results.
+Um, I send, like, a, um, like a zero transverse evidence.
+Me, um, beam into there only ten millimeter thick.
+Uh, liquid hydrogen, of course, the start points is like a point.
+Pointy. Uh, this is like a, uh, spatial distribution of the beam.
+Uh, after the, uh, goes through the, uh, like a cooling absorber.
+And as you see, uh, like a the beam is actually distributed.
+This is like a heating due to the magical scattering. And the interestingly, I use it like a, uh, G4 beam.
+Right. That's a gen4 versus the simulation code. And interestingly, I see like a 3D structure, distinct structure.
+I think this is like a, uh, artifacts that is may not be the truth, but anyway,
+uh, like a very sharp peak, I think come from a pure like electron interactions.
+So, so to recap, uh, me, um, beam, uh, just to scatter the electrons and their, uh, electrons, making some recoil.
+So that's reason why there is a distribution create created by the such kind of cool interactions.
+Orange one is coming from our, uh, like a secondary, like our, uh,
+secondary white distribution, which I think coming from a, like a territory production.
+Um, okay. I think this is artifacts, but but the data is that, uh, you sometimes say like our, uh, muon,
+uh, has, like, a head on collision with electrons, and the electron is a very high energy.
+Some people are very care about what I call, uh, the the delta ray process.
+I think the jet for creating our, uh, special rack of, um, uh, like a, uh, like a,
+uh, probability, like a trace to create a, like, a delta like production.
+So that's the reason why we have, like, a very distinct structure.
+But I think in nature, this should be a very, uh, smooth distribution.
+And the last one, the biggest one is like a so showing you like a good one.
+That is like our decoded energy from nuclei.
+That's, uh, in case of the hydrogen, that's a like a hydrogen molecule.
+So um, so this is the biggest contribution for the heating effects.
+So we always fighting against like a marginal scattering, uh, when you design a, like a cooling channel.
+Right. Okay. So. I gave you the very basic, naive picture, very intuitive pictures.
+Okay, so now we try to work on some mathematics.
+Okay. Sorry. Maybe you feel sleepy, but I try to go through very quickly.
+All right. So this is like the, uh, start point.
+Uh, so the noise, uh. I'm sorry, emit us, uh, as a function of our, uh, pass ranks.
+So if you have, like, uh, uh, deviation of the normalized evidence, which is actually, uh, normalized evidence is a beta gamma times their,
+uh, uh, mechanical evidence, and you apply like, ah, uh, this deviation into, uh, two parts.
+Okay. So that's like our very start point.
+Uh, so this term has actually, uh, I say that like a heating term.
+So, um, so that, uh, beta gamma is actually, uh, could like, uh, integrate, I mean, uh, decomposing like a city parts and each parts, uh, almost zero.
+Uh, that's a based on the assumption. But this assumption is very naively, um, uh, applicable for any coding channel.
+So do not worry about that. Like this assumption for now okay.
+But we have only contribution this guy, which is like, uh, this guy I believe, which is actually, uh, uh, much more scattered in.
+Oh, I'm sorry. So this is still zero. Okay. And, uh, this contribution is, uh, is a marginal scattering.
+Okay. So this means that, like, a spatial distribution could be like, ah, uh, they dropped when particle go through the more coding I was over.
+So that that is the reason why this cannot be neglected. So that we should have a this one.
+Okay. All right. So, uh, so this, uh, sigma, um, uh, theta square is actually coming from our, uh, multiple scattering formula.
+So you might be familiar with this, uh, formula. So we, uh, demand this one.
+Okay. Uh, on the other hand, the first term.
+Uh, yeah. Oh.
+Second term. Okay. So I think probably the place.
+But the second term. So the the VB uh, beta gamma dz is actually uh energy deduction due to that like, uh, uh, cooling, which I'm.
+Yeah, I mean, uh, I cooling okay.
+So, uh, you, you get the laggards and DVS is, uh, we, we depress into the RAC a better equation.
+That's it. Like a damping force. Okay.
+So therefore, uh, uh, the, the last phase, uh, again, so we have a like a this equation and uh, uh, so for the equilibrium condition, as I said,
+if the temperature between, um, beam temperature versus like a core, I mean, uh, absorber temperature at a similar, then there's no wrecker.
+Um, uh, like a heat transfer at all.
+So this case happens, uh, if ah, if I put it this way as zero, then you get the, like a, uh, equilibrium.
+Uh, the, the minimum evidence. This is so-called the equilibrium emitters.
+Um, and you can estimate the equilibrium.
+Does, uh, like this. Okay. So.
+This means, uh, if you want to have a, like, a quarter, I mean, smaller emitters.
+This, uh, equation tells you so which parameter you have to deal.
+So the beta is again beta function that's like a pair of, uh, parameters is a numerator means that if a beta is smaller, you have a lower emissions.
+And uh, so if this is bigger, it's bigger again.
+So the that's the denominator. You can destroy methods.
+Right. And the error is uh, error is uh, uh, their uh, radiation length.
+That's depending upon the material. If you have like a, uh, larger error, again, you gain like a lower, uh, admittance.
+Right. So that is like a what is essential parts to design, like a cooling channel.
+You try to find, you find like a, um, like a cooling absorber which has a, like a longer it are in the dirt with large, uh, the eaves.
+And when you design like a cooling channel, you try to like a ditch, like a low beta.
+All right. Okay.
+So, uh, on the other hand, the longitudinal phase space again, uh, I go through very quickly.
+Uh, we decomposing that actually parts and again, so that we can set out some part or neglect some parts and uh,
+only one part, which is, ah, I think a momentum spread.
+Uh. I think this guy, this guy's demeaning.
+That's a actually so-called energy struggling, as I said.
+So the, uh, energy, uh, the recoil energy induces, um, like a distribution.
+The distribution happens not only transversely but also longitudinally.
+So the energy spread caused by the marginal scattering.
+We sometimes call this scattering process as a, uh, like a, uh, energy struggling.
+Okay. So we apply that energy strike straggling, uh, formula into that space.
+And then finally we get those two components.
+Okay. Uh, so, uh, we also have like our, uh, new parameters, which is like our, uh, uh, g x, y and GR, we call these parameters.
+Uh uh, yeah, it's coupling parameter, but it's called their, uh.
+Partition. Right. So the partition number. So this partition number is, uh, uh, is presenting.
+So the data I tell you, so that we can induce a sound like a transverse longitudinal coupling that is like our,
+um, this is like a sort of a, like a coupling.
+Questions? It's not like our total sum is not the one, but but if we induce like, uh, the, uh, the, the dispersion, then we could have, uh,
+have some like a fraction g uh, g x and y that is, uh, contributing for the transverse phase, uh, cooling and a g er for that origin, actually.
+Okay. So, uh, okay.
+So that's a kind of, uh, detail, so that, uh, g r is actually the, um, uh, deviation of the d x and the this is,
+uh, like a, this is a, like a the curve showing like a momentum versus r uh, g l okay.
+And, uh, you notice, like, if, you know, the banded block, uh, curve.
+So there is a, like a minimum ionization point, which is there uh, sometimes people call MIP the case of origami on beam.
+Uh, the point is about like a 350 MIB overseas.
+So if our, uh, like, uh, the deviation of the, uh, bed, uh, curve exceeds the midpoint.
+So the slope is actually positive. So that's the reason why you see the positive come here.
+And the below, uh, point, uh, the car, uh, Viale uh, graph showing like a negative.
+Yeah. So typically our cooling channel, we designed like a 200 day, maybe overseas,
+which means, like, our, uh, graph is a somewhere around, like, this point.
+Okay. Uh, so.
+Yeah. And as I said, so if we have a, like, a dispersion, I explain you about the dispersion data,
+but the graph G can be describe about the dispersion curve.
+Then uh, we can distribute like a, like a cooling, uh, into like a transfer city and the longitudinal.
+Okay. All right. So how what is the dispersion.
+So the this this is a simple picture. This is a like a diaper magnet.
+B is like, uh, we have a, like a uniformly, uh, induce like a, uh, B field, like a direct into the, like a, uh, particle from the screen.
+Okay. So if we send a B, there is a, like a, uh, raw, uh, force takes place, so the beam is actually bent and, uh, reach to the some specific point.
+So this is like our LED curve corresponds to a different particle.
+So we have like a specific, uh, momentum. Therefore, if we know about the B then we, we can estimate what is the, like our, uh, curvature.
+So no, is, uh, uh, uh, curvature radius.
+Okay. If we have a different momentum, then particle would actually reach a different location.
+So in case, uh, like a lower momentum. No, I don't like a, uh, define as momentum.
+This particle reaching to, uh, smaller, uh, bending radius.
+So therefore reaching here and higher momentum.
+So the, this particle reaching to, uh, right. I need it to be large, like a, uh, like a bending radius.
+So this means if you have a, like a momentum spread in a beam, you actually translate the momentum, uh, the the beam, uh, as a function of the place.
+So the momentum is converted into that momentum information converted into, like a transverse phase space.
+Okay. So that is, ah, like a so-called the dispersion.
+So the formula with a dispersion is a momentum times or DPI over the of your data over DPI.
+Okay. So this is a like a simple form area.
+So if I have like a uniform distribution uh so I can estimate like our uh, regular uh, bending radius as a function of this.
+And if I have like a momentum spread. So I apply like a, this spread.
+But, uh, q over B cube is a constant.
+So I don't have a, I have a like a q b in a uniform, uh, more of like a field distribution.
+So therefore cube is the constant. So therefore, um, I use like a this initial condition here should be equal to this.
+And if you go through you get to actually, uh, gain this, uh, condition DP over the law should be the same as a P overall.
+Okay. So if I use this condition here.
+So the dispersion is actually the same as a regular, uh, like a bending radius.
+Okay. For in the case of a uniform, uh, uniform magnetic field.
+All right. Okay. Um, uh, okay.
+So this is like a, uh, sidenote, um, so as you, uh, learned yesterday,
+so the better if you have a better function and if you have, uh, emitters, you can estimate, uh, like a, uh, beam spot size.
+So now if you have a dispersion, dispersion could also contribute to, uh, the beam, uh, this distribution.
+Right. So to evaluate the like, uh, take into account, uh, like a dispersion e to the spot size, you should have, like a different, uh, form here.
+Uh, if you don't have a dispersion. So the sigma is a square root of beta times, uh, epsilon.
+But if you have a dispersion, so you have an additional component. Okay.
+All right. So, um.
+Again. So back to that. I like this picture. So I show that like a difference particle.
+Now I put there, uh, where Jeff is over at the end, over there.
+Uh, dipole magnet. So then this particle, uh, goes through, uh, which I was over, uh, like a,
+the distance, like, uh, here and uh, so I think, ah, um, I don't see the, the picture.
+Well, but I think it's showing like, uh, out of our, and our, uh, omega,
+like a geometric factor of the, uh, to describe our, uh, um, which I was over.
+Right. So if I have, like, a lower momentum particle now.
+Though a momentum particle is. You can see that there are like a smaller bending radius.
+So therefore this particle has a specific location.
+These two the wedge up is over. And uh, at this moment.
+So the moment, uh, the particle goes through the wedge happens over there, typically shorter pass ranks than the death car.
+Right. And thus the same happens if you I have like, ah, we have a like a higher momentum.
+This momentum particle actually goes through the, the longer passage banks.
+So this means uh, the output. So the uh, of course the other particle does some energy, but this particle has a more energy loss than that one.
+And the blue one is less energy, uh, loss by comparing the red one.
+So this maser, because we, uh, locate the like a the, the particle as a function with like a momentum.
+Now we can control the, uh, record geometry, uh, the energy loss by changing a geometry over the observer.
+So that is a, like, a, uh, way how we, like, apply this further to create a, like a, uh, no getting occluding.
+All right. So, uh, the DXY again.
+So this form here, and if we take into account the geometric factor G x, y can be described about by there like a, uh, demand job there.
+The wage job is over. All right. So now we know a dispersion.
+So the dispersion can contribute like, uh, translate from longitudinal phase space into the particle,
+but, uh, dispersion could also changing a path length.
+Right. So the path length is change that like, uh, the time of.
+Right, the order of change. So, uh, to be taken into account like a the password is different.
+We use the new parameter, which is so-called our, uh, compaction factor, which is here.
+And again compaction factor can be described by the dispersion.
+So this is like a correlation. So the compaction factor uh, is uh okay.
+So I have a summary data. The conversion factor is the one parameter to describe a space.
+And uh we also have to think about uh, like a okay, like a time of right.
+And a, uh, the, the time of right can be describe about like a this parameter and this is called the, uh, phase sleep factor.
+Okay. Don't worry. So I already I have to show you more like a, uh, naive picture.
+So the what is a, uh, uh, slip factor means. Okay, so this is a, uh.
+That's right. So this showing, uh, like a momentum bars as path length.
+Okay. So you can imagine so that if so, the there are two possible like a channel Y is like our, uh, if the momentum is higher, Parsons gets shorter.
+Okay. Some condition. So this means like a compaction factor showing like a negative slope.
+Right. And the other way is, are, uh, uh, this is more like a normal way.
+So the momentum is bigger than the, uh, like a password is longer.
+So this is like a positive zero. So we always have like a two different type of a compaction factor, including region.
+Now why is the like a negativity slope. And the other one is a positive drop okay.
+Besides that. So the, uh, slip factor is like a, uh, the time of.
+Right. So the time of right can be like a similar, like a, uh, conditions if the momentum is bigger.
+Parsons I mean, uh, meaningfully, uh, sorry that the time of right gets shorter with some, like, a, uh, like a channel condition and, uh, other way.
+So the positively, uh, increased. Okay, so this means, uh, if you design RF cavity.
+So I didn't explain about, like, RF cavity, why we need RF cavity, including Jamil, because, uh,
+if we just simply lose energy, then particle leaching to the zero kinetic energy, these, like, particles stay.
+Right? So that's not useful.
+We have to write a gain like a lost energy by using, uh, some, some technique out of cavity is one, uh, very standard technique.
+But RF cavity has a like inside a wave in a cavity.
+So therefore there is a some specific timing. We have to send the particle into the direct cavity.
+When you design like a cooling channel you have to know, uh, what is.
+Other face when the particle reach into the, uh, RF cavity that is there.
+This picture showing that, uh, is, uh, how you design.
+Okay. So you can imagine now so that if you have like a, uh, like a positive, uh,
+phase factor means like a faster, uh, like higher momentum particle reach to the, uh, uh, RF cavity.
+Faster. Right. So this means that this is like our time in our, uh, RF cavity versus, like, our, uh, electric field induced in a cavity.
+So this right orange point, these are different particle.
+So high momentum particle, these to their, uh, RF cavity out here means, uh, this particle is reaching, uh, earlier than that, uh, different particle.
+So therefore, this, uh, particle gain less kinetic energy from RF cavity right back here.
+And if you have a lower momentum particle which has a longer path.
+So therefore it takes a longer time means, uh, arrival time of the such particle is, uh, somewhere around here.
+So the kinetic energy easily gain more than the difference particle.
+So that's a way how we like a making a cycle to, like a, uh, like a, uh, uh, design, like the kinetic energy for individual particles.
+So if you have a negative, uh, slip factor that things are different because are now high momentum particle reaching slower,
+uh, so therefore, uh, uh, particle is reaching here.
+Right. And a higher momentum. I'm sorry.
+Higher moment that vertigo reaching our slower. So therefore reaching here and this, uh, no momentum particle reaching faster.
+So therefore reaching here. Okay. Makes sense.
+I think so. Uh, okay. So that's the reason.
+That's the way how we, uh, just, like, out of cavity, including Jamil.
+Okay, so I go through the dialog with you in space.
+Um, I see that the time time is consuming a lot, so the.
+I go through very quickly, but you get you also calculated like a, like a launch you to obey the functions,
+uh, which is contributing along to, you know, phase space evolution.
+All right. So long as you have the function, uh, is, uh, depending upon, uh, like a V prime, which is, uh,
+uh, gradient, RF gradient, high RF gradient, you have a smaller, uh, you know, a better function.
+Therefore you can reach lower, uh, habitus, which is very similar striker, uh, transport, uh, uh, phase space.
+All right. So, uh. Okay, so this is, uh, showing that I gave it a separation.
+Uh, uh, now, so the back to that, like a this separation car.
+So this is like our, um, uh, uh, EBITA separation as a function of, like, a, uh, clearing part and the, uh, heating part.
+But, you see, heating part is a constant. So therefore you can simple simplify like a formula like this, like a question times, uh, efficient.
+Uh, plus like a constant term. This one is, uh, analytically solvable.
+And this is like our, uh, equations and our the equilibrium, uh, evidence is the ratio between c1 over C2 or C2 over zero.
+All right. So means like, uh, if a sheet is smaller, you have a better, uh, uh, equilibrium or she is bigger.
+Again, you can get the, uh, lower equilibrium distance. So this is a kind of like a, uh, analytical calculation if I use a, like a liquid hydrogen.
+All right. So this is a question to, uh, so there, uh, you can estimate that gave me a test car.
+So I provided some initial conditions and how it has to be deduced, uh, as a function of, uh, the path length.
+Uh, and for this calculation, uh, I ask you what is like our, uh, goal, uh, by by these conditions,
+uh, using the those like, our, uh, table so that you can estimate, uh, those parameters.
+All right. So finally, so I reach to their, uh, sorry, not the best, uh, beam optics.
+This is a even more theoretical components.
+I'm sorry. So that you feel more sleepy, but I try to go through very quickly.
+Uh, but, uh, the point is, uh, um, there is a very nice paper, so which describe about the, like a transverse coupling.
+So the x and y motion even couple.
+But we could again like a um, uh, uh Hamiltonian very nicely.
+And we can gain, uh, emitters. Uh, that is so-called uh, eigenvectors.
+Okay. So uh, that they finish up with the eigenvectors.
+So, uh, we have a phase space that's a x, y, p.
+And uh, this is the like a z position, uh, spatial distribution on a Z.
+And this is our, uh, momentum distribution y energy distribution.
+So, uh, we also have to have, based on this, like a mechanical, uh, momentum, we can describe a canonical momentum, uh, uh, like a therapy.
+And to gain a, like a mechanical, uh, canonical momentum, we should know what is like our, um, uh, like a beam optics you have.
+So, for instance, like a P that's a, like a y example, uh, should be described by their, uh, vector potential, which is like x.
+So the p p z same, so that you could have a like a y.
+And uh, s so you can describe it like a canonical momentum.
+So, uh, in the case of a solenoid, uh, nicely, we have a on the x and a Y.
+So there's no, uh easy. So therefore you have a, we have a and a p y, uh, with a, some, like a, uh, vector potential.
+Okay. So, uh, the first moment, which is just mean value, uh, so if you collect, uh, like a phase space, uh, over the particle, you can get like,
+uh, x bar x bar y y y p y bar, and uh, uh, z bar and a, uh, therapy over the, uh, delta p of a p bar using this formula.
+And you also have a second moment, which is usually called a canonical covariance.
+I'm sorry, the covariance matrix, which like to describe it like this.
+All right.
+So if you know, uh, covariance matrix for the, uh, six by six, now we have like a separate three matrix, which is like uh, uh again six by six.
+But the each component has like uh zero one minus one zero.
+Okay. Why do we have like this uh, matrix I'll explain you later.
+Okay. But these are like a separate three x matrix.
+Okay. Then we can describe the eigen uh uh function and eigenvector.
+So the uh, sorry being there, uh, these equations and the uh, omega is uh, uh, the, uh,
+the, uh, the multiplication between, uh, separately X and our, uh, covariance matrix, but.
+Burst. All right then. So this right down there corresponds to their eigenvector eigenvalue.
+Okay. So this eigenvalue corresponds to them very mathematically right.
+But but this is like a where described in a paper which I don't cover for today because that's like I need another two hours to explain.
+But I don't think you wanted to do that. But you can, you can.
+That paper is very well described so that you can definitely extract by yourself.
+If not, just just grab me so I can explain by two hours.
+All right. So, uh, so, uh, because we saw that, uh, this equation means you could also have like eigenvector.
+So the eigenvector actually corresponds to like a, very like a certain phase space.
+All right. So that's like exactly. So this uh, like a vector potential could a couple to like our, um, uh, like a simple symplectic condition.
+This actually is the same as, like a, like a canonical condition.
+So the if you have, if you, you know, like a, uh, deviation of the x,
+which corresponds to like a if you have a Hamiltonian so that the you can describe it like an x prime as a function of our deviation of uh,
+Hamiltonian by the the right. So this question, if you combine together this question corresponds to this.
+So this why the coupling of the separately.
+These are like correlation of the the canonical conditions.
+All right. And the if you use like a uh separate uh the separately you can describe like our phase space, like a, uh, canonical condition.
+I mean, yeah. Hamiltonian condition. Am I clear?
+All right. So. Okay, so if you agree with me, then we extract omegalul.
+Omegalul V omega five five, just like our, uh, each, uh, like our, uh, hyperspace, uh,
+components so that we have, like, a three components, which is similar as, like x, y, z.
+Right.
+So, uh, if that's the case, so that we can extract the beta function, uh, so which corresponds to like a, uh, this formula M is like our, uh, index.
+So if you put the index or the sigma Wawa of our, uh, epsilon one, then that's corresponds to the beta function.
+Okay. And the alpha and a gamma. Okay.
+Again, I expect that you understand about their, uh, twist parameters.
+If you not, I can explain it in the first one.
+Should there be a square root somewhere or a square somewhere? Uh, but size, when you say x, y, z, uh, analog, is that is that square?
+So that's a good question. Um. The answer?
+Probably not, but I don't know why.
+Okay, I. I look, take a look, but that's a good point.
+Um. Yeah.
+So. I think you're right.
+So the vector potential. So the. Yeah. So the vector potential is the square root of that.
+Yes I think that's a square yes I agree. Yeah.
+So those should be uh so uh yeah this should be square.
+Yeah. Right. Thank you. Uh, I think the same happens this one and and this one is from just like a conventional, like a, uh, two parameters.
+All right. The dispersion could also be extract, uh, from the, uh, vector potential.
+And, uh, again, I don't go through the detail, but the.
+So if you want to know, I can explain, uh, how we extract why we have a, like, a disparity like this condition.
+Uh, that's it, like a very theoretical, very like a pure theoretical path.
+But there we can also extract very easily about returns, uh, from, um, covariance matrix that's at like a, uh, sometimes we call that it does.
+Uh, so uh, this method is much simple.
+So we still have like a covariance, uh, canonical conditions, but also, you know, the canonical condition then the methods is described like this.
+Okay. Um, so carrier of this, uh, calculation is we neglect the coupling, uh, between like x and Y, but most like a recruiting channel.
+We design is actually, uh, so-called the like cosine flip the sorry.
+In case. So this case, uh, canonical, uh, angular momentum is canceled out.
+So therefore, uh, most likely like a coupling with time x pi or y component is almost zero.
+So this method is very naive and very approximate.
+But surprisingly the result is very similar.
+Is that like our Eigen uh, eigen functions? Okay.
+So you can use, uh, for the a just left calculation.
+You can use these conditions. All right.
+Uh, so the map and I see, uh, folks actually using our, uh, like a instead of, like an individual city by, uh, like a city, different component.
+They combine like a, the, like a 4x4 matrix for the transverse, uh, components and a,
+uh, using a, like a, uh, determinant of this 4x4 to extract the evidence.
+That is, of course, uh, very, uh, accurate so that you can use this method as well.
+All right. Uh, so the Hamiltonian, uh, in the general case, uh, again, so that you can,
+uh, find it like this, like a general Hamiltonian, this contains everything.
+Uh, so, for instance, if you have a like a, uh, straight sorry.
+No, uh, most likely the Hamiltonian is like, uh, like this, so that, uh, nxpi.
+Uh, and the x term x squared, um, y p x pick p y.
+So those are like, uh, sometimes they call people call like a quadratic formula.
+And this Y is a more general, uh, if you have a like a tilt it the solenoid is tilt.
+So therefore the solenoid induce more like higher order components.
+So the higher order components can be, uh, included like a capital K or small K or capital R.
+And if you have like a skew component this can also include a like uh skew component as well.
+So uh this is more general.
+And again so if you go through there like an eigen eigenvalue calculation, you can extract it like a uh, eigen vector eigen, um, uh emitters.
+And then you can extract that either, uh, very pure, um, like our um, eigen conditions.
+Uh, and you can decouple. All right.
+Okay. So I was technically it's about 20 minutes, but that will leave a little bit more time for questions.
+Okay. Any questions so far? Sure.
+You mentioned that the twist parameters, uh, this, uh, and you that you gotten from, like, the, uh, positional things is like,
+is there something that we should think about, like physically about the parameters or just based on those from.
+So I don't quite get what you're saying. Uh, so it looks like there was a problem.
+The right size. Uh, is there something other physical?
+Oh, um, yeah.
+Twist parameters are, uh, other type of, like, a canonical condition.
+So, uh, if you like a maker, um, like a, uh, Hamiltonian condition, you can formulate their.
+With respect to that that this parameter. Okay.
+So I can just think of them as like just other canonical variable. Right?
+Okay. Hi, this is Rita.
+Uh, I have a question about the cooling part, so let us know.
+Yeah. My question is, uh. Uh, you said the observable material is liquid helium.
+Oh. So, uh. Yeah, sure. So that's that.
+It depends on our, um.
+These equations.
+Uh, so, um, if I recall cooling part and the heating part, you can calculate each of them based on like a you are, uh, like optics if.
+Ah, Ryker, uh, this time is bigger than this, then you can still cool, no matter what the what type of material you have, you can still call.
+So the here you could be. But if.
+This time is bigger than this. Than you like.
+You don't cool you when you heat up the face space, right?
+Okay. Thank you. Anymore.
+Okay. Oh. I could see, since we're in the cooling part, I wanted to ask.
+Um, the the DCS being in the minimally ionizing section.
+I mean, so obviously we don't want to cool down the ambulance to the point that they will all decay away.
+But can you talk about why we don't choose to either make it go much on the right to be on the relatively relativistic rise,
+or be slower to also have a higher DCS?
+Um, because, you know, naively, I it would seems to me that that would be a better choice to have a cooled faster.
+Right. So, uh, I'm sorry. So that's very good question.
+Uh, saga also have a very similar question in a previous, uh, section, and I should prepare, like our DCS card.
+Why would you choose, like, a 200 a day media box and, uh, and a you observatory.
+Right. So that there is some balancing, uh, rigor, of course, like our higher momentum so that you have a less like,
+uh, particle loss due to the decay or be more like a, uh, possible advantage.
+But there is also disadvantage, for instance, like our feeder strength to hold the like, a higher momentum particle is stronger.
+So therefore you have a stronger magnetic field. And, uh, energy loss at the, uh, VP point is very low.
+So therefore the cooling performance is also poor. But if you go like opposite direction DX becomes big.
+So therefore you have a bigger advantage. But you also have a more heating components.
+So therefore you might reduce uh by,
+by the like a let's talk about the stochastic process or like a uh uh uh Mayan decay more so you lose like a millions.
+So 200 a day, maybe overseas maybe.
+Ideal point, but who knows, like, uh, if you find a, like a different way, maybe you could have our.
+You have, like, a difference. Momentum lower than, like a 200 maybe overseas.
+More questions. All right, let's move on there.
+Sorry again. So if you have a question. Uh, just grab me and I can explain.
+I like a discussion, so don't worry. Um.
+Okay, so. I finish by ten minutes.
+Okay. So, um, so this is like our, um, example.
+So the, the I demonstrate it there, like a very simple, like a, um, like a cooling scheme, but I don't put any absorber for this demonstration.
+Uh, this is a, like, a layout. Uh, so the of the cooling channel, we have, like, a coil here, and the coil dimension,
+like a is in a diameter, uh, in a radius or with a core piece a thickness.
+It is a length. And these, uh, like a periodic structure.
+Okay. So that each each d we have a, uh, the similar structure for if you learned about, like, uh,
+the basic accelerator physics, uh, if you know about that, like a focusing point, uh, focal length.
+So the, uh, magnet, you can describe what is the, like, uh, phase advance using this, uh, equations.
+Then you can, uh, so in case of the solenoid.
+So the, uh, focusing length is like I described like this formula.
+So therefore, uh, you can describe what is like a phase advance, you know, like a cooling channel.
+So this is like a very simple way. Unfortunately, this method doesn't work.
+Okay. The reason is because the the core is not like a theme.
+So the the performance of it is like an equation only applied when you have a very simple, uh, magnet.
+So that's like a thin, dense approximation. We call in the case of the same length approximation.
+So this one is of course valid. But in the case of the the uh cooling channel then coil length is uh finite.
+So therefore we cannot use these. So what what's a required that instead we use is like a uh this equation.
+So the this means we now look at the, um, the, uh, the, uh, the profile of the magnetic field.
+Okay. So if you have like, our, uh, series over the coil, the magnetic field looks like a periodic structure.
+So the simple mind. So the we use like a sinusoidal function.
+Okay. So if we use this function into our, uh, this formula, now we have a new, uh, equation of motion.
+So, uh, this equation cannot simply solve unfortunately.
+So you have to apply um, so-called uh, so this like equation called like a massive equation to solve the massive equation.
+Unfortunately, we have to have some like a better way to solve the equations.
+Um, so that is a why with the difficulties, why we have, uh, like our, uh, solenoid, our best cooling channel.
+So difficult. Yes. Um. Uh, I think it makes sense for why the.
+So it's finite. But why doesn't it work for the folks?
+For like 30s. Uh, so, uh, I think the point is okay.
+I think that's a very good point. That's very, uh, intrinsic point.
+So the, um, the solenoid channel, uh, for the cooling channel so that we have a periodic structure.
+Right. So the phase out, obviously, in the sign of the channel is, uh, uh, to make us some more, better function.
+We most likely, uh, make or design the cooling channel with, uh, like a pi phase out of the box.
+So means each, like, our, uh, focusing point.
+We have, like, a, uh, node. So that is like, uh, unusual.
+So the conventional, like a beam optics we have, like, a, uh, folder structure means like a focusing d focusing, focusing d focusing.
+But the like a the particle is not like a like a periodically like a moving like this, but the more like a naively like a much smoother.
+Okay. So this case I think we can use that like a dense approximation.
+But if we have like a such kind of like a, uh, very drastic, uh, moisture,
+we cannot use there like a thin, dense because like, uh, coil gap is very, very narrow.
+Is that makes sense? Yes. Thank you. All right. So, um.
+Okay. Uh, okay, so the basic equations, um, we can solve, we assume we solve.
+Okay. And then we get, like, a this, like a very strange, uh, strange, uh, like a band structure.
+So this is showing, like a momentum versus, uh, uh, uh, the, uh, the phase advance.
+Okay. So the phase advance, uh, or like a, uh, this, like our, um, uh, plus minus two blank is actually sort of like a stable condition.
+Okay. Uh, that's like a stimulus. Like a cosine is a one plus that that's actually, uh, extract like a you have like a plus minus two.
+So the we have a, like a similar structure here. So we see now like a plus or minus two, we have like a stable phase space condition.
+And you see um, so there's a like a very strong, uh, stubborn structure.
+So now by with this like a momentum range, we have very wide, like a, uh, stable momentum.
+But within this range we have very narrow, like a stable condition.
+Okay. So that's like a very, uh, specific character with the massive equations.
+All right. So we have a very similar structure. Uh, if you have a, like a pure, uh, solenoid based channel.
+So this, this one showing, like a beta function as a function of a momentum, um, you remember, so the previous slides around here,
+we have a very large, like a phase, uh, stable phase space, which happens actually above this momentum range.
+And we see this range we have again, like a stable conditions.
+And we actually this is like a simulation, the simulation showing like a very similar structure as the like our, um, massive equations.
+Right. So, uh, we have a like a for different type of cooling conditions wise.
+Uh, like our the if the beta function is minimum out there.
+Right. Uh, so this picture showing, uh, blue eyes are the clear and, uh, uh,
+magenta is a RF cavity, and our, uh, gray one is our absorber and this solid line.
+Is there a b-field? And that this red line is a better function.
+So the type we have at the solenoids is non flip.
+So the magnet is always positive. And type B similar to like a type A like a field strength is a very similar.
+But now we locate that I gotta have clarity outside of like our uh coil and the put their, uh, absorber inside the coil.
+Okay. So you can see the beta function is like our, uh, right to follow the magnetic field in this case.
+And in this case, the face, the beta function is a pi offset, right.
+The similar happens at C, but in this case a, uh, like a field.
+So what I have a field is actually flipped one way, like a one code showing a positive otherwise a negative.
+But the beta function is like our, uh, starts from our like our zero and up and down and type of we have again, the field is flipped,
+but their uh, beta function now maximum at the end of the coil and the minimum and, uh, in the middle of the car.
+Why do we have a this such a, like a for different conditions. The reason is because, um, that's depends on that.
+Like a where you start. Okay. So this is like a layout of the, uh, uh, uh, coding channel.
+So this is a part of the question. I don't think you have a right time to record.
+Sorry, the record, this question. Sorry. So I actually.
+So, uh, this is like a, um, like a flip sine solenoid.
+And if you start, like, a the, uh, like a channel, uh, uh, calculation from here,
+then you're like, a cooling condition is like this because you start from here, okay?
+But if you channel starts from a middle with a, uh, coil, then your condition is like this.
+Okay. So for types, we have, but they're actually the the right amount.
+The configuration is only two. Okay.
+And for each two conditions we have a different the better function configuration.
+That is the reason why we have four different types.
+But interestingly so that if you go through uh each like our types but the
+better functional and achievable like according performance is very similar.
+Okay. Uh, only differences are um, if you flip or non flip of course,
+like a cooling performance is different and the transmission efficiency also different.
+But that's only difference. So A or B or C or D it it's both identical.
+Okay. So that's like our um I think I had over my my talk.
+Okay. That's all. We'll do some questions.

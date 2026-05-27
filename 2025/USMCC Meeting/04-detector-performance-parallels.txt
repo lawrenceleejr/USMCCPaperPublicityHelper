@@ -1,0 +1,983 @@
+# Detector Performance: Parallels
+
+So first up, we, uh, so this session is going to be all about detector performance.
+Kind of thinking about the big picture detector.
+Uh, there's another session devoted to detector R&D, uh, in terms of, uh, kind of instrumentation technologies.
+Uh, and we'll start off with Greg telling us about the world of particle flow using, uh, Pandora.
+Yeah. All right. Thanks, Laurie. So, yeah, I'm Greg, and today I'll talk about particle flow algorithms and muon collider environment.
+So I'll start with a very brief introduction to what particle flow is.
+And particle flow is one of several possible strategies for event reconstruction.
+And first I'll actually go over maybe a more traditional approach to event reconstruction,
+which would be of, uh, traditional calorimetry and traditional calorimetry.
+Not all stable particles are identified. And for example, if you're looking at a jet like object, you would, uh, open up a,
+a cone here and sum up the energy of the cow and the cow, and that would be the energy of your jet.
+So this is, of course, a very simple, uh, event reconstruction algorithm, and that has its strengths.
+And it's done very well.
+But there are some fundamental limitations in that being that it relies very strongly on the energy measurement from the H cow.
+And here particle flow really differs from traditional calorimetry in that it, uh, attempts to identify all stable particles coming from,
+uh, the collision and in the event and it coherently combines all information across all sub detectors to perform the best measurement.
+So in the example of the jet, uh, in the case of particle flow,
+it is no longer just the lump sum of the energies in the calorimeter, but it is the sum of, uh, particles.
+So the output of a particle flow algorithm, which runs over the entire detector and an event is a list of particles.
+And from those particles, objects such as jets are formed. And here, uh, for example, you can see that we're, uh, reconstructing these charged pions.
+And the main benefit here is that we can use the track to define the momentum of the charged pion,
+which gives much better resolution than the h count measurement.
+Okay. So there are also some disadvantages to particle flow.
+And these disadvantages is really just that particle flow is relatively difficult to do.
+So there's a hardware component. Uh, the detectors are required to have very high spatial granularity in order to resolve these individual signatures.
+And then there's a software component. The reconstruction software becomes very complicated.
+Okay. So here I'll introduce the Pandora particle flow algorithm.
+Uh, so this is the algorithm that we have been using for our study so far.
+It was originally developed uh, with the ILC in mind, which is about a 500 GeV linear E plus C minus collider,
+and since then has been extended to click, which is about as of three TeV linear E plus any minus collider.
+The reason why we can use it is because it reads and accounts for in particular calorimeter parameters.
+So things such as the cell size of your Italian h count are all read in during the clustering algorithm, and that is taken in account.
+This is uh, basically, uh, a list of all of the names of algorithms that are run during Pandora.
+Um, I will go through it in a little bit more detail in just a moment.
+But I think what, uh, I want to call out is that in the back up, I have, uh, links to code for each of these algorithms.
+So if anybody is working on this and curious about what, uh, a particular algorithm is doing, hopefully this serves as a decent starting point.
+Okay, so I've sort of divided my talk into two different chapters that try to make two different points.
+In this first part, I will talk about the Pandora particle flow algorithm.
+I will introduce it, and importantly, I will bring up, uh,
+instances where we might have to rework Pandora or re optimize it in order for it to perform,
+maybe even at all, or especially optimally in a muon collider environment.
+And here there will be these, uh, green stars, which really denotes, uh, potential projects.
+So if you're interested in getting involved in particle flow, there's a lot of places where you can get involved.
+Um, and I will call those out as I start reviewing the algorithm.
+Okay. So particle flow begins with event preparation.
+Uh, this is a relatively basic step.
+It is composed of two different algorithms, the first being track selection and the second being calorimeter hit selection.
+What I really want to call out here is that in the calorimeter hit selection,
+there is a definition for isolated hits which are excluded from clustering.
+So in this definition of isolated hits uh we can basically remove hits.
+Um, and the idea here is from bib um to be considered in the clustering algorithm.
+And this is something that the music, uh, team has played around with two fairly significant.
+Success. So they, uh, wrote their own custom definition of isolated hits and turned at least by a very messy event,
+into one that is very clean, where you can see, uh, very clearly the, uh, the generated photon that they're trying to study.
+Okay. And this brings me to Pandora's main clustering algorithm.
+So this is called, uh, hundreds if not thousands of times per event.
+So, uh, this algorithm works as follows.
+So it first seeds clusters by projecting tracks out to the equal phase, and then any hits that are within the few,
+uh, first few layers of the equal that are within the proximity of the track are associated with the track.
+And then from there, you open up a cone from hits A going outwards into the calorimeter.
+And any, uh, hits that are within that cone are associated with the hit that open the cone.
+And then this works iteratively through from the front of the equal to the back of the car.
+And then in a second step it works from the inner layer of the exile or sorry, it works.
+Um, it seeds clusters with the remaining hits, uh, and once again beginning at the innermost layers and working outwards.
+So there's two steps here, and it's worth calling out the, uh, philosophy here, which is that it is on the side of forming smaller clusters.
+So this is under the, uh, I think, assumption in philosophy that it's easier to put things together than to split them up.
+And the way that these clusters are put together, uh, with uh, these, uh,
+topological cluster merging algorithms and these three clustering algorithms, they differ in their strategy.
+The topological cluster merging algorithms really target specific physics phenomena.
+So this would be, for example, a track like segment pointing back to a hadronic shower.
+And in this case, just from physics intuition, we know that there's a good chance that these should be, um, clustered together.
+And then in a second pass, uh, we clustering is done in order to make the track momentum very, um, consistent with the energy of the calorimeter.
+So these are a set of algorithms that essentially try to get the best match between a cluster and a track.
+Following these algorithms, there is, uh, photon recovery and fragment removal, uh, which I won't detail too much.
+But what I will shout out is that there's a very interesting study in the case of ILC,
+which talks about, uh, which of these algorithms are incredibly important at low and high jet energies.
+So at, uh, low jet energies, fragment removal and topological merging are the most important.
+And, um, what at the what I'll call high energy of a 250 GeV jet, which is relatively low for us, we clustering becomes the most important.
+I also really want to call out that in the cone clustering algorithm this
+starts by or sorry when you're clustering from the Cohen clustering algorithm.
+This loops over all possible track associations between um you know a track and a cluster.
+And then from there it loops over all of these clustering configurations to search for the best match.
+So these are all double loops. And they are incredibly, incredibly computationally expensive.
+So there are several ideas. Um, I'll highlight two of them, one here and one in a couple of slides for how to speed up this, um, this process.
+And one of the ideas is to use a different clustering algorithm.
+The idea here is that the Cohen clustering algorithm is seated in the busiest environment for us, and a muon collider in that, um, the relatively,
+uh, clean first few layers of the eco and then you plus G minus Collider turn into basically a total mess in the presence of fib.
+Um, for, of course, a muon collider. So the idea here is to, uh, think about clutter seeding the clustering elsewhere, such as the back of the H,
+and do an outwards inwards, uh, clustering approach where a consistency between the track and the cluster are applied.
+Um, at the end when you have more information about the cluster. Okay.
+And uh, to finish up, uh, the overview of Pandora, uh, this would be the particle flow object creation.
+This is a relatively simple final track to cluster matching.
+And then three basic identification algorithms being electrons, photons, and muons.
+But once again I'll call out that these are not really suitable for our, you know, detectors or maybe even environment.
+And a really important example of this is that the expected electron profile for a Pandora is assumed to be independent of theta.
+And this is just totally not the case for the my detector,
+where theta determines essentially how many radiation lengths of the solenoid a particle traverses through.
+So the profiles will look very different as a function of theta. Okay.
+Another way, um, to mitigate this.
+This is what I imagine the OSG turned into when, when I, when I tried to submit one, one event, then, um, so,
+uh, another way to mitigate the time it takes to run these algorithms is to essentially simplify them greatly.
+So as in the example here, and this is very real, I'm not going to claim that this is the average.
+It actually could be, but I'm not going to go that far.
+Um, I have seen myself that I can take one day to reconstruct a single, um, part of an event with bib, um, and Pandora.
+And obviously this is a huge bottleneck for us in the future.
+And there's been an increasing effort, uh, in recent times to run with a subset of, uh, Pandora's algorithms.
+And the main benefit here is, of course,
+the speed up and also the simplicity of the algorithms that are being run in this case, help with interpretability of results.
+So the first example, uh, both detector concepts and both of the my music teams have worked on something like this.
+The first example would be uh, charged pions and in Maya.
+So what was done here is that the very, um, the very the most required, the entirely necessary steps for a Pandora run.
+This would be track selection, hit preparation, cone clustering and then PFO identification, and then through, um,
+studying the remainder algorithms and watching the, um, how the pion reconstruction efficiency changes with adding them.
+It was found that only one re clustering algorithm, which is called the resolved track associations algorithm,
+needs to be added to get to a pretty good efficiency of around 85 to 90 5% to 90%, albeit without Bib at the moment.
+The music team has also worked on this and a similar approach,
+but in the case of electrons here they ran with even less algorithms and really went in to optimize the input parameters of these algorithms.
+So I, uh, I already told you about how they optimized circuit preparation on slide five.
+They also optimize the input parameters to cone clustering. And importantly, they wrote their own custom identification for electrons.
+That's entirely based on the location of the cluster centroid.
+And uh, in doing this optimization with them, they found a reconstruction efficiency of about 80%,
+um, which I think is pretty successful in a given environment with a relatively simple algorithm.
+Okay. So now going into part two, I'm going to take a step back from Pandora and really talk about particle flow broadly in a high energy context.
+And the point that I want to make is that there are also challenges not just from Pandora, but for any particle flow algorithm.
+When we're looking at boosted topologies that we will be looking at at uh, 20 EV muon collider,
+I'll do so by, uh, sort of introducing how we interpret particle flow performance.
+The main, um, I guess parameter that we use to interpret the performance is the, uh, energy resolution of in chat.
+And this can be split up into two terms, the first being for the intrinsic energy resolution of the detector,
+and the second being this confusion term.
+This confusion term arises from cases where individual particles are entirely failed to be resolved from one another.
+So in this case, we have a photon that is being moved up with a charged particle.
+And this, uh, for this particle,
+the momentum will be red from the track because it is charged and the energy from the photon will be entirely lost in the event.
+So this would result in a, uh, an underestimation of the energy.
+This is basically the same exact case, except, uh, for a, uh, Neutral Hadron instead of a photon.
+And then here, uh, the other type of confusion will be splitting up one particle into two and accidentally double counting a portion of its energy.
+What's really important about the confusion term is that it dominates particle flow performance at high energies, so I won't.
+I decided not to do the exercise of extending this, uh, this X-axis out to what the energy scale of jets we're looking at.
+But as you can imagine, this red curve will grow, um, very, very high in very quickly as a function of energy.
+Luckily, this effect, uh, has been studied in the context of Clic.
+So as I mentioned before, Pandora was originally written for a 500 GeV collider and it was extended to a three TeV.
+So they had to work on this confusion term. And they found that a solution would be to inject a transition from particle flow to energy flow.
+Energy flow takes one, uh, small step back from particle flow.
+And instead of trying to identify every single particle in the event, it really just tries to identify,
+um, basically everything, but, uh, you know, neutral hadrons, for example.
+So in this case, with that whole clustering algorithm that I went through,
+that is going to be replaced by a projection of the tracks throughout the entire calorimeter.
+And then the cluster will be formed by adding hits until the energy in the calorimeter is consistent with the momentum of the track.
+And then anything left over is going to be clustered and just considered a, uh, a neutral particle.
+So this is something that we can consider. And I think there are three really important questions to think about.
+The first is. What, uh, what energy scale of jets do we become?
+Dominated by the confusion term. The second is, will it transition to energy flow?
+Um, really even help? And the third is, do we have to rely on high momentum tracking?
+So this, uh, the energy flow, uh, algorithm really depends on your track measurement being very good.
+Okay. So this brings me to the end of the talk. Um, so I'll repeat the two points.
+The first is that Pandora is a really excellent tool for, uh, starting our studies in a muon collider environment.
+However, it needs some fairly significant reworking in order to be run efficiently and perform optimally in our environment.
+The second is that, uh, if we are thinking about the physics goals of a ten TV muon collider,
+one of my favorites and one of my goals is to study 4 or 5,
+uh, TeV, the Higgs and the study of these objects will give rise to a very boosted topology.
+And in this boosted topology, any particle flow algorithm will struggle.
+So there has to be some significant work in order to alleviate the essentially the confusion term and other challenges.
+And I'll sort of, uh, leave um, the talk with this maybe, um, happy picture here where, um,
+the optimal performance really comes from combining efforts across many different fronts.
+So if you, I think, interested in in any of these,
+I think that you can start thinking about how this would combine into particle flow and think about some of the tasks, maybe that, that I put.
+And, um, if you're interested, I think there's definitely a ton to do.
+And it's really interesting. Okay. So that's all. Thank you.
+Thank you so much for. Thank you questions.
+That's all JP first. Second.
+Hey. So first, uh, great talk. Thanks for that.
+Um, so if you can go back to where you talked about very briefly, this sort of, um, how to each to equal approach to clustering.
+Can you talk a little bit more about that and maybe what some of the limitations that you see with doing that.
+You mean the traditional calorimetry?
+Uh, if you go back, it was um, I remember which slide, um, where you talked about this, you know, becoming a mess.
+Right? And then you start you and, you know, you initially were clustering from this one.
+Yeah. Yes. Yeah. Yeah. So I think the idea here is really that the seeding of the clustering algorithm becomes very expensive very quickly.
+So, um, what Pandora will do and what con clustering will do is if it looks at a particular cluster,
+it might look for all tracks within a particular region of that. And then it will loop over, for example, maybe these five tracks.
+And then it will loop over every possible clustering configuration which will involve all of these big hits.
+And then this is really where it takes about a day to run one, um, one part of an event for, for reconstruction.
+So the idea here is to sort of flip this and, uh, seed the cluster from the back so that these double loops,
+if we want to do them, aren't as, um, or as expensive initially.
+And then you have, I think, information about the back of the cluster that you can use, um, when you go back to the front of the eco.
+So, so is the aim to do this just for what?
+What are interpreted as hadronic deposits? Or is this like, you know, is this relying on punch through from electro magnetic deposits?
+I guess I want to understand what your target object is. I think it would start back by clustering through the H calendar.
+Do you know if there is a punch through from the E count and that will also be included.
+But in this case, yeah, definitely. You would start clustering for hadrons before right before things in eco.
+All right. Thanks. Yeah. And all these, all these double loops.
+We can clearly see the vestiges of an E plus E minus machine's software code.
+Much cleaner environment where that's not a and same thing to do, but.
+Yeah, exactly. Uh, and the last slide, when you talk about the reconstruction of the boosted objects, uh,
+I guess eventually we if we want to reconstruct these things, we need a more granular calorimeter.
+And in the absence of such a thing, I think we cannot do much,
+because if the energies are going to be in the same place, how do you want to resolve it?
+Yeah, exactly. So this this is a multi dimensional problem between um, I mean of course if the,
+the spatial granularity of the calorimeter is, is um, I think too large I guess to poor.
+What else. Um, then things will overlap and there's nothing that you can do about it.
+And then in that case, um, something like a transition to um, to, to energy flow might help a little bit.
+Um, but you would have to make compromises. Definitely.
+Yeah. So this is, um, this is definitely, I think, demonstrating the hardware aspect of the challenges of particle flow.
+Yeah. Cool. Thank you. And for the sake of time, uh, I think I'll, I'll, uh, say we move on to the next talk.
+Sorry to cut off the conversation. The next we will have, uh.
+Rose? Yes. Thank you. Yes. Thank you so much, Greg.
+Uh. Let's see. And. Okay.
+They're working. Hello.
+Okay. It works best if I say in this range.
+Okay. Oh. We are. Oh, sorry. Yes yes yes, yes.
+Thanks. Can we share a little screen?
+Awesome. Okay. Did you click on one? Oh.
+Uh. Okay.
+All right. Great. Cool. Okay. Awesome. Okay. Go ahead.
+All right. Hey, everybody. I'm rose, I'm from Princeton,
+and today I'm going to be talking a little bit about the calibration challenges that we've been facing in the Maya calorimeter.
+So thanks to Greg for teeing this up really well. Um, just a little bit of an outline about what I'm going to be talking about today.
+Uh, first we're going to go over the Maya calorimetry system and the solenoid and then talk a little bit about how particles behave in that system.
+Um, we're going to talk about different calibration methods.
+They're sort of pros and cons and then conclude and talk about some interesting next steps.
+So starting out really, really broad what actually is Maya.
+So this is our muon accelerator implemented apparatus.
+It's one of the two detector concepts that we've developed for the 20 of Muon Collider.
+And it's composed sort of going from the inside out from the interaction point.
+We've got our shielding nozzles, our tracking system, a five Tesla solenoid and then our electromagnetic and hadronic calorimeter.
+And finally in case by our immune system. So let's zoom in on these calorimeter.
+Um calorimeter in general are very important because they allow us to stop electromagnetic and hadronic particles and measure their energy.
+But it's not just energy that calorimeter are able to give us information about.
+Uh, we are also, uh, developing 5G calorimetry.
+So being able to get very precise information about energy timing and position.
+So now why do we calibrate our calorimeter.
+Well, it's actually very, very important that our calorimeter are accurate because we need them to identify particles,
+to identify missing energy, to find resonances. And overall we can assess the calorimeter performances with our simplest neutral objects.
+So we use photons and neutrons respectively as our standard candles for our Ekow and Co.
+All right. So let's zoom in on the Maya calorimeter. Here we can see a cross-section of the detector with emphasis on the calorimeter and solenoid.
+Since that'll be the main focus of this talk. Um we can see the solenoid here in blue.
+And then right outside of that we have our equal. So our equal is composed of silicon and tungsten.
+We have five by five millimeters squared cells 50 layers.
+This is going to be the most similar to the uh HG cal for the CMS.
+Uh HL LHC upgrade. And then moving outwards we have our hadronic calorimeter h cal.
+So this is going to be composed of iron and scintillator with 30 by 30mm squared cells and 75 layers.
+And this you're going to see the most similarities to the Atlas style calorimeter.
+Now I want to start a conversation about the solenoid by posing this question.
+Is it a big bodyguard or a black box? This might sound a little bit silly, but let's start out with the facts.
+The solenoid adds about 265mm of aluminum material between the tracking system and the calorimetry system.
+So we can interpret this in two ways. Right. First, we can sort of look at this as the fact that it undeniably adds additional shielding.
+Right. We drastically reduce the occupancy in the calorimeter, as you can see from this plot.
+However, there's also the unavoidable fact that we now have 265mm of UN instrumented material,
+and particles unavoidably interact and lose energy in this material, which we can see a nice plot here of a pion doing exactly that.
+Um, and when this happens, right, you change the shape of the shower, which makes it more difficult to reconstruct.
+And as you can see from this recall fraction circled in red, you also lose a significant amount of energy.
+So let's take a second to think about what's actually happening when these particles interact in the solenoid.
+So we'll focus with our two standard candles right. Protons and neutrons.
+And so photons lose their energy in the aluminum through electromagnetic showers.
+This is pictured at top right.
+And this is essentially a forking cascade of pair production and branch along and occasionally uh electron positron annihilation.
+And the neutrons lose energy very similarly.
+But their showers are a bit more complicated because now you also have nuclear processes, collisions and then their own Em showers.
+So due to how complicated they are, we're going to stick with photons when we look at this analytically.
+Um, we want to see if we can model what's happening here,
+just given the geometric parameters of our calorimeter and solenoid and the initial photon polar angle.
+So we construct this simple end of theta,
+which is the number of radiation lengths that a photon will traverse in the solenoid given a certain starting theta.
+And we have a piecewise function here because we have three main regions. We have this end cap region where we don't traverse any solenoid at all.
+Then the transition between the end cap and the barrel and then finally the barrel region.
+And so if we plug this and. Theta into a very simple model.
+Um, basically modeling the shower as forking every time you get to another interaction length.
+So two to the end we get this functional form. So is this accurately representing what's happening?
+Well if we profile out energy and look at the response of energy against theta for photons, we do see that this is the same functional form.
+However remember this is profiling out energy. When we put the energy dependance back in you can see that it's not the whole story.
+So as we go up in energy, you can see that higher energy particles lose fractionally less energy when they traverse the solenoid.
+And this is due in part to the stochastic nature of showering. So unlike this geometrical theta dependance that we were able to model very easily,
+it's very non-trivial to figure out how a particle is going to respond based on its energy.
+So this sort of simple two to the n function assumes that we start showering immediately.
+So particle A in this cartoon here, which immediately starts its electromagnetic shower as soon as it hits the solenoid.
+However, as we get to higher and higher energies, we might have photons that have more like MIPs.
+So like C, or just to delay their showering like particle B.
+So this is all to say that we actually can't rely completely on an analytical modeling to understand our energy loss in the solenoid.
+Okay. So we can go back to our 2D response functions.
+We saw this plot on the left earlier. This is for photons. The plot on the right is just the analogous plot for neutrons.
+Um, and so in lieu of using those analytical calibrations, we can simply use these matrices.
+And for instance, we would take, uh,
+this been here for a photon that's reconstructed with between 350 and 400 GeV of energy and between 2.1 and 2.2 in polar angle.
+Multiply that reconstructed energy by the value of this bin. And that would be our calibration.
+So a very simple scheme. And here let's look at how we're doing.
+So these are two examples of the binned fractional change in energy distribution for photons in an inclusive theta region.
+Both one at pretty low energy and one at higher energy on the left.
+This is before we've applied any calibration.
+And you can see this by modality that arises from the different amounts of solenoid material that we have to traverse.
+Then on the right we apply. Right. Just this 2D binned calibration that I showed.
+And we completely eliminate our by modality. So okay great.
+We can say this is at first order working pretty well.
+But it's important to be careful and really understand what we're doing here.
+So when we compose these calibration matrices we're taking the arithmetic mean in each bin.
+So let's take this example here. It works super well when our bins are Gaussian distributed.
+And right here this is an example from the end cap. Recall that's where we have the least interference or no interference from the solenoid.
+Also note this is a plot of neutrons. There is an analogous plot for photons, but we've shown photons a lot of love so far.
+So I figured let's look at neutrons. So it works great in the end cap right.
+This is fantastic. This is Gaussian and arithmetic mean takes care of everything.
+However, taking the arithmetic mean means that we're very susceptible to outliers.
+So for example in the more troublesome transition region we can see that the mean could be shifted very far right of our peak due to these outliers.
+So this is especially going to be salient in these regions where our and of theta is going to vary a lot.
+So ultimately we know that a robust calibration method shouldn't actually be this susceptible to outliers.
+However, we have established a first order method that works very well.
+So from here there are a lot of exciting jumping off points, and I think all of these could provide a very fun opportunity for a student project.
+Sort of shameless plug to get involved with Maya, but there's a lot of fun things to do here.
+Um, first of all, we've talked about fitting those binned response distributions to get a more accurate sense of the mean.
+As many bins as we've seen do exhibit that near Gaussian behavior.
+So if we were to fit those functions, we could actually get much more stability in that mean.
+Additionally, you could probably notice that we had pretty low statistics in some of those bins.
+So if we were to generate a large statistics data set, one for the Excel and one for the Cal,
+that could potentially also just allow us to statistically stabilize with a large end distribution.
+We could also use that to make a more granular calibration.
+So to bin our calibration matrix more finely. And then finally a little bit more of a tangential and involved project.
+We've discussed doing a more detailed study of particles interactions in the solenoid,
+sort of modeling those material interactions and trying to understand some of that stochastic behavior.
+So there are a lot of different opportunities here to get involved and look, uh, look further into what's going on here.
+But all in all, we've understood now that the calibration can never completely.
+Remove that stochastic element, but a 2D response space calibration, even at its simplest form,
+can really do a good job of mitigating some of those most salient geometric effects and even some of our energy dependencies as well.
+Furthermore, a more nuanced assessment can do a lot more to further improve the accuracy of this calibration.
+And as we've seen, there are a lot of exciting ways that we can potentially look into doing that.
+And finally, while the solenoid does add these challenges,
+going back to this question of bit bodyguard black box, you know, does it hurt us more than it helps us?
+Ultimately,
+the challenges can be mitigated and the any damage it does is far outweighed by the fact that it significantly reduces the bib occupancy in articles.
+And so ultimately, I would say it helps us.
+It's our big bodyguard. So thank you very much.
+That's all I have for today, and I'll be happy to try and answer any questions you may have.
+Great. Thank you. Again, again, another great advertisement for how much great work there's been.
+Uh, that has happened and how much work there is to do and and opportunities to do so.
+So questions. Excuse me if this is like an ignorant question, but what's really wrong with instrumenting the solenoid, for instance?
+So it's a fair question. It's a good question. Um, so I am not actually an expert in instrumentation.
+So if there's anybody who maybe has a better answer than the very simple one I'm about to give.
+Go for it. Um, but essentially it's it's not a detector, right?
+The purpose is not to read in more data. And we would have to.
+There's a lot of material considerations, spatial considerations, data management considerations.
+And it's just that that's not its purpose. But if somebody wants to give a more intelligent answer, please, I think it's a real question worth asking.
+Uh, if there's something we can do with that. I would add to that.
+What was it? Yeah, yeah. I mean, it's like it's very hard to imagine mixing anything into the solenoid because, yeah, it's it's massive currents.
+And then, uh, in addition to that, you're going to get somebody to build your solenoid for you,
+and it's going to be extremely hard to do this all night that we want.
+So further complicating that by trying to add some kind of crazy insulated detector inserts or something like this is,
+is really pushing, uh, way beyond what we know how to do. So I think it's a lot of extra complexity.
+Yeah. I mean, it could definitely be cool to think about, um, but I mean,
+we already have trouble with magnet instrumentation for, like, detecting pointers and things, so I don't know.
+Yeah, yeah. But I mean, what if you don't think of it as an extra instrument to add to it,
+but maybe you're monitoring the current and that gives you some information.
+I mean that, no, no, I think the I'm just trying to, you know, we have decades.
+I mean, like the obvious way to avoid this problem is to just do it.
+CVS does and you move the magnet outside of the calorimeter like that's your data like that.
+Yeah. So, uh, other, you know, very old detectors with issues like this before they have something that they call the pre shower.
+So yeah. Thin instrumentation just before the magnet that gives you information, you know, essentially starts to shower.
+You then lose information. But at least you have the start of it. That's.
+Yeah. That's a that's a wonderful idea.
+I mean I don't know if anybody has looked into designing something like that for Maya, but I think it's worth it's worth thinking about.
+Okay. Uh, let's, uh, thank Rose again. Yeah. Thank you.
+So next we have JP. Oh, you got one already?
+You're miked up. Okay. Never mind. We turn this off. We turn this.
+And it works best if you stay on the side of the room. And you should be all set.
+Uh, when you need to change slides, you should probably be on this, huh? Okay. That's all.
+But otherwise, you're fine. Go ahead. All right.
+Can everyone hear me? Okay. No. You want to turn on the battery? Oh, do. Okay.
+So. Yes.
+All right. Can you guys hear me? Okay. Yeah. Perfect. Okay, great.
+Thanks. So, uh. Hi, everyone. My name is JP.
+I'm from Northeastern University. Um, and today I'll be talking to you a little bit about how we deal with neutrons, uh, in a future muon collider.
+Eco. Um, and so I appreciate, uh, rose sort of setting up the notion of calorimetry in a future muon collider.
+Um, which makes my job a little bit easier as we step back and sort of talk about this more broadly.
+Um, so I'll start by, uh, pointing something out that everyone knows, uh, which is that these are not your advisor's bunch crossings.
+We are dealing with a fundamentally different, um, collider environment than we've ever done before, even among lepton colliders.
+Right. For dealing with a much messier environment. Because now, um, the things that we are colliding have multiple options.
+So what does a muon to do? Um, inside of the beam pipe?
+Well, there's a couple of different options. The first and most preferable option is, of course, to survive to the interaction point,
+um, collide and then give us the beautiful physics results that we're all hoping for.
+Um, unfortunately, there is a second option, which is to decay.
+Um, and so when these, you know, tend to have muons, uh, decay to electrons and neutrinos,
+despite the fact that these neutrinos carry off a substantial portion of the muon energy,
+we're still we're still dealing with multi to the electrons slamming into the infrastructure.
+Um, and producing what we know as the beam induced background or bib.
+This takes a few different forms. So the first of these is uh uh electrons radiating Brahmastra lung and synchrotron photons.
+Um which produces a substantial photon background. Um, we see further nuclear cascades.
+Um, for you have a laser pointer? No. Yes. Okay, great.
+We see photon nuclear cascades in tungsten, which produces neutrons and light hadrons.
+And then we see, uh, beta muons being produced. And even down to the interaction point, we start seeing incoherent electron pair production.
+Um, as we've seen, uh, through the school this week. So really, this translates into what we call in physics, uh, a mess.
+Um, and so this really, uh, tells us that we have to do a lot in terms of putting in conversation our machine development and or detector development.
+And so MDI, accelerator and detector design all sort of play into each other in a, in a really non-trivial way.
+Um, so to start at the baseline, right, we we borrow the click detector concept.
+Um, and we, we uh, we bring it into this 20 or 3 TV environment for muons.
+Um, and we instrument them, uh, with these two tungsten nozzles, which reduce our acceptance a little bit.
+Um, but, uh, the effort here is to is to spill less, uh, than we would otherwise see.
+So these these conical tungsten nozzles, uh, surround the beam pipe and reduce the bib to a low energy at a time flux.
+Um, that we can further reduce, uh, with timing cuts. So, uh, I'm going to talk a little bit about neutron production in the nozzle.
+So single TV scale electrons are capable of generating a massive cascade of order ten to the third photons above one MeV,
+after around 25, uh, radiation lengths, because tungsten has a very, very short radiation length.
+And so while tungsten is a very, very good attenuator of electrons and photons, it's also, uh, verifiably, a neutron factory.
+This high density, high atomic number and large photon nuclear cross-section, um, produce a massive amount of neutrons at every branch crossing.
+And so we we we deal with this, uh, by, uh, instrument not instrumenting, uh,
+cladding the, uh, tungsten nozzles, uh, with a material called braided polyethylene.
+And the way that this works is that, uh, we embed boron carbide in polyethylene,
+um, and achieve a material that has between 5 and 25%, uh, boron, um, by weight.
+And so in our simulations, uh, for disclosure, we use around 25% water.
+And so this works in a couple different ways. We moderate the energy of the neutrons, uh, as they impact on the hydrogen in the polyethylene.
+Um, and so we get this elastic scattering that brings the neutrons, uh, down and slows them on the order of a centimeter or a couple centimeters.
+Um, and then this transitions to neutron capture, which primarily happens on boron ten,
+where you get an alpha particle and an excited lithium ion, um, that, uh, decides and releases a photon, um, at around, uh, half in the movie.
+Uh, and additionally, uh, we have, uh, inelastic scattering, um, on hydrogen, uh, which forms a deuteron.
+And then that releases another photon, which has an energy of around 2.2, anything.
+So we have this sort of, uh, coherent, uh, photon release from the tungsten nozzles.
+Um, while these heavy ions are locally contained in the material. And so this, this allows us to trade in what would otherwise be this insane,
+you know, electron background, um, into a diffuse wash of neutrons and protons.
+And so this is sort of what we see. So despite, you know, timing cuts, which are very useful for us in dealing with them,
+we still have this, you know, sort of isotropic neutron bath that we're sitting in.
+And we have to figure out how to deal with that. So how do we deal with that?
+Well, uh, I'll start I'll start by first introducing some broad concepts in calorimetry.
+Um, particularly as they will apply to a, uh, a high energy muon collider.
+So the two canonical calorimeter. Are designs that we see in high energy physics are homogeneous and sampling color emitters.
+And in the homogeneous case, uh, this is defined by the entire volume, uh, material acting as both an absorber and the active medium.
+So cascade light is read out directly. Um, and these benefit from a lot of really, really good things.
+So we have excellent electromagnetic energy resolution, good intrinsic timing resolution depending on your material as well as,
+uh, being chosen for a short radiation length, um, and a small molar radius.
+However, these do suffer from hadron induced damage. Again, very material dependent.
+Um, and this can often be dealt with uh, with laser corrections and annealing, which is what we do in CMS.
+Uh, on the other hand, sampling calorimeter is uh, take a different approach by alternating layers of active of uh absorbers and active material.
+And so you're really picking apart the energy at each, uh, as the, uh, the electromagnetic shower evolves.
+And these can be very highly radiation tolerant, depending, again, on your material choice.
+Um, and the benefit here is that you get this arbitrary transverse and longitudinal granularity modulo,
+you know, uh, technological advancements in your detector design.
+Um, however, these do tend to suffer from lower energy and timing resolution versus a homogeneous calorimeter.
+And so in a multi TV muon collider, um,
+the central task of equal really is to pull apart and distinguish photons and neutrons from prompt electromagnetic showers.
+And so this this idea of longitudinal segmentation really becomes key in the fight against the um,
+and ideally you would be using small cell sizes as well.
+So um, radiation, hard materials, whether this is um something like lead fluoride uh or tungsten.
+So it can become really advantageous in uh fluence environment.
+So when we think about the kind of detector that we want to build in a muon collider environment,
+um, we really want to look at, um, things that are segmented.
+So, um, um, this is a slightly old version of this slide.
+Okay. So um, I'll say that there, it's a bit of a matter of philosophy.
+Um, but segmentation really is the key. And so what I'm going to talk about today, um, is the sampling calorimeter case in terms of neutron reduction.
+So and the baseline three TV IC design we use a tungsten silicon sampling
+calorimeter borrowed from click which is itself informed by the CMS hg design.
+Um, we as 1.9 uh, millimeter, uh, tungsten plates and 0.3mm silicon sensors, which spell a uh, 20, uh, a total of 22, uh, radiation lengths.
+Um, we use five by five millimeter sensor pads. Um, and again, this is borrowed from clicking informed by HG Co.
+So the question now is how well does this handle? Um, the problem with uh, using tungsten absorbers is that again, these are neutron factories.
+And so it's very susceptible to neutron tungsten inelastic scattering which produces neutrons and uh, photons.
+So um, the problem that we run into is that as you go from the tungsten to the eco, it's sort of a straight shot for the neutron.
+It's not really getting moderated at all by the tracker material.
+Um, what we can do is we can peek at the eco response to the bib independent of the actual beam flux that we see,
+because we know roughly what the the energy range of the bib is going to be.
+And so this is sort of the approach that, uh, I took in this study. So I measure the energy deposited by eco and uh, by single bit black neutrons.
+And so the question that I want to ask here is, can we use the lessons in, uh,
+neutron shielding from the tungsten nozzles and apply this to the Eco by using additional braided polyethylene shielding in front of the eco.
+So, uh, let's set up the simulation. So we use a standalone eco.
+Uh, we remove all of the detectors in our simulation. We run this in out for using the standard muon collider software.
+Um, and I've linked the geometry here, um, for, for those who would like to take a look.
+Um, so neutrons are modeled via a particle gun that I put at the origin.
+Um, and we run a scan performed, uh, from ten min via up to half a GeV.
+Um, and again, I'll emphasize that the normal incidence is important because this gives a conservative estimate.
+It feels very nonphysical because it's neutrons don't originate at the, um, at the origin of the detector, at the interaction point.
+However, this minimizes the path length. So whatever, whatever your neutron is going to traverse, that is the minimum that's going to happen.
+So you may see better benefits depending on your incident angle.
+Uh, so I measured some hit deposits out to uh, t equals infinity in order to fully capture the neutron behavior for isolated neutron events.
+And then we use the sliding window of borate of polyethylene that I've illustrated over here.
+So instead of, uh, to sort of make this a trivial setup, um, we, we keep the eco, um,
+as is in the geometry, but add the sliding window between braided polyethylene and vacuum.
+And so this gets scanned up to a shielding depth of around a quarter of a nuclear interaction length for way to polyethylene.
+Okay. Uh, to actually make the measurement, what do we do?
+We use these two figures of merit. So first thing is the, uh, average deposited energy, which I define as the the bin summed,
+uh, deposited energy, uh, across the eco, uh, divided by the number of events.
+And this sort of allows us to do a scan that despite the low, uh, deposition statistics for individual neutrons.
+We sort of map out the total behavior, um, by using high stats, and so that we use this to,
+uh, represent, uh, the way that our neutrons behave in the eco.
+Our measurement of efficacy is taken to be this epsilon parameter, which is the deposited energy,
+uh, for a given, um, braided polyethylene depth divided by the, uh, control case.
+Okay. So with these two in mind, how do we actually how does this actually look, um, weird, let's say,
+um, when I prefer, when I perform the scan, I see this sort of odd, um, dip in the efficacy.
+So we plot the efficacy against, uh, the neutron PT, and we see this weird sweet spot around 100.
+And naively, we would expect that we would see really, really good reduction at low energies,
+um, with results becoming a little bit less good as we go up.
+Um, but what we what we see is that it sort of ignores low energy neutrons.
+Um, so we started asking this question, what's happening here?
+Um, and the answer is that things that we're not accounting for.
+Um, so the issue is that the default DDA for Hep and J for, uh, configuration in the Mukul Software, uh, uses the GSP Bert physics lists.
+Um, and I'll talk a little bit about what this means.
+So we model neutron interactions in the standard case using uh hadronic elastic uh, which is the jargon for scattering process,
+which uses chiral invariant face based elastic model on ultracold all the way up to ultra high energy neutrons, um, with cross-sections given by G.
+For elastic cross-section. We use a similar approach for neutron and elastic, which is nuclear excitation and spallation interactions.
+And this interpolates between three different models on, um, different parts of your face space,
+um, with cross-sections coming from G for an elastic cross-section. And then finally, the one that's really important for us is this end capture,
+which is discrete radiative neutron capture, uh, which models your recoil and gamma release, um,
+by n red capture and pulls cross-sections from G for a neutron capture cross-section,
+which is a problem because these rely on parametrized instead of data driven cross-section,
+and these fail to capture the full behavior of neutrons at low energies.
+And so below 20 MeV. We're really not modeling anything the way that we want to be.
+So you can see how drastic of a of a of a of an impact this has, especially at um, uh, low depth or especially at higher depths.
+Right where your for a ten movie neutron, you're, you're entirely mis modeling.
+Uh your deposition. So we need to fully model the neutron behavior.
+So if I apply this to the my air detector, uh, which, uh, Rose explained before is the muon accelerator instrumented apparatus,
+um, which modifies the geometry for attentive environment.
+I, um, we we add additional ten layers, uh, to the eco, um, with slightly thicker tungsten absorbers.
+We set up the geometry in a similar way to keep things as trivial as possible.
+Um, by using the sliding scale, um, again, to provide a conservative estimate.
+Um, instead of, uh, using a vacuum, we deal with the, the solenoid, which is now in front of the echo,
+and we pull back, uh, small amounts of the solenoid, um, and replace it with, um, braided polyethylene.
+So again, this result is a conservative estimate of the combined shielding efficacy of not only the braided polyethylene,
+but also the, uh, the, uh, aluminum shield. So we repeat the scan, um, uh, and the depth scan, uh, with the same figure of merit.
+And here's what we see. An additional an addition of braided polyethylene shielding, uh,
+in the Maya detector produces a substantial reduction compared to, um, just the solenoid, uh, for, uh, for black neutrons.
+So to start with, um, just 1.75cm of braided polyethylene removes nearly all energy from ten NM of neutrons.
+Um, you can see this, uh, this really incredible level of reduction.
+You see 15% reduction for, uh, 500 MeV neutrons at this working point, um, and 95% reduction at the, uh, the same working point for ten neutrons.
+Additionally, this limits the deposition of low neutrons to the inner layers of the Eco, leaving the occupancy much lower at the far layers.
+Um, and if we put a comparison to the the mutual V1 case we see in, uh, you know, this, this increased improvement over, um, over, over our baseline.
+Right. So if you combine the baseline myo, add the solenoid at this in, in the shield,
+we're going further and further down in terms of the total energy deposited by each neutron.
+Um, and so what do we how do what do we take away from this.
+Right. So as we've said, our, uh, we, we trade our multi TV electron fluence for a low energy at a time neutron bath.
+Um and this is largely mitigated by timing cuts and nozzle shielding.
+But additional shielding in the the baseline free TV case removes a substantial fraction of low RT uh neutrons in the Maya detector.
+This has even more drastic results.
+Um, where the addition of this plus the solenoid gives us a, uh, a 95% reduction at ten MeV and 15% reduction at half a GV.
+And then shielding limits that low beta neutron deposition impact to the inner layers of the Eco, which is beneficial for reducing your occupancy.
+Um. The take away. I really want you to to to take from this is that it's really essential to that we are properly simulating our bib, right?
+Regardless of what the impact we see in the first cases that may be rendered.
+Not unnecessary if you if you, you know, take take a look back at the way that your bib is being simulated,
+you may in fact be removing much more nutrients than you think.
+So we need to use instead of using this Bert, um, which, uh, fails to capture low energy nutrient interactions as a parametrized model,
+you need to be using these data driven models in order to ensure a more accurate description of low energy neutrons.
+Um, so with that, I'll take questions. Thanks for. Very good.
+Very cool. Questions. Uh. All right.
+Hey, JP. Good talk. Thanks, Jeff. Um, I was asked a question today multiple times, and I'm gonna ask you it because I didn't know the actual answer.
+Great. Let's hear. What? Why? Why don't we put detectors or instruments in the nozzle for neutrinos and muons?
+Why don't we, um. I am personally, uh, a favor in favor of, um, studying nozzle instrumentation.
+Um, I'm not a sampling calorimeter expert. Um, I am very squarely in the CMS eco homogeneous camp.
+Um, but I do see, uh, potential for, um, some interesting studies in looking at reject, uh, rejecting bib, um, using nozzle instrumentation.
+Um, there may be cost. There may be spatial reasons.
+Um, I mean, we, we see these sort of, um, detector challenges in our new instrumentation for CMS,
+but I don't fundamentally see a reason why we can't try that.
+So maybe I can add a couple of quick comments on that pipe.
+So mostly it's, um, one step at a time, I would say, with limited amount of resources and people.
+So it has been pointed out that it is, um, written up.
+Individuals reported being able um, to instrument and also mostly not as uh, uh,
+be mitigation because the nozzles just flooded by an electromagnetic shower.
+So you just have a shower coming through. Um, but, um, to basically, uh,
+be able to identify muons that scatter a small angle in vbus production neutral currents and so be able to target those muons,
+even if you can't measure the momentum or measure it a little bit with that transitory momentum would be very beneficial for the physics program.
+So if you look at the requirements we have, we call it as in our aspirational requirement, being able to do so.
+Um, there have been a few studies that have been done in which people have simply played with it, and so they put some silicone layers in between.
+Then also, uh, and try to, uh, track a little bit and with some success, um, from there to actually thinking about how you would design a detector,
+um, you need to think about that additional environment, which is really, really, really harsh.
+Um, how you get your data, uh, how your how you make sure that, that those gaps don't become a source of spikes in the end to your detector.
+So to try to do that, you make the rest of your detector worse.
+So and all of this is solvable but it does require simply time.
+So if you're interested is certainly open.
+Indeed, some of the studies are starting to include some of the radiation, uh, numbers that Donatella showed the other day.
+Uh, inside of the, the nozzle. Um, you know, uh, digit was rather okay.
+Hi. Nice talk. Uh, I just have a sort of curiosity to ask you.
+So I don't know anything about oriented polyethylene.
+Um, how stable is its performance? As Simone said, this is a super, like, active area.
+You mean in terms of longevity? Yeah. My understanding is that it performs pretty well.
+You know, long term, my my concern with that was, of course, you know, what are the rates of lithium production inside of it.
+Right. How much does it. Because you're splitting apart. Um, you're you're you're boron ten.
+Right. So you you get these byproducts. I don't know, off the top of my head how long it lasts.
+Um, it may also be an issue of, you know, you can just replace it over time.
+So, yeah, I mean, the reason that I'm, it's well, it's sort of interesting to ask that question,
+but you're sort of proposing to put more material in front of the Riveter. Exactly.
+So it would be good to know, right? Yeah. There's this there's a lot of practical questions.
+Right. You know, can you put this in, remove it easily. Uh, and that's, uh, you know, we have some time before we build the strip.
+Okay. Yeah. Okay. Uh, thank you so much.
+Thanks. Okay.
+And, uh, is it on? Stay on this.
+Yep. So have the clicker. Okay. Yeah.
+Next we have, um, Kira, who's going to talk to us about effects, considerations, and even maybe some trigger considerations.
+Okay. Thank you so much, Larry, for inviting me to give this talk.
+I have to say that I'm not an expert on this topic,
+but maybe together we can try to learn about what do we need for the trigger and DQ at a tentative U on Collider.
+Um, okay, so let's get started. Um, so really, I do not need to motivate.
+Why me on Collider is such a brilliant option because of its high energy reach and high precision measurements.
+And also it's a compact machine, so definitely cost effective.
+Uh, but it does come with a lot of significant challenges, uh, both from the accelerator side and the detector side,
+which I've heard plenty of times this morning and also in the first half of the week during the school.
+Uh, nevertheless, we should start thinking about long term for towards the detector operations.
+So, like, what are the trigger and the Ek.
+Uh, banggood requirements are going to be, um, in this talk, I'm going to mostly focus on the tracker side because that's really what my expertise is.
+But a lot of the same ideas and exercises can be extended to calorimeter and yarn systems too.
+Okay.
+So this is just a list of parameters that we have, uh, right now for the muon collider and how that how that compares against the LHC and high Lumi.
+Let's see. So I will not go through all of that.
+But uh, mainly I want to focus on the bunch crossing frequency, which is going to be 30kHz, uh, and much lower than what we are used to seeing at LHC.
+Uh, we don't know what the rates for L1 or it should be, because that is exactly the equation of the dog.
+Uh, from some preliminary estimates, uh, like based on high Lumi.
+Let's see. And then how much beam induced backgrounds we have.
+We have an idea of what the raw event size would be like, and that is around 80, uh, megabytes.
+It's it's a it was also reported in the, uh, European strategy submission.
+So if you just multiply that with the, uh, bunch crossing rate and then, um, uh,
+like number of seconds in a year and then total time of the operation, that number just quickly blows up to a ridiculous amount.
+So I'm not even gonna focus on that for now. And instead, let's look at the rate of interesting physics events that we want at the muon collider.
+And that will happen actually. So this beautiful plot is made from N2.
+Well, where the left y axis shows the cross sections of the different processes.
+Uh, in, in these colored curves, uh, as of, uh, different center of mass energies on the x axis.
+And the right hand side y axis shows the rates of those processes at ten DV.
+So starting from the collision frequency or the bunch crossing frequency itself, which is 30kHz.
+So we will see around 30,000 events per second.
+The most important or the highest uh, cross-section process is the VMC production, which is going to be, uh, at the rate of one hertz.
+So roughly one event per second. And then VFX is going to be like one event for 10s, and everything else is even smaller than that.
+So if you want to calculate average number of interactions, uh, per bunch crossing or effect of pilot on collider,
+you basically sum up all these rates and divided by the frequency of the bunch crossing.
+And that gives us around ten to the power -5 to -6, um, which translates as roughly 1 to 10 interesting events per million bunch crossings.
+Which is to say that most of the bunch crossings are not really empty, but uneventful.
+They have a lot of beam induced backgrounds in, uh, in all the bunch crossings.
+So the question is, do we really need triggers for such low number of physics events?
+So we have to take a step back and try to think why we had triggers in the first place for, for example, in Atlas and CMS, uh, of LHC,
+and that does to control the high rates of the physics processes that are happening
+in every bunch crossing and also to discard things which are not interesting.
+Uh, but um, yeah. So, so the, uh, so we have to think if, uh, at the muon collider because the rates are so,
+uh, so small, but there is, uh, a lot of events, but nothing interesting happening.
+So how much extra infrastructure is it going to add in terms of hardware, computing, timing, performance, cost?
+If we create a trigger based readout as opposed to a simple trigger less readout,
+by throwing away uninteresting events only at a much later stage before storage.
+So something like a at the software trigger level.
+Uh, so this is a very simplified cartoon of how, uh, uh, the two trigger, uh, readout methods would look like.
+So the top one is, let's say when you have a single level signal, a single stage trigger.
+So you can think of, uh, some front end, uh, of the.
+Detectors being like sending data to the, you know,
+that infrastructure and the trigger processor deciding whether to keep this event or not and that a decision goes back.
+And then maybe you read out all of the other channels corresponding to that event.
+So you would need low latency triggers, which sends you fast decision.
+But you also need some buffer memory on the chip to keep all that information
+corresponding to that event until that decision comes in and you can read it out,
+um, for the trigger list, uh, streaming, on the other hand,
+you can imagine all the frontends are continuously sending all the data, uh, to the trigger processor.
+Uh, so you would need very high bandwidth to keep up with that data volume that is being read out.
+Uh, but then you don't need any buffers on the chip, uh, because you just continue to be sending out the data from the chip.
+And then at the trigger processor, you can decide how you want to split the data.
+Uh, you can create different types of data, uh, data sets depending on the use cases.
+I'll come back to this. And in my last slide I think. Okay.
+So, uh, to give it away trigger live streaming is the baseline choice as of now for all the sub detector systems.
+Uh, so now let's try to see what rates are we talking about,
+at least for the tracker and whether we have available bandwidth to be able to read that amount of data.
+So to do that we need some detector occupancy numbers.
+And we have a realistic digitization implementation in the muon collider software, uh,
+which can not only give the average position of the cluster, but also all the pixel hits associated with that cluster.
+So we can use that number multiply with the size of the hit in bytes, let's say.
+And that would give us the data volume.
+Now there's one thing we should keep in mind that the front end takes some finite time to prepare that data when it arrives.
+Uh, so, uh, and that depends on the occupancy on the chip and what is the trigger rate.
+And that can change depending on that. So for example, this this plot is of a 53 B chip with some simulated hits.
+And uh, uh, the occupancy of 2.7 giga hits per centimeter square at 500kHz.
+Uh, the the other 53 B chip takes around seven microseconds to read out.
+Uh, to send this all the data out completely, which is small for a 30kHz trigger rate, because you have bunch of crossings every 33 microseconds.
+But then this number can go up if you have more occupancy or if the size of that, uh, data is large.
+Okay. So the the top plot is the hit multiplicity per bunch crossing per centimeter squared for the various tracker,
+uh, layers in the Maya detector for two different timing windows.
+So in green, I have a fairly low standing window from minus point 5 to 5 nanoseconds.
+And the blue is for the very tight window from minus three sigma to five sigma time resolution.
+And, uh, those numbers are basically listed here in the table, um, to get the data rate.
+Uh, you can simply multiply occupancy with the 80 of the front end with and uh,
+bunch crossing frequency and the hit size, which I'm taking 40 bits, which is fairly large.
+Uh, one can do optimization and bring it down, but with that, uh, size, the, uh, data rate, uh, in gigabits per second,
+we expect is around 75 with that loose time, go, uh, but it goes down to less than 20 with a tight, uh, hit time, uh, requirement.
+So this number is just very large. Um, but this is not the complete story.
+So if you look at the number of hits per cluster for this innermost layer, uh, in Maya, you can see actually it has a very large tail.
+And that's because in the realistic digitization right now, we don't have multiple scattering implemented.
+So it's just a straight line extrapolation between entry exit points.
+So uh, for this exercise we can uh, just calculate the rates, uh, do a good approximation with uh,
+from clusters with up to like ten hits or 15 hits maximum, that is still very large.
+It comes down to 65 gigabits per second, as opposed to 3.2 gigabits per second for the tight time window.
+So something that we learned from here is that we definitely need some processing on the chip.
+So for example, a very loose time, uh, time selection on the, on the on the hit time of arrival,
+at least for the vertex detector layers to have a manageable readout with the technology 20 years from now.
+Because right now what we can do is, uh, so, like the current state of the art boards can offer up to 25 gigabits per second readout speed.
+And then once we have that number in control, we can also think of other progressive reductions on the chip.
+So based on like, uh, the time. Threshold, uh, and like some cluster properties because it gets easier and easier to handle small data.
+And if that is not manageable in terms of like the timing and power constraints for the chip,
+we can also try to offload it to some of detector electronics.
+So these are some studies we need to do systematically. Of course.
+Um okay. So on that topic, uh, there are a few uh, there are a couple of things we are doing at Berkeley and some other people,
+uh, to mitigate background with pixel based strategies.
+So, uh, one of them is to change the sensor thickness and, uh, to see if we can get better separation between signal and background clusters.
+Uh, so, uh, we are using the Maya detector, and we are changing the sensor thickness from 50 microns,
+which is the nominal, all the way up to 400 microns, uh, in the innermost layer.
+And, uh, we, we will look at the energy deposited, number of hits per cluster and how the timing resolution gets worse.
+And if it gets really bad. We are also open to exploring other technologies like 3D sensors.
+So renegades. Uh, so yeah, these are very preliminary results.
+But basically we are looking at different, uh, like the cluster energy deposited at different thicknesses and also hits for
+cluster where we know we have the problem of like missing multiple scattering.
+So we need to implement that. Uh, at this stage, uh, the other method that we are working on is this cluster shape analysis,
+where we use correlation between the, uh, incidence angle of the cluster versus the number of pixel hits per cluster.
+Because we know from first principles what, how many number of pixels should be hit if the particle is incident at a certain angle.
+And so with the first pass of selections, we are able to cut down both clusters by about 2,030% on an average from each of the layers of the tracker,
+uh, with only like 5% loss of signal clusters.
+Um, so, for example, if you look at the innermost layer alone, the occupancy goes down from 200, uh,
+so 2000 to roughly 850 hits for bunch crossing per centimeter square, which is like 50% reduction in bandwidth.
+Uh, so we are now starting to explore some MVA based methods for have more like for more robust, uh,
+like separation between between signal um and then the hope is within optimize sensor thickness.
+We can combine this analysis on that. And that could give us even better performance.
+Okay. Uh, there are some other blue sky trends, uh, which are also trying to do, uh, data reduction on device like the smart pixels.
+Uh, that was posted also today. Maybe you have seen it.
+Uh, and they are also trying to do similar thing by reducing data through in pixel intelligence, uh, from a very rough, uh, like track reconstruction.
+And that can also reduce the bandwidth by 50%.
+Uh, you'll hear more about this in its talk tomorrow. Uh, then there are some other projects which are working on higher capacity transfer.
+So like this wireless, uh, method where you also increase that, you also decrease the amount of dead material inside the, uh, detector.
+So this was a comment from Larry. So I wanted to put it on this slide that maybe you can think of,
+of detector L0 trigger using this wireless network close to the tracker to do a quick track fitting and same exit.
+But we have to study how the slow rate readout affects our overall public budget.
+Okay. And then lastly about the computing and storage. Um, I just wanted to give a full picture.
+That's why I have one slide on it. But you'll hear more about it from in Kevin's talk tomorrow.
+Uh, these are not my numbers. These are from the, uh, the report.
+Um, maybe you've seen it already, but.
+So we have some preliminary estimates of how much, uh, computing resources we would need for the five years of operation.
+And then again, how much storage we can afford. So, like, if you remember the ridiculously high number from the beginning, definitely.
+We can store all of that on disk, but we can keep all of that on tape and then only have one like order of three less of that on the disk,
+which can be then reprocessed into Ricoh. Any old data sets for analysis later by applying some like object level thresholds.
+Uh, and then we can also have different kinds of uh, streams like, uh, HLT objects level information only,
+uh, for all the events or some randomly 1% of all for like min bi studies or calibrations, things like that.
+Okay, so that brings me to the conclusion, uh, we have a lot of exciting challenges ahead to make sure,
+uh, trigger and the queue is not the bottleneck of our precision and discovery at Muon Collider.
+Uh, they've seen the rates of the interesting physics processes, which are order of Hertz and even less.
+Uh, so a lot of events are not interesting events, but still, we can, uh, we can hope to have a trigger live streaming if we can have.
+Some on chip processing based on like, timing or cluster, uh, shapes.
+Um, without increasing the power and timing budget.
+Uh, but we can also try to balance it with some on detector and off or combination of processing before it gets, uh, to the storage.
+Uh, we should, uh, definitely employ AIML tools whenever it's necessary.
+And of it helps. Uh, simultaneously, we should also keep working on improving our, uh, readout frameworks, uh, or platforms to,
+to allow higher capacity data transfers and also other technologies like the wireless network, which also reduces the material budget.
+And finally, for data storage, uh, we cannot definitely store everything,
+but we can have some software level selection and in fact also have some dedicated data streams for different kinds of applications.
+That's all. Thank you. Thank you. These have been incredible talks.
+Just wonderful. Uh, so, uh, the part of the plan is what?
+We'll take some questions now. Um, but the last thing in the agenda will be somewhat related.
+So we're. And that's going to be, uh, a discussion that touches on some of this in some ways.
+But yeah. Questions for, um, Gary specifically Kevin.
+Thank you, I think yeah, this is very interesting. I have questions about the wireless data transmission.
+It sounds great. But of course, when we think about, you know, the wireless technology we use in everyday life, it's very lossy.
+And it makes up for that lostness by sending duplicate packets and doing error correction and all these things.
+How realistic is that to put into a physics detector where we don't want really don't want to lose data?
+Um, yeah. I mean, that's a very good question. And again, I don't know too much about what exactly they're trying to do,
+but I agree with you that it's not like the perfect, uh, way to like, transmit data.
+Well, it's I'm not sure if you'll be able to send data back through the network, so I don't know the some holes that we need to understand.
+And, uh, that's why I put it on a blue sky like R&D that some of the people are working on.
+Maybe someone else can comment better than me about this. Simone maybe wants to say something.
+Is it about that? Yeah.
+I don't know what I always thought about that. The wireless communication.
+More of a, like, semi local, uh, passage of information.
+So now, like, ship things out of the detector and good luck, but rather like, um, let me broadcast to nearby, locally nearby modules, things that I.
+That might be interesting. I'm seen and then you do the same.
+And then together we make a decision on what to prioritize, to send out that type of thing.
+Because otherwise wireless would not. Sending out and back doesn't matter if it is wireless or a cable.
+That's completely so to decouple you enough. No problem at that point.
+So it's like the same thing we were seeing except of the double layer we were doing that you can just connect with the hybrid in a close by.
+Or you could do a similar thing for nearby parts. So these type of thing I was always thinking about the why something like that would make sense.
+Uh, Jeremy, you wanna do something? Yeah.
+I mean, there is, uh, a long history here of at least from the text side.
+And at least, you know, there was, you know, UDP, which was the high bandwidth solution, but not very reliable,
+at least developed something called, uh, based on campus party IP, which was a little bit more reliable, better UDP paste.
+There is an algorithm.
+I believe I might be wrong, but I think it's just like engineers have something that they've been using that gets close to the bandwidth,
+not the level of UDP, but if you the reliability of TCP.
+So something like this is possible with their protocol. But that's all I'll say about it.
+There are solution there. But it needs to be realized and R&D to basically.
+Oh so this is I mean I'm a postdoc from formula.
+I have a question about the pixel based web suppression.
+So you said that you when you start increasing the active thickness of the sensor, you can better discriminate the base from the signal,
+but then you are also depositing more of your like signal particles energy before the calorimeter.
+So you're also depositing more more of the particles energy before it reaches the calorimeter.
+Like your tracker should always be as thin as possible.
+Yeah. Um, but this is still pretty thin.
+So it was still pretty thin. Yeah. Uh, no, I don't have that.
+I don't think we made that plot yet. Okay, but this is not a significant increase, right?
+Yeah. It's it compared to services. Yes.
+That's such to say. Okay.
+Okay. Yeah. So just to say yes, you're absolutely right.
+The one needs to remember it was okay. You're absolutely right.
+We need to keep the material relatively low.
+Um, if you and this sort of the, the common knowledge was like, oh, make it as thin as possible, as thin as possible.
+If you look nowadays, the detectors were built in and you looked at breakdown of material.
+The silicone itself is by far not the major contribution and things like services and
+cables and cooling it become a really major part and so increase it to that size.
+I still would not be the the most important source.
+Um, the idea was always saying, say, if increasing that thickness allows for better separation,
+then you need to send out less data because you can filter on chip and so you save on cables.
+And so the overall mass actually can even be lighter. That's what we're broadly looking at.
+Okay. Thanks.
+Uh, and we'll continue talking about uh, especially with respect to what a trigger might look like in this kind of thing, uh, in the discussion.
+But let's thank angular again. And for legal reasons.
+Uh, this next talk is not a talk. Uh, it's a couple slides, uh, to kick.
+Uh, to to to further inform, uh, bits of our discussion, um, and, uh, take it away in the tell us.
+All right. Thank you. And also, thanks for inviting me to kick start this discussion.
+The plan is I would just show you a couple of slides on what we mean by that title, and then we can talk about that or related topics.
+Um, Phi equals pi. What that really means is if I look at the collider ring on the outer portion on the same plane of the ring, uh,
+what we realized is that that part, that part of the detector is actually constantly being radiated by neutrinos.
+And what we didn't realize before was just how many neutron interactions will actually happen there.
+So there's sort of a nice discussion for the neutrino community to be had about what can potentially be done with those.
+So I have a talk tomorrow and sort of more general aspects of and physics.
+But today I'll just focus on this one thing. Um, maybe I have to click somewhere.
+All right. There you go. So, uh, I don't know that I like this title, but we're calling it beam induced neutrinos.
+Sort of like counterpart of the bibs.
+So the beans, they are nothing like the bibs in, uh, if you remember, in the urine, a cross sections grow with energy.
+Neutrinos don't always interact, but when they do, they really do interact.
+So the products of the interaction, they're very high energy particles.
+Uh, the other fun thing to realize is that because now you were at the high energy collider, there are more of these interactions.
+And when they do happen, they leave more stuff for you to see.
+So they're not necessarily hard events to look for, but they are also happening in a very noisy region of the detector.
+Uh, and that's part of the challenge here.
+Uh, I will say this first calculation that I did with my collaborators here, uh, the flux that we calculated actually comes from these lattices.
+They're not the most up to date, but they sort of give you an idea of what kind of flex will be everywhere in this sort of plane of the ring.
+Uh, but the detector simulation we have is really what you're really looking at here is a very, very simplified sort of toy model for the detector.
+I'm a theorist, if you didn't know already. Uh, uh, this is sort of one way to think about it.
+There is here coming the collider ring towards the main meal collider detector.
+You have different magnet parts again from that lattice that I showed before.
+And where you have the bending magnets, where the beam is sort of going towards the last straight section.
+That's where you start irradiating this outer portion of the ring, the fire Pi.
+And that's what you're seeing there. So that's the vision into the arrow of the detector.
+And you see this slice populated by neutron interactions.
+And here you see if I take a cross-section of the barrel and you see it follows exactly the sort of
+densities that we put there to sort of follow the different components of the beam of the detector.
+That's what we call the slice, the component that hits the nozzles and the beam pipe.
+I guess you could call it like the halo. Those are the neutrinos in the straight section.
+So they're not pointing at anything, but just because of the divergence of the beam, they end up hitting the walls of the beam pipe and the nozzles.
+So just to finish off, that's the kinds of event rates that we're getting per year.
+So if you focus, for example, let's look at the Muon Collider TV with these assumptions on what the beam looks like.
+The number of interactions per year for neutrinos is of the order of ten to the 11.
+That is like three orders of magnitude more than any other neutrino accelerator experiment can do currently or ever.
+And that will be able to do in the near future also. So that's a lot of interactions in terms of, uh, events per bunch crossing.
+That's also a lot. But there are two asterisks there.
+One, this is also a statement of the number of crossings.
+And two, there is there are way more bibs in that one bunch crossing than this single, uh, high energy neutrino event.
+So that's just to give you a sense of what we're talking about.
+I will say a lot more about the physics you can extract if you measure, uh, high energy collider neutrinos tomorrow.
+But I just thought I would kickstart that discussion to you. Yeah.
+Thank you so much. Uh, yes. Thanks. So, yes, you can see up here.
+So so basically the question is, um, uh,
+if we're talking about something like order half of bunch crossings have one of these highly energetic neutrino interactions in the detector,
+weirdly localized and Phi, what does that do for our readout?
+What does that do for the homogeneity of our detector?
+Um, and, uh, in that rate plot that I showed, uh, so our interesting physics processes start at a,
+at a relative rate to, to a bunch crossing of ten to the minus four, ten to the minus five or something like that.
+Um, whereas this process in the detector is at ten to the minus two or something like that in the calorimeter or muon system,
+according to those numbers, from what you guys heard.
+Um, so yeah, we wanted to just kind of open the floor to talk a little bit about what this might mean,
+because I think in the last six months year, there's been a lot of movement on.
+We've just always assumed you just do triglyceride out. But then once we start to think through some of these actual rates, while, yes,
+we want to get the neutrino physics out of this, we also don't want this to ruin our Higgs physics program.
+Uh, because our detector is full of activity in the in.
+And I don't think it will be something. Good question to us.
+Um, so I don't know, uh, if people have comments or questions or I think we want to talk about.
+Okay. So I have first I have like two kind of clarifying questions about how you did this estimate.
+I have two things that come to mind. One, that could impact the rate and one that would just impact the shape.
+So one thing for the rate, I'm wondering if you looked at the chicanes as well, or if you only.
+Looked at the bending radius. Well we used that lattice.
+So there are focusing magnets right before the detector.
+Yeah. But this is not the latest thing. But six doesn't have the chicane maybe.
+I don't think so. Okay. Yeah. So anyway, an interesting part about that is that it would at some rate.
+Right. So you should get a little bit higher. I think it's all that would happen.
+We would love to get our hands on that lattice filings.
+You haven't been able to get it. Um, no. Okay. Okay.
+It would be a very easy exercise. Okay, cool. Yeah. Um, the second thing is, did you consider the beam wobbling like the modulator?
+We did not. Uh, okay. That's a great question, because that should make.
+I mean, the whole point of that is to modulate vertically, right?
+And to do it at a much larger scale than the beams, like the twist parameters would give you.
+So that should give you like I don't know exactly. Let's say a factor of ten, uh, spread uh, vertices right on the slice that you have.
+No, absolutely. That's a great point. So yes, it's true.
+The beam dynamics is somewhat because it's so high energy.
+Uh, the the one over gamma here is, is tiny. Right.
+So the angle that the nutrients come out with respect to the moon is small, so that we thought we had to take the beam dynamics into account.
+And that would be crucial. It turns out it's just barely important.
+But you're right that if there is movement and wobbling, that would be even more important, right?
+Uh, usually that's like extremely important for where the beam comes off of the Earth.
+But for this, because you're so close, a little wobbling is not going to move it, for example,
+away from the detector altogether, but it will move it, right, more than what the beam dynamics is doing for you.
+I agree, I don't think it changes the rate.
+I think the rate stays the same, but I think it could make your five slice bigger by a factor of ten or something like that.
+Uh, it could be because the whole point is that it increases the angular spread way larger than the original,
+uh, angle, I should say, you know, like in terms of rate.
+At that level, I have no worries about statistical certainty on anything.
+So the reason I ask, okay, I'll start up soon.
+The reason I ask is because when I think about this, I'm like, that's a problem for our detector.
+And you can make a simpler detector behind it that can deal with actually taking advantage of it.
+And so when I think about it, I think about, okay, how much of our detector can we afford to just black out.
+And if it gets bigger, it becomes more of a problem for us in that sense.
+Right. So to me this is a big how just how big it is really does inform how much I think we can ignore things that happen there.
+Right. Yeah. If we're getting TeV jets in that slice, uh, uh, you know, a thousand times more often than we're getting anywhere.
+That's sounds dangerous going.
+So asking also as, uh, naive not to not theorist, uh, how life would be simpler if we think more of just not worrying about detecting not only that,
+the main detector, but having a forward motion or detector.
+Yeah, I think that's a great question. I will touch a little more on that tomorrow.
+And I know several people, including yourself, have thought about this.
+It is much better to the intuition of physics away from this, right?
+I mean, you have a cleaner environment. There are no bibs to worry about.
+Uh, you have more flexibility and you can integrate more of the flux.
+If you can integrate all of this straight section, that's better. Here you're only integrating that part when you're curving towards the detector.
+So for purely the questions of neutrino physics, what you would like is a forward facility or a tangential facility somewhere.
+This is what you get you know. That's right.
+If it's just a fact, yeah. Then we need to treat it as a background on our detector.
+Sure. Just a quick clarifying question for, uh, Tovah or somebody else, but, um, what what is the importance of the beam wobbling?
+Okay, so I think so. Okay, so so in order the the purpose of the beam.
+So beam wobbling, it's it's modulating the beam in a coherent way,
+as well as the movers, which would actually physically move the lattice up and down.
+Um, both of the, those the target is to make it to the, the neutrino radiation gets spread out over a larger area.
+So by its nature,
+the point of it is for those modulations to be way larger annually than sort of the spread that you would get naturally without doing them.
+So they're all about I mean, that's that's why I say they'll definitely increase the size of us.
+Yeah. So, yeah, uh, if it if it causes this kind of like factor of ten spread in the detector itself and that's a problem, then why are you doing it?
+Is the question, I guess, for safety of the humans in the area.
+So, uh, I don't know enough about the crucial reactions.
+You know, when we talk about edge cosmic. Now, my first question is, what's an acceptable number that we can live with?
+You know, I when I started from moving, the detector was like that acceptable number.
+We come up with the answer, Sarah, that's fine, but I can't imagine it would be so.
+For the room, I think it's exactly. Yeah. That's exactly.
+Okay. And the other thing I want to ask is these numbers for Ashe County are based on a 40MHz bunch crossing rate.
+Uh, it's whatever the full meal and lifetime gives you with that injection frequency and that size of circle for 30kHz numbers.
+Okay. Right. That's a lot in that order of magnitude.
+Yeah. Thousands of turns. Uh, for a single bunch.
+Yeah. So I guess, um, the question is, should we really start to be thinking about reconstructing things that are coming from outside of the detector?
+And then what? What are the. Is it something that we should be putting into simulation, like TV neutrinos, just to see if we can?
+I think the answer to that is a very hard yes, yes.
+Why do you care about the different, the different uh, like which what type of neutrino and like what sort of energy resolution, for instance.
+Yeah. You do care about what neutrinos are coming out. So here you get for a meal plus mu minus.
+So we also looked at me a plus B plus mu Tristan, which is a fun idea where you only get one type of muon decay.
+Here you have nu mu nu e and there antineutrino versions.
+So you're going to get muons being produced by charge. Current interactions of these new music mu bars.
+You're going to get electrons produced by the movies and TV bars.
+And you're going to get lots of hadrons produced by every single neutrino and neutral currents, as well as the charge occurring in the attractions.
+You have your energy definition. Uh, yes.
+There. I'm sorry.
+This is a very dense plot, but this is energy of the lepton that comes out of the neutrino interaction over the energy of the muon beam.
+So for attentive collider, the left on if it lives here, it would have a five TeV energy.
+And what you see up there is that the new muse, new bars, Neues and Neue bars have all basically the same.
+The sum of them have basically the same um, uh, shape, and they are all TV scale leptons.
+And this plot doesn't tell you anything about the hadrons, which will have a little bit softer energy, but still, you know.
+You want to do. Okay.
+I have a I think I have a very quick thing, which is I think the first thing I would want to know is, is the radiation environment.
+But is the consequence of this just untenable?
+I think I think this is not a concern just because the neutrinos are actually not the neutrinos slice is perhaps like too optimistic.
+This slice will also have lots of muons if you have muon halo loss.
+Uh, so what that means is you're going to get lots of muons and other bibs more often than those neutrinos.
+So a good number to have in mind is that the probability of interaction for these neutrinos is of the order of ten to the minus eight.
+So, you know, for every muon decay, you know there's a 10 to -8 probability, but you have many muons and over all integrated.
+You get all of these events, but every muon, the K will give you an electron that will do other things.
+So the question is what do you worry more about electron, uh, VIB, muon and halo loss, or the 10th of minus eight of the neutron interaction?
+It's true that this energy deposition is happening far away from the decay point.
+So that's the other sort of crucial difference.
+But I don't know, I felt like that wasn't the main concern, at least from my theorist naive point of view.
+I mean, if you lose it from the bucket and then you just.
+Yeah. Yeah, that that should be.
+People were looking into that. This seems to be a slightly less. Yeah.
+What is implied? I was just wondering if you have looked at the timing distribution of these.
+Uh, yes. Somewhere here I assume.
+So I was curious to see the number 20. And then a second.
+This is essentially a geometric question. Everything's traveling at the speed of light.
+You can interact in the front of the arrow, which is here.
+So you're early with respect to the crossing. This is the back of the.
+Yeah. Okay. Perfect. So this is just a great nightmare.
+Um, the the main reason I sort of I'm less I mean, I'm not a hugely.
+I mean, I think we need to keep an eye, uh, about it to the, the normal physics objects to look at.
+But the classic thing is, when we look for neutral particles that get produced, that are heavy from the standard model,
+the decay in the calorimeter and give us a to a day with nothing else before that, which is exactly that.
+And those will will travel a little bit less fast because there will be massive, they will not travel at the speed of light.
+And so we expect them to arrive with some delay, which is roughly where that peak is.
+Um, so yeah, that that is one thing we should we should look at which ones are very hard to mimic.
+Right. No, not correct. So the point is. Yeah. But the the cross-section you're looking for is very small.
+So the question is like you will be able to get control samples of these things easily.
+And now you need to estimate the probability that by chance that shower detector lepton tau,
+whatever, by chance because of your reconstruction etcetera,
+will look like something coming from the interaction point, which again would be a probability ten to the minus six or whatever.
+But you need to control that tail at that level as to how to do that is the interesting question.
+Yeah. Okay. Thanks. And uh, and let's uh, let's start from uh, and we can I was just going to ask about time distribution, which you showed there.
+I think that timing wise we can check this,
+but there's another thing we should look at which is the shower shape distribution in the segmented calorimeter.
+So I think that there will be significant, uh, ability to distinguish between things which are going like oh shower versus think.
+Yeah, these are events.
+And yes, they'll spread over the entire world and get into kind of yeah, the downstream and cap will be in time with your collision particles.
+Yeah. Yeah. Exactly. This is probably the time with respect to crossing zero.
+That's right. But remember particles come out from the collision and have to take time to get to the other end cap.
+So they actually will be in time. That's also a good point.
+Yeah. And then the fact that the relative rate is huge compared to the interesting stuff.
+So we're swamped also by this. So the actual normalization is.
+Yeah. That's true.
+That's true Mr. Seismograph. Okay.
+Uh, let's continue this over coffee. There's a lot to talk about. So thank you everybody.

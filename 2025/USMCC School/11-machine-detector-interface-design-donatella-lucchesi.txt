@@ -1,0 +1,441 @@
+# Machine Detector Interface Design, Donatella Lucchesi
+
+Okay. So good morning, everybody.
+Even if, uh, we are here since, uh, an hour now, and I'm a professor at the University of Padova.
+Uh, he's going to be different from the other days because I'm not an accelerator expert.
+Actually, I work on more on detector, my experiences on detector.
+But as you have seen in these days, um, if you want to design a, uh, detector for immune collider, you must know something, uh,
+about also accelerator and, uh, in particular in what you have heard just, uh, a few minutes ago, um, on the interaction region.
+Okay. So we will see. I will try to tell you, uh, what we need to know and the how to face, uh,
+all the challenges, uh, related to the, uh, several peculiarities of the muon Collider.
+Uh, I have a lot of material, and we have a 45 minutes.
+Uh, probably. What is, uh, what we can do, if you don't mind, is that if you have a question,
+just raise your hand and you can interrupt me, because if we keep going, uh, it will happen.
+That it will be like a conference. I speak, uh, in UCSB quite, quite fast.
+And, uh, so it's better if, uh, since this is a lecture.
+No, it's not, uh, I'm not here to showing you how good um, I am in the machine detector interface.
+Uh, but it's just to try to understand all together what we need in order to design.
+Uh, uh, I mean, to be ready to design, uh, the, uh, the detector.
+Okay. So. Okay.
+So what? I will try to. That's what I prepared it, uh, it kind of a introduction and a few example on machine detector interface.
+Then I will tell you, uh, why the muon collider is, uh, different from other machine, something related to the interaction region.
+So start this from the point of view of, uh, uh, detector.
+Uh, people, the, uh, shielding start is that we need to include that there.
+And then finally, I have some, uh, that, uh, feature for further improvements on this machine detector interface,
+uh, that we will cover if we will have time.
+Otherwise, you can read it, and then we can also talk about that, uh, offline.
+Okay. So first of all, what is the, uh, machine detector?
+Uh. You know. Yes.
+Uh, sorry, I did it. Uh, something stupid.
+Okay, now it will be. Fix it. So, what is the machine detector interface?
+Uh, machine detector interfaces are something that, uh, as the words are seen, say, between the machine and the detector.
+So the roles is, uh, uh, to have something like the final focus.
+Mark, next to that, you had a lot of in this days, the beam piper.
+That has to be particular there. Then we have something in, uh, the collimation and the a mask for the collimation in particular in several cases.
+And this is needed in order to have the beam as small as possible.
+Then, uh, closer to the interaction point, then we need to have, uh,
+shielding and then something that we never talk in because it's something that, uh, uh, we put at the end.
+Uh, but sometimes what we introduce at the end, we realize that we, we have no space, no room where to put it, the cryogenic and the alignment system.
+So that's very important. And as I was, I'm writing the machine, uh, detector interface is there for all departments.
+So I took two running, uh, examples.
+So the first one is uh, uh, the uh, machine detector interface for the Atlas experiments.
+Also CMS as one, I took the Atlas because, uh, is more colorful and there's a lot of interesting but very, very interesting, uh, uh, shielding part.
+So here you see, uh, that is. Of.
+That's the muon chamber, sir. And the detector here.
+And then, since that is background and the background, the proton proton collision comes mainly, uh, from, uh, interaction of proton.
+So with the gas that is left in the, in the beam pipe.
+So in order to protect the machine and the events that we collect from that, we have to put some shielding.
+You see here, for example, in the forward region we have a four, uh, in in order to protect the immune chambers, these toroidal shielding, you'll see.
+How big are these objects. And this part is the blue part here.
+So is the shielding of the forward part of the detector.
+You see this is a person. So it's from the engineering point of view.
+It's not easy to build the these structures here.
+Uh, you just put it because, uh, in order to hold this structure, we need the something particular.
+And so there is a kind of, uh, uh, support made the design of the in by engineering,
+uh, in order to support the these a structure which is a very, uh, very heavy.
+That's for a proton. Proton. Now, what is happening in, uh, minus, uh, the current, uh,
+machine that is running minus is a super ecobee that actually has a lot of troubles due to the background.
+So the, uh, nominal target, the luminosity for the machine is, uh, six, the time to the, uh, six.
+Uh, yeah. Times ten to the 35. That's the unit.
+And, uh, but they are reaching just, uh, uh, 5.1 times ten to the 34 Steelers, uh, same units.
+And, uh, you see here the schema of the machine.
+Where do we have an electron ring and positron ring?
+So there the issue comes from, uh, the beam induced background.
+The beam into a background. So for dance A comes from particle scattering.
+So there are several effects being gases, synchrotron radiation that these are two check effect.
+So the interaction among electrons in the same uh bunch and then they have uh, uh, problems uh, in, in the injection region.
+So when they try to inject uh, uh, to, um, let's say, uh, the these machine works in what is called top up.
+So every time you have to keep the amount of the bunches, uh, at the same level.
+Mhm. So in order to do that they have to continuously inject uh, uh bunches.
+And when they do try to do that, uh, they have a kind of mismatch that is very small, but anyhow is causing a lot of troubles.
+So in order to know to fast.
+Uh. Okay.
+I want just to go back. Okay, here we are.
+So this is, uh, the Curly Matassa.
+That that's the design of the column. And this is the actual structure of the curly Matassa in a supercar.
+Could be. And this is how they beam, Piper.
+And the interaction region is designed, and you'll see that is a crossing angle between, uh, the electrons and positrons and the electrons.
+And here is where they have a lot of troubles.
+For example, one of the things that they did in order to, uh, fix that is to do, uh, you see here a, um, ridge structure for the beam pipe.
+So this ridge structure serves to, uh, absorb the photons that are emitted in these regions.
+Okay.
+So every time that you design, uh, a, uh, in an interaction region, uh, a collider, you have to start thinking what to do for the interaction design.
+Now, the new collider, as you have heard in the the past days, is really, uh, different from the others.
+So also the machine detector interface has to be designed in the proper way.
+Here I put the table that you, uh, should use also in the homework at the end.
+Uh, what? I just highlighted the three items that are, uh, needed in order to have what?
+High luminosity. Because what we need, from the experimental point of view,
+what we want as experimentalists is to have the maximum luminosity when we collide particles.
+So we want to have as many events as possible. Okay.
+So in order to do that, uh, we need to have, uh, a lot of, uh, muons per bunch here reported the water,
+uh, has been, uh, recently published by the International Muon Collider collaboration.
+So for three and ten, uh, uh, TV. And then what you also heard before the, uh, beta function, uh, to the interaction point.
+So very small in particular, daytime TV is, uh, probably so small that as, uh,
+Iliana was saying before, it's very, very difficult at the moment to, uh, to do it.
+Anyhow, uh, what is going to limit our, uh, detector when we design a machine in such a way?
+As for the, uh, superkick be, the, uh, limiting factors are coming from the backgrounds.
+So the main background, uh, that we have in, uh, uh, almost all the energies, uh, in the center of mass is due to the muon, the key.
+So muon decays, and there is nothing that we can do. The decay, even if we accelerate them, are almost hard to see.
+So here I made the very, uh, simple calculation that I'm not going to repeat here because, uh, uh, I just put it here example.
+Uh, and then I ask you to recalculate that, uh, in the, um, work.
+So try to understand the how many the key we expect, uh, per meter of lattice without, uh, I mean, simple, uh, back on the envelope calculation.
+So consider all the factor. And, uh, assuming a just the, uh, the, uh, the the key, let's say the simple of muon.
+The key. Calculate how many e the key per meter of lattice.
+Uh, we expect at different energies. And then you can think about that.
+Then we have another backgrounder that is called the, uh, incoherent fallacy minus production.
+Huh. So this is a background that has been studied for the first time by Landau, has studied almost everything that we know in particle physics.
+Uh, actually, if you read his books and, uh, you understand everything, and you are a perfect physicist.
+Then. Uh, okay. So what we have is, uh, this that's the Feynman diagram.
+The other big physicist's thing. And, uh, uh, what do you see that that when the energy is, uh, sufficiently high for the muon,
+uh, what we have is the emission of two visible photons that then, uh, producer plus C minus.
+So this kind of background, sir, uh, is not there or is not significant, uh, when you have, uh, uh,
+low energy beam, um, so few TV, let's say that, for example, in the three TV machine, we didn't consider it.
+But when we have to study the TV machine, there are new process like these,
+uh, incoherent, uh, production that arrive there, and we need to include it.
+There is another, uh, uh, uh, background, uh,
+that at the moment we are not considering and it is the beam are low so particles so that that beam is not perfect.
+So there are particles that deviate from the beam and arrive on the detector.
+But at the moment we think that, uh, when we will be ready to be the machine, uh, we will also be able to minimize the effect of the beam model.
+And you will see these two how the background are so high that, uh, at the moment, uh, this is really a kind of a perturbation.
+So, uh, we would love to ever to consider it given the amount of background money.
+Okay. So, uh, which are the main effect of this background?
+So in, uh, um, in our experiment, um, so I just, uh, take three, uh, objects and, uh, I will focus mainly on the second one.
+So the first one, uh, is the fact that, uh, since we have all this background.
+So we need to protect everything, including the magnets.
+So the electrons that are produced by the decay of the muon can, uh, can can eat the, uh, producing, uh,
+let's say the superconducting coils of the magnet, uh, and the inductor can damage the, uh, the the the the magnets.
+Uh, uh, okay. Let me go back and then, uh, okay, I explained, then I will show you a picture.
+Then we have of these the detector performance.
+We need to do something and you will see this is a very important from the point of view of uh, uh, also, uh,
+the detector, the last one I'm not going to discuss it is the fact that, uh, we can have, uh, radiation.
+Uh uh uh, Asada due to the fact that that in the interaction point, the neutrino beam so that that produce them are very intense.
+So these neutrinos traveling under in, uh, under the ground, and when they arrive, uh, to exit the to the,
+uh, to the, to the surface, uh, of course, they can, uh, interact with the herd producing, uh, showers.
+And these showers can be, uh, can induce some other in the, uh, environment.
+So how are we? Uh, uh, um, which are the key elements and the how I will, uh, continue in this presentation in discussing these main items.
+So what do we do? We design the interaction region, and then we design, uh, the shielding structure,
+and then we study the machina, induce a big ground effects in everything that we have.
+So you see, is not easy to do this job.
+Um, because it's not that we are really coupled, we as a little experimentalist that we want to build the detector.
+We are really careful and we have to work with the expert in the accelerator because,
+uh, it's not that having a perfect machine that deliver the maximum luminosity is good.
+Also, for the detector, there is a part that you we may have things, uh, that completely jeopardize the performance of the detector there.
+Okay. So this you already saw before, this is, uh, one of the probably more studied the interaction region has been done by these,
+uh, the new accelerator program in us by map and, uh, you already saw before.
+So I'm not spending time here. So you see, uh, that's the, let's say, the part of the.
+In a region where we have a day focusing and the focusing magnets are there.
+Uh, the parameters are listed here. You can find, uh, if you want to read it.
+And there have been more information. I try to put the reference there and, uh, I put it here.
+Are these, uh, uh, read the line with six.
+So this is, uh, an important number.
+That's an important number. That's the where the last, uh, quadruple is put.
+So six meter from the interaction point.
+That's the dimension that we have to put the detector.
+So we would like to have, uh, something longer.
+But at this point for these one TV central energy, that's not possible.
+And actually that's the maximum that the accelerator, uh, expert are giving us also for three TV antenna TV.
+Now the moment for the TV, they are telling us that they have these at this distance.
+Ah, sorry, I forgot to put this at star is, uh, for them is too long, so we need to squeeze it.
+But we are not happy because we want to have a detector there now.
+So it's a kind of, uh, let's say, uh,
+trying to optimize and discussing with them and ask them to produce an interaction region that this is not possible.
+That's not stable. So is is, uh, it's complicated, but it's also fun because we are studying something completely new.
+Uh, one of the consequences. Sorry, I'm not able to say that, but, uh.
+Okay. Um, when it works, it works too much.
+Uh, let me see. Because I have data.
+Okay. Uh. How can, uh, what?
+Which is the process that has been followed by map in order to optimize, uh, the, uh, interaction region at 1.5 uh, uh, TV, we need the metrics.
+Um, so what they decide to do is to look in, uh, uh, in the interaction region.
+You see here the interaction region. The interaction region is always the same.
+So, uh, what they the data, they look at the, uh, the fluency.
+So the number of particles, a per centimeter square of electron and photons.
+And, uh, they study three different configuration.
+For example, a here is uh, with the no mask.
+So there is no protection, uh, between them, um, connection with a shielding, uh, structure that we'll discuss in a moment that we the name is a cone,
+a structure with an angle of six degree plus other uh uh, um, other some, some absorber.
+Then they studied another configuration, uh, where they put also some masking,
+masking structure between the final focuser and they change the dimension of the shielding structure.
+Another one is, uh, the C is a similar to be, uh, but, uh, um, the insertion of,
+uh, also a, uh, two Tesla magnetic field in the final focus, uh, quadrupole.
+So the results that they, they see is that when we include the, uh, when we put there a shielding structure, we diminish by big factor.
+So the amount of particles that are driving in the interaction ratio,
+there is no detector yet here, while for example, having a displacement the plaza is quite small.
+Um, uh, magnetic field here we have a reduction in uh, default on but, uh, we have an increase in, uh, positrons.
+So what to do? They did something and uh, the other studies, uh, that has been done is in progress.
+Uh, uh, to understand that the effect of the optics on the interaction region has been done by the, uh, emcee at attentive.
+So here I'm not going, uh, in the details in describing what has been done, you can read it.
+And this is more related to the machinery, but what you see is just the effect of a having, uh, uh, on the quadrupole.
+So we just call it the pure or quadrupole that there's uh, also, uh, any polar component is called the combine it or.
+And the dipoles are here. So and we see here the number of the influence of, uh.
+Um, the, uh, fault on the with the beam coming.
+This is just the for one beam. I try to put everything in the row indicating from where the beam is coming.
+So we see that there are, uh, fluctuations.
+So it's possible to reduce the number of photons that are arriving.
+So the message here is that, uh, tuning the interaction region helps, helps a lot.
+But this is a fine tuning. And as you saw before, if we don had some shielding, uh, there is no way, uh, to survive to the background.
+So the first shielding and the. I have just one slide on that is on the magnet.
+So then, as we said before, this is, uh, okay has been presented.
+Many of the slides are coming from uh, uh, the, the the collaboration meeting of the Ecmc.
+So you see here what we have to do, uh, is, uh, to insert, uh, a shield, which is, uh, a good part of the magnet.
+This is and this is needed in order to protect the magnet from the moon.
+The key. So this is something. And, uh, if you look at the presentation, you can find all the details also for the other, uh, magnets.
+Now, let's let's see what we can do in the detector area.
+So the detector is really affected by, uh, these, uh, background.
+So, and, uh, what we do is, uh, uh, uh, to insert there a corner structure of ten degree.
+This ten degree, if you remember, has been, uh, uh, found by map, uh, in, uh, uh, studying one point uh, five TV center of Mass Energy.
+And we have still using these, uh, optimization.
+So is a corner that is a tungsten blast.
+So these liberated the polyethylene is a coating that is here.
+Then we have, uh, the angle is a change in when we approach the interaction region, uh,
+and trying to think why we, we do that is one of the questions in the optimization.
+So why we changed that. And this is a zoom in the region of here of uh, uh, the beam Piper.
+And this is the, uh, um, the, the design, the actual drawing that we did with the Fluker program in order to see, uh, with the detector.
+So this is the interaction point is exactly this drawing in.
+Uh, this is the interaction point. That's the first part of the nozzle and then the cross.
+So here you can see the that is the tracker here.
+Then these are the nozzles the electromagnetic calorimeter and the uh hadronic uh calorimeter.
+Okay. Which is uh so we try to understand, uh, which is the, the main effect of, uh, these nozzles, uh, on, uh, uh, on the background here,
+you see, uh, few plots, uh, with the what you have the number of particles, uh, as a function of energy with and without the nozzle.
+So then also what it does is stop.
+It's absorbing all the electrons, uh, with the, uh, a lot of energy, if you ever, for example, a 1.5 DV send a central mass energy machine,
+that means so that you have a a beam of a 750 GV, that means that when the muon the key, you can arrive to about a 600 GV electron.
+And this kind of the electrons are entering in your detector, and that at that point is impossible to do any physics.
+Okay. Uh, the same for example, this is the photons, electrons and positrons.
+So when we put the the known solar, what is happen is that this part I mean, I say I'm sorry, but it's not completely true what is happening.
+We will see. These are interacting with the tungsten, which is a very heavy, uh, material and is producing a lot of other particles with low energy.
+Okay. And we prefer that respect to these, uh, a momentum particle, uh, we have, uh, uh, I mean, the same.
+For the charger other than you are increasing the okay,
+since you are almost physicists trying to think why we have more neutron than after, uh, when we put the tungsten here than uh uh, before.
+Okay, uh, but life.
+Cuckoo. Okay.
+But the the nozzle has also, uh, some, uh, uh, not so positive.
+Uh, effect, as I was saying before here. Do you see a simulation?
+So this is the nozzle. You see this structure and the.
+This is, uh, sorry, that's the nozzle. This is the the, um, interaction region with the, uh, final focusing mark.
+And that's the nozzle. And you see that a muon key in a here to produce an electron.
+So that travels. And when the, when enter the nozzle to generate these uh uh shower.
+Mhm. So these particles uh will arrive in the detector.
+So we will and we will study that.
+The other point is that, uh harmful trolley having this nozzle will reduce the detector acceptance in particular in the forward region.
+Uh, we have a very, uh, very, uh, an important reduction of, uh, uh, um, of the acceptance.
+So, uh, now, the other background to that, uh, I told you, is important at, uh, 20 V is the incoherent production.
+So here, you see, the incoherent production are mainly electrons and positrons with higher momentum.
+Respect to what is coming from the shower, uh, of the electrons.
+So going through the tungsten, that and, uh, you see, they are uh, uh,
+if we put in a significant five Tesla, for example, magnetic field in the detector region.
+And so the detector magnet is, uh, at the order of something like five Tesla, we are able to constrain all these particles in around the beam pipe.
+Okay. So this is one solution that we are investigating.
+Uh, so far. Okay.
+The, uh. All these particles that are arriving in the detector can, uh, generate, uh uh uh uh uh, let's say a dozer.
+Uh, you know, you're not ionize, uh, in the, in the detector because they are low momentum.
+So we study, let's say, the, uh, one MeV, uh, neutral equivalent fluence, and also the, the dose that is, uh, uh, arriving on, uh, on the detector.
+And we compare that to one in, uh, in a high Lumi LHC.
+Um, uh, you see, this is not actually an issue is a big is a slightly bigger than LHC, but, uh, is not the actually, uh, limiting factor.
+So I want to arrive, uh, here. Uh uh. Where, you see, that's, uh, the, uh, into the, the the machine detector interface that we have so far.
+So there are, uh, the machine shielding. There is, uh, the detector, there is the, uh, nozzle, these two pieces, the detector magnet,
+uh, which is here in order to, uh, reduce the amount of, uh, incoherent production.
+And that's what we are using to study what is happening in, uh, the detector now.
+No. Okay, so in order to study, uh, what, uh, is, uh, um, um, how we can improve, uh, the the detail in the interaction region,
+uh, and the, uh, to modify maybe slightly what is happening around the, the interaction region.
+Um, the first things that we had to do is to evaluate from where we have to start to integrate the muon,
+the key, um, because, uh, I mean, if the machine is, uh,
+three kilometers, uh, we are not integrating the muon fluxes from, uh, from, uh,
+the other point, you know, so what we do is, uh, uh, this is just from one beam.
+So, uh, what do we do? We look at the, uh, muon decay.
+This is the Z, the position along Z, along the beam axis of the muon.
+The producer in the in the detector.
+So we discovered that, for example, at 1.5 DV, we can stop at 25m, three DV, we have to arrive to something like 4550.
+And then we should arrive around the, uh, under the uh, meter.
+So one once we know, uh, from where we have to integrate with the background,
+we produce the, the background, and we look at the background in the detector.
+So that's what is arriving in the detector in this, uh, the detector is in this region here, the gray part here.
+So part of the background, since is a slope or a slope particle arrives out of time, respect to the interaction time.
+Uh, so, uh, if we assume that zero is that the time of the beam crossing a when the interaction happened.
+So if we cut, uh, uh, when we look at the the reconstruction of particle in the detector around the,
+uh, the time, the travel time of the particles in the detector around the this window,
+minus one a plus a 15 nanoseconds, we are able to reduce a quite a lot to the fluxes of the particle arriving there.
+And the this is the momentum of the particle arriving on the detector.
+Ah. You see the fluxes. They are, uh, quite high.
+Uh, when we cut in these uh, in this window.
+So we have a lot of photons, a lot of neutron electrons, and also some muon and charge, uh, each other also.
+So that's what we see in, uh, uh, our, uh, detector.
+Okay. Is that, uh, good enough, uh, at the moment that we are able to work in this situation, but we would like to improve it, of course.
+So the most, uh, affected detectors, uh, some detectors are the tracker that is very closer to the beam.
+Piper. And the part of the calorimeter closer again to the to the beam pipe.
+So here you see, uh, the occupancy.
+So the number of particles per centimeter squared that are arriving, uh, on, uh, the, uh, detector on the tracker.
+And, uh, this is an occupancy which is, uh, higher even, uh, than the Alice experiment that collides, uh, heavy ions.
+So this is something that we should try to reduce, uh, as much as possible, uh, uh, with several methods.
+And this is, uh, instead the the, uh, energy density per centimeter square in the calorimeter.
+So we see that the in the electromagnetic calorimeter is a suffering while the a drawing calorimeter.
+Not so much. This is an event display for the tracker.
+You see how many tracks that we have there. And, uh, this is a for, uh, the, uh, calorimeter.
+Okay. So we see that we have a lot of heat there.
+So is, uh, something, uh, very, uh, very busy to distinguish.
+Um. Oh, okay.
+So in order to, um, in order to reduce these amount of particles.
+So we are trying to design a detector that can really cope with these occupancy.
+Uh, you can see here, for example, a we use a five Tesla, uh, magnetic field to minimize the effect of a plus C minus product.
+Shouldn't we ask also for AI granularity?
+Detector with a good time resolution.
+And then we have to be very smart constructing tracks in, uh, for the, uh, electromagnetic calorimeter.
+For example, again, we ask for eye granularity with a good resolution on the arrival time of the particles.
+And you see, this is what we see before the clustering.
+Now that we have done quite a good, uh, clustering algorithm, we are able to deal with, uh, uh, with the background, uh, there.
+Um, so, um, as a, as, uh, uh, in order but in order to improve, um, again, what we have, I mean, to,
+to further improve that, we need to start studying the origin of the particle that are arriving on the detector.
+What I mean, here, you see, basically the plot that we showed before that if we have a beam coming in this direction,
+this is the D of all is a cumulative plot.
+So where do we see for each particle three DV and 1.5 DV the origin of the particles that are releasing in it in, uh, the detector.
+But what we want to do is the following for each ether that we have in the detector.
+For example, in the tracker, what we want to do is to search for the mother of the particle that finally generated that heat in the detector.
+And then, uh, for example, see that we have a masker in a place that is making a lot of, uh, a lot of noise in the detector.
+That's the example of the tracker. And so we, uh, we, uh, take in it in a particular, um,
+layer of the detector of the tracking detector, in this case is the first layer of the detector.
+And we search for the other means that the very first, the particle, we go back in the,
+uh, and then we search for the very first particle that produces that it.
+So we discover that the measured part of the it's are generated by the, uh,
+positrons and electrons primary means coming directly from the muon decay from what you see here from the nozzle.
+So these particle are interacting and also producing in it on the first the layer.
+Then we have something like uh, uh, the secondary second on the E, the both uh positrons and electrons at secondary that are coming from the other,
+the other layer of the silicon, for example, a this is a scattering.
+What you see here, back scattering on the second layer or the structure here we have the disk in uh in the photo region.
+So these is electrons from that arrive on the first layer.
+Another interesting uh, point is that the other part of the known solar act has, uh, a, uh, target.
+So electrons are produced here and comes back and goes back to the to the first layer.
+Looking at this plot, we can start thinking what we can do here.
+Uh, we say, uh, we can do little, uh, because, uh, we should try to reduce the dimension of the nozzle.
+Uh, that is not an easy thing. So something similar that I can skip till to.
+Sorry. Yeah. Okay. Uh, I can skip these are that.
+That's the same study that we did it, uh, for the, uh, calorimeter and, uh, so that's, uh, uh, basically how we work.
+So we start with the lattice designer, then, uh, we, uh, produce, uh, the, um, what we call the they look at geometry model.
+So we design that path in the machine in, uh, uh, in a, in a,
+in a piece of code that is calling the line builder that is interfacing with Luca, and then we produce, uh, the beam in the background.
+So we have files of this beam in just a background that we take these beam, use a background, and we look at what is happening inside the detector.
+Once we have that, uh, we go back.
+And we interact with the experts that are designing and then also telling them, oh, look, you have to try to change this.
+Try to change that in order to reproduce the beam in the background and see if is going better or worse.
+We can also interact back to the people that are designing, uh, the, uh,
+the lattice and then redo all the, uh, procedures, okay, in order to have that.
+So, um, let me see. Uh.
+Okay. So this is an exercise I can, I can, uh, I can leave you that.
+So to tell you that what we have done there is a the student that tries to optimize, um,
+then also the, the characteristic of using a machine learner machine learning and, uh, here, uh, uh,
+so at the end, we have been able to reduce a little bit is not an easy task because I define the metrics,
+uh, in order to, to see what we should minimize is not, uh, simple, uh, at all.
+And that the last part that are very few in just a couple of slides is to tell you that what we have seen so far is a four in almost all.
+That is not realistic at all, because it's just a piece of tungsten.
+Uh, uh, put there that cannot be, uh, like that.
+So, uh, we are studying start studying what we can do.
+So first of all, of which are the consequences of these high fluxes of particles in the nozzle itself.
+So we are start studying the neutron and the photon fluence inside.
+And also is the tungsten.
+Uh, surviving that after, I don't know, the five years or ten years of data taking, what is happening there to that material?
+Um, the second point is that I told you before that we have, uh, issues, uh,
+due to the fact that, uh, these nozzle is, uh, uh, um, reducing the acceptance.
+So now we are start thinking if would be possible to instrument that region if possible,
+for example, that would be very useful to study the not the W fusion from muons,
+but the diffusion to target these uh, to muons or, for example, use the muon bhabha scattering to measure the, uh, luminosity.
+And that last, and this is, uh, the very last one, uh, how we can build a such structure of, uh, uh, put that in the detector and if needed,
+access the detector, because if something inside it, for example, the first layer of the silicon, we need to change something.
+We need to access the detector. But if we have these huge things that we we don't know how to do it.
+So that is a first drawing. So that's the let's say EDL drawing to the machine.
+Then we have some thinking of how we can do it. So for example that's the full detector closed the.
+Then we can for example try to split the nozzle in three pieces.
+One that goes with the tracker, one goes with the calorimeter and the other with the magnet support,
+so that when we try to open, we have, uh, access to these.
+This is the nozzle with the tracker, the nozzle with the calorimeter, and then also with the support magnet.
+That's uh, at the moment, adjust the on paper. And that's all I think.
+Then I have that the, the questions in the.
+Okay, we're a little bit into the coffee break, but I want to leave some time, at least for questions.
+So let's do some questions. Uh, Devon. You know.
+Hi. Oh. Is there any concern for radiation in the nozzle?
+If there needs to be a, uh, like, access to the detector or something like.
+How long would that be an issue for to be studied?
+You're welcome. Okay. Yeah. We are really, as you have seen, we are really at the beginning with this study.
+Uh, is there something that, uh, we are just doing, uh, as a proof of concept?
+Uh, so thank you for the talk.
+Uh, it's a two part question. First, why tungsten as opposed to something like lead that's more dense.
+And the second part of the question is, you know,
+as you're seeing at the end that you're you're certain you will get some of these strays, but, you know, uh, these three leptons,
+but we're talking about multi TV leptons going into a very dense medium,
+which is essentially TeV scale dis how how are you confident that this isn't going to cause a lot more stuff into the primary interaction?
+Again? Uh, the tungsten that, uh, I think was chosen, uh, you know, because it's the best Thums Up element,
+uh, to absorb, uh, the, uh, these are electromagnetic path.
+Okay. Yeah, yeah. Let go. We have the.
+Yes. And the and the. Yeah. That's that.
+Look, it's lower a but higher density. Strange, but okay.
+Yeah. And then also we want something that is really very good to absorb the electron pass.
+So we saw that, that our issues are mainly due to the uh electrons that are coming from the primary mu on the case.
+So we have a I mean, if we if we have a five TV beam, we can have a five TV electron that we need to somehow,
+uh, stop it, uh, or make a shower, stop the main make it shower in, uh, somewhere.
+Then I forgot the the other design. Uh, that's something I mean, all these things, uh, uh, are not, uh, are not, uh, actually studied.
+Uh, so our the the effort, uh, that, uh, we all, I mean, uh, the, the,
+the collaboration which is include the US so that you have seen that we started from
+the all the work done by mapper and the we basically repeated that we try to to,
+to see uh, but everything is more or less at the level of a proof.
+Proof of concept. I told you that's the very I mean, this small drawing on cutting, chopping in pieces.
+Uh, then also is something that happened last week.
+So for the moment, we often people ask me, how do you the I mean is for each nozzle is a 40 tons of tanks.
+Then how do you deal with that? And the answer was bu.
+You speak a slower pace. So that's, uh, one possibility that one engineer say, yeah, why we don't do that.
+Okay, okay. I have a question about the timing.
+You mentioned timing resolution, uh, in your Excel.
+So could you use precision timing in the Excel to reduce the bit back?
+Right. Yes. That's actually enough. So could you you mentioned 100 picoseconds.
+Could you make could you design the detector with even more stringent timing resolution.
+Because at LHC for high luminosity LHC for example, in the CMC cal we are aiming for 30 picosecond timing resolution.
+So I'm imagining in 20 years we could do maybe we could do better than that.
+Um, especially with crystal calorimetry, you can get really good timing.
+Timing precision. Yes, yes. Actually timing is helping a lot.
+In particular, we use it, uh, when we have recourse to, to form the cluster at the beginning.
+So, uh, the digitization level.
+So we try really and our aim is to actually reduce that.
+Uh, already at uh, I didn't see anything, but.
+Okay, you can come the next day for sure to circle now.
+Yeah. That that will present Simona. I don't know who is talking actually, uh, in the detector will show this kind of thing.
+So we are actually trying to see if since we don't have, uh, I mean, our rate of collision is not so high.
+Uh, we we should be able to manage all these kind of things at data taking online real time.
+The data when, when we collect the event.
+And for sure we will pursue all these uh, uh, technologies that are currently in development, uh, or ready almost to develop for Lumi LHC.
+That's, uh. In the calorimeter is actually what we do.
+We actually cut the the we eliminate the default on so that, that arriving uh, even having these high granularity helps a because of the structure of,
+uh, the shower is different depending from where the photon start, the and the, the energy of the photon.
+So there is plenty of things that can be done in this detector.
+I am not leaving. I will be here. So in the next day.
+So if you have a question, I'm more than happy to answer.
+Also, yes. Um, so I know that we just said that there's a lot of question mark.
+So it might be you might not know how to answer this, but I guess my question stems more from the magnet point of view,
+but also the detector, the tungsten absorbing a lot.
+It's going to heat up from a cryogenic standpoint. It's going to be more power consumption.
+Is there anything else being considered?
+I mean, magnets level, but I guess also the detector level, like in the magnets, I'm thinking like coil geometry or anything like that.
+That's being considered for the, the, uh, that is in evaluation.
+But I don't have the answer.
+But I think is I don't know if someone from my people here knows that, that he has been evaluated for the power consumption,
+uh, including all these, uh, these, uh, things we didn't study what is happening in the nozzle.
+And if the nozzle need to be cool or not.
+Uh, but for the for sure, for the machine that is, uh, the full calculation, I mean,
+calculation on paper of quarter of, uh, the, uh, consumption power of the machine is, is somewhere.
+But I don't, I don't remember. No, I don't have the number.
+All right. Let's thank our speaker again.

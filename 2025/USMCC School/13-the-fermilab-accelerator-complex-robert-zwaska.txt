@@ -1,0 +1,445 @@
+# The Fermilab Accelerator Complex, Robert Zwaska
+
+Thank you. Hi, folks. I'm Bob Zoosk, uh, from Fermilab. Um, I work on the present accelerator complex.
+And, you know, the if the muon collider effort is successful,
+there will be a future accelerator complex that has to be, um, actually operated and run.
+And so that's what my talk is about today. Uh, this was this talk a very little specific to the muon collider.
+Um, but it'll show you the, uh, what we have presently at Fermilab, a little bit of the history and,
+uh, uh, and, and some of the practicalities of running an accelerator complex.
+Okay. Oops. Okay. All right.
+So I'll try doing this. Okay. So, um, our accelerators at Fermilab have run for decades, and they're now at a at a turning point.
+Uh, we've been at a few of these before, but now is kind of a significant one for us.
+So some decades long plans are being put into action. And, uh, we have new challenges and opportunities almost on a daily basis.
+So we have, uh, what's called our long shutdown. It's approaching.
+And in about 2027, um, at that time, we install two very new to two new,
+very large projects, a long baseline neutrino facility and the Pipp two accelerator.
+And we retire two very substantial parts of our accelerator complex, the original copper linac and the new neutrino beam.
+Um, and at the same time, we integrate several improvements to the complex.
+And that's what all of these, these, uh, acronyms are. At the same time, we're, uh, planning for the future.
+We have R&D into accelerator physics and technology and hopefully muon collider related research becomes a larger part of that.
+Um, and we're doing upgrades for new experiments and perhaps in the future, uh, a collider.
+Um, so just a little bit about Fermilab in general.
+So Fermilab is America's particle physics and accelerator laboratory.
+We operate the largest US particle accelerator complex.
+There's about 1900 staff and about $600 million per year budget, depending on how you count it.
+Uh, it's a large chunk of land, 6800 acres owned by the government.
+Um, and we have over 4000 users from 50 countries that use our facilities.
+Uh, the the the research community is, uh, is, uh, is large for for a rather relatively small number of experiments,
+but they're also broken into several additional groups. Um, so 175 universities, most of the states, um, and also, uh,
+in terms of those who work pretty much at at the laboratory, there are many postdocs, graduate students and interns.
+And that's in addition to the, uh, the users. Um, Fermilab also participates in, uh, a lot of experiments outside of Fermilab.
+Um, I'm going to be the rest of this talk. I'll be talking about Fermilab specifically, but also, uh, Fermilab does a lot of work at CERN,
+the the Sanford underground research facility in South Dakota, snow lab in Canada.
+Uh, the Cerro de Lolo and Inter-American Observatory.
+Uh, the where the, uh, the dark energy surveys, the South Pole Telescope, the Nova Ash River laboratory in Minnesota, and,
+uh, the matter wave atomic grantee amateur interferometric sensor, which there will be a version of that at Fermilab.
+Um, and but uh, turning back towards Fermilab, the Fermilab follows, uh, the P5 strategy,
+P5 is a planning panel that convenes every seven, eight, nine, ten years and plans out a lot of major projects.
+Um, and, and it supports our flagship projects, the LBF neutrino beam, uh, the Dune experiment, the pipe two accelerator, and the LHC at CERN.
+And these will still take many years to realize.
+Um, at the same time, in addition to big projects, we have a large research effort that's maintained by operations.
+So this is a bird's eye view of the Fermilab accelerator complex.
+The the red parts are the the primary active parts at this time or in the near future.
+Uh, the green part shows our muon campus, the orange ones show our neutrino beams.
+And, uh, also in this dotted line is the Tevatron, which is not presently used.
+I'll talk a bit more about the Tevatron later. Um, but it played a very large part in our Fermilab's history.
+And before there was even a Tevatron there, this was called the main ring.
+And the main ring of is, uh, what what Fermilab started with.
+Okay. So I'll walk through some of these, uh, but just to give you the idea, the beam starts right here next to our high rise, the Wilson Hall.
+Uh, it starts in a in a copper linear accelerator.
+Uh, gets it up to 400 MeV. Goes through a booster synchrotron.
+Uh, goes through that about 20,000 times, brings its energy up to eight GV.
+Then it goes through the recycler, where many batches from the booster are stored up together,
+and then they're all accelerated at once through the main injector, um, to 120 GV beam.
+Um, and that could go round at about another, uh, 10,000, 10,000 times or so, uh, 100,000 times.
+And then, uh, and then it is extracted to the, to the, uh, new mean neutrino beam, uh, this and doing this,
+the beam takes, builds up about one mega joule and energy, and the process takes just over a second.
+And we do that for as much of the year as we can. Okay.
+So a little bit more on the linac. So the linac is our copper accelerator.
+We're now building a niobium one. Uh it actually doesn't accelerate protons.
+It accelerates H minus ions. This is to be able to increase the intensity of the beam in the, uh, in the subsequent rings.
+Uh, it starts from 750 kV. That's provided by a device known as a RFU radio frequency quadrupole.
+And then it goes through a few different types of cavities. Uh, starting with it actually starts over there.
+It goes to these blue ones and then these newer, uh, copper ones and brings it up to 400 movie in one pass.
+Uh, the beam in here, it's it's, uh, bunched at 200MHz.
+There are actually different RF frequencies of 200 and 800MHz and the pulse lengths about 80 microseconds.
+And again, uh, this is to be retired, uh, in 2028.
+Uh, the next step is our first synchrotron, our rapid single rapid cycling synchrotron called the booster.
+Uh, the booster has this 400 MeV being brought in. And what happens is, as the H minus beam is brought in, it passes through a carbon foil.
+The carbon foil strips off the proton that strips off the electrons and allows the protons to go around the ring.
+Um, and this is presently done at 400 GB of energy as the protons go around the ring, uh, and, and come around,
+we are actually able to bend the H minus beam in with the proton beam, uh, because they have the opposite charges.
+So we can just merge the two beams together, then strip the electrons again and keep doing that.
+Uh, over and over. Uh, we do this about 15 to 20 times right now, um, in the booster.
+And it'll it'll increase to several hundred when we build our new accelerator.
+Uh, this is a fast ramping machine. It has a 15Hz sinusoidal ramp to its magnets.
+So they're always going up and down on a resonant circuit. Um, and the beam, uh, the beam energy increases from 0.4 GV to HCV.
+And what that means is the beam speeds up, uh, noticeably during that time.
+The revolution period goes from 2.77 microseconds to 1.57 microseconds.
+And, uh, what that means is that the frequency has to change.
+So it goes from 38MHz to 53MHz. And so you have to have cavities, uh, which can have their, uh, that which can be tuned on a rapid basis that quickly.
+I won't get into how that's done. Um, but it's a very important part of the process of these machines at intermediate energies,
+once they become ultra old, one relativistic like electrons do.
+Uh, the frequency doesn't change anymore. But for muons, muons won't be ultra relativistic until they're in their later, uh, the later rings.
+Okay, then, uh, then we you have two to larger rings in, um, in one tunnel.
+The first is called the recycler. Um, and that is these green magnets up here.
+It is actually a permanent magnet storage ring. Uh, so these these are not electrically, uh, electrically excited magnets.
+Uh, and it stores have protons. And the advantage of that is this ring is exactly seven times as long as the booster.
+And we're able to stack more protons end to end. And actually, we can do a momentum stacking as well,
+such that we can take 12 extractions of the booster beam and combine them into one beam inside this recycler.
+Um, then that is transferred down to the main injector that has these great big blue and red magnets.
+These are electromagnets. They take it up to, um, 120 GeV and it's extracted.
+You can see that each of these are made up of hundreds of magnets. Um, and what that means.
+And every one of these magnets is a failure mode.
+Uh, so reliability of the system as a whole depends greatly on each and every one of these individual magnets.
+Um, okay. Uh, so let me let me get to the users a little bit.
+So the first thing we have is what's called a booster neutrino beam. This actually uses a heavy beam directly from the booster.
+It's been operating since 2002. Uh, up to about 30kW of beam is extracted inside of here.
+There is a beryllium target that's inside of this large aluminum device called a focusing horn.
+This is a coaxial focusing element that's used in neutrino beams.
+And it. Could conceivably be used in muon beams, but at this point it is not.
+In this case, what happens is a large electrical current of about 200,000 amps flows along a inner in an inner cylinder,
+and then and then comes around the outside here and between the two cylinders in that annual region, it forms a nice focusing magnetic field.
+It focuses in both planes, which makes it efficient for single pass beam lines like this.
+Uh, we intend to keep this beam, um, operating after.
+Well, at least be capable of operating after the long shutdown.
+And there are presently several experiments on this line, um, that's shown here.
+So there's the target, the beam line, and then there's one experiment, SB and that is our newest one.
+There's Microban, which actually is turned off right now.
+Um, and then there is, uh, the Icarus experiment, which has been there for a couple of years.
+The high powered beam has been the Nummi facility. This is in the trenches at Main Injector.
+It's been running now for about 20 years. Uh, and so it supplies this 120 GV protons roughly every 1.2 seconds.
+It was designed for 400kW. It's now been operated, uh, routinely above 900kW.
+And we have pushed it to one megawatt for short periods of time. Um, a very large number of neutrinos are made here.
+So every pulse, which is happening almost every second produces, uh, trillions of neutrinos, um, they're directed down into the Earth,
+um, so that they come out of the Earth in northern Minnesota, uh, where there was originally the Minos experiment.
+And now there is the Nova experiment.
+Uh, we expect this to run to 2027, at which point it'll be decommissioned as well.
+Um, another experiment coming together here, which may have been discussed here is called new E, the muon two electron conversion experiment.
+This is a beam to make, uh, uh, muons.
+I mean, neutrinos are made at the same time, but it's to make muons and do muon experiments to it.
+And it shares some, uh, superficial similarities to a muon collider target station.
+Um, but some but some very large differences as well.
+Uh, so presently, uh, these are showing some of the large solenoid magnets that they have for transporting the muons.
+Um, but these, these have been in place for a year or so.
+Uh, and just now their production solenoid where the target sits, um, it was just, well, maybe not installed,
+but it was put into the, uh, the target, the target hole, um, the beamline itself is in commissioning.
+It uses, uh, slow extraction. So there's an electrostatic septum system.
+Uh, there's AC dipoles to clean the beam. And, uh, we're continuing to move ahead of that, and hopefully there's a physics run before a long shutdown.
+Other than that, it'll certainly run after our long shutdown.
+Okay, so this is how the accelerator complex then kind of looks from a cartoon point of view.
+We have, uh, Orion source Linac booster.
+These two rings are neutrino experiments, the muon experiments that also included the G minus two experiment that this was just talking about.
+And we still do have a fixed target experimental area.
+Um, and this is just to show what the decades add up to for these different beam lines.
+This is the new beam line. This is the boost neutrino beam. This is the muon.
+And each color on here is essentially a year's run.
+And so Nummi has been operating for uh, 25 years or 20 years.
+And you can see it, it had a period where it was running at about 200, 250kW,
+and then a period where it's running more like 600 to 700kW, and then it's been closer running closer to a megawatt.
+Uh, recently, uh, the booster neutrino beam has been pretty, uh, continuous in its capability.
+Um, the only reason why it flattens out sometimes is that sometimes, uh,
+the beam has to be shared with the other experiments, and, uh, and it was and it was reduced.
+Um, it also did have some outages back here. Um, and then the muon uh, facility as well has been taking beam.
+Some of this was to G minus two. And then the more recent beam is going to community commissioning.
+Um and this is, this is a closer look at Nummi.
+And so here is again the kind of accumulated energy in these units of megawatt hours here, um, that was delivered to the target.
+Um, but then these blue dots show the average power. And these are all about one hour averages.
+And so you can see that, you know, it started out in this range here of about 250.
+And then there were consistent gains in capability. Um, so let's see I won't belabor this too much, but it was it was originally designed for 400kW.
+Uh, it turned out our accelerators could only reliably provide about 250kW when the Tevatron was operating.
+Um, and then we use the slip stacking and momentum stacking process to nearly double the beam power.
+Uh, when the Nova experiment was put on, uh, we actually, uh, incorporated the recycler as a stacking,
+uh, ring, as I, as I described earlier, that allowed up to 700kW.
+Uh, there was a proton improvement plan that increased reliability and capability,
+and then that allowed BNB and muon to operate simultaneously when Nova was running.
+And so that that pushed, uh, the the capability to run three experiments at the same time, uh, upwards.
+Otherwise, prior to that, we had enough capability for one experiment at a time, and the other ones just had to take whatever was left over.
+Um, and so as intensity increases in the main injector ramps pushed us towards one megawatt,
+uh, we needed to look at making our target station capable of that. Um, so we implemented what was called our new Nummi project.
+We have this term called an accelerator improvement project. And so that ran for.
+A few years and and really went through the entire beam line.
+And I'll talk more with this beam line.
+Looks like in the second in the talk this afternoon, but it really upgraded a lot of the systems to be able to, to reliably provide one megawatt.
+Um, and we were shooting for something in the 25 to 2030 period.
+And it looks like, yeah, that's where we're going to be. So we finished this in 2021.
+We were capable of one megawatt at that point. And then the accelerator has crept closer since, um here's more.
+Here's a little bit a little bit more of what we did. We had a different target design that was one megawatt capable.
+We had a different horn that was one megawatt capable. We had to do, uh, new air cooling to keep all the pieces cool.
+When we put one megawatt of beam power into the target facility, the vast majority of that ends up as heat and all that heat has to be removed.
+Um, and it gets removed via air cooling and then raw.
+That is water cooling. Um, we have to worry about how we handle that air.
+Uh, we have to worry about how we move these devices in, in a radioactive and active setting.
+Um, we have to take care of the environment with our condensate and, uh, you know, so on and so forth.
+Um, so it was it was a large project. You can't really see it here.
+But this module, above all the people, that is the the first megawatt target that was produced.
+And this here is a picture of the megawatt horn being installed as well.
+Okay. So we did do a test run actually about a year ago.
+Um, so Addie that's our accelerator director.
+It was granted an eight hour window for up to four hours of running, uh, where we could exceed one megawatt.
+And, uh, you know, there's just a lot of conservatism at the time, and there still is, uh,
+one of the issues we have with running an accelerator complex is summer temperatures.
+A lot of our cooling of both the target stations and the, uh, the magnets in the ring themselves is all done by water,
+and that heat is exchanged with ponds that are on the surface.
+And during the summer, um, with all the sun in particular, those ponds can't get up to be the same temperatures we're trying to get our water to.
+So there's if there's no delta T, there's no heat passing back and forth.
+Uh, so, uh, we had to find a cool and calm period to avoid that.
+And so it started at 4 a.m., uh, June 26th, with the next day as a backup.
+Um, in the meantime, the individual machines push their capabilities to near megawatts for the few days before, um,
+and then you have what you do is you have all the operations teams, uh, come in at 4 a.m.,
+um, as well as the technical department personnel at the appropriate locations.
+All this is spread over, you know, several kilometers of space with different,
+um, with different service buildings that that maintain different systems.
+And most of the time they're unattended. But if you have an expert there, you can fix a problem, uh, much more quickly.
+Um, you know, this required even opening up the site early for this.
+And, uh, by six 53in the morning, the machine condition stabilized to allow one megawatt of running.
+And so we started the four hour period, one hour provide prior to that.
+And then, uh, continued to make improvements over the next few hours and peaked at about 1.018MW over a full one hour average at 8:28 a.m.
+Um, notably, uh, the other user at the time, the booster neutrino beam, it ran at full intensity at this period.
+During this period. And then all of this was done by 930 when things started to warm up.
+Um, sometimes something like this is is called a stunt because we can't reliably run that way.
+But what it really is, is it's a demonstration. You know, there's thousands of different devices and systems that have to work together.
+And every step along the way you find new problems. And, uh, many, many issues were, uh,
+discovered and fixed during that period and give us a lot more information about how we're going to run in the future.
+Um, then this is just pictures of what it looks like at 5 a.m. in our control room.
+And this is, uh, you know, quite busy in our control room.
+In fact, our operators like to turn down the lights normally.
+And, you know, it kind of looks like a lounge at 4 a.m., but, uh, but here we had it up and bustling and and this is this is showing the record.
+This is, uh, this is the number of protons per pulse here.
+You can see there's a very suppress zero. So this is a pretty narrow range.
+And this is the hourly, uh, average power. That's this blue line.
+And so they they brought it up and reached their peak right about there.
+Okay. Uh, mentioned a few kind of historical parts of the Fermilab accelerator complex.
+So first of all, fixed target. Okay. So this is a view now from Fermilab.
+This is a view from the north rated way at the edge.
+There is the beginning of Wilson Hall. And this is the main ring there.
+So this is prior to the main injector. And the way the beam worked at that time was the linac started here, went around the booster.
+All that was the same, but there was no main injector. So the beam was directly input into the main ring.
+And then and then. Was accelerated in this large ring, which, by the way, is exactly one kilometer in radius.
+Uh, this would get it up to 200 GV and later 400 GV, and then it was slow extracted out in this direction.
+And actually there's several beam lines underground here. And this is what Fermilab was originally built for.
+Um, it wasn't built as a collider or as a long baseline neutrino beam.
+It was built for these experimental facilities here. So the beam would be, uh, directed outwards into various stationary targets at these locations.
+Um, as you all know, this results in large showers of particles useful for making on beams of unstable particles.
+And and also, you can get quite a large number of interactions.
+Uh, there there were decades of experiments done here, um, and oops, among other things.
+But, uh, there was the discovery of the epsilon and the Tao neutrino in, in these, in these experiments.
+Uh, so Fermilab also offered, uh, operated an antiproton source for, um, how long?
+Um, about 25, 30 years. Um, this conceptually sounded sounds similar to all of our other target stations.
+120 GeV protons, uh, impact a target, and you get a lot of particles out.
+Well, what's different here is that you get a lot of pions out.
+In fact, you usually get several pions for each proton. Um, but you really only get a very small number of antiprotons out.
+It's just a much less favored interaction. Um, so, uh, collecting antiprotons is was quite challenging.
+And then they also come out with a very large, um, distribution and admittance and momentum.
+Uh, and, uh, to make a beam out of them requires a lot of cooling.
+However, they don't decay. So that's that's the big difference between, uh, collecting antiprotons and, uh, and muons.
+And so they had a process where they went around this ring called the debenture.
+That's now the delivery ring that, uh, that this was referring to.
+Um, and it uses a, uh, some momentum exchanges to, to, uh, to cool the antiproton distribution.
+Um, and it takes about two seconds, collects the antiprotons, and then from the, the bunch of ring, they're put into the accumulator.
+They're, they have the ability to merge multiple beams together and stores them up for hours or even days.
+And you could get up to maybe ten to the 13 antiprotons in this.
+Um, in later years, it was further stored in our recycler ring, and there was also, uh, electron cooling there.
+How to further cool the beam? Uh, and and so for many years, uh, the major goal of Fermilab was to maximize the antiproton production here.
+Uh, and those antiprotons, of course, were used in the Tevatron. Um, the Tevatron was the highest energy collider in the world for about 20 years.
+Um, and likely it'll be the last proton antiproton high energy collider.
+The LHC and all of its successors are viewed as being proton proton.
+If they are Hadron Collider. Uh, so what's shown here is a picture of the old main ring tunnel.
+Uh, the magnets they're working on here on top. That's actually the main ring, uh, that, that Fermilab was built with.
+And then the Tevatron was built as an upgrade of it. And that's and it's actually hidden underneath the original, uh, magnets.
+There was enough room down there to put them. Um, there it was, uh,
+the the first large cryogenic machine uses superconducting magnets filled with liquid helium and got up to fields of about five Tesla.
+Uh, and of course, it collided. Counter-rotating beams of protons and antiprotons.
+Interestingly, it used a single beam to which you can do if you have if you have particles of opposite charge,
+the center of momentum energy was about 1.96 TeV, which had give, uh, significantly more, uh, available energy than the fixed target did.
+And it produces just about everything that produces all the quarks.
+Um, the Zs, the W's, all the leptons, including neutrinos, um, even the Higgs, the Higgs was produced there.
+Um, although it was not discovered there. Okay.
+Um, another another accelerator facility Fermilab runs is called the Fermilab Accelerator Science and Technology Facility.
+Um, and so it's shown in this map way up here. So the main accelerators are down here and this one runs separate to it.
+It actually runs in an old fixed target experimental building that was upgraded um, with what's shown here is the SRF linac.
+So these are ILC style, uh, cryo modules, um, up to three of them.
+Uh, right now there's only one of them, but that gives them electron beams up to about 300 MeV.
+And then they can be, uh, injected into this rather small, but still quite complicated.
+Uh, ring. Um, this is a test accelerator, the integral integrable optics test accelerator.
+It was built for a particular concept of beam optics called integral optics, which were to avoid, uh,
+many of the resonances that are challenging for beams and allow you to accumulate them up to, uh, higher and higher, higher intensity.
+This for many years was operating off of this electron source. Uh, right now it is being upgraded with a proton source, the iota proton injector.
+And that for the first time will allow us to, uh, test protons in here, which will be very interesting for our future accelerators.
+Okay, uh, now I'm getting into a bit of the future for Fermilab.
+Uh, so the next big project, being an experiment at Fermilab, is doing the deep underground neutrino experiment.
+Um, you've probably heard some about this. Um, I'll talk a bit about it, but not belabor too much.
+It's it's it's, uh, high intensity, high power, uh, accelerator produced neutrino beam, uh, to is to a detector that is, uh, 1300 kilometers away.
+This allows investigation of, uh, neutrino oscillations.
+Uh, the experiment also looks at things like cosmic rays and neutrinos, I mean, a supernova and and other, uh, potential, uh, interesting sources.
+Uh, the way this works is, um, from our accelerator, we will actually extract the beam and and tip it upwards.
+It'll go up, um, above ground level, although it will be buried by a large amount of concrete and dirt and then bent downward.
+This is the angle to South Dakota. Um, it then it hits a target at just below ground level.
+And then there's a very large decay region. All this gray area is concrete.
+And this inner area here is his helium. Uh, the the pions that are produced decay, and they're, uh, they create muons.
+Those are all stopped. Uh, and then you and the neutrinos carry on inexorably.
+It's designed originally for 1.2MW, and it's supposed to be upgradeable to 2.4MW.
+And this is just to give you a closer look at it.
+Um, so there's a primary beam enclosure. That's a, that's a tunnel that you would, that you would, that you would, uh,
+have like accelerators and, and then it transitions into a target station,
+which is a very different beast, um, held up there by these large pieces of shielding would be a baffle.
+That's kind of like a column or a horn. That's one of these focusing devices with a target.
+Um, and then two more horns and then transition into this decay region.
+In addition to that, we have, uh, a more accelerator directed upgrade project called Pip to the proton improvement plan to,
+um, and, and the idea there there is to further increase the beam power we have now from one megawatt to 1.2MW,
+replace our existing linac, um, provide a path for 100 potential hundred kilowatt community to provide capability for 1.6MW at low energy 800 MeV,
+um, with the continuous wave beam and uh, and be able to support multiple experiments at the same time.
+Oops. Well, one uh, this is just to show where where it was, uh, where it is in Fermilab campus.
+Here's the of the booster, the old main ring. There will be a linac here.
+It's pretty far under construction now. And then it'll come over and it'll do a hook into the booster and inject, um,
+on the opposite side of the, the, uh, synchrotron than it did previously.
+Um, this also includes upgrades to the booster and to the recycler and main injector to be able to let them handle, uh, higher, higher beam powers.
+So this project was started back in 2016, the second long time.
+Um, we've we planned to have first beam in booster in 2029.
+Um, but that kind of hides the fact that we are already starting to install here.
+And the beginning of the beam in this linac will probably be in 2026 or 2027.
+Uh, and then we expect 1.2MW beam on target in 2031.
+Uh, yeah. I'll just jump over construction. Um, so so this gives us our mid-term accelerator plan.
+Um, so I've talked through a lot of this, but let me show here is that these are years up here, 2025 to 2033 every year has a red band through it.
+That's an annual maintenance shutdown that we do during the summer. There's a long shot down here.
+That's the red period. But there's some areas that are turned off early, and there's some areas that don't come on until later.
+And then these green bars show the different pieces of the experimental program we expect to be running at that time.
+And then everything else down here. These are the projects and I've talked about before too.
+And they'll be an afternoon. Those are the two big ones.
+But there's still two other big projects, Acorn and UIP, that contribute to, uh, keeping this facility in good shape.
+Um, one lesson that we've learned from high power beam operations,
+I've shown you that we've increased the beam power on Nummi over the years, and that's that's the good news.
+Here's the bad news. So here's this beam power going up.
+That's that purple line. And then this red line.
+This is protons on target for TDR goal. And you can see it started here.
+And it went up. And then since then it's kind of fluctuated. And then this year we're actually down because of some infrastructure problems.
+And so what that tells us is that even though we've been increasing our beam power by more than a factor of two,
+um, we didn't we haven't produced, uh, twice as many new neutrinos per year.
+Um, and that a lot of that has to do, uh, with reliability and runtime each year, both of which are large factors.
+And so a lot of our present upgrades are trying to address these problems.
+And here's some math on that. Uh, you know, pretty basic.
+Um, but this is just to show, uh, we had, uh, quadrupole failures in our main injector, in fact, three separate ones.
+And each one, each one takes two weeks out of our timeline each year running.
+Um, we had a horn strip line failure in our Nummi facility.
+This was something that was installed at the beginning and was never meant to be replaced.
+And so it took a long time to make a brand new one and install it.
+Um, the Acorn, I'll just say quickly, we had this is a large project and it's to completely replace our accelerator control system,
+upgrade its hardware, upgraded software, um, make it more compatible with all of the new things like AI and ML that people want to do these days.
+Um, there's a utilities infrastructure project, which is to improve the water cooling and the electrical parts of the lab.
+We have to continue doing this over and over. Um, and then the next idea that people have is to perhaps replace our booster synchrotron.
+Um, and, and I'll go over the history a bit of this. So back in 2014, the recommendation was to provide 2.4MW to Dune when it was complete.
+Right now we're at about this 0.9MW max sustained power.
+And with Pip two we'll get to 1.2MW. And then the the the bottleneck is the booster synchrotron.
+And so the intensity can be improved a little bit, but it can never reach 2.4 mega megawatts by itself.
+Um, by just increasing the intensity. Um, so we need something else.
+Um, and, and the idea for many years was to replace the booster, and it's still an idea, but in the meantime, uh, we had other ideas.
+Uh, we have something called Merc now that is main injector ramps and target tree,
+which allows us to, uh, evolve, evolve the complex to get to two plus megawatts.
+Maybe not 2.4, but somewhere above two without replacing the booster.
+At least at first. Um, and the way this looks like is, uh, is shown by a few tasks here.
+First of all, we we look at overall efficiency and reliability.
+And so improve reliability by replacing parts of it by with robust design.
+Uh, the next thing is machine capability. So maximize proton flux uh, through the machine.
+And flux is integrated flux. And so what the way we actually do it is we make the main injector go faster.
+So we reduce this 1.2 second cycle time to 0.6 seconds, nearly double the beam power.
+Um, and then of course, you have to make a target station that can take that beam power.
+So this is the plan that we are currently proceeding with.
+Um, and that's kind of shown here getting us to two plus megawatts.
+What we do after that takes us to this kind of multi megawatt regime and, and and uh,
+it could involve replacing the booster, but it could involve something else as well.
+Um, we expect that's something that it'll be something that builds on the accelerator complex,
+enables muon collider R&D and potentially a path to the collider.
+Um, it should enable a new set of experiments. These are ones beyond Dune and munity that might happen at lower energy.
+Um, it should have the capability of doing muon collider R&D, including a demonstrator facility,
+and it should provide a platform for the future evolution of the accelerator complex, which could conceivably be towards an actual collider someday.
+Okay. Uh, so just to summarize, so, um, so accelerator operations still happening.
+Uh, it enables the particle physics mission by delivering the proton beams to the science users.
+Uh, we're transitioning from steady state operations to integrating the Pip two upgrade in preparation for the Dune experiment.
+This is a big period of change for us. Uh, we have a campaign of upgrades, modernization, investments for making, uh.
+Machines at the accelerator complex compatible with Pip two.
+That includes these infrastructure projects and modernization like the Utilities Infrastructure Project and Acorn, and also the acima program.
+And now we are planning and I'll say planning because it's still very early.
+We're planning for future opportunities. These can be new facilities and experiments with the Pip two accelerator.
+Um, because it's actually a very capable machine and will be using a very small fraction of it.
+Um, we'll be continuing our accelerator complex evolution, and then we'll have test facilities and demonstrators for future machines.
+Oops. And that is it. Thank you. All right.
+We have a bit of time for questions. So who has questions?
+So thank you for this really extensive overview. All right. So let me ask you about power consumption.
+Um, a megabyte is a lot. Two megawatts is twice as much.
+Uh, but Naperville, Batavia, uh, you know, uh, West Chicago, this is growing.
+Um, at what point do you guys need a better source of power?
+Is it at the ten megawatt? Is it at the four megawatt?
+Is it? You know, there happened to have been one constructed 20 years ago, so you don't have to worry about that.
+At what point you guys have to worry about this? Yeah. So it is, um, definitely a concern.
+Uh, so, uh, I will say, you know, we're actually in pretty good shape for the moment.
+Okay. And we're kind of blessed with, uh, northern or northeastern Illinois having a very stiff electrical grid that we're right in the middle of.
+You know, the area is ringed by nuclear plants. There's lots of different types of power plants inside of it.
+Um, so we do pretty well there. Um, we take electricity off the grid at the top voltage 345 kilovolts.
+Um, which is pretty unique compared to labs.
+That has advantages and disadvantages, because it means you need very beefy hardware to be able to do that, which has been a problem for us.
+Um, it also gives us the opportunities to abuse the grid.
+So, you know, one of the things we do when we, when we, uh, when we, uh, put the energy into the, the main injector,
+it's something like 40 or 60 megajoules of magnetic energy that are put into the magnets of the main injector and then removed every second and just,
+you know, the, the, uh, the just dissipating that energy would be very wasteful.
+So what we actually do is we inverse the, uh, the the electrical voltage on the magnets.
+We actually suck the magnetic energy out of the magnets. They go back through our power supplies, back onto the grid.
+So every second we are shifting from taking energy off the grid and putting it back onto the grid.
+Um, that means that our consumption is a few tens of megawatts right now.
+We need a lot of excess transformer capability to do that, because we're taking energy on and off, and we create a lot of harmonics.
+Um, but our our total installed capability, if it were fully running, is somewhere around 300MW.
+Um, we we can't use 300MW because of how we use it, but we need that overhead.
+I will say, though, that if you talk about something like a muon collider, the energy consumption for that is expected to be about 300MW.
+So it does become a concern. Um, so a lot of, uh, facilities throughout the U.S. and like, internationally, um,
+are participating in Wakefield acceleration, like CERN does a awake accelerator here as well as Stanford.
+Do you see Fermilab kind of going in that direction as well or. No?
+Um, well, Fermilab has a little bit of involvement in those.
+Um, and has done some research with them.
+Um, but, uh, you know, generally we've looked at it and, um, uh, for our, for our present purposes, uh, it doesn't play, uh, such a great role.
+And, uh, and we don't have the, uh, the right facilities to do that kind of thing.
+I mean, there might be some exceptions where we can do a little bit with our electron beams.
+Um, but you generally need specific facilities to do something like that.
+Uh, you know, one of the things with being an accelerator complex that serves users is that you are having to run continuously all the time,
+which means, you know, test pulses aren't interesting, right?
+You know, running 24 hours a day is what's interesting. And and so you have to look for the scalability.
+Um, so so we did when we were turning off the Tevatron, we did look into the possibility of doing something similar to awake,
+where we would use our one TeV, um, proton beam to try to accelerate an electron beam.
+Um, and, you know, conceivably we could have done the experiment.
+It would have been challenging. It would have been interesting.
+It would have been expensive, but it would have never been a reasonable way to build a linear collider.
+Um, the linear collider requires 30MW of beam power,
+and and the electrical conversion from high power proton beams to high power electron beams is always going to be a low percentage.
+And so, you know, just to create something like a, like a Higgs factory push that puts us into the multiple, hundreds of megawatts very quickly.
+And so it was just, you know, on its face, you just knew it wasn't going to work.
+Hi. So with all the cuts that are going on, obviously we're all very aware.
+And then also a shutdown coming up.
+What does a future look like for early career scientists looking to go into the workforce and looking with an interest at for me?
+Okay. Um, so, uh, I'll speak more on the accelerator side.
+Um, I think, you know, the a lot of the pain right now is more on the research side.
+Uh, where I don't spend as much time. Um, I'd say also, historically, there's a wealth of sort of of the research that's done.
+Fermilab does a comparatively small fraction of it compared to the universities.
+Um, and there's also comparatively a large number of students coming in,
+and there are permanent positions for on the accelerator side, it's actually completely different.
+Um, we, uh, we we I mean, we don't necessarily need large armies of researchers, but we do need people who know how to make these machines run.
+And, uh, we don't have enough of them. And, and that's, that's really at every level.
+That's the PhD scientists. That's the bachelor's degree scientists.
+That's the the engineers and the technicians. And so we're talking about workforce, um, all the time.
+So we have programs for PhD scientists, but we also have um, uh, traineeships for master's students.
+We have, uh, co-op programs for college students.
+We have, uh, we have programs for, uh, community colleges to try to get new technicians.
+And so we have workforce. We need people, actually. And that's not just Fermilab, that's other accelerator labs around the US just to follow up.
+And are you able to hire people? Yeah. Uh, yeah.
+Yeah. I mean, I think, um, an example would be our Acorn project that we're ramping up now.
+This is a very data intensive project and very hardware intensive project, and I think we've hired seven people over the last two months.
+And if you were looking to hire someone, what sort of career and education career trajectory would be good preparation?
+Um, so there's a lot of different options you want me to do, like PhD specific or I think, yeah, I think that's sort of like,
+uh, early PhD student, late undergrad who wanted to become an accelerator physicist at Fermilab.
+What? Okay. What is the trajectory? So there are very few universities that really have programs in, um, in accelerator science.
+And so Chicago does have a little bit, um, but the big ones are schools like Michigan State and Cornell.
+Stanford. Um, so but most so most people don't come through large accelerator programs because they just don't exist.
+Um, there is a program called the United States Particle Accelerator School that, um, undergraduate and graduate students can attend.
+I highly recommend that. Um, it's, uh, going on right now on California.
+We have a few hundred people there, uh, taking courses.
+Um, and also for students from particle physics backgrounds, there certainly have been numerous examples of their professors,
+um, allowing their students to become interested in accelerator science and coming to the labs.
+And there's a few different ways to do that. Okay, then I think it's time for lunch.
+Um, so the Snickers bar.

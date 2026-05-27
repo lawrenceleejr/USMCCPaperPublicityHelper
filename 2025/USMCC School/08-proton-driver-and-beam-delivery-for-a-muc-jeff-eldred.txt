@@ -1,0 +1,946 @@
+# Proton Driver and Beam Delivery for a MuC, Jeff Eldred
+
+Recording in progress. A of this stuff.
+You know, some of us kids are.
+Like. Yeah. Like. Yeah.
+I got. I'm sorry.
+And then immediately after it was announced with its name that it was.
+Yeah, I thought it was nice like that.
+They don't need. So I don't know.
+Okay. You.
+To. We have another.
+I mean, it's like. Yes.
+And. It's very.
+What? I think.
+During lunch. I don't.
+Like. I think.
+Once again. Oh.
+Um, yeah. Yeah.
+I think that. I said.
+Okay, everyone, um, it's 135, so people are still trickling back in from lunch, but I propose we get started so we stay on time.
+Um, so we'll have Jeff's talk now, and then another break, and then Taylor for the afternoon session.
+So take it away. Okay. Thank you so much.
+Uh, so. Hello again. Um, so today I'm talking about, uh, the proton driver design.
+And basically I got involved with this kind of an outgrowth of my work on the booster.
+You know, we started thinking about, uh, replacing the Fermilab booster with, uh,
+a future machine that would ensure reliability for the neutrino complex and that kind of thing.
+Um, and then, uh, then this, uh, I'd say renewed interest in muon colliders came in and,
+um, you know, I was I had been spending some time thinking about,
+uh, the fundamental ideas of building high intensity proton rings and a lot of Fermilab specific parameters.
+So, uh, that's basically how I got involved.
+Um, but, um, so I'd like to point out that far in terms of precedent, um, I'd like to point out these existing machines.
+You have, you know, Oak Ridge ACS and you have JC Park RCS and they're both, uh, multi class facilities.
+Uh, about the GV scale. Um, they're both about 20 years old and I would say are well-designed, have distinguished records of service.
+You know, we understand a little bit about what impacts what what issues that you run into and what impacts these machines.
+Um, so it's a very strong building point. Um, and basically what we need for the proton driver is we need to be more like 2 to 4MW.
+And uh, we need, uh, 5 to 12 GV so much higher energy.
+You know, let's say almost factor of ten. And then the big change is, you know, these are microseconds long pulses.
+So I think it's 750 nanoseconds for, for us and for instance and we need two nanoseconds.
+So we need to go down by almost a factor of a thousand in the pulse length.
+And uh, that energy boost is going to be one of the major things that helps us with it.
+Um, but, uh, then how you get the rest of the factors, um, is kind of some interesting aspects of the proton driver design.
+And then, uh, I'd really like to begin my talk with the with a disclaimer, which is if you are looking to be the hero of the, uh, the muon collider,
+if you're looking to solve, you know, the areas where the greatest technical risk or improve have the greatest,
+uh, time and performance or overall cost. Um, I would not look to the proton driver design.
+I mean, we can argue of what our what area of the muon collider design has the, um, the greatest technical risk or the greatest R&D need?
+Um, but I would say the proton driver is actually, um, not what anyone would pick.
+I think it's probably the closest to the existing technology and operational experiences.
+It doesn't mean it's trivial. It doesn't mean we've just done it before because I've I've explained, you know, these are, you know,
+billion dollar plus machines and, uh, you know that we're talking about something that's ten acts in some cases.
+Um, but, uh, why would I why what is interesting to me for the proton driver as a muon collider R&D topic?
+Well, first, I think it fits as part of the whole.
+And so we are still working towards a single self-consistent baseline scenario for what the proton driver is.
+You know, from linac to accumulator ring to compressor ring to combiner to target.
+Um, and then I would say you can almost flip this on its head and you can say, okay,
+because the proton driver has solutions that off offload, you know, technical risk.
+Really you should be looking for ways to take the other parts of the muon accelerator complex and offload that technical risk onto the proton driver.
+So you want to, you know, let's say an attack surface where you're pushing the performances, uh,
+performance limits of every part of the chain, you know, um, uh, consistently and looking for what are the most tractable problems.
+And so if you can solve a muon problem on the proton driver side,
+anytime you can do that, most likely you're doing something that's very cost effective.
+Um, and then I think chronologically, you know, proton drivers first in the accelerator chain.
+So if I'm building the giant hypothetical Gantt chart for the full muon collider at ten TV or whatever it ends up being,
+um, I would say the proton driver is the first thing that the first major technical component you run into.
+And so it needs the highest level of technical readiness. And you don't want to make a design choice for your proton driver that ten years later,
+you regret because you thought about how now it's going to interact with the other pieces.
+And then, uh, the last thing I think is really kind of interesting is, um, you know, maybe instead of building the muon collider as well,
+one big thing, we are going to take big steps forward in terms of doing ATP staging.
+So we're going to look for physics opportunities on the path towards a muon collider.
+And um, almost all of those involve the proton driver in some way.
+Um, so just, you know, one example of that, um, you know.
+Not this past P5, but the P5. Before that, I was always struck by every muon.
+Collider talk begins with some sort of neutrino factory. And this is part of the math that you would see.
+Uh, so you'd build a proton driver of some sort.
+Maybe it's the muon collider proton driver, or maybe it has slightly different parameters,
+slightly reduced, but it's something that could become upgradable to the muon collider proton driver.
+Then you build a separate muon ring program so that you, uh, the, the short version of this is you store muons in a ring,
+and now you have a very mono energetic source of, uh, muons, all directed in the same right way.
+And so when they decay, that's a very high quality neutrino beam. So you can do neutrino physics with us.
+And, you know, uh, these are some, some parameters on new fact Max and new storm.
+Not my chart, but, you know, my understanding of the basic physics case,
+which is not great, but, you know, you want to improve your delta CP resolution.
+And then beyond measuring oscillation parameters, you want to actually test the p, m and S framework itself.
+So you want to have an independent unitarity test of the neutrino oscillation framework.
+So then after doing that or while you're doing that uh, you can continue your muon collider, uh, construction.
+Um, so I think there's some I think, uh, as a community,
+we really ought to think a lot about what our best staging opportunities, what those look like.
+And, uh, what are the opportunities along the way? Um, I'm not the person to do it.
+Um, okay. So, um, so then how thinking about how it fits into the rest.
+You know, proton driver, you've probably seen versions of this a couple times already.
+Proton driver. Then that goes to protons to target you, capture you, uh, you uh, you manipulate those into the cooling channel.
+Uh, then you accelerate those as fast as possible before you lose them.
+And then you you actually do your collisions. And so here's one scenario for doing this at that Fermilab site.
+And um, just what I want to point out is all inside here,
+inside this orange ring where it says protons and cooling or even just this blue part where it says protons, that's the proton driver part.
+So it's physically smaller and it's a lot more flexible in terms of the geometry,
+because you have the whole space inside the Tevatron ring to figure out what size and shape you want your proton driver to be.
+And then so as this the role this plays with the handshaking, the other parameters, you know,
+you're going to choose the proton energy, the pulse intensity, the beam power, the spot size.
+Um target the bunch length on target. And then those are all inputs into your muon production.
+You know, the target and capturing, uh, the secondaries from that.
+Um, and then I would say, uh, think about what kind of phase space information can you possibly pass from,
+uh, a proton beam to a pion beam, then down to that, uh, um, muon beam, you know, the arrival time.
+So when you hit the target, you get a mass of scattering and x prime, y prime, and of course,
+a massive change in energy as range of momentum coming out from your, your, your, uh, particle soup.
+And, uh, so your x prime, your y prime and your f phase advances are all just blown up.
+But information about how big your spot size is, as well as especially how precise your timing in that is,
+are some information that you can convey from the proton side from the muon side.
+So this is why the more charge density you can get on those factors, especially on the proton side.
+Uh, you know, the cooler muon beam you're going to start out with capturing.
+And then therefore the less cooling you have to do or the higher luminosity you're going to get for the same amount of cooling.
+Um, and then uh, thinking about also, you know, what does the muon ray and pulse repetition rate.
+Uh, those are information that you would want, for instance, in the collider ring, um, which, uh,
+at the end just cares about luminosity and wrap rate in terms of what it needs from the proton beam.
+Um, so now when we say proton driver, we're actually talking about at least four different machines.
+And so breaking that up, you have an H minus linac that goes up to some energy.
+So uh, for Fermilab we always use HV because this is the energy we know.
+But for certain scenarios for 5 or 10 GV, uh, typically, uh accumulator ring.
+So you want to take those H minus particles and you're actually accumulate those amounts protons.
+And uh there's a special role.
+And I'm going to describe this how you make you choose what your initial distribution of your proton beam is in your accumulator ring,
+by basically using your H minus as a paintbrush to create a custom distribution.
+Then, uh, what is, uh, you know, I think the most technically important part of the proton driver is the compressor ring.
+So that's where you get your two nanosecond punches. So that's where you do the bunch rotation process and then combiner.
+So you may do this all as one two nanosecond punch.
+Or you may say well that's too hard. So I'm going to make for two nanosecond batches.
+And now I have four bunches. But I now need to converge them onto the target at the same time.
+So that's the role of the combiner. Um, so just to talk about how some of those high level parameters come in here.
+So, um, you know, Vladimir impressed upon you, you know, different things which degrade the beam quality as you're doing, uh, colliding.
+But, um, just from that most fundamental factor, which is if you're doing a ten TV center of mass, uh, Collider, uh,
+then Center Energy Collider, then it's going to be five TV beams, and the muon decay time is 100 milliseconds in the lab frame.
+Um, so you look at just this factor, it goes, remember, it goes as intensity squared.
+So you're going to have, uh, this decrease in luminosity.
+So on the top chart this is what happens if I go to five hertz.
+So I basically I'm losing all of my particles and then refreshing it.
+Well if I'm uh integrating across that you would see that if I refreshed it more often,
+let's say ten hertz or even 20Hz that I would get I would get better luminosity from doing that.
+So, uh, ten hertz, certainly it's going to be more efficient.
+Um, and then uh, 20Hz would be really having that, not using all of your, all of your muons,
+but really making sure you're, you're filling your muon collider as much as possible very consistently.
+However, if I just choose that as a knob and I'm increasing the rep rate of my proton driver, I'm also asking for more beam power.
+So you have questions like can when I candle that, can the target handle that?
+So if I say now I want to keep beam power fixed. And so going from 10Hz to 5Hz means I'm doubling the pulse intensity.
+And from going from 10Hz to 20Hz means I'm having the pulse intensity.
+Remember this luminosity is going to go and square.
+So if I have one very intense pulse that's very good from the luminosity perspective.
+So now look how the picture changes. If I'm at five hertz. Again same uh, beam power then I have a very high luminosity.
+And so even, uh, even by the time you get to, let's say, 100 milliseconds, I'm doing pretty well.
+Um, and, uh, if I do ten hertz, it's, uh, it's, uh, not quite as good, but it's better than 20Hz, which is.
+Which is way worse than that. So which of these pictures should I trust?
+Well, I don't think it's quite true that the target can take the same beam power, irrespective of rep rate.
+At the same time, I think, uh, we would be, uh, remiss to to use 20Hz when we're not using all of the muons that, uh, that we're doing.
+So I think we say like 5 to 20Hz. But, you know, I think ten hertz is probably a good a good range to give us a sense.
+And this is very reasonable numbers from the proton driver side, the booster right now ramps at 15Hz in the future.
+And we'll go with 20Hz. So Lenox are just pulsing at this kind of intensity.
+Um, you know you could go higher. You could go lower as an as a 60Hz.
+Um, so beam energy. Why why this energy range?
+Well, I'll argue you need to go up a little bit, uh, for a couple of beam performance considerations, but, um, why not go all the way up to to 20?
+Well, if you look at the muon yield per megawatt, uh, you know, it's kind of relatively flat in this region.
+Um, but as you go to high, you start to get diminishing returns.
+And so if I was at, you know, 20 GeV, then a four megawatt beam at 20 GV might be more like A2G,
+two megawatt team in terms of how many muons are actually getting.
+So fermilab's have it's nice because it's right in there and right in that sweet spot.
+Um, you know, I the one caveat I'd put there is probably your muon yield per kilowatt is based
+on certain assumptions about your target and your capture and all of that.
+So if you revise that analysis, you might come up with a different energy range, that kind of thing.
+Um, bunch length. I think I already pressed upon you that you want to reduce the 60 cooling requirements as much as possible.
+Um, so basically below that, you kind of get very diminishing returns.
+And, um, I wish I had this chart here.
+I think Vladimir has it, but, you know, if I'm at over at ten nanoseconds or even 20 nanoseconds, um, you know, it's not actually ten times worse.
+It's like more like a factor of two. Worse.
+So if this were totally unachievable, uh, you wouldn't want to, but you could try to relax that requirement or, let's say,
+initially start at five nanoseconds and work your way down to one nanosecond as you improve your luminosity of your program.
+Something like that. Um, and, uh, but, you know, uh, remember luminosities and squared.
+So if I have the proton yelled at the muon yield by two and again, I'm going down by four in luminosity.
+Um, and, uh, so the overall beam power and pulse intensity, uh, my understanding is that,
+uh, to get that final luminosity, these are the kinds of numbers that they're using.
+So about 320 E12 protons.
+Um, so, uh, to give you an, uh, that main injector does, uh, about, uh, uh, 5012 protons right now, uh, for example.
+So these are, this are big beams and then, uh, yeah. So the compressor, this, uh, I.
+I'll describe the performance of the compressor a little bit later,
+but basically you want four different bunches to all go to the target at the same point.
+And the strategy that's employed is each one takes its own bespoke path through this arc, and then they meet at the same place.
+Okay. So now I think I can just go, um, in detail along this, this injection chain.
+Um, so let's talk about what kind of pulses you get from the linac.
+So the, uh, Fermilab two, uh, uses a CW linac.
+And to achieve that, it has solid state amplifiers, whereas a lot of the other proton complex, uh,
+amplifiers, uh, Proton Linux, uh, use questions and those are pulsed, so they don't run continuously.
+They may run for a few milliseconds. Like I said, you know, maybe it's 60Hz, maybe it's, uh, ten hertz.
+Um, and then if you look at the cost of the RF sources, um, it's much more affordable.
+Um, and, uh, for the same pulse intensity and closer to what, let's say the muon collider needs to go pulsed power.
+So I think, uh, we would want to go certainly for the high energy.
+And who would want to go? Pulse power. Uh, so we actually did a design exercise at Fermilab about have Linac as a potential booster replacement.
+So it wasn't yet with muon Collider in mind.
+Um, but of course, if you go to the history of this HF Linac proposal, you will find me on Collider everywhere.
+Um, so it begins with a pipe to Linac, and it increases the beam current from two milliamps to like five.
+No amps and ten hertz, five milliamps, a two millisecond pulse from the strong eight GB.
+I gets you a megawatt, so pretty close. Um, and, uh, we try to use, you know, demonstrate technology as much as possible.
+So a 1.3GHz ILC style RF cavity, LCL style cryo module, the axial style strands.
+And there's modeled on you know, those are 1.5 milliseconds, but some experimental data that says they may be able to go to two milliseconds.
+So, you know, very conservative assumptions, no technology.
+Um, and to get to the four megawatts, you just have to increase the current and you have to say, okay, now I want to do this with, uh, 25 milliamps.
+Now, the that pipe to front end was built for low current CW operation.
+So now you could do this as an upgrade, but now you're far from, I would say the original design choices for pipe two.
+So if I had my druthers I'd say let pick two serve two milliamp CW users at the GV scale,
+build a unique experimental program that takes advantage of that,
+and then you would build a new H minus injector if you knew where you going with 25 milliamps?
+Um, but, uh, this story about the five milliamps shows that you can get your foot in the door.
+You know, you could build a megawatt proton driver, start putting protons on target,
+really learn about your capture your target production and start doing some physics program,
+you know, and then you can imagine retrofitting and upgrading from there.
+Again, I can't help but think about the staging, but it's, uh, interesting to think about what would happen, um, in what sequence in reality.
+Okay, so a very important topic that, um, hasn't come up yet, um,
+from our lectures yesterday is why have I said h minus linac when I'm doing a proton beam?
+And this is why. So h minus is a proton with two electrons attached to it.
+So if I take this proton with two electrons attached to this h minus and pass it through a foil, typically we do a carbon foil.
+Then what may happen is the electrons get left behind.
+So they're pretty much dragged through the foil and they're left behind.
+So you have an H minus go into the foil a proton come out of the foil.
+So this is called uh charge exchange injection.
+Or sometimes people think this is this is a little bit of a misnomer. So you could call it a foil stripping injection.
+Um, so this is what, uh, you know, S and J Park, Fermilab high intensity proton accelerators around the world.
+Do we have a lot of operational experience with how this works?
+And what's so great about it is it lets you amplify your, your, your current many times over.
+So I take an H minus and I a proton and I bend them through the same magnet and I put them on the same trajectory on the foil.
+So I have these two different trajectories proton and h minus.
+They converge on the foil. Then they go through the foil. And now they're both protons and they're now overlapping in phase space.
+So I'm cheating Louisville's theorem because I'm changing the particle species from H minus to protons.
+Um, and that's that's the trick here. So that lets you concentrate, uh, you know, hundreds to thousands of times over the current.
+So you just keep wrapping around continuously injecting your H minus beam, adding it to the circulating proton beam.
+And this is a very effective way to put in a lot of charge. And this is why the lowest energy ring, uh,
+a particle accelerator complex is typically where you're going to experience the most extreme
+space charge forces because you took advantage of this concentration and now it's in a ring.
+So you've got to keep it stable across many revolutions. But yet you haven't accelerated it at all yet, so you don't have it.
+They take advantage of the fact that you're going to be suppressed by one over gamma.
+So, uh, there's a lot of technical challenges that arise from foil stripping, injection and a lot of different choices that you get to make.
+Um, so one thing to think about is this, as you have, um, let's see if I can.
+So if the center of my proton beam orbit is here and I'm injecting from the linac here, I'm deliberately injecting off axis.
+So what's going to happen is the injected beam is going to do a beta tron oscillation around that orbit.
+So I'm starting it with some amplitude of oscillation. And it's going to fill out that phase space.
+And so that beam that I injected here is going to explore this whole blue area there, which is going to reduce the likelihood that the, uh,
+proton that I have passing through the foil is going to then encounter the foil,
+get some reducing the number of interactions between the circulating proton beam and the foil.
+Because as you can imagine, the proton scatter off that degrades the foil causes problems for both the proton beam and the foil.
+I'm also choosing some sort of trajectory I can move my orbit, let's say in a half circle around it,
+and I can get, you know, a fully I can paint different parts of the 4D transverse phase space.
+Um, typically your linac beam is much smaller,
+and so it's basically a pencil beam compared to the size of the beam admittance that you're painting into, which is going to be much larger.
+So you get to choose what your initial beam distribution is.
+And then you have the challenge of keeping that stable through whatever space charge passes you've had.
+So a typical profile might be like this relatively flat in the center.
+You don't want to have too much peak charge, but then you have the foil edge.
+So it's going to fall off. And then you have some part that you can't get rid of.
+This is just, you know, this may be the tails of the linac or this may be, you know, the natural,
+uh, halo formation that happens from having a, a real amount of charge interacting with itself.
+So it's hard to make a peak charge, and it's hard to make a sharp edge.
+So you end up with something like this. I sometimes call these flans because, you know.
+Yeah, you see it. Um, longitudinally.
+Um, you're also doing something where I'm injecting into the center of the bucket.
+But again, I don't want to pile up all my charge, so I want to spread out my charge.
+So I want to have it not just in the center of the bucket, but I also don't want to have particles leaking out.
+So it's this balance. And so you paint over the course of this bucket.
+This is a diagram from, from Jay Park in which, uh, I had this yesterday actually,
+where you see, they've actually flattened out the bucket and that reduces the peak charge.
+Um, so these are all these interesting choices that, um, you get to make when you populate into the accumulator ring.
+Uh, just want to bring some, some, some theory into it.
+What do you expect to happen? Um, so if I think about painting anywhere in x, x prime y and y prime, um,
+then one of the things that you would have at, let's say, if I could, right.
+Concert surfaces of constant j accent, j y uh, let's say there are approximately separable degrees of freedom.
+Let's say they're mostly decoupled, horizontal and vertical. Um, well, you may have some non-linearity, if not from your ring, uh, lattice.
+You might have from from space charge itself. So then you get face mixing.
+You have a change in your betterthan oscillation with amplitude.
+So if you had these two particles that were ejected at the same phase, they're now going to dilute.
+So the surfaces of constant action you could say your Jackson, your j y you're going to populate those full surfaces.
+Then most likely you cannot fully separate your two transverse degrees of freedom.
+You may have some nonlinear coupling effects which cause an admittance exchange effect
+for your horizontal admittance blades into your vertical and into your vertical,
+and it bleeds into your horizontal limits. So on a slightly longer time scale, you would have an admittance exchange between those,
+and you wouldn't have so much a, uh, constant action X and Y, but let's say a surface of constant H.
+So your equilibrium distributions probably look like some, some function of H.
+Uh, of course. Uh, this all depends on what time scale you have.
+Often your face space painting is it's faster than some of these processes.
+And, uh, you know, in the weak space charge limit, you can write down the single particle Hamiltonian,
+consider all this space charge as a perturbation. And you can, you know, try to try to find something that's in equilibrium.
+But in general, uh, this is this is very expensive. Uh, this is very complicated, uh, to do 100% self-consistent beam distribution.
+You know, you're solving of last half equation. You have to decide whether the beam modes are stable.
+You're not just passing through a continuous focusing channel, constantly changing the focusing conditions.
+As you squeeze down, it pushes itself harder. And then, you know, so this is a it's a complicated thing.
+Um, you know, there's one special case which is shown to be self-consistent in.
+Theory. But then, um, actually, it's very fragile because that's what happens if you have a perfectly uniform charge with a perfectly sharp edge.
+As you can imagine, as soon as you have one particle outside of that sharp edge, you start to tool around the assumptions of the queue distribution.
+Uh, so just showing you distributions in H. So a Gaussian distribution will look like that in the top.
+Uh kV distribution would be putting all of your charges at the same H.
+And just hoping it stays there. And then water bag would be some, some uniform painting up into some limit.
+And you say I don't want any particles outside here. I want to keep all my particles behaved within some range.
+And uh, so, you know, something like one of these is what you may end up with.
+A good distribution is sometimes called, uh, like a fuzzy kV or like a hollow beam.
+So that's basically you put a lot of your particles that some action as far out from the center as possible,
+but not so far out that, you know, you're losing particles. So you're kind of setting the scale for your beam.
+This is the kind of things that we think about. Um, so, uh, now I started saying, okay, fuel injection.
+It's been used everywhere, but here are some challenges with fuel injection.
+So I'm having a very high energy beam, and I'm bending this to get into the ring.
+So as soon as I bend it I may have stripping from that magnetic field and the higher energy of the beam, the gentler I have to bend it to get in.
+And, um, so you don't want early h minus stripping.
+So then this has to be a very long region. So for HV it has to be like 30, 40m.
+And you're talking about a 300 meter ring or something. So this is a significant fraction of your circumference just injection.
+And you're only allowed to do this in there. You know you it takes over your optics.
+Then what happens for the particles that are not fully stripped. The h minus and h naught.
+Uh, are those just going to crash in your ring?
+Well, ideally you would like to have them on a separate trajectory where they're they're safely extracted.
+That's the way I, Jay Park, do. Uh, so they're still lost.
+They're still not contributing to the physics, but they're at least not creating an activation region right in your injection.
+So you pull them out, you send them to a dedicated absorber, and they're away from everything you you care about.
+The foil itself will heat up physically.
+And, you know, somewhere around 2000 to 2300 K is where you start to get some rapid foil failure, 1600 K it starts to sublimate and starts to shed.
+Uh, it's basically sputters off carbon because it's that hot. Um, so this is something that that's nice.
+And Jay Park have a lot of experience with. I have worked on the material quality of making a performance foil that, um,
+you know, so they're stretching it to its limits, but clearly there's a limit.
+Um, and then I think one of the, the most fundamental challenges is actually the circulating proton beam scattering off the injection foil,
+because if it interacts with the, uh, carbon foil, then it's going to accumulate a large range of x primes and y primes.
+So it's very hard to take all of those scattering trajectories and put them all safely into an absorber.
+And even in the best case, you're putting it to a piece of concrete in your injection region, but you still have activation from that.
+So, um, this is actually one of the limiting, um, factors, for instance,
+that SARS rather than losses around the ring from space charge, just the injection foil related issues.
+Um, so uh, actually, uh, for, for J Park and s mass gv increasing energy, uh, helps.
+In fact, I suggested that recently they increased it from 1 to 1.3.
+But as you go higher and higher in energy, that stops being the case where it just helps you, um,
+that you still have proton scattering and, uh, absorbing the particles, it's much higher because you're in HV proton.
+It's just harder to contain and stop than, you know, a one GeV proton.
+Um, okay. So how can we overcome this?
+So there's really a question of if I want four megawatts for the accumulator ring, can I even use foil technology?
+Well, fortunately people have been working on alternatives, which is use lasers.
+Um, so this is, um, a popular laser injection scheme.
+So you have your H minus come in. As I mentioned, if you have a sufficiently strong dipole, you know, pull off one of your electrons.
+So you're going to end up with H naught. So they're not H not as neutral.
+You can't do anything uh, electromagnetically to steer it.
+What you can do is you can zap it with a laser, and that laser excites the electron to a higher orbital.
+Then you pass through another magnet, and you pull that electron off and you're left with a proton.
+So you didn't have to interact with a physical piece of matter. So that's the point.
+Um, so there's a couple of other schemes. You can do it with all lasers and not.
+No. Um, uh, no magnets, for instance.
+You can pull off the first one from so you can do it between 1 and 3 lasers basically to a fault.
+So there's a couple of variations.
+You know, one issue you may have is you're stripping efficiency, maybe like 95% and you double the power of your laser.
+You're still going from 95% to 97.5%.
+So there's still going to be some fraction. But last a little bit, a fraction is going to be hard to strip completely.
+So if you're talking about two megawatts and five and four megawatts and 5%, I mean it's 200kW of beam power is being directed to a dump.
+So that's a serious dump. Um. I think, uh, I would think that could be used for some physics.
+You know, you're directing 200kW to a dump. Maybe you want to do something with kaons or can decay at raster dark matter searches.
+So I think there's an opportunity there. But it's, you know, it's a serious absorber.
+And, um, you know, you have to direct it safely. So I think both Athens and Jay Park are pushing the laser stripping technology, and, you know,
+it has, uh, you know, has the capability to help their operations as they are right now.
+Um, and then this future benefit is just a nice add on.
+In fact, they're doing something that's harder than what we have to ask to do in the future, because let me explain.
+So as I talk about a proton or at, let's say, an h minus with a certain amount of kinetic energy,
+um, and then I shine a laser from the opposite direction,
+I get a Doppler boost so that the specific wavelength that I need to target is this 102 nanometer line.
+But if you turn that kinetic energy into a gamma and you figure out, okay,
+I want to now use a YAG laser at 1100 nanometers, well, I can do that if I get my H minus up to four GeV.
+So they're trying to do this at 11.3 GV, where the the laser that they're using, um,
+is going to be much higher frequency, and therefore higher frequency means harder to generate with power.
+And then what's really killer is it's hard to get good optics to get, you know, good reflection on ultraviolet,
+you know, um, and so, uh, you get to use more accessible laser technology, more accessible optics.
+And so at four GB, you basically you get to choose what you want to do.
+What is your favorite laser? I'm not a laser person, but um, for gives where the opportunities really expand.
+Unfortunately that's the range we're looking at.
+So, um, so yeah, we anticipate that this technology will be ready to rely on, um, I should mention where we are in the state of our.
+So this 95% stripping efficiency has been demonstrated at essence, but for I think in like ten microseconds.
+And we need, you know, milliseconds. So essentially, uh, part of the trick is to do not just more laser but to most of the laser passes through.
+So if you can recycle with the appropriate optics that you get to reuse the same laser pulse, and that greatly amplifies the efficiency.
+And this is why it goes to this. What frequency are you having to trap and put in a resonant cavity?
+You also, uh, need the h minus time structure to match the laser structure.
+So now you're recycling your laser pulses, but you need to keep them synchronized.
+So it's not a trivial problem from laser perspective. But the optics community has solutions to this kind of thing.
+So we're hopeful that we're on a timeline that, uh, will enable this to be something we can go to.
+Um, okay. Uh, so now the accumulator ring and compressor ring.
+So now we've gotten into the accumulator ring, we've used all our fancy h minus tricks.
+And now, um. Oh, here, this is an interesting thing.
+So, uh, typically we will have this diagram that you see in the left linac accumulator ring.
+So ah for accumulator ring compressor ring C, r for compressor ring.
+And then you go to target. Maybe you could combine combiner and then target.
+However there's other schemes and say okay why do I have to have a separate ring that does accumulation and compression.
+Maybe I can accumulate then take a B and compress.
+Why not? And similarly you may ask. Well I'm just going to keep everything I have.
+What if I accelerate I accumulate a lower energy. Let's say five GB, I accelerate up to ten GV.
+Can I do my compression? Well, we're going to find out. Is there that space charge challenges are most acute in the compressor ring.
+So actually you can accumulate at a lower energy and then do your compression.
+And you can even imagine a a ring that does all three.
+It accelerates and accumulates compresses. What can it do. Okay.
+Um, so I think the question you want to say is can the compressor ring accumulate without losing its compression performance?
+Can the accumulator, uh, accelerate without losing its accumulation performance?
+For now, I think the technically is simplest thing to do is just keep them as separate function
+rings and allow for the possibility that they may have conflicting requirements.
+And each one gets to do its job by way down the road.
+When we actually get to build these things, then I think it comes back onto the table and say, okay, can we save costs?
+Can we reduce technical complexity? Uh, is there something to be gained here?
+But I think just to keep the design freest, um, we assume they're all separate, but, um,
+you'll see some talks where people, um, put them all together, and, uh, that's an active area of research.
+Um, so last little space charter shift parameter. Um, our last parameter space charge tune shift.
+Um, a couple different names. Um, so sometimes you will see this as always negative because that tune is always being pushed down.
+On the other hand, sometimes it's just easier to omit the negative and just say, you know, stronger is a higher number.
+Um, so I think Vladimir has already shown this, um, and.
+Uh, including this diagram. So the idea is particles in the core of, let's say this is a Gaussian bunch.
+Particles in your core are facing the most intense charge density.
+So they are having difficulty as they do their Metatron oscillation passing the core.
+And so they have the most change to their beta turn frequency was particles on the outside transit the car very rapidly.
+And so essentially they're not seeing most of the charge.
+And so they have closer to what you would call your turn, which is the term that you would have with no space charge effect.
+So particles at the edges, the high amplitude, they have higher tunes.
+And now you have some wet here.
+And you have to keep this entire footprint stable at the same time when you're surrounded by resonances on every single side,
+and it can get even a little bit more complicated because you think of now the longitudinal center of the box has the biggest footprint.
+And then on the edges, the head and tail would have a smaller footprint.
+Um, so you can make a diagram like this and you may have the goal of, you may say,
+I'm going to run into some limit if I decide what my most problematic resonances are in my neighborhood and say,
+I can't go beyond point two, then this becomes then an intense limit on your intensity.
+How many particles can I put in? And then you will look for ways to relieve pressure from somewhere else.
+So I was talking earlier about, you know, uh, reducing that peak charge transversely and longitudinally.
+So that's going to go into this branching factor and it's going to go into this form factor.
+You can block the transverse admittance. But of course you're reducing your beam quality when you do that.
+So you have um this is actually an interesting point, which is why not just from the linac point,
+take all my h minus charges and pile them at the same point.
+Why not do that instead of doing all this fancy painting?
+The reason why is you would have an unsustainably high space charge, uh, piling all that, that charge, that charge density wouldn't be stable.
+So what is it going to do? It's going to expand. As this expands, it will reduce the charge density and may settle into something that's stable.
+But this is a very uncontrolled process. And you're going to end up with something very messy with a lot of halo.
+So if you know that your equilibrium admittance is higher than what you're injecting,
+why not inject the distribution you're aiming for and make something more stable and sustainable and cleaner?
+So that's part of the idea of phase space painting, which is choosing your, let's say,
+your minimum sustainable admittance or your your maximum admittance without losing anything in the aperture.
+This is the relativistic factor, as I was saying, beta gamma squared.
+So beta is pretty high. So just think about it. Going with the square of the energy uh, number of particles uh transfer some bunching factor.
+Oh yeah. Here I think I talked about these in detail. Okay. So now just some more definitions.
+So I mentioned form factor. Uh so a form factor for kV beam would be totally flat.
+So that's one. But for a Gaussian beam it's it's one half.
+So I basically you're talking about the ratio between here that charge in the center for a uniform beam versus some real distribution.
+So you want to avoid something peaky. And then the bunching factor that is the charge the peak charge versus the average charge.
+So again you have the same concept of I have some distribution within my bucket.
+Let's say I have a 18 nanosecond bucket and I have some uh, our mass of two nanoseconds.
+And I'm most of my charge is going to be right in the center.
+And so the ratio between if I had a perfectly uniform across that bucket and how much charge I have piled up,
+that's going to be essentially enhancement. And you have the same thing for if I have, uh, 100 RF buckets, I'm only using, uh,
+six of them then now I have an issue where I'm only using 6% of my whole rank.
+So I'm piling all that charge into an error area. So you can see already the tension for muon Collider.
+We want to put all our charge at the same place at the same time.
+For reducing the space charge parameter, we want to spread everything out as much as possible.
+Um, yes. So I'm saying we're doing a factor of a thousand on bunch length, but we are getting a factor of ten squared, so 100 from energy.
+So now you have a factor of ten left. So you can increase admittance.
+You can push through the nearby resonances and you know say okay instead of doing point two maybe I'm going to do 0.6.
+Um, and then another thing that's a little bit subtle is it's kind of hidden in this bunching factor.
+Uh, is a more compact accumulator ring would also give you a better performance.
+So if I go from a 600 meter ring to 300 meter ring, then I can put in more charge per unit length, actually.
+Um, so now how do I go for a more compact ring? Well, you might think, well, I want to use superconducting magnets for my dipole.
+So I have really tight bending, really tight focusing, um, to make everything compact.
+However, now I'm, I'm, uh, saying that if I lose particles, I could quench.
+So now I have to control where my losses are much careful and I have much more carefully.
+And I have to have much more strength loss requirements on here. So what?
+I'd rather be at point two and say I have to lose no particles 4.6 and say it's okay to lose some particles,
+but now I have to deal with a more intense space charge force.
+So it's a trade off where you should fit into this. Um, you know, if if I think about doing superconducting magnets,
+I would do a very large aperture and I do a very nice collimation system, kind of very carefully collecting the losses in warm sections.
+And so as long as you're willing to make, uh, not, uh, not just a superconducting magnet,
+but a large superconducting magnet, you can employ this strategy.
+Okay. Um, so, um, now one of my most favorite topics there snap a bunch rotation so called snap because I'm suddenly snapping up the voltage.
+And I touched on this a little bit yesterday. But just to review, you know, on the chart on the left, I have some Hamiltonian against phi and delta.
+So these curves are curves of constant h. And um so you can solve for, for phi in terms of delta and delta in terms of phi and uh,
+the particles, because the phase space mixing and the other things I was talking about,
+they want to follow these contours that I snap up the voltage and all of a sudden,
+the particles that were the beam distribution, which was following the contours, is now mismatched to the contours.
+Right now it's only occupying some angle. So the action angle if you want to put it that way.
+And so these particles out of outermost phase is immediately gaining momentum.
+And um, you also see that the um, the, the lowest phase and the highest momentum are taking like a shortcut to be rotated back in.
+Um, so you imagine this ellipse matching to the circle, let's say, or two ellipses of different aspect ratios.
+So then one quarter synchrotron period later, again, assuming you're in the center of the bucket,
+that time will arrive for the same for all particles. Then you're standing upright and you have what was a long, uh, a low momentum spread beam.
+It's now a low temporal spread beam.
+And actually, to make the voltage different, as dramatic as possible, you want to get your beam, your initial beam as low momentum as possible.
+So this is one of the things from the linac is you want a low momentum spread from the linac, and you don't want to do anything that ruins that.
+In between that and when you do a bunch rotation.
+Um, so now it can be shown and I made the homework problem on this, which is that it goes where the square root of the voltages.
+If you were to do it at Berkeley, which I didn't do as a homework, but I did do, um,
+it goes with one fourth and so that so that's why you, you want to specifically snap it up as soon as possible.
+Um, and I mentioned this issue where you need all the particles to rotate at the same time.
+So it would help to flatten the RF bucket and to linearize, you know, that that focusing force as much as possible up to the edges of the bucket.
+Um, and I should also mention there's resonance schemes. So I talked about one jump up a voltage white pi over two.
+Suppose I modulate the voltage at one half synchrotron period.
+So it goes up, it goes down, it goes up and down. Each time I go through this, the, uh, bunch distorts itself in a more dramatic way.
+So this is actually a valid way to do it.
+Um, I'm not sure that it would be what we want for the muon collider case because we want such an extreme distortion.
+And basically, if I think about modulating with increasingly higher amplitude and I think about that last modulation,
+that last modulation is going to be like the snap bunch rotation, and it's going to be doing all the work.
+Um, so I kind of think of it as preparing the beam distribution for the first part of it for that last snap.
+And therefore, I wonder if you can get that same effect by either choosing your longitudinal distribution or,
+um, changing distorting the shape of your RF bucket.
+That's kind of speculation on my part. Um, so one of the things that I'm starting to look to is I have this extreme space charge.
+And if I when I do that bunch rotation, let's say I'm doing a factor of ten bunch rotation.
+I increase that space charge by a factor of ten. So now I have I've gone from something that's stable to something that might not be stable.
+And so can I do that? How long can I sustain it at this unstable space charge turn shift parameter.
+Where should I start? Where should I go? How should I do this bunch rotation differently?
+Knowing that I'm going to be an extreme space charge environment?
+A lot of accelerators that do extreme bunch compression, uh, don't do it in a charge dominated environment.
+So you can do R&D on this. Um, so I, I propose something to do it at, uh, fast iota, uh, fast iota bench rotation experiment.
+So you could call it fiber. I came up with that acronym myself, asked ChatGPT if it could come up with a better acronym.
+It could not. It came up with a couple of good ones, but I like this one the best.
+Okay. So, um, one of the primary purposes of Iota is space charge R&D.
+So it's a good place to think to do this. And, uh, so it's already set up to do extreme space charge.
+And you have these other special Iota tools, these elliptical magnets and these electron lens and other fun novel concepts that you can try to say,
+well, can I pulse an electron lens to compensate, let's say the intense proton forces and, you know, get better performance.
+Um, so, uh, the only problem.
+Is fast. Iota is not set up from the RF perspective.
+You need a high voltage, low frequency cavity. Um, so the proposal was to build a cavity and put it at the iota um, ring.
+Um, so, uh, Ben Simons, who is, uh, PhD student I've been working with, has a poster on that for later in the week.
+Uh, of course, uh, I described this proposal I'm most familiar with,
+but there's other facilities where you can do intense space charge compression, R&D.
+So RF mass, I think is a big one. I've heard people talk about doing it at ISIS.
+You could try the Fermilab booster, except for it's running the HPP program.
+Um, and then I think some of the, uh, the closest operational cases actually come from, uh, GSI.
+Um, so that's where you have like a factor 12, factor 15 punch compression, not quite as charged dominated.
+Um, so that be a way of approaching it from a different direction.
+Uh, so Austin from Oak Ridge is going to be here later in the week for the muon Collider meeting.
+So really, all of your questions that you have about what the bunch rotation status of that experiment is that Oak Ridge should,
+should go to him is to briefly put it into context.
+Uh, you know, they have they already have the RF.
+So that's nice. They can start this experiment, versions of this experiment immediately.
+And, um, their greatest advantage and disadvantage is that they have megawatt beams.
+They have GV scale protons. They have a very successful, very active user facility generating no neutrons for people doing very exciting science.
+And so, um, when we think about fast iota, I can lose particles because the energy is actually MeV.
+And um, I can make changes to the lattice because the whole point of this is to do space charge R&D.
+And um, I can, I can, uh, take operational time whenever I need it.
+Whereas, um, you know, I think the Oak Ridge Experimental program has to be a lot more conservative for they need to lose fewer particles.
+They need to work with what they got at the times that that beam is available.
+And so I but I think if you go through all of that, then, uh,
+you've gotten something that is really powerful from the argument of technical feasibility.
+I mean, I just argue that the closest thing that we have to the proton driver for the muon collider is as some s.
+And so now if you now add bench rotation at this megawatt facility and you show you can do it with low losses,
+that would be incredibly convincing from a technical feasibility standpoint.
+And so I think we're uh, fast Iota is complementary though is saying, okay, now I want to see what is the ultimate limit of these parameters.
+I want to push beyond the state of the art.
+I want to ask, can we use some novel crazy idea to actually get better performance than what we think we could?
+How can we push on these parameters? I think they're really complementary programs.
+I think they could both, uh, take place and have something to say or if either one moves forward, um,
+that would be a great step forward for giving us, you know, confidence and understanding of this.
+And then last thing that's kind of interesting is they are doing is they're under basic energy science.
+So this would be an ATP application for a B.
+S facility. So we welcome their participation in the ATP world.
+Um, so now I'm going to steal some of Ben's thunder and show some, uh, simulation results for the fiber.
+Um, so here is kind of showing what I was talking about.
+So let's say if I look at this purple line, I'm over at 0.4 space charge change shift.
+And then I have factor of two bunch compression I push up.
+Now that's not fully going to point eight because if you look at the chart to the right I have some intense growth.
+So I've squeezed it and I've I've took two steps forward and one step back.
+Uh, whereas if I look at, let's say this green line here, which is only one milliamps, then I don't have very much imminent growth at all.
+And, uh, but I'm at a lower part of this.
+So this is a kind of very first preliminary test. What happens if you put the beam in and you squeeze it?
+Um, and I think there is a lot to be gained for, I mean, I here I do have an example in which I have 0.7, you know, that's very extreme.
+And that's the way we get away with that is the rotation occurs in patterns of microseconds.
+So just like 20 revolutions. And I've just got to keep it stable for that long.
+So when you think about the higher order resonances have a longer time scale.
+And the lower order resonances have a shorter timescale for how quickly they make the beam unstable.
+So I get to maybe say, neglect the resonances and and just run up against the half at the half integer resonance.
+And then so I go from, you know, point three to point five. Um, and our experience in the booster, actually,
+it's a very funny machine where it does briefly hit point six and then the beam admittance blows up and we accelerate the beam.
+And a bunch of different things happen at once. So then and we have some losses, we have like 1% losses.
+So we can briefly be at that period of time.
+But the question is how can you control that circumstance. Slow down the instability long enough.
+Once you're here, once you've got that short pulse, you don't want to store it anymore.
+You just extract it. You send it to, um, the muon production target, and, uh, you're done with it.
+Now, I was talking about the transverse, um, uh, effects, but there's actually a longitudinal effects.
+And I think I alluded to this earlier as I bring particles closer together.
+Um, they want to, uh, repel by.
+Actually, this is, uh, below transition crossing effect.
+Because if you think about about transition, I'm adding a momentum to the particle at the head,
+and I'm adding and subtracting momentum from the particle at the tail, but that's going to change the path length.
+So actually the particle in the head is now going to rise sooner.
+So it's actually attractive. It's a space charged focusing force which is hard to get your head around.
+But it's true. And we expect the cumulative ring to be in that regime where it's actually attractive.
+Interestingly you have problems whether you're repelling or attracting.
+And so this is a simple, uh, simulation, um, from 2001.
+And at the top is, uh, simulation from 2025. What's exciting is we're all saying the same thing.
+We're saying that you can if you have the fast, uh, space charge bunch rotation.
+Um, you can kind of cheat space charge a little bit,
+but that you have to deal with the longitudinal forces when you get to really small, um, uh, bunches.
+And the reason why, um, so things paper shows the expression at the top, the second, the second expression is one I derived.
+So they're equivalent. Um, but basically, uh, you have a one over sigma cubed.
+So sigma being the um, the bunch length. So as I get the last part of the squeezing, I have a very intense longitudinal space charge force.
+And you can actually see the deformation on the right.
+This is um, um, Ben simulation of fast iota.
+And you see that it starts to distort and probably you can't see it by eye, but actually the center of this starts to flatten out.
+So the core, uh, basically you can't compress any more than this.
+Um, and, uh, you know, uh, higher charge, the no go zone gets bigger.
+So, uh, here, um, this shows bunch lengths being compressed.
+Uh, and so a factor of two would be the ideal.
+So actually here I'm getting the factor of two bunch compression,
+but they're starting at a different point, uh, depending on, uh, the bunch, uh, the linac current.
+And the reason why is because what's happened before this is the adiabatic capture process.
+So I slowly bunching the the beam by raising the voltage.
+And it turns out the space charge force affects the capture process.
+So, uh, we so I think everyone doing the simulation sees this longitudinal space charge effect.
+And it's one of the things that you've got to overcome. So you overcome the longitudinal effect.
+And when what you win as a prize is, uh, the ability to confront the transverse effect.
+So, um, actually, we think there is a solution to this longitudinal thing.
+It's old received wisdom, which is you have these inductive inserts and these, uh, basically you have.
+Is fair, right? Um, collars that you put around the ring.
+And basically this changes the impedance environment that the beam interacts with.
+And it goes the opposite direction of this. So you can compensate this whether it's attractive are repulsive.
+Either way you're going to compensate it.
+And uh but the question is like how do I have to how much impedance do I need if I spread these all around the ring,
+is that really equivalent to that, or is it okay to just have a one location, you know, that kind of thing.
+So I think there's some experimental work.
+And actually this is kind of a new idea for us because we we are starting to appreciate how big this effect is.
+So we think if we do this fast iota, maybe a fun thing to do is put these in ferrite collars everywhere and solve this problem.
+Um, so now going back to the accelerator design, you know, what am I hoping to get out of these experiments?
+Other than answering the question of how ambitious can I get with the space charge force and therefore, how many megawatts can I have?
+Um, well, I think one of the interesting questions is in the compressor ring, should the phase slip factor be large or small?
+Um, and uh, so the phase factor, um, something I briefly introduced yesterday, but is how much does for your beam being off momentum?
+How much does that change the arrival time. So if you're phase factor is small it means your bunches are essentially frozen longitudinally.
+They may vary in momentum, but they're going to arrive at the same time every single time I saw Uranus, they're not going to do the phase focusing.
+They're not going to do the synchrotron rate rotation.
+Or rather, the synchrotron frequency goes at the synchrotron period, goes to a very a very long time.
+Whereas large phase slip factor means that I have a very robust synchrotron oscillation.
+It's constantly mixing. And it means when I do the bunch rotation, that process happens fast.
+Um, well, the advantages of the large phase factor is what I just said.
+So extreme space charge occurs only very briefly.
+And you go through that last part quickly and you can keep you have to keep that beam stable for less long, uh, for, for a shorter period of time.
+Um, there's also mode coupling, uh, instabilities that you may have to worry about.
+Uh, so the head causes a wake, which then interacts with the tail.
+And if your head and tail are not exchanging positions, then the head keeps on constantly amplifying the position of the tail.
+And you have a kind of a whip like effect where your the head is wagging the tail until it gets unstable.
+So, uh, this is something that, uh, Vladimir briefly presented yesterday.
+So it's, it's better from that perspective to have an exchange.
+But why would you want small? One advantage of small is.
+I've talked about jumping up the voltage.
+So you're going to be limited by how much voltage you have, which may have to be limited by how much real estate you have.
+Or remember, this is supposed to be a compact ring. And, um, so, uh, you want as much bunch compression as possible.
+And so, uh, that means the biggest ratio between, you know, is in a factor two bunch of compression, a factor of ten, bunch of compression.
+How much bunch of compression can I get? Depends on the voltage. If I want a factor of ten bunch of compression I need a ratio of voltages of 100.
+I need 100 times more voltage to rotate than I did have to capture.
+So it turns out having a small face factor really helps with this.
+Um, basically, uh, it's that it's, uh, the, the voltage over Ada.
+So for Mega Volts is going to go a lot further. And I saw this ring that at that, uh, fast snapping ring.
+You can think of this as the voltage during repeated kicks.
+Revolution after revolution. And the beam position is not changing very much.
+Um, so now if I had to do more extreme bunch compression, then that actually reduces the, um, requirements on the Linac and accumulator ring.
+So I could have something more like a filling out the ring uniformly and then pile all the charge really at the end
+versus starting with something that's already compact and then just quickly putting it over that last instability.
+So my conclusion and this is just my opinion, that's part of where I'm teaching, is to give you your chance to form your own opinions.
+But I think we need to keep studying both. And I think the small Ada is kind of, in my mind, a baseline scenario.
+And the question is, can I realize the gains of these larger factors?
+Do they just work in simulation or do they also work in reality? And that's goes to the importance of these space storage R&D experiments.
+And you know, if I can't hit the space charge R&D requirements, then I have to relax something.
+I may have to have a larger beam transversely. I may only be able to do two megawatts.
+Uh, you know, there's certain things.
+So it does push up against the parameters that are going to have an effect on, on luminosity and everything else.
+Okay. Um, so the last topic to go through is the combiner and the target.
+So I said I would go through what this combiner is. Um, so the idea here is I'm going to take a literally 180 degree arc.
+So how much length do I need to do that?
+Well, I know if I have a 300 meter ring to go 360 degrees, I probably need 150m at least to go, you know, through a 180 degree arc.
+And then I need one arc for each of the number of branches that I'm combining.
+And then, um, essentially what I want is for the first bunch and the sequence is sort of matching, let's say four bunches around the ring.
+So the first one is going to take the longest path, and the fourth one is going to take the shortest path.
+And they're all going to meet right here. So the distance between the first and the last has to be basically that call that FC.
+What fraction of the circumference is filled by the bunches. Um I have FC over two here, FC over two.
+So they add up so that the path lengths become the same. So the total length would be given by this expression.
+So if I choose modest numbers I'm going to fill up one quarter of the ring.
+I'm going to use a 300 meter circumference. I'm going to use four bunches.
+That's 675m of accelerator. Um, so now remember, uh, one error was impressed upon us.
+RF is where all the costs were, but I'm still paying for magnets and I'm paying for tunnel.
+Uh, you know, in order to do this. So it's not nothing. Uh, especially when you have to pay it several times over.
+So if you ask, you know, now, if I wanted to do 20, you know, now I'm paying for a lot of magnets and I'm doing a lot of tunnel.
+Um, so, uh, again, it may pencil out if you can lower the linac or accumulate a ring cost or improve overall performance.
+Um, so, you know, uh, 10 to 20% of your, your muon collider cost is going to be in this proton driver.
+So again, if you, if you do something that's expensive from the point of view of the proton driver,
+it may be cheap from the perspective of the whole, you know, one collider.
+Um, just to give you a sense and I share this cartoon quickly, so forgive me, but I think it tells the story.
+So now I'm going, how do I tell which bunch which trajectory to go on?
+Well, one way to do it would be to give it a kick based on time.
+So the first punch I let pass, the second I kick and it goes upstairs.
+Um, so now that, uh, they're on different trajectories and you have this special device called a Septa.
+And so let's say you have no magnetic field and the bottom half of septa and a horizontal magnetic field in the top half, the sapped.
+So something that would bend.
+So that's the purpose of the scepter is to create two regions which have a very distinct magnetic field and a lot of saturation at this knife's edge.
+And the center has a lot of magnetic field saturation, because you basically have to keep the magnetic field on one side or the other.
+So you definitely don't want any particles to hit the septa, but you can cleanly separate the particles.
+And now they're going to go on their different trajectories. And now what's going to happen on the other side.
+Now they have the same arrival time right. Uh so now I'm going to have another step to where I bend them now towards each other.
+But I can't do a kicker because if I, if I have this and I kick, they're both going to go together.
+So best I can do is kind of merge them with a quadrupole.
+So now they're now collinear. But you see what I'm drawing as I'm drawing levels there.
+I'm saying you can't even though when you've now changed it. So they all arrive at the same time.
+There's no way you can make them transversely the same the same location.
+So you have to stack them in x, x prime in some manner so that they're taking up more space transversely.
+So using the fact that you can't shake Louisville's theorem.
+And imagine that I have a limit on my target for what's the biggest transverse means that I have.
+What's the biggest spot size then? Um, if I have more bunches then each branch has to be narrower.
+So I have to have a small. If I have, uh, four bunches, then each one has to have, uh, one fourth of the total size.
+So that basically means the charge is going to go down by a factor four.
+And the admittance is going to go down by factor four. So I'm actually going to have the same space charge turn shift in each of those four bunches.
+Uh, so uh, what is the implication of using many bunches in a combiner?
+One is the, uh, the downside is the technical complexity.
+I have to find a way to add all these.
+And I just talked about how I have to have multiple beam lines, but now I also have to add each one sequentially into this bundle.
+Um, and inevitably there would be some emissions growth from the gaps basically between the bunches.
+On the other hand, if I'm shrinking the admittance and putting these all in a line, I'm making smaller beams.
+And that means my transverse aperture and my compressor ring and accumulate ring is smaller.
+And that means now I get to save on management costs. So that's good.
+Or I get to save on I have fewer losses because I was just mentioning this issue about, you know, you stand off from the beam,
+the more space you can have between the edge of the beam and the aperture, the more the better you can call me.
+So less space charge during the bunch compression process.
+Uh, having for two nanosecond bunches is different from having one two nanosecond bunch at that last stage.
+So that's what I'm talking about. Before that, they all have the same space charge.
+But, um. The, uh, the linac being injected into a large azimuth of the accumulator ring.
+Okay. So this is again talking about if I'm only filling one fourth of the ring, then I have to have all of my linac pulse up here in one quarter of.
+So let's say it's a one microsecond ring. And I need to fill at 25 milliamps.
+And I'm using a quarter of that one microsecond. Then I'm not actually doing 25 milliamps for a microsecond.
+I'm doing 100 milliamps for 250 mil nanoseconds, and then I'm doing zero.
+So that's harder to do from the Arc perspective. And it's going to be rougher on the accumulator ring.
+So, uh, my conclusion is that more bunches can definitely help, but don't use any more than you have to to achieve your performance goals.
+So we agree on what how to have a plan to get certain beam powers and certain intensities and certain things.
+Then, uh, you want to avoid the technical complexity from these other parts.
+Um, but this is another live parameter where we've talked about doing one bunch,
+talked about doing four, factoring six, and in my opinion, the large buck bunch.
+Option 24 is still on the table. Okay, so with that, I've come to the end.
+And um, I'll let me make one more comment before we go to questions, which was I was realizing as I was putting this together that yesterday,
+I really impressed upon you the complexity and the importance of lattice design.
+And I've barely shown you any kind of beta function or face advanced anywhere.
+So I've admitted this entire thing. And why have I done that?
+Well, partly if you think about I'm doing the space charge tune shift space charge simulation for one part,
+then a tune diagram, and then I will have the question. Okay.
+The phenomena I'm encountering are specific to these particular resonances with these particular optics.
+And uh, and then have the question, okay, if I super optimize this, how generalizable is that?
+And what's generalizable is the things that you see over and over again and all the different simulations, which of course,
+by definition don't depend on the lattice parameters, but um, it's very important to get it right and in stages.
+So essentially you want to fix the large parameters, you want to get the general physics principles.
+You want to think about injection and phase factor and that space charge tune spread that you're targeting and RF needs and all of that first.
+Then you design a very specific lattice and you do a very specific simulation.
+So it's a very important part of the process. Uh, but it's when things start to get real.
+And that's at the very end, it's a very last thing that you do.
+Um, so this is to avoid redoubling efforts of over studying a lattice, and then you make some important changes.
+And now you can no longer have the same conclusions. So. Okay.
+Thanks. Okay.
+Yeah. Thank you very much. Stuff. Um. Questions? Um, this may be a very, um, basic question, so.
+I'm sorry. Um, I think I understand how we're doing our bunching and then recombining of the bunches,
+but I don't think I understand why we want to take this beam and then bunch it and then immediately combine those bunches.
+I think the the basic answer is if I started with two nanoseconds at the beginning,
+then I would not be able to keep that very long and the beam quality the beam emits would grow and I'd have a lower quality beam.
+So they kind of the idea is to prepare it in stages and everything comes together quickly at the end.
+Um, I think that would be that. Um, and that the other thing that I would say is the Linac pulse is naturally I said two milliseconds.
+Right. So now I'm adapting to milliseconds into a microsecond.
+So that's where the charge exchange injection comes in. But now I need to take a microsecond into a nanosecond.
+And this is where the bench rotation comes in.
+So um, essentially, let's say the natural sources of the beam that you have in the linac are not with all the pile,
+the charge piled on top of each other.
+And so you're the role of these machines is to adapt essentially what you have in your high energy linac to what you want on your target.
+Thank you. Um, I have a really short question.
+And then followed by a natural question.
+The really short question is, I think in the when you were talking about the foil stripping in the, uh, charge injection, um, I as far as I know,
+and this might be entirely wrong, but, um, when you shoot protons into a carbon foil,
+the secondary electrons that come out of it should be on the both sides.
+But are we saying because it's in the forward direction, the secondary electrons that come out are going to be more on the forward side?
+Yeah. Uh, that's a good question. Yeah. So the electrons don't cease to exist.
+And in fact, they have quite a lot of energy. Um, so, um, there may be you have all these transverse magnets.
+And so as soon as the electrons encounter a magnet, they are so white that they are going to receive a lot of bending.
+And even the actually, before you get to the magnet, the fringe fields of the magnets are already going to be pulling.
+So, um, the electrons contribute to the heating.
+And in fact, this is something that actually one of the, uh,
+major foil failures that they had in SARS was not from the protons, it was from the electrons.
+But for whatever reason, the magnetic field was such that all the electrons were hitting the exact same spot.
+So, uh, as temperature, if you can direct those electrons to the right point, you can just whisk away that sheet.
+The foil has to be in vacuum.
+And, you know, basically you have black body cooling and that's it.
+And so that's why part of why they accumulate so much.
+But if you're hitting like a bracket or a beam pipe and you have some appropriate cooling,
+you have to think about it, of course, but it's not the limiting factor.
+Um, and then another question is, uh, I think you were talking about, um, the different architectures.
+And I was wondering, given like you were discussing how we should evaluate, like, maybe having more bunches, less bunches.
+How would that change if we combine the accumulation and the compression?
+Would we, like, be more strict about how many bunches we can have?
+Pretty much. Yeah. So I think that, um, so, uh, if I want, I have more bunches.
+I need to have, uh, let's say if I have more bunches, then I don't need as much of an aggressive bunch compression factor.
+So I'm gonna shrink by a factor of ten and not a factor of 20.
+Uh, but if I have longer bunches, then I need a more aggressive branch compression factor.
+So if I have either longer bunches or more bunches, then I'm using more of the ring.
+And you can think of that as something that's alleviating the requirements of the, the linac.
+But um, now, um, uh, so as far as combining the compressor ring, uh, versus the um, accumulator ring, I think that it is relatively separate.
+Again, I probably the bottleneck is more in the compressor ring than the accumulator ring.
+So essentially that's why I posed it as can they basically does the fact of accumulation bother the compressor ring or not.
+If it affects it anything you say let's just do it separate.
+But if it basically is along for the ride and you're doing all the magnets and you're doing all the bending and everything already,
+you just need to have a certain distance that you've set aside for accumulation, then why not?
+I guess it also goes to the face look factor. I made the argument for why you should have a higher or lower ETA for compressor ring.
+We have all the same arguments also on the accumulator ring side, so some people say they should both be high, both below one high, one low.
+So that also goes into whether it's the same ring.
+Case can I ask the question if you don't have any hands rings. Um. All right.
+All right. Um, if you could go to slide 17.
+I think this talk was really interesting. Um, I don't know how much of a laser expert you are.
+I was just kind of curious about the the limiting factors in the development of, like, a wider range of, uh, wavelengths.
+Yeah. Um, so it has to do with the lasing technology.
+And that's what these are named after. Um, and then you have several stages of amplification, compression, um, synchronization, all of that.
+Um, those may work differently at different, uh, different frequencies, but, um, that and the one thing that I know is a reflective optics,
+um, start to become available when you go from extreme ultraviolet to ultraviolet.
+Um, so essentially going to these higher, uh, higher energy means you can do lower frequencies, which mean that, um, and in fact,
+uh, for SARS, I forget what it is, but they actually use a lower frequency and then they have to do a tripling process.
+So they have to basically step up the frequency so that you can show that the
+laser technology they want to use is not the frequency that they have to use it.
+So I don't know if that helps, but that's as much as I know. Thank you.
+Okay. So, uh, my I was trying to at the beginning of your talk.
+I was trying to, um. Imagine what going from an ATV proton driver to a 20 GB proton driver might do.
+I mean, like, so what would the cost difference be for the proton driver?
+But like, what would that how would that affect things you give us. Sure.
+So I spent a long time talking about, um, the, uh, space charge forces and the, um, as part of the rotation process.
+And what you get is, uh, you get to not worry about your space charge forces.
+Uh, your circumference of your ring will go up.
+Um, and some of the cost, you know, you could say the cost would roughly scale with energy.
+So I'm talking about if we ran into a major issue with the, uh, space charge compression,
+um, and just said it can't be done, we have to go to higher energy.
+We'd rather pay our way out of this. And then the next thing I would turn, I would go to cost to you, and I'd say, listen, 16 GB is the best I can do.
+Optimize for that. Tell me what you get. Tell me.
+It's not too bad. Um, and I think that would be. That would be the way to do it.
+Um, so cost so cost would go up and reliability would go up, uh, let's say,
+until you get to the, um, until you get to that target side and then it becomes like,
+just not a trivial question to say what, uh, what might be the best, uh, when you, we've got to talk about, like what?
+It's not just per megawatt, but per muon yield is really the figure of merit.
+Um, so that's that's part of it. But then would that mean that maybe the muon cooling could, uh, what would you need?
+Less space or muon cooling? Um, fewer channels or something. Because you're, you're now you're starting with a higher energy muon perhaps added.
+That was kind of a that's a good question. I think you're still targeting the same energy muons.
+Right. So yeah that question answer repeatedly coming.
+So um, so that there is a summer like our, um, there's no specific criteria.
+So the why we have to like a select like a 200 DB or is there is some like a freedom.
+But, uh, if we look at the balancing, like, are the cooling performance yield like a production yield?
+Uh, like our cost, right. Cordiality over the right.
+Uh, channel looks right at 200. DB is kind of like that either way.
+But again, so I show the, like, our, uh, evolution map, like our transverse versus, like the longitudinal.
+We have, like, a very efficient way to cool the beam.
+If we have a way to like a transverse city core, like a straight line, I think, or we have a huge gain.
+Definitely. So there is a some space, uh, to, um, do on the higher energy side, I should mention something else that's quite important, which is,
+um, so the main thing you're doing by doing acceleration and the accumulator ring is you're trading ring cost for that cost.
+And basically generally the linac is going to be the more expensive way to accelerate.
+This is a recurring theme, but then you're going to add technical complexity on your RCS.
+So I would say don't build a 20 GeV linac.
+I would say, you know, you're going to stop at some energy and you're going to do the rest in your in your RCS.
+But, um, you know, f five GV I just do the linac and there's it's probably debatable, you know,
+at ten GV whether you want to give yourself a little boost from your RCS or not bother with it.
+So yes, um, probably I did. I do not, sir.
+Uh, quite well. So there, uh, according to the program, the, uh, the program, you energy, uh, if we increase the program, beam energy higher.
+But their, um, beam powers did have to be like a constant.
+Like a form of, uh, forming megawatt. This means the number of protons actually getting lower.
+But if we have a higher kinetic energy of protons, maybe we could, like, increase that the the target length.
+It's not simply like, uh, proportional. Definitely. We have a less amount of like a proton, uh, you know, uh, production.
+But there are some like a, um, record recovery factor.
+So the we can, we can develop. So like a, uh, as a gentleman, sort of, or up to, like, uh, which part is more crucial?
+Like, if the proton beam is really like a 16, GV is a crucial, then we have to start from a 16 GB.
+Yeah. Thank you. Any other questions?
+So thanks Jeff. It was very interesting. I was trying to do some archeology.
+Go back to project X designs for the proton driver.
+I think it was, if I recall correctly, was uh, one, two three gv, cw Linac.
+Yeah. But the plan was to make it somehow pulsed at some point to serve as the front end for the muon collider.
+Can you remind me what was the plan? Do you do you recall what was the plan there, and how was how the evolution was planned in that case?
+Yeah. Um, so my understanding is the kaon production threshold goes up really high.
+Um, around 2.5, 2 to 3. Um,
+and so if you knew that you wanted to build a kaon physics program that justified your
+three GeV kW when back then this is kind of like I was saying earlier with happy staging,
+if you can get something for going to three GeV and then use that as your starting point for the next step.
+That makes sense. Whereas if you say, well, I'm going to save money and I'm going to go to pulsed as soon as possible,
+I'm going to get a pulse that one GeV or something like that. Um, then um, you, you get what you pay last for that for the muon collider, uh, stage.
+But you don't get this pit stop along the way. Um, that not the most recent Snowmass with.
+There's no Aspen.
+Before that, I heard, you know, you heard a lot about people being excited about the three GeV kaon physics program, and I don't hear much about it.
+It may come back. Yeah. Yeah, it was cut.
+Right. Exactly. But, uh, so I it is there's a really a consensus that it's a bad idea.
+This is outside of my, um, this is my I don't know, you know, um, but if it comes back on,
+then you're right, a launch, it comes back on where you want to go.
+CW and this is kind of the same thing I was saying, which is like, don't turn the, uh, the, uh, one GV, uh, pulse either, if you have a happy user.
+And so I think a low energy muon program, um, is something that people have talked about doing with one GB, CW.
+So it's the same argument there. Okay. Can they maybe follow up on this really quickly?
+Um, from the accelerator point of view, though, if you were, if you didn't have, um, the K on program, right?
+You're saying for both the cost and simplicity of design point of view, you would just start with pulsed right away, right?
+Is that a true statement? That's right. So if you think about what the, uh, muon collider, what the cumulative ring means, it needs pulsed.
+And so as CW is essentially you're not using these extra cycles and um, you're paying more for it.
+So when we did our we had CW go up to two GeV, we did a cost estimate and then pulse the rest of the way.
+And the pulsed from 2 to 8 GV cost less than the CW from 1 to 2 GV.
+So that gives you a sense, right? So you would not want to do CW all the way up.
+Certainly. So at some point you're switching. Yeah. That's where you should park where the physics is basically.
+Yeah. But the switching is really, uh, more of a physics question.
+Where do you want to be in that sense? Yeah. For, for the users.
+Okay. From the technical standpoint, you would just switch over as soon as possible.
+In fact, you arguably would not have that CW to begin with if you didn't have other users.
+So so there, um, we also actually discussed about like the Neutrino Factory, which doesn't require like a one on sake,
+uh, time, like a structure so that we could have a, like a bunch structure.
+Mhm. Uh, record that we can like, uh, make a continuum like, uh, neutrino.
+So solenoid all focusing rather than horn focusing.
+And then you would study that Trina was coming from. And what energy would that be. Uh, for the brother mean.
+Yeah. The problem about the right one. Okay.
+Yeah. So that's another thing as, uh, you know, uh, what our is the first user for an HIV proton driver.
+And then what are the users at CW? GV scale linac program.
+It, uh, since you are, you know, in a you have this, uh, playground to understand space charge.
+Can you comment on which simulators show robust, uh, modeling, or do you know which simulators do you use to compare with your experiments?
+And, uh, are they bespoke or are they sort of general purpose?
+And you to the, uh, yes, I can tell you a lot about that.
+So, um, different facilities tend to have different house codes,
+and they typically don't offer technical arguments for why they have chosen so much as it's got a group that other people use it.
+And you can go to someone for, for help. And you can say you understand the limitations and the features of the code.
+Um, so, uh, uh, yes, yes.
+Orbit. Um, uh uh, CERN uses um, this program called X suite, which is kind of built on Pi orbit, I think, which is a variation.
+Uh, Fermilab had a house code. Uh, synergy or synergy.
+Yeah. And the argument for that was it scaled really nice with supercomputing.
+Um, but we were the only one who used it, and it did not have a very strong user base.
+So Fermilab has started to move away from this, but we've not yet found a home.
+And impact is used a lot, uh, in California and by our electron collaborators.
+So we have not yet found a home. People have started to use the CERN X suite.
+And the nice thing about it is it's, um, multi package code. So you can do space charge, but you can also do collective effects.
+You can also do radiation effects. You can do electron cloud.
+Vladimir briefly mentioned that. Um so um it's in flux for the muon collider.
+I would say uh, the uh, um, a couple of features that you might want.
+Some of the codes don't have this longitudinal, um, space charge force at all.
+So that's one of the things that we discovered. So this is an important effect.
+So it's got to be not just, uh, a 2D, but, uh, at least a two and a half D or a 3D code.
+The other big thing is, um, uh, essentially, uh, the most accurate thing would be to take every single particle in simulated space charge forces,
+um, and or at least do a large number of macro particles.
+But how much do you get away with, uh, for doing, like, frozen or quasi frozen models?
+Uh, traditionally you can do quasi frozen models, which are numerically so much faster on scenarios that you understand very well.
+And so for us, doing things new for the first time and having a time varying system where you have a lot changing,
+um, with a bunch rotation, I think you need a pick card.
+So you need a 3D pick code or a two and a half to pick out which those ones that I just mentioned, uh, they all qualify as that.
+Um, so I don't know if that really answered your question, but, um,
+it's something that as a community, uh, we are constantly negotiating amongst ourselves.
+Okay. So from your perspective at Fermilab, you know, you don't, uh, have a favorite yet?
+I think X suite would be something I have not tried yet, but I think it would be really great.
+Uh, Fermi people in the Fermilab recycler have started using X suite and really like it.
+And I it would be nice if we use the same code as CERN.
+Um, and I also think that, um, uh, I, you know, for whatever reason, I think it's because it's,
+it's such an interesting playground is attracted different users from different facilities.
+It's been benchmarked by like six different codes.
+So it's actually kind of nice to be able to say, uh, the same story in five out of the six of these codes.
+And therefore I found a bug in the last one.
+Or I have, like increased confidence that these two different space charge algorithms are telling the same story.
+Um, so that's just an I think that's just the nature of iota.
+But, um, if I had to pick one, I think I would try to try to go, uh, Pi Orbit or X suite,
+which are these just having more users and bigger community to talk to.
+Cool. Um, there's only one that I was expecting to hear, but it didn't.
+Is warp X is at warp X?
+Yeah, I don't have much experience with that one, but I think that's another one that's, uh, popular out there for, um, electrons.
+You know, I think it may have some. Is it true that has plasma?
+Wakefield. Kind of. It has plasma capability. So, uh, you may you wouldn't need that for this, but, um, I don't know, um,
+if it has the things that we do need, a lot of times the codes have features that we don't need.
+I think that's a pretty rare. Uh, yes, that's another big thing.
+It's not free. Uh. Okay.
+Um, I think with that, let's thank Jeff again.

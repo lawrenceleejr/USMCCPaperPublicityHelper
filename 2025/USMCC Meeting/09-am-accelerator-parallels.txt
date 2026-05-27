@@ -1,0 +1,853 @@
+# AM:  Accelerator: Parallels
+
+Uh, my name is McLeish. I'm from Brookhaven Lab. I will be chairing this session.
+Um, so the first talk is from Luca Bottura.
+Um, he will be presenting to us, um, uh, muon Collider, uh, relevant, uh, magnet R&D, uh, in Europe.
+So floor is yours. Look up. Please go ahead. Thank you very much.
+Thank you for the invitation to, uh, present and, uh, the title says, uh, magnet, uh, R&D in Europe.
+And it's actually something which is going on already across the Atlantic, although I will come back to that.
+And, uh, I'm sure Ramesh will have comments on that too.
+So I'm presenting this on behalf of the, uh, the task coordinators of the various parts where we divided the magnet R&D full year Bertini uh,
+Barbara K5 another Baldini was connected somewhere, the Marriott Marquis, the data.
+And, uh, so I'll, uh, talk about the magnets for the muon collider.
+You know what we realize we need to do? Uh, I spend most of the time telling you what technical advances uh, we managed to make.
+Look at, uh. Sorry. Uh, could you please pause for a minute? We are having some audio issues.
+No problem. So if you if you have a microphone, could you please bring it closer?
+Uh, the mic is already. Let me check this setting.
+You know better like this. Yeah. Yeah, it is better.
+Yes, yes. Yeah. Please go ahead. Yes. We switch to this.
+Okay. All right. So as I said, I will talk about the magnets with the new Collider.
+Spend most of the time on the technical advances in the past three years, four years.
+Something about the work organization you may be interested in to. And then, uh, just a slide of somebody in perspective.
+Okay. So Magnus for the muon collider. So.
+Let me go. Maybe I'll get the laser going. Right. So, uh, I mean, you're familiar now with the, uh, with the layout.
+It's something that comes out of map, which, uh, we worked on.
+Uh, but essentially what we have is a series of magnets that, uh,
+are extremely challenging from the target and capture solenoid, so requires order of 20 Tesla field on the beam.
+Uh, the muon beam cooling solenoid is many solenoids, which, uh, have a medium to high field but relatively large bore.
+So lots of stored energy and many of them all the way to the final cooling magnets, which are, uh, the kind of top of the field,
+not necessarily the most challenging, but surely, uh, very important for the whole performance of the machine.
+And then accelerator and collider magnets, they range anywhere between 10 and 40 Tesla.
+And uh, as you will see in a moment, is, uh, everything we're looking at is made of these.
+Yes, there's obviously resistive magnets. So just touch briefly about that.
+But the focus here is mostly on high view superconducting magnets, as you can tell from the field levels.
+So, uh, how do we managed to advance uh, for these value systems.
+So starting from the targeting capture solenoids. Uh, so we picked up the, uh, map design and then evolved out of that first one, the concept.
+But as you can see from here already into some details of engineering,
+3D modeling, where we have a coil layout inside the coil, start with a beam pipe.
+And what you see is already details about the piping, uh, winding, uh, where we need to apply techniques, which are kind of standard double pancakes.
+But we're looking into the joints, the termination electric and insulation features.
+And here, uh, the idea is to apply conductors that resembled very much those of fusion, which already map looked into.
+But now we the evolution of the materials and what is that is happening and that is doing for fusion.
+We are moving into the two to the point that lately, uh, in particular for the European strategy iteration,
+we proposed a model coil that should demonstrate performance with target solenoid producing 20 times a 20 Kelvin operating temperature.
+So, uh, we went further into integrating, uh, these magnet and cryostat cryo system designs into, uh, an ideal tunnel.
+So this could be what the target region looks like, seeing from the outside,
+you see the size of the person that gives you the feeling for the size of the system,
+but also the details inside, all the way down to the target pipe and the supports which we would need for the massive shielding.
+There's a lot of tungsten between the target and the coil itself, holder of 150 to 200 tons of tanks in there.
+For the 60 cooling solenoids. We started off with the map design.
+This the optics there was left, as in inheritance by the many studies that were performed at that time.
+And uh, we collated all the, uh, the solenoids.
+Uh, now, what you see here is all the cells, one after the other.
+Now, you probably are aware, but each cell is actually consisting of many solenoids repeated.
+So there's many cells in each of those stages. And there's a total of about 3000 solenoids with a field of 2.6 to 18 Tesla.
+So that's actually the newest optics we've been looking at with three bore diameter, the range from 50 millimeter to 800 millimeter.
+So obviously the low field is usually coupled to low uh, a bore and high.
+You know, high field is usually coupled with low bore. Nonetheless the energy stored is substantial.
+And also the coupling between the solenoids substantial.
+So here as well we're moving into more engineering aspects like how do you integrate all of those solenoids in a string of components,
+components that will make the accelerator. And we realize that actually the challenge is even not so much magnet performance.
+A single magnet can get there.
+But how do you integrate that into a system like you see here, which contains radiofrequency cavities, absorbers, the magnets, and the magnets?
+Because of the alternating nature of the field, which is required through the coating,
+experience very large repulsion forces, which, by the way, in case one of the magnet quenches, may change.
+So that's one of the main engineering challenges we're working on here.
+As for the, uh, target solenoid, we are looking into HDS solenoid winding.
+In this case we're looking into non insulated winding with uh, the team is going through magnetic optimization,
+mechanical design, thermal modeling and then multi physics studies.
+I'll come back because it's one of the aspects that probably we are pushing forward in magnet technology the most.
+This uh spot is uh accelerator magnets that are concerned.
+The final cooling I already said is holy. One of the highest is is the highest field magnet, uh, in the chain.
+Uh, it doesn't even in setting the highest energy. But surely we look, there's an outstanding realization.
+40 Tesla, 50 millimeter bore magnets in the range of half a meter to one meter length.
+And the concept has been translated lately into, again, engineering.
+So we have, uh, structures which are pretty compressed at that level of field.
+The electromagnetic pressure is enormous.
+So you have stresses in the range of 600 mega pascals in the coil, which is at the limits of what the coil can sustain.
+And, uh, that is supported by both, uh, design and, uh,
+stress analysis studies and what we are doing at the moment, we are moving into actually prototyping.
+So this, uh, magnet is built in pancakes, uh, slices that are stacked one on top of the other after being compressed.
+And these, uh, pancakes, they are actually soldered.
+So the tape is not a conductor that is insulated, but is wound and then soldered by tin so that it becomes actually a mechanical component,
+but that you need the specific tooling which we designed the realized.
+And what you see here is the first of these Asian pancake windings that are being realized that we speak.
+So this is one of the, uh, nice views. It's not rendering, it's real.
+And it shows you both the beauty and the issues related to that.
+So, uh, these pancakes which are soldered, you see here some of the shoulder drops to get,
+uh, polished away once we need to stack one on top of the other.
+Uh, we have we are producing, uh, order of one pancake per week,
+so that we hope already before the end of the year to start having first results for prototyping.
+First step towards the 40 Tesla that you saw just before.
+Now I mentioned multi physics before. Uh, multi physics is uh,
+one of the uh characteristics of this magnets which are non insulated and made with
+states and especially if you have traces when you ramp them up or ramp them down,
+but especially if they quench, you know, if they ever quench so turns into normal state.
+What that means is that the the current starts moving out of the pancakes.
+So being dissipated by the resistive transition and induces a kind of wave from the top pancakes to the bottom pancakes,
+like in this simulation, where the quench is initiated at the top of the magnet and it's moving down towards the other end of the magnet.
+Now, uh, that results also stress. So the thermal transient produces an electromagnetic transient which produces a force transients.
+That's how the multi physics needs to be understood. Well, we realized that doing nothing.
+Then maybe situations where the stress goes above the allowable.
+And that is why we are looking also into specific and improved protection systems where we actively spread the misery.
+As one of the gurus of superconductivity used to say Martin Wilson, when a quench happens, you want the coil to go at once, the whole coil.
+And that can be done as an example here, by using a capacitor discharge, what do you actually induce a quench throughout the coil,
+which was which is most much more benign than I think this way going through.
+Okay. So all of this is happening for the faulty Tesla, but not only also for the 60.
+And as we'll see later for the accelerator magnets now moving to accelerators.
+So the Rapid Cycle Synchrotron and the hybrid so-called synchrotron there I'm sure you're aware
+and you know the that accelerator configurations are the tricky especially for the hybrid ones.
+Because what happens is that the beam that goes through the cycled pulsed resistive magnets and the steady
+state superconducting magnets is actually oscillating in orbit from a high energy orbit to a low energy orbit,
+as the strength of the pulse magnet is changed.
+But the strength of the superconducting magnet does not change.
+Okay, so here one of the challenges is surely beam physics, but also accepting that beam motion inside the resistive magnets.
+And this is why the resistive magnets they look like this. So they have a rectangular aperture, a large width, and a relatively small gap,
+which is useful because the energy stored, as you will see in a moment, is proportional to the gap.
+Now, the superconducting magnets, which also need to be relatively high performance.
+So ten Tesla, they will see some radiation.
+And so it would be beneficial to have them a relatively high temperature of the order of 20 K.
+And there from initial studies that we did at CERN, we moved into a bit more conceptual magnet studies.
+As you see from the plots here, where we have a racetrack has coils that are placed to produce the ten Tesla field,
+even with an open meet gap and with a 30 by 100 aperture.
+So 30 millimeter gaps, 100 millimeter aperture in the horizontal plane.
+So this looks like a very interesting concept,
+especially because it looks like very much a dipole that is being produced at the moment in industry as part of the Italian Covid recovery plan.
+It's a dipole which is called asthma. And these made exactly with this type of coil.
+So these types. So this could be one first prototype that pushes the technology that we need for the accelerators.
+Now for the accelerators, actually, beyond the, uh, the, uh, nice work on superconducting magnets.
+The real issue, uh, to be frank, is actually the management of the large powers, because once you have.
+A resistive magnet with a certain gap in a certain aperture.
+The energy stored in that gap as a sort of value.
+You can't do anything about that. What's the gap in aperture of fixed?
+You would have, you know, 30 by 100 millimeter. We'd have about four kilojoules per meter stored.
+Now, the energy stored in the whole magnet is a bit more than that because you will circulate circulate back the flux lines.
+And so you will be ending up in the order of five kilojoules per meter, which is already very efficient.
+But now, if you have a machine of all of the length of the order of ten kilometers, okay.
+And as you know, we're looking into any implementation at CERN with the seven kilometer order to see which is 28.
+So that's the right order of magnitude, the magnetic energies of the order of 50 mega, mega joules.
+And if you want to pulse that up and down with a millisecond timescale, you end up with the volt ampere, which is 50 giga volt amperes.
+So the main challenge is to manage that volt ampere precisely because you want to ramp the beam,
+minimize the storm magnetic energy, and especially having a highly efficient energy storage recovery.
+So obviously we are working very hard on that with ideas of power converters and how to store and recover the energy, particularly the magnets.
+That's the last point. So, uh, at the beginning of the study, uh, it was not clear what the specs would need to be for the magnets.
+And that's a situation which is kind of new to us,
+meaning that usually you get the specs in terms of field aperture quality, some other features, but then you work on that.
+Now in this case the, the, the, uh, the space, the design space was a bit more open, uh,
+implying that there were questions about what is the field that you can generate with a certain aperture,
+what is the gradient that you can generate with a certain aperture. And this is exactly what you done.
+So we've created plots where we plotted the board diameter.
+So the aperture the magnet that you can imagine designing with the sort of field in the case of a dipole.
+Okay. So that's an e b plot E for aperture B for field.
+And we did that in particular. In this case we're now using treating implementing limits that come from now being 3D in performance.
+So how far can you push the superconductor is where is where there's mechanical limits.
+There's a blue line here. What is the stress that you can sustain in that magnet, as well as quench protection with this orange dotted line here?
+What is the maximum energy density that you can actually protect for that magnet?
+So we came up with plots like this for different materials as well as HDDs.
+So in particular the rare earth barium copper oxide which is a 20 K.
+We give you an AB plot like this. So as you see already,
+that opens up a wider window of possible designs for magnets that have either wider aperture to the same field or higher fields at the same aperture.
+Now that be careful though, provided that quench protection, which is the dotted orange line here,
+is not done with the classical detect and heat with quench heaters.
+But this is done doing non insulating windings there too.
+So that's the small dotted line you can barely perceive here.
+Okay. So that will open up the window that we want to use for the collider.
+So that line is possible for the muon collider magnets because they're steady state.
+They don't need to be around. So they do need to actually have a long time constant degree let alone type of special.
+But you have to get to the field and you can stay there and adjust.
+Now the same type of plots we've done also for quadruples. And just to show you what the useful nurses on a G plot.
+So I saw that maybe its aperture gradient allows you to understand.
+As an example, if you decrease the operating temperature,
+what you see is that you have a big effect and the given aperture for large gradients and the small effects for small gradients okay.
+So decreasing aperture these are decreasing operating temperature.
+Which implies increasing operating current density, makes you gain a lot in gradient for a given aperture.
+Okay. Now, it's also interesting to see what is the effect of cost, which is an implicit variable.
+In all of this we said a given cost which is €400 per meter.
+And what you see is that the cost increase as a large effect, a low gradient by making bigger magnets possible.
+That makes sense at high gradients where the magnets are anyway small by accepting higher cost doesn't make an effect.
+Okay, so having these studies was actually a tool to discuss with beam physics what is the best machine that we can work on now?
+It's a tool. The work is not finished, it's ongoing, but it's one of the things that could be possibly taken up also in collaboration with the US.
+Now beyond that, we then we said, uh, operating point.
+And in fact, your point is simple. We decided the magnet can be actually it's a we said a field of 14 Tesla for an aperture of 150 millimeter,
+which is what we need for shielding reasons. And then we started.
+Magnet design like you see here. So this is a cross-section of a magnet based on tapes,
+where the innovation here is to add racetrack coils as well as bedstead coils where the curvature radius can be made relatively simple.
+So we're looking into 14 Tesla at least maybe cost be below 400 kilos per meter in this,
+uh, configuration like this can lead to fields up to 15.7 Tesla.
+And now with this we also looking into different configuration.
+So these block coils that you see already on the left hand side but also cosine of theta where you can bend single tapes into a t to form.
+Uh, something to be said. You're going back to the, uh, map studies.
+There was a lot of excellent work that is done. We are also looking into combined function magnets.
+And in that case, if you don't want to lock the ratio, the gradient to the field.
+The best is to have magnets one side, the other.
+Now the question could be do you want to put a quadrupole inside the dipole, the sort of windings that you see on the left hand side?
+Or do you want to put a dipole inside a quadruple. That's the one you see on the right hand side.
+And what we found out that this most efficient configuration is actually the one with a quadruple inside the dipole.
+And that's consistent with the studies which we've done now.
+More than ten years ago by Fermilab.
+We are also that configuration of a quadrupole inside a dipole was found to be the most efficient one for the three TTV center of mass Muon Collider.
+Now, as to the work organization, a couple of slides to show you where we stand.
+So, uh, we are an International Muon Collider collaboration had expanded in that there's an activity line which is called magnets.
+And that's what these work packages. But it is also supporting European study design study which is called Mukul.
+And there there is a work package seven which is called magnets.
+And fact will be managed to do is to align nearly perfectly the work on the international
+Mu Collider collaboration at the Mu core so that the mirrored one to the other.
+So essentially we have a coordination or communication task.
+So I'm doing that. Bernardo Baldini will take over soon with the help of Bob Erica.
+He was a newcomer in there from a univ in Geneva.
+And then we have three task, which are the three Magna systems. You saw the solenoids from the targets with the 60 cooling.
+That's a and if any mirana the accelerators. That's under the coordination of CERN and the collider, which is under coordination of an event.
+The main instrument for coordination is the Mule Magnets Working Group.
+And many of you have been participating.
+So this is why I said at the beginning, I mean, this is the EU aspect that is actually already in collaboration with you.
+And each task organizes internal meeting and external meetings with other work packages as an example of beam physics, neutrino flux and so on.
+And by the way, uh, you can open up the link. Everything is open and you can browse the material.
+There's a lot of materials and over 200 meetings that took place since three years ago.
+Now, it's also interesting to remark that the dust to solenoids is partly mirrored by a work package 2.6, which is solenoid for the new collider.
+And this part of the high field magnets are in the program, which is hosted by CERN.
+So there's code sharing, sharing of many activities where the solenoid technology,
+non insulated mechanical material testing is relevant with the broad scope of Hfm, which is mostly oriented to accelerator dipoles and quadruples.
+Nonetheless, each magnet technology can progress also through solenoids work.
+And now I think this is probably one of the most important messages here for the meeting.
+I think it would be a good result. Defining a formal form of collaboration to the US Mangla development in particular Usdp.
+But I know that there is a reorientation that is taking place, is taking place.
+Probably Ramesh is going to talk about that takeover. Also new Collider Accelerator board.
+So I think it would be good to have a formal link that actually binds the programs together.
+Uh, we also worked out a plan from today through the R&D,
+through prototyping and production to make sure that what we are saying that the machine by the 2045 is realistic.
+And in fact, you know, without entering into the details of the plan.
+What is interesting is that the medium term R&D. So over the next ten years, which we propose that the European strategy, uh,
+meeting that took place in Venice being evaluated before the end of the year, now aims at increasing the TRL.
+So this plot is a technology readiness level for the value systems,
+so that we can get to a level of six, which is typically what you would need to enter into industry.
+And I think the deal equivalent is that you move it to the next step in the project.
+Now. The trail that you will need for a 3D TV option, which will be based on a target coding rapid cycle synchrotron,
+which would only use resistive magnets in a collider in a long tunnel,
+which may you only use W beam titanium magnets is relatively high, but it would need a lot of vertical solenoids,
+but much less on accelerator dipoles, and quadruples because the dipoles quadruples in urban tire essentially ready industry already.
+So that's also interesting to consider. And that's what directed our choice to prime the R&D on the solenoid magnet.
+This is what the R&D proposal looks like in terms of the material required, in terms of personnel required.
+It's just those figures. But what you see is that a total of about 80 million CHF dollars.
+Call them whatever you want in a total of about 250 years are required till the next ten years.
+More or less half of them during the first five years, then the other half of them for the next ones.
+Okay. So to conclude a summary. I think everybody's aware that the new collider poses some unprecedented challenges to accelerate the technology.
+And first and foremost, magnets. And that's what is making that so much interesting.
+This requires actually that we develop new concepts and engineer new solutions.
+I do not think it's a personal opinion or opinion, but I think it's pretty much shared.
+You cannot build an effective, performant new collider with present technology.
+You need something you. This, uh.
+We need also to consider in the perspective that these worldwide efforts, we produce the next step in a direction that today we not may even imagine.
+Okay.
+In particular, I refer to these magnet technology where there is so much activity, not just in accelerator technology, but also in many other fields.
+Fusion power elements harmonize where we may profit from things we don't know yet.
+And a good reference is the report of Mario Draghi when he was talking about the future of European, uh, of European competitiveness.
+But he said that 30% of the technologies we need to resolve the climate crisis, we don't even know today.
+Okay. So it's important to be also humble and look around and see what the others are doing.
+Nonetheless, I think it's my personal opinion that any next step Collider, the energy frontier,
+not just New Collider, but also the FCC will arguably need regular technology for various reasons.
+There was no time to enter into details. But surely for the capital, the investment.
+These are magnets with highly compact windings. The faulty test that will show you is three times smaller and ten times smaller mass.
+Then a user facility that has been devised for high yield testing today.
+So these are very high compact windings, high engineering current density which means lower unit material cost.
+You will spend less also the operating expenditures if you operate at higher temperatures like 20 K.
+And the helium inventory will have lower risk, lower cost.
+And finally, the return on investment.
+There's clear a strong case that this high energy physics technology will be useful to other scientific and societal applications.
+So this is why the work we are doing for the muon Collider, yes, is to the frontier.
+Yes, we need it, but not just with the new collider. And that makes it interesting.
+And we did. Thank you very much for your attention. So thank you.
+Luca, we we have time for just one quick question.
+If if somebody has. Um, and slide 14, uh, I believe, uh, you should the margin limit of the Ricoh.
+Um, and I just wanted to ask because it's not sort of a smooth curve and there's a bend.
+What's going on around that? Uh, like 17 Tesla bit there.
+Okay. So actually, well, what's happening there is that, uh.
+Uh, you have a temperature. Margin. Did you want to impose? And then at a certain point, you actually hit the visitor card.
+So, uh, this is operator operation 20 K, by the way.
+So, uh, you can always put more material to have lower current density.
+Make the magnet bigger, up to a certain limit. And then you're limited by the cost.
+Okay. So that's the smooth curve. And at a certain point, whatever you do.
+The critical current of the critical temperature is a certain value.
+Even if you increase the amount of material, there's no more steam and this is steeper.
+Does it make sense? Okay.
+So, uh. Yeah. So, uh, let us thanks.
+The thank the speaker again. Uh. Okay, so, uh, next talk is by Ramesh Gupta from Brookhaven Lab.
+Uh, he will be talking about, um, us contribution to, uh, muon, uh, relevant, uh, magnets R&D in in us.
+Yeah. A. Hello?
+Can you hear me? Yep. All right. Thank you.
+So I will be talking about the muon collider magnet development in USA.
+So first the introduction. There has been a significant magnet R&D program in US across various institutions.
+This is one complete SBIR SD card program and that product related to specific needs of the Moon Collider.
+Before the brief introduction, the formal defined magnitude program on Moon Collider has not restarted yet.
+There are significant ongoing programs in US that are strongly related to the New Moon Collider.
+So what I will do here, I will give you a rapid tool to give you an idea of wide ranging R&D we had in us in the past, or just started.
+It's okay. Okay.
+So what I have X slides from redistribution, etc.
+What I'm not doing, I'm not giving any programmatic view.
+Uh, there is a format program called USM DP program which looks amazing, which is for next generation mega R&D, generic R&D.
+But you see, if the listeners have seen it before, most of them should help me on Collider.
+So first let me go to the same thing.
+But look, I was saying we didn't collude in Japan dropping in a high temperature superconductor, those trillion R&D conductor.
+No one should take it that they are ready to use.
+They have come a long way and unprecedented funding from fusion industry had made a major impact, and I think we should take advantage of that.
+Like in fusion can make significant impact on the design performance of the collider.
+This is due to their unique ability to withstand higher energy loads.
+There are a lot of you know, there are a lot of heat loads, radiation load.
+They can operate at 20 K instead 2 to 4 K and they can generate high fields, very unique properties.
+Some of them look independent single day basis coil which we built in past the performance issue.
+So we must learn to take advantage of that as given, such as those being developed by the industry.
+What it means that sometime we cannot use the conventional design.
+And in that case we should look at the alternate design. We should be free to look at that trend design.
+We have many young people here. We look forward to that. So I'm not going to go to the magnet needs if I one slide from Steve Gourlay,
+which I borrowed and which I mainly need for future Collider and Fusion Collider and one Collider,
+and I just add one more to like what different can be done.
+One can have open footprint dipole to reduce large aperture.
+What I would do here, I would summarize the work performed in previous years now underway.
+And that came from various institution in alphabetical order.
+And it's not a complete list. I apologize for omissions.
+So first let me come to what I've done in Brookhaven. You will find many time there are hyperlink where the underlined is hyperlink.
+You can get to more information that. So what at Brookhaven what I'm going to do is going to include R&D with PBL.
+But and we share program. We did a lot of R&D on this.
+So tonight you will see that. And also the research program BNL LDA D.
+That's what additional energy studies. We did that design concept which are relevant to me on Collider.
+And as such we have built and tested over 150 has called using 50 or more equivalent of a test format.
+I would like to share that. We would like you to make a huge mistake. Not the same one.
+So. All of this program, it is important to get the funding.
+So basically you have an idea that's not enough. You have to find the funding to test it.
+So what we did, we got wherever we could get at in the beginning as well.
+Our program played a major role here. There are 11 pro funded program.
+Then we got some funding for smash through our pie and maybe even better insulated coil we got from Korea on a concert.
+No installation, and we did a lot of radiation energy study that was from every nuclear physics not have any effects.
+So let me quickly go through that. I will be going very fast. Uh, so this was the SBIR.
+We are the target field 10 to 12 Tesla and we got 16 Tesla doesn't happen too often, but that was good.
+And but we could not complete the testing. The quality still there.
+And that could be done. The overall current density there was 520 square at 16 Tesla per millimeter.
+Then we had smash where we got 12.5 Tesla at 27 K.
+This is the parameters. And that time that was the record at ten Tesla Perabo.
+And it might differ gnarly and fusion proposals.
+Those guys are still there to continue. Then we had no insulation program.
+The scoria these are many no installation quite being found.
+But we had together with the no insulation. Let me see if I can use this I don't.
+Sorry. It's not working for me. Not from the angle I'm sending.
+We had copper plate in between. So what you see here, that current suddenly drop, and that helps in quench production.
+We had them for uniform cooling, but that original production.
+So that that was very helpful that there were 17 Tesla field.
+And then we also had a coil program.
+And why it is important because in every facet of every aspect of beam, there's a lot of radiation large.
+It loads and loads. And that is relevant because we have many thing.
+So this one, by operating at 40 K and we have large margin, we are like 27% margin.
+And let me see if I can get it. We had large margin here at both places.
+So that is very, very relevant to me on Collider. I would like to have that kind of market.
+And we used a lot of like tape there.
+And eight large coils are still available.
+And then we had some radiation studies also and a breakdown unit at sort of facility, which is good for that.
+We did at 77 K not 4k. That is still we didn't do that.
+And but you can see that without field and bit field exchange the characteristic.
+Basically it says that up to a certain level it can take that you know.
+Then we also did the energy deposition study. And you see here we are fine.
+And in between we had special heaters. So we got heaters put a significant load at 30 K.
+We did that study. We put 4 kilowatt/m cube at some constant temperature operating somewhere.
+And we had stable operation for 40 years or so.
+And that was then we stopped the trend. So it kind of we showed some demonstration kind of work.
+I will have a couple of few slides on the new mega design, and we should be looking for those kind of things or something else.
+Again, they are hyperlink to go into more detail.
+At first I would go to the open movement type of design and I would say this is a true open misprint.
+Why? Because if you look at the at the conventional design, we need to have large shielding and that increases the aperture significantly.
+So if you look aperture over here is so small but shielding makes it so large.
+So what can we do to to do that to reduce that.
+In my collider, the angular distribution is such that most of the decay particle at the McMillin.
+So. So why don't you have a design where you do not have coils at the membrane?
+So that was the motivation for the movement. Open printable design,
+in which case we replace the superconductor near the x axis to avoid the direct hit that did avoid the direct hit from the primary shower.
+But that didn't work too well because what happened to other materials created secondary showers and they deposit energy on the coil.
+So what? We came up with a different design and this is called true open between design.
+So here is the moon beam. And what you have here there is absolutely no structure.
+Absolutely no structure. So the coils that will go from here far away.
+This is a cartoon. But it did that all studies also and energy deposition etc.
+You deploy your energy here theoretically remove it. So there is absolutely nothing hitting it.
+Then the secondary power secondary particle don't go back there.
+So that helps. And and then we take out them at eight K.
+So this is what I call it to open plain. And in a typical open.
+Why it is challenging because in a typical design that we're learning on the course are really towards the mic, they can't hang it there.
+So what we developed a special open between design where the force is actually reversed.
+And you can do that demonstrated that the first day on this course up there.
+So the holes will not be pushed at me or I'll force they are still of course down there.
+So we restrict it in between to transfer the forces out. We did a lot of studies that we did that we did.
+You may mechanical design, magnetic design, good will, quality and preliminary design not dictated in design.
+And since the basic design is so different, we need to test it.
+And this can be done with the access call we have from everyone.
+And this is a combination of. Combination of what we did study recently.
+These are the coils used in this magnet. Take it out, put inside some structure and you can use 8 to 10 Tesla.
+In fact the proof up with filters you can do in nitrogen itself which is quite cheap.
+The other thing that we haven't talked about the most broken or even the even that even the cable magnet design for the,
+uh, for the cable or something like that, we need to lift a conductor at the end.
+It makes it longer and create strain.
+We came up with another design called the pass or cloverleaf, in which what you see that you go this this is a small Bendix.
+You can't do anything. So you're going to put it. Doctor may have all the freedom in the world and go down and go back like this.
+If you have taken high, you must have acted to know how to do it. And and that, in fact.
+So the beam goes right from here in between. It clears the aperture.
+And that gives interesting opportunity. And we tested quite like that at 77 k the direction also.
+And that's that's an interesting option. Now let me go.
+And yet other place Fermilab uh so maintains the high field large magnet must deal with large stress in the coil.
+That becomes a big deal. So you have to have a stress major structure. So right now they doing this design.
+And I would be going very fast. You don't have much time but you see a lot of progress being done there.
+And then on the on the right side, they're working on stackable with ETR with Mpls.
+And and they are they are finding coins like this inside the structure.
+And these are the goals over here. The target is five grams like 4.2 K.
+And then on the side. And they have another stress major structure.
+You see the design and you the 3D printed parts to to to do that.
+At LBL and that do stress management with the canted cosine theta where you put wire inside this tube to take the force H at 63 by five,
+Tesla then 65.5 Tesla, then vector 12 two 313 Tesla.
+So they are going to stretch it. And then one interesting design h h is this elliptical aperture command function dipole.
+Very innovative. So you have both elliptical aperture because it takes advantage that you do not have you do not need that kind of support.
+And also combined function magnet. So that's design and that's being done there I'm sorry I'm going very fast.
+But I'm just giving the overview. And then on the ripcord they have core which is somewhat similar to the core is Einstein.
+And there they are that they are working for on this design to go for.
+I feel they are making the making quite based on their design year as we are here at Magnet Lab,
+and that's the place where they made a 32 Tesla superconducting solar.
+Right. Very 11 moon collider. So in this like what.
+And says that what are they changing going from 32 to 1440 Tesla.
+So first 32 Tesla. It has been demonstrated and and now they plan to do for 40 Tesla.
+So this is a basic of 32 raster design. It had been shown to work.
+And this is the date of construction.
+Everything is covered with steel insulator and metal insulation which has Broidy stress management kind of thing and important thing.
+It's the quench protection which is all integrated here. And then it cannot be exactly used in 40 Tesla.
+So here's the list of it. Differential are listed.
+And you can do some scaling. So they are doing significant engineering.
+But you know we didn't want to go in that direction. Then final institution in the morning.
+This as many as we are urged at yarrabah and continued in many areas at.
+This is a paper written in 2007 uh with the requirement to use domestic, which is a B.
+This is a well cited paper on the initial design of actually like uh, at uh for the movie cooling.
+And then they also had important work on the helical cooling and their in GTA.
+As we I are with Fermilab, they built some model and tested it.
+I would like to acknowledge before coming to summary slide that slides paper in discussion with several colleagues from Brookhaven PBL final,
+Berkeley and Magnet left me. I think they contributed to this presentation.
+In particular, I would like to thank Steve. Look at Lucas and all that.
+We were listed here. So let me come to the summary we want.
+Collider needs a variety of magnets. So tonight's dipole quadrupole, most with very challenging requirements in long term,
+is likely to play a major role in the moon colliders because of its ability to operate at elevated temperatures or stability,
+to create to tolerate large energy deposition or its ability to create very high fields or unavailable.
+Thanks to so many challenges and need for new designs and technology.
+You said I did field for the Recreation scientist, and in years to get involved, you can really make a difference.
+So please join us in some of your past work at your represented.
+One can build upon them or come up with something more creative.
+Thank you. Thank you.
+Ramesh. Uh, one quick question. We are way behind schedule.
+Okay. Uh, okay. Hi.
+Um, so on slide 15, you talked about the open mid plane dipole.
+I'll try to make it quick. I'm sorry. So I think this is a great idea.
+So a few days ago,
+I was talking to someone about the tungsten miners and the power consumption that it would take because it's absorbing so much heat and all that.
+So I think this is great, but I'm a little bit, I guess on the next slide,
+you talk about how you would combat the issues with the Lawrence forces and the poor field quality with this type of design.
+So can you talk about like what's going on right now and how they're thinking about fixing those issues?
+So so we are. So what we did at that time, we bring your design and I would be glad to you can click somewhere.
+You'll find the reference that we got both the field quality and the data force of it's going to go up there.
+But what I am proposing to do here field quality.
+You can do compute basic models. Right.
+And to some level there okay. You can always adjust if they are not okay.
+But the mechanical thing that can make calls which can really go in that direction.
+So this is the model computer model I made with the existing coil atlas coil where
+the force says if you see very clearly they are not running in a particular way,
+you can arrange in such a way that forces of them are opposite to the midbrain.
+The net force A will still be towards the midbrain, but you have a structure in between here or here which takes the forces down.
+So we want to with these coils one can test if it is really working or not.
+So that one is to demonstrate field quality, etc. one can do by computer, but these kind of things we need to do a demonstration.
+Thank you. Okay.
+Let's thank the speaker again. Thank. So the next talk is by Dylan, who will be talking about RF cavities.
+Oh. Hello?
+Can everybody hear me? Okay. You'd be louder. No worries.
+Sorry. It's okay. Title didn't show up for some reason.
+Mm. Title didn't show up. Uh.
+No worries. Okay. Keep going as it. I'm going to go.
+Okay. Uh, well, thank you, everybody, for the great turnout and for coming to this talk.
+Um, and thank you to the organizers for the opportunity to present the research I've been doing.
+The title didn't show up, but, uh, I've been doing some work with my supervisors,
+Chairman Luo and, uh, Xiang Lu on, uh, some RF cavity design for the future of, um, Collider.
+And, uh, so today I'll talk about some of the recent progress that we've had, uh, over these studies.
+So here's an overview of the things I'll be talking about today. I'll go into some brief motivation, uh, for these studies.
+I have three main, uh, studies that I've, uh, looked into that we'll talk about.
+I'll go into some conclusions and future plans.
+Uh, so before I get into the details of the work I've been doing, I think it's important to outline some of the,
+uh, design considerations for the, uh, what I'm calling channel, uh, cavities.
+Uh, so first, uh, as you've seen, there's very large magnetic fields present, uh, in the cooling channels.
+And so it is necessary to have normal conducting RF cavities, um, and as we call this beam, uh, and the beam size, uh, the beam momentum shrinks.
+Uh, the cavity requirements are going to change along this beam line.
+And so, um, this requires multiple cooling stages to accommodate all the different gradients and,
+uh, frequencies that are necessary to achieve those gradients and, uh, other things.
+Um, and then so, uh, another thing that's important to know for these are of cooling or the cooling channel or off cavities,
+is that, um, there's a thin window that encloses the iris in the proposed design.
+So you can see an example cavity here by CERN. And, uh, the reason for this is because it helps reduce the, uh, breakdown probability.
+Uh, in past considerations, beryllium has been used as the thin window, uh, for the, uh,
+material, uh, because it, uh, has more breakdown resilience than copper in the you feel region.
+And also this closing the cavity also increases the R of a Q value.
+So we get more efficient acceleration.
+Um, but with the introduction of these windows and the electric fields, there are some things we have to consider and look into.
+Uh, so as I mentioned before, beryllium was the main proposed material for these cavities, but there's been some,
+uh, talk about maybe moving away from that because of issues with handling and manufacturing of beryllium.
+Uh, so, uh, for this work, I'm going to do a material trade study, uh, on this, uh, that you'll see later on the material window.
+Um, we also need to assess the effects of beam loading.
+So on, uh, along the muon cavity, we have very large sponge charges, uh, and very large, uh, transverse spaces.
+So we might expect to see some, uh, significant, uh, beam loading effects, uh, which could impact the, uh, uh, quality of our beam.
+Uh, and lastly, I'm going to talk about some, uh,
+break down considerations and consider considerations of breakdown phenomena in these large magnetic fields.
+Uh, so the first thing I'll be talking about is the scattering studies.
+So basically what we've done here is using J on for, uh, I set up a very simple geometry shown down here in the bottom right,
+uh, where we have two windows and, uh, a beam passing through those windows.
+Uh, I assessed all of the stages that were proposed in the recent Ecmc publication.
+Um, for reference, uh, and then the basic idea of what we're doing here is, uh,
+I change the radius of these windows according to the design, uh, frequency defined by the MGC papers.
+In each simulation, I simulated 200,000 particles, uh, with the same luminance values that were recorded in the MTC paper.
+Uh, for the simulations, it's important to note that we ignored space charge effects and external fields because these will be the same,
+uh, regardless of the window material.
+So the scattering effects can still be considered, uh, and compared for the different materials without having these.
+Um, and then for this, uh, work, uh, we assessed aluminum and beryllium, um, and we went from window thicknesses from 100,
+1 to 100 and microns, uh, and the particles were incident for the window and then were just, uh, the figure of merit that we're using.
+Sorry for the, uh, formatting issue here. Something happened with this by the figure of merit that we were using to assess the,
+um, the scattering effect was looking at the transverse admittance.
+It says here that the eye is equal to x or y, the x or y component.
+Uh, so we're using the normalized transverse admittance here, uh, to see how the, the beam scatters according to uh, this model.
+Um, and then uh, it's also important to note that particle decay is accounted for, uh, in the physics models that were used for.
+And any particles that are decayed or scattered out of the simulation domain are ignored from all the calculations.
+Uh, so here are some sample plots of the, uh, x, y distributions and z phase space.
+Um, so some things to consider is here we show three different stages.
+Uh, so A1 is the very first stage of the proposed, uh, rectilinear uh beamline.
+B1 is the first stage after merging. So that's after the bunches are called a little bit.
+They are put back together when they have a large phase space again.
+And the very last one here is the final stage of the, uh, rectilinear cooling line.
+Um, so you could see that at the very early stages, um, there's a very large admittance, uh, initially.
+And so the effects of the windows and the scattering on the, uh, bunches,
+very small, are almost negligible compared to the actual, uh, uh, batch size.
+Um, and in the later stages, we see a very large growth.
+Uh, and it's also worth noting that the particle loss for all these simulations was basically negligible.
+Uh, so, um, that was a good to, uh, take away from this.
+And then, so as I mentioned, uh, we compared the emissions values for these different stages.
+Um, I compared A1 and, uh, B10 here just to be, uh, brief.
+And they kind of encompass a lot of the, uh, properties of the other stages.
+And so some things to notice is that as expected, um, at the earlier stages.
+So at A1 the relative admittance changed from the initial defined admittance is very small.
+And so um, and at the later stages when the beam is substantially cooled, the relative admittance growth becomes more substantial.
+Uh, about about a factor or about, uh, by about an order of magnitude.
+And what we see here, uh, in this plot, is that the aluminum material, uh, needs to, to achieve the same relative admittance loss or,
+uh, relative admittance dilution, uh, needs to be about a quarter of the thickness of the beryllium windows.
+Um, and one thing to note, too, is that all these, although these changes are pretty, uh,
+small for the two single cavities I had and the actual linear cooling channel will have hundreds of cavities.
+So, uh, this effect will grow with the number of cavities. And so that may be something to consider if we, uh,
+decide to go with different materials and other things, uh, as we design the cavities for this beamline.
+Uh, so next, the thing, the next thing I'll look into was, uh, some temperature dependent, uh, breakdown studies, um, for different materials.
+So this work has been done before by this and some other people. Uh, so I'm going to go over the model briefly here.
+The basic idea is that, uh, uh, the cavity walls can have a series that can be, uh, uh, local sources for, uh, field emission.
+Um, and then those field emit electrons in the large metallic fields, get focused to the neighboring walls.
+Uh, and then when they impact the wall, they deposit heat, uh, or energy in the form of heat.
+And then this heat can cause local temperature rises.
+Um, that could lead to breakdown. And so basically, what, uh,
+was done in the previous works is starting with the heat conduction equation and some definitions of the power that the electrons are depositing.
+You can solve for the local temperature rises, um, within your, uh, geometry that's cylindrical.
+And if this local temperature rise surpasses the, uh, temperature threshold that's defined by the materials, uh, strength.
+Um, then this could lead to dislocations, which leads to breakdown.
+And so previous studies, as I mentioned, have been done using this same model.
+Uh, and the primary focus of these studies was using beryllium, aluminum and copper, um,
+where beryllium showed dominance, uh, due to its low density and large temperature threshold.
+Um, and then, uh, some news, uh, some recent studies, uh, through the SMC, uh, actually inspired this work.
+They had a very interesting approach. And, uh, that led me to go into the work I'm doing.
+So basically what they did is they used a scaling model to, um, see how cold copper would,
+uh, uh, uh, fend against these other materials in terms of its breakdown resilience.
+Um, and the results showed that there's limited, uh, improvement when using cold copper, um, and under the assumptions that they've made,
+uh, and then so what I decided to do was, uh, using this full model, uh, that was described before, that was, uh, previously done.
+Um, I investigated cold copper from, uh, by modifying both its material properties.
+So the thermal mechanical properties and also, uh, reducing, uh, assessing the reduced current that was shown in, uh, experimental work.
+Um, and then so for this study, uh, I assessed 8 or 5, uh, megahertz cavities.
+Um, I looked at high magnetic fields. So previously they went up to four Tesla.
+I went up to 14. Um, and all of the results are assessed at the center of that geometry on the surface of the material.
+And so these are the resulting figures, uh, comparing cold copper and red to the, uh, previously study materials.
+And so some things to note here is that the lower magnetic field, uh, beryllium and aluminum are still outperforming the cold copper.
+And this is because their temperature thresholds are so high that, uh,
+at these lower magnetic fields, when the beam lifts are larger, they deposit less energy.
+And so these, uh, materials, because they've such a high threshold, have more resilience.
+But as the magnetic fields get larger and this beam shrinks and the deposit of power becomes, uh, more substantial.
+The, uh, enhanced diffusivity of the, um, cold copper and its reduced, uh,
+field emitted currents both contribute to higher breakdown resilience, uh, at these larger magnetic fields.
+Uh, and then also continuing with this breakdown study, another thing I assessed was the effects of pulse length.
+Uh, so the same people at Ecmc, uh, did a very nice study showing, uh, using that scaling model, showing that the, uh,
+reduction of pulse length could drastically increase your, um, uh, your, uh, safe operating gradient shown here, uh, in the figure.
+Um, and so, uh, doing a similar study with the full model that was proposed, uh, by doctors, uh, years ago, we assessed various pulse lengths.
+And so what we see here is that at the lower magnetic fields, um, the, uh,
+shortening the pulse length just by a little bit can substantially increase your, uh, safe operating, uh, gradient.
+Um, and as we go, uh, higher and higher, uh, and so and then, so decreasing it down to the nanosecond level can,
+uh, substantially, uh, and even more significantly increase your, uh, safe operating gradients.
+And then as the magnetic field increases, um, we run into a diffusion limit.
+So the diffusion length, the materials defined by the pulse length.
+And at these larger magnetic fields, the, uh, bunch, uh, radius is becoming more comparable to that diffusion length.
+So there's kind of a limiting factor of this diffusion length compared to the, um,
+the beam size that the larger magnetic fields that you run into that will limit the effect of shortening the pulse length at these higher fields.
+Um, and so, uh, moving forward, I also did some effect, uh, studies on the effect of beam loading.
+So as I mentioned, we have large bench charges. So the beam loading is quite significant.
+Um, some things to note here is that the, uh, wake fields that are excited, uh, by the bunch as it passes to the cavity,
+can be decomposed into two components the space charge component, uh, from the bunch itself,
+um, which will be substantial for the, uh, muon Collider, 0.9 beta, uh, velocity.
+And also, uh, it can be the other term would be the geometric wake, which is the, um,
+emitted radiation interacting with the surrounding cavity materials and other things.
+Um, so that would be substantial, significant for the results. Uh, later.
+So as a first attempt, uh, I looked at using CSD Wakefield solver, which uses a line charge, uh,
+rigid line charge, uh approximation, um, to assess the effects of Wakefield's in the different geometries.
+But as I mentioned before, these neuron collider cavities are closed, so they don't actually have, uh, beam pipe that passes through them.
+And so, uh, I attempted to add a small beam pipe shown here with a depth D and radius ARP to see how this,
+uh, insertion might affect the resulting Wakefield.
+And so, uh, what we did or what I did was I ran simulations with the full, uh, structure of geometry here and then subtracted off the smooth pipe,
+which would be the, uh, smooth pipe simulation by itself, which would basically just be the space charge wake.
+And then subtracting those, you can get the pure structure wake.
+And what we see here is that the, uh, structure is Wakefield, um, will actually be modified by the, uh, addition of this small beam pipe.
+And so, uh, this code or the standard code of KSP Wakefield solver does not it's not sufficient to assess
+the effects of beam loading in the muon collider cavities if we go with the enclosed design.
+Um, so what I did to try and, uh, get around this issue was use the KSP solver, um,
+where basically it mimics the, uh, the rigid live charge line charge approximation, uh, using a point source.
+Um, and then, uh, I extended the pipes to remove any kind of edge effects.
+I resolved those fields using the peak solver, and then I export it, uh, and solved with the Python post-processing code.
+And so, uh, to validate this model, I used the same model from before with the pipe passing through a cavity because,
+uh, these works for this model are trusted. They're just not relevant to the muon collider cavity.
+Um, and so comparing for two different beta values,
+we see perfect agreement between my post-processing processing code with peak and the, uh, Wakefield solver.
+Uh, so to further validate the model, I checked these, uh, space charge weeks, uh,
+using this smooth pipe, uh, approximation or using this smooth pipe geometry.
+And what we see is that at small radii, when the, uh, bunch, uh, sorry, when the bunch bandwidth,
+um, is below the, uh, fundamental frequency of the cavity, there's no excitations.
+And so they agree perfectly. You can, uh, resolve that pure space charge wake.
+But as the pipe radius increases and the, uh, frequency shifts into that bandwidth of the particle bunch,
+what we see is that we get reflections from the, uh, open boundaries in the simulation.
+Uh, and so we get deviation from what we'd expect. And so, uh, we'd have to, uh, moving forward.
+Consider this when we are using certain lengths.
+And so as a final attempt, there are my slides were, uh, not updating here or something coming out of there.
+But basically the idea of what happened here is, um, to overcome this limitation.
+What I did was I used the three segmented solution where I have, uh,
+a bunch at the end of the pipe that enters to the cavity, and then I run a second simulation with the,
+uh, the bunch passing through the cavity, and then a third simulation with the bunch passing, uh, to the end of the the exit pipe.
+And then you add these fields together, uh, in time. And then you can use this to resolve the Wakefield's.
+Um, and so here in this figure, what I've shown is two different figures or two different curves.
+Uh, one is for the 1D rigid line charge approximation, um, where we see pretty substantial Wakefield.
+So for a microphone bunch this would uh, uh, give volte or uh, gradients, uh, that are comparable to the operating gradient of the uh,
+different uh, build or cavity, uh, requirements, um, on the order of like mega Volts.
+And another benefit of using the Pete code is that I was able to actually use a 3D bunch with transverse size because,
+uh, in the muon collider, well, very large bunch sizes.
+And so what I've showed here is that, uh, the longitudinal way can actually be suppressed slightly,
+uh, when considering the same bunch charge, uh, with this three dimensional, uh, distribution.
+And so, uh, that is the conclusion of my studies. Uh, so the things we talked about here are, uh, I looked at, uh,
+scattering studies to assess what requirements would be needed in terms of thickness for, uh, different materials.
+And what we see is that the aluminum material needs to be about a quarter of the thickness of beryllium.
+If we decided to use that as the, the enclosed or the thin then beam window.
+Um, then we looked at, uh, some breakdown studies where I showed, uh,
+cold copper has pretty strong breakdown resilience, especially at the, uh, significantly higher field.
+Um, and also, we can improve our safe operating gradients if we, uh, assess, uh, lower post lengths or implement, uh, lower pulse lengths.
+Uh, and for the Wakefield studies, I showed that CST Wakefield solver cannot properly resolve the weights if you have an enclosed geometry.
+And so I use this peak method, uh, where we're anticipating order of megajoules per meter,
+uh, uh, beam loading effects, which are comparable to the beam gradients.
+And so some future plans that we could do is I didn't actually assess the surrounding vacuum space in my peak model.
+And so that's something that can actually be, uh, looked into to see how this,
+uh, change in the vacuum dimensions would impact, uh, the Wakefield's results.
+Um, we can assess copper alloys, uh, like, uh, copper, silver, uh, to try to mitigate breakdown.
+And also for all of the results in the, uh, breakdown studies, I was using a flat top approximation, uh, for the, um, for the RF pulse.
+And so we could actually test more realistic RF pulses, uh, which could possibly change the effects.
+Um, so before I send off here, I just want to give acknowledgment to some of the collaborators and the funding agencies and,
+uh, past to you guys for questions. Thank you. So time for one quick question.
+Hi. Um, I don't quite remember the slide, but I think, uh, in one of your studies, you've considered, um, 805 mega hertz for your RF cavity.
+I was wondering, given that, like, um, the I.
+As far as I remember, the RF cavities, uh, frequencies that are used in ionization cooling are three, 352MHz and 704MHz.
+I was wondering what was the reason why? What was the motivation behind, uh, studying this higher frequency?
+Yeah. So, uh, the European designs have been at, like you said, 325 and 725 or something like that.
+Uh, previous, I think the map cavities or the most cavities were 8 or 5.
+So I was going based off of those designs. Okay. Yeah. Uh, but for the it's worth noting that for the scattering studies, I used the, uh,
+design frequencies that were considered for, um, the paper that you're referencing.
+But for the later studies, for the Wakefield studies, it was just the 805 as a default.
+Just. Yeah. Just because it was arbitrary decision. So.
+Okay. Thank you. Anything else?
+So let's thank our speaker again. Uh. So our next speaker is Doctor Zane Guy, who will be talking about me on pulling cavity.
+Yeah. Okay. Thank you. Yeah.
+My name is Harry from slack. Uh, talk about metaphysics approach for young character R&D.
+Uh, so before I will talk about a little bit of history, our involvement in the Map program.
+And also during the, uh, talk, I will show our, uh.
+Okay. They also talk about our mighty physics, uh, capabilities.
+So, uh, the hope is to not only show what we can contribute to the medium collider R&D.
+And also, can I have your interested in using our code for your own research?
+Um, so I'll give you a history. We participated in the In the Map program, basically in three cavity designs in the past.
+So we just heard 805 is one of the frequencies of the choice for the muon cooling.
+And also are low frequency cavities 201MHz cavity.
+And so these cavities has to work on the strong magnetic field.
+So the issues arise from these, uh, extreme conditions. Basically the field emission behavior will be changed.
+My dependent behavior will be changed under these magnetic fields.
+Um, so this is an emission of, uh, as, uh, 805 cavity.
+Uh, that's, uh, the kind of shape is not that clear, but you can see the trajectory of the field emission electrons,
+uh, when they emitted, even though the field of slippage, they may be stopped,
+but they actually showed again by higher where the magnetic field focus this electron,
+basically the electron follows the magnetic field line and end up with hitting the other side of the cavity.
+So this electron, uh, energy can reach to mach, uh, what I believe.
+So because the reader are seeing focusing and the amount of the particles that they are heating, that point is pretty high and can cause damage.
+So this was happened actually, uh, after the high prioritizing of a pure Bose cavity, 805 megahertz.
+And, uh, we noticed that the magnetic, sustainable, stable operating gradient drops as you increase the magnetic field.
+And then after that, they they find that there's a scar, significant damage around the setting areas.
+So this area actually corresponds to the high field regions where you can have a field emission.
+And the one interesting thing is on the brilliant window, even though you have it actually feels, but that's no damage.
+So depending on the material and the some material can sustain because the window is, uh, probably will pass through.
+But on the copper part actually is produce damage.
+So because these, uh, are challenges that we got involved, uh, using our Monte physics code.
+The idea is to use, uh, our parallel massively, massively parallel code to digital analyzer effect.
+And hopefully we can improve the design, mitigate the effects.
+So and this code is we developed as slack over the last 30 years and started with RF only.
+And then later on we added uh, other solver like a somewhat mechanical Monte packaging peak simulation.
+And also we also added these uh, uh, kind simulation like a DC simulation.
+So and also we keep improving these solvers, enhancing solvers and also adding more capabilities to these type of calls.
+So, uh, the idea is to use these code to analyze the cavity underscore magnetic field.
+And hopefully we can improve that. And they improve the, uh, stable operating gradient.
+So the our first attempt on this, uh, cavity is to try to, uh, minimize the surface field.
+So actually, uh, we changed that, uh, uh, to the copter location and also changes the local profiling of that geometry.
+And we succeeded to, uh, to have a path to lower this, uh, surface field, uh,
+at some readings, uh, significantly, uh, assist, uh, showing these red, uh, text.
+But however, there are some other readings we cannot do because these readings correspond to the reading where you have these,
+a brilliant window that, uh, amounted to these cavity.
+You have these, uh, copper tube burning window conduction reading where you do have iris and you have a surface rounding.
+And then that rounding part has a has a high electric field enhancement.
+So, uh, after we done this, uh, optimization, we use our code.
+I mentioned we can do mighty, mighty packaging analysis, which is our solver.
+So in parallel, basically this solver tracks the particle in the RF and the external magnetic field and then find resonant trajectories.
+And then uh, from there we analyze if that can cause the Monte packing.
+So these kind of in uh, different geometries, like for example, showing here.
+Uh, couple of examples. Uh, this. In a classical transmission like this.
+A window cavity. And this is a typical superconducting cavity.
+So all of these are fracture mesa part resonance trajectories.
+But if these resonances has the energy that can produce more than one yield of secondary electrons, then you have a problem.
+So we using this tool and then analyze this up optimize cavity.
+And this is a comparison. On the left is the original design.
+And different color labeling different regions that could support manufacturing.
+And this is a new design. The blue part is from the window.
+Which the window can sustain is that does not cause any issue.
+But the most important ones are these different this purple and the red colors.
+And the multiplexing happens where you have all the copper is like a below anywhere between 200.
+You may to 1000 may not. Yeah from 100 couple of hundred away and to something.
+Anyway. So again we reduce the packing uh possibilities significantly higher where we still have some bands that may support manufacturing.
+So that's, that's for manufacturing part. And then we also do the uh for the emission calculation because this is under a very strong magnetic field.
+And if you, the emission will go straight to the other side. And they and they, uh, deposit energy may cause damage.
+So in this optimized design, we still see the, uh, for the emission, uh, could happen in the window region and also around the,
+uh, uh, this disk region where we have a higher electric field because that the surrounding part has, uh, electric enhancement.
+And also, uh, even we reduce the electric field around the copper.
+And still there are some significant, uh, for the emission possibility.
+So because of this, and we think, uh, there may be still problems with this optimized design,
+so we end up with, you know, fabricate this cavity and then we move on to a different design.
+Uh, so, uh, numerical modeling, uh, not only, uh, is it is a, it works like a, uh,
+numerical prototyping, even though it does not replace all the physical prototyping.
+But certainly you can reduce the number of, of having and end up saving cough and time.
+So we didn't do that because we found that there are potential problems.
+And we moved on to this a modular cavity. So the difference of this cavity and the one that we call pillbox cavity is the shape.
+So because we noticed that the copper and also the, the uh, the window reading,
+that's uh, you actually feel that you have means go away, totally remove those features.
+And we have the window all the way so that the whole thing is, is a window.
+And also we have the copter moved to the, uh, side of this cavity.
+So you can see these copper. Now it's like a at the virtually zero electric field region, even though after you punch a hole, you have actually field.
+So we put it this copper as a low electric field reading. And then the outer uh, boundary, this part will be copper and this will be window.
+It could be brilliant window. Actually we use this cavity and then we call modular.
+We basically bullet these window onto the cavity. We can replace the window with different material.
+We can see the what kind of look we think we can achieve. So so this is a design change.
+And uh so basically we remove we eliminated the uh, the one that we saw that you feel your hands means in the reading where you have copper and,
+uh, so, uh, but we did too much packing this transducer impacting by far without magnetic field.
+You have a reading will support, uh, resonant trajectories.
+But this if you have a low, you'd actually field this typical manufacturing, typical marketing you will have, uh, impact energy is under 1000 anyway.
+So, no, normally it does not cost that much damage.
+You may clear up the surface and then end up with no more impact.
+You afterwork and about for the field emission.
+Actually, you, uh, once you have this, uh, high magnetic field, it's become the emission manufacture.
+That manufacturing is not like a produced in fact, the secondary electron apart impact by its,
+uh, producing emission emission electron when you have a high field.
+So those are the things that are important which we should avoid.
+But for this one, uh, after after we put, uh, from other fields,
+actually the manufacturing also changed to this region because the electron follow this,
+uh, the P field line so as to reduce the reading of matter packing and to either further suppress manufacturing in the real.
+After testing, we actually coded these readings with a low secondary yield material so that
+we kind of minimize potential manufacturing in this geometry if it's cavity.
+So that's what we did actually. Not only that we also using a much much physics solver analyze the similar uh somewhat distribution,
+although somewhat squares up on this window and also on the other cavity.
+So this uh, analysis only included RFC 18.
+Uh, at that time, we didn't have the solver to handle beam heating, but now we have a solver that can take the beam heating into consideration.
+So we can really analyze the whole effect of the heating of the window in the cavity.
+Uh, geometry buffer. These are the, the temperature uh, uh, gradient is, is small.
+So it does not seem to be an issue. And then uh, cavity was the fabricated and then the half hour test was performed.
+And if reported in this, uh, these paper.
+Basically the whole cavity is, uh, put into a solenoid and the cavity sees a uniform solenoid field.
+Uh, and, uh, there are some tests with, uh, brilliant window and also copper window.
+So you can see that whenever we use a brilliant window with, with our magnetic field,
+and then we can achieve very high gradient once we put, uh, this, uh, copper.
+Uh, uh. Uh, anal plate.
+And then we have issues, and we, we have a, uh, magnetic field.
+So basically, for this cavity to work, it looks like we have to avoid copper type materials in high electric field region.
+So that's what we learn from from the lab. But if we we we we say, can you repeat what you're saying?
+So we have to avoid the copper type of material, uh, in the high electric field reading.
+So because of that, this device I just showed, um, uh, there's no, uh, the field here is very small.
+And then these are this is the copper, and these are windows that will want to test once we put a copper window here,
+and then either one side to side and then the gradient drops significantly.
+But if you have beryllium no problem. Why not. We have 40 mile per meter gradient.
+So that's a big difference. Yeah that's what we learned from this.
+Okay. So this is a cavity. Uh, and also uh, for the solver we also developed uh, additional features.
+For example, we can handle radiation for heating. Uh, for materials.
+So this is, uh, BIM dump simulation for this tool.
+So, and the basically, we took a flow car, uh, those map and then convert into the beam heating, and then we evaluate and optimize.
+This beam dump is showing the thermal distribution also stress distribution.
+So, uh, that's a new feature we added to the solver.
+I think uh, uh, these can also be used for a million times and a million, uh, beam loss interaction with the materials.
+So those kind of things. And also we have uh, integrate well, integrating uh, also over with the game for which is a radiation other radiation code.
+So basically we can, uh, track uh, through the emission, uh, particles.
+And then when they hit the material and produce radiation.
+So in the radiation can scatter back into the particles, into the, our field.
+So we can track that. So this integration allows us to simulate effect of the field emission and also radiation due to the field emission.
+So this this uh feature can also be helpful when we study the, the muon cooling channel where you do have, uh, particles hitting the surfaces.
+And also we, uh, also, uh, for the, uh, better experience of the user.
+We, we implemented, uh, we integrated with another called Lumi and the which Lumi has, uh,
+a generic, uh, optimizer there, and they integrate with our simulation code so we can,
+uh, help the user to, uh, do, uh, optimizations, uh, through this integration, not only optimization, sometimes you want to have a parameter scan.
+So basically, this, uh, workflow will make it easier to setup, and then you can achieve, uh, uh, the final solution quickly through this is a process.
+Uh, the other thing is that we also working on developing our source, uh, simulation code.
+Uh, basically, we have a lot of, uh, solvers already existed in our code.
+So we are integrating them together, improve the beam transportation,
+and also improve the noise so that we can simulate class client and also, uh, other power sources.
+So here at the bottom was showing that, uh, uh, that, uh, this is a difficult people generation.
+And this is uh, uh, under off, uh, control the great the human for these out.
+So these are under development hopefully will be useful for, uh, for future uh, uh, after us, uh uh, R&D.
+And of course, this has a lot of skill capability enable us to look for exotic shapes and also novel, uh, design concepts here.
+Actually, the previous speaker mentioned in this, uh, cover scratcher.
+Uh, so this is like a parallel new structure using parallel fields.
+And they, uh, actually, uh, that is to, uh, work at the code temperature.
+These can be closely applicable 2 million Collider, uh, quickly R&D.
+And uh, so basically we can simulate, uh, very large, uh, volume, uh, cavities with, uh, high fidelity.
+So this give us not only, uh, high precision, uh, uh, modeling, but also quick turnaround.
+For example, 64 million you feed, we can get a result within maybe ten, 20 minutes, uh, running on supercomputers.
+But if we run single computer, I don't think that you have enough memory. But if you write, may run many, many days for some of these problems.
+Um, so. And all these, uh, uh, solvers work, uh, um, uh, massively parallel computer.
+Typically we, we perform simulation at Nersc, but we can also can be installed on clusters where you have more CPUs.
+Uh, you can use that. But here is showing that over the years the hardware actually accelerated the speed.
+And also the software actually the speed. So basically we are getting better and better, not only large problem size but also turnaround time.
+So as a convolution, uh, we have uh, SVP uh, suite of tools that has built, uh,
+a broad range of capabilities for RF design optimization that could be beneficial to,
+um, we are quite R&D, and the better than that is because we own these code.
+We developed these code.
+We can add more features if that, uh, new, uh, simulation modeling requirement, we can add to these code and then to, uh, to further advance our R&D.
+Uh, I think what we can contribute, uh, first thing we can contribute to, uh, RF modeling, numerical prototyping, uh,
+by optimizing the cavity heating, uh, issues, uh, and also as slack, we also, uh, uh, plan to do, uh, high forecasting.
+I am I will I will talk about combination of the this multi physics tool and
+hyper testing gave us a unique capability to contribute to the new collider R&D.
+So thank you for uh. So one quick question before we break for lunch.
+So you showed a slide that had, uh, optimization parameters.
+Um, yeah. I'm curious about, uh, is there a limitation on ACP for how many, um, parameters it can handle before it comes to a solution?
+Because I noticed in like CST they have an optimization, but you can only add like I think 3 or 2 before.
+So that's that's probably that's a reality because the more parameters give you is much more complex.
+Yeah. But in terms of solver, that's I don't think that's a limitation because we are using these Lumi.
+They have these generic optimization tools in there.
+So in principle yes we can have them all parametrized.
+But in reality the optimization probably you can refine your competition tool, uh number of parameters that you can use.
+Okay. Yeah. So there are some yeah.
+The solver has no limitation. But uh, to achieve the optimized result, maybe you have to put more sales.
+Yeah. Okay. Yeah. Thank you. So let's thank the speaker again.
+And. So we break for lunch.

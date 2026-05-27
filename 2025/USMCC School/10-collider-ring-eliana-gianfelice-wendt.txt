@@ -1,0 +1,404 @@
+# Collider Ring, Eliana Gianfelice-Wendt
+
+Okay. So the content of my talk will be a recap of some accelerator physics.
+Basic notion. I know that you had the lecture with, uh, Jeff Eldredge, but, uh,
+repeated that you want and also is for completeness, so that, uh, the talk has a logic.
+Um, so I will make an introduction in general to Collider Rings concept.
+And, uh, then I will make a overview on which are the particular challenges for a new, um, collider.
+And then I will show the design of a 3D v collider.
+Uh, which we decided that Fermilab inside the uh, map, uh, project.
+Um. Okay, so the building blocks of the, uh, of a, uh, ring, uh, accelerator are, of course, the dipole magnets, which are where the field,
+uh, there is a magnetic field which is uniform if we which, uh, define the design trajectory of the particles,
+um, then there are quadruples, uh, magnet the which are, uh, uh, aligning along with this design of the, uh,
+trajectory and, uh, which, uh, they obtain the, the, uh, particles horizontally or vertically, depending on the position.
+So they realize the transverse focusing of the, of the beam.
+And then there are, uh, radiofrequency cavity, uh, where instead of the electric field, which is in the direction of the uh,
+particle, uh, speed, which accelerate, uh, the particles and provide also a longitudinal for using the.
+So this is just an example we have of the left side, there is a, uh, quadruple magnet, then a dipole magnet.
+This is a nine, uh, cell, uh, superconducting cavity.
+And this is a, uh, not a collider, but the smoldering oasis of Fermilab by Yoda in that I put the picture so that
+you can see in practice all the elements that I was speaking about the dipole,
+this is the blue block. And then, uh, we have the cavity address cavity in the quadruples.
+So from this basic concept now of some formulas, um, it is, uh, convenient to describe the motion of the particles are not,
+uh, using the laboratory system, but using a system which is move,
+uh, together with the particle on the design orbit and to use instead of time the position along the trajectory,
+uh, as a uh parameter and the linear approximation,
+if you ignore the presence of solenoids of skew quadruples, which are quadruples which are tilted by a 45 degree,
+uh, around the longitudinal axis, or in the absence of dipolar errors, and, uh, uh,
+for a particle which is own energy, which means that the energy for which the dipole have been decided,
+then the the equation of motion can be written in a symmetric way for the horizontal and vertical uh, plane.
+And these are they have name Eel's equation. And uh, they have this uh uh form error where zeta is a x or epsilon.
+And in a blundering uh uh, the the value of k is not the same or vertical.
+This the horizontal one and the vertical one is this one.
+And if you have also vertical bending so then you will have a curvature also on the term okay epsilon.
+Um, by the way this uh equation of motion can be derived by an Estonian.
+Okay. Um, instead of, uh, solving it directly from the particle, uh, coordinated equation of motion, we introduce a new,
+uh, uh, variables by using a periodic solution of this equation, uh, for beta, which is this one.
+And we define a new variable eta and p uh, which are related to the beta function by these two expression uh phi is called phase advance.
+And the parameter q uh is chosen so that the integral of this integral over uh, the third one in the machine is two pi.
+Now, uh, this, uh, this equation then taking with this new, uh uh, uh, coordinates, I take a very, uh, nice form.
+It's just a simple harmonic oscillator for which we know the solution.
+So we see that the parameter q represents the number of oscillation that the particle will do in the ring, uh, in one day.
+Uh, in this called beta transition, um, this and V so are called DOS functions.
+And these are a property of the ring. Um while a and v are probability of the particle and event.
+So uh, of course on their uh, starting uh, condition. So we have decided to disentangle in this way something which would belong to the machine,
+to something which is particular of the particular, uh, particle.
+Okay. Um, so, uh, uh uh, this is the amplitude of oscillation is, of course, of course, is a constant,
+and it's called the, uh, the square root of this quantity is called particle admittance.
+And this is, of course, equals to the whole motion.
+Uh, identity is easy to verify, uh, by using, uh, uh, the, the definition of, uh, x that I have, uh,
+given before and the solution that I have given in the case of the oscillator that, uh, this equation.
+This equation, uh, uh, represents an ellipse.
+In which area? Is, uh, the amplitude squared.
+Okay. In the end this is called this, uh, quantity is called also the particle limit on the R-squared.
+It's a particle admittance. Uh, the shape of this, uh, ellipse, um, is the same for all particles in the same position of the ring,
+because it's just the function of the, uh, beta alpha and gamma, which are, uh, function of the of the ring.
+Uh, we can also instead define a beam statistical tensor to describe the whole beam, which is the average of these quantities.
+And if you put the, uh, results that we found for Zeta and prime in this, uh, expression, you will find that,
+that the importance is this, uh, one off of the average on the particle distribution of the amplitude squared.
+Uh, the beam transverse size is this one is the sigma is the square root of a beat that, um,
+the importance of the beam and the, the normalized admittance, uh, is obtained from, uh, from this, uh, uh,
+statistical admittance, which is also called array n, is done by multiplying by gamma and beta relativistic,
+uh, in this case, in this way you get something in quantity which is uh, constant, uh, with energy.
+Uh, and this is, uh, this depends on the fact that the meter itself, uh,
+decreases with the energy because of the particle get in, gain energy in the longitudinal direction through the RF cavities.
+Why, uh, the, uh, momentum in the origin in the transverse momentum doesn't increase.
+Okay. Another quantity that I would like to introduce because we will see the later.
+Uh they are important is the dispersion is the factor that the particles which have a different energy from the design,
+one will not have the same orbit, uh, that the, the particle for which it has been designed.
+They say in the dipole they see a field which is not as if they have more energy.
+They see a field which is not strong enough. So they will make a trajectory which is which has a less curvature.
+Um, the zero order dispersion is then defined as a deviation with respect to the design orbit of a particle,
+which is an offset the, uh, in momentum delta p over p equal one.
+And therefore the solution to the uh motion is then described by the data from path,
+which was the path which is the harmonic oscillator, plus the dispersion time,
+the delta p of the biological, uh, that you are considering in a planning ring, uh, the horizontal, uh, bending, uh, there is no reason that bending.
+So, uh, the in general, only the horizontal dispersion is different from zero, uh, the quadruples itself.
+They do not the generate the dispersion but they modify it, um, in that if you have a quadrupole which has an offset, um,
+or because of the orbit goes not in the center or because of the quadrupole itself is shifted, then the this act total is also a dipole.
+Colborne. And then it also introduces some dispersion.
+The particles, which then have a different energy than the designed one, if a different path length.
+Um, and the important parameter is then, uh, uh, the momentum compaction, which would uh, describe the, this, uh, the, um,
+the orbit change, the trajectory, uh, orbit, uh, length change for particle, which have, uh, offset the in the energy.
+Uh, this momentum compaction factor, um, is a function of P, so you will have a first order like E zero,
+but then you will have uh uh uh or higher order, which can become important.
+Um, the and the important parameter for as we will see if I recall either is the length of the bunch,
+which is uh, related to uh, alpha to this momentum compaction by this expression.
+ETA in fact, is uh, uh, related to the momentum compaction is, uh, expression for a larger energy.
+Uh, ETA is just equal to alpha P. And, um, this is not a strange because of this.
+Uh, um, the particle, which has a different path length, will come before or after the,
+uh, the right face with respect to the design particle in the cavity.
+So, so this will be then, uh, a consequence for the length of the bunch.
+Um, the another important concept in particular for, uh,
+Collider is the low beta function at the interaction point is the chromaticity, which is the factor that, uh,
+describes the fact that the, uh, particles which have a different energy than the design one will see also in the quadrupole field,
+which is, uh, too strong or too weak.
+So, um, for them, uh, and then, uh, this will make the, the beta function will be not the same for these particles.
+And then there will be a beta beating, uh, which is due to the chromatic beta beating, which is due to the delta p over P.
+And there is a tune shift, uh, with this is now the expression for a single quadrupole.
+And, uh, now if you have the many quadruples, you have to sum all of them.
+So the natural linear chromaticity from the whole machine is, uh, this parameter, which is,
+uh, the integral of, uh, beta time, uh, the, the nominal, uh, strength of the variable.
+So what we see from this expression, I want to point out is that the contribution to the chromaticity come from the, uh,
+from this place in the machine where the, uh, where the quadrupole are stronger and where the beta function is larger.
+Uh, and then the other things, um, for when we want to correct is that this chromatic beta oscillation of the,
+uh, oscillate with the, uh, twice the better tune, as you can see from this expression here.
+Um, the natural chromatic is negative.
+Um, and this drives the daily instabilities, you know, uh, in or also the if they are large chromaticity, uh,
+um, it can be that you have a no more stable optics for a particle, which is a of which is all for energy.
+And also the chromaticity make that the particle with different energy that you have in the, in the field, in the, in the beam,
+because you don't have all the particle levels, the same energy,
+then you will have different dunes and can happen that they, uh, go, uh, or they can be on a resonance.
+Uh, the resonance uh, is uh, for the transverse plays plane is, uh, described by this equation,
+the Greeks and epsilon, the uh, better transducer is on the vertical.
+And when this condition is satisfied, the you can, uh, if, uh, um, you can have a resonances, which again, um, uh, make the particle become unstable.
+For this reason, you you need to correct the chromaticity.
+And, uh, to do this, you need the something which is a quadrupole, which strength depends on the particle.
+Uh, energy offset. Now, if you take the SX2 ball, which has this, uh, kind of field here, and you develop writing the x upsilon as the,
+uh, uh, beta Compaq plus the dispersion part, then you get this expansion and you see the distance here.
+The same form is a quadrupole, which depends on delta p over p.
+So this is exactly what we want to have. But this x is also an unwanted effect because of the reason the term the dipole uh type term uh,
+which is so called chromatic aberration which introduce also a um a perturbation of the dispersion.
+So, uh, that, you know, the dispersion is not only the DS which are UV uh, zero or the dispersion,
+but you did you have to add another term which depends on delta p will be um,
+and then the terms instead the uh sexual polar terms themselves, they introduce a.
+A so-called geometric operation, which may derive the third order resonance.
+So that I say that I introduce, uh, just like before.
+Uh, these are then there is a, uh, at least in first approximation,
+you can use a proper phase advance between the sextuplets of the same strain so that you can overall,
+you get the overall cancellation of this driving term. Uh, you never know.
+In a linear machine, all, uh, amplitudes are stable.
+We add before the expression for the harmonic oscillator.
+Then this is always stable.
+So the only way you can lose a particle is that the the selection amplitude is so larger that you lose it on the against the wall of the machine.
+Uh, instead the if the the machine, we choose instead the nonlinear.
+When you start putting size two both inside, not all particles are stable.
+And uh, to find out, uh, which particle are stable and which not depend on their amplitude in their, uh, energy offset.
+You need the, uh, particular code, which you compute the so-called dynamical aperture, um,
+for minimizing the strength of this x bolt so that you don't have all this other effect that you don't want to wave,
+then it's convenient to put them in a places where the dispersion is very large, and also to have the two beta function,
+one larger than the other, so that you always correct only one of the two planes.
+So the correction are orthogonal and they don't fight one each the against the other.
+Okay. In a ring, uh, accelerator that is made of dipole quadrupole in the we saw some uh at a station.
+But uh, apart this we need also to have some insertions, uh, because we need to inject in this machine.
+We need to extract, uh, we have, uh, every cavities to accommodate and so on.
+But the most important is that we are, uh, that way of insertion for collider for the experiments, uh, which are the crucial, uh,
+parameters for a collider are the energy, uh, in the center of mass and the luminosity,
+uh, the luminosity, which, um, uh, dictate which is the the rate of event,
+the for a given uh, if on event given, uh, cross-section, uh, do the low orbit insertion then uh, recreated for the experiment, um, and the, uh,
+so first the luminosity, uh, is given by this expression where n one and two are the particles per bunch in the two,
+uh, in the two, uh, colliding beams. Uh, and B is the number of uh, bunches per, uh, per beam and uh, F is the revolution frequency.
+Uh, on the denominator there is the cross-section, uh, this, uh, of the of the of the beams.
+So I've said before that the Sigma star is at the interaction point, is then a beta star,
+which is the beta at the interaction point generally is all it is customary to call it beta star.
+Uh, that time the uh M6, uh, emissions.
+And then there is this factor which is called hourglass uh factor,
+which I will explain later what it is, which in general is a smaller or equal maximum to one.
+So to maximize the luminosity, first thing you can do is to put all, uh, your, uh,
+you try to put as much as particle possible particles in single bunches, not increases the number of bunches, but the bunch of population.
+And then you can uh, uh, minimize admittance because here you minimize within the sigma, uh, which means that in particular, uh,
+for uh, for other means that you have to preserve the admittance during the old injection, uh, and you have to avoid the resonances.
+You again, beam cooling, um, in for reflectance.
+Uh, this depends on the design of the optics. Um, and then the other things you can do is to minimize the beta function at the interaction point.
+Uh, but there are limitations on how small can be the beta function of the interaction point, because, uh, if we right now, um, interaction point,
+then you have if you over point, the way the particle meet, uh, collide in the left and right, you have some free space for the experiment.
+So this is a drift space. And there are no magnets in the machine.
+Magnets in the space of the beta function. It goes in this way.
+Now, if you make, uh, beta, uh, it is small and, uh, and uh, alpha is zero, which is derivative of the beta function in the interaction point.
+Then uh, the beta function can be uh, expressed in this way.
+And what you see that when the beta uh, star is very small, uh, this this, uh, parabolic increase is very strong.
+So for example, this we see here, uh, in this, uh, this plot that we see the, a high luminosity, uh,
+Large Hadron Collider, which I say beta star or 15 centimeter compared to five millimeter, uh, beta.
+You see that the beta function is much, uh, faster up when you move away from the IP?
+Uh, in the other thing, the, um, the, uh, then, um, and then and then what do you see this, uh, beta function increase so much?
+Uh, um, if the bunch, the bunch length, uh, is not zero.
+They say that the rate is is a given length, which depends on the momentum compaction factor.
+Then what that means is that the particles which are on the end, uh, in the particle,
+which are on the tail of the two of the two beams of the two bunches, um, they collide in the middle where the beta function is minimum.
+But the, the other combination tail, uh, and uh, and, and then and so on,
+they will collide at the position where the beta function is not the minimum.
+And this is then this our glass effect that I, uh, I, that I introduced before, if we choose depends on the bunch of length.
+If bunch would be zero lengths of them would be no problem.
+Oh, and the other problem with the small beta function is diagrammatically, which comes from the, uh, interaction between the um,
+why this is chromaticity, because now we have, uh, um, a interaction point, and we put our first lines here as some distance, which I call LCR.
+Uh, the focal length of this, uh, of this quadrupole is related will start by this, uh,
+expression where, uh, cup k the time l the length of the path was the integral, this, uh, strength.
+Then, uh, from the, uh, expression that we have found before, uh, for the beta in the drift,
+we find out that the the maximum beta will be at this quadrupole. Uh, and we will have this expression.
+So we see that, uh, this is the, the expression for the maximum beta at this at the first quadrupole after the interaction point.
+Now the contribution to the linear chromaticity is this one.
+And uh, if we took a dispersion that I found before for the uh, for the maximum beta, the Isa LSR divide the beta star.
+So for a given, uh, beta star, uh, a L star, which is the space for the experiment,
+should be as small as possible in order to keep the chromaticism small.
+Uh, but the on the other end, the fact that the L star, uh, is, uh,
+is it must be small in the limit means also that the this focal length is very small.
+So the integrate the strength of the quadruple will be very, very large.
+In other limit come from the interaction. Uh, yeah.
+Go for uh fast. They say only that the, um, the fact is that the HB, the other beam is a, uh, explains.
+So we chose a nonlinear lens.
+Um, and now if you impose a that the beam, um, factor, you said the same and you will distribute it equally between the two plane.
+So you want to add the two chromatic it being equal. Uh, then you come to this expression and uh, which means that the, uh,
+for electron colliders where the vertical emitter is much smaller than the horizontal one,
+you, uh, you want to over the beta star in the vertical plane, much smaller than the horizontal Y for not radiating particles.
+Move, move on. So then you want to have the two beta function equal, um, the interaction point.
+So now we come to particular challenges for the muon collider.
+This idea of new collider is not new. It's very old from 67.
+Uh, and I have to say that I am old enough that I have seen already several revivals of this idea,
+um, like this one, uh, point like the if you want to point like, like the electrons in the positron.
+So the whole energy scattered by the interacting particles, but they are much, uh, stronger, um, much, uh,
+area so that there is in practice for the rendering of energy we are considering, there is, in practice, no radiation.
+Um, you have to produce, uh, a large number of, uh, of muons, um, because of the small, uh, lifetime the f and they have to be quickly,
+uh, cooled down and accelerated, you know, to, to as much as possible, uh, particle interaction.
+Um, on the other end, you expect that whether through the cooling process, that still a relatively large,
+transversely dense, uh, and, uh, and with the low beta star that you want to have afforded,
+maximizing the luminosity, uh, which will be some few millimeters, uh, what you have is that you will end up with the strong,
+large aperture, uh, quadruples in the interaction region, uh, which are the large beta.
+So, as I said, you have larger chromaticity in the, in the, in the, in this, uh, quadrupole nearby interaction region.
+Will be source of uh, uh, of uh, uh, perturbation if they are misalignment misaligned or if they have fields error.
+Uh, you want to have a small circumference because as this, this particular short leaving you want that they collide as much as possible.
+Uh, in uh, in the, in the time they leave in the, in the, in the, in the ring, you have a relatively high density because you want to park all the,
+all the moons, uh, in the, in few, uh, as most as possible number of bunches in general in this particular this is true for then for the muon.
+So so you have something like pardon me.
+You have something like uh to ten to the 12. This is what they expect per punch.
+Uh, me? Okay.
+Yeah. Um, and then as these particles are, uh, decaying.
+You have to protect the magnets in the detector.
+Uh, then there are neutrinos, uh, hotspot, which limit the length of the free, uh, regions, a field free region to do something like a meter.
+Uh, for beam energy above, uh, above two meters. So, um, in part in the in the interaction region, you have longer states.
+So this you cannot do. So you need some more creative solutions.
+Uh, then we want to weather this, uh, for our glass effect.
+We want the bench length us to be, uh, small respect to the beta star.
+Um, and, uh, this means that you will need a small, um, momentum compact form factor.
+Uh, because, uh, I introduced the, uh, before.
+Depends a bunch of things. Depends on this factor.
+And, uh, in this in this has to be small for in the whole the range of energy of the particles, not only in the for delta p over p zero.
+So in this something on the order of ten to the five. Uh, and then you need of course also some dynamical aperture.
+Also they don't do many terms. So you don't really need the long tracking to find out dynamical aperture that you need to steal.
+Uh, something like on the order of three sigma.
+And this in presence of stronger six tuple for correcting the chromaticity in with the in presence of the relatively larger energy spread of the beam.
+Um, in the uh colliders where the um particle was not so strong, you could correct the chromaticity.
+Uh, the overall chromaticity using the, uh,
+quadruples in the arcs of where are the dipoles in the in the where there there is naturally, there is dispersion.
+Um, this is an example, for example, for the ERA collider.
+Um, but this schema is not anymore adequate for the, uh, muon collider, for example,
+this is say, uh, something a 1.5 DV um, Collider, which was failing, um, because of the,
+uh, the, uh, energy, uh, stability of this, uh, of the order, the momentum, relative momentum,
+uh, stability of this machine was something like plus minus, uh, 0.8 percent.
+Uh, using that this kind of scheme is, uh, I say the Fourier era.
+Uh, so you had to we had to invent something, uh, different.
+And, uh, one approach is to use the, uh, Montague chromatic, uh, functions, uh, to correct the local chromatic, uh, correction this, uh,
+function w they described the change of the twist, uh, parameters, um, uh,
+due to the, uh, to the energy, uh, to the momentum, um, to the momentum, uh, spread.
+Um, and they this, uh, this, uh, um, quantity A and B, uh, obeying to these, uh, equations.
+So the, uh, were, uh, so now what we see is that a become, uh, non-zero, uh, when you, uh, you come from the IP, uh, A and B are zero starting.
+Then when you come through the, uh, the first group also where k is not zero, then this, uh, it becomes become non-zero.
+But on the other end, uh, you have uh, that as long as, uh, the phase advance doesn't change, then, uh, then B doesn't change.
+Now, uh, when the phase advance doesn't change as um,
+a change in particular where the beta function are small because that is the integral of one over beta.
+So instead the.
+Yeah, when we have, uh, a if you have in a place where the beta function is very larger than the feature phase advance and doesn't change.
+So the idea is that you put it closer to the, uh, to the final focus quadruples,
+uh, where beta is, uh, very large so that the and so the phase advance is zero.
+And then you correct the, um, you correct to the inverse the e and keeps beta, then zero, then, uh, but for this reason,
+you as if you want to put a sex symbol nearby the, the final focus,
+you have to generate horizontal dispersion because otherwise the there's no effect.
+No. So you have to generate, uh, uh, dispersion nearby the interaction region between which means,
+uh, okay, this and then there is a second or the chromaticity, uh, which can be important.
+Once you go to the first order, you have to see the other orders, the second order chromaticity, uh, as this expression and uh, and then uh,
+which means that, for example, you have in addition to, uh, to B, you have to correct also, uh, the uh, derivative of the dispersion with respect to.
+The momentum. Relative momentum. Okay.
+It turns out okay. Where do you put the. First of all, we have seen the nearby the, uh, uh, the, uh, Final four.
+What, the larger beta function. But we correct with the six to about x or epsilon.
+So it is convenient. It comes out that is convenient to correct first the uh, vertical uh beta function.
+So it means that you focus first in the horizontal, uh, uh, the uh, reaction so that you get, uh,
+where you put this vertical for using, uh, with X1, you put in a place where beta epsilon is very large and beta x is zero.
+Um, and then instead the you correct the, the then the where the horizontal uh,
+amount that you found, you correct with the one six tuple, which is at the uh,
+multiple of pi over two with the uh, from the IP, and where instead the, uh, the horizontal beta function is much larger than the vertical one.
+And you use the in sexual in order to reinforce, uh, the effect of the first, uh,
+um, horizontal support and to cancel the aberrations that are introduced by, by it.
+And then you correct also the first order, the dispersion, you say here, uh, by, uh, introducing the, uh, sex also at the lower beta, uh,
+location so that you don't perturb the chromaticity correction for this, you need the that instead that,
+that, uh, to have the dispersion horizontal dispersion is larger possible at all.
+Uh, the, uh, the, um, the, uh, the the six volts.
+Okay. And then we come to an example of a three, a DV, a center of mass, uh, collider, uh, which I say, uh, beta star off five millimeter.
+So this has been, uh, developed during the uh, muon accelerator program at, uh, Fermilab and other laboratory in the US.
+Um, and we consider the two schemes, um, in the free space for the experiment would be, uh, plus -six meter.
+And this is a, um, a schema which would be feasible with the niobium 13, uh, magnets, which are already available.
+So this is a kind of, uh, uh, we call this, uh, therefore using for using the triplet, um,
+and uh, um, and this and this is a quadruple because, um, we have instead of using the for using,
+uh, uh, quadruples, uh, what means for using,
+for using means we use for using the horizontal plane and for using focusing instead in the vertical plane.
+Because a quadruple, um, if for using one plane, they for using the other.
+Um, and this uh, from this quadruple as I said, that that we need the to have dispersion in order to, uh, to correct the chromaticity locally.
+Uh, then the uh, the, the some of the, um, the focusing, uh, quadruples, which are shown in cyan.
+Um, they have a two dipole component. Uh, the quadrupole in a radius, uh, is, uh, larger than five sigma plus a two centimeter for absorbers,
+which are, uh, placed there to protect the magnets from the decay particles.
+Um, and both, uh, design has been studied from the optic point view about they still need the,
+um, uh, studies for background in the energy, uh, deposition.
+Okay. To show that this, uh, could be realized as this interaction region.
+Uh, you have there are some studies, um, here, the values of the, um, the characteristic of these magnets.
+And as you can see, there are even, uh, some, uh, some design, uh, which has been carried out at Fermilab.
+Okay. This these are the data again for the replay and then the quadruple version.
+And this is an example of the, uh, of the uh uh um, uh, what they explain the, uh, how you correct the locally, the chromaticity.
+You have, uh, the first of all, your, the which are, uh, correct w epsilon, which is the place where the, uh, vertical beta function is.
+This one is very large means that the, the horizontal beta function is very small.
+Then the second, uh, quadruple is psychosexual,
+which correct means that the horizontal plane is in a place where beta epsilon is some almost zero, and instead the beta x is large.
+And this is the twin, uh, sectional at the, uh, over two.
+Um. Okay.
+Oh, yeah. And these are the just to visualize better. This you see now these are doubling functions.
+The blue one is the now the vertical one which is the first which is correct.
+And then there are the horizontal which is first sort of base first of all.
+And then it goes to zero at the second of sexual.
+Uh, as the interaction region, as a larger uh, momentum compaction, this has to be uh, and we want to have a small compaction.
+Uh, we have to, uh, the, the, um, we have to design the rest of the machine so that the, uh, the momentum compaction is,
+uh, um, compensated the compact momentum compaction contribution from the interaction region.
+So this is done with this arc scale, which are called some momentum, uh, compaction, flexible, uh, cells.
+Um, the chromaticity in this, say less is also to be corrected.
+And this is done by uh using uh two or more orthogonal values in that larger dispersion and uh,
+in the cell uh middle where instead the, the uh the dispersion is large and the beta are small.
+Uh, then we can, uh, um, we can uh, uh,
+put the quadruple for control of the momentum compaction in for in the six power for controlling the first order dispersion.
+This is sale advance, uh, between the sales and the phase advance is 300 degree,
+which means that the overseas, uh, six sales, uh, you compensate the third order driving terms that,
+as I said before, uh, if you pay attention to the phase advance between the, uh, between the six,
+you can avoid that to drive some of these, uh, uh, uh, resonances in the, in the ring.
+Then we have a tuning section to, uh, connect the interaction region to the, to the arc sales and which was used also for,
+uh, um, tuning the beta function and the direction region, uh, interaction point,
+um, from between 3 millimeter and 3 centimeter, which can be, um, important in the case of that,
+uh, the importance of the beam is not what you expected or if you want to make some, uh, okay.
+And then I think we come.
+Okay. This is how this looks like tuning section. So altogether, the machine become a 4.3, uh, kilometer long.
+This is the performance of the machine, which are, um, relatively, uh, satisfying.
+Um, and and then here I put.
+Okay, there are several parameters in blue. There are this relative to the beam energy of 1.5 DV, which is this which I have shown, uh, before.
+And, uh. Then we come to a summary, uh, so I show some of the challenges related to the,
+in particular to the, uh, the, um, colliders and the one of possible approaches to overcome them.
+Um, we have a, we have the another design for a 1.5 DV center of mass, which was studied more in details than this one.
+And we in that case, we, uh, also study the effect of field, uh, data effort.
+Also for them the with magnet design there was a study of the energy deposition detector background in this study.
+They didn't point out to a showstopper the three TV uh, collider is already more complicated.
+Um, and, um, and the, uh, and, uh, the investigation still would be needed for reasons for the off energy, dynamic presence of being beam,
+which is relatively poor, and the effect of fringe fields and field errors, which proved to be important.
+The for the 1.5 TV Collider. I've still to be uh, started from work.
+Um, so the the problems the problem comes mainly from the fact that the the experiment
+with increasing energy want to have a smaller one to have more luminosity,
+the luminosity has to go like, uh, gamma squared and uh, and uh, and then it goes like gamma squared.
+You gain a factor gamma with the fact that they meet and become smaller.
+So that cross section of the beam interacting, the colliding beam is smaller.
+But the um, the other factor is to gamma from the optics.
+So you have to reduce the beta function.
+In fact, now CERN is pursuing attentively even uh, new, um, Collider, uh, design, which is based on the concept that I have illustrated.
+And, uh, and then they have to go down from the beta start of five, uh, millimeter, which where we are using for the 3D, DV, they go down to 1.5mm.
+And this make the life, uh, very difficult. This, I suppose I was I made clear.
+Thanks. All right.
+We don't have a ton of time of questions, but I think we can do 1 or 2 relatively quick ones.
+Um, so do are there questions from the graph? All right.
+So you see. I believe you mentioned, I think it was slide 20, um, on, uh, that, uh, the transverse, um,
+beam size needs to be less than or equal to beta star, uh, to avoid the hourglass effect.
+I think this has been said, uh, like a few times. And it was not this one maybe.
+Oh, yes, that was it. Uh, this one. Okay.
+Um, to avoid the hourglass effect, I think I've, I've heard this a few times, but I'm not sure I understand what the hourglass effect is.
+Is the fact that the two part, the two bunches they meet in the interaction point, the where there is the minimum.
+So the two uh huh, collide in the middle.
+Then they go further and the head will now not collide anymore.
+In the middle, where the I, where there is the minimum beta function that will collide with the other part of
+the of the bunch of the other bunch in a place with the beta function is larger,
+and so the cross-section becomes larger and the luminosity actually is smaller.
+So this is a factor that can be computed. Uh is geometrical factor which can be computed.
+Then the will be always smaller than one. And depends on along with this bunch this bunches.
+So you don't blame the no problem at all meet in the middle. High on the slide right before this.
+On slide 19, you talked about protection of magnets for decay.
+Um, I know I've heard about tungsten liners and masks, but what other research is going on for the protection of magnets?
+I don't know if, you know, um, for for the detector.
+Yeah. But I think about this. You have, uh, next told.
+Okay. Sounds good. Thank you. Okay. All right.
+So with that, I think we're running up against. Well, maybe maybe do one more question, but I misunderstood.
+I thought that they had 45 minutes. Yeah, okay.
+Plus 15 minutes. Questions or not? Uh, I think it's 45.
+There's. Yeah. There's no it was 45 minutes total.
+I'm sorry. Uh, okay. Okay. Um, okay, maybe we can do one more quick question.
+If there one. Uh, my question is going to be a bit general.
+I think you mentioned in a couple of places when you were talking about design parameters.
+Maybe the latest one is, uh, slide 30 something, but you mentioned how, like, um, some certain effects become important.
+Oh, yeah. It was the one with fringe fields. Uh, you were saying that certain effects become important.
+Is that, like, how do you determine the swing effects are strong enough?
+What's your metric for, uh, certain effects, like fringe field effects, uh, to become important.
+Like, how strong do they have to be? How does that how does that selected?
+I think what you do is that, uh, uh, you put some values which make sense in the, uh, your computations and then you local to the, to the results.
+You want that, uh, the tune, for example, should be as constant as possible when you have,
+you know, that the, uh, you expect the let's say that the energy spread is something like,
+uh, one per mile and then, uh, and then you, you look if in this range of, uh, uh,
+of momentum, uh, your, you wanna stay more or less constant, you cannot go on a resonance.
+You cannot go, um, in particular not on an integer.
+When the um, become integer, the machine. If you ever errors, you will have always dipole errors.
+There is no close to the orbit. And, uh, you don't want to be on an integer because then in that case the machine, the optics doesn't exist.
+Probably. Um, so you have to have a, the tune is uh, s uh, and then you have to wave on this energy range.
+You have to have a momentum compaction is more or less possible because of the batch length.
+And then you have, uh, and then you look, uh, when you realize this with your size doubles, then you go to look to the what is the dynamical aperture?
+And if it's bad and then you put and then you start putting, you see if it's okay, then you continue, you put more,
+more problems fringe fields being beam um, orbit errors, which we never consider in this, uh, in the studies.
+And then, uh, and then you see what comes with the dynamical laboratory.
+If you go to still this three sigma that you would like at least with, uh.
+Okay. Thank you so much. Let's thank our speaker again. Thanks. Um, um, request from us yesterday.

@@ -8,8 +8,12 @@
 // cleaned .txt.
 //
 // Usage:
-//   node scripts/scrape-transcripts.mjs [eventUrl] [outDir]
+//   node scraper/scrape-transcripts.mjs [eventUrl] [outDir] [--txt-only]
+//   node scraper/scrape-transcripts.mjs --url=<eventUrl> --out=<dir> --txt-only
 //   npm run scrape:transcripts            # uses defaults below
+//
+// Flags:
+//   --txt-only   write only cleaned .txt files (skip .srt and index.json)
 //
 // Requires Node 18+ (built-in fetch). No external dependencies.
 
@@ -20,8 +24,21 @@ const DEFAULT_EVENT_URL =
   "https://indico.uchicago.edu/event/479/page/59-recordingslivestream";
 const DEFAULT_OUT_DIR = "transcripts";
 
-const eventUrl = process.argv[2] || DEFAULT_EVENT_URL;
-const outDir = process.argv[3] || DEFAULT_OUT_DIR;
+// Split argv into flags (--foo / --foo=bar) and positionals so both styles work.
+const flags = new Map();
+const positional = [];
+for (const arg of process.argv.slice(2)) {
+  if (arg.startsWith("--")) {
+    const [key, value] = arg.slice(2).split("=");
+    flags.set(key, value ?? true);
+  } else {
+    positional.push(arg);
+  }
+}
+
+const eventUrl = flags.get("url") || positional[0] || DEFAULT_EVENT_URL;
+const outDir = flags.get("out") || positional[1] || DEFAULT_OUT_DIR;
+const txtOnly = flags.has("txt-only");
 
 const decodeEntities = (s) =>
   s
@@ -125,7 +142,7 @@ async function main() {
         failed++;
         continue;
       }
-      await writeFile(srtPath, srt, "utf8");
+      if (!txtOnly) await writeFile(srtPath, srt, "utf8");
       await writeFile(txtPath, `# ${talk.title}\n\n${srtToText(srt)}\n`, "utf8");
       console.log(`saved (${srt.length} bytes)`);
       index.push({ ...talk, status: "ok", srt: srtPath, txt: txtPath });
@@ -137,11 +154,13 @@ async function main() {
     }
   }
 
-  await writeFile(
-    join(outDir, "index.json"),
-    JSON.stringify({ eventUrl, scrapedAt: new Date().toISOString(), talks: index }, null, 2),
-    "utf8"
-  );
+  if (!txtOnly) {
+    await writeFile(
+      join(outDir, "index.json"),
+      JSON.stringify({ eventUrl, scrapedAt: new Date().toISOString(), talks: index }, null, 2),
+      "utf8"
+    );
+  }
 
   console.log(`\nDone. ${ok} saved, ${failed} failed/empty. Output in ./${outDir}/`);
 }

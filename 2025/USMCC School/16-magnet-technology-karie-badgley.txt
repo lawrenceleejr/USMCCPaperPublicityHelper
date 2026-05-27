@@ -1,0 +1,547 @@
+# Magnet Technology, Karie Badgley
+
+The. Okay. You remember before?
+Yeah, whatever. I don't care who hates me at this point.
+It looks like an hour and a half for me this morning and now 20 for me.
+It took me a strange way. All the way down and 57 up. No, because I was stuck.
+Okay. Well, okay, so we're getting to the final stretch.
+We have two more lectures to go. And, uh, our last, uh, lecture on technology is from Kerry Bagley, and that's on the Magna technology.
+And as you guys know, magnets are very central to the whole entire complex of the mill and collider accelerator.
+So with that, I'll pass it to Kerry wastegate. Okay.
+Thank you. Um, so again, yes, I'm Kerry Bagley.
+I'm a scientist at Fermilab.
+Uh, when I first started Fermilab, I, I've, um, I guess I should say I've been on, on muons and magnets kind of the whole time.
+So I was on G minus two as my postdoc now working on the magnets there.
+And since then I've been on mute. So doing the, uh, solenoids for mute.
+And right now I'm the kind of the second in command for the solenoids.
+And then I've also been, um, doing a lot of kind of magnet testing and measurements.
+So I'm also the head of the, uh, test and instrumentation department inside the Magnet Department, uh, at Fermilab.
+So it's kind of my, my background, and I, um, I was asked to give this magnet technology talk,
+and I started putting way too much into this magnet technology talk.
+So then I decided, now I'm going to I'm going to step back. So I pulled a lot out of it.
+So hopefully this will be kind of a a kind of calm evening talk to, to go into your homework and dinner time.
+So as you can see very simple outline. So we're going to do some magnet basics, talk about some conductors.
+And then a little bit on the muon collider magnet needs.
+Uh there are actually two talks on Friday on the muon collider magnets.
+So if you know I don't go in deep enough here, you're going to get a lot more of that, um, on Friday.
+So. Okay, so magnet basics.
+Uh, you heard in the last talk, and I'm sure from undergrad classes, um, about the Lorentz force.
+So anytime we have a charged particle moving in electric or magnetic field, we're going to feel a force.
+So we can I think there's a laser pointer here so we can have, um Lorentz force where we don't have any magnetic field.
+And we can get some deflection of, of a charged particle with just an E field.
+But as soon as that charged particles up at relativistic speeds, we would need huge, um,
+electric fields on the order of 3/10 of the 8 volt/m in order to get the same bending that we could get with a one Tesla magnet.
+So that's why we we don't really use, um, the electric field to do the bending that we need.
+So instead we,
+we look at the case where we don't have an electric field and we're just using the force due to the charge or due to the magnetic field.
+Um, this, uh, this or this force, sorry, is always perpendicular to the motion of this charged particle.
+So this force never does any work on the magnet or on the charged particle.
+Sorry. Uh, so I have a lot of friends in SRF, uh, who tease me because their system actually does works.
+They say that I actually don't do any work being in magnets.
+So you, um, heard also previously about this magnetic rigidity?
+Uh, so you can derive that directly from this, uh, from this equation, if you just put in, you know, equals mass times centripetal acceleration,
+you can get this, you know, this magnetic field,
+the radius equaling the momentum over the charge and the momentum that you want is as high as possible.
+Typically, uh, for these colliders and the charge you can't change.
+So it gives you these two knobs, the b-field and the radius. And uh, you can keep increasing the radius, uh, at an expense.
+Or you can keep, uh, increasing the magnetic field at an expense or until you reach kind of your, um, your limit with technology.
+And that's for for circular colliders. So I mentioned this one Tesla field.
+Uh, in magnets, we talk about things in Tesla. Um, you know, other other groups might talk about things in Gauss.
+So Tesla is 10,000 gauss. And just for some, uh, reference here.
+So the Earth's magnetic field is, is just like micro Tesla strength of a fridge magnet,
+about 5 million Tesla, um, MRI, 1.5 to 3 Tesla, uh, strength used to levitate a frog.
+16 Tesla. If you guys haven't googled this video, it's fun to watch.
+Floats around. Um, strongest pulsed magnetic field obtained in a lab that destroyed the equipment, but not the lab.
+So in Tokyo, they actually imploded. This magnets create a really, uh, high magnetic field.
+And then the one below that was the strongest magnetic field ever obtained that destroyed both the equipment and the building.
+So that's all right. So an order to create these, uh, magnetic fields, we need some kind of conductor, uh,
+so you can have things that are, um, iron dominated magnets where you have a conductor,
+but then there's also this iron yolk around there, and that iron yolk profile, uh, shapes, uh, the field, it can be just coil dominated.
+So the placement of the coils is what produces the magnetic field.
+Or you can have a combination of both. I'm actually lying a little bit.
+You can also have magnets that are produced by um just permanent magnets.
+So you can have an array of permanent magnets. I'm not going to talk about those here but that is another option.
+Okay. So what kind of magnets can we produce.
+So again you've already seen these throughout the week but sorry you're going to go through them again so we can have um something called a dipole.
+That's just the two poles right. Di um and that's used for bending in one plane and uh, things like energy selection.
+So if you want to, you know, get rid of certain energy, you can put it through a dipole like that out.
+So this produces a constant magnetic field again in one plane.
+So here it's in the why. You could have it just in the X as well on the other direction.
+And you can produce this dipole field in so many different configurations.
+So here's a case that's called the window frame. So this red is the conductor.
+So the cable coming out and then going back in kind of in a in a racetrack fashion.
+Um a problem with this is if you want to send your beam through here and you have these coils coming out, you're going to hit the hit the coils.
+So you have to do something tricky on the ends. Uh, in this configuration, you have to kind of flare up your ends to go around.
+So the beam pipe gets in there, you can have a, uh h so that's just this H dipole and that's the same as this,
+but instead you kind of recess the coils up so you don't have to deal with that. Um, with that in effect.
+So this is, you know, just a simple racetrack or pancake coil, you can have a C dipole.
+So again, this is iron that's shaping it with the help of these, uh, with these coils.
+And this is actually the coil structure that's used for the muon g minus two magnet.
+I think that this maybe mentioned that earlier just for the scale of.
+This. Those are people standing there just so you can see how big that that big magnet is.
+So then you can have, um, uh, other options such as the cosine theta.
+So here the current density, um, is kind of takes this cosine theta shape.
+So it's highest in the middle and then tapers off to zero. And that's been used for quite some time in accelerator magnets.
+So here's the Tevatron. Let's see uh LHC so these are the kind of coil layouts for those cosine theta magnets.
+And you can even do more exotic things like a canted cosine theta.
+So in this you make, uh, two windings.
+So you, you have these two windings, one going this way, one going the other direction,
+and they create a magnetic field that's slightly canted like this.
+But when you add those up, the component in X here cancels out.
+And you just get that dipole field in the middle. Okay, so are there other types that are common?
+Are the quadrupole magnet just meaning for pole. Um, so here we have a magnetic field that's going to, um, increase with uh distance from the center.
+So you have this gradient, it's called of the um, of the wider pole.
+That's just a constant. And then this X is just your position along the, along the plane and with, uh, with this whole point of this is focusing.
+So I think you guys saw, you know, you can only focus in one direction with the quadrupole and, and defocus is in the other.
+And then you got to flip it and try to do, you know, some tricks with the optics to get this to focus.
+Um, overall you can set up some interesting.
+So here's kind of a more traditional looking quadrupole, these little uh, shapes here.
+But you can also think do things like this Panofsky quad where you just have the currents, um, kind of just in sheets along the wall.
+But again, you can have to deal with your, um, your conductor somehow.
+Right? So you have to flare that out. So here's this one's a little bit hard to see,
+but this is conductor that then flares out in a very elaborate way to get, uh, to make room for that beam pipe.
+And then similar to the cosine theta for the dipole, you have the cosine two theta for the quadrupole.
+So that's pretty standard. Um, looking accelerator magnets there.
+Oops. Um, and then you can keep going.
+Right. So you can go to higher order. So you can have a second of all that six poles.
+And this is um where the field varies, uh, quadratically from the center instead of a linear, uh, like in the, uh, quadrupole.
+And this is used to correct kind of the, the beam edges. So it has more of an effect on the beam that's out of the edge.
+Uh, you can do octo poles, eight poles even higher.
+The deca poles. I don't know why. Uh, actually, we do this, but that's an option.
+Um, and then another important magnet for, uh, for the muon collider is solenoids.
+Right? So, uh, we all learned in undergrad that your, uh,
+field an an infinitely long solenoid is just this nice mu not number of turns per length times current,
+which is great if we could make an infinitely long solenoid, but we can't.
+So our solenoids always have these kind of curved fields.
+And in defects we can do some tricks, uh, with the conductor to try to minimize that.
+But but overall that's still going to be the case. And we're going to have some thickness here.
+So for uh, for us we're going to say that the b-field on the axis is actually given by this equation, which is uh, the current density.
+This is the thickness of your overall conductor. And then this kind of function that goes somewhere between 0.1 and 1.
+So don't worry about that too much. Just typically about 0.8 okay.
+So I want to point out that this is the B on the axis.
+That is usually the B that we're designing the, you know, the solenoid for.
+But that's not the B that the coils are going to see. Right.
+The coils actually see a higher magnetic field. Um, and so that's when we're looking at, uh, the effects on the conductor.
+That's important because that's the B field that we have to worry about.
+And I guess I didn't point that out, but that's the case for the quadrupole in the dipoles too, right.
+You you aim for a field in the middle. But then what the conductor sees is actually higher.
+Okay. Continuing on. So um, we can have other types again combine function magnets.
+So this is where you take some combination of the previous one.
+So you can have a dipole and a quadrupole combined into one magnet which helps um bend and focus in one direction as you go, um, around the ring.
+And uh, I just want to point out that the Fermi logo is actually a combined function magnet.
+Right. So here's our dipole, these two bars here and then our little quad.
+So all right. And then you can again this this keep going.
+You can have more and more exotic magnets. So here's an example of a character magnet at Fermilab.
+So it has all these windings. And you can power them in different orientations to produce random uh, magnet configurations to,
+to cancel out, um, imperfections in your magnet, uh, upstream of that.
+Okay. So any questions? I guess I've been encouraged.
+Ask questions along the way. Yes. Why do you choose to use my magnet?
+Um, and I mean, this side. Uh. This one. Yes.
+Okay. Sorry. Um, on slide seven, you showed the the C-shaped magnet.
+Um, and I was just wondering why it doesn't produce sort of any asymmetry that we'd have to worry about.
+So, um, so it can. And and what you do is you you shape this iron here to, to make sure you take care of that.
+So thank you. But that's useful, you know, if, if the G minus two ring were made out of this H dipole.
+We couldn't put any of our detectors in there. Right.
+So now, um, if you have the C opening toward the middle, now you can, you can put things like detectors or whatever into that.
+So that's the reason you do that. Yep. Yeah. What is the purpose of a canted cosine theta configuration.
+Um, it's well it's to produce a dipole.
+We can also do other ones with this, but it's, it's uh um, sometimes when you have a conductor.
+We'll get to this in a minute. You can't bend it too harshly, I guess too tightly.
+And so here you can keep a nice big radius that you're bending the conductor on.
+So that's one reason we have. Are you working on cosine then you.
+One is you can support every turn with this structure.
+So it's mechanical reinforcement.
+Uh, you can put more mechanical reinforcement between the turns because you're spreading them out over a larger structure.
+And the reason that's important, which I don't cover later in this talk, is, um, when you get higher and higher fields,
+the conductors push on each other, and they can cause strain, which can can reduce the total current that they can carry.
+So another way is to have really compact bending.
+So we're looking at using them for some really small medical synchrotron.
+Excellent I like this. Um this is. So the goal of these magnetic fields are to be as uniform as possible.
+Right. Or are we. Okay. So how very a how like how actually have we been able to get it so far.
+Like how uh, what's like I don't know, the uncertainty I guess.
+Do you have any ideas? Um, so we look like when we report on our magnetic field quality that we get, we report on it in terms of, of of units.
+So we're trying to get it in. Um, when you create a magnet, if you create a dipole, it's not going to be a perfect dipole.
+You're going to get higher order multiples in that field.
+So you adjust the the coil placement or the iron until you can reduce those higher order multiples to something that's,
+uh, satisfactory for your experiment. If you're going through a magnet once, you don't care about that as much.
+If you're going in a ring where you have an error and you're going to keep hitting that magnet,
+and you're going to keep getting that error every time you hit it, then it's much more important.
+So it kind of depends on the application. Can I ask a follow up on that?
+Uh, is are we very much in the regime where it's like geometric effects from the coiling
+and things like that that are causing those multi or like higher order components,
+or are we in kind of like, do we care about manufacturing defects like that kind of smaller scale stuff.
+Yeah some of that some of it comes in from manufacturing. Some of it comes in from um, our ability to control of the conductor when we're.
+Yeah, impregnating it and things. So. Follow up on that to to what extent is like material defect, uh, a concern.
+Um, it is, I would say probably more for performance than field quality, but.
+All right. Shall we go on to conductors? Okay. You guys can still ask me questions later.
+Just. Okay, so like I said, uh, except for the permanent magnets, we need conductors to produce these magnetic fields.
+So our options are, uh, to use, uh, resistive or normal.
+We use those kind of interchangeably, uh, conducting, uh, materials, typically copper.
+And you can get, uh, current density out of that of maybe ten amps per millimeter squared if you have sufficient cooling.
+So a lot of times if you see copper magnets, a cross-section of a copper magnet, you'll see, uh, this hole in the middle of that copper.
+And that's because they're running, uh, cooling water through there.
+As soon as you want to produce magnetic fields over about two Tesla, you really need to start looking at superconductors.
+So we have two categories of superconductors. We have the low temperature superconductors.
+These require um liquid helium um such as niobium, titanium,
+magnesium Deborah I know IBM 310 or our newer class of well I guess new newish class of
+high temperature superconductors which can operate maybe at liquid nitrogen levels.
+So we have um, bismuth 2 to 1, 2 or 2 to do three or, uh, Remco, which I think you guys heard Sunday night.
+Um, maybe I don't know if you've heard about it since, but okay, so Rebecca goes another option.
+We'll talk about that in a minute. I don't think you're allowed to give a talk that mentioned superconductivity without putting this picture of,
+um, Carolyn Holmes in there who first discovered,
+uh, superconductivity when he was liquefying mercury and found that below a certain critical temperature,
+the resistivity of this just dropped to zero. Right. So that's the critical temperature where below which were superconductor above were not.
+So it's not just the critical temperature that's important for superconductor.
+You also have um, some other uh, constraints that that you need to be below in order to, to remain superconducting.
+So we have what we call a critical surface. And one axis is the temperature.
+So that's that's still important.
+But you also have um, an external magnetic field that's applied to that conductor and the current density that it's carrying.
+So you want to live below this critical surface in order to remain superconducting.
+As soon as you're above it, you're no longer superconducting. And we'll we'll talk about that in a bit.
+And not only do you want to live below the surface, you want to live below the surface with some margin because,
+uh, your temperature might increase for whatever reasons.
+You know, your cooling plant has some issues or, um, you know, your conductor moves,
+and that causes, um, some mechanical heating or some extra magnetic field or whatever.
+Right. So you want to keep yourself below this critical surface, uh, to, to remain superconducting.
+And here's just you don't have to look at this in detail, but here's just some critical surfaces, uh, for various superconductors.
+So it's not like they all have the same critical surface, uh, that they're very different.
+Okay. So I mentioned what happens when you're not superconducting.
+Uh, we call that a quench. So this is a sudden transition, uh, from superconductor to normal.
+Um, so when, uh, when you're superconducting, you're carrying a lot of current as soon as you're not,
+your superconductor typically is a very poor conductor. So now you have a bunch of current going through something that's doesn't want to conduct.
+And you, you, you do two things. You build up a voltage.
+Right? Old Ohm's law when we're our resistance was zero essentially, and our voltage was as well.
+Um, but also because now we have resistance, we're dissipating power into that section.
+So we get this, this I squared. Ah. And so we're just heating up. Okay.
+So one of the challenges, uh, for magnets, superconducting magnets is to protect them when they quench because they're going to quench.
+It's ridiculous. I've heard it said that we should be able to produce magnets that don't quench.
+We produce planes that don't crash, but we don't.
+So, okay, so we have to have some safety margin and protection for when these things, uh, when these things quench.
+Okay. So our goal is to minimize how much temperature gets dumped into that part of the conductor.
+And then also, um, to, to provide a path for that, that current to go somewhere.
+And to that the other thing is to detect it. Right. We need to know when this is happening so we can take that current and dump it somewhere else.
+So it's not just heating up that conductor.
+So, um, one way we do this quench detection is if we, if we have this superconductor with a current going through it,
+and one section of it, uh, starts to go normal, um, along that superconductor, we can put these things called voltage taps.
+And so these are just wires that are attached to the conductor. And we're looking at the voltage on those as we're running this magnet.
+And as soon as some section of that starts, the voltage starts to go up.
+Then we say, okay, we're probably quenching there. Let's dump the current into something else.
+And that's, um, great if your quench propagation.
+So how quickly this hot spot can move along the conductor.
+If your hotspot doesn't move very quickly, um, you might not pick up that voltage because you're only making a very small resistive spot, right?
+And so your voltage might not increase enough to, to, to pick it up.
+Whereas if you're, if your normal um, section propagates really quickly,
+then all of that section is going to have all that current and all that resistance,
+and you're going to have a big voltage there that you that you can see, okay.
+So the faster you can move your quench your quenched section along there, um, the easier it is to pick up and protect.
+Um, right. So don't want to.
+Yeah. We don't want to get the current or the temperature too hot there that we destroy that conductor.
+I think that's all I wanted to say here. So. Yeah.
+Quench propagation velocity. Okay.
+Another important, um, you know, defining thing of a, of a superconductor is how much current is actually going to carry.
+We usually talk about that in terms of current density. Um, so.
+Each superconductor will have kind of this, what we call a critical current density.
+That's the kind of the maximum current density that it can carry under,
+under our conditions of being cold enough and not being in too large of a magnetic field.
+But the superconductor on on its own or never just lives on its own.
+I guess I should say, because of these things like quenches, right? We need to do something to it to help protect it.
+So around the superconductor, we typically put some kind of stabilizer that might be aluminum or copper to help kind of, um, dissipate that current.
+So that takes up space in our conductor cross-section.
+We also often have to put some kind of insulation around it, so it doesn't short out to the surrounding coils or to the mandrel.
+So that takes up some more of our kind of superconducting cross-section.
+So what we really end up talking about is this engineering current density.
+So that's the total, um, total current in the strand divided by the total area of the strand, because some of it gets eaten up by other things.
+Right. So we really want to see like how much actually, um, can we put through a physical cross-section, not just this ideal superconductor.
+Okay. So now on to some of these superconductors. So I mentioned niobium titanium.
+This is one of the low temperature superconductors. This has been used in all superconducting accelerator magnets to date.
+I put an asterisk there. We'll talk about that in a minute. Um, the first large scale accelerator application of this was at the Tevatron at Fermilab.
+Um, the nice thing about niobium titanium is that it's pretty flexible and you can kind of go around smaller, um, bend angles.
+It does something called or we fabricate it in a process called react than wine.
+Once we we can make this superconductor, make it into a cable and then take it and start winding it around our mandrel.
+Other ones we can we'll talk about that. Um, and the quench propagation on niobium type.
+Uh, titanium is something on the order of meters per second. Right. So this quench is moving along right, like this.
+And so we can pick that up pretty quickly and protect that magnet before it completely gets destroyed.
+Um, but the critical temperatures down at ten Kelvin.
+And really, we can only, uh, get up to about 15 Tesla for a critical field, but that means a really for a practical magnet limit.
+We're looking at about eight Tesla. That's what we can reach with niobium titanium.
+So how do we um, I guess I put this that we have these kind of funny structures here.
+So, uh, this is, uh, a cable of niobium titanium wires.
+This is a cable of niobium titanium extruded in an aluminum, um, outer conductor.
+That cross-section is called a Rutherford cable.
+And to get to that Rutherford cable, we first take, um, large tubes, fill them with our superconductor, large tubes of, say, copper.
+Pack those all together and start drawing those down until we make these nice little strands that have, you know,
+this little this little piece here has a bunch of little, bunch of little strands around it that have copper matrix in it.
+And then we take that strand and we, um, decide how many of we need ten or whatever,
+and we wrap them around a mandrel and then squeeze them into this rectangular shape.
+Okay. So that's our Rutherford cable. So we have this twisted, um, twisted conductor made of multiple different strands.
+If you kind of cut away, you can see the top layer is going like this and it's doing that on the bottom right.
+And if you're thinking, well, that looks very familiar, it's because it is same shape as a Twizzler.
+Right? This is exactly what's going on on a Twizzler. So the Rutherford Rutherford candy we have.
+All right. So this is a plot of um, the critical current density and the applied magnetic fields, the field that this thing is living in.
+So we want the critical current density to be as high as possible.
+And we want to be able to live in a magnetic field that's as high as possible.
+Right. So ultimately we want to be over here. But niobium titanium lives over here.
+Right? So if we're trying to make super high field magnets, this is not the conductor for us.
+Um, this one's not either, but I just want to throw it in because it's, um, it's a common,
+uh, superconductor or not as common, but an interesting superconductor as well.
+So magnesium diorite, this one actually has a higher critical temperature.
+Um, but it's not as flexible as niobium titanium, but it can still be produced and then wound.
+But you have to keep a larger radius on this. Um, and the nice thing is that because it has that higher critical temperature, we might be able to use,
+you know, liquid or, uh, helium gas or something instead, uh, and gain some cryogenic cost savings.
+Um, but this is better suited for non high field magnets applications such as motors, generators, MRI maybe transmission lines things like that.
+But just to put it on the plot, here's our magnesium and.
+You were getting way down here in the critical current, which is not what we want. Okay, so next up is niobium 310.
+So this is also a low temperature superconductor.
+Um, it's, uh, practical field limitation.
+I put 15 I guess we could say 16 Tesla. Um, down at one point.
+I don't know why that says 81.9 Kelvin. Um, this one, though, requires a reaction.
+Heat treatment. So what does that mean? This cable you produce in strands.
+Uh, in a similar way. Right. You still do that drawing down,
+but then you have to wind this cable into its final configuration on a mandrel that then you can take and bake at 650 to 700 C,
+which limits the types of minerals and insulating materials you can use for this conductor.
+Right then. Um, it's worse than that.
+It gets gets very brittle. It also changes shape when it is, um, when it's baked.
+So you have to worry about, uh, kind of how you've wound it on there.
+And, uh, let's see. Yes.
+So I mentioned on an IBM titanium that, that that one was the only one used.
+We actually have now produced, um, niobium,
+three tin magnets that have been shipped over to CERN that are going to be used for the high Lumi LHC upgrade.
+So that was the first one that shipped by I think we've shipped three now, or maybe one still over the Atlantic.
+I'm not sure. All right. And so here's where now boom.
+Uh, 310 then sits on our plot. So we're we're inching closer, but we're still not there.
+Um, another one is, um, bismuth 2 to 1. Two. So this is, um, a pattern to process.
+So here, the other ones we were putting in copper. This one you need to put in silver.
+Um, this one is also wind and react, which is a pain.
+But it gets even worse because the temperature is higher.
+And you need to do this, uh, with a background pressure of argon and oxygen at some 50 to 100 atmosphere.
+So? So it's even more complicated.
+Um, so this high temperature and oxidation further limit the materials for insulation and the mantle that you can use.
+But it does have a nice high TC. So that's good. Um,
+it's only it's the only high temperature superconductor that we can get in this
+kind of small round filament that we can then produce the Rutherford cables.
+We like those Rutherford cables. We're used to working with them. So that's another plus.
+Uh, but it's even more sensitive to strain the November 3rd ten.
+So some some good and some bad. All right.
+So here's where that lives though. So that's really nice. It's getting us it's getting us there.
+All right. And then that brings us to to the last one I'm going to mention today, which is this, um, rare earth, a barium copper oxide.
+That's hard to say too many times. So we just call it reco. That rare earth can be, uh, a couple of different things, but typically it's, uh, yttrium.
+So the problem with reco is that the process to produce reco, um, is through this thin film deposition.
+So you have to have a substrate and a stabilizer, and then you deposit this tiny, you know, 1 to 5 micron layer of reco and then another piece on top.
+And so you get these tiny little tapes. Um, and another issue.
+Uh oh, sorry. Let's say with the good stuff for a second. So another good thing is that it's, it's critical temperature is 92 Kelvin.
+So that's good. That's that's above, you know, liquid helium. Um, and so we can do some maybe liquid free cooling on that.
+But the one of the main issues that it's got a slow, uh, quench propagation.
+So it's quench propagation, there's something like this, right.
+Compared to the niobium. Titanium. Right. So this is very hard to detect, which means it's very hard to protect.
+So we can easily burn these things up. Um, another issue is that it's got this nice optic, uh, critical current.
+So if your field is not lined up with a certain plane of the crystal structure in there,
+you're going to get less, uh, current density than if your field is, you know, perpendicular, whatever.
+So it wants to be lined up. Sorry, parallel, not perpendicular.
+So that kind of is something you have to think about in your design of your magnet.
+How is this conductor going to be oriented with respect to the field that you're producing?
+Um, it's also currently very expensive, but the cost is coming down because there's a large interest in this from fusion.
+So you can make this uh, co in kind of several different formats.
+So one is this and I honestly don't know how to say this ruble it's a German name okay.
+We're gonna say that's how it goes. The cable. Um, that is these the kind of tapes that kind of have this zigzag back and forth, um, shape,
+and then you have to kind of weave these together to get the similar properties of that twisted Rutherford cable.
+That's that's difficult. Um, so that's one option.
+Another option is to take, um, take a bunch of these tapes and kind of helix wind them around a central mandrel.
+A. Central, um, core. So that's the conductor on a round core, which we just called cork.
+So the cork cables, uh, like I said, are these multilayer helix wound, um, tapes.
+And they've been, you know, improving slowly, mechanically, uh, the mechanical performance in recent years.
+So this is just a cross-section of those.
+And this is cork, um, cable being used as one of the layers for this canted cosine.
+This is like the inner layer of the canted cosine with this cork cable. That's that's at Berkeley.
+And then another version of this is called uh the Viper Viper RGB Co Viper cable.
+I don't know exactly how we, uh, talk about it, but this is, uh, being developed over, um, at MIT, uh, by Zach Hartwig.
+So in this arrangement, it's kind of dark and hard to see in here, but there is, um,
+yeah, there's there's an inner copper mandrel that has four channels carved out of it.
+And in those channels there, uh, stacked RGB co tapes.
+Okay. And then that channel also spirals.
+Okay. So this is again getting that, uh, transposition like you got with the Rutherford Cable, like, um,
+so this is kind of yeah, zoom in of that little channel, which is, uh, unfortunately hard to see.
+So this is good because you get this, you know, you can have this this cooling spot in the middle.
+You can run, you know, liquid nitrogen or helium, whatever, whatever you're deciding to use there.
+You got this copper structure that does help with stability. Um, but but this is a huge cross-section for, uh, for this, these little tapes.
+And you can't really been this super, super tight. So we have a bend radius restriction, um, with, with, uh, Remco as well.
+Okay. But the nice thing about Remco is it really starts to get us into that section where we want.
+So that's why we talk about Remco as being so promising for these, um, high temperature, high field magnets.
+Okay. I mentioned this bending radius limitation.
+It's also called, uh, a strain limitation.
+So if you look at um, the applied strain and the current that you can still kind of carry when that's happening,
+that could be from bending or it can be from if these are in contact with each
+other and there's a high magnetic field and they're pressing on each other, you can get strain that way.
+So um, the niobium 310, the IBM tie kind of comes out here.
+Like I said, that one's pretty pretty ductile. But the other one is quirk that really gets you out there.
+So that's nice. What? Okay, so then how are we doing?
+Almost over. So, magnets, uh, for the muon collider.
+I'm going to go through this kind of quickly just because, like I said, you're going to see this again.
+Um, two days from now, but, uh, hopefully you've seen this 100 times already, and and you know what I'm pointing out here.
+So this is the front end where we have, uh, the target and the decay and capture solenoids.
+So the big, um, issue there is we want to produce this magnetic field in that section.
+So this is going up to, you know, 20 Tesla and then decaying back down to about two Tesla.
+So, um, that's high field, but it's also a high radiation and heat environment,
+which means that the target needs to live inside a large heat and radiation shield,
+which means the magnet has to be around that, which means we really need a large bore.
+So now we're trying to produce a large magnetic field in large bore, which is difficult.
+So that's the the main complication here.
+Uh, the remainder of these maybe not so bad because you get down to these reasonable fields in the next section are problem,
+uh, in the cooling is that we have, um, first of all, we need a lot of these cooling cells.
+Um, and these cells, uh, I think was mentioned also many times consists of these magnets and, uh, cavities and absorbers.
+But the problem with the magnets here is that if you look at one of these cells, you have a magnetic field going in one direction.
+And then by the other side of this cell, it's going in the other direction.
+So these solenoids are, um, opposing each other.
+So you're getting these huge repulsive forces. Right?
+So now not only do we have all these other conditions of needing to be superconducting and have radiation,
+but now we're also having these huge forces just between themselves, right.
+So that's a problem there. And there's um, like I said, a lot of cells and there's um, that can be divided into 12 different cell types.
+And so here's just kind of the, the critical current or the engineering, sorry current density we need for these.
+So if you can see these are all pretty low. So these um in terms of the superconductor this is not so hard.
+It's just the mechanical uh stresses and things like that that make this section difficult in the uh, final cooling section of, of of this part.
+Uh, we have this, um, solenoid that needs to be something like 40 Tesla.
+So ideally they say they want it to be 60 Tesla. Right. So, um, but with a small bore, so relatively small bore.
+So it's not as bad, but, uh, so it's long, really high field.
+Um, and there's, you know, some proposals that people say they think can, can achieve this, uh, today or soon.
+So if you take on make 52 or sorry, 56 Repco pancake coils, there's just little tiny solenoids essentially stacked on top of each other.
+Um, and assume a current density of about 650 amps from a millimeter squared.
+That's okay. Um, they say that this is within reach of our current tape performance.
+But then again, you have all these external fields and forces and things that you still have to consider.
+Oops, sorry. Um, okay. So that's on the solenoids.
+So, um, if we look at, uh, a plot of the solenoid fields and, uh,
+inner diameter of those solenoid superconducting solenoid coils that we have today, that's what this, these blue and green dots are.
+We can kind of draw the state of the art, uh, line. And if you look at the, um, 60 muon cooling channel, those magnets are all pretty much under that.
+So we can achieve those. Right? Those are the ones that had that low engineering curtain density.
+If we look at the target capture decay, that 20 Tesla ones here,
+but then as we decrease in field, we can kind of get into a region where we can produce those.
+So that's not so bad. Uh, but then we have this huge outlier up here and that's that final cooling, um, that 40 Tesla cooling, uh, solenoid.
+So that's kind of up here and I would say still beyond state of the art.
+I just want to point out that we do have experience with large solenoids.
+So yesterday.
+Yes, yesterday, um, we moved this gigantic, uh, magnet for the Moody experiment down into into the hall so you can kind of see the bore of this.
+I can stand in the bore of this. I'm about five feet. Um, this, uh, experiment has, you know, 66 superconducting coils.
+They're not all, um, nicely arranged. So they do have a lot of forces on each other.
+So we do have some experience of trying to, you know, kind of hold these magnets that really want to align and pull in together, uh, apart.
+Uh, this magnet here, this is 11 superconductors. Uh, somebody who's about six foot can stand on the board of that one.
+So that's pretty impressive. But the fields are only about one Tesla.
+So. So yeah. So we go from about four Tesla down to one Tesla.
+Um, but yeah just a a side note because that just happened yesterday.
+So and this is just looking down the uh, so you can see all the conductors.
+Niobium titanium impregnated with an epoxy.
+Those are all the coils. Okay. Um, other magnet challenges as we continue down the line here, we get to the, uh, accelerator ring.
+So in the accelerator ring, we need to have, um, normal conducting magnets.
+1.8 Tesla. Okay, we can do that. Uh, superconducting magnets, less than ten Tesla.
+Yeah, we can do that. But the problem is we want to ramp those normal conducting magnets really fast.
+And so that's not something that, um, we, we fully can do yet.
+Um, because we have to deal with, uh, the power needed to go in and out of those magnets and also the amount of heating
+that you're going to get in those resistive magnets as you're changing the flux, right.
+The eddy current heating. Also, the aperture in this section is just kind of rectangular.
+So which is fine. You know, we can make the normal conducting magnets rectangular.
+And then we would not make our probably our superconducting magnets in our
+typical cosine theta because that doesn't really match up with the rectangle. So we would have to use something else.
+So one proposal is that a simple, um, you know, high temperature superconductor race track,
+kind of that simple coil that I showed you for a dipole might be, um, something that works out here.
+So that doesn't seem too bad.
+Um, and then the collider ring has, um, you know, these, these arc magnets and then these interaction region quadrupole magnets.
+And in that section, we need to have, uh, 16 Tesla, um, of the bending and 20 Tesla in the interaction region.
+And they also need to be the arc ones or uh, I think now they're deciding that they need to be, uh, combined function.
+So there are some kind of proposals how to make a combined function, uh, magnet that can that can reach this.
+But right now these are also beyond state of the art.
+Okay. And of course, um, because they have large radiation doses in these sections,
+you got to have shielding, which increases the force size and that complicates everything.
+So okay. So I'm about to the end here.
+So yeah. Okay. So my summary um now we have these magnet needs for muon collider.
+You're going to hear about them a lot uh coming up. But this is kind of a summary here.
+So you can kind of keep those straight. Um, this is a very challenging but exciting time for muon collider magnets.
+And I also want to say that magnet technology is a huge topic.
+And I barely scratched the surface right there.
+There are whole, uh, you know, week long, two week long classes on this at the, uh, US particle Accelerator School and the Certain Accelerator school.
+And I encourage you, um, to look at these sites. These are great resources for, for lectures.
+So I think with that that's it. Yeah. Thank you very.
+Questions or comments. Oh yeah, I forgot to stop.
+Sorry. After the connectors. This one. Hi.
+Um, hi. I was wondering if you could give me a little more intuition, uh,
+for the kind of comparing stuff like 15 Tesla is very high for an accelerator magnet.
+And then you mentioned in the beginning you can achieve 750 Tesla if you're okay with blowing up your magnet.
+Um, and so like, I understand, uh, on the one hand, of course, if your mind is going to get blown up, that's a lot less constraint.
+But is there an intuition for like why that's like two orders of magnitude, uh, higher field strength when we do that?
+Well, yeah. So the field strength is about field density in a, in a volume essentially.
+Right. So if you can kind of compress that field into a tiny little volume, you can get very high fields.
+So I think that's maybe it's not useful for us, but I you know, we can't be compacting our fields in the same way.
+Yeah. Might ask a question.
+Oh I see. All right. Okay, I'll ask a question first.
+I don't know if you know the answer to this, because it's kind of. Anyway, it's about super superconducting.
+So I kind of understand that we don't really understand the fundamental physics of BTS, but I was surprised and interested.
+This is what another manga person told me earlier this summer. I didn't even know that. Okay, great.
+That aside, I saw that you were describing, um, some materials where they can tolerate quite a lot of high temperature but very little current.
+And can you give me any intuition for, like, what about that material at the sort of microscopic particle level would make it that
+make it so that current was more likely to make it quenched than a higher temperature?
+Because I kind of think of all of these as like an energy thing, and I don't. So I don't really understand what would do that.
+Um, yeah. I don't I don't know if I can answer that very well.
+I have my own like, internal model of what's going on, but.
+Okay. Oh we have. Yeah. Yeah. Uh, yeah.
+Just a comment. Just on the side with a critical surface, right?
+Yeah. Basically, you have less energy, that you have less energy gap to breaking apart the Cooper pairs as you get higher in temperature.
+So you can carry less current because they're not pinned as well as some.
+Scholars. Like man museum diver.
+Right. Yeah. Yeah. So it has to do with the strength of the superconducting gap.
+That's the critical temperature.
+But always for every conductor, the closer you are to the critical temperature, the lower your current density is for every conductor.
+So on this plot, they all go down as temperature goes up high.
+Right. So I was thinking of, uh, um, magnesium di boron.
+Yes. Okay. Why is that one like that? So you can operate it like a higher temperature, but you can't get to the,
+you know, so we operate all of our magnets in the vortex state, the next phase,
+and they're you're having to lock the magnetic field in place at defects in the
+conductor and how well you can actually get the defects in the final material.
+So that's a engineering problem of manufacturing your conductor.
+Like in Ravka we actually sprinkle in dust of zirconia oxide to pin the conductor where we want it.
+Okay. Yeah. Flux pinning is a whole other.
+Uh, can you say a few things about the, um, challenge of ramping the magnets in the collider?
+Where why is the ramping a problem? Yeah, well, from previous lecture, we know ramping is problem, but even more in terms of,
+like, where are we in solving them and how far are we from where we needed to be.
+That that's a good question. I think as far as I understand, I think that's more of a power supply issue for the ramping.
+But but yes, I, I'm not on that side of things.
+But that's a great question to ask Friday to both of Magnolia's speakers.
+Um, cool. Uh, yeah. Thank you so much for the great talk.
+I was wondering if you could say a few words about some of the most promising methods in quench detection and, uh, sort of.
+Yeah. Quench management right now. Okay.
+So I will say that that is not my area. Um, but but there's a lot of different techniques.
+Do you want to talk about it? There's fiber optics. Okay. I mean, if you search right now, you can really talk about what's what.
+What is your what are you working on? What particular method are you working on?
+I'm going on the my filer. Okay. Um, do you have a specific question there.
+So you can just describe what that is if you want that general in a quench in general.
+No, no. By filer. Okay.
+Um, so the main problem with the quench is you have too much energy at a very, uh, specific point in the conductor, in the entire magnet.
+But if you figure out some method to get the energy to dissipate across the entire magnet, you're not in trouble anymore.
+So what we are doing is using a specific type of coil arrangement to get, um,
+high frequency oscillations so that we cross the current density limit like in the critical surface.
+If you cross the current limit as fast as you can multiple times per second, you can deposit an insane amount of energy into the entire magnet.
+Um, instead of just one spot. So now you're essentially quenching the entire magnet safely.
+So that's one method.
+Another method is you can put heaters on your magnet and then fire the heaters as soon as you detect a quench to try to bring it all up.
+Similar thing to try to bring it out quickly. Um, there's other ways of trying to detect it,
+where you run fiber optics and try to try to pick up changes in your fiber optic signals to see if you've got a quench.
+Um, there's there's a lot of different techniques. This is not my area. Thank you.
+Hi. Um, really stupid question. So the most that I've dealt with a solenoid is make one of my own with a new and, uh, insulated piece of wire.
+Yeah, that makes sense to me, but over here, it looks like the cables don't have any insulation on them.
+Uh, so some times they try to do it without insulation, but some other ones do.
+Right. You can definitely take, you know, if you just make a regular conducting solenoid, it's, uh,
+copper, but it does have like a thin film on it that you this insulating thin film, right.
+Um, but you can also take superconductor and put an insulator around it and wind.
+So in our in the case of our magnet community magnets, they're all superconducting solenoids.
+They all each winding has an insulation layer around it.
+They're all one, um, wound in a big, you know, solenoid.
+But they all have insulation from each other and from ground. So there's different things that they're drawing.
+But you. There's one there.
+You showed a slide on the critical current degradation versus stream of the different tapes.
+Mhm. Do you have a sense how Viper compares to optimize court.
+I do not. Um I, I don't know.
+I don't know if I've seen that data but it would be good to edit this. So yeah I should look at that.
+And don't see any. Oh there's one. Okay. Okay.
+So this is uh, slide 37.
+You talked about uh, basically the the maybe it's 38 or 30.
+No. Okay. Either way, it was the slide where you talked about the massive forces, uh, between different, uh, magnets basically.
+Yeah. So, okay, so it is this one can can you give a sense of, uh, of exactly how big those forces are?
+I don't have them on top of my head, but they are mentioned in the, like, muon Collider reports.
+So I just don't have. Yeah. Awesome. Thanks. If somebody else knows off the top of their head with those forces, there's tons.
+Literal. Literal tons. Okay. Okay, well, I think we have, uh, a couple more announcements from Carrie, but let's, uh, thank, uh.
+Carrie. Yeah.

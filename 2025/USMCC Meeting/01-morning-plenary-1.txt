@@ -1,0 +1,369 @@
+# Morning Plenary 1
+
+Uh, let me actually let's us all give a hand to the local organizers.
+The staff, uh, carry, uh. Everybody here? Um, they have done they've been working tirelessly to make this work.
+So thank you so much. And, Kerry. Please take it away. Is this is this on?
+Oh, can you hear me? Great. Okay.
+Thank you, everybody, for coming.
+Um, I have some intro slides which I had a grand vision for, and you'll see that the effort really drops off rapidly.
+And I would love it if you guys took a guess as to where that was. So.
+Okay, let's get started. Um.
+Well, the title slide is credit to Taylor. Um, from the school.
+And so we'll get to that. This one is this. And this.
+Okay. All right. So welcome to Chicago. Um, uh, it's a big city.
+Many of you have been here before, but I thought it'd be fun to, you know, bring up some fun facts for people.
+Um, and this is this was part of the grand vision. Um, we're also known as the Windy City.
+The second city and or tri town, you know, depending on where you're hearing about Chicago.
+Um, we're known for deep dish Chicago dogs. Don't ask for ketchup on your hot dogs.
+Um, architecture is a very big thing. We have a beautiful skyline, a long history of blues and jazz music.
+Um, improv is very much a thing if you're an SNL fan.
+A lot of SNL people came from Chicago. Um, and the lakefront is really, really wonderful during the summer.
+So if you have some time Friday evening or on Saturday, um, that's where I would spend it.
+Um, less well known, but still delicious. So if you're going to go into the city, here's some fun things that you could, um, try.
+Um, I've got links explaining what all of them are, in case you never heard of it.
+Um, and, uh, some neighborhoods which have, uh, really good, uh, really good food to try.
+Um, welcome to the University of Chicago again, continuing the, uh, you know, interest in architecture if you've never been on campus.
+Um, I really suggest taking some time to walk around. It's a jam packed agenda, but maybe, you know, if you need to clear your head during a break.
+There's a lot of beautiful car, Gothic architecture, modern architecture, etc.
+Um, we do have a long history, um, and tradition in physics, especially in particle physics.
+Um, if you, you know, click on the physics department website,
+there's some really nice description of a lot of the people that came through the department.
+Um, we, we claim 30 Nobel laureates as our own.
+Um, you might quibble as to if some of those people are actually Chicago or someplace else.
+Um, and we're very proud to be the home of the first self-sustaining, um, nuclear chain reaction under Enrico Fermi.
+And this is, um, a picture of a statue sort of commemorating where that happened.
+Um, and we play a central role in nearby labs. Um, in particular Fermi lab in Argonne.
+Um, we're really proud of that. Um, and I think that explains a little bit of part of the self-interest we have in bringing a muon collider to the US.
+Um, just an hour away at nearby Fermilab. Um, we do have some less distinguished history.
+Uh, we're a little bit quirky. We're known for being scrappy and, you know, making things in the garage or our dorm rooms.
+Um, and so this is a really funny story that they tell you often if you take a U.
+Chicago tour. Um, there's this really elaborate scavenger hunt that undergraduate students do.
+Um, every year. And there were two students, um, from physics students who actually built, um, a nuclear breeder reactor, um, in their dorms.
+Um, and this was featured, you know, in The New York Times and there's some, some nice stories and, um, magazine articles that describe this.
+So it's this is a really fun one to read. If you were going to read anything from these intro slides, I would read this.
+Um, and so, you know, given that tradition of building things of, um, particle physics, we're really excited to host USBc.
+Um, the second annual meeting. Um, a big goal for this meeting is to really encourage broader participation in the muon collider effort.
+Um, the meeting is structured with talks, a poster session.
+Um, plenty of breaks so that we can we can talk to familiarize everyone with the current status of the physics,
+the accelerator and the detector development. Um, and give you opportunities to discuss ways, um, you can get plugged in and contribute.
+Um, the first half of the week, we hosted the US Muon Collider Accelerator School.
+Um, and this was I mean, it was just fantastic.
+Um, the goal there was really to bridge traditional collider disciplines.
+So really bridging an accelerator experiment in theory.
+Um, and introduce students to key concepts, um, key accelerator concepts that are necessary for building a muon.
+You know, collider, R&D, um, and etc. And this was modeled after US particle accelerator school.
+So we had full days of lectures, um, homework sessions.
+Uh, so many questions. You cannot leave. Um, it was really impressive.
+And so, um, I just I thought this was particularly interesting.
+So if you look at the career stage, yes, there are a lot of students.
+Um, but we actually had a number of postdocs and professors attending. Us students are trying to learn.
+Um, and if you look at their sort of primary discipline, the majority of people were from experiment.
+And so this is really great because we want to be growing the accelerator workforce.
+And this is kind of a really nice first step towards doing that.
+Um, and I, I cannot I'm like bragging on behalf of the students.
+They are so many questions despite having, you know, 12 hour days.
+Three days, three and a half days in a row. Asking questions all the way up until the end.
+9 p.m. last night. Um. The engagement was incredible.
+Um, and everybody was really excited. And so I hope that, you know, despite the exhaustion, we can continue that into this meeting here.
+And it'll be infectious and contagious for everybody. Um, okay.
+Coming to the logistics of the meeting. Um, I think this is where the effort and interest lies dropped off.
+Uh, so the useful information. So, uh, the Indico has the latest schedule.
+Um, it's got tips for getting around where to find parking.
+I mean, everybody made it here, so hopefully that part is good.
+Um, but there's additional information about details of the poster sessions.
+Um, restaurant suggestions if you want to explore later.
+Um, some activities you can do in Chicago on the weekend if you're staying around, etc.
+Um, if you have any logistical questions, ask one of the organizers.
+Ask the registration, um, desk. Uh, we do have a slack channel on the US on CC slack, if you want to, you know,
+be talking to people, asking questions to follow up on talks and things like that.
+Um, and if all else fails, you can use this email. Um, and we'll try and sort out any questions you might have.
+Um, so we're in the meeting will take place. It's going to be spread across a few buildings.
+So we're in the Kristen Center, the Christian Physics Center here.
+Um, we will also be going to the Gordon Center for Integrative Science and Michelson Center for physics.
+So I'll use PTC and uh, GSIs and MCP.
+Um, and then there's also a map of, you know, parking. Um, so, um, plenaries will take place in this room here.
+Um, parallels will be spread across, um, this main lecture hall, Maria Gilbert Meyer lecture hall.
+There's a smaller lecture hall on the same floor, just sort of around the around the corner.
+Um, where, uh, accelerator parallels will take place and theory parallels will take place in MXGp.
+So that's, uh, five minute walk from here and you can kind of follow the map.
+Um, or there will be plenty of students around to help lead people. Um, breakfast and coffee breaks.
+You can get food and coffee from the second floor lounge, which is where we had check in.
+Um, and then in terms of, you know, larger meals.
+Um, so we'll have lunches and the workshop dinner today in the GCS atrium on the third floor.
+Um, we're going to host a poster session during today's lunch break.
+Um, I really encourage everybody to, uh, to participate and talk to the students presenting posters.
+Um, they've put a lot of effort in. We've seen lots of drafts, you know, throughout the week before people got stuff printed.
+Um, it's really useful if you're looking for ways to get involved in the effort.
+Uh, and we will have prizes for best posters and poster bingo for attendees to to play.
+Um, we're going to have a workshop photo today just before dinner.
+Um, and so we'll exit from the south side of this building and kind of walk you over to the steps of the library where we're going to take the photo.
+We will also have folks taking pictures throughout the conference, um, and uploading them to a shared Google Drive so everybody will have access.
+Please let us know if you, um, would not like to be pictured.
+Um, and we have some social media where, um, Usm's the official NCC accounts are posting, um, information about the meeting.
+Um, this is a reminder. We have a code of conduct. Uh, and, I mean, I think this is a great community, so there's nothing really to worry about here.
+Um, and then this is a detailed agenda for today.
+So we we've made it through check in and breakfast. This is the first plenary of the morning.
+We'll have a coffee break and a second plenary before lunch and the poster session.
+We'll have a parallel session during the afternoon, followed by a coffee break,
+an afternoon plenary, the workshop photo, and then the workshop dinner.
+Um, I want to thank the logistics staff that made this possible.
+So the local organizing committee, in particular, Mary and Ramona, are doing a bang up job.
+Um, and you'll see them throughout, uh, the workshop. So.
+Um, and a number of the physics staff has also stepped in to help um, and make this possible.
+Um, and we also had a number of sponsors, um, from national labs, nearby universities.
+Uh, which was really important for enabling support for the school attendees.
+Um, nearly 60 pupils lodging, um, for the entire week and their meals.
+Um, and offset costs of attending the school for our student, for attending the meeting for students and postdocs.
+So this was a really big help as well. Um, so thank you so much for coming.
+We really and we we really, really hope you enjoy the meeting. Look.
+At this. Two tickets you're attached to before you look.
+Uh. Um. Okay. So. It's a 23 question.
+Okay. Let's go on the other side.
+It works for us. Just. All right, so for our first plenary today,
+we have Professor Leanne Tawa from the University of Chicago giving us an
+introduction to the physics theory relevant for the Muon Collider initiative.
+Okay. Thanks for the invitation. So I'm. Yeah, I'm going to talk about potential beyond Collider.
+Uh, from the, uh, theory point of view. Okay.
+I think as as a serious the most a question we are asking is not, uh, how to build a collider, but, uh, why am you on Collider?
+Why is that useful? So, uh, I wanted to to organize, uh, my thoughts on this topic in this three classes.
+Uh, so, as if you're on the committee and what you are going to say, if you are a dreamer, what you are going thinking about.
+And I will highlight a few things that the, uh, that you can pursue further if you still looking for more.
+So, uh, given the time and the, the, uh, the list of the topic, this is going to sound like a laundry list.
+Uh, no matter what I do. And, uh, I apologize for that.
+I won't have time to go into details, but, uh, hopefully this is just to give you a lead into various, uh,
+uh, interesting topics that if you want to explore further, you are welcome to, uh, talk to me afterwards.
+Okay. Um. All right, so, um, the committee, I think that, uh, you have to we have to focus on very basic physics output.
+Right. So that, uh, and, uh, the I think the basic physics output for muon collider is, uh, is very clear.
+Uh, it's, uh, it's going to higher energies. Right. And, uh, has a, has uh, uh, uh, unprecedented can can reach to a unprecedented luminosity.
+And so, uh, therefore this, uh, even without looking at, uh, uh, this very tiny red dot.
+I'm sorry. Yeah.
+Without uh, uh, looking at any of these, uh, physics, uh uh uh, behind that, uh, even just this red curve should, uh, uh, convince most of us.
+Okay. But, uh, maybe that's on a committee. That's not enough.
+Right? So you wanted to, uh, talk about a little bit more about specifics.
+So the first thing I think you, uh, they wanted to know is that, uh, how does this compare with the previous, uh, colliders?
+Uh, all the ones that the, uh, other ones that are in the planning.
+So basically, uh, think in the coming decades, we're going to have an ROTC and uh, uh, uh, delivering a lot of data.
+And there are also, uh, Higgs factories.
+Uh, depends on which version of it and maybe vaguely on the, on the horizon.
+Okay. And the muon collider, I think is going to go beyond both of these options.
+Okay. In terms of both the the sheer reach and the precision.
+Okay. So let's look at the. Uh, let's look at this, uh, in a bit more detail.
+So physics program can be very broadly, uh.
+Uh, roughly classified into two directions.
+One direction is a direct reach for new physics particles.
+The other part is the precision. You are going to get two.
+And this can be roughly, uh, be, uh, uh, classified into these two axes.
+One is the, uh, the mass of the new physics particle you are going to reach.
+And this axis, y axis is uh uh, and, uh, uh, coupling between the new physics particle and the, the Standard Model.
+Okay. And, uh, to, to classify, uh, to quantify the, uh, the reach in precision.
+We also often define something like a deviation from the Standard Model coupling, uh, which I just call it the delta here.
+And, uh, roughly speaking, this, uh, deviation will goes like something like the,
+the coupling proportional to the coupling of the new physics to the Standard Model,
+obviously, and inversely proportional to the, uh, mass of the new physics that you have to integrate out.
+Okay. Because if new physics are really, really heavy, they induce no deviation, uh, from the standard model.
+Okay. So, um, qualitatively, what you see has covered this region, right?
+A region like this in their direct search for new physics.
+Right. So roughly speaking, uh, below a TV and, uh, when the coupling to the standard, the model is not too weak.
+So I just covered a region like this. Okay. Of course, this is the qualitative.
+Okay. Don't take the shape too seriously.
+Um, and, uh, on the other hand, the, the precision measurement, uh, at the LHC will get you to a deviation to the Standard model.
+Roughly 1%. Okay. Or percentage. Okay.
+That's roughly corresponding to a line like this. It will excluding everything uh, above this line.
+Okay. So, uh, we haven't seen any deviation yet.
+Right? So, uh. And, uh, but the future, for example, for the, uh, the, the target, a good target for the future precision measurement,
+such as the Higgs coupling, a future target, a good target, it will be one point a 1% from your precision.
+Okay. That's going to become a line like this. Okay.
+That's clearly going beyond the arrow. See, this is the basically the physics case for, uh, measuring Higgs coupling.
+Really very well. Okay. So that's going to cover a region much beyond what the LHC can do at the same time.
+Um, I sorry, a tentative frontier.
+If we go to a center of mass, uh, collision energy attentive, you are going to push the direct, uh, reach also up to about ten TB.
+This is also going much beyond the as you see. Okay. So of course, the the major selling point of you on Collider in this regard is just very simple.
+This is what the both of this is what the muon Collider, uh, going to do.
+Okay. So I think this is if you wanted to convince somebody this is the basic physics output,
+basically, uh, for the muon collider, they can do both of these things.
+They are all big steps into big step, uh, beyond the, the what the current LHC is going to do.
+Okay. Yeah, this is just some figures I wish I won't go go through, but that this is just showing you that.
+Yes, indeed. If you look at the the reach for direct search, reach for particles and this is going to be,
+uh, going up with the center of mass energy of muon colliders.
+Okay. Uh, and uh, also, uh, muon collider is also good, uh, as a Higgs factory.
+Um, so this is just some basic numbers and the muon collider running at the various energies,
+uh, the this this brown color is the how many clicks they are going to produce.
+And, uh, and just to, for comparison, for some of the, uh, the lower energy Higgs factories, they are going to produce about a million Higgs.
+Okay. So you see that at the muon Collider, a roughly around 260,
+your startup going to go produce more hexes with potentials doing better than those, uh, Higgs factories.
+And this is, uh, this panned out as, uh, with some studies.
+So this is the, the the coupling between the Higgs to Z and W.
+Indeed. You see that muon collider running at, uh, uh, 20?
+We can actually reach better positions, uh, down to a per mill level.
+Okay. That's the reaching the physics target that that I mentioned earlier.
+And, uh, higher energy also brought you, uh, additional, uh, benefits.
+So the muon collider can, uh, give you a comfortable energy to produce two hexes, for example.
+Okay. So that that's, uh, another important process.
+And you can this is the number of the Higgs event that you're going to produce.
+Right. So you have a very good potential around here running at the especially for example, 1012.
+And it's going to, uh, make a very good measurement of the self coupling, for example.
+Okay. And there is also additional benefits of a higher energy aiding the, uh, the precision measurement.
+The precision measurement is usually you are targeting some, uh, what we call higher dimensional operators.
+Right. So some effect of new physics and the those new physics effect will grow at higher energies.
+Okay. When you do a collision into higher energies, those new physics,
+even though you still not directly producing those new physics, their effect is going to grow.
+Well, uh, that's proportional to energy. So the effect will be larger.
+So in this sense the higher energy will actually be better. Simply it gives you better sensitivity and, uh, better precision.
+So let me just briefly, uh, this is can be demonstrated in many context.
+One of the context is to is the top Higgs coupling, for example.
+So if, uh, if top Higgs coupling, for example, is modified by this higher dimensional operator,
+then the auto t bar cross-section will grow as a function, uh, growth proportional to to energy.
+And the this will leads to a larger effect at higher energies.
+And and therefore running a collision, the higher energies will actually, uh, give you a better sensitivity to both.
+And that leads to a better measurement of the Higgs coupling.
+Okay. All right.
+So at the higher energies there's also you can also produce a lot of bosons.
+Right. So this is uh uh uh for I think for the first time in the, in the history that if we're running some collision, the ten TV,
+uh, the Z and the Higgs will effectively become, uh, massless of their their mass is much smaller than the collision energy.
+Okay. So and, uh, yeah, there's, uh, there's a there's obviously more physics and the potential can be done with this,
+uh, multiple and the Higgs productions. Okay. I think this physics for potential here is still to be fully investigated.
+I'll come back to this point a bit briefly later, okay? Okay.
+So I think this is all the the raw power, okay.
+If you if you want to just quickly demonstrate the raw power of the muon collider, this is a this is what I had in mind that we'll,
+we'll we'll say these are the guaranteed, uh, deliverable, uh, physics potentials of, uh, of me on Collider.
+Okay. Now you may want it to be to two.
+To think about it. Is the mall right. So you wanted to think about what it could be here at MTV, right.
+The way we have the potential to reach higher energy. You wanted to think about what could be there.
+And let me just give you some of the examples that has been been, uh, well studied.
+So first is, uh, is a wimp dark matter.
+And uh, so in particular, there is this, uh, simplest class of models of WIMP dark matter where WIMP is just a part of electroweak doublet.
+It's like a laptop, but just heavier. Okay. And, uh, or if you're familiar with Susy, this is like either Higgs or, you know, type of dark matter.
+Okay, so the benefits of this class of models that is, is very, very predictive.
+Okay. There's a the only free parameter in those model is uh, is its mass the mass of the dark matter particle okay.
+Therefore it's, it's so predictive it just by requiring that they give you the correct erotic abundance, you can predict its mass.
+Okay. That this is the mass has to be this is sometimes sometimes refers to as the target, the mass.
+Okay. So if you want to reach to a certain WIMP candidate, you have to be able to, uh,
+have the reach that, uh, to, to predict, uh, to, to get to the, these kind of masses.
+Okay. This is actually way beyond our reach. Okay. This is a at least in the multi TV range.
+Okay. Where this is also precisely the case where, uh, a muon collider can do something.
+Okay. Because it runs at the higher energy. Okay.
+Uh, broadly speaking, the there are two class of, uh, signals, uh, for dark matter at a muon collider.
+One of them is the so-called mono x. So if you're familiar with the searches, this is the this this, uh, there's a very similar story here.
+And you basically the pair produces the dark matter particle or its partner and, uh, then then recall you against another hot object.
+Okay. That's something uh, so this is, this is more model independent.
+And, uh, but the challenge is there are sizable background and also larger systematics, on the other hand,
+that this kind of, uh, uh, uh, this, this class of dark matter also features has an interesting feature that,
+that it's, uh, that the there's multiple it the dark matter lives inside the multiple multiple it the charged,
+uh member of the multiple it and the the the dark matter self has a very small between them.
+Has a very small mass pulling. Yeah. And uh, and therefore that if you produced, uh, the charge uh particle, it's semi long lived.
+It leads to something called the disappearing track.
+And uh, of course this kind of things, it's already quite challenging at RTC and at the muon Collider.
+It will be also quite challenging as a detector, uh, trackers and used to be quite close.
+And the beam in there will also be beam induced background.
+This has been, uh, because this is such an interesting case, this as there was quite a bit of studies on this already.
+Okay. The result is that, uh, higher and high energy muon collider is indeed.
+It's quite promising in covering at least some of these, uh, these, uh, lower dimensional multiple.
+It's. Okay.
+Then the next, uh, interesting thing we can do, uh, when going to attend TV is obviously, uh, a better testing of this idea of naturalness.
+Okay, this has been with us, uh, for a long time, and, uh, uh, just, uh, the amount of fine tuning, uh, is proportional to the mass of the new power.
+New physics particles square. Okay, so ten TV muon collider.
+Its reach in new physics is about. Depends on what the particle is.
+Uh, depends. Uh, so it's about a 5 to 10 beyond what you see.
+Okay. Therefore, just by this simple estimate, it gives you, uh, um, a test,
+much better test of the idea of naturalness, approximately 100 times better, uh, than that.
+What you see? Okay. Of course, any time you you increase sensitivity, you.
+There is a chance they'll making a bigger discovery. That will be a dramatic confirmation of the the idea of naturalness.
+Okay. Yeah. So these are just, uh, some very quick, uh uh uh, but also obvious point, right?
+We already said that the, uh, muon collider should increase the, uh, the reach of, uh, new physics particle.
+Much better. Right. So this is a, for example, you can look for, uh, for example, you wanted to look for top on Earth, right?
+So this is, uh, uh, perhaps the most important particle in, uh, in the idea of naturalness.
+Right. This is, uh, uh, the reach is a way beyond what you see from me on fighter.
+You can reach to up above, uh, about half of the central mass energy.
+Okay, so if you're running at a 20 V that reaches about five T.
+And, uh. Yeah, I will not go into this in detail.
+This is a by asking that if you are going to probe some composite of Higgs models.
+Right. So you see that the this this is the curve for muon collider.
+So it's a much beyond uh, what they can do. Okay.
+And the next thing I wanted to mention about the interesting physics that could happen at the ten TV is some interesting flavor physics.
+Okay, so I think the main question for flavor physics is where is the the scale for interesting flavor physics.
+Right. So that's the the question I think everybody's mind because it could be anywhere.
+Right. So but the the question is of what. Yeah.
+What is the the next possible scale that uh, where will we're going to see associated with the, with the flavor of physics.
+So there is already quite a bit of experimental constraint on where that scale can be.
+Okay. So uh, experimental limit in for more relevant for muon collider are these lepton flavor violations.
+All right. So the experimental limit already puts.
+Uh so if you want to say if you integrate out some new physics at the scale lambda and you generate
+the these flavor violating of operators then depends on the process that you are going to probe.
+It can, uh, sets limit on this new physics scale from ten to to 118.
+Okay. So this is much beyond a weak scale already.
+And that is sometimes this is known as the little hierarchy problem okay.
+But remember look the 20 tentative remains a possible, uh, place for for new flavor physics to show up,
+even given these, uh, this is, uh, stringent kind of constraint.
+And, and the that's, that is obviously a scale that can be probed by, uh, by muon hider, uh, running out of time ten.
+So, yeah, I think you'll probably hear more about this from, uh, from Talk by Sam.
+But this is a way, uh, this is just showing you that you can directly probe some of these, uh,
+flavor violating operators by looking at the mu mu plus mu minus going to a flavor of violating final state.
+And you see that? And indeed, you can be sensitive to, uh, tens of TV, uh, new physics scales.
+I also wanted to spend a little bit more time on talking about the so so that that if asked
+about the flavor and the end of the estimate about the ten TV is a little bit too quick.
+Okay. It depends on really where the the flavor violation effect coming in.
+Okay. So if for example, if the left town flavor violation comes in at a one loop order, okay.
+And which is often the case for weakly coupled the new physics models, um, the new physics mass can actually be lower.
+Okay. Then those can be those new physics can be directly searched for at the muon Collider in principle.
+Yeah.
+For example, in Susy, uh, the flavor violation, uh, for the flavor of violating effect come into one loop and the left hand flavor violation goes by.
+Some goes through a loop like this that basically, uh, constraints mutually.
+Gamma now constrains the mass of the Susy particle to be greater than two.
+Okay. So but this is certainly, uh, was in the realm of the, the reach of muon colliders and, uh, yeah, this is just,
+uh, say what I just said and, uh, and the, for example, also for like a CP violation effect for, for,
+uh, then if the, uh, if the new physics is valid coming in at a two loop order, for example, for example,
+in this famous uh, bars type of uh, uh, processes, then the new physics, uh, scale is again around the 20.
+Okay. In principle, this could also be, uh, probed by a ten TV muon collider.
+Okay. In this case. Okay. So this is just adding to the already, uh, good.
+The motivation is to search for flavor physics, uh, new flavor, that new flavor physics at the muon Collider.
+Okay. Now this. There are also many other possibilities, and I won't spend the time to describe any of this because, uh, yeah,
+there are many, many studies and, uh, and there are also talks, uh, additional talks in this conference.
+Okay. I wanted to move on to my, my, uh, in the last two minutes, I wanted to move on, just mention a few more,
+uh, physics opportunities, more physics opportunities that we can still use more, uh, uh, exploration.
+Okay. Um, so first of all, is that, as I said, uh, this topic that I already mentioned earlier, that the, uh, at energy,
+much bigger than 100 GeV, we would expect that the effect of the electroweak symmetry breaking to be, uh, negligible, to be small.
+And the typically we expect this to happen early in the universe when temperature is much higher than the weak scale.
+And at the same time, perhaps since muon collider is running at very high energies, this can also show up in the muon collider.
+So there is some study on this already. Bye bye bye Rodolfo and Paul.
+And uh, and by looking at the the distributions of various, uh, type of sound producing production channels.
+Okay, there's additional talk on this, uh, for this conference.
+Um, uh, we can also, uh, there are also a lot more neutrinos that the Muon Collider can produce.
+Uh, it's and, uh, the question is how, uh, we should find more use way of using those neutrinos, right?
+You get it for free just by just because of the muon beam.
+Um, so, for example, there's a recent study that the you just look at the neutrinos from the muon beam, they are just running into detectors.
+That's going to already give you a good measurement of of neutrino cross-sections.
+Okay. So again I refer you to the details to the talk, uh, later in this conference.
+And uh, uh, we can also think about doing more flavor physics.
+So, uh, as I already told you, that the flavor of violation signals, uh, can be explored.
+We expected to see, uh, be able to see new flavor of violation effect at the same time.
+Uh, we should also think about what are the source of the delay.
+So far, we have been thinking about the generically parameterizing flavor of violation effect.
+But there are also we shall we can also think about the actual models that actually makes the standard model, uh, flavor in the CP structure event.
+There are many ideas in the past, such as uh, warps,
+compact defecation or partial compulsiveness or just, uh, even older models, such as for Nielsen models.
+They all have, uh, new particles.
+Right? Uh, and those can be, uh, in principle, accessible at the muon colliders.
+I think a more work probably needs to be done in this direction as well.
+And we should also think about more detectors. So at there, what you see, we're already doing a lot right.
+We're doing beam dump, we're doing Millikan. We're doing phase and more.
+Okay. Sorry. Yeah. Just the one more, 1 or 2 more minutes.
+Okay. Uh, at the muon Collider, you know, this is a future collider with, uh, uh, higher energy, higher intensity.
+Surely we should be able to do much better. Okay, so should we just imagine doing much more there?
+Okay. There's already some, uh, I think, uh, initial studies by carry, uh, about beam down, uh, experiments.
+I think certainly more work, uh, needs to be done.
+Okay. Also, Carey is giving a talk later in this conference, and, uh, well, in general, we wanted to think about even more topics.
+I just quickly list some of these things I will not going through goes through any of this just in case.
+If you wanted to, uh, for for serious students, if you want to find a research project or do any of this,
+you know, um, talk to me, maybe I can tell you what I mean here.
+Okay, so this is my conclusion, and, uh, um, so high energy, I think, again, uh,
+high energy muon collider holds the promise is to, to get to the, the next energy frontier, in this case around ten, ten TV.
+I think as I show you in this with this list, there are lots of interesting physics, uh, to cover.
+I think my hope is that we will make solid progress.
+Well, we do made a lot of, uh, good progress.
+Will continue to make such a solid progress in the coming decade to make this into a much more mature, uh, project.
+I also wanted to end with the a my hope for for for my own colleague theory colleagues.
+So we have been, uh, doing pretty well, uh, in the last five years in terms of, uh, generates a lot of interest and, uh, activity in studying the.
+Of muon collider. Right. So, um, but it's, uh, it's going to be a, uh, long game.
+It's take a quite a bit of time to to to to the, to the end and the goal.
+So I think, I hope that we can maintain our, uh, our strong support for this effort.
+All right. Thank you.

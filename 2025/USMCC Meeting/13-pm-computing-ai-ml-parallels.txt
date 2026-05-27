@@ -1,0 +1,946 @@
+# PM:  Computing + AI/ML: Parallels
+
+Welcome to the, uh, computing in AI session.
+Uh, parallel session. Uh, we'll have four talks each 15 minutes, but we added quite a bit of time for discussion.
+So, uh, ask your questions.
+And if you have questions that don't fit in within the themes of the four talks, we have time at the end of the four talks,
+uh, we'll get kicked off by Ben, uh, from you, Chicago, who will tell us how to simulate a muon collider detector.
+All right. Thanks. Uh, can you hear me?
+Okay, maybe I'll just move this. Uh. Okay.
+Can you hear me? Yeah. No.
+All right. Okay.
+How about now? Okay, great. Um, yeah.
+So I was asked to talk about how to simulate a muon collider detector.
+Um, and I think the joke I've been making all week is, you know, this is a good question.
+And I would also like to know the answer to this question. Um, and so I mean that in two ways.
+I mean, so we have this simulation framework for doing simulations and reconstruction of a muon collider detector.
+Um, but, you know, there are really only a handful of experts, uh, who are familiar with the details of that framework and able to kind of produce,
+you know, large statistics samples with the full beam and use background overlay included.
+So that's obviously, you know, a limitation. Um, and then also, you know, yes, we can produce samples and perform studies,
+but I think we know there are many areas where we could either be more realistic in some of the modeling that we're doing,
+um, or where there's room for future improvement. Um, and so opportunities for maybe all of you to get involved and contribute.
+Um, so what I'll do in this talk is kind of talk you through how we have been generating samples,
+uh, which have been used to study the Maya detector performance.
+Um, most of what I'm going to say also applies to, you know, the music detector as well.
+Um, but I work on Maya, and I'm more familiar with Maya. And there will be a few Maya specific things.
+Um, so what are those samples? So here, uh, you know, if you went to someone's talk yesterday, uh, or the, um, sort of performance parallel talks,
+uh, you'll have sort of gotten a lot of information about the latest Maya studies.
+Um, but we had kind of started by just looking at single particle samples muons, photons and neutrons.
+Um, you know, reconstructed, simulated and reconstructed in our software framework with the beam induced background added in.
+You can see these very nice event displays of this. Um, we're starting to look at more complex objects now.
+But basically the story of how to simulate and reconstruct is is the same.
+Um, so I should tell you that, you know, if you don't know, we have a tutorial, um, online, um, on the sort of muon collider detector wiki here,
+uh, which kind of goes through everything, you know, all, every all of the things I'm going to say.
+Um, so how to set up the software run Monte Carlo generation simulation, digitization, beam induced background overlay reconstruction.
+So we ran this tutorial at Usmca last year, and in past years it was run at other workshops as well.
+So, uh, it's still there. Um, I encourage you to take a look.
+You know, we got some very nice positive feedback on this tutorial in the past, namely that maybe unlike some other tutorials, it actually works.
+Uh, not always true. Um, but the tutorial is using the three TV detector and not the ten TV detectors.
+So what I'll do in this talk is kind of go through these steps.
+And then at the end point you with some updated instructions if you want to play around with Mario.
+So here is what our software framework looks like.
+I took this flowchart, um, from a, uh, computing summary talk that Carroll gave at Ecmc, uh, two months ago.
+Uh, as you may have heard, and some on his talk yesterday, uh,
+the software framework was originally kind of inherited from the ILC software framework.
+So much of what we're using comes to us from the E plus C minus community rather than from the LHC community.
+And it is now being migrated to this Kieffer Hep, um, experiment sort of independent framework.
+We were able to share code with FCC, click ILC and other future collider projects.
+Now you can sort of start with your favorite Monte Carlo generator,
+and then run simulation through this DD for Hep framework, which I'll say more about on the next slide.
+Then digitization and reconstruction. Um, you if you look kind of at documentation and things, you'll encounter references to Marlin,
+which was the sort of framework for running reconstruction and digitization in the ILC software.
+We're kind of in the process of migrating from that to a more modern, Gaudi based framework.
+Uh, if you don't know, Gowdy is kind of the software that underpins, um,
+the Atlas, uh, Athena framework and some of the other LHC experiment frameworks.
+And it's sort of maybe more familiar to many LHC people, um, for scheduling algorithms and things.
+And then, uh, in the diagram here, you know, it says we sort of produce root output.
+Actually, at the moment we are still kind of producing this um, ILC format, AE output, but it's easy enough to convert to root for data analysis.
+And that's basically what we do.
+And then uh, the software is now being built kind of automatically and published as container images, um, based on both ubuntu and on the Linux.
+Uh, you can download them and run them on your laptop. Or if you want to run them on a cluster, they're being replicated to KVM, NFS automatically.
+And again, I'll say more about that at the end. So um, suppose that you have some events, uh, that come from your favorite Monte Carlo generator or.
+In our case, you know, single particle events produced by a particle gun.
+And you want to simulate them. How do you do that?
+So the main thing that you need is a description of the detector geometry that you can pass to John for.
+And so for Hep kind of provides a framework for specifying these detector geometries, um, just in the form of XML files.
+So there's a repository and key for Hep that where you can find collections of different geometry files for muon collider detectors.
+Also other you know it plus the minus detectors. And I kind of just um, took a look at what, you know, what is in there.
+But you can go and look at it and look at the other files so you can see this is, you know, the Maya geometry.
+There's some comments here. It was written by Federico Meloni.
+Um, by the way, if you don't know, like, most of what I'm, Federico is like the main expert in muon collider software reconstruction.
+Um, much of what I'm saying is kind of delivered from him, through me to you.
+Um, so, uh, and then, um, you can see if, you know, if you scroll down,
+you can find the XML files that specify the different subsystems of the detector, like the vertex detector, the tracker, the outer tracker.
+So if you want to know any information about those detectors, of course you can look at the Maya detector paper,
+but you can if you want to know where it's implemented in code, you know this is where it lives.
+And so then, um, the geometry is loaded into GD for Hep, which provides some wrapper around John.
+For that you can run simulation and we have a steering file.
+Um, that should basically just work out of the box, uh, for, for loading the Maya detector and running simulation.
+So then after simulation in the traditional reconstruction pipeline would be digitization.
+Now, you know, normally in digitization, I mean, obviously the detector doesn't exist.
+So the digitization by, you know, necessity has to be somewhat simplified, but we still apply things like resolutions.
+Um, we have a sampling calorimeter. So the sampling fraction of the of the M calorimeter, uh thresholding um calorimeter cells and stuff like that.
+But the main thing that happens around the digitization step is the beam induced background overlay.
+Um, so this is a flowchart kind of describing roughly how the data is moving around.
+Um, the beam induced background is comes to us from the MDI experts,
+is generated in flukey and generating a single bunch crossing and simulating it is really computationally expensive.
+So we don't have very many of these. So what is done is this kind of sub event mixing procedure where we, uh,
+simulate fractions of a bunch crossing and then build pseudo events from them in a sort of statistically independent way.
+And then those pseudo events get overlaid, uh, representing a full bunch crossing.
+Although if you want, you can produce pseudo events that are less than or more than a full bunch crossing.
+Um, if, for example, you want to study how varying amounts of beer affect the performance of some algorithm.
+Now the only sort of issue with this process is it does mean you need the full data set of simulated, um, you know, bib events available when you run,
+even just to overlay one event, you need the entire sort of input, uh, bib available on whatever worker you're running.
+Digitization. Um, so I just want to say a few more things about the bib overlay because it's such an important part of the process.
+So it's really worth emphasizing that what we get from Luca is the bib simulated up to the detector volume.
+Uh, so the detector volume here, meaning the surface of the shielding nozzles.
+So if you look at plots like this,
+Luca is telling us how many particles are entering the detector and what their energy is and what time they enter the detector.
+But it's not actually modeling the interaction of those particles with the detector itself.
+Um, and obviously those can be very different things.
+If you want to know, you know, what is the level of activity in your tracker?
+You know, how many hits you have. You have to actually run Jayant and run the simulation over what you get from Luca.
+And we have some scripts for doing that. It's basically exactly the same procedure.
+Um, there are a few details there, but yeah, you you as if you are simulating signal events.
+You can simulate what you get from Luca. Um, yeah.
+And so then another detail here, which, um, JP talked about yesterday, is that because so much of the bib is low energy neutrons,
+um, it's really important that you model the nuclear interactions of those neutrons with your detector accurately.
+Um, and so using the right physics list and ground for us is really important to get, get those kinds of things right.
+Okay. Um, and then another point about the bib that I really want to make is that, you know,
+when the Maya detector studies started, we were using an older version of the MDI lattice, which you can see up here.
+Um, which notably has a lot more dipole and quadrupole magnets than the version that we are currently the current baseline.
+Um, and I think that, you know, evolution was really driven from an accelerator design point of view.
+But a practical consequence is that there's less bending power to deflect bib out of the detector,
+which means you end up with much higher rates of beam induced background.
+In the detector itself. Um, so this is sort of an updated, uh, plot of the occupancy use you would see in the tracker, you know,
+maybe in the lattice before you might end up with, say, 1600 hits per centimeter squared in the innermost layer of the tracker.
+Now we're talking more like 16,000 hits per centimeter squared,
+which obviously poses major computational challenges when it comes to reconstruction, data processing and so on.
+Um, and Kara already talked a bit about what we can do about this yesterday.
+There will be more on tracking as well in the next talk. But but just to make that point explicitly that this is a potential concern.
+Um, okay. I'll say a few things about reconstruction.
+Um, basically, you know,
+we now are able to we have a single sort of steering file that you can use to run both digitization and reconstruction in one step.
+Um, if you compare it to what's in the tutorial, they were sort of doing it in two separate steps, but that's just a detail.
+Um, and the reconstruction framework depends on several sort of key external software packages.
+Um, acts for track reconstruction. Again, that'll be covered more in the next talk.
+Um, and then Pandora uh, particle flow uh, for sort of reconstructing, uh, objects.
+Um, Greg talked about this yesterday. I think there are many issues kind of in using Pandora in a muon collider environment.
+And we're in the process of adapting, uh, in that direction.
+Um, and then so in part motivated by the really high rates of fib that we see now with the latest version of the lattice,
+I do want to, you know, talk about two major specific things that we implemented into the reconstruction.
+Um, so one is the use of cloning,
+where you look for truth particles and you only actually process and keep them that are within some delta r range around that truth particle.
+I mean, if you have a single muon events, you know, you really don't need to worry about the bib on the other side of your tracker.
+Um, to understand, you know, whether you're able to see that that muon track or not.
+Um, so this is partially already implemented in the software framework.
+Uh, we had written another processor for doing this in the calorimeter as well.
+Um, it's currently not merged into the sort of official images, but you can download and build it yourself.
+And then another thing um, we implemented in in for the calorimeter is kind of uh variable thresholds.
+So basically in the parts of the calorimeter where there's more bib kind of very close to the innermost layer, um, in the forward region here,
+we can apply a higher threshold to kind of just remove that bib, you know, subtract that bib away from reconstruction without having to process it.
+Um, that's kind of a brute force approach. Obviously, the higher your thresholds, the worse your energy resolution.
+Um, so we would like to, you know, study smarter algorithms for this in the future, like taking timing information into account.
+But this is what we've implemented for the time being. Okay.
+Um, so just to give you some practical things. So you may or may not know that the open science grid, um,
+in the US has dedicated muon collider computing resources that I think anyone in this room is able to sign up for and get an account.
+Um, the process is pretty simple. Um, I mean, if you have questions about it, you can reach out to me.
+Um, but basically, uh, I've given you a link here.
+You can sign in. Um, or, you know, using your institute affiliation, request an account request to join a group.
+And then if you just send us a message on slack asking for approval.
+Uh, it should be processed pretty quickly.
+Um, and then, you know, the samples we've been using for the Maya studies are actually available on this machine.
+Um, you're more than welcome to grab them and start tinkering with them yourself.
+Um, I've provided paths, uh, both for the sort of particle gun inputs as well as the reconstructed objects.
+You can also find the bib, um, which is important if you want to simulate something yourself to have the latest version of the bib.
+So we have both the bib after, you know, running through simulation as well as the direct Fluker output.
+Um, now one thing I'll say is that currently we just kind of have a Google spreadsheet listing the samples that we've made,
+which is not a very scalable solution. Um, one thing that we discussed at the Ecmc workshop, uh, was maybe the possibility of setting up a Ruscio,
+which is the software Atlas and CMS use for managing data sets.
+It sounded like it might not be much overhead involved in doing that.
+Um, so I think this would be really useful and something we should explore, uh, soon.
+Okay. Um, and then if you want to run things yourself, I know there's a lot of information on this slide,
+but I just want to say, um, we now have instructions on the wiki, um, the same wiki where the tutorial is.
+Uh, this is a link, um, for running Maya itself rather than the three TV detector.
+There's still a little rough there. There's some, you know, more manual stuff that you have to do.
+Um, but it should be enough to get you started. And again, if you have questions, please, please reach out to me.
+Um, so we're working on updating our documentation.
+Um, another thing is, is kind of the best practices for doing bulk sample production on the OSG via Condor.
+Um, all of our. Samples were kind of produced elsewhere and transferred over to the OSG.
+Um, for example,
+there's some software that needs to be added to the container images for doing file transfer to and from the workers and just kind of stuff like this,
+that, that we still have to sort of document and implement.
+Um, okay. So I think that's it. Um, I want to emphasize, you know, there's a ton of work that's been done over the last few years on simulation,
+but there's many areas where more person power would be welcome.
+As I mentioned at the beginning, there's not a lot of software experts right now.
+Um, I've listed a few here. Uh, I won't again. I won't go through all this,
+but basically providing fast simulation resources so you can look at the performance of Maya without having to do a full simulation.
+Um, you know, providing better documentation, better reconstruction algorithms, stuff like that.
+So, yeah. That's it. Thanks. Thank you.
+Ben. Other questions? Hi, Brian.
+Uh, thanks for coming. And everything from what you've shown so far.
+Yes, that's meant for the US. More on cloud or community to use or also for the international community to use.
+Are there like two separate sets of both?
+Um, so I mean, like I think, for example, the tutorial is something that, you know, this is a CERN URL like Ecmc, people were involved in this.
+I mean, it really the software is all kind of shared between between both communities.
+Um, I mentioned at the beginning, you know, Federico is obviously a desi, but we've been working very closely with him on reconstruction.
+Um, it's really it's really both communities.
+Yeah, I know there's like some on Federico personal account,
+so I guess there's a plan to kind of consolidate everything in one place on some level, because otherwise it feels very mishmash together.
+It is very mishmash together. I think as as Usmca becomes more organized, I think more organization on the,
+on the sort of storage of samples and things is, is, uh, is something we'll work towards.
+So you talk about developing, uh, fast in simulation, but if you want to, um, work with, uh,
+simulating the muon detector, you kind of intrinsically have to care about, uh, the bib.
+So, uh, how are you going to progress on making, like, a fast simulation when still, uh, integrating the bib in, uh, some aspect.
+So, um, first things like Delphi's, you know, we can provide, like, efficiencies and resolutions based on studies done with bib.
+Um, the thing that is kind of more difficult to give people is fake rates.
+Uh, I think that's something we would have to discuss. But, I mean, something that was also pointed out is we could just assume, you know,
+some level of Bib mitigation and put that into the fast simulation, and then at least, you know, a theorist would have access to the geometry.
+And then we might have to check things in full simulation, but they'd be able to do stuff.
+So but yeah, that that part is, is, I think an open question.
+Thank you for the nice overview. Um, uh, so in previous talks, we've also heard about, um, the computational resources necessary to generate,
+uh, the big samples, like it takes a month per bunch crossing, something like that.
+Crazy. Um, what are some opportunities both on the, uh, event simulation side?
+So, like, generating big events and also, uh, later on processing big events.
+Are people exploring ways to to optimize that process? And what does that look like?
+Yeah, definitely. So I think some of the next talks will cover this more.
+But I mean, one as one potential, you know, opportunity is to is to leverage machine learning to replace some of these things.
+Um, if you generate enough events in future and then you train a model on what you've generated and,
+uh, then you don't have to, you know, you can just kind of go to that model.
+Um, so I think, uh, obviously this talk will cover AI, and then Kevin, we'll talk about resources later.
+So there should be more on that to come. Okay.
+I think we should move on since we have, uh, uh, time for discussion at the end.
+Uh. Next up is lucky from Stanford, who will tell us about tracking software and ML technique.
+Which is vehicles.
+Thank you. I don't know if I have anything that's.
+I think it's. Okay.
+Hello, everyone.
+So, okay, I'll be talking about tracking software, uh, for the main collider and, uh, some of the machine learning application for tracking.
+So moving on. So what is tracking? So, uh, as we all know, is reconstructing trajectories of the charged particles, uh,
+through the detector, and, uh, it has it is an essential component of the, uh, even reconstruction.
+It has, uh, it's useful for identifying the primary and secondary vertices, and it also useful for suppressing the pileup and other backgrounds and,
+uh, also identify the particle type and also measure the charge and momenta.
+So in essential, we can say that the tracking is useful in identifying what particles were produced,
+where they came from, how fast they were moving, and whether they belong to rare or interesting processes are not.
+So I would like to talk about some of the unique challenges that we have for tracking in the muon collider environment.
+So coming to, uh, the first one, as we know, is a beam induced background.
+So we know that muon decay with a very short lifetime.
+So the secondary and tertiary products of, uh,
+the injections of the decay products with the uh detector material results in de beam induced background.
+So here we can see, um, uh, the, uh, the immediate background from uh, uh, million decay coming from, uh, the right side here is injection point.
+And if you remove the neutron, this is, um, containing the electrons and protons and positrons, and this is a decay near the interaction point.
+So, um, uh, the beam induced background is really composed of, uh, the high rates of electrons and positrons and photons and,
+uh, neutrons and a small contribution from the charge agents and, and the secondary muons.
+So, uh, in order to tackle some of this, uh, background, uh, the map collaboration suggested, um,
+I am also shooting around, um, uh, the, uh, the forward area of the, uh, region of the detector.
+So here, uh, it's a simple diagram showing, uh, the neutral shielding, uh, where we have, uh,
+this nozzle in the green and in the purple at the forward region here, the detector geometry will be placed.
+And, uh, this shooting has an opening angle of around ten degrees and, uh, 12 centimeter distance between the depths.
+So this is, uh, like an initial design. Obviously, it will be optimized further.
+Um, so, uh, and this nozzle shielding has, uh, is able to reduce the, uh, to around three orders of magnitude and, but still, uh, in the,
+uh, transverse region and also, uh, the, uh, particles coming out from the nozzle, we still have a significant amount of the background.
+Uh, here, this picture, uh, this, uh, table shows the particle rates for, uh,
+in the transfer direction for different central mass energy, uh, produced by Luca.
+So we can see that for the different particles.
+Uh, these are the ranges for, um, uh, for the particles in the range of channels, about 5 to 10,006 for a different central mass energy.
+And it can be seen that there is a very moderate energy dependance, um, of, uh, the number of the particles.
+And these particles are characterized by, uh, the low momentum.
+So most of them are, uh, very low momentum particles, and they have a long spread in the, uh, the Z direction.
+And also they have a broad arrival time distribution.
+Now, uh, along with that, they also lead to the severe heat density in the detector.
+So the density in the muon collider is around ten times what we expect for the, um, uh, high humility at the full pile up.
+So, um, here we can see, um, now this table shows, uh, for the atlas.
+I, uh, indicate, uh, the heat density. And this is for the MTD equivalent heat density, and it's almost, um, ten times.
+And so this results to around 1000 or more hits in the detector per centimeter square and in the innermost layer.
+And so this literally leads to a combinatorial explosion in the, uh, direct reconstruction.
+So to give you an idea. So there are around 150,000 uh, uh, tracks in the, uh, Jagger and, uh, around out of these, around 100 thousands are fakes.
+And these figures are mainly characterized by the low momentum and low number of associated heads.
+So, uh, so we have these problems with the tracking.
+So, uh, let's talk about some of the solutions that we can, uh, have to, uh, achieve, uh, decent track reconstruction in one collider.
+So the first one is to incorporate timing information.
+So as we have seen that the web has, uh, a broad arrival time distribution.
+So, uh, around zero is the, um, interaction point.
+And so if you apply, um, um, a timing curve to the we will be able to mitigate some of the web and there are multiple ways to apply,
+uh, uh, the timing information.
+So some of these are uh, the, the 3D, uh, tracking with the timing layer,
+a one timing layer, or maybe 3D plus 4D tracking where we have some layers with timing,
+and then the dedicated 4D tracking where each sensor has both the timing and, uh, space information.
+Uh. The. This is the strategy that has been adopted by Atlas and CMS for high Lumi.
+Let's see. And uh, here uh is the in the picture is that Atlas, uh, high granularity timing detector,
+which, uh, has a timing layer, uh, um, all in the anchor region and in the CMS,
+uh, MTD, we have, uh, the timing layer in both in the barrel and the anchor region,
+and both are based on the Alga technology with around 1.3 to 1.3, uh, square sensor.
+And they have a timing resolution of 30 to 50, uh, picoseconds, but with, uh, space resolution of in the, uh, around millimeters.
+Now coming to the 4D tracking. So this, uh, here we require, uh, but per hitch,
+timing information with a timing resolution of around 30 to 50 picoseconds and, uh, space resolution in the micrometers.
+And this is the critical requirement for the muon collider. So why that is the case here are for some of the, uh, reasons for that.
+So 4D tracking will help us remove the out of time bib, uh, very early in the reconstruction chain.
+And it will also help in the 4D track reconstruction by providing an extra handle.
+And it will help in better track to vertex reconstruction.
+So uh, the extra vertices will be removed very easily.
+It will enable the 4D clustering as well as the particle flow and the particle identification using the time of flight information,
+as well as the time of flight information, can help in identifying the non prompt signatures as well.
+Now uh, moving forward. So uh, there are uh, interesting R&D efforts ongoing right now.
+We are able to achieve the picosecond level of, uh, timing resolution through algorithms.
+But we still have to achieve the space resolution of the order of micrometers.
+So there are intensive R&D efforts going on, uh, in developing the detectors for that.
+And we have seen, uh, some of the talks from Christian and, uh, which are in the morning.
+And also there was this, uh, tracking workshop on the 4D tracking last year.
+So I would like you to have a look on that as well. Now I'm moving further to, uh, look for some other solution to that.
+So that is like checking with machine learning and checking with time aware machine learning.
+So if you have the timing information, that can also help us with the machine learning as well.
+So here, here I will, uh, go through some of the, um, uh, the machine learning techniques that has already been used for um, in Atlas and CMS.
+And I'll be more biased toward Atlas because I work with Atlas. So, uh, but the similar efforts are ongoing in the CMS as well.
+So the first one is the track reconstruction using the graph neural networks or the time of agents.
+So, uh, GNN is actually very naturally fits into the scheme of uh, tracking.
+It's naturally a graph problem here. We can consider hits as the nodes and the potential connection between the hits as the edges.
+And therefore the tracking is essentially identifying the relationship between the nodes and edges.
+And so, um, graphs in graph neural network can, uh, really help in tracking and timing information can uh, add is a powerful new dimension here.
+This, uh, graph shows the GNN for IK timeline, uh, sorry, pipeline, which is, uh,
+um, uh, the algorithm, uh, that is being studied for, uh, in Atlas for, uh, it HMG.
+So here we have the information and the graph is constructed using that.
+Um, so all the, uh, hits are connected through the edges and then, uh, the network is trained and all the edges are numbered,
+and then only the, the edges with higher score are retained to get the tracked candidates.
+Now moving further, another application is the primary vertex finder using the CNN and GNN.
+So, um, we can consider primary vertices as the collision point in the.
+And the z axis is essentially a one dimensional image.
+So a convolutional neural network can be useful. And likewise to associate the Dijkstra to vertices we can consider it equal into a graph.
+Um uh problem. So we can use a GNN. So here uh, is the pipeline for the Atlas V finder where we are using, uh,
+the track information as input to o to the, uh, CNN, uh, to get the predictions for the primary vertices.
+And then these predictions are used along with the track information into a graph, uh, to get the connections between the tracks and vertices.
+Moving further, we have another project that, uh, explored the hard was, uh, a schedule vertex selection using the genes.
+So here, um, this plot shows, uh, the some, uh, high, uh,
+schedule vertex selection efficiency as a function of the pileup for different physics processes.
+And it can be seen that the efficiency goes really down as we have a missing energy in the final states.
+So the sum square approach is not the best metric for all the physics processes.
+Uh, but if we use all the various physics objects to train the model, then it can really help us in hard scatter vertex selection.
+And, uh, if we add timing information on top of that, that can be very useful.
+So here is, uh, the atlas edges G and two. Wood pipeline where we are using the tracks electron mills,
+jets and photons information um into a graph neural network to predict the, uh, whether the vertex is a hard schedule vertex or not.
+Another tool that can be useful is the anomaly detection. Um, and uh, some of the tools for uh, hit clustering as well for the uh, Bip suppression.
+So anomaly detection can be very useful to suppressing the non signal heat clusters and the energy deposits in the tracking and the calorie meters.
+And uh these models can actually learn the typical signal, uh, signal type, uh, um, uh,
+bedrooms and the flag out of like out of time, um, or diffuse or the isolated activities that are characteristics of the web.
+And, uh, this also allows the filtering of the background before reconstruction.
+So it will improve the accuracy and efficiency.
+And also we can use, uh, other deep learning based supervised machine learning models to combine, um, that's combined with the precision timing,
+uh, to improve, uh, um, to predict the correct cluster shape and, uh, discriminate against the, uh, beam hits.
+So these are some of the, um, uh, ideas that can be useful for, um, uh, for the tracking in, uh, in the, um, beyond collider and moment.
+Now, I would like to spend like, very little on the Muon Collider software framework.
+So Ben has talked a lot more on it.
+So I will not spend too much time. But, uh, just to give you an overview, Wen has almost covered everything.
+So we have this, uh, Muon Collider software framework, which is based on, uh, uh, Lio and uh, is build on the on top of key for Hab.
+It has these frameworks for Gaudi, for the primary, uh uh, uh, application framework for simulation and deconstruction.
+Then we are using Marlin for most of the reconstruction algorithms.
+And then we have this K for modeling wrapper, which actually help us, uh, run the Marlin algorithms inside the key for help, um, you know, framework.
+And then we have asked for track reconstruction for the event data model.
+We are using both, uh, the key for hep, uh, EDM, which is the EDM for have, and the LCR, which is from Marlin.
+And, uh, we basically convert between the these two formats to, uh, get our work done and a little bit about.
+So it is uh, um, it's a short for a common tracking software.
+So it's an open source track reconstruction software, and it's, uh, detector agnostic and it's based on model C plus plus.
+So it's very fast. It, uh, also has support for the 4D track, uh, tracking measurements.
+So, um, uh, we are using this algorithm as, uh, integrated within the muon collider software, um, to reconstruct the tracks and how we do,
+uh, do we do this is using a wrapper that's called the tracking, where we convert the, uh, the EDM between the SEIU and the acts.
+Um, and then, uh, perform the track reconstruction within acts, and then, uh,
+convert the data back to the Alco EDM, which can be further used downstream.
+Okay. So this brings me to the conclusion. So, uh, uh, the tracking and beyond Collider is challenging,
+and it poses the challenges that has never seen before, uh, in the, in the previous collider.
+So and so for uh, on Collider 4D tracking is not just desirable.
+It's critical. And machine learning definitely helps.
+Um, offer the promising tools that to address uh, uh, the various, uh, problems related to tracking.
+And this progress will require tight integration between the detector R&D as well as the software and, uh, um, algorithm development.
+So I would like to and, uh, with this, uh, one align, that main collider is not just a challenge.
+It's actually an opportunity for us to redefine tracking.
+So yeah. That's all. Thank you. Thank you.
+Lucky. Uh. Are questions. Hi.
+Thank you. This is super interesting.
+Um, I was just wondering, on slide 12, you have, like, this diagram of, like, 3D and timing layer and then 3D and 4D tracking and 4D tracking.
+What would I mean? Yeah, it's there too. But what is the benefit of doing the 3D and 4D like I don't understand the sort of middle.
+So so when I say 3D and timing layers. So here we have.
+So the black ones are just the, the regular uh,
+pixel detector or like regular tracking detector which gives you the space, uh, 3D position information.
+And then you have a timing layer which will give you a timing information for, uh, for the track.
+So what you do is that is, uh, how this kind of thing is useful is like, you cannot use this timing information before the track reconstruction.
+So once you have the track reconstruction, then you can actually attach a time stamp with each of the track.
+And then it can be useful for like, uh, um, awaiting the pileup and uh, uh, you know, downstream.
+Um, it can be helpful, but it is. But for the muon collider, we actually have the problem at the track reconstruction level.
+We will not I mean, the track reconstruction itself will be so compromised because of the so many hits that we want to remove that,
+uh, the extra hits before doing the track reconstruction.
+And so therefore we need the 4D tracking for that because we want the, uh, the timing information with each hits with these sensors.
+So that will be helpful to, uh, to do some kind of maybe machine learning algorithm or applying some hidden clustering and some,
+uh, cuts at the head level and also at the trigger level as well to remove, uh, some of the, uh, big hits.
+And so we can do the effective reconstruction. Yeah. Totally agree.
+I just meant I didn't understand what the middle. So the middle one is like an intermediate approach where you can have like instead of one timestamp,
+you can maybe have like 2 or 3 timestamps by track, but it's not like a full 4D track.
+Okay. That's all right. Thank you. I think there's a question of the.
+Hierarchy. Um, so at Atlas,
+the number of track seeds is several order of magnitude slower than what you're seeing here from the slide that you put in previously.
+Yeah. So how significant is the track reconstruction efficiency going to be impacted by several order of magnitudes higher number of track seats.
+Can you give me like a number of like, uh, like with these numbers.
+Yeah. I mean if with these many fake tracks you are able to achieve like around 100% efficiency, maybe like 90 to 95%, but the fakes are quite good.
+Like as a huge like in Atlas, you will get good efficiency with very almost negligible amount of secret.
+But here the fake rate is huge. So the main problem is not the efficiency but to, you know, get rid of the fakes.
+Uh, so even if you get the higher, uh, like 100% efficiency, but the fake rate is so high that it's, it's it's not useful, I see.
+So how can timing sort of improve the ability to get rid of this?
+So the timing, first of all, will help you get rid of most of the hits that are not coming from your primary collision.
+Um, so you already have, uh, a cleaner input for your tracking.
+So that's one thing. Also, uh, when you are doing the track reconstruction, you can use the timing information at that level also.
+So that will help you increase the efficiency and reduce the fake rate.
+Great. Thank you. Okay. Last question.
+So on this plot the red histogram said that there are only four hits on average on these tracks.
+You still consider them as part of the tracks. And that's why the number is kind of 50,000.
+I mean yeah. So yeah, for this one it's considered as a part of the track.
+Like even uh, so basically here is talking about the track seeds, not like the complete tracks.
+So the track seeds are like two or 3 or 4 TS, but yeah.
+So it's like the fix in the track seeds is. So it's like in that at the track seeding level, the combinatorial, um, uh, complexity is too high.
+And so you have to, you know, when you are building the tracks, then definitely the one who are not matching,
+like usually we require at least five hits belonging to, uh, one track that we considered as a track.
+So then definitely you can get rid of some of them. So. Okay.
+Thank you again. Lucky. Thank you.
+Next up we have Abhijit from, uh, Fermilab, who will tell us, uh, what opportunities ML will bring and maybe how ChatGPT will design everything.
+Good. Uh, yeah. That's good. Thanks. Yeah.
+No kidding. I went and I said, good. What are people doing in Myanmar? Collider for machine learning.
+And, uh, it gave me a bunch of stuff, but some real, some fictional.
+But it made me think. And, uh, I wanted to ask this question, what are people doing with machine learning with Mayan Collider?
+And what are the opportunities that we have that we haven't exploited yet?
+Uh, for machine learning with me on Collider. So a couple of disclaimers.
+One, uh, uh, this is no way a full, comprehensive list of all the ML activities and opportunities that are happening in Myanmar Collider.
+And the second thing is this talk is intended intended to be more like a blue sky of opportunities, of what can we do with my own collider?
+So let's go ahead with this. So before we go in, we need to understand what muon collider is and what do we need.
+Uh, for this collider we know is, uh, very high energy mission, which also brings high precision.
+What do we need to make this successful? First, we need to accelerate muons to, uh, really high energy ten TV.
+And we should have significant luminosity, uh, in this mission.
+Beams to have a successful physics program. On top of that, we need to have detectors which are optimized to study these muon collisions really well.
+Uh, we need precise reconstruction on top of that.
+To do precise reconstruction, we should mitigate all the beam induced background that we have over there.
+And, uh, another thing that we need to do in muon Collider or any of the future colliders is that you
+should basically have a trigger stream and write out everything that we see over there.
+And I don't think it's a really big issue for muon colliders are not go into more details
+about this because CMS at the moment is currently reading out a scouting stream at uh,
+22kHz, which is roughly the rate that you would have with the muon collider.
+So all these, uh, items that I've highlighted over here require significant R&D.
+So as a community, if we are faced with challenges and how do we fix these challenges?
+And the answer is with wishing, learning and hopefully try to convince you by the end of the talk, the some of these things are possible.
+So yeah, just coming back again, I'll be focusing on these aspects, uh, of the muon Collider.
+And as, as I mentioned, this is not a full comprehensive list. There's more stuff that we can do over here with machine learning.
+Uh, so I talked about rigorous readout. That should be part of every future collider system.
+But the biggest roadblock that I see for Muon Collider is basically coming from beam induced background,
+which basically lights up the entire detector quite a bit.
+So we need to find a way to suppress, uh, the beam in this background over here at the detector level.
+So the way we can do that is with on detector, uh, readout and filtering.
+And we can do this with some of the smart algorithms. The one search effort, uh, that I'm tangentially part of is smart pixels, where, uh,
+we put the ML algorithms on the pixel sensors to, uh, filter out some of the low pit tracks that we have over here.
+There is adaptations of smart Pixels. Work which is intended for phase three of LRT is already being, uh, adapted for like Muon Collider.
+Eric presented a poster on this yesterday, and this is, uh, an excerpt from his poster.
+And first and foremost is to do the studies you need to simulate.
+And a lot of questions about simulating Bip so far. And it's computationally very, very expensive to do that.
+So how do we do that? Uh, we can use generative ML to solve the, uh, the expensive computational part of generating web.
+Uh, I'm not going to talk more about how we can use generative ML, um, in, uh, simulating.
+I think Kevin will talk a bit about it, but a question that I wanted to ask us, should we just stop at generating,
+uh, events for our detector studies, or can we do more with these, uh, generative ML that we do for Bip simulation?
+So a natural question that I try to dig through in the muon Collider, uh,
+all the IMT reports and everything is a major design factor that will contribute to
+the profile that you see in the detector is coming from machine detector interface.
+So if you optimize your MDI to be really, really well, you can cut down by quite a bit while having a good detector performance.
+So can we use some of the existing machine learning techniques, uh, to, uh, optimize the machine detector interface,
+like the way we optimize a neural network algorithm is by using gradient descent.
+The biggest roadblock for this is that the Fluker and giant are very expensive to run, and they're not differentiable inherently.
+So this is the current approach that we take. We have some design parameters, and we go through some simulations and we compare the output.
+And we do this entire chain whenever we have to optimize a particular algorithm.
+And it's a very expensive process.
+So we can replace that, uh, with the surrogate model, which can be, uh, generative ML that is trained on some of the simulations that we have.
+And with this you can have a differentiable method that you can, uh, look at the output.
+And try to go back to what design parameters would give you the desired output at the end of the day.
+So with this kind of a differentiable twin, we can fully optimize the machine detector interface and get, uh, good uh, parameters.
+So this is not, uh, just a blue sky area. There are some of the efforts, uh, that have been presented in IMT workshop where they're taking this, uh,
+concept and they're implementing it where they try to optimize the nozzle design, uh, to reduce the big profile over here.
+So, yeah, you can see more about these things. So second thing is I just wanted to ask myself,
+is using the surrogate models like an approximate method is the only way that we can have to do some of the model approximation.
+The answer is no. They're existing efforts which are trying to make giant inherently differentiable.
+Uh, given some uh input particle parameters on your detector layout, you can optimize and you can see how the, uh,
+detector shape is, and you can basically optimize a giant, uh, to match a particular energy deposition potential.
+So there's more on this work over here, and there's, like, a active field.
+And this, uh, yeah. I was told by the authors that there's more results coming up in the near future.
+And on top of that, once we have our optimized detectors,
+we need to do some sort of reconstruction to quickly evaluate how the model performance is going on to be.
+Uh, there are existing efforts that are trying to do like a cross detector particle flow backbone model,
+so you can train a particular backbone model and give it a new detector geometry and few examples.
+And it will be able to, uh, give you like the end performance over here.
+So these kind of models can be used to quickly check how your detector performance is going to be,
+how our physics object reconstruction is going to be.
+And we can also use this as a perfect surrogate model to optimize the entire, uh, detector geometry.
+But I went through like this part of the talk, and I went with this idea.
+And one day I went to Sergio's office and I asked him, like, what do you really care about in the next five years?
+And so far, I've just talked about the particle detector, to my surprise, and I guess to no one's surprise.
+Uh, the thing that we really care about for the next five years is the the initial part to make me on Collider feasible,
+where we want to have a good target system and a cooling system and have a demonstrator to show that collider is feasible.
+So we can take some of the techniques that we have talked about over here and extend it to, uh, optimizing some of the target and capture system.
+The main, uh, if you're in the school, you know that the main challenge in designing this kind of targets,
+which are getting, uh, multi like megawatt, uh, proton beams, is that they have to sustain very high power and intensity.
+And you need really powerful magnets to focus, uh, uh, to focus on muons and get it to cooling.
+And your cooling performance is also very dependent on how well your target, uh, is working over here.
+So there's already efforts that we have right now in making John differentiable.
+And my hope is that we can take these things and adapt it into the G4 beam line,
+which is being used by some of the summer students to, uh, do studies of target and get a very, uh, optimized target design.
+And another optimization that we can perform for, which is critical for muon collider is for the cooling.
+Cooling can make or break, uh, your experiment on some experimental program on some level,
+because the luminosity risk that you have is massive coming out of the cooling system.
+But optimizing the cooling system is no walk in the park because there are orders of hundreds of,
+uh, parameters that you need to tune to get the best performance out of it.
+So we can use some of the, uh, existing machine learning techniques to optimize, uh, the cooling, uh, such as,
+like the Bayesian optimization, where we can feed the, uh, a surrogate model or like some of the test beam.
+So some of the experiments that we have over here try to find what are the optimal conditions that we have to get the best cooling performance.
+And yeah, here's an animation of how if you have, uh, inherent latent profile where you have like a maximum reward,
+uh, these algorithms tend to point to you, uh, to this things.
+And my hope is that we can also use this kind of optimization systems with not just for the best performance.
+We can also optimize this, uh, to reduce the overall cost that we have in the entire system.
+And along with that, uh, we have to talk about what we have to do with the rest of the collider system,
+uh, is basically how we can use machine learning for real time beam control.
+So far, I've talked about, like, how we can use, uh, some of the data, uh, build a surrogate model on that and do some design optimization.
+But it doesn't end there. We can always use a surrogate model, uh, to see what conditions the current accelerator are running in,
+and use that to control the system to get the optimal performance and have a full grip on the beam dynamics that we have over there.
+Um. I try to ask if this is a system that is even feasible to implement.
+Uh, to do that, I've looked at the collider. Uh, sorry, accelerator that we have in our backyard, uh, the Fermilab booster there.
+Uh, some of these techniques are already being used.
+Uh, where we have the real time, uh, uh, systems are used to basically control the beam dynamics in the main booster ring.
+And this linac RF optimization that's happening. And, uh, there are many other systems to make sure we get the maximum physics output.
+So we can always use this techniques and adapt it to, uh, the muon collider and, uh, make sure that we get the optimal performance over here.
+We should always keep in mind, uh, the muon collider is not like a traditional.
+The accelerators and collider that we have is not like the traditional ones that we have so far.
+Muons can only stay for so long. The beam can only stay for so long, uh, in these things before it should go for collisions.
+And on top of all this, I try to ask what is the most critical component, uh, that we have for in the entire muon collider system?
+And if you ask this question, uh, Steve Ballmer looking person will come and tell you it's magnets, like the most expensive part of the collider.
+And the most important part of the collider at every single point is magnets, which are multi Tesla magnets.
+You need a huge solenoid with 20 Tesla, and you have smaller solenoids which are going to like extremely high, uh, magnetic fields.
+But if you have magnets and if you are ramping up current, what do they do?
+They quench and they destroy your entire system when they quench is really bad.
+So if you have a current, how do you protect your entire system is with quench protection.
+And there is an ongoing effort that we have at Fermilab in general,
+it's not muon collider specific, but in trying to find, uh, detect quenches before they happen.
+So the idea is to flag any of the precursor events, uh,
+to before any quench happens and make sure that the magnets are running at the maximum current and most optimal conditions that are possible.
+So we are currently using something called a state space models to, uh,
+do the quench protection and try to put it on FPGA to promote multiple sensors that you get out of the, uh, magnets that you have over here.
+One of the developments that we want for superconducting magnets in, uh, for colliders specifically,
+is to go to high temperature superconductors, where, uh, it's really hard to predict how quenches are going to happen.
+So we want to use this multi-modal data stream. And, uh,
+some of the machine learning techniques to flag these precursor events much
+better and make sure we are running everything in optimal condition so far.
+So I'd like to say that this once again, remind everybody, this is not the full list of ML opportunities or efforts that's happening in Muon Collider.
+Uh, this is my personal take of, uh, what is impactful in the near future.
+So take it with a grain of salt. And I also like to emphasize that Muon Collider is an exciting and a talented program.
+But we should also to solve all the challenges. We should embrace some of the bold and unconventional strategies.
+So to quote Yan, again, I would like to say that ML and approaches are best bet for making rapid and significant progress.
+Uh, in basically detector on accelerator optimizations and experiment optimizations.
+Thanks so much. Thank you.
+I appreciate the questions. Um, I wanted to ask about a couple topic, but.
+So slide 15 as an example, there's a lot of situations where I kind of said, you know, I have some sort of complex model, complex system,
+and you want to have a I have control over it in order to kind of between the parameters just to pimp control or market crunch and things like that.
+But at least from pretty much in all the dozens of papers I've seen in the control theory, the nonlinear MPC still outperforms I no matter what.
+They are not even close at all. The nonlinear.
+Could you please repeat the statement again if you don't mind? Oh nonlinear MPC yeah, it's more performance than I.
+And the fundamental reason is just that when we talk about complex systems that are nonlinear, you want to have a predictable response.
+But I sort of is trained by if you have something that you haven't trained for yet,
+but for a nonlinear MPC or even just, um, more complicated control, I'll shine.
+So what can we do here to convince engineers of the right approach or a better approach than something that's more tried and true?
+Um, one, I cannot speak for the exact systems that have been deployed right now are being used by the, uh, the accelerator division.
+At the moment, I'm not directly on them. Um, but at least for the quantum detection and other things, we're just trying to make sure, uh,
+these things are as robust as possible to some of the spurious, uh, correlations and spurious noises that we have.
+So we always have like a robust measurement and etc. so on, so forth.
+And uh, yeah, one other thing that I want to make perfectly clear is, yeah, when I,
+I try to use the word, I try to avoid using the word AI and stick to machine learning.
+For me, curve fitting to transformers, everything is machine learning.
+So any of the models that you've talked about is still in some sense like using machine learning in real time to get better performance.
+Uh, thanks so much.
+Um, so apart from, like the last bit, every problem you talked about in its current workflow is fundamentally, uh, not differentiable.
+And yeah, you can say surrogate models all day, but when we're talking about, say, say for the nozzle optimization,
+where we are already sitting down and trying to figure out between, uh,
+and different physics lists of G4, what, you know, we have huge variations across these things.
+Can you, can you say a little bit more about what exactly you want the today creating a surrogate model for that to look like?
+Uh, yeah, I think I can say my $0.02 about it, but I'm hoping Kevin would talk more about the fluke aspects of the, uh, bib as well.
+So one is, which I found encouraging and interesting is, uh, the current, uh, the current efforts for making this one a surrogate model.
+That's one where you're doing an approximate approximation of how things, these things are going to behave.
+Um, but you can also some of the differentiability on paper that you see right now, these days are all based on, uh, uh,
+how if an electron hits a particular system or like a target, how is it going to shower and what are you going to get at the, uh, end of the day?
+So I'm hoping that, uh, yeah,
+surrogate models use these large swaths of data to make sure that you are robust and your have a full coverage over all the possible systems,
+although that's always if you're hitting some of the boundary conditions, it's always, uh, you should ensure some of continuity that's present.
+That's part of your training objective that you should do. It should be sensible when we're building these kind of models.
+But one cool thing is this differentiability. And if you can, uh, interface it somehow in, uh, how the beam, uh,
+the electrons that you're getting from the muon decays in the beam and everything, at least for that part.
+Maybe we can use that too, if that's going to be the major part of it, and use some of the differentiable g on methods to optimize the model as well.
+I don't know how blue sky or how feasible this is, but it's definitely a way forward.
+Yeah. Next one.
+One more question. Okay.
+Um, this is sort of partially answered by the previous question, but, um, what I'm hearing is that it takes a very long time to do a big simulation.
+What's the central reason for why it takes so long to do a big simulation simulation?
+I'm not an expert. I don't know if anyone wants to take it for me. Okay.
+Oh, okay. Because you have ten of the eight particles, the large number, you have large number of particles.
+And if you want to train any surrogate model for your detector geometry, uh, for your detector,
+then you have to have some large data set where you have many big simulations.
+So what I've heard is that it takes about a month in order to do a single, like big simulation.
+So how do you reconcile those two facts? Need a data set to train your surrogate model, but it also takes a long time to do the simulation.
+So where can you compromise on something?
+So I mean, one way that I'd like to think about this is this. Right. So your bib,
+whatever is happening is you're drawing from some inherent profile or an inherent
+distribution of the particles of how they interact with the detector and everything.
+So you're drawing from an inherited distribution. After some point it just becomes a distro.
+You just sample from the distribution.
+And as long as you can model this distribution really well, given your detector geometries and lots of parameters and everything.
+Uh, I don't see a problem even with the limited samples that we have right now,
+you should be able to get a good performing generative model solution to, uh, train this pipeline.
+You. Yeah. Uh, I don't know how many events that you have at the moment on hand, but,
+yeah, I would let Kevin talk a bit more about it in this talk like that one.
+Okay. I really wanted to throw it out. Okay.
+Thank you again. Yeah. And, uh, next up is, uh.
+Next up is Kevin, also from Fermilab, who will tell us about, uh.
+Uh, computing resources that are available and not available and giving us challenges.
+Okay. Thanks. So sometime also the one time in the talks and now unstoppable.
+So in this talk, I'm going to try to focus mainly on computing in the stage we're in now, which is the design stage.
+I think what we saw yesterday from uh, the report we prepared with Aiadmk for the European strategy, we also did a projection about the numbers.
+You would need to actually operate this thing for ten years.
+And, you know, based on the LHC and so forth. And it's fun to throw around those numbers.
+The error bars on those are probably close 100%. So I'm going to focus more on what we need, you know, in the next 5 to 10 years.
+Um, and ideally even on a shorter period than that.
+Uh, but first I want to kind of summarize the things you've heard about in the past few talks and talk about what the challenges of those are,
+which motivates what we have to do with the computing resources. Um, so first generation, uh, we have both, you know, muon, uh,
+collisions and interactions and of course, the beam induced backgrounds that we've heard a lot about.
+And we'll continue to hear a lot about, um, then this goes on to detector simulation,
+where you have the particles interacting with both the passive and active detector elements.
+And this gives you the simulated hits. You have overlay where you add in the beam induced background hits to the muon interaction events.
+You finally have digitization, uh, where you simulate the electronics response in each said detector.
+Uh, and the way this is currently set up, uh, in our view, on Collider simulation train,
+this gives you all the way up to the reconstructed hits, although you could introduce more granularity in these steps.
+And then finally, reconstruction at a higher level gives you objects like tracks, vertices, jets, and so forth that we've heard about.
+So what is the kind of rough computational intensity of each step, which kind of tells us how much it's going to use in terms of resources.
+Uh, so generation is inexpensive at leading order, but of course, if you have some end to the MLA, it could be much more expensive.
+And that's where we're starting to go for the LHC and for the kind of precision we want to do with the Beyond Collider,
+we're certainly going to want to generate things at these levels.
+Um, and there are people actually at this conference, uh, who are working on the software.
+We need to do that. Um, so we keep it should keep an eye on things like negative weight reduction,
+which is important in higher orders and GPU based generators, which are starting to be developed.
+On the detector simulation side, we know that Folsom is intensive and fast and light bulbs is cheap.
+But of course you have to get the information to put into that fashion somehow.
+Um, so keep an eye on GPU based simulation and generative model, which I will talk about more toward the end.
+On the overlay side. This is potentially the most expensive step.
+You know, especially if you consider the bib simulation part of this.
+We've heard a lot about that, and I'll get into how these things relate to each other.
+Um so look at pre mixing which is our solution for overlay at the LHC which has its pros and cons.
+And then also here at Generative Machine Learning. Uh, digitization has a linear scaling with the number of hits.
+So, you know, it's not such a big deal. Um, but you may be able to run this on GPU because it's also typically a massively parallel operation.
+We haven't been doing this at the LHC, just generally due to lack of investment in this area,
+but it may be something to consider for the muon collider and reconstruction.
+You get, you know, quadratic or at least super linear scaling with the number of hits when you're approaching this classically.
+Um, so keep an eye on what you heard about already, which is smart reduction.
+Uh, and linear time. MLB is clustering.
+So profiling the stuff that we're doing right now, uh, which is one of the exercises we did recently, uh, for the European strategy update.
+Um, so the VIP simulation, uh, and this is the detector simulation part.
+The fluker part is even worse, but I'm not getting into that.
+Uh, just in general, before it takes up to 24 hours per event, because you have ten of the particles and they all have to interact with something.
+Uh, then when you do the overlay, even that takes five minutes per event before you do the digitization.
+So this is just at the minute level, just going through and looping over all of them and adding them up takes five minutes.
+Um, and then the tracking ideally, you know, we get down to five minutes per event, but depending on the lattice,
+it can be even hours per event because you can have a lot of big leaking and things like that.
+Um, so these are all scary numbers that we don't like, and they make it hard to have a really quick design loop.
+Anytime you're talking about minutes, that's too slow. Hours and days is even worse.
+Um, the memory usage of this because of the Vive is also quite large.
+32GB is not something that is conventionally available on most consumer, uh, computers, especially the cheap ones that we buy in HPE.
+Um, and then the disk usage of the bib is the 20GB per event.
+So these are just numbers that are way beyond what we've dealt with at the LHC and other experiments so far.
+Um, and so this is the current simulation. So this isn't 20 years in the future is right now.
+Um, and so the vibe is driving most of this stuff, but we have to deal with that somehow.
+Um, but first, what resources are we using to actually run these things?
+And this is kind of a summary of where you can try to do these studies yourself.
+Um, so there are major computing clusters in HPE, and most of them you can use for this work.
+Alex Plus even has some documentation about setting up the on Collider software.
+Um, Daisy I can provide some resources for this in Europe.
+We heard about OSG, which has dedicated resources in the US for future colliders, which is great.
+Uh, from my PC can be used for this as long as you don't make too much of a stink about it.
+Just do it under the table a little bit.
+Uh, and uh, then there are analysis facilities also, and a lot of the big universities and labs in the US and in Europe, uh,
+which kind of provide different interfaces like Jupyter Lab and things like that, that you could also use to do some of this kind of computing.
+Um, so using this for future colliders, mostly they're not dedicated resources,
+but you have a fair share of whatever batch CPU's you can access on whatever system, and you can use it for this kind of stuff.
+Um, the more difficult thing to find is disk space, because this is much more finite than CPU.
+Um, there's summit in fan and there's summit OSG. I'm not really aware of much more, uh, that's available.
+We should try to come up with a better picture of these resources and ideally try to increase them because as we saw, there is a pretty big need.
+You know, with a single event takes 20GB. You need substantial disk resources.
+Um, now, beyond the traditional resources, there's a growing usage of heterogeneous resources.
+Uh, at the LHC experiments, uh, most major clusters therefore have some of these GPUs.
+Um, often they're partitioned or they're shared between users.
+We're still kind of learning how we manage these things at scale in our field.
+Um, but the different workflows and the different steps that we have have different needs when it comes to these GPUs.
+Um, so when you're just doing code development, you can kind of live with the shared GPU because you're just need to test things at a small scale.
+Uh, so that's mostly fine. Um, for large scale processing like ML training or simulation or so forth, you really need dedicated GPUs.
+You more or less have to get these from HPC centers, whether these are national lab leadership,
+computing facilities or even university HPC, which there are a fair number of these days.
+But they have to be kind of a dedicated resource, because if you're sharing, you're never going to get the compute you need.
+Um, analysis. Like doing it by inference.
+Uh, some of our analysis facilities let you do this via GPU based inference servers, via the trade in inference server, uh, technology.
+Um, so this lets you do your analysis more quickly, which is good, but all the other steps still need some work.
+Um, and then there are other alternative resources like ARM CPUs or FPGAs and so forth.
+Uh, they're less widely available. They tend to be less in use in our workflow, as we should probably work on fixing that.
+Um, some providers do have them, like the national research platform.
+The US has a lot of basically everything, and it's a really great place to test out different, uh, different options.
+Um, and you can also get these from the cloud like Amazon has EC2 instances with FPGAs.
+Google lets you try things on their TPUs, which are, you know, basically a form of basic and so forth.
+Um, so these resources do exist, but they're pretty scattered. They have nowhere to look.
+So hopefully now you know a little bit more about where to look.
+And then when you find something new, this on this list you can tell us of what happened to the list.
+So moving on to another topic which is data management. Uh, the experiments that are currently operating have operations running.
+And one of the things they use that for us to produce and manage data.
+Uh, so we move the data, making sure that it's available, managing like the sites and what storage they pledged and so forth.
+Uh, we keep track of the metadata, like the provenance, where the data came from, the versioning,
+uh, associated business information, cross-sections of Monte Carlo processes and so forth.
+Uh, and also discoverability, like, how do you actually find the data?
+How do you look at all the data that's available? How do you access the data of using tokens or something else?
+Um, so these are all things that the experiments do for themselves. We are not yet an experiment.
+So this is a problem. We don't have operations funding to do this. Um, so we need to do something that's kind of community based and ground up.
+It doesn't require that set up. We have to learn from the best practices and make them even more efficient.
+Uh, so maybe this is possible because there is now a very common shared tool used by most experiments for data management, which is ruscio.
+Um, so this is used by CMS and Atlas and other experiments. It's used now in astrophysics is being deployed in a lot of places.
+Um, so there's a bigger group of people who know how to use it. They're sort of improving the interfaces, the documentation, all of that.
+Um, so it's primarily used for data movement. It does have metadata facilities.
+We should make better use of them because the ones that we currently have are all kind having a patchwork.
+It'd be nice to have it all in one place. Um, and users can upload custom data sets, although some of the experiments don't currently allow that.
+But we could do that in our, you know, ad hoc collaboration.
+Um, so it would need some central management, but it could be mostly user driven.
+All you have to do is say, hey, I made a data set. Here's where it is.
+Here's the details of it. Put it in a database.
+Other people can find it Ruscio can automatically schlep it over to their site if it's given the right information.
+Uh, so this would really improve the current, uh, what was described as the Google Sheet setup that we have.
+Um, so you, we move into the, uh, the modern approach to, to managing this at scale.
+Um, you, um, collider data. Um.
+It's complicated. Um, you have a lot of different formats, right?
+You have Luca, you have geometries, you have root, you have all these things.
+Um, and they also depend a lot on the latter. So this provenance aspect is really, really important.
+And currently we're not tracking that. So do you only have to make sure we keep all these things in mind.
+If you get a Pip sample. Doesn't make any sense for you to use it. That's a really important question that we currently don't answer very well.
+Um, so moving on now to this PIB topic, which is what I'll finish off the talk with.
+Um, so ten D particles, that makes it slow.
+Uh, kind of necessarily. Uh, one way to speed it up is to run these processes on GPU.
+Um, so you can exploit Sandy, which is single instruction, multiple data, by using just huge batches,
+because this PIB is almost entirely protons and neutrons, and then the remainder is mostly electrons.
+So you can just say, I'm going to take as many photons as I can handle and just do it all at once.
+And that's the thing that GPUs are great at. And the way that you do this, as suggested by this giant roadmap, is through, uh,
+software packages like celerity, which is a GPU based full simulation engine.
+And they had a poster here yesterday, so I hope you saw it. Uh, but they have a long roadmap of adding different physics processes.
+Um, they already have eon physics, which takes care of your protons and electrons.
+Uh, we have to get, you know, some some effort going to add the neutrons, but they're definitely open to it.
+We just need to make sure that, you know, that effort can converge. You can see they're adding a lot of other stuff that could be interesting there.
+Even adding muon catalyzed fusion, some synergies there.
+Uh, but this is one way that you can run this much faster and exploit resources better.
+The other way is to train a generative ML algorithm.
+Uh, now, of course, you need to have a training data.
+And so my hope for this is that the GPU simulation hopefully can provide sufficient events for the training.
+So this is kind of a bootstrap. If you take the thing that's low on CPU make it a little faster on.
+GPU train on that and then have something that's very fast on GPU.
+So there's a multi-stage process, and we have to understand how flexible we can make each stage.
+Um, the current efforts that we call ML for SIM, uh, mostly are conditioned on incident particle properties.
+So you say you're in the detector and you have a high energy photon.
+You want to simulate that? Um, that's fine. When you're talking about signal events like HT bar production or, you know, Z boson, something like that.
+When there aren't that many particles you really care about. Uh, but the vibe is not that the behavior should be particles.
+So rather than conditioning on particles, you really want to condition on the process, just generate the whole thing in one fell swoop.
+Um, and then you can condition on other relevant quantities like the detector material and geometry etc.
+And I think it was really an open topic of exploration.
+How much can you condition this network on? How flexible can you make it?
+Can we have a surrogate that will let you explore a really wide design space of nozzles and lattices and detectors behind them?
+Um, with one model, you know, maybe you can fine tune the model that's becoming more popular nowadays.
+And it's easier when you have a model that's trained on a really big foundation data set.
+But of course, we don't have that. Um, so we have to understand how to balance these different needs.
+But I think the advances that are happening in generative ML make it seem like this is at least possible.
+It's at least worth trying, because if we did have a model that was flexible enough to give you different nozzles and different lattices,
+um, even to, let's say, you know, 50% accuracy, you know,
+maybe a little bit higher than that, you would be able to do a lot of design,
+and then you could always make it more precise later, once you had a good idea of what space you want to live in.
+Um, so we're going to have to bootstrap our way to this. It's going to take a lot of steps, but I think each step in itself seems feasible.
+So now go into the overlay. Um, so we can learn from the LHC pylab overlay experience, and we can learn both what to do and what not to do.
+Um, so the naive approach that we're currently doing is just slap everything together.
+Uh, this is massively IO intensive. Uh, let alone how long it actually takes when you have as many heads as the DMV gives you.
+Um, what we do now at the LHC is called pre mixing.
+And so we kind of amortize this overlay. We do all the overlay once and then we compress the output.
+And then we actually have a signal event. We just take the compressed output and overlay that.
+Um so it does let you amortize this and it reduces your disk usage compared to the first one.
+But you have to maintain this compression, which is not trivial.
+Uh, because each hit has its own format, its own physics details.
+You have to understand the non-linearities in your electronics. It's complicated.
+Um, you still have IO issues because you end up with very large files.
+You need them very highly available because you have to serve them across to all the sites.
+Um, and when I say large files and large samples, uh,
+we've currently hit the tens of petabytes and CMS for prefixing, uh, which it turns out is more disks than we have.
+So this is been a problem we've encountered in the past couple of years.
+Uh, and it's only going to get worse. And it's also scenario dependent, right?
+As soon as you change the bed profile, everything you just did is out the window, and you have to redo it all from scratch.
+This is also an operational issue.
+Um, so if you can't do this with ML, then you can avoid both the speed and the input output issues because you just have this one model,
+even if the model waits for a gigabyte. I mean, who cares? It's a gigabyte versus a petabyte.
+You're still winning on that. Um, and you might be able to had this ML model generalize to multiple scenarios.
+Um, so similarly you could have it uh. I'm giving myself two more minutes.
+Similarly, you can have it, uh, you know, learn the fact that it's just trying to overlay Bibb or, you know, um, overlay pile up or whatever it is.
+Uh, without having to model each particle and then condition on things.
+Uh, so I think that these, these same kinds of generative approaches can apply at different stages.
+Uh, and that makes it more interesting as something to try to pursue.
+So I'll conclude now and just say that we have a lot of unique computing challenges.
+And I think it's unique among the current experiments and the future ones that the Muon collider provides us with these, these challenges to solve.
+Uh, we can learn from the LHC for some things. Uh, but other aspects are quite different.
+Um, one thing I've seen as we're exploring is on the fly pile up.
+Like we just do a fast simulation of the pile up right before we do the signal simulation.
+Um, but for the vibe still doing within the particles.
+So that's not going to scale up to that point.
+So a lot of the things that have scaled from run one until now of the LHC will not scale up to the further,
+uh, level that we need for the muon collider.
+Um, the other point I'm going to make here again is that data management is very important for reproducibility of our studies.
+Um, I think the particular challenge that we have with all of this is we want to tightly integrated design loop.
+We want it to be fast, and we want to have good communication between the accelerator and the detector,
+which is even more important here than it has been in the past. Uh, we don't have a lot of dedicated computing resources.
+Um, and we don't have lot of people operating in managing them.
+Um, so we have to be creative, and we have to try to grow over time and do things in the ground up way.
+Uh, so I think if we can support each other within this community, then we can succeed at doing this.
+Uh, and hopefully this puts us on a good path and we can take steps, you know, every month, every year, uh, toward having a better setup for this.
+Thank you. Can. Uh, the boat is ready.
+You can go first, Larry. Thanks. Uh, I've got a, uh.
+Uh. Awesome. Thank you. Uh, an awesome, uh, awesome talk.
+Um, uh, technical legal question.
+Uh, so thinking about, for example, the, uh, the nozzle sim.
+And, you know, by the time we want to, uh, kind of tighten this, uh, design loop and in some way,
+uh, especially automate, uh, some of that process in our current workflow, that means using fluke.
+Uh, yeah. And fluke is licensing is complicated.
+Yes. Especially by the time we want to have it in a PSI.
+That's right. You know, like this kind of thing. Uh, do you, have you thought about that at all?
+And what that might look like? I generally try to avoid thinking about the licensing,
+but I think that the approach that we can do right now that I believe would satisfy
+the licensing issue is that you train the model and you do not publicize the model.
+You provide the model as a service to people who are licensed to get out for the fluke.
+Uh, so you say if you are a license user, then you can ask this model for an answer and it runs on a server at the lab.
+Um, and it's just it's flukey as a service. It might be a fluke ML model instead of fluke of the software, but it's it's, uh, you know,
+that way you you're not you're never in a situation where you could accidentally leak the information to someone.
+It's not supposed to happen. So. So it takes an authorized user. So to launch a job that after that.
+Yeah. You would have to do it that way currently as my understanding. But. Okay.
+Yeah. Okay. Okay. So my question is mainly because I haven't actually done this yet with bib overlay.
+Um, how does that interact with for instance,
+giant for like volume parameters like limits or something like we were talking about yesterday shortly then the posters.
+Yeah. So so I mean, you can certainly optimize the detector simulation of the bib, um, with GT for range cuts and uh, other algorithms like that.
+It's still going to give you some number of hints. It's probably going to be fairly large if you start to overlay those hats onto your signal.
+And then you have to like because those are going to enter your reconstruction.
+Um, so you can reduce how long you're spending doing pointless things with the,
+you know, GT for processing the baby particles, but then the overlay is the next thing.
+And that's still I mean, you can reduce the number of SIM heads, but it's not going to be a massive reduction.
+So the overlay is going to be. Sorry, it's just the volume.
+So, for instance, if we have to put the bib overlay back onto it after the iteration,
+it's kind of like the the limit set on that volume and G on it's not global.
+So the parameters control widgets are created. Yeah. But once you have all the hits you have hits from your signal process and hits from your bib,
+and you have to combine them before you can process and downstream. I see I got you.
+Okay. Thank you. So Kevin, that sort of overall question here, the ten of the eight particles, each with their position and energy.
+Do we really have that much information? Accuracy in any situation that we do.
+I think it's it's just to worry about it doesn't seem to make too much sense.
+Do we understand? Well, it should happen. And that's all over the detector.
+I reduced very small amount, and I think that we are all worrying if we are simulating ten of the eight of them,
+propagating through all these volumes of complicated detector and simulating it.
+I don't think that there is information that in our simulations, which is accurate enough.
+So I've heard this argument and I'm sympathetic to it, but I don't fully agree with it.
+And the reason is that in this design stage where we're trying to write down all the parameters we need to build and, you know,
+run this under realistic conditions, you know, the, the impact that some of these things can have on the nozzle design arm.
+What level of smart reduction you want to target?
+Uh, you know, those I think, you know, if you're really going to instrument your nozzle with radiation,
+hard Asics that are going to be telling you what you need to read out on a local basis,
+I want to be more precise than just saying, here's some energy, right.
+So there are parts of this design process that really do require precision.
+So that's where I was trying to get at. So for some studies it's important.
+It's not important for a genetic study of, you know, what's our resolution for separating Z versus X and things like that.
+And the physics plots we don't need it. So I think most people don't need all of this computation for those who are designing specific things,
+maybe locally, if you're designing a chip, maybe a little bit broader, that's where we need it.
+But I think that we should not take this and extend it to every user wanting to do full depth simulation, to do every damn study, but I agree.
+I agree with that. Like, you know, I'm focusing here really on the core design, the really hard stuff.
+I think when you want to do the physics studies, we should make that simple for people.
+Yeah, yeah. In some sense you're making the strong case for the surrogate models and, you know, um, you know,
+the design flow is such that you don't need extremely high levels of accuracy at the times where you're trying to differentiate interpolate.
+The problem is extrapolate. Often that's dangerous. But, you know, these are these are many iterations.
+And I actually agree with Nans. Um, I like that last quote that, you know,
+one of the ways we can accelerate all this is really having fully differentiable models that can be used in between the four.
+So you're not going to build you're not going to ask for millions of dollars to build sensors based on surrogate models,
+like you would lose your scientific credibility, but you're going to you're going to bridge and you're going to,
+uh, approach that and then do a final full simulation.
+So I kind of agree, you're kind of making this the case for you don't need that level of detail.
+And every little bit, um, and you go. I mean, I appreciate that that point of view I think that's, that's that sounds reasonable.
+However counterpoint. Uh, uh, so so that's in some ways, uh, using Q JSP, Bert is a surrogate model for using Q,
+JSP, Bert HP and we have found that there's a huge effect on, on what we see in our flow.
+Um, so, so I do think there's value in having it be as microscopic as it seems to need to be for, for whatever simulation we might be talking.
+Yeah. I also comment that in the beginning, in TMS, we see if someone just happens to sneeze the wrong way on the 3D model,
+we get like a 10% incorrect resolution or have you. So.
+So it is totally right. Oh sorry, I was going to follow up on this point and then I'll I'll throw this away.
+Um, the one thing that hasn't been mentioned at all in the am ML part, which I think is really important,
+is, um, uh, interpretability and uncertainty quantification in ML models.
+And so one of the things that could be discovered is, you know, you said certain things matter at the microscopic level,
+but if you have proper if you have ways of learning with the machines or telling you,
+you can actually learn what, what matters the most and go and then zero in on that stuff.
+So I think actually this would be a call or a comment that, you know, one of the things we can integrate into all of this is better.
+There's a lot of great tools for interpretability and learning what the machines are telling us.
+With these, even with the surrogate models, they're not only utility based for speeding things up,
+but their means of a completely general, um, flexible way of learning what matters in simulation.
+And I think with the proper tooling, we could use some of that to understand what matters most and therefore refine the simulations even.
+Yeah, this is a very good point, Marc. And I think, uh, on the generative side, uncertainty quantification is super important there especially.
+And there's also currently no good methods to do it. So this is a this is a blue sky kind of field.
+Uh, coming up with some way to actually cover the uncertainty of a model in statistically accurate way.
+So counter to, uh, Larry's counter, if we tried two different models and then widely varying,
+like what you're pointing out, maybe the problem was we don't fully understand what the variability is in this thing,
+and just going about doing it crudely is not necessarily needed everywhere,
+but we do need to have ability to simulate for a particular nozzle configuration.
+What are the the range of things that we can expect in terms of profiles of energy deposition,
+both in terms of magnitude and also position in the detector?
+And maybe we can have a surrogate model after that. With that, at the moment we do 10% of one bunch crossing and mix it.
+I think that I don't think that's anywhere near accurate. And if you just happen to mix the wrong one of those things, you'll get wild variations.
+I. Rather have a concentrated effort where we do a thousand bunch crossings over for a particular nozzle configuration.
+You have some idea variations and then go and try to play with it.
+Getting it made so that I don't have to choose whether or not it is okay.
+I just want to add one tiny point on on the 10% of the spectrum, which is what we currently simulate in, uh, in flicker tickling.
+In 5% the fine. Then we shift in Z, the becomes 10%, and then we rotate in five becomes one or multiple badge crossings.
+The the the positive side of that is exactly what Kevin has tried to say multiple times here, which is many particles.
+So what we are actually simply saying if we want the analogy of a delay, C is like when when we simulate one one event, we have several interactions.
+So we simulate one interaction. Then we pre-mix many p collisions.
+And so the important thing is that we simulate enough single ones that we can mix them in various various, uh, positions.
+So similarly here the unit is the single muon decay that goes through his detector someplace and gets him to the detector.
+And then we sample tens of thousands or tens of millions of doors.
+So but that's the unit. So and so in some sense that's the positive side.
+We are already sampling with this large simulation a large number of them.
+And that's what gives us confidence that even if it is the equivalent of 10%,
+it's fine enough to create that we can mix them up and get a realistic one or multiple bunch these.
+So the next things effect that, um, people that we are working on is,
+is that in the way that we mix these things, we should not really think about the event level anymore,
+but should think at the muon level, keeping that as the correlation and change the way we are pre mixing those uh, between the spectrum.
+So that's the next thing to do. And that I think is what is needed before we start training machine learning algorithm.
+Because that preserves the correct correlations which now instead we dealt with the face meeting.
+And so we actually create we dilute the existing correlations.
+So the the correlation that the machine learning would uh, learn from a single event are actually not correct.
+So it's I think the key point that you try to set in many times, I think is really right.
+And I love the I think actually the parts you pointed out, which I think is, is really, really a good one is,
+is sort of this mix in which we could even do fluke up to before heavy elements from the detector,
+including before the nozzle,
+then taking things like celebrities and so on to boost the heavy propagation up to the detector element sample there and then putting in that.
+And I think that that is a really winning strategy. Yeah.
+Thanks. So on this point about simulating on the basis of a muon in the beam decaying it, this a very good one.
+And the nice thing that that facilitates is it facilitates the tight loop between the detector and the accelerator.
+Because you can say what I want is I want the beam with these characteristics.
+What is it going to do? If that's the question you can answer that you've achieved that tight loop.
+So. Rather. Yeah, we're sort of in the general part of this, but, uh, we are in a discussion here.
+Unfortunately, we're out of time, but so, uh, I think that at the end,
+the background is coming out because of the tales of the showers that that the electronics produce.
+Maybe there are other ways of characterizing that, uh, how much material,
+how many radiation lens is this particular electron which came from beyond the gas going?
+Maybe we can parametrize on the basis of the length, uh, that that electron shower will see.
+And maybe that be another way you can just reuse the event.
+Yeah. These are the kinds of things we've done, you know, G5 and other similar approaches at the LHC,
+especially for the high ETA, which is where the baby also appears.
+Uh, but it does require some knowledge of the geometry.
+And so that's where we need to be a little more flexible. But if we can parametrize these things dynamically, then we can do things like that.
+But then I think we basically just come back to the machine learning and solution. Yeah.
+All right. So I think we're actually at our time. Yeah. We are at time. Um, anything else burning people want to bring up?
+Um, otherwise I will say the last thing here, which is going to sound silly, but,
+you know, um, quantum computing is a bit of a it hasn't been mentioned, of course.
+It's sort of a little you just kind of sit on the side of your mouth for LHC because frankly,
+it's more of a money grab than anything it's going to be useful for, for LHC.
+Having said that, you know, it's not don't be embarrassed to to to explore algorithms, uh,
+for, um, you know, things that are highly common to talk and very highly parallelizable and,
+you know, map to classical quantum stuff because, you know, 20, 30 years, who knows what's going to happen here in Chicagoland.
+There's an enormous effort in doing a utility scale quantum computer. So don't be embarrassed to make those studies, um, as you might be for the LHC.
+Okay. Having said that, um, we're at the end of the time.
+So let's thank all the speakers again and all the discussion.

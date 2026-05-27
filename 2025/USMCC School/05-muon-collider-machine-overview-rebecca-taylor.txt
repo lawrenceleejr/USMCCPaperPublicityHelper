@@ -1,0 +1,701 @@
+# Muon Collider: Machine Overview, Rebecca Taylor
+
+Thank you for coming back after a lovely dinner. Um, we have our last talk of the day today.
+Um, we are welcoming all the way from the IMC.
+Um, Taylor, who's going to tell us about a muon collider and machine overview?
+So, um, we think, did you prefer questions during or after?
+After some time? After the burning. Okay. You can if you're deeply confused and cannot continue during.
+Otherwise, I think we'll have a fair amount of time for questions at the end. Yeah.
+Take it away. Good. Thank you everyone. Uh, it's a really nice surprise to be asked to give the muon collider talk at the muon Collider school.
+Uh, so I really appreciate that there could be so many people who could give this talk, right?
+Because we've been doing this for decades. Um, another thing is that I'm.
+I'm a bit jetlagged. You're all tired. You've been doing a whole day of this.
+Uh, as Steve said yesterday, this should be fun. I apologize if it's not fun.
+Uh, also, this is not. There's only, like, one slide, which is my work.
+The majority of this is 450 people. Uh, who works for Ecmc?
+But also, there's all this history behind it.
+Um, so as this is a one half Hep detector community, it's nice to start at the end and then work backwards.
+So what are we giving to the experiments? What's the challenge with that.
+Here's an overview. And then because we're now optics experts we're going to do the beam optics.
+And we're going to review all the things that was discussed today and put them into the context of the muon collider.
+And then I'll go through the subsystems. Uh, so I'm trying to do three things, and I hope I do the most successfully.
+The first one is contextualize this morning's lectures. The second is describe what the MSC has been up to in the last three years since it started.
+And then finally plug in to what you're going to see tomorrow and Wednesday.
+Uh, to contextualize the USBc lectures now to keep you all awake.
+If you ask good questions. I do have more stickers at the front, different to the taste, the ones that I gave you during the coffee break.
+Uh, so we're gonna nobody's actually formally done this bit yet.
+So muons, as you know, everyone knows this by now.
+I'm just repeating that fundamental particles.
+Whereas hadrons collide with a fraction of their energy, in part on passing collisions, which includes all of the the quarks and gluons.
+This is an old plot from 2012. If there's an update to this plot, please send it to me because I'm starting to use this one.
+This is hopefully you told me the mass or the energy of two patterns colliding,
+and you see that most of the time it doesn't even reach, uh, for TV when we're colliding up to ten TVs.
+Uh, and then, because a 200 times heavier than electrons, we have ten to the ten less from stratum.
+You saw this all in your homework. So then you don't have to put in that extra delta e every time.
+Uh, and then stolen plot from carry these of precision and discovery machines.
+So not just direct observations but also hints, uh, of what might be at higher energies from being fundamental particles and being heavy.
+Uh, and then because I actually don't think this has been covered at the school,
+but you guys will know much more about this during the, uh, during the annual meeting.
+But it's really a vector boson fusion factory.
+As we're colliding, the bosons that kind of cover the muon beam like a cloud.
+And that's because the muon is such high energy, uh, that you get a cloud of photons in the PDF function.
+Again, please correct me because this is what I'm telling everyone is true. Uh, so yeah.
+And if you do the S channel directly, then you have lower cross-sections.
+Uh, so this, uh, the die Higgs and try Higgs couplings.
+And I say they radiate gauge bosons like photons. So it's great for electroweak.
+So that's what the output should be.
+But what are we going to give to the detector?
+Uh, so the most important thing is energy. This is a high energy machine.
+And so easy we reckon three TV. That was the map study.
+More ambitious is the ten TV. And this is really what Imke and Mukul is looking at.
+And you can have three TV, 2 to 34cm per centimeters per second.
+Or you can split your ten TV into two different luminosities.
+Thas, um, one is a bit harder, on the other is a bit easier.
+And so this is really up to the theorists and, uh, hep physicists is what do you want?
+What do you prioritize? And we can stage accordingly.
+But most importantly, we're going to deliver muons. And we need to make sure that we deliver as many.
+Any ambulance is possible, which is hard because they decay.
+So if you go to higher energies, more of them will decay and that will affect your luminosity.
+And so everything is a trade off. Uh, and as you have seen from Jeff, the luminosity also depends on transverse admittance.
+Longitudinal admittance. This is defined by a cooling the beta at the interaction points and then the repetition rates.
+And that's all bundled into our luminosity equation here.
+Now this is not new. This has been talked about since the 1970s with the first published muon collider concepts.
+I'm sure it was discussed before this point. Uh, and then it's great if you can go back to the, the US uh, workshops from the 1990s.
+Please do. All of the publications are out there and they're discussing the exact same stuff we're discussing now.
+Uh, I'm actually in the recycling bin in my corridor.
+I found the proceedings from the 1992 workshop.
+So that's now in my, uh, bookshelf, and I want to use it for Journal Club.
+Uh, it's, um, so, uh, that's great stuff.
+Uh, you should really read up on the, uh, the new facts design some.
+It's a really nice design. It has cooling, it has RF cavity designs.
+They're doing all the stuff we've done before. Uh, and, and there's a whole, uh, kind of cedar ish thing.
+Uh, uh, of course there's maps.
+Uh, and if you use, uh, Internet Archive, you can see the original website for map and all the publications that, uh, I didn't know.
+If you guys know that hack, that's how you can access some of the documents you might not be able to access anymore.
+Maybe I shouldn't say this. Uh, and then, uh, my was based in the UK.
+Uh, and it lasted a very long time, and it successfully demonstrated cooling.
+But more importantly, it told us a lot about how to approach this stuff, how not to approach the stuff and what we can learn from.
+And now we're here from 2023. We have IMC, we have us SMC, we have Mukul, uh, from Espoo 2022.
+And now we are really shooting from the muon and I hope we only grow from here.
+I hope we don't have these like decade long gaps, uh, like we had recently.
+So why is all of this challenging? Why is it high R&D, yada yada.
+Uh, first we have to make the muons. They don't come naturally for that.
+There's two ways, but one is a high power proton beam. And then you need to slam into a target at two megawatts or full megawatts.
+And the new material has to survive that.
+And then once you've produced your protons, protons to pions, pions to muons, this is a tertiary beam and it's the size of a basketball.
+And so you can collide two basketball sized beams if you want, but it's just MTA.
+And so this is why we need to rapidly reduce the beam size, uh, with the cooling.
+And this is why we then need to rapidly accelerate and then collide with very small interaction points, very tight beta stars.
+And that in itself is a challenge. All of this is difficult, and it all relies on all the other technology to get involved.
+Um, not only that, but you had this very nice talk about collective effects and instabilities.
+Each one of these five sections has a different collective effects that you need to optimize for.
+And so then you have to study it across the entire complex, because if you want high intensity, that's how you get high intensity.
+Uh, but we call this the dream machine. And so it's worth pursuing.
+Uh, alternative to the proton driver scheme is the lemme scheme.
+This is where you generate. It was mentioned briefly, uh, today, but I don't think there was any much elaboration.
+You take an electron beam, you take a positron beam.
+It is exactly at the muon mass resonance, where you can see the cross-section in this, uh, in this figure here.
+Hey, there you go. That one. Uh, and so this I'm taking the old map diagram for this.
+You start with the positron linac, you have a positron ring. You have this kind of messy interaction point with two beams into beams out and a target.
+Uh, there might be a design for that. You'll have to ask these lovely, uh, people up here who have worked on it.
+Uh, and then you have your conventional linac layer arcs and then Collider Ring.
+So you basically you skip the cooling, but you have a really difficult positron source.
+So you learn today about the, um, analytics behind beam optics and the Hill's equation.
+But how do we simulate it? Uh, simulations can be kind of is you can make a very simple one very quickly.
+You just need your six coordinates that describe your beam.
+And so this is your horizontal position, your momentum, your vertical position and momentum.
+You then choose if you want to simulate in space or in time.
+And then you have your longitudinal momentum. And so all of these are different phase space plots.
+So this is your your x and y phase space your coupled phase spaces.
+This is your physical beam size. And this is your um.
+Longitudinal beam size. And so they don't look at the dynamics too closely.
+I'll show you one with real dynamics later. Uh, but each of these are moving.
+And in accelerate physics, what you do is you plot a and you understand its motion.
+And from there you derive things like your twist signal, chromaticity, you know, tune and things that you care about.
+But it all comes from this. Uh, so you just need a numpy six dimensional matrix.
+Uh, and then there's a lot of philosophies to simulate.
+But the mean two is exactly like the photo matrices.
+You just transport your six dimensional matrix from whatever it is, a dipole, quadrupole, etc.
+Uh, or if it's a very difficult magnet, then you can do a stepwise field map and b exp y z.
+And then you interpolate these six coordinates, uh, stepwise through your magnet design.
+Uh, and in the mean collider we do both depending on the system.
+Now, you, um, collider simulations are harder than any other, uh, collider simulation because we need particle interaction with matter.
+You can do that with flukey giant forge, full beam line d sim.
+Uh, then you have to look at how your radiation is affecting your material.
+And then you have elements in an overlapping solenoid.
+And you can't do this with most matrix codes. Then your muons decay.
+And quite a lot of the time you care about what your electrons are doing and where they're going.
+Uh, sometimes you get beams that are ten meters long and you have to accelerate that.
+You don't have a choice, or you rotate it and you try and rotate it.
+Uh, and that means you need something that can handle, not an instantaneous beam, but a very long beam spread.
+And then this is not in isolation.
+You have to make sure that your beam continuously goes through every section of your accelerator, because if it doesn't, your remittance goes up.
+And then, like every collider, it has nonlinear effects. But really in the collider, it's really nonlinear.
+And then of course you have your collective effects, your space charge, your beam beam your beam loading your Wakefield.
+And you need a different code for each of these collective effects.
+Uh, so you guys are a high energy physicist.
+You like simulation codes? Well, there's a lot. And the some are easy to learn and some are hard to learn.
+Uh, so we're going to start at the start. Why is the proton driver challenging?
+Well, we have a lot of proton beams in the world, but not all of them are intense.
+And not all of them are short pulse. So you remember space charge was mentioned.
+Space charge is really the main driver of the design of the proton beam.
+And that is because your particles are being repulsed. And we have this thing called churn.
+I'm sorry. People on zoom might not be able to see this, but I have, uh, a demonstrator, uh,
+from the Media Lab, which should show a synchrotron, and it'll beam going round in the synchrotron.
+And Vladimir mentioned this morning that it's really like a guitar tune.
+Uh, so if we play a harmonic, uh, there's probably not any sound.
+Uh, but his on guitar, and if you're playing a tune, it does make a sound.
+Uh, then this, for example, is your heart for the resonance. And when you're at a resonance, just like the amplitude of your string increases,
+the amplitude of your particle increases, and you have integer tune, and then your intuition can go up.
+So this is one oscillation pattern and this is six oscillations pattern.
+But then you have your fractional tune which is like the little bit left over once it's done six oscillations.
+And that's the bit you care about. So then you have a half a third, a quarter a fifth, and it goes up to a sixth.
+Uh, and then each of these is changing the shape of the beam that's going around your synchrotron.
+Now, just like plucking a string increases the amplitude and changes the tune.
+It is the same with our, uh, space charge.
+Uh, it affects the distribution of the tune.
+So if your tune spread normally is like a red point, your tune spread with space charge.
+We say it looks like a bow tie. Uh, and then it spreads out.
+And so then you have particles with different tune in your same beam.
+It's like you have all of these strings being played in a chord.
+Uh, but it's really just. And spread out.
+I don't know if I can make this full screen now. Probably not. Uh, we survived.
+Uh, and of course, Geoff will talk more about the proton driver.
+Uh, so we ask from our proton beam people, please, can you give us a two megawatt beam at five GV?
+Or if we have even higher power, than it would be a full megawatt beam.
+Uh, you can't do four megawatts at five GV because then your space charge dominates.
+Okay, well, then we'll make it higher energy. That's ten GV, ten GV.
+Great. Now you've doubled the length of your proton driver. You know you've got to make these decisions and everything affects everything.
+So having this high intensity beam with a short pulse at lower energies gives you significant space charge.
+Uh, and so you have to design your Linac to 5 or 10 GV, a ring that accumulates the pulse,
+kind of like a booster ring, and then a compressor ring, which shortens the pulse.
+And you're doing all of this with a ridiculous tune spread. And so we've made good progress with this.
+Uh, and so we've accumulated five to the ten, uh, five to the times, ten to the 14 protons per pulse.
+Uh, which you can know you can do, and so on.
+Uh, and then what you do, if this is your beam spread and blue, you with your RF rotation that you learned about this morning.
+Literally flip it on its side so that it's a two nanosecond pulse.
+And then here you can see our nice little bow tie of our tune spread.
+And these are all of our beautiful resonance lines that you want to avoid that we're going through.
+Uh, and so we have lattice designs for the accumulator and the compressor rings, considering the space charge.
+Uh, and in the future, we want to work more with other high intensity proton facilities.
+Uh, and a bunch of other, uh, accelerator R&D.
+I'm doing R&D another day, so I might skip through the R&D stuff.
+Uh, so why is the target and the front end challenging?
+Uh, you don't want to damage your equipment because this 2 megawatt or 4 megawatt
+beam is going to be slamming into a material of either graphite or liquid metal.
+Uh, and then your puns will dictate muons, and then you need to capture them.
+And so you have this hone of superstrong solenoids.
+And then these are capturing your beam and then focusing it so we can do something with uh,
+and there's also these yield calculations which work out okay.
+If I have this many protons then I produce this many muons.
+In this many me plus and minus. And there's a charge asymmetry.
+And that's important to remember because we're going to do something with the charge asymmetry.
+And it means we often discard the excess.
+And we just keep 45 of both. Uh, but at some point you need to design a section which gets rid of the excess.
+And then how do you separate that amount of muons?
+Uh, so, yeah. Uh, David and I for we'll do this, uh, tomorrow.
+And then on Wednesday we have a target technology talk. Uh, and we have a bunch of open questions about our target, like, how do we define yield?
+What momentum, what position? How do we know all of the protons?
+We'll turn to pylons. Some of them will be left over. So what do we do with those?
+How do we design these extremely strong, extremely large bowl solenoids in a way that doesn't damage them?
+And then if we do replace the target, which you have to design for, then how do you do that?
+Uh, and so in the last three years, we now have a radio build of graphite targets.
+Uh, so that's very cool. And it's been optimized for Pi O'Neill's.
+Uh, and we've started to look at our high temperature superconducting capture system.
+Uh, and we're just starting to look at that solenoid extraction.
+Uh, and also we're looking at fluidized tungsten and liquid LED, and there's groups, uh,
+in CFC and some that look, uh, this uh, and uh, yes, Cassie, I will do a talk on how high power target trees.
+So I assume that's the full megawatt option. Okay.
+What is the cooling, challenging. Uh, so many reasons.
+Uh, the one I've chosen is that it needs to be encased in solenoids.
+So what is cooling? Cooling means you reduce your admittance.
+Admittance is the area of your beam, but in six dimensions.
+So you take the six dimensions I mentioned earlier. Multiply all of them to get this volume.
+And that volume happens to be a conserved quantity, which we call the admittance.
+But you want since is also conserved, an x, p x and a y and p y, and in transverse and in longitudinal.
+So you have all these different definitions of admittance.
+Uh, you'll notice that it is an ellipse. So the area of that is pi r squared.
+So then some people include the pi some people don't include the pi.
+And they put it in their units. Uh and so make sure you're careful on what definition you're using.
+Uh, but it has to fit within our magnet size.
+And the reason why it's hard is because it's non-relativistic.
+So IBM is very slow. And if we do not focus IBM, IBM will blow up because of space charge, because it will disperse.
+So anytime your field is zero, your admittance increases.
+So und from the time you generate to the time you start to accelerate, you need constant solenoids.
+Uh, and then everything you actually need is inside the solenoid.
+And you need to have smooth adiabatic transitions between these solenoids to avoid beats of beating to avoid mismatch.
+Uh, so you have this diagram here of two low field solenoids and one high field solenoid.
+And you have four matching solenoids between them. To have a smooth transition between these two regions.
+And we'll get more on ionization cooling tomorrow with Katsuya.
+Uh so what is and ization cooling.
+Well, it's very simple. It's kind of a material effect.
+If you have a beam interact with matter.
+If it does scatters off the electron, you experience a cooling effect.
+If it's a very low a material like hydrogen or lithium hydride, and if it's gases from the nucleus, then it heats.
+And so that's why you pick materials that don't have very much nucleus but do have some electrons.
+Uh, and as mentioned, there are other cooling methods, but they require significantly more than the muon lifetime.
+And we're thinking maybe we could do a combination of some.
+You could put in like a little bit of electron cooling, a little bit of friction cooling, a little bit of ionization cooling.
+But for now, uh, the greenfield, we just stick to ionization.
+Uh, so what does your cooling really look like?
+I have exactly the same diagram as before, where this is our phase space and x phase space and y.
+These are the correlations and x and y. This is our physical beam size.
+And this is our longitudinal dynamics.
+And I'm going to show the beam transverse longitudinal maintenance going through a low field solenoid a high field solenoid with an absorber.
+Our RF section which has matching solenoids between them and another absorber.
+And so first of all, I want you to look at x and y, the physical beam size of our beam.
+Uh, when it starts at the end, a beam starts off large until it goes in the full force has a solenoid, and then it's tiny.
+And then if it's full Tesla, then it goes back to being launch. Uh, now we should look at the longitudinal.
+When it's going through an absorber, it's losing energy and it's getting longer in time.
+And it gets that correlation.
+And now it rotates, rotates, increases and energy increases and energy increases and energy goes through an absorber decreases in energy again.
+And so you can really see that there's like two rotating cavities here and eight six celebrating cavities here.
+Finally we're going to look either X or phase space and y.
+You can see here it's long. And once it goes through the 40 Tesla it's going to flip and it's going to be vertical.
+Here it is. Now it's vertical. You can see the cooling happen when it's long and thin because you're cooling decreases the momentum.
+And so you can see. The momentum reducing and the length of the stick gets a little bit shorter.
+Uh, so than here. Hang on. We're going through the rotation section. Look again it's going to flip vertically.
+And now you see it's shrinking from the top and the bottom.
+And this means the overall your beam size is reducing.
+This is your beam dynamics in a final cooling section.
+Now that only cooled transversely longitudinally it actually gets bigger.
+Uh which you saw from the fact that it increases here and then it increases in the second absorber.
+So this is why the concept of dispersion introduced this morning is crucial because with dispersion,
+such as a dipole magnets, you're essentially getting like a mass spectrometer effect.
+Your lower momentum is going to bend more. Your higher momentum is going to bend less.
+Think of it like a prism. And now you can take it through a wedge absorber where your low momentum particles go through,
+uh, more material, less material, and your high momentum particles go through more material.
+And therefore you're introducing a cooling effect in the longitudinal as at the same time as doing a transverse.
+And so this is why your six dimensional cooling has these dipoles and these wedge shape absorbers.
+Uh, so in both of these cooling, once you've removed the energy from your beam, you have to restore it longitudinally.
+Otherwise, if you get below five MeV momentum, your beam is gone, lost in the hydrogen.
+So then we need an RF cavity which re accelerates the beam after every absorber.
+These dipoles, absorbers, RF cavities all have to be in a constantly high or low solenoid field.
+But this is an engineering system. So you also need waveguides which provide the power.
+Everything needs a power cable. Everything has a current.
+You have cryogenics. Everything needs to be cool. Your liquid hydrogen needs to be at 20.
+Tesla. Your PhD also has to be probably around 20.
+Tesla. Should you use the same hydrogen or different hydrogen?
+You have to refresh your absorbers every time they get ionized.
+Otherwise they build up the ions and you get a plasma. You need to see your beam, you need to have instrumentation.
+All of that is in your solenoid field. So we're doing okay.
+Uh, we, uh, starting to design our solenoid cells.
+Uh, so our cooling cells for our 60 cooling, which has the RF cavity and then the waveguide, and then in between it is uh, uh, solenoid coils.
+And for the 60 cooling, what's even more challenging is your beam fundamentally is changing as it's experiencing cooling.
+And therefore your cells have to change as you go along.
+And so you don't have the same RF cavity in solenoid as you go along.
+So that's why we split it up into this a1 a2 a3 A4 was with a bunched beam of six bunches.
+Then you get a bunch of um combiner, and then you have a single beam and you do B1 through to B eight.
+For B eight is the most challenging bit. No, more challenging doesn't mean more cooling power.
+The cooling power is the same throughout, but your beam conditions are harder.
+Uh, and so even just simulating this is hard enough.
+So we have benchmarked codes RF track, Bdsm, G4 beam line, I cool have all been integrated together.
+Uh, and this is a plot of how they missense changes.
+So you go down which is good because you're cooling. Then you get to the final cooling, which only really pushes it to the limit transversely,
+but then you have to lose some longitudinal admittance as a result.
+Uh, that's cooling. That's why it's hot. A lot of you should work on cooling.
+Uh, why is the acceleration challenging? Oh. Whoa. Is that me?
+I guess I'll talk about this tomorrow. Uh, I work on cooling, so this will be fun.
+Um, your muons are going to decay, and so then you need to accelerate really quickly.
+And so go predefined in your RF gradient. Pull the accelerator length to get the transmission you need before your muons decay.
+And you don't really want more than 10% of the beam to decay per synchrotron.
+And so then to get to the gradient you need, you end up with 4000 RF cavities.
+Whereas the Large Hadron Collider has one location with RF cavities.
+I think there's eight in there, but maybe someone can correct me.
+Um, and whoa, did someone say this morning the RF cavities are the most expensive bit?
+Well it's crazy. Um, let me introduce matching.
+If your beam is, uh, oscillating in the stable area and you change the size of a stable area,
+your beam is going to disappear, and then you get a massive increase in filament.
+Uh, and so you really need to think about the phase of each of your systems, uh, when you're having a.
+Beam go through all of it, and matching is transverse and longitudinal.
+Anytime there's an RF cavity, you need to make sure that everything links up.
+And so sometimes we talk about the start to end simulation,
+which sounds kind of easy because you just design every system and then you put it together.
+But we don't know what the bits that link up the in between look like.
+And so when you have the these axes, uh, they will also need to have this matching.
+Uh, also this hybrid ax includes, uh, false ramping, normal conducting with static superconducting.
+And I will explain why tomorrow this results in very large orbits and large magnet sizes.
+And this is a problem if you want high field magnets. Now your high field magnets are high aperture.
+And that's the thing. That's the problem. It's not the field. It's the aperture that you need it to be.
+We're very lucky with the final cooling, we can have all 40 Teslas online because up in sizes like this by the end of it.
+And that's not the case when you have these large orbit excursions. Uh, so we have last designs for the whole green field on sun last year.
+And Kyle will updates, uh, the progress on the Fermilab, uh, osseous section.
+We, uh, applying known cavities, which we used to expel, which is the 1.3GHz Tesla cavities.
+And we've studied impedance. So I almost think that the Arceus is one of the most mature sections.
+Uh, we have a very nice, uh, group that works on it, uh, within Ecmc.
+And some of people in the US, SMC, want to get involved as well. Uh, there's a lot of people who can help, uh, on the other side of the pond.
+Uh, and. Yeah, so now we're looking at the details like higher order modes, uh, and the bit before the RCS, that's actually the hard bit is the linac.
+Your beam is very long. So the relays, they don't exist.
+Uh, I'll explain these both tomorrow. Uh, the other thing that means a lot of progress is the magnets.
+Uh, and the rates in which these magnets are ramped.
+So if you have, uh, 200 megajoules, you're gonna have to move this 200 megajoules in and out of your magnets at a rate of milliseconds.
+And so your power converters are one of the most expensive things in the muon collider and also don't exist.
+Uh, so we're working with industry Infineon to have, uh, like for sustainable energy,
+you have turbines and you also want to move large amounts of power in a very short amount of time.
+So this has links with the grids.
+Uh, and uh, also there's some cool work with the power converters, like when you flip the fields, you don't need to flip your voltage.
+Uh, and so there's some nice designs on these, uh, bipolar switch resonances.
+So if any of you electrical engineers, there's also plenty of work to do here.
+Uh, but the main thing is, uh, for killer Tesla ramp, right? That's that's ridiculous.
+Uh, why is the collider ring challenging? It is because to get the luminosity we need, we need 1.5mm beat to star.
+And every collider has a movie star.
+This is this is not easy.
+You know, FCC actually doesn't have a lattice which is stable and reaches their required luminosity because their beta star is also very ambitious,
+but it's not as ambitious as ours. Uh, so to get highly focused beams a collision, your beta has to increase before it can really decrease.
+And it's like you're making the beam slides and then you're really focusing it all at one point.
+And the beta before the interaction point goes up to 700km.
+And this is gonna increase your beam size. Now that's not the physical beam size is not 100km.
+Remember that you have to multiply it by the admittance and square root to to get your physical beam size.
+But having these high betas gives us a really high amplitude.
+And high amplitude means high non-linearity. So then you need to have chromatids.
+Oh wait, I talk about this. Then you have chromatic effects prior to the interaction point.
+And so you need a section of a lot of two poles.
+And for six phones to work you need dispersion. But we don't want dispersion at the interaction point.
+And and so a straight section is getting filled with chromatic correctors dispersion sections non dispersion sections.
+And then we have a chicane which gets rid of the electrons so that just muons go in.
+So there's a lot happening at the interaction point. Uh and we have optics and we're changing these optics.
+And we're trying to get a feasible lattice at 1.5mm.
+Uh, but it's hard. And you're gonna hear more about the Collider Ring on Wednesday.
+Um, Gibbs, what's the progress?
+So, you know, the other challenges, the beam energy spread because that affects your chromaticity.
+Uh, but also we have an electron cloud which is following our muon.
+And this is a problem for B, the IB background, but it's also a problem for our magnets before the interaction point.
+And so we need to design. The kind of radial segment of a beam pipe so that we can have a tungsten absorber in I-beam pipe,
+as well as in the nozzle that you have in the detector. And then you also have impedance.
+And then to reduce your impedance, then you also need to have a copper coating.
+And then you need insulation space. And then you have your magnet. So now your magnet is even bigger than it was before.
+Uh, and so that's in itself has been a lot of progress as what do we need for our to handle our radiation?
+What do we need to handle for, uh, impedance? Um, how are we going to cool this cryogenically?
+Uh, and we're really at the point where our collider magnets depend entirely on what technology is available.
+And so we have currently in the cloud area and forbidden area, if we can push that even a little,
+then we can have a better collider performance design, because you are really kind of deciding between Noble Field and Noble Diameter.
+Um, why is decay challenging?
+Muons decay, and that makes our life hard. And just to say, just to put some numbers down so people have reference, uh,
+it's easy because the mass is 0.1 and therefore gamma is always 100 times your energy.
+Uh, five kV, 110 milliseconds of 1.5 30 milliseconds.
+Um, and we know the length of every system in our collider, more or less.
+We know the energy of every system in our collider. More or less.
+We know how many tons everything takes. So we have all of the tools we need to calculate our decay budget.
+And if our decay budget is less than the intensity we've promised, then we have problems and then we need to redesign everything.
+Uh, so I had a I had a high school student actually calculate this for me, uh, because you guys did the exercise this morning and homework.
+You know, it's fine. Um, this is a log plot, so don't get surprised that the front end looks longer than the collider.
+Um, you can see your survival rate go from 100%.
+Oh, it's all in the cooling. Uh, the cooling is reducing everything.
+This is just from decay. Is this is not transmission, uh, due to losses.
+Uh, and then once you get to your accelerator, um, you are more or less flattened out.
+And so cooling people, including me, uh, the shorter you can make your section,
+because you can't go to any lower energies or any higher energies because that's the minimum ionization potential,
+the shorter we can make our cooling, the more we're going to have significant effects of our survival rates.
+Uh, currently, about 5% of the muons that we create survive.
+And this is only going to go down as we have a full start to end simulation because we need matching sections between everything.
+Uh, that's one for decays. The other problem decays is it makes neutrinos.
+Uh, and so we need to make sure that the radiation due to showers of these neutrinos at the surface are negligible.
+Uh, and so, you know, I mentioned the collider with these straight sections.
+Well, the longer a straight section is, the more neutrinos you accumulate going in one direction.
+And so you need to design your lattice in such a way to consider the radiation on the surface of where the neutrinos emerge.
+Hello. So that's drop in the survival rate.
+Uh oh. Slower than me.
+The in the going. Subway.
+Are you referring to luminosity? Yeah, I have a luminosity plot based on the states are.
+If you want me to send it to you. There's no point because you have an undeclared right?
+Yeah. No, it it's worth it because it's gamma cubed.
+Yeah. It's gamma cubed. But, um, a transpose multiply by long.
+Um, I'll send you the. I didn't want to share it because I didn't calculate the full luminosity.
+I just did the correlation with luminosity. Um, but the actual numbers aren't right.
+Good.
+So, uh, we've decided to design the collider in such a way, uh, that when you have your neutrino beams, which come out from your straight sections,
+uh, this is a cool a tool called Geo Profiler, which has detailed modeling of the Earth, and it considers the orientation of our collider.
+And so if we were to design the muon collider at CERN,
+we have found a position such that it exits through the Jura mountains this way and exits through the Mediterranean Sea this way.
+Uh, and you can design it in such a way that will Daniel says, oh, we'll just buy off that section of land and so no one can walk there.
+Uh, no. You put a neutrino, detective. Uh, so no one can hope that because there's a neutrino detector that.
+Yes. Because if we want to do something with that physics.
+Um, now, currently the size of this neutrino beam, I don't want to say too much because I don't know details.
+It's probably like this surface area. Um, so, I don't know.
+It seems quite small to me. Uh, if you have these, the movies.
+So the movies, objects which are underneath your collider lattice and these are very, very slowly raising your entire.
+Beam line with magnets up and down.
+One Miller. Radium. Uh, I'd like a five hertz rate so that any time the muons go through, they experience the same optics.
+But one beam to another is going to leave at a different angle.
+And so the reason that exists is that spreads out the angle of your neutrino beam,
+so that you're reducing the intensity of the radiation at one point.
+And that can make the neutrino beam about the size of a building.
+Uh, so you can define the size of your beam.
+So let's tell the people who want to do neutrino physics with this,
+because I don't think we have a community who's looking at that yet, this new storm.
+But they want their own design. They don't want our design. Uh, great.
+Uh, there will be more details on the detector in the annual meeting, and I'll talk a bit about Imke.
+Detect the progress in the scope of your talk. But this is due to take to some music in Maya.
+Uh, and the challenge is reconstructing events with high beam and just backgrounds.
+Uh, the configuration of the shape of the tungsten nozzle.
+Such to catch the electrons, to reduce the background on your components, and then also creating state of the art tech,
+the technologies, and ensuring that the flux of the beam on your structure is fine.
+So a lot of this is actually MDI progress. But you guys can tell me about detector progress, uh, rather than me, uh, useful links,
+because I talked to some people in the last few days and I realized, oh, some people don't know this, uh, that is, uh, we don't have a slack.
+We do have a matter most for intc. Uh, there's a QR code here.
+I can also send you the link. You can have a guest account.
+You don't need a CERN account. And that's the blockage for a lot of collaboration.
+But I'll talk about that in the physics talk. Uh, each there's a channel for, uh, proton driver cooling, acceleration, yada yada.
+And this means if you want to talk to someone but you don't know who to talk to, you can ask in the channel and someone will know the right person.
+So that can be a useful tool. Um, then, uh, last year we had an early career online event, and it was really good fun.
+And a bunch of you, including Kylie, also helped out with this.
+And from that I made a mailing list. Uh, you please join.
+I put up job adverts and I put up events.
+Um, I share it to people in this mailing list. And the fun thing is, it's informal, so you don't have to be part of IMC.
+All you SMC and all you can just like muons and oh, maybe I want to work communes in the future.
+Then you can join the, the E group. Uh, and then uh, so there's E groups dot dot c h.
+And I think you can just go there and search for the mailing lists. If you don't get updates about, um,
+CC and you do want to the facilities list is the really the main one where if we want to email the whole Mu and Collider,
+normally it goes to facilities and then also to detector, but there's a bunch of other mailing lists and I don't know how active they all are,
+but there's detector cooling magnets and the IRF test facilities.
+If any of you spend time at CERN and you're free Monday at 3 p.m., we have coffee meetings as well, uh, which I want to open up to more people.
+Uh, great. So the beam physics changes as you go through the muon collider.
+There's not just one accelerator which has a combined collider. It's all different and all uses simulation tools,
+and we need people so much to have a different combination of these simulation
+codes to actually model the effects so that we can design a good machine.
+And you have to model because the beam optics drives the technological limits of the magnets and the RF.
+And if we have breakthroughs in any of the beam optics, this has less demand on on magnets and that RF, which makes the muon collider more feasible.
+So anything you do on beam optics can help make the muon collider cheaper and happen sooner.
+That's exciting.
+Uh, we want to do eventually a start to end simulation, which includes matching between systems, and then we get an actual rate of our muon decay.
+Uh, and we want to provide a design, which means the energy and the intensity and the luminosity, which gives us good physics.
+So I think I have 45 minutes for questions now.
+15. Sorry. 15 I wish it was 45.
+I'm not Steve. Okay. Thank you. Thank you for listening. I have stickers if you ask good questions.
+Did I say that? Hi.
+So, uh, going to the.
+Do you use the accelerator part? Uh, one of my personal fascinations is with rails recirculating Linux and, uh, especially the Dogman.
+I thought that one. Uh, I think that was really cool. What is the benefit of recirculating them?
+Uh, like Linux, we just shoot through them. But then the whole point of the loops.
+I was always curious about that. Uh, so this is spoilers for tomorrow, because I'll do the calculations for this if you don't.
+Okay, so the energy in which we inject into the first, uh, synchrotron is 63.5 GeV to get from 256 2.5 GeV.
+Uh, you would need, uh, six km linac, or you have a 500 meter linac and two sets of relays.
+Uh, now they're still expensive. And the beam dynamics is actually very hard because you need to bend it round.
+But every time you accelerate a, the bending radius changes.
+Uh, so designing.
+Well, if anyone wants to design them, and it sounds like you do, please do.
+Uh, we have one person who works on this, but I think he does it for free.
+I don't think we pay him so. Uh, so please work on the release.
+Um, why do you care that the, uh, neutrino radiation at the surface has remain negligible?
+Neutrino interaction cross-sections increase with intensity and increase with energy.
+And so the probability that your neutrino interacts with anything is higher than a normal,
+let's say, solar neutrino, at least because there's a lot of them in one place.
+And then when it does interact, it's going to produce a shower of all your normal stuff, like neutrons and electrons and photons.
+And you can't shield for that because you don't know when your neutrino is going to interact with anything.
+And some people don't like this and find it kind of scary. And so we need to communicate this in such a way which says it's not that much radiation,
+we just have to solve it, and then we have to know where it goes.
+So we could put a detector the. Um.
+Okay. I'm going to be. Hopefully not to me, uh, the by asking you something.
+Not on the, uh. So when you mentioned the vector boson fusion.
+Mhm. Uh, could I ask anyone here?
+Yeah. It reminded me a little bit of, uh, the situation with, uh, colliding protons and, uh, well,
+protons and electrons in the EIC and the idea of having, uh, glue balls with the which egg, the gluons.
+It what ends up interacting is that is that similar?
+My understanding is the the PDF of muons itself contains components which are also bosons.
+Uh, you could call them a cloud, but I also don't know if it's inherently part of the muon.
+I guess if it's part of the PDF, you could consider it being similar to a Parton collision.
+But I think that the strong force and the weak force off acts in such different ways that it's hard to give that an exact analogy.
+I'm seeing some nodding. So I think we don't know.
+We've never made a muon beam so high energy that the PDF changes.
+And I think this is why this is inherently a beyond the standard model collider.
+That's going gluons on the PDF. Yes I have I have found that it's a little like it's in some ways more similar to like the familiar,
+um, like incoherent E plus B minus scattering from the beams in the sense that it's electroweak.
+And once you get high enough energy, the, the photons and the vector bosons are kind of doing more or less the same thing.
+And so you're getting, you know, so I would, I think if you were going to compare it to a more familiar accelerator background concept,
+um, than I would compare it to that, um, because the, the bosons don't have mass when the colliding.
+And so they're more like virtual they to be to be clear, they still do, but they have it's not that much compared to the energy of the beams.
+Yes. It's more virtual. Um, yeah.
+So I had a, I guess more of the overview type of question.
+Uh, this is something that I was wondering because, like final cooling, uh, research is done while initial cooling research is done.
+And same with every part of me on Collider. How are design changes or are design changes in one section of the Muon Collider communicated?
+Especially as like the final outputs of said designs to the next stage?
+Uh, is that is there a process for this? Wow, a communication question.
+Oh, boy. Um, no. So every year as part of Mukul, we have a parameter reports.
+And I am the person who compiles the parameter report.
+And so what we do is we ask everyone to give us the most updated optics files and most, most updated call parameters.
+And I would define cool parameters, anything you need to communicate to other subsystems,
+or anything you want to communicate to your subsystem in the future.
+Uh, and so you are talking energy in energy out transmission.
+Uh, and then RF gradients, magnetic field strength is like the parameter set now generally between sections.
+As we've kind of discussed before, everyone will assume that that beam is Gaussian when it enters the system.
+And that is because to take the beam from the previous system requires all systems to have simulated.
+Uh, and so I think that is one downside of a parameter based sharing system is it doesn't pass on any,
+uh, funky things the beam might have picked up on whilst it's transgressing through the system.
+And this is why it's hard to do the thing you've asked for without having a start to end simulation process.
+Currently we're using GitHub. I don't think GitHub is a very good way to store and document parameters.
+It might be a good way to improve your optics lattices when you update them,
+but the problem is that the way in which we communicate synchrotron optics is not the same way we communicate cooling optics.
+Actually, I don't think we have a standardized cooling optics framework.
+All we do is we send each other the G4 beam line file or the Excel file which has the solenoid is here.
+The absorber is here. It would be nice to have some kind of standardized method, the mattex or beam at or x.
+We told you. Thank you. Hi.
+So you listed several of the simulation softwares that are presently being used, particularly for cooling.
+Um, I guess I'm curious what you think the most significant limitations of these softwares are,
+and where we should be focused on improving them to make them as reliable as possible.
+Um. I think.
+You can't create a code if people don't want to use it.
+You could create an incredibly niche muon cooling code which incorporates all of these things,
+but I don't think anyone outside of the muon collider would engage with it.
+And therefore, and I don't think you would have much documentation support.
+The direction which I know the Sunapee Group is going, is going to a modular, pythonic system where users can write their own tools.
+Because let's be real, all of us right around tools, because you can have I call and you will be mine.
+But you're going to say that's not pythonic. I'm writing my own wrapper. Okay, now I've written my own wrapper.
+I'm going to write my own emissions function tool. Okay. Now I'm not going to write my own customized function tool.
+So we all develop our own codes anyway.
+We may as well have a centralized system where we can push our additional modules into the git repo, which contains the the system.
+So what I think we would say the only way I can currently see ourselves going forwards with the simulation tool that we have,
+is for the acceleration in the collider we use X suite.
+Now you can use beam out and you can use Mattox. Both of these go into X suite.
+Uh X suite is uh tracking code which is pythonic and modular.
+And you define the beam and then you define your matrices. Uh, and then X suite interacts with our f track.
+In our F track, we have a very good, uh, absorber model for our cooling.
+You can also do space charge and you can do Wakefield's. Now, I think that covers all of this.
+Also the proton driver, because you can do the proton driver in an X suite.
+Well maybe some PTC um targeting frontend then you would.
+Well currently we use flicker. Uh, I think fluke is hard to implement into X suite.
+I think rather people in NXT we like to use Gen4 and something called alpine, um, for the particle matter interactions.
+So we would have to benchmark Fluker with whatever could be compatible with our generalized framework.
+Uh, I'm just sorry, that's a very specific answer, but it was a very specific question.
+Okay. Hi. Uh, thanks for the really nice overview.
+I was, uh, particularly intrigued by the animation that was showing the different, um, cooling process and the beam optics for that.
+That was really nice. Um, so this was from simulation.
+This is G4 beam line. Uh, and then when we do eventually have the demonstrator or even though the,
+the collider itself, do we expect to have, um, beam instrumentation to the level of,
+like this detail that the simulation is showing or like what is the level of kind of expected instrumentation to see this in the real building?
+Impossible. I wish I wish you could um, I think we're very lucky in particle accelerators,
+in that the accelerators we use naturally have a very high level of instrumentation because we're studying accelerator physics.
+If you think about a synchrotron light source or a medical machine or an irradiation facility,
+the amount of instrumentation they have is probably like less than a 10th of what we would have in, say, Fermilab or CERN or or Slag.
+So the muon collider in the muon demonstrator will have more instrumentation than you need, to be honest.
+Like I say, for a lot of facilities, the more practical they only have instrumentation when they commission and they're like,
+okay, I have beam, I'll take it away again. Uh, so sorry, that was a little preamble.
+Uh, to answer the question directly, you would have a in an admittance measurement device before and after,
+uh, probably each stage of the 60 cooling, uh,
+and you will probably have some beam loss monitors and you'll probably have a few beam screens,
+but you there's no way you're gonna see this, unfortunately.
+Uh, because, uh, I mentioned the solenoids everywhere.
+You're gonna have to put your instrumentation in the solenoid. Uh, you it's a very intense beam.
+So then you have to do nondestructive measurements.
+Uh, now, when you have the demonstrator, because it is a test facility and it's lower instrumentation,
+you can have destructive imaging like at one point and then, okay, we understand that now we build the next bit.
+Now we have another destructive. Now we do the next bit. So you can have more.
+And. Mentation for the demonstrator than you would for the actual collider.
+And that's how it should be, because the demonstration trying to understand whereas the collider, you just want the beam to go through.
+Uh, I thank you. Uh, lovely talk. Um, if you could go.
+I think it was much later to the detector slide with, uh, music and Maya.
+Um, yeah.
+I was just curious if you could maybe expand on the distinctions between the two detectors and maybe the differences in how they, you know, developed.
+Hi. Okay. Uh, they're not extremely different.
+The main difference between them lies, uh, in the calorimetry.
+Um, they have different technologies. The same for the calorimetry.
+Um, so one's using something that looks very much like the CMC cal, and the other one is using, uh, crystals.
+Um, and the at the same time.
+Maya. So Maya, which is using the HG cal type, uh, silicon tungsten, uh, calorimetry, um, also has the solenoid moved inside of the E cal.
+Um, and so the solenoid is there at a smaller radius, which is a little easier to build.
+And it's also shielding the E cal from some of the beam induced background.
+Um, but besides that, they're pretty similar in size.
+The tracking systems are pretty similar. The nozzles are identical. Um, and, uh, it's it's mainly just, uh, difference in solenoid and equal.
+That's really dominating the differences.
+The trackers have some subtle differences about double layers and things like this, but they're not really optimized yet.
+Thank you. And please include this in the Parameter report 2025.
+Because I think when I looked in 2024, I had the same question.
+And I was looking at every single parameter. I was like, what is the difference?
+But yeah, I think I didn't look at the cal uh, table and.
+Hi. Um, so in the cooling system, you mentioned how we're going to have to, like, replenish the absorbers because we don't want to create a plasma.
+Um, I was wondering what the current plan is for that and how we're going to be,
+like, I guess potentially getting material in and out of those solenoids.
+What a fantastic question. So it entirely depends on what happens to a hydrogen when you pass an intense beam through it.
+Now for example, in the final cooling, because that's all I can talk about.
+We actually alternate between liquid hydrogen at the start and then at the end.
+All beam is so concentrated, such low emissions that we have to go to gaseous hydrogen.
+Otherwise the pressure is so much that we're going to boil off our liquid hydrogen.
+So we need to.
+And luckily in October we will have some people studying the collective effects of the beam in the hydrogen.
+And this will include the ionization rate. And this will and hopefully we might do some plasma stuff because we're in,
+but we're in a magnetic field and see where the ions are going once they have been ionized,
+and whether this will reduce the performance of the absorber once you get to more ions,
+and whether you get a buildup of ions, whether that affects the beam that's passing through.
+Uh, now, I also don't know how we're going to have liquid hydrogen in the shape of a triangular wedge with an exact angle and exact width.
+I know we need more quiet people, please.
+Uh, so. And again, also, if we did have lithium hydride, is this kind of solid polymer wedge or so whether that would need replacing and how often.
+Because that will get ionized. But it's not like a liquid.
+And so I don't think it would move in quite the same way the liquid hydrogen does.
+So we have a lot of questions before we can answer that.
+And I think first we need to ask how the absorbers themselves are built before we can start to consider how to refresh the absorber.
+But if it was also liquid hydrogen, can we do a combined cryo absorber system?
+That would be nice. And very.
+High for the production of muons from the decay of pions.
+Um, you mentioned there's an asymmetry in the number of new pluses and minuses.
+And you said that we want to get, uh, that balanced by getting rid of the excess.
+So what's bad about having an imbalance in the number of, um, u plus B minuses in the, uh, beam beam, beam loading.
+Uh, consider that you have your, um, synchrotron, and you have a more intense of beam going one way and a less intense beam going the other way.
+Now, the perfectly synchronous, if they have the same charge, they have the same beam loading, they have the same, uh, beam being weak.
+But if they're different, then the going to unbalance each other.
+Uh, and it is the same if you think about the cooling, if you have one that has more intensity than the other,
+then you're going to have asymmetries in your beam loading, and therefore one is going to accelerate better than the other.
+One will be faster than the other. The second you have any timing differences, you are not going to collide in the collider.
+They have to really move at the same rate.
+Let's do. There's one and then one. Okay.
+And then we'll cut it off. Sorry.
+Um, you mentioned a couple times that you're doing all of this inside of a solenoid, so I was wondering, how much can you simulate that?
+And is there weird effects of, like, for example, passing power supply cables through a solenoid and making sure that your,
+your RF cavities are just, like, as clean power and all of that stuff.
+Uh, so, so remind me the first thing you said I want to do in order, sort of.
+Everything is inside of a solenoid. Yeah.
+So how do you simulate like, I we simulate all, like the downstream effect of even just, like having power cables inside of us.
+Uh, yeah. So for the everything being in the solenoids, uh, there's the component of the b z, and we assume that the p z changes as a function of z.
+And we don't do matrices calculations in cooling. We have to use field maps.
+And so say you have a solenoid and then inside an RF cavity well you're going to do a step.
+You're going to apply the b z effect. You can do another step. You're going to play the b z effect and the RF effects.
+And you do another stuff and you play the p z effect on the RF effect. Uh, now for the RF cavities,
+the beam optics should have limited effect because one majorly affects transverse and the other majorly affects longitudinal.
+Uh, we have a range of simulation codes which I mentioned.
+Um, RF track looks at how the beam changes as a function of time.
+Uh uh, g for beam line, uh, takes a beam line tool has a constant like actually model solenoid coils, uh, and then has a beam going through it.
+Uh, I call written in Fortran. I'm sure other people in this room can tell us how I call, uh, has been made.
+So it is possible to do coding that that enables this.
+As for how we power them, I think that, uh, Magna experts in this room that might be able to tell me how you would power Magna,
+it does affect how you power the RF cavities, because you have to make space for this waveguide, and you have to have spaces between everything.
+If you're interested, then there's a lot of work done on cooling cell integration at ion, a Fan Milano under Luca Rossi.
+We have work package eight, which has the cooling cells in it, and we would really benefit.
+I don't think anyone has done the beam optics through the demonstrator with the integrated design that they've come up with.
+I think we still use the idealized, uh, so, so all of this matters.
+Uh, another thing. Sorry, um, the p z that we assume is not the same as the actual solenoid that we're going to use,
+because in beam optics, we just take the BS that we need, and then we say,
+oh, it's up to the magnetic experts to organize the solenoids in such a way that it produces the b z on axis that we want,
+because the off axis doesn't matter quite as much. Uh, let's see one last question.
+Um, hi. Augustine from Stanford. Um, so I have a question about, um, data acquisition and data storage for the detectors.
+Um, in particular, um,
+what we're trying to do essentially with luminosity is optimize for luminosity by decreasing sigma X star and sigma Y star as much as possible.
+Um, the consequence of that is that you increase your longitudinal beam length by a significant amount,
+and that increases the amount of time that you have to be taking data in your detector as well.
+So has some thought gone into how you actually need how much time you actually need to be taking detector data?
+Um, how that's going to affect your ability to track just given your particular data set with respect to the state of the Earth that we have.
+Of course, at the LHC, I understand that our collision rate is 100kHz.
+So that 30. Yeah, it's like 30kHz.
+So that makes it easier not to do you mean amount of time that you have to do you mean per bunch right.
+Is that much or do you mean that like you read out window.
+Yeah. Yeah. We're not bunched. Right. So so there's um there's only two bunches circulating of you on Collider,
+so you have a whole lot of time between, um, between bunches and the and the bench length.
+Uh, at attentive IMU on Collider is actually a lot smaller than what you would have at the LHC.
+In addition, it's like, uh, a millimeter or something like this.
+Um, whereas it's like about that long at the LHC.
+So it's, it's much smaller and there's nothing else near it.
+Um, so we really don't have any issues around that. Um, we have some interesting things.
+We did a study that's kind of the there's some archive version of it that was looking
+at how if you try to use Poynting information to reject beam induced background,
+that the length of that bunch can really impact your ability to do that or timing information.
+Either way, if you don't have a really small interaction point, your ability to differentiate between non.
+Stuff gets harder, right? Um, so there's some interesting consequences of it being larger.
+And if you do have a lower energy moving collider.
+So if you did energy staging and you did a three, three TV or something like this, then it's longer as well.
+It's still much smaller than the LHC. Um, so yeah, compared to what we do now, it's way better.
+Um, but, uh, it still has interesting consequences.
+Yeah. There's also something called the hourglass effect, where you can change your Sigma Z's, uh, relative to the the beam size.
+And so we've chosen them to be equal. But you can choose different regimes where they're not equal.
+If you were concerned about having a beam size too long. You can make your you want timing shorter.
+Uh, and that would have consequences on your luminosity. But you can optimize for that.
+I think our choice was kind of arbitrary for them to be equal.
+There was some rationale that it's possible that if we did a lower energy, I think for the millimeter size,
+it's fine for the lower energy ones, it might be advantageous for the detector to make it smaller.
+Okay. All right. So with that, let us thank our speaker again.

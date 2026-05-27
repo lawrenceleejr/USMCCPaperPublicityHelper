@@ -1,0 +1,431 @@
+# RF Technology, Sergey Belomestnykh
+
+Our second lecture in this session dedicated to RF technology.
+And the speaker is Sergei Bebop, mystic from Fermilab. Take it off.
+Thank you. Okay, so this lecture is about RF technology.
+I was told that this audience is mostly, you know, students in particle physics.
+So you don't know much about RF. You probably all took a course.
+Course? I took courses on electrodynamics, but specific to application of electrodynamics to accelerators, you probably not know much.
+So most of this lecture will be on the basics.
+And then towards the end I will tell you a little bit about challenges.
+Uh, for the Ion Collider. So that's outline on the lecture.
+Um hmm. Here are some basics. And we'll talk about, uh, RF cavities.
+That's what we use to accelerate particles, um, in modern accelerators.
+Uh, and uh, talk about the parameters which we use, how well,
+the language we use to talk about, uh, RF technologies and figures of merit and then, um, uh,
+compare a normal conductor and superconducting, uh,
+radiofrequency systems and then RF and then color and some references if you want, uh, read more about RF technology.
+Um, so um, basics again, you all know that, uh, toxoid particles we use uh, by electromagnetic field.
+We use. Yeah. Lorentz force. Whoops.
+So that essentially. Sort it out here.
+Oh. Am too close to it. Okay, so, um, we can, um, using the Lorentz force, we can calculate how much energy.
+Um. Oh, okay.
+We've got this same. Kind of.
+Is that better? Beautiful new clusters here.
+1000.
+It's a it's much more complicated than the next technology.
+This is better. Oh, wow. Okay.
+Okay, so let's let's, uh, imagine that we have just, uh.
+Just, um, uh, g c uh, g c fields.
+So some, uh, ground potential at one end, uh, and, uh, high voltage at other end.
+And we place, uh, source of particles here so we can calculate how much energy the particle can gain in such a decision.
+And again, listen, using this force equation, it calculates that, uh,
+the energy gain is proportional to the charge of the particle times the voltage between this, uh, and high voltage to the ground.
+Uh, so what what limits the energy of the particles, such as electrostatic accelerator DC accelerator.
+Well, I guess I need to stay here.
+Okay. Uh huh.
+And it turns out the energy limit is given by the maximum possible voltage.
+And this voltage is limited. So imagine that there are electrons and ions and existences.
+Gap. They've been accelerated. And then they hit, uh, the wall somewhere.
+And then if they can generate more electrons and ions, then we have an exponential growth of the of the current.
+And this result in and aligns with the charge carriers and break down the voltage, essentially this current of electrons.
+Hi, I'm still short. Um, um, the high potential, uh, to ground.
+So that's that's the limit. Practical limit and maximum voltage achievable technically is about several, uh, megawatts.
+And I believe, um, should have told you in the first lecture that the maximum we can achieve is DC accelerate about ten megawatts or so.
+So what? What can we do instead? Uh, we can use, uh, uh, rapidly changing, uh, high frequency voltages, toxoid particles instead of electrostatic.
+Uh, and this would avoid corona, because if it's high frequency and now there is not enough time for corona discharge to develop and,
+uh, break it down to occur, and, um, much higher voltages are possible.
+And how we can do this, we can either add voltages of several gaps, which, uh, would we have frequencies up to,
+like, uh, 20 high voltages, very high frequencies or and that would give us a linear accelerator.
+This suppose a gap after gap of the gap of the gap. Or we can reuse the same voltage if you can bend the particles around this magnetic field.
+And this would be a good would give us a circle accelerator again.
+You heard about this in the previous lectures. Of course. Uh, the particle is what?
+The trick is that particles must have correct phase relation between subsequent gaps, um, to accelerate.
+So, uh, when a particle enters the gaps, it should experience accelerating the voltage.
+And so that when particle enters the next gap, it should experience the same accelerated voltage.
+So the phase relationship is very important.
+Um, the second requirement of course is we need structures.
+Uh, there's little losses for efficient accelerators.
+We don't want to provide, uh, power to the structures and just lose notice in, in the walls of this, uh, of the structure.
+So remember, that's, um, on the first lecture again, Collider.
+The, uh, power is needed for RF is, uh, beam power lost power lost in the, in the walls of the structure.
+So we want to minimize this portion of that power. Um, and of course, we need high power sources to drive our, uh, like, signal structures.
+So in a sense, uh, so this, uh, next, I can kind of close these, uh, high frequency voltages is, uh, somewhat equivalent to surfing.
+So you have a wave moving forward, and you just, uh, sit on the wave, uh, in the same phase, and then you move forward with the wave.
+So for room for for a voltage, we can, uh, plot, uh, sinusoidal wave.
+And so here, that's why I have, you know, uh, sorry, positive particles.
+And here maybe, uh, negative particles.
+So, uh, and just one brief slide on the types we, uh, we have where we use, uh, RF acceleration, we have linear accelerators.
+So it's just, uh, uh, a source of particle is in the long structure of, of, uh, many, many acceleration gaps and then a target and then uh,
+and uh, this typically we use for medium, uh, if we, we have medium to large size RF systems and examples of such accelerators,
+a two mile and then a normal conducting linear accelerated slack or, uh, Spallation neutron source and talk ridge National lab European lacks,
+uh, X-ray free electron for ladies at oil scales to uh oh really from laser it's slug.
+Uh, what we can do next, we can, uh, instead of, uh, injection injecting, uh, targets into into the target,
+we can turn around the beam one time or several times, and use the same Linux several times to improve, to increase energy, um, by the number of, uh.
+Number of, uh, recirculated. So those are recirculated Linux.
+Typically again they are small to medium size. And that has a lot has uh uh oh to my accelerator.
+It's like and uh, so it's all separate in uh CW mode.
+So continuous volume what connection and typically superconducting can be all discussed while superconducting and CW operational either.
+So example is the Ciba accelerator lab and it has a similar configuration except uh to Linux who is uh bending bending uh beam line in between them.
+And finally circle accelerators. And those have relatively small accelerator sort of systems.
+So and then the rest of the linac is uh, magnets suck the game around.
+Uh, so that's small, except for high energy electron colliders, like, you know, LEP two or FCC is future sort of collider.
+And there are many examples of sort of color machines. Uh, on close to us is main injector at Fermilab and Space Machine, the synchrotron at CERN,
+LHC uh that collider at Brookhaven National um future electron nine Collider and Future Collider super can be the future circular colliders and many,
+many light sources. Um general. So those are main uh three types of accelerator where we use, uh, radiofrequency acceleration.
+Um. So uh, accelerator systems consist of several subsystems.
+Example of you employ different technologies. So we have the main uh, there's the main part of the system is uh,
+superconducting and normal conducting cavity where we actually accelerate particles.
+But to excite the electromagnetic, uh, in those cavities, we need many subsystems to support this.
+We need to generate high out of power for which we used, for example,
+the vacuum tubes such as planes, drones, or we can use associate amplifiers with high power.
+Then we have transmission lines which connect, uh, those closest runs to the cavities and got an interface between the transmission line and the cave.
+It is called fundamental power complex. Uh, specialized device.
+Very complicated. It's maybe less complicated to answer questions themselves.
+And, um, low level RF systems, uh, they maintain stability of, uh, voltage, you know, phase number two,
+the voltages and cavities and allow us to synchronize several radio frequency systems.
+Uh, each has a slew. So the subsequent cavities will have, correct, uh, relationships.
+And so we can accelerate particles in the linac, for example.
+And then, okay, radio should be tuned to the same frequencies.
+So they have frequency tuners and many other subsystems.
+So vacuum instrumentation cryogenics or superconducting.
+So all these constitute uh not RF system.
+And of course in this lecture we don't have time for for all of this.
+So we'll concentrate on just accelerating cavities.
+So what uh, RFK um, so what we need is to create an isolated electric field, um, topological trajectory.
+And as you know from electrodynamics, the simplest way is to use LC circuit.
+So you have a capacitor, you have an inductor, and then it's LC circuits which you could isolated.
+Particular frequency is determined by inductance and capacitance.
+So uh, again to accelerate particles we need to uh to drill a hole through the capacitor.
+And here you are. You can x y particles in the structural axis.
+Uh. So these, uh, structures typically are at a low frequency and they are not very efficient.
+Uh, they there's a lot of, uh, I don't like doing a lot of power lost in the structure itself and, uh, less power available for tasks.
+I mean, additionally, this structure is not enclosed, and we, you know, that we need the vacuum to accelerate particles, uh, so we don't lose them.
+So we need to enclose the structure in a, in a vacuum vessel.
+Uh, maybe the structure can be build itself in a vacuum vessel.
+Uh, so we can do this, for example, to provide a ceramic braid in between the capacitance plate, uh, or, uh,
+here is an example of superconducting exclusion structure, which is very similar to what's shown here in this cartoon.
+And it is enclosed in a vacuum vessel. Again, as I said, the structures are not very efficient.
+And, uh, we want to do something to make them more efficient.
+And also we typically want higher frequencies and structures can provide.
+So, um, we, uh, use resonators.
+And here this cartoon shows you how we can proceed from a simple LC circuit and create an accelerating cavity resonator.
+Again. First, again, we start with S instead of many.
+Uh, you know, it's just instead of, uh, very complicated inductance, you can have just inductance consistent of one, one turn.
+This will bring, uh, frequency up. If you remember, frequency is inversely proportional to the square root of L.
+Uh, then we can link several of these, uh, inductors in parallel, further reducing inductance and then make them make it in, uh, continuous wool.
+So that will have the steroidal, uh, structure.
+And then we can uh, um, modify the structure.
+So create a so-called pillbox here.
+So it's, uh, around and in cross-section, uh, perpendicular to the beam and open the, uh, beam five so the beam can pass through.
+So that's that's would be exciting. There's no computer citing Covid yet.
+So, uh, the simple, uh, circuits and the they have common aspects energy stored in electric and magnetic
+field and is periodically exchanged between electric and magnetic field.
+It oscillates between electric and magnetic field. So result if you don't have any external input to provide additional power to the cavity,
+and stored energy eventually will dissipate, turn into heat, and dissipate into cavity walls.
+These constitute, uh, RF losses.
+Or if it's it's got some ports or it's not completely closed of and then you can drag it out of um, the cavity and also will be lost.
+Lost acceleration. So, uh, another way to look at how we create cavity resonators is to have, uh, uh, a piece of, uh,
+of a waveguide or a transmission line and, uh, close it so we can, uh, we have, uh, a closed structure and closed, um.
+So, uh, so this, this, uh, structure sort of cave.
+It is they have, uh, um, extremely low losses and compared to, you know,
+alarm circuit alarm policy circuits and, uh, um, the quality of, uh, factor of this we'll talk about later.
+What was quality factor is quality factor is typically of the order of 10,000 compared to a few hundreds for alarm circuits.
+Again, as I said, we can authority. We can make okay with you as a closed sectional favorite.
+Okay, Alina, here are some examples. So we have around the waveguide just a piece of pipe.
+And then close it is to uh, and plates of course provide some uh,
+some way for them to pass through this would create a cylindrical or they call it pillbox cavity and operating in TMS 010.
+And what we we'll talk about different Hortons activity and in the next slides or we can have a rectangular waveguide.
+Again I put uh, a couple of wolf's uh, metal walls, uh, one closet and that would be rectangular.
+Okay. There is on the heater. Or alternatively, uh, we can use show line.
+And so the this, uh, red arrow shows how it where the beam is.
+So, so this kind of just so that could be, uh, this, uh, one with short line and both ends.
+A maximum electric field will be in the middle. And that way we can accelerate particles, or we can use a quantum wave resonator.
+So that means at one end of our Channel Islands shorted the other an open.
+And then the excite particles. Is it here or here.
+That's where electric in the gap electric field is maximum.
+Um, so if for some reason we need very wide, uh, frequency range, we can, as I believe, um, uh,
+what was showed in the previous, not previously, before the line in the lecture, uh, we used here, I loaded cavities.
+Uh, here I would provide hazard means to change the cavity frequency.
+What? The current does it, uh, it's part of inductance.
+Um, part of magnetic circuit of the cavity. And if you if you magnetize ferrite, it will will change the, uh, permeability of the material,
+and then we change the inductance, and then as a result, the frequency you will change.
+Okay. And uh, again, electromagnetic energy, uh, is lost in intervals of security.
+Or if you have any, uh, material shielding.
+Yeah. Part of the curves are right there going to be additional losses due to the loss of materials.
+Uh, and to create a structure like this, steel, uh, should be made to allow evacuation.
+So you need, uh, vacuum inside of it, and then we just can make, uh, strong enough to, uh, to extend the load from the vacuum inside.
+So let's, uh, talk about the fuel boxes. Uh, the simplest structure, which is easier to analyze analytically, and it's actually symmetric around 1OLZ.
+So that's why we want, uh uh, uh, beam to go through the cavity so we can solve electromagnetic wave equation,
+uh, with boundary conditions such that electric field is always a good indicator.
+Uh, and to the, to the, uh, walls of the cavity and magnetic field and the walls is always tangential.
+Um, that's for perfectly conducting walls.
+And it turns out when we solve this, this equation, that there are infinite number of solutions.
+Uh, these it calls them and I might call them eigen modes.
+And they belong to two families of, uh, modes, uh, which have different distribution of, uh, electromagnetic fields inside and eigen frequencies.
+So those two families, uh, transverse electric modes, those in those modes.
+There is no legit, you know, uh, component of electric field, nor easy or, uh, transverse magnetic modes, which you have.
+Uh huh. Uh, so the electric field here in GM on the transverse to uh, trucks and Z and in two modes.
+Uh, magnetic field doesn't have longitudinal component, and all magnetic field components are transverse, uh, relative to Z.
+And I got it because you have you have, uh, I have infinite, uh, number of solutions.
+We classify them, uh, according to number of variation.
+Uh, the electromagnetic field, uh, can have, uh, along, uh, those three, uh, three,
+uh, three axes we have in because it's gill box, it's in cylindrical geometry.
+We use cylindrical coordinates, uh, phi, r and Z.
+And accordingly, for each uh coordinate, we can assign the number of variation of length of electric magnetic field L have.
+And those variations, number of variations we, uh, we use for this, we use integer indices, um and p.
+So in this case it's, uh fundamental mod TM 010.
+You can see that there is no TM means that there is no all integer, no component of magnetic field.
+Uh, zero means there is no variation on phi.
+You can see the field is uniform. Uh, one variation on radius.
+So you can see that, uh, electric field is maximal here and zero at the cylindrical wall and zero variation along Z.
+So there is no change of of the field along this direction.
+That's only fundamental one which we'll talk about in a bit later.
+Um, so, uh, for torque particles, of course, we need, uh, the more to have, uh, electric field along, uh, axis where a particle is traveling.
+Uh, Z and this, this means that only two modes can be used for particle accelerators.
+I got, as I just told you, TM 011010 mod.
+This is one excuse for the field cavity is, uh, usually the lowest frequency mode.
+And we call it fundamental mode because it's low frequency.
+Lowest frequency. And that's what we use for acceleration.
+All other modes are called an accelerator and accelerators.
+It's parasitic although it's also a very high frequencies their high order modes.
+So the complete eigen modes can be described uh, as this formulas again for GM modes and electric field has when we have all three components.
+But magnetic field only has radial and phi components.
+Uh, the wavelengths result wavelengths described by this formula where nu um and is als root of the metal funtion uh uh g amp.
+Alright, so there are some first roots of the metal factors.
+And here, uh, some um. Field distributions for several of the higher order moments, as Tim was here.
+And this one I team was shown here. Uh, so this is electric field and this magnetic field lines.
+So we are interested in this lecture at least two particles and.
+And uh, fundamental laws that some more to use to accelerate them.
+So fundamental mode actually it's, it's much simpler.
+So you have only two, two components of electromagnetic field on a z component of electric field,
+maximum in the center and zero in the cylindrical walls and uh phi component of magnetic field.
+So it's um, so this is electric field concentrated near the axis.
+And magnetic field is zero on the axis. And uh, um, you know, maximum, uh, on the cylindrical electric and the maximum is slightly off.
+And that's where the maximum of Bessel function of the first order is.
+Think that's that's a field distribution. Uh, we characterize, uh, the cavities.
+Okay. In this case it is a 90s, but by its radius and and its length.
+So, uh, you know what we use for the use in the example cylindrical cavity units.
+That's now look and understand what parameters we and we use uh to describe efficiency of the cavity or.
+Other properties. So the first uh we want to understand how much acceleration you can get in one uh, and one okay.
+So the maximum acceleration is one, uh, beam is going along axis.
+And it's, uh, you know, adjusted charge of the particle times acceleration voltage and acceleration voltage to to get that,
+we need to integrate, uh, electric electric field I want to carry from zero to g here.
+So because, uh, the electromagnetic electric field is escalating, it's not simply the just integral of electric field.
+You have to take into account, uh, time dependance.
+And as a result, you you'll get that it's, uh, um, again charged as a particle, but, uh, amplitude of electric field times,
+uh, the length of the cavity and times, uh, certain coefficients, which are called a transit time factor.
+So that's, that's what define, uh, looks the voltage of the cavity v c is equal to E, you know, g times transit time factor.
+Um, because of time factor S history.
+Uh, I see from this for uh, from this formula is simply this portion of the formula.
+And it is maximum when, uh, uh, it is maximum when the length of security is equal to,
+but lambda over two or in other words, that means that, uh, it takes particle to uh,
+if, if you neglect the change of the particle energy, it takes particle, uh, half a period to cross, uh, the accelerating that that's the maximum.
+So that means that we integrate it half of, uh, of the period of, of the sinusoid.
+If he, if, uh, the lens is shorter, then we'll integrate less.
+If the lens is a bit longer, then we will start to lose, uh, acceleration.
+So that's optimal lens for security.
+I got better is, uh, velocity lambda over two is, uh, lambda is, uh, a wavelength of present wavelength was a good.
+So the maximum positive factor is two over five for cylinder capacity.
+And then accelerating gradient we defined simply as uh.
+Uh okay. With you altered voltage divided by two lines.
+And it's uh, two over pi times the maximum of electric field sampling in the electric field.
+So that's all good for cylindrical cavity.
+As soon as we start to modify the shapes of the quality, you may find that the lens maybe slightly different,
+and especially as this is for single cell cavities as it can.
+And we'll see that with these when we open the, uh, the beam pipes, it's the electric field starts to propagate into big pipes.
+And then we'll start to wonder what is the actual the cage.
+Right. So to make it simple, we always assume that the optimal curvature lens is better lambda vector regardless of the shape.
+That's optimal lens fluctuating. So now let's talk about, uh, Lois's insecurities.
+Mhm hmm. Sorry.
+Okay. It is, uh, made of materials, not ideal materials and materials is a fine activity, typically copper, so that we can apply Ohm's law.
+Uh, and because they have finite conductivity, that means that, uh,
+the fields have to penetrate inside the material and, uh, an exponential decay inside the material.
+And then you have for the field, for example, for magnetic fields,
+this formula that you can see that indicates exponentially with the characteristic lens delta, which is known as a skin depth.
+You probably remember this from, uh, electrodynamic course.
+And that's a formula for the skin depth, which is the square root of, uh, two divided by omega.
+Uh, mu and sigma is, uh, um, conductivity of the material.
+And um, it is proportional, inversely proportional to square root of omega.
+That's it's important. Uh, how, uh, surface resistance are related to power losses.
+We can. Uh, we can look at electric field and kind of density, and they behave the same as magnetic fields.
+They also decay, uh, over that distance, uh, skin depth.
+And, uh, then the surface impedance can be, uh, uh, we can define the surface impedance as ratio of electric field to magnetic field.
+And if you take into account, uh, uh, the penetration depth, it turns out that's a surface impedance.
+That's uh, that's impedance of uh, of a square of a unit length and unit width and the, and the thickness of, uh, skin depth.
+It turns out, uh, um, uh, that this, uh, surface impedance is one over sigma delta.
+What is the what is useful parameter?
+If you want to calculate losses per unit area, then we simply multiply uh, surface impedance by square of the magnetic field in this area.
+And one one half because of its isolated field.
+And this will give us losses. Then if you want to calculate the total losses we just integrate over the whole surface for security.
+And this is a total loss. And if surface impedance is not is constant then we can take it out of the integral.
+And it's simply one half of the surface impedance times the integral of magnetic field over the whole surface.
+Okay. So that's how simple it is to calculate if you know, and distribution of uh analytic field only in the case.
+So then the quality factor. So characterize how good is curvature.
+How how much how concretely till it lose.
+Uh um uh energy. Uh, we use uh uh um, the figure of mind.
+It's called quality factor. It's just a ratio of, uh, a store of energy in the cavity to the total loss in the cavity walls.
+And, um, turns out it's, uh, it's two pi.
+Uh, um, and, uh, it's done by storing energy to energy loss per cycle.
+That's that's a quality factor or, um, it's it's a frequency.
+Uh, give it a frequency times, uh, the decay time of the original.
+And foreclosure. Fox has determined voice memos, material properties, and the geometry of the character.
+So. And now, uh, a sort of villager would decay exponentially with, uh, uh, I means, uh, I have constant power,
+which is which can be found from this, from this, uh, for normal conducting cavities.
+Uh, turns out that a quality factor of ten to the for and for superconducting cavities is at two Kelvin, is of the factor of ten to the ten.
+So it's a factor of six orders of magnitude difference between those.
+So how much time they have. About ten ten minutes.
+Okay. Okay. Uh, um, so we can, uh now play is this parameters and it define several other factors.
+Uh, the quality factor I got is omega, uh, times, um, sort of energy divided by my losses.
+And it is, um, it is, um, omega, uh, just for the energy in the form of energy,
+it's essentially integral over the volume of the cavity and the power loss you have integral over the surface of the cavity.
+And, um, so we can we can notice that all of this, except the surface impedance is uh, certain coefficients, which depends only on the cavity shape.
+It does depend on the material. It doesn't depend on the dimensions of the coverage only in the curvature shape.
+And we can define all these as the geometry factor here.
+Uh, and it's very convenient because if you know the clearly the shape regardless of which frequency, okay, this has the same geometry factors.
+Now when you turn on the surface, uh, resistance to calculate the quality factor of the gauge.
+And it's useful to compare, uh, performance of different character shapes.
+So for our field box created geometry factors 257 um.
+And um, for components, for example, 1.5GHz, we have, you know, the connectivity of copper, uh,
+skin depths and just frequencies of 1.7 microns, and you'll get surface resistance of ten minimums or quality factor of 25,700.
+Got his order of 10 to 4. Um, another way, uh, to play is, uh, power.
+And the cavity voltage is to define the so-called shunt impedance.
+Uh, the shunt impedance is, uh. Correct.
+Correct. Uh, connecting to the cavity voltage and power and shunt impedance.
+And now also the definitions in square of the cavity voltage divided by power.
+Lawson. In the cavity walls. Uh, you can note that this accelerator definition is different from typical short circuit definition.
+And, um, yeah, you probably was given in the lectures on electromagnetics, um, the by a factor of two.
+For some reason, accelerators we use slightly different, um, definition of this.
+And in linac you also can frequently encounter a different definition a shunt impedance per unit length which would be exciting.
+Gradient square divided by power dissipation pushing it less.
+And then in this lecture we just use this short impedance. Uh another important quantity is a shunt impedance.
+If you divide shunt impedance with a quality factor you you'll get uh this formula and it turns out this again this
+another parameter which depends only on the cavity shapes and doesn't depend on the surface resistance and gave it a size.
+Why is this parameter as important is because when we want to calculate, uh,
+beam interaction with the cavity, that's where these parameters, uh, come into play.
+One for the pillbox cavity are, which is about 296.
+Okay, so now we can look at how the power of normal conducting activities depends on the frequency.
+Uh. Mhm. Mhm. Uh I'm gonna skip this.
+So for normal conductors as we uh mentioned uh surface resistance is proportional uh under square root of the frequency.
+And uh, because of this is a power uh, unit length would scale like in the universe of square root of frequency and power per,
+uh, unit area would scale as a new and square root of frequency.
+So, uh, it looks like for normal contacting carriers, they would, uh,
+prefer they would favor higher frequency and normal contact, which is high frequencies can, uh, reach gradients of.
+But above I think about a meter but is very short.
+Passes insult inquiries in normal conduct.
+Okay. We just I put it on the I put it a low voltage just because they are limited by power dissipation.
+Okay. Visuals. And uh again you can when you open the beam five and you'll lose some in uh power losses.
+But you can play is optimizing the curvature geometries. And this is typical okay.
+To determine the geometry for a normal conductor okay.
+Which is if you compare, uh, this for CEC, for atom factory, K for coal factory, this field box,
+you can see that uh, parameters are slightly better, but not much wavy, but 12% better.
+That's that's all you can achieve, uh, is, uh, careful optimization.
+And so that means that the simple pillbox cavity is a good, a good reference for normal conducting cavities.
+Here's a photograph of another similar shape cavity.
+Whether it's a photograph, how it looks outside that this luck be factor cavity.
+Uh, then um, you can if the total power is constant and you want to, uh, gain efficiency, you can divide instead of one k with a cell,
+you can divide power in your cells and you gain, uh, square root of n as a result according to this formula.
+Um, and instead of using individual cells, you can then combine them into a simple one structure.
+I mean, you would have not individual, uh, input power, uh, couplings, but one power coupler.
+And just this way, uh, um, you gain efficiency and you,
+you don't you don't get very much complexity in the individual cells and individual power couplers.
+So this would be a standard structure. Okay.
+Have not have much time so quickly about superconductivity.
+Superconductivity as you know, has this uh,
+resistivity uh zero below critical temperature superconductors are characterized by critical magnetic field.
+And for type one superconductors. For type two superconductors are two critical magnetic fields.
+And between these two critical magnetic fields they exist so-called vortex state.
+That's where superconducting magnets operate. Uh, but we don't we cannot use this for RF frequencies because, uh,
+normal conducting vortices will create significant losses when you change, uh, start changing, uh, electromagnetic field.
+Uh, then we're going to field doesn't stop abruptly, abruptly on the surface.
+It penetrates in the material, but not with the skin depth.
+But there is so-called London penetration depth, which is about 20 to 15m, depending on, uh, on the material, uh,
+in normal conducting cavities, uh, electrons, I couldn't guarantee scatter, uh, um, of impurities, siliceous vibrations.
+And that creates resistivity in superconducting states.
+Well, uh, cool. Superconductor to certain temperature.
+Uh, the liquid suppression calmed down.
+Uh, and then when electron passes, uh, so the lattice, it creates a positive way waiting the kind behind it and which attracts a second electron.
+And that's a copper pair copper virus boson.
+You know, what else can we can, uh, can cool down into, uh, Mozart and Einstein condensate.
+And that's where the supercontinent would, uh, would exist, uh, again, between,
+uh, critical temperature and absolute zero, there will be a mixture of,
+uh, copper pass and normal electrons, but copper pairs with just this DC field, they would just shunt, uh, normal conducting electrons.
+And all current is carried by supercar superconducting carriers.
+Okay. Uh, if you apply AC field.
+And then, uh, um, just want to explain why when we apply AC field, there is resistivity resistance to the why it is that the carriers,
+they have, uh, that kind of lazy, they have inertia so they cannot turn around instantly.
+So while the 200 round magnetic field penetrates and then, uh, electrons,
+normal conducting electrons start occurring in some of electric field, that's.
+And then we have resistance. You know, that's that's a simple explanation.
+Uh, so I guess. So let's skip this.
+Uh, surface resistance of superconductors is proportional to frequency.
+Square depends on the temperature exponentially.
+And here is a simple formula for niobium. There is no material in this we use for superconducting cavities.
+But also unlike normal conduction case surface resistance also depends on other field.
+And this comparison of thermal conductor and superconducting cavities.
+You can see that our per unit lands proportional to omega to the frequency uh.
+Uh union area is proportional to square.
+So that's why superconducting cavities operate preferred at lower frequencies and normal conducting typically at higher frequencies.
+I'm gonna skip this. Uh, um, is sort of more efficient than normal conducting.
+Indeed, in many cases it is, uh, we can calculate how much power,
+a total power we need for normal complications and how much power in it for superconducting activities.
+We don't have practical losses, but we need to cool down to K, which is that additional power from cryogenic system.
+And that's again, the problem, which is, uh,
+prepared for this course is about exactly about this to show you that superconducting is more, uh, more efficient.
+I got this. You can probably. That's why niobium.
+Niobium is, uh, the best material for superconducting cavities so far.
+I'm gonna. I will skip this. Some difficulties.
+Uh, we need to shield cages from magnetic field.
+The magnetic field around K is shrinking less than Millhouse.
+Otherwise, there are additional losses. And, uh, performance really depends on tiny surface area about 100m.
+Okay, that's how we characterize superconducting cavities.
+That's a Q quality factor versus electric field, again, because the surface resistance depends on this.
+That's typical. I got um, I would like a couple of slides.
+Um, I mean um Collider, that's why I had the results.
+Uh, so here is uh, the standard layout is shown everywhere modeling about the muon collider.
+And you can see RF systems everywhere, uh, in red that show normal conduct in other systems, in blue, uh, superconducting systems,
+in short, normal conducting RF systems, I will be used for capturing coolant and cooling of the muon and superconducting for acceleration.
+So at this point. And other systems that so normal conduct not have systems parameters.
+Uh, so far, uh, the experiments during the era uh,
+where several creatures who created the experiments carried out the Maxwell field so far is 50 megabit per meter.
+Uh hmm. And they kind of make a catch on the magnetic field of three Tesla.
+But, um. Hmm. Because, uh, we need to operate, uh, this is a much higher magnetic field.
+They still need to, uh, to test. It is 50km above number, but we need to identify the best material for security window to avoid breakdown.
+And proves that we can, uh, achieve this at 10 to 15 Tesla magnetic field.
+That's the most critical part for ionization cooling.
+Again, we really, um, nobody wants to interact with beryllium because the toxic source of aluminum may be a good substitution of a bitter.
+Um, I think more experiments are needed. So in this show that aluminum is slightly better in simulations.
+Um hum. For accelerators that are superconducting systems, uh, at low frequency in, uh,
+recirculating Linux at higher frequency for, uh, rapid second spin controls.
+Uh, yep. Uh, so far we need to improve performance of low frequency.
+Is because they are not in the gradient, which we need. Uh, so higher frequencies.
+Okay. It's 50 megabit per meter, but, uh, they have to operate close to high magnetic field.
+So here is a list of challenges which we prepared recently for European studies.
+Uh, and you can see that, uh, in particular, we need to, um, to consider if there's a right frequency for the,
+for the cavities, because high pressure may be not sufficient. Uh,
+we need to demonstrate high gradient for low frequency cavities and how
+superconducting cavities can be shielded for a very strong strain magnetic field.
+Okay, here's some material for further reading.
+And I think that's all. Sorry it took longer.
+No. It's okay. Thank you very much. That was very useful.
+We're a little bit behind, but let's take a couple questions. It's like everybody's eager to this one.
+In this, everybody is eager to get caffeinated. On your summary slide, you mentioned, uh,
+carriers might be made of niobium slash copper or is that a combination of some niobium, some copper or, uh, choose one.
+What? Uh, so this is copper.
+Copper cavity recorded inside this thin layer of film.
+All right. So it is for electromagnetic field.
+Now it's niobium. And superconducting copper is used to reduce the cost of the cavity.
+Right. Because niobium is quite expensive. Um, yeah.
+Maybe. Um, the suggestion is we take it to the coffee break and Sergei is around during at least, uh, the next few hours.
+So hopefully you can ask him some questions. And, uh, also during the homework session.
+Thank you again.

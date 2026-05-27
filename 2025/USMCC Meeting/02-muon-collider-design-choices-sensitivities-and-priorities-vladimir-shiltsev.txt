@@ -1,0 +1,370 @@
+# Muon Collider Design Choices: Sensitivities and Priorities, Vladimir Shiltsev
+
+Model of accelerators. That's for sure.
+Right. So we used to build accelerators like dig a tunnel, put magnets in, put two, three, four detectors, and voila, 20 years of success.
+PhD topics and awards. Uh, it will not be the same way.
+We know that. But, uh, definition of a miracle is something that happens once over a lifetime of, for example, humanity.
+Say it's a million days. 1 in 10,000,000 days.
+It's still minus six probability, roughly speaking. We are far, far, far beyond that.
+Especially the past 2025 years of research put us in, uh, um, into the, uh,
+situation where we can realistically estimate challenges, risks and, uh, basically guide our efforts towards known colliders.
+Uh, and that's what I will try to present today. So I'll talk about design sensitivities.
+So basically, what are the risks in various uh, systems, subsystems and overall, uh, integration of the, of the collider?
+So just to remind you that back a year ago, we had the first, uh, Usmca meeting Kanagawa won at Fermilab.
+So a number of pictures were shown. So how these colliders looked in the 90s and then 2020 tens and how we imagined them right now.
+So yes, we can, you know, how to draw circles on the on the maps of various kinds, uh, at the same time, um, at least a year ago.
+So there was an attempt to look into, uh, how how certain or uncertain various, uh, various system subsystems and parameters of the machine,
+particularly, uh, very important that, uh, parameters like a cost and, uh, luminosity.
+And what are the risk factors, uh, in the course. So, for example, if there are like four systems, you can, you know,
+schematically break up the machine into like proton driver acceleration and Collider.
+So what would be that certainty in the in the cost of that system.
+What would be uh, approximate uh risk of not getting the, the the luminosity, the design luminosity we are talking about.
+And there was a summary of, of this, uh, of this subsystem.
+So which resulted that, uh, yeah, there is uncertainty in the cost, definitely belong to the range of approximately like plus -30, 40%, 50%.
+But there is a big uncertainty in the luminosity.
+So the risk factor, if nothing works as we imagine, uh, basically we, we we fail, but then we don't fail completely.
+It's still we are talking about factors here. A factor is there. If you put all these factors in the worst possible, uh, fashion.
+Uh, yeah. You can lose, uh, no significant, uh, significant factor in the luminosity.
+So at that time, it was estimated to be ten to the five, ten to the nine in the worst case scenario.
+So, uh, we extend it a little bit, the model, uh, and, uh, where we are now.
+So in the remaining 15 minutes. Right. So I'll try to, uh, present you a very briefly, uh, what, uh,
+accelerator builders like myself and my colleagues think about various systems and subsystems of a muon collider, and, uh, what are the parameters?
+So basically, you will be bored a little bit because each subsystem will contain a number of systems and subsystems and parameters which affect.
+Yes, but there are many parameters. There are many design choices. So for example, for each parameter region and ordinary variations,
+many of them of these parameters affect what will be the key performance indicators like energy, luminosity or cost, or all of them together.
+For example, luminosity depends on the number of particles, bunch sizes, uh,
+collision rates of course, depends on, uh, on the cost of corresponding subsystems.
+Uh, for each parameter we will define the realistic range of variation. And that will be uh, kind of in the logarithmic scale.
+For example, we know logarithmic means some systems will have like 0.3% uncertainty or risk.
+Others will have 10% or 30% or 100%, a factor of three, or a factor of ten or a factor of 30.
+So you will see that right. And estimate the sensitivity.
+For example, uh, what if, uh, for example, we care about cost and how much delta cost divided by cost will depend on change of the parameters.
+So parameters vary and there are many of them on the map. And we assume, uh, that all other parameters except the one we consider uh fixed.
+Right. So from the above we have calculate the maximum average effect on these key parameters.
+Keep your KPIs like energy, luminosity and cost of the subsystems.
+And we do it for each of these four main subsystems. And we use as the default AMC.
+Uh, we um color the parameter list published in archive.
+Right. So uh, the evolution basis is simple. So the average uh, complex systems, uh,
+say the complex systems and main changes on the energy luminosity outlined in many various, you know, comprehensive reports.
+The the most cited for, for now is, uh, back from 1999.
+So, uh, what Palmer. Uh, the full time CC parameter list was taken here, publications on various topics and subsystems and the cost analysis,
+because cost need also needs to be analyzed came from the approaches developed by Implementation Task Force and published in the report.
+European strategy inputs give a lot of information about how much things cost,
+and there are a number of models of cost models of various accelerators developed by myself.
+Strauss and other people. Right? So yeah, let's start with the Collider ring.
+Yes. This is the scheme which we've seen a thousand times. And we start with this one.
+Right. So there are many parameters. Of course I am not going to go through them.
+The challenges for the collider. Um, many of course.
+Uh, that includes, uh, for example, significant loss of um, uh, energy for 500W/m loss because muons decay.
+Uh, magnet strength is a challenge that is designed with the very small by the function is a challenge point 1% beam
+manager strength is a challenge because it is extremely hard to maintain all the particles of the circular orbit.
+Efficient collimation will be necessary. Motion detector interface is a challenge being beam effects, stability, cost of magnets, cryo and tunnel.
+Uh, we need to reduce neutrino flux and so on, so forth.
+You see, there are a number of challenges parameters affecting max and center of mass energy in the collider ring itself.
+What are the parameters which may change the energy of the experiment, you know, either increase or decrease it?
+First of all, of course, maximum uh, magnetic field. The default is 14 Tesla.
+And the range is again between 10 to 30%.
+That's what we are talking about. Yes. In the worst case scenario, we can now think that we can operate with like 12 or 11 Tesla magnets.
+In the best case scenario, whether we have technology developed for 16 Tesla magnets, that's what we thought about five years ago.
+Uh, that would be would be even better. So the sensitivity remember I was talking about exponents, right?
+For example, if you change magnetic field by 10%, you'll get 10% increase or decrease in the energy of the experiment.
+Right. So uh, basically this exponent kappa uh is equal to one and delta e over e is approximately Ma kind of
+variation of the energy you can achieve with approximately 10 to 30% if you change the conference,
+what will happen. Right. So the range uh, yeah.
+Default range for Collider itself is about ten kilometer circumference.
+So you know that, you know, depending on the various considerations,
+including the lengths of the magnets or strings of the magnets, the range may vary also by about 10 to 30%.
+And that will also affect the energy because energy is proportional to a magnetic field times radius or circumference.
+Right? Yeah. The effect on the energy be approximately the same 10 to 30%.
+For example, if you have, uh, 30% stronger magnetic field and 30% larger tunnel, right,
+you'll get 30 plus 30 like 60 or whatever, 70% increase in the maximum that you can achieve.
+Know that these parameters also affect cost. For example, for if magnetic field which uh, uh varies by about 30%, if magnets can uh,
+approximately, uh, constitute about one third of the total cost of the collider alone.
+Right? So God knows how much the rest will be caused. But at least for the collider ring magnets is about one third of it.
+So the the the effect of the cost of the magnet is, uh, growing with the magnetic field as approximately in the, you know, power 1.3.
+So change of the cost will be 35% of the total cost times this 1.3 times the variation of the magnetic field, about plus -15%.
+So change in the magnetic field of the magnet gives approximately 15% variation in the cost of the collider ink.
+Right. That's that's what we expect for circumference, even though the typical construction also is about one third of the total cost of the collider.
+But, uh, cost of the civil construction doesn't scale as fast as a, as a variation of the circumference,
+as due to the magnetic field, the kappa, the the sensitivity coefficient, the exponent is approximately 0.5.
+It mean square root cost of the collider of the of the tunnel is not linear, proportional to the at the length of the tunnel.
+Right. It's kind of fraction maybe like uh square root or exponent like point seven.
+So I put 0.5. So the change the risk in the cost is uh uh whatever 30% variation in the,
+in the magazine circumference times this kappa parameters times this 30% of uh, of the total cost of the collider gives you plus -5%.
+Yes. Variation in the magnets is significant factor, uh, contributing to the cost variation of the tunnel.
+It is 5% is also significant. But again, it's factor of three smaller.
+Many parameters of course, affect luminosity.
+You know that the general equation for the luminosity assume that we have significant number of particles compressed in the very small beam size.
+Uh, and of course we know that muons decay, uh, and it only they don't really for about 3000 years in the ring.
+So and the if you put all this together so for decaying particles you get luminosity
+which is again very long formula which includes the rate of injection rings,
+conference in mutants in their p optics of their p uh factor of the order of one if bunch length is smaller than beta star magnetic field.
+Uh, so uh, beam beam effect is in effect intense.
+And yes, this, uh, factor grows, uh, with, with energy.
+But optics, of course, having small but a star is a change.
+So you see, there are a number of, uh, number of parameters. All of them are affecting the luminosity.
+So I don't know why.
+Okay. Oh, another, another. Are limited in luminosity.
+As, of course, as we know the concern about neutrinos in the flux.
+And again, if this flux is something that we can kind of avoid so we can dilute it,
+and the things will depend on how effectively you can dilute the entry in the flux.
+And then we also will depend on the dilution of the neutrino flux.
+I have limited time to go through all the details. Let me show you the whole table.
+So you'll see this for of this type of tables, for colliders, for accelerator, for coolant channel and for proton source.
+So this is collider in uh risk registry.
+So uh, the range of variation of the magnetic field, uh, is again expected to be of the order of 10 to 30% for circumference.
+About the same aperture of the magnet affects things very much because the larger the aperture, um, more cost at least.
+Uh, you can expect objects, uh, enter of interaction region, dynamic aperture of your magnets, uh, can vary by a significant factor dynamic aperture.
+Basically, how much of the good field, uh, a region you will have available for your beam circulation and that affect many,
+many things and that the that optics, the significant uncertainty, how will it will work.
+Beam dynamics for example B beam effect. So other effects related to uh particles circulate in the machine very by significant factor.
+We we we know that there are there are uncertainties of many kinds, uh,
+how effectively you can image the beam and how effectively we can, uh, dilute the flux of neutrinos.
+Uh, again, uh, that's something we didn't work yet very well.
+And there is uncertainty of the order of actually a factor of 3 to 10 easily.
+And that power infrastructure, uh, has significant variation.
+Basically, how much power is required for the machine is not well defined. Sometimes we hear about 300MW.
+Sometimes you hear about 500MW. There is a range. So if you look we are the biggest uncertainty in parameter in this.
+Uh so seven different parameters. So subsistence it's here.
+It's in beam optics beam dynamics and collimation. Right.
+So other parameters are can be more or less no where where they are where they're supposed to be.
+But how these parameters affect uh, for example,
+the biggest effect on the energy will of course come from the variations of circumference and magnetic field of, of, of the machine.
+So the biggest effect on the cost of this is the cost of the collider comes
+again also from these three factors magnetic field circumference and aperture.
+Right. The effects on the luminosity uh, and mostly come from how will we understand how well we can design the optics of your machine,
+basically important elements, uh, how well we control various factors like chromaticity and so on and so forth,
+and beam dynamics and the luminosity risk if you put these factors together, uh, vary.
+For example, due to circumference, we can lose about like 30% of, okay, 30% of luminosity.
+So due to the objects can easily lose factor of three in luminosity.
+That's the luminosity means one divided by three. Beam dynamics can affect us similar way.
+Uh collimation uh and and neutrino flux problems may may reduce our luminosity by a realistically factor of one, two, maybe three.
+And power infrastructure. Uh, so if you don't give enough power, basically we can deliver enough power to the to the beams.
+We also can get to get factor of like two thirds, right?
+Uh, in the if you sum all things together,
+all these uncertainties might potentially result in the combined risk in reaching or not reaching the energy for,
+for for, uh, for the collider in, uh, of the order of 60% in the worst case scenario, when everything is against us.
+So basically we failed in each of these subsystems, but we not miserably failed.
+We just haven't delivered, like 20, ten, 20% of, uh, of magnetic field or circumference or so.
+But again, in the world of accelerators, nothing is always in.
+In this favor and all in your favor. So if you take basically square root of the maximum and that's approximately 30%, right.
+So the cost of this system again, various from from this analysis might potentially vary by 10 to 20%.
+Uh, and the luminosity risk just from the collider during a row,
+forget about what the preceding accelerators is of the order of a factor of ten to factor of 50.
+So we can easily lose 50. No, no, no, we can easily lose ten.
+The factor of ten in luminosity. But if everything doesn't work completely as we expect, it completely means all the problems together.
+So as we understand them, yes, we can lose factor of 15 luminosity just due to the collider.
+So let's go next one. And I have only seven minutes left. So accelerators uh, of the machine uh,
+of the of the muon collider include number of stages uh like various exercise two hours S3 and then the big big arcs, which is like 20 or 30km long.
+Of course, there are many challenges. This, uh, rapid cycle of synchrotron use fast pulse than normal.
+Normal conducting magnets for these, uh, pulses should happen for five years.
+Uh, and, uh, be, uh, as long as, like, few milliseconds, uh, again brings, uh, 6 to 35km long muons, of course decay.
+You need to take care of these decaying particles. Need acceleration.
+And for that, you need a lot of, uh, radiofrequency acceleration.
+You need superconducting normal conducting magnets. Cost of this, uh, uh, systems is, is very high.
+You need to recover energy of the magnetic field and have a very high byte charge when we accelerate,
+which is extra change and then maintain beam quality. Because if beams arrived in the collider totally dispersed, it's not good for luminosity, right?
+So the parameters affecting center of mass energy of course include the maximum field of the superconducting magnets,
+for example, here and everywhere else. We do have not only normal conducting magnets, but also superconducting ones.
+And default is 10 to 16%. And the range of this, uh, magnets is variation is 10 to 30%.
+That, uh, affects the maximum energy achievable, uh, in the collider by 5 to 20%.
+Maximum field of the pulsed magnets. Also big factor right now it's about 1.8 Tesla super magnets, right.
+Which we passed from, you know, -1.8 Tesla two plus 1.8 Tesla.
+Very quickly in a millisecond, the range of that parameter, we can change it much.
+Right. Again to test latest iteration of the saturation of the of the of the ion.
+Right. So basically that parameter doesn't change much. And essentially the maximum effect of uh not achieving this one.
+Now two Tesla 1.8. This is of the order of 3% in the luminosity of the collider.
+Of course, circumference of this machine, uh, varies by a lot.
+The range is about 30%. And it also can affect the maximum energy, uh, attainable.
+In particular, in the final, uh, RC is by a factor of 10 to 30%.
+Again, I skip a lot and go to the final table for the risk registry for, uh, repeat security interventions.
+Yes. We have parameters like field of superconducting magnets, uh, field in the past, magnets,
+circumference of the of your epicycle string positions, how much of RF voltage you have available.
+And there is a significant sensitivity there. Uh, magnet power supplies, which allow you to get very fast ramping rates,
+objects and collimation system in these machines is extremely important, and they can vary by significant factor.
+Again, beam dynamics in this machines is it is uh, and uh to be understood very well because uh,
+again, uh, we, we didn't build that many machines which vary their parameters very quickly.
+And, uh, so far, the best way for us to operate accelerators is to have everything as stable as possible at the level of ten minus six,
+for example, stability in fields. Okay. So this is the the most uncertain factors.
+Uh, but uh, if you look into what affects the energy of the collider, not the energy of the RC is but energy in the collider, right?
+Yeah. Are those field filled in the past magnets and circumference.
+Right. So if you look on the cost, the biggest cost factor, uh,
+which might affect the cost of the subsystem of acceleration is in the power supplies for, for the, for the past magnets.
+Right. Uh, again, this power supply so process approximately quarter of the total cost of the subsystem.
+Uh, another another thing is this, uh, RF superconducting RF is enormously large subsystem.
+And the good and significant uncertainty there. Right. And the luminosity factor a factor some many.
+So for example, in the larger circumference, of course particles will die quicker.
+Uh, if you don't have enough voltage, RF voltage installed.
+Yes. Uh, your, your, your lifetime will will suck.
+So magnet power supply is a very important. And you see the factors of like two thirds, two thirds, 1 or 2 thirds,
+one third easily can be lost in uh, in the, uh, in the, in the accelerator chain.
+Right. The combined risk in energy just due to the these, uh,
+oxygen concentrations is approximately 50% in the worst case scenario, 20% in or reasonably expected.
+And the cost of the subsystem varies minimum up to like plus -40% or more realistically, plus -20%.
+The risk. Luminosity is about a factor of ten to factor of 40.
+That's how much we believe we we can lose in the worst worst case scenario.
+And then just in bad case scenario. Right. So the couldn't channel of course that's another thing.
+We go of course energy down down. Now to the energy of uh of uh my own channel.
+Yes. It's a novel complex lattice with cavities, absorber solenoids.
+Critical for that is transmission efficiency, which depends on the magnetic field that have gradients and length.
+Normal conduction time is supposed to operate in very strong magnetic fields,
+which we didn't usually do right and have many frequency of collective effects are.
+Their final coolant requires 45 digital solenoids, which we built only one so far somewhere.
+Right. So the nine different ten different ah frequencies. So I skip the parameters.
+All right. And go to the uh kind of risk register for muon cooling.
+Again the parameters which affect overall mental stature or the risk of of the of the cooling system includes field in the service,
+uh in the solenoid final cooling solenoids, field uh magnetite pitchers uh RF gradient and power available in RF cavities at various frequencies.
+Uh absorbers, optics and transmission and dynamics.
+The most uncertain things where you know the parameters might change by big factor include, uh, final cooling, magnetic field.
+Basically if it it might be 45 again, we want 45 Tesla in the final cooling.
+Right. But that could be could be, you know, 30 Tesla easily.
+Uh, and little probability it could be 55 Tesla.
+Right. So optics and transmission of this thing,
+that's something that we we kind of work very hard and we know that there are there are uncertainties depending on how well we understand the optics.
+And the process of, of cooling could be uncertainty of the order of 3,200%.
+And beam dynamics is another thing which are not very certain.
+So it's a big factor. And here that none of these parameters affect the energy of the collider just to be aware.
+Right. So basically whatever you do with the coolant system you still need to accelerate these particles.
+Final energy depends on acceleration and collider in itself.
+But the cost of the subsystem is, as you will see later, is substantial.
+And the factors affecting the cost, uh, the, uh, the magnetic field in this, uh, in the solenoids of the cooling system final,
+the cooling solenoid strength aperture of the magnets is the significant, you know, this couple parameters, right.
+And the RF, RF, uh, acceleration. So there is a lot of RF acceleration.
+And basically RF is approximately half of the cost of the muon collider RF systems.
+Right. So the factors affecting luminosity are essentially all of these factors affect the
+luminosity because they affect the midterms of the beam and transmission efficiency.
+Basically how many muons survive.
+And the if you put all these risk factors together for example here easily like 50% like one half, one half, one third.
+So optics and transmission can vary by a big factor easily by by by by a factor of 30.
+And beam dynamics can add another factor of three of uncertainty.
+If you put things together, the cost may vary up to 50%, but realistically close to 20, and by a factor of 50 to factor of 3000.
+Potential loss just in the in the coolant channel final, the proton source and target tree.
+There are many challenges as you know again I skipping them because time is running out.
+So risk register for for the proton source include parameters like uh energy of the H minus linac,
+uh power of the uh linac, which we can provide a repetition rate of the linac.
+So circumference of the accumulator in content and compression ring aperture of this magnets in the compression ring.
+Uh, and dynamics in this, uh, very complicated beam dynamics in the high intensity uh,
+rings called accumulator and then compressor and target magnetic field of the collector and the solenoid,
+the length of the, uh, of the tapered solenoid and so on, so forth.
+Again, the biggest and so again, uncertainties everywhere of the order of 30%, sometimes like hundred percent.
+But the biggest uncertainties in dynamic particular dynamics of a very high intensity,
+okay, for high intensity proton bunches in their commutator and combine uh, uh, compressor.
+Uh, and the cost of the subsystem depends on all these factors.
+So the biggest, uh, the biggest, uh, I would say, uh, factors affecting the target tree system,
+cost of the target tree system are energy of the electrical of the energy of the proton beam,
+power of the proton beam, and repetition rate of the proton beam. Luminosity may vary by a significant factor if you put them all together.
+100% uncertainty in the cost of the subsystem.
+Uh, if, uh, again, if you put all things kind of in the in the worst case scenario realistic, I believe like 40% is more more real number.
+Right. And luminosity risk factor just due to the proton source and target three minus source and target is factor of 22 factor of 300.
+So put things together. So what do we got uh altogether.
+So uh, in the of of all the subsystems, the approximate percentage variation, uh,
+these approximate share of the proton driver in the total cost of the colliders,
+about 15 to 20% from your own code and 10 to 15% for acceleration, 30 to.
+60%, and Collider itself is 25 to 40% of the total cost of the machine.
+The cost risk of this subsystem is about 40% for proton driver.
+So for muon cooling it's 20% 20% for acceleration collider cost.
+Uh, again it is risky. But again, the risk uh, uncertainty I would say of that number is over the order of 10 to 15%.
+So energy risk of course is concentrated in the acceleration.
+And the collider average is dominated by the cooling channel problems or which may or may encounter.
+But also uh, things like proton driver and target tree acceleration adds another order of magnitude collider at another order of magnitude.
+So we have approximately total output the number from IMS cost estimate for the for the collider 17 plus -4 billion CHF.
+So the cost uncertainty of that number is about 30%.
+Uh again average. So not the worst case scenario.
+Worst case scenario. Could be it could be bigger. And the g risk which we can basically live with is about 30%.
+And the risk and luminosity is about factor of, you know, 300 to 100,000.
+So summary we have attempted to overview and analyze the muon collider risks
+by major subsystems broken the risk on energy risk and revenue generation,
+cost and component of the risk in the worst possible scenario or average, which is square root of maximum scenario.
+And then the G major energy risk will be collider accelerator magnets and circumference and the set of gradients.
+Overall energy risk is about 25 to 30%.
+So the luminosity it is expected that by far the largest risk will come from the dynamics of
+the coolant channel in the coolant channel and then with proton source and by pulse the pulse,
+the acceleration right overall muon collider luminosity risk will be about factor of one over 300.
+So 300 to 2 and half orders of magnitude in the worst case scenario to five orders of magnitude.
+Right. Uh, the cost norm cost risk is about 25 to 30% as we understand it right now.
+So that's again, depending how our parameters play out, we can easily see deviations from the, uh, from from the numbers we communicated so far.
+This risk registers of course, should help us to guide the muon collider in the program.
+And with that, I thank you for your attention. Thank you.
+Vladimir. So any question to start? Yeah.
+I think. Thank, uh, thank you, David, for this.
+David Saltzberg from UCLA. Thanks for this really nice analysis.
+Now, the risk registry model assumes a scenario that will work and makes perturbations about that.
+I wondered if you could quickly give a different analysis, which is what are the top couple showstoppers.
+That is things that mean we have nothing. And how likely are they the biggest showstopper?
+Again, we don't see technical showstoppers.
+As you see, none of the parameters we discussed belong to the category of miracles.
+Miracles is risk of six orders of magnitude. We are nowhere there.
+From my perspective, the biggest showstopper might be the cost.
+Uh, because probability of a project to be approved is approximately a one over cost cube of one over cost squared.
+So you double up the cost and you instead of 50% probability to be built, you go into the realm of 10% probability to be built.
+So from that perspective this analysis is very helpful.
+So we are not going to screw things by very much not factor of ten in cost but factors of like 50% of the cost uncertainty.
+That's where we are. So that's from my perspective is the biggest I would say challenging realistic risk.
+But no miracles. Forget the can. This word miracles shouldn't be used anymore.
+All right. So more people know. More people work on these systems more we understand this.
+Yeah. This again belongs to the realm of challenges and risk registers.
+So just. Yeah. So yeah.
+Yeah. Like, it's, uh, if you can do this one. Yes you can. Okay.
+Thanks. Uh, just very simple, naive question for a non-expert.
+Um, what's the limitation for the size of RCS for, for example, why can you not make it smaller?
+Oh, the biggest limitation is, uh.
+The energy which you need to achieve is whatever five for 75 or 70 V means that the integral of the magnetic field,
+which you need to accumulate over your circumference, needs to be so many Tesla times meters or Tesla times kilometers, right?
+So yes, you can increase the kilometers. Yeah. So instead of 30km, make it, uh, make it three kilometers.
+I would be more than happy to have that, but that will require a factor of ten higher magnetic field.
+And we already work at the at the limit.
+So the limit assumes that we have superconducting magnets at 14 Tesla intertwined with the long sections of pulsed magnets.
+So in order to have a factor of ten compression, we'll need superconducting magnets operating at 140 Tesla.
+That is totally impossible. And post magnets separated that instead of plus minus two Tesla plus -20 Tesla.
+That is totally impossible. That would be miracle because probability of that is 10 to -7, right?
+So that's what makes us not believe in in anything.
+Anything beyond that small out of small range. Yes. All right.
+Yeah. Kevin Black, UW Madison. I was wondering if you could quickly go to the muon cooling one.
+Uh, whatever it was. Slide three. We had number three.
+Item number. The the slide number. Okay, I don't know.
+Yeah. This one. Yeah.
+So you mentioned, uh, you know, the the largest one is the optics of the transmission, which then translates to a big one over 30.
+Yeah. I was just naively trying to understand, uh, since I only have a very basic understanding of all of these factors.
+You know, the final cooling has the same amount of uncertainty in the range, but then corresponds only to a factor of a half.
+So I was wondering if you could say a bit how we get from the same.
+You know what. What is the dependance that is so strong that we end up with such a large difference?
+I think the best answer will be given by specialists. The answer is that's what we believe in.
+But there will be special talk on the coolant channel. It is complicated.
+I'm just telling you that we can easily screw up both final coolant and main coolant.
+Right? But main coolant has significantly more elements.
+For example, uh, 800 cells. Can you imagine 800, uh, coolant cells?
+Uh, it's enormously big number. And each of them kind of affects, you know, half a percent here, half a percent there.
+You can get nothing. And then the things kind of screwed up completely.
+Right. Again, it's a complicated technical question, but, uh, yeah, I think you could,
+because you have so many elements that if all of them go down right, right.
+But again, remember, final cooling system is just for ten meter long elements or sections.
+Right. Well, the rest is like kilometer long. So kilometer long of problems and 40m long of problems.
+And that's relative weight of, uh, opportunities for us to screw up things.
+Thank you for the help. And, uh, that we have back.
+Yeah, maybe we can do the last. I have a lot of beer. Thanks for your analysis.
+I was curious, what's driving your assumed uncertainty on the on the circumferences of rings?
+Uh, in some sense, you could say I'm going to build a ring that's this size and there's no uncertainty on it.
+So maybe it's the cost that that's driving the uncertainty.
+Um. It's, you know, it goes hand in hand with uncertainty on the magnetic field.
+If you if your magnetic field is 10% lower and you still want 70 particles, you need to make your collider collide the ring bigger, right?
+So, uh, and that's easily goes there. So there are uncertainties of that type.
+There are uncertainties like Shawn for example, spend the spend like five years trying to optimize their their geometry for FCC.
+And so the hundred kilometers initial circumference, they are now at 90km.
+They change the conference by a factor of 10%. Why?
+Because of geological, uh, geological considerations. So there are many local factors which play there.
+So a question is, are these factors in or contribute to factor a kind of risk of two or a risk of 1%?
+No, it's not 100%. It's not 1%. It's of the order of 10 to 30% that most all combined.
+That's what I try to put in into this analysis. Um, yeah.
+Yeah, yeah. One last question. So, uh, if you don't mind asking in the coffee break, uh, for sure.
+Yeah, we are almost way into the coffee, and I'm chair of the next session.
+I'm very much interested to see you all at 11. Right. All right.
+Darren Acosta, Rice University, just a quick comment. Uh, stemming from the risk on the luminosity.
+But first, thank you for your for going through all these details with us.
+Um, just to point out that if we are so lucky as a community to eventually get a $20 billion collider, that's not bad.
+Everything on the highest luminosity we want.
+Let's make sure there's a science program we can get at to an order of magnitude less, or hopefully not more than that.
+But clearly R&D will improve on these estimates. But we should be careful about our.
+Make sure we don't bet $20 billion. Yep. And we need the maximum luminosity from last year.
+Project told us that the drop luminosity by three orders of magnitude and there is tons of great physics still available there.
+So that's a trust, Patrick, you know. Right.
+Uh, let's thank me for, uh, once again for the talk.

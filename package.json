@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "scrape:transcripts": "node scripts/scrape-transcripts.mjs"
+    "scrape:transcripts": "node scraper/scrape-transcripts.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^2",

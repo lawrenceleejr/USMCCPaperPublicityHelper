@@ -1,0 +1,816 @@
+# AM: Theory: Parallels
+
+Hey, uh, for the first speaker we have, we are asked that you tell us about items, uh, for.
+I forgot the title. Very important dark matter. Uh, I don't forget it.
+Thank you. Thank you. Thanks for the introduction and the opportunity to be here.
+Uh, I'm going to talk about, for tall dark matter, a class of dark matter models that, uh,
+you want Collider based on work in collaboration with someone who's in the room,
+TNT and you at Oregon and TNT as former students or your rank, um, along the way.
+I will also try to advocate for the importance of including the muon part on PDF in the simulation pipelines.
+I'm looking at you, Richard. Uh, and yeah, let me actually just start with that.
+So we all have seen a version of these plots.
+Uh, some of you maybe. We all have seen a version of this plot.
+Uh, somewhere in some papers.
+And I've taken this figure from a paper by David Marshall and collaborators, but I'm showing as a longitudinal fractional momentum.
+I'm showing the PDF, uh, for the content of, uh, muon beam, uh, for a different part, content like the gauge bosons and the muon itself.
+Um, at the muon Collider, dominantly the main channels for a lot of BSM studies that have been in production channels,
+or either from initial muons that dominate at large X values, or, uh, VBR for initial gauge bosons at lower X values.
+Uh one. Some uh approximations for the gauge bosons PDF are included in pipelines like math graph.
+Uh, the muon PDF is not included in that graph.
+So the way people actually do their BSM studies when they want to rely on the muon initial, uh,
+initial muon channel is just use muon as entering the interaction with x equal one everywhere.
+So it's essentially a delta function at one. We developed a very simple way of uh incorporating the muon PDF in our calculation.
+And what we find is that the cross-sections doesn't change much.
+But the event distributions do change a little.
+And that little actually matters a lot. So just to show that here I'm showing, uh, some histograms for slapped on pair productions.
+Uh, and here I'm showing the boost which, which is just slept on is produced for different masses.
+And in making this plot, I have used the EBA for gauge bosons and no PDF for the new one.
+You see, for each mass you see uh, tail that is essentially an imprint of these gauge bosons on PDF,
+and then a sharp peak of events at largest boost possible that come from all the muons at X equal one once you actually incorporate them.
+Nontrivial muon pdf at a smaller x says these figures.
+These histograms turn into these guys and two things actually happen.
+One, the gap that you are seeing between the VBS production and the muon around here gets filled up, some events get migrated to that range,
+and also something that is less visible, but probably even more important is that the peaks go down.
+But like 1,020%, that may not seem like a big fraction, but it actually will be relevant.
+So let me just say a few quick words how we did it. It's actually very straightforward.
+So we essentially divide the muon PDF this black line into um bulk part of it.
+And it's less than one. And a delta function at x equals one with some uh pre factor.
+Uh, it's got to be defined for left handed and right handed muons.
+And you can use different some rules like the net muon number or the polarized net polarization in the beam to determine the value of C.
+And then you essentially instead of having one luminosity function, you have, uh,
+different luminosity functions depending on if the muons from the two beams are coming from X equal one or x is smaller than one.
+And you can generate events with these things and then re consolidate them at the end.
+Uh outside macro. Now we did all of this with uh, initial guess that none of this is going to matter.
+We're going to do all of this and we find that, well, it's a good approximation to use, uh, muon PDF as being just a delta function.
+But we found that that's not the case.
+And for the models that we study, we found that actually including the non-trivial PDF could diminish the mass range to just show that in.
+An extreme scenario that we did in our work.
+Again, let me go back to that.
+This lepton case, which is similar to one of the Fermi on portal models that I'll talk about here, I'm showing the mass of the electrons,
+and green and orange are actually denoting two different signal regions that we developed using codes on ML and M2.
+And I'm showing what significance these signal regions could actually discover.
+These are electrons in a simple cut on count analysis at the 20 TV Million Collider.
+We found that when the PDFs are not included, the dashed lines essentially,
+if almost for the entire kinematic be accessible mass range, we could discover the model with significance more than five sigma.
+Correct. But once we included that pdf um, which is which are these solid lines?
+We go all in every for every mass we go below Five Sigma.
+We went from being able to discover this model with some cuts everywhere, to not being able to discover it anywhere with the same cuts.
+Uh, this just goes to show that you have to actually be careful about these,
+uh, PDFs, and I have some words to mumble at the end of the talk if you want.
+Why we think, what's the intuition behind this drastic effect?
+But honestly, I cannot prove this. I think this, uh, effect, the dropping, the discovery significance depends on the model.
+Depends on whether you actually care about the muon initial state for your production and how much you care about.
+It's close to one for production and also the signal regions or the cuts that you are using.
+But the upshot is that if you want to avoid worrying about this, maybe it's a good idea to include the muon part and PDF in your pipeline.
+Now we actually studied this effect in a particular class, a particular class of fermions for dark matter or dark matter.
+Sorry, uh, namely the freezing limit of the Fermi on portals.
+So female proton models are one of the few handful of very normalizable portals to dark sector that I think,
+uh, next besides wimp, uh, probably the most exciting dark matter portal for collider searches.
+Um, the model is very simple at the interaction for interactions, you just add one term like this.
+You have your dark matter. That coupled to any of the standard Model fermions, any of the five Q,
+the fermions at the call vertex with a scalar that we call phi f that has the same charges as the Fermi um,
+that's couples of dark matter two, and that's coupling.
+Lambda allows the mediator to decay to missing energy, semi visibly to the missing energy and f.
+And we're going to look at the limit where this coupling is very small.
+The freezing limit dark matter doesn't reach equilibrium with us in the early universe.
+Main reason I would like to focus on this limit is that you don't need to worry about a lot of constraining flavor constraints.
+Uh, we're going to look at the reach of Attentive Muon Collider and probing this model.
+As I said, I think this is a motivated dark matter model. And it makes sense to see how well Muon Collider does in looking for them.
+And by studying it, maybe we find something that could inform the benchmark aspects for the detector design, as I will show in a second,
+uh, because of small coupling in different parts of the parameter space, your mediator can either be promptly decaying or long live.
+So you have a model with both type of signals. Um,
+and also we will highlight the effect of muon perf on top of getting intuition about
+some generic costs that actually end up being very useful as a muon collider.
+But before that, let me actually flesh out the model in particular.
+Like what parameters give us the right relic abundance that will be the target for us in the experiment.
+So the dark matter abundance gets two contribution in this model from the freezing and the so-called super WIMP scenario.
+What is super WIMP Phi if starts in equilibrium with the standard model is charged in a standard model gauge fields.
+After a while it freezes out and then decays to Chi, and this general form has something freezing out and then decaying to dark matter itself.
+We call it freeze. Super wimp. Sorry.
+Um. Just like the wind gives you a specific mass for every representation that gives
+you the right relic abundance for masses above that you over close the universe.
+In this scenario, also, you have an upper upper bound on the mass of dark matter that I'm actually showing here.
+Here I'm showing the parameter space, the dark matter mass versus the mediator mass.
+In these models for the E model where f is the E fermion, and we couple chi to E in a standard model.
+Um, this gray region is ruled out whether by dark matter, stability or over closure.
+And the lower end of this range will be ruled out by astro observations.
+Dark matter would be just too warm and washing out the structure.
+I like this region. I should it goes all the way and closes the entire parameter space.
+You will have a bounded parameter space and everywhere on this parameter space,
+we choose the coupling lambda such that the direct freeze in contribution to the abundance gives you the right relic abundance.
+Okay, so these are the values of lambda and these are very small lambda values.
+So your dark matter can actually become long lived for different part of the parameter space.
+Again looking at the same models and parameter space here showing the lifetime of the mediator at the top corner,
+we have prompt mediator that decays quickly in the detector, but as we go to large dark matter masses,
+the lifetime becomes longer and even becomes, uh, detector stable.
+And just to show that these lifetimes depend on the model, this is for the E model.
+For the L model, maybe the mediator has a charge and a neutral entry and a doublet.
+The charge guy has lifetimes like this, which are very different.
+And that's just because you have another decay channel to run off shortly.
+So you kind of study. And we did a study the signals of these model in both the long lived and prompt region.
+I don't have time to talk about both of them. So I'm just going to very quickly a status simple cutting counts analysis in the prompt region here.
+So these are the list of processes that are relevant for us.
+The decay channels uh for the scalar mediator uh,
+for different models you have the decay to a W for the CO2 charge models as you two charge mediators.
+And those are their production channels. So essentially we will have a per production of something that's like a square or a slept on.
+And then each of them decayed to missing energy and affirmed on.
+So it's just the single digits or die lepton plus MIT search and you will have background of
+muon collider from here production of Z or W from FSR and RBF production of different fermions.
+Uh, we play around with different kinematic cuts.
+Uh, actually using cuts, using these cuts, you can very effectively throw away a lot of different background.
+The invariant mass of the two visible, uh, tracks, you see, excuse me, and T2, that takes care of the WW background very well.
+I mean, it's made for that background.
+The opening angle between your two visible tracks is going to be very helpful, especially as you go to a large opening angle.
+That means your thing about boosted and back to back, uh, mediators.
+And by doing that, by using this card,
+essentially you're zeroing in on the part of parameter space where you're actually using this production channel more.
+Um, uh, the effect of the PDF at X going to one becomes probably important.
+And the show, as I will show in the next slide,
+that actually we can just develop very simple cuts with these guys that can take care of the background and discover the model.
+So let me actually show you the result.
+Here I'm showing the mediator mask, uh, for the new model uh, five having the same choices as you and a standard model.
+And everywhere under these colored lines can actually be discovered.
+Every mass under those color lines can be discovered.
+The lines correspond to do different signal regions that we develop using those cuts that I should cast on the parameters that I showed.
+And, um, same result for the Q model.
+In both of these cases, we see that we can discover this model with those cuts.
+Uh, for mass is very close to the Q pneumatically accessible limit at a ten to even one collider.
+I in fact, I'm also showing how much systematics we can tolerate.
+And I still have a discovery. So we found that the search could be completely systematic dominance.
+Like you can have 1,000%, uh, systematic uncertainty on top of your whatever your statistical uncertainty.
+And it still discover these models. So discover two large masses, um, large uh, uncertainties, systematic uncertainties are tolerable.
+Maybe there will be a target for very simple I think about that. We're looking at design for a detector.
+But when we look at the E model and the L model where the signal will be di lepton and MIT things changes slightly,
+I mean, the cross section essentially is the main thing that goes down.
+Again, we found the optimal cuts that maximizes the outreach in discovering these models.
+Well, we found that we could not cover the entire climatically accessible mass range.
+And really this goes down to the effect of the PDF.
+Again, with or without the PDF, the cross section didn't change much,
+it's just that the kinematic distribution has changed enough that we could not go all the way to higher masses with our cuts.
+So that's essentially the main message maybe I wanted to get across, which is that if you want to have a viable mass reach,
+uh, prediction, you have to include the muon part on PDF in your study.
+And we also studied, uh, very generic and interesting in my view, model of dark matter.
+And we want colliders, namely Fermi on portal. And we reported how well you can actually how far in Mexican discovered them in a müller collider.
+That's all I have. Thank you. For the questions.
+Richard hops. Microphones? No. In the ceiling.
+So go. So, um, first, I enjoyed the talk.
+Uh, second, uh, the just Me on PDFs are indeed available in Matt Medcraft.
+Okay. You're available for a while. Uh, they're not under the under under the just be section of it.
+And this is implemented by friction on friction as this wonderful paper that explains all this bleed out and the
+statement of how you can your events actually can somewhat be proven analytically because you're taking n images,
+the original number of events, and multiplying it by a number, which is a fraction.
+That's amount by one, right? So anytime you include in terms of this is going to be less than.
+And yeah, I mean the total cross-section, at least for the model via study didn't change much.
+It was just a distribution that changes. What's happening is that you're bleeding out to super soft things.
+Exactly. You're you're talking about a ten TB collider in which you're having muons be, uh, three TeV.
+So you're looking at your X is about 0.6.
+Right. And so what. And so you're you've just bled out because that you're populating the ten to the minus two x ten to the minus three.
+And so if you were to look at the low mass stuff, you'd actually see the universe where the the low mass dark matter stuff about 100 GV,
+you could go from having zero sensitivity without the PDFs to a you have 25 sigma.
+So take a look at the lower masses and you'll see that you just you now have sensitivity things to the PDFs.
+Yep yep. Okay I was not aware of actually that point.
+We should talk more about it. And did you know about it actually no.
+Okay. Yeah. We should we should chat more about it. Thank you. Yeah.
+Just continue this one actually. Yeah. We try to set it correct on both metaphor up on the we we either have this
+option basically for your case it's mostly coming from in ESR for this photon.
+But for the only one point I want to add that I'm not sure what you are treatment for.
+This is going to one limits. We can't use this kind of formula because this this part is very tricky.
+I mean, it's a technical a numerical issue, right.
+And also because of this integration, viable, normally you just naively do this.
+So we're not good do this. So okay let me go into more details how it was done.
+Uh, so the way we did it, I mean, we put it as a PDF entry with format graphs to think it's an electro PDF.
+And the way you do it, everything is discretized.
+So we went people have calculated these things. We especially took results from David Marshall and Sokratis.
+This paper, we put it in there. We went all the way to very good.
+X is very close to one, but then we didn't include the last one.
+Instead we just said, okay, if you're taking away this part, we know everything else.
+What should this coupling for some simulation that we are doing without any PDF be to get the right, uh, to get the right samples?
+Um, so in the discrete version, I don't know,
+like if there is any like anything they you with this I think the ponder I'm telling you what you are doing is reasonable,
+but it's, uh, it's may not convert you that way.
+And also you will get some, some I mean unstable integration issue.
+Loreal. I mean, that's this numerical model for this for conceptually that's one out of the way you should do.
+You shouldn't do the way that you need to do under that for it's going to one name
+is right under to to to to do that a property and to to kill this divergent okay.
+So this kind of artificial cutoff etc. Uh, okay.
+Just because this is uh, getting bit lined up.
+So from my side, I'm very interested to continue conversations.
+So it would be fantastic. But let's just move to the next.
+We'll talk about the fact that. You want to put up this one.
+Uh, I am and and the computer is here.
+So you really just I think over here on the table.
+There you go. Do you think it's already done?
+Okay, so it's number two. Okay. So it's somebody has done a good job.
+Yeah. So our next speaker is apparently he would have been very much to.
+You know. Thank you.
+Okay. Our next speaker is from the attending class about axiom cubes in the connectors.
+So my hobbies and my topic is, uh, search.
+Have you visited at time? Uh, it's always the collaborative Instagram.
+It's funny. So big. I come from Minnesota.
+Uh. Okay, so so we know there are a lot of heavy ice on like particle volume and nuclear power study, right?
+Uh, and uh, due to many different reasons. And one of the main reasons is that we have such, uh, multitude of high collider like,
+if there is a hybrid state and we can't, it's only able to see it.
+So that's that's wild and that's, you know, reason. Okay.
+Um, you know, we're working. We're actually motivated as another result, which is, uh.
+Are. So this is a new one.
+This is not a new. You know, it's a version of us or something.
+So. So basically, you know, you want to it motivates us not only but there is a final reason,
+but also we can have a benchmark of how you like, how we should solve to solve some of these problems.
+Okay. So so both nations result in the final results together.
+So, um, you know, other, uh, more motivated.
+Okay.
+So, uh, so, you know, we're first in our first part, I will talk about, uh, our motivation for how you guys know how you solve a strategy problem.
+Okay. So very brief. Revealed. Uh, we have some severe problem, right?
+Massive heart attack from, uh, and the Sahara in general can be, uh, actually can be a real number of problem.
+So if you take, say, like the one or what does it take to say to you to one plus two pi.
+It's the same physics. Okay. So basically it's any number between 0 to 2 pi by five where all its volunteer course, uh, that's uh, including zero.
+Okay. Start the special number. Deserve all these. And the usual, again, story of a success.
+That's okay. A lot are you will have a scholar as a scholar?
+Um, the scholar on a later couple.
+Uh, I will how to long? Okay.
+Um, so you might global glue. Glue to that on your phone that Google will turn up.
+Uh, I will also say that. Plus, uh, I have posted this one, so I will look at my Hamiltonian.
+I want to minimize my potential rivals without looking more stable.
+Uh, it's three more things. Okay, then this one.
+It will be zero, though. This one is very minimal. So busy means to us.
+But give me zero. So, in front of my Twitter.
+Uh, professor zero. So that's why I receive no securities on the strong sides.
+But also, this offers us narrow field. Give us, uh, so-called excellent field.
+And this is after we consider instrumental that the mass is actually proportional to lambda accuracy.
+Square divided by the highly for, uh, new skill.
+Uh, new, um, your physics call is a very heavy, uh, food.
+Okay, so 24.2 GV square divided by for example.
+What did you all right on will be very, very small for won't be able to, uh, measure it in the collider physics.
+Okay. So how you how you measure higher.
+Okay. So my reason is because landmark is it is too small.
+Okay. How it makes a lambda. Because any other the larger. Uh, I'm making a lambda because kasi larger.
+But of course our stomachs or we cannot already measure.
+But so what we can do is actually introduce a full copy of our model sector, a know sector.
+And, uh, I was thinking same exact, except, uh, about the Higgs.
+The millisecond is very highly, uh, so all the mass is very high.
+Okay. Once your all the quality is very heavy. You are you are running carbon and or strong carbon are for us.
+Okay. Once our for us running carbon is uh, it's changed okay.
+It will run very fast once it's run faster.
+So that MacD in the mineral side. Very. So it's very high energy skills very hard.
+It's very violent until you. Well Khalil.
+Highly Max okay. So this is one of the simplest model.
+Okay. So so you know actually in our study we mentioned several uh, different model.
+Okay. So lots of our time for, for tunneling. And I will only give you two simple example flavors.
+Hello, everybody. Okay. So another another example famous is called ISO dimension ISO model okay.
+So we we actually we in fact these are for four parts one D once I have one for the uh world another one is five D right in my family.
+Uh uh, how will this device measure.
+Okay. So in this area we don't need to introduce any new scalar.
+We only use the Yang-Mills theory. Okay. So two Yang-Mills uh gauge field one is for as long as maturity.
+The other is, uh, your work. Okay. And of course, we can have a sense on this type of answer.
+Okay. So how we do that, uh, we need we need a 45 I, we integrate out the the fifth dimension after what you do.
+Well, the fifth dimension. Okay. So let's look at some.
+Let me know if I would imagine our gauge field is from 1801234.
+You have five components. But for all the components you my 43 still become the usual gauge theory that 40 Europeans here the last one.
+So it's a A5. Okay. Oh sorry. The A4, the fifth component.
+I should behave like a scalar. Okay. Uh, what is this color?
+This color here. So I have an example here.
+I have a I sound carbo tool like this sector. I have a transcendence term.
+Okay. I was saying scheduling lines that you might use here. Okay. After I go to the 45, the last one, I will solve the strong safety problem.
+Okay.
+And the a little awkward is that 35 to see the, uh, I thought that okay, my accent is still it's just like the whole story of the mass is very small.
+I need to not give me some small, small mass, because while this is a small model of the commerce, not a lot of lot.
+However, in my five D theory.
+Okay, you really take the five d running, uh, running cover and not after initially running going down, but little falls off.
+Okay, so what happened is that I have to, uh, instead of that, why is a lot of you slow down?
+A lot of the small is not that small. You sound fine. Actually. Enhance the mass of itself, I know.
+Finally, our eyes are still heavy and are able to measure other.
+Okay, so, uh, for more detail, you can you can take a look for that for this paper.
+Okay. So now is, uh, we come to the. You know in my where I in the line scale we are we are talking about the covenant that so I have also covered
+the ghetto that of course I have also generated some colorful as you talk uh gives you one considering uh,
+under the the discrepancy between those Carbonell basically come from the Gage company.
+Right. So if you look at, uh, this type of color here is, uh, how how different from how it is from recovering.
+Sweet. So that's my ulcer cover, uh, cover.
+Two plants, uh, much more of the other faithful.
+So basically, the phenol part is. That's my heavy accent. What that means that it decay into that, that that one.
+Okay. And so I would want to, uh, do this. I just search, uh, Collider.
+Okay, so for a Hamas, uh, jet search, uh, what's the best prioritization of, you know, rights and how clean your environment of that sort of as well.
+Well, Hamas. Oh, you don't either. That's right.
+So, uh, so now we we talk a lot. Uh, so I don't production.
+I don't either, basically, um, when you comment on the Photon Photon fusion tool,
+have you asked, for example, to do that measure under, uh, was a cut, uh, analysis?
+Okay.
+And the second, the second, the, uh, subnetting channel is, uh, associated the production factor was on scaling this to a production, the channel.
+But the difference is that for for this channel, I only talk to a jet for this two.
+And I talk to that. Plus, uh, for your, uh, w photon.
+Okay. So these are,
+these are a off of three or both are actually reduce the it's a I a lot so I can make to make make our analysis for for this channel actually for us.
+Okay so here is a production. Uh right. So basically we see the reactions on the other are smaller.
+Okay. Okay. Like, you know, this here is, uh, to separate the two separate analysis.
+Why is only that? Why is that X plus? Uh, Z goes on for another mode.
+Okay. So the background will be different. Now, uh, we also, uh, we also look at Bible.
+Right. So for VBS, uh study we have identified one which is the right one, uh, for the, for the VBS, uh, vulnerable on study on the, uh,
+socio production channel where you consider, uh, we consider, uh, electroweak gauge bosons on plus that's that's standard model process.
+So for this for this process, I the law of mass is so I want space is smaller.
+Okay. So what happened is that, uh, you know, lower mass.
+My my notes are not all sorted production possible, but the ones actually have a good sensitivity and a lower, uh,
+uh, mass of that for higher mass axion is actually, uh, we have, um, some of, uh, study coming in the contribution.
+So, so as we can easily see our army on either account of a huge, uh, um, um, color region, okay.
+Compared to the axis of our system, our experiment.
+So just to give a final conclusion, our your work basically we we gave benchmark was high because of the axle salsa.
+Uh, some of the strong safety problem are also able to measure, you know, uh, off.
+And the after recovery study, we, we showed that there is a huge parameter space and, uh, we don't have their cosmic problem.
+So both together. Uh, for the final measurement reason altogether, I think we, well, motivates, uh, you know, for, for example, study.
+Okay. Thank you. Questions.
+Instead of the dusty space, you can probe, uh, decay constants.
+Or even for Python SDK constant is smaller than the energy scale, and that it makes sense to use the estimate operator.
+Yeah, yeah. So so so they say that this is actually not my latest.
+Uh, so that's I have a oh. So basically. So the four pi r four pi.
+So I like that if you, if you go lines around here around here.
+Okay, so we still have a lot of parameters. I'm comparing the analyst get a collider and not the actual mathematically.
+Uh, okay. So, so so what's your question? That it makes sense to.
+Oh the constant thanks for back to the cut off scalar theory seems to be a sound smaller than the, uh, your 1010 db scale.
+I just find it makes sense. So. Okay, so of course, the unions, you, uh, you have the.
+Of course, in the usual case of Isaiah, you have have you fermions and you have new physics.
+Of course, that will go in higher energy. My, my collider energy is higher than the it's higher than the FAA is problematic.
+But, uh, you our case, we have different models, a model that FAA doesn't evaluate.
+It's not really that new physics. Okay. So it's still about as long as my the value theorem, there is no but it is still.
+So you see, the cutoff is for pi fe. I mean what they want you be.
+Conclusion is, uh. My message for my face is about this lot, right?
+This is the fourth platform for its flight because it's, it's it's a it's a vertical.
+It's for the uh oh. You mean it's oh how far is flight?
+All of a sudden I saw his ask. Asking?
+You're asking if half a is smaller than the machine and.
+Yeah, yeah. If if your theory is still valid to describe the phenomenon that you're talking about.
+Uh, if that is the case, if there is, the model is not is not valid anymore.
+So what you are doing here is I mean, the result is not what you really wanted.
+Um. So yeah, I mean, it could be better, right?
+You can get more stuff happening. Just don't know what to do.
+So then you need another model. Sure. Um, yes.
+Um, yeah, I actually actually, you see another poll we do, we do for the region, which is not valid for our comparative theory, but, uh, okay.
+It's not a simple straight line. So actually, uh, uh, first off, uh, it's not a single horizontal line, actually.
+Yeah, yeah. Uh, yeah, yeah. Uh, a little bit on top of that one when I showed you the crime plot.
+Okay. So you have a comparison between the Munich leather screen and the Irish Sea.
+I mean, maybe how do we, um. So, you know, so our final state is, in fact, right?
+And actually in our. And how we, you know, how to say, okay, there's no parallax resonance.
+Thank you for the, for. For for such high school.
+So this one, they don't have to do that. That's right.
+They can't do that. Both on they can't do that. Their parents. Oh yeah.
+Oh sorry. Yeah. Those one are actually rc RC style.
+So those of. Excluded region for housing stock.
+On the projections for hydrogen from our state, actually.
+So for halloumi you highlight how many we're getting plotted out for the year we expect and you're being cautious that all for.
+22 the the over while reform of power.
+So in essence the region would already be part of the region would be excluded already by the high Lumi program.
+Yeah. Very very so yeah. So so it's well, yeah.
+So basically that the increase is very small. Yeah. You know, take not only square root truth as well.
+Uh, yes. Yes I thought also.
+Yes. I'm not. Can you describe how the digit plus I mean plus met signal would be modified with the inclusion of elements that possible?
+Can you describe how the digit events would be modified away from standard model expectations?
+Oh how modified. Oh, so basically, uh, you know, so basically our existence are highly dependent like that.
+So my idea that you have in Moscow, you have a peak.
+Okay. So let's see, uh, in the background of us, uh, institute, uh, copycats, I see, uh, Isaiah Harvey, highway state.
+It's. Other questions.
+If not, let's. Thanks for asking. We have families of them all.
+I love our nation. It's just that we. The Prince of.
+Persia resisted. That is.
+Great. All right. Um, great.
+So thanks, everybody, for being here. So, like, as I said, I'm going to talk about, um, lepton flavor, uh,
+violation of this forthcoming process and how you can really get really complimentary
+views of all of the physics going on in lepton flavor at a high energy muon collider.
+Um, yeah. So this is based on kind of two things, but I'm mostly going to focus on this more recent work.
+Uh, that's not quite out yet, but will be in the next week or two.
+Um, with with others. Who's here? Um, uh, hangman is a student at Harvard actually coming to Chicago, um, this fall.
+Katie Fraser is a former Harvard student now at Berkeley, and Lou is another former Harvard student who is now at the office of NYU.
+Okay. Um, so I left on flavor. So.
+So when I say lepton flavor, I maybe I should just caveat for some of the people in the room that I only really mean charged lepton flavor.
+Um, why lepton flavor? Uh, in the standard model, of course.
+Uh, after a normalizable level, um, you know, lepton flavor, individual lepton flavor numbers are exactly conserved, right?
+Muon is a muon. There's no changing between muons and electrons like there is in the in the quark sector.
+Just because we only have this one Yukawa coupling that along with the charge leptons to the Higgs.
+Um, uh, so so, you know, in principle, in the Standard Model, all of these processes should just vanish.
+Anything that violates lepton flavor should be exactly zero.
+Uh, but we know that it's not really exactly zero because we've measured neutrino masses and seen their oscillations.
+And that gives us a kind of a very, very, very small lower bound that there has to be some amount of lepton flavor violation in nature.
+Um, and as theorists, you know, anytime we see one of these things where we have, uh, something that looks like a symmetry,
+but we know it's not really a symmetry, well, at that point, we shouldn't expect that it's really a symmetry anymore.
+As soon as we start throwing new physics in the game.
+And it could be, you know, essentially all the way up to, uh, the current bounds or a small or sorry, this should be a ten to the -54.
+So, you know, at the very, very minimum,
+it happens at these vanishingly small rates that come in proportional to the neutrino masses, um, that we would never, ever see.
+But again, really, as soon as we start thinking about BSM, we don't have any reason to expect it to be this small.
+It could be, you know, something. If we see an experiment. Um, you know, even today.
+Um, so this is just an excellent place to kind of search, uh, broadly for, for new physics.
+Uh, that may be related to the neutrino masses or just, you know, part of some bigger underlying theory.
+Um, and this is particularly interesting today, uh, because there's a lot of, you know, forthcoming low energy searches for lepton flavor violation.
+So I've been showing this plot that was from the last European strategy.
+Now for, for years. Um, but of course, at the time it was 2018.
+And so they have these kind of timelines of things that were coming. Uh, now, of course, we're we're here.
+Uh, some of these timelines have moved a little bit over the last few years, but not all of them.
+And so there are actual searches for charged lepton flavor violation that are setting new,
+uh, tighter, more stringent bounds and all of these processes that are coming around that,
+uh, this magnitude result, uh, searching for a mutated gamma, um, just came out a couple months ago,
+improved the limit on mutated gamma by by a factor of two or so.
+They're going to continue taking more and more data. We should expect more results from them in the next year or two.
+Um, that pushed this bound down even even more. Um, and at the same time, it's not featured in this,
+but there's kind of complementary things going on because Bell, too is also pumping out new results.
+And they're now kind of, you know, at the point where they're at or exceeding the luminosity we had from, uh, from the original Bell experiment.
+Um, and these bell Bell has tons of data that can test, uh, a whole bunch of different exotic tower decays.
+And so you can look for things like, uh, tower to three music or tower to an E and to muse a whole bunch of different flavor.
+Uh, final slides here. I just showed, uh, one example again, that just came out a couple of weeks ago for, for one of these exotic cow decays.
+Uh, and Bell has like a percentage, something of its final total, uh, integrated luminosity.
+So all of these bands are going to improve by, by orders of magnitude in the next few years.
+These are things that are happening is happening now. So they're really exciting. Okay.
+Um. So as soon as we start thinking about these kind of things, we should think about what?
+New physics. They're kind of right. And here I think there's kind of broadly two approaches that you can do.
+One is you can try to write down some kind of model that maybe says something about flavor physics, uh, you know,
+has some kind of new states, and you can just go and calculate, you know, what are their contributions to these kind of things?
+What does this all look? And so we'll talk very briefly about, uh, this slightly older work with, with Shinshu and Matt Rees.
+Um, you know, for an example of this where you have a supersymmetric theory, uh, and,
+you know, the extra states that appear around the TV scale violate lepton flavor,
+but there's some kind of suppression built in so that they're not immediately ruled out by all
+of these precision probes and how you can kind of measure all of this stuff in a muon collider.
+Uh, and then I'm going to take a different approach, an effective field theory approach where I just assume,
+okay, all of this stuff is happening at some high scale. I don't know what's going on with flavor physics there.
+Uh, but I can try to consider some general set of lepton flavor by leading interactions involving the Standard Model leptons,
+uh charged particles, uh, charged ions and Higgs. Right.
+Uh, and this is what's, what's in the more recent paper. And so I'm going to mostly focus on that, that one.
+Uh, but I'm going to talk very, very quickly about this one first. Good.
+Um, so having flavorful. The new physics at the TV scale. There we go.
+I don't get it. Um, so if you have flavorful new physics at the TV scale, again, you're pushed down by these really, really sensitive probes.
+And so if you want to do something where you introduce in the mSSM, what happens is you have new leptons,
+uh, their masses, you know, you have a partner for the electron, the muon in the Tao, the leptons.
+Um, but their mass matrix doesn't necessarily have to be diagonalized in the same basis that the charge leptons, um, masses are all diagonalized.
+And so in principle, you get these sources of lepton flavor violation.
+If it's really a TV, you might think that these low energy probes are ruling these out immediately.
+But there's this kind of super gem mechanism is what it's sometimes called in the Susy context,
+where these things can get suppressed not only by this, this mixing angle,
+which might not be that small, um, but also by the mass floodings,
+this leptons that they're getting most of their mass from one other source of Susy breaking.
+Uh, then their mass splitting is very, very small.
+And their contributions to tell of, uh, processes are actually are actually very, um, vanishingly tiny.
+And here I'm just showing kind of, you know what, the next several decades, uh, there's several rounds of projects looking at these,
+um, low energy probes kind of probe in this parameter space where I've put in some, you know, bigger mass splitting, um, um, by hand.
+And you can see that kind of push down in this kind of thing. Okay.
+Um, and the good news, though, is that if you have these things there at the TV scale, you can avoid these probes.
+But then the high energy muon collider, you would just produce these things, right? You would just produce this charged leptons, um, on shelf.
+And not only, you know, do you produce them. You can actually measure their masses.
+You can measure how much they mix with each other. You would never discover the new leptons in these flavor violating final states,
+but you measure them in their flavor concerning final, flavor conserving final states,
+you know, measure the spectrum and actually really kind of gain insight into what's what's going on with,
+uh, with supersymmetry breaking and how it's interacting with flavor.
+Um, there's a lot of kind of fun physics that comes into this.
+But here you can see that the muon collider reach really cuts, you know, across this parameter space in a really, really complimentary way.
+Um, so that was very quickly on just kind of this, you know, lower energy, explicit model kind of thing.
+And now I'm going to talk more about this, the CFT approach.
+Um, so if I go to the standard model EFT, uh, and just look at dimension six, you know, what operators can I write down the violate lepton flavor?
+Uh, I'm going to make the caveat that I'm not going to consider four fermion operators that also include quarks,
+because then you can have a whole bunch of extra ones.
+Uh, there is actually a recent study, I think this appeared in the European strategy submission for, for muon Collider.
+People looking at these because I think they're super interesting to, um, you know,
+where you can have lepton flavor violating decays from, say, like a cookie bar tally or something like this.
+Uh, I'm going to look at just the pure charged lepton flavor violating states.
+And then there's only nine operators, um, ignoring the flavor indices.
+They fall into a couple different buckets. There's these dipole operators, um, which in some sense are the least interesting ones.
+I think for these, uh, they get the strongest kind of constraints.
+Um, but the new physics that matches on to these and the way that you can constrain them in colliders is never really super, super interesting.
+Uh, there's one that is essentially just, uh, modification of the Higgs, you call it, so you can introduce, you know,
+the Higgs is diagonalized in the interactions are diagonalized in the same basis as the masses in the standard model.
+But you can have this operator. And if it violates, uh, lepton flavor, you can have a Higgs to a movie or a Utah coupling.
+Um, that that might be small, uh, that you could look for.
+Um, there's these things that essentially just lead to the time gauge or the time gauge Higgs couplings that changes,
+change the interactions between, um, the charge leptons and the Z's and the Higgs.
+Uh, and then you have for fermion interactions, and those are the kind of thing open to us where, you know,
+you're imagining something heavy, you're integrating out, and you're you get all of these different kind of things.
+So it's really just these four buckets of, of things that you could try to do.
+And I'm just going to focus on these last three. Okay.
+Um, so if I write down these operators, you know, I assume that some new physics, uh, at a much,
+much higher scale, you integrate it out, you generate these operators out parameter of scale.
+Uh, how do they appear in these low energy experiments? Uh, now I want to match down on to the, the DFT that it's valid for these kind of things.
+Um, and to evaluate all of these low energy bounds, what we did is we just took this whole suite of things,
+we matched onto the low energy effective field theory, and we ran down to the relevant, uh, you know,
+either muon or tao, uh, mass scale, where you can look at these things and it's important that, you know,
+I should say, you know, the four fermion operators match on to four fermion operators below the weak scale.
+But everything else, you have to start thinking at higher and higher loops, right?
+So these operators like CHL one or CHL three, the lot time gauge ones, those don't immediately give you things that you can see at low energy.
+They don't give you these dipole operators, uh, tree level. But at one loop they, they, uh, contribute to all of these.
+The four frame operators also come to that. Uh, the power operators don't really give you any meaningful contributions at one loop,
+but they give you a two loop contribution that has either a W or a top mass in it and actually ends up not being that suppressed.
+And so this two loop contribution from the Su, how it like operator, uh, is actually super, super important.
+So you can do all of these and then just evaluate what the balance from, from all of these precision experiments look like.
+Uh, for the general set of, of smashed interactions at the TV scale.
+Um, and now you can ask, what can you actually do with these kind of things that a muon collider.
+So first, if you're just thinking about this Higgs Yukawa thing, uh, again,
+that leads to modified interactions of the Higgs that leads to flavor violating couplings of the Higgs to charge leptons.
+You can look for these and Higgs decays.
+This is done at the LHC, of course, but at the muon Collider you have the benefit of producing a ton of Higgs and you have a much,
+much, much cleaner background, right?
+Um, for me, we actually have shown first, uh, for mu e um, you know, the clean background actually doesn't make much,
+much of a difference because it mu in and out of the LHC is pretty clean.
+Final state. Um, for all of the other things involving towers of hadronic tao,
+you get a lot of backgrounds from having, say, our production at the LHC that really swamp this thing.
+It makes it hard to look for. Um, but so here what we did is we just took all of these things.
+We ran this kind of full detector simulation for all of the Higgs couplings.
+So. So I can follow what is why, uh, why.
+Sorry. Yeah. Why is there, like, the Yukawa coupling of the Higgs in the same.
+You know, we're the topic of this one. This demonstrates that.
+Yeah. Yeah. This messed up right around the. It's on the opposite axis.
+Yeah. I'm, I'm focusing on here because this is, you know, this is a totally valid thing.
+Even if you ignore this math in its validity or any of this.
+Right. It's really just a bound on the off diagonal coupling of the Higgs. Yeah.
+Um. It's good. So we did this kind of full detector simulation, included all of the backgrounds.
+Um, not a folder I tell for simulation.
+Did all of the backgrounds, um, and then just see, you know, what can you actually do for looking for these final states?
+Um, we find, again, the Mu is not so impressive.
+You actually can't see the LHC line because it's perfectly under this red line from the ground collider.
+Uh, but for mute, for telling you and how he final states, you get an order of magnitude improvement on what hl LHC is located.
+Right? And that's just from having more Higgs and having a cleaner, uh, cleaner set of backgrounds.
+And I should say this is, you know, assuming pretty, I think, pessimistic, um, you know, performance for how how good your resolution for,
+for reconstructing the towers in the leptons is going to look like, because this is kind of the, the first path.
+So what Adelphia simulation. That's right. It's not the, you know, the real future detectors.
+All right. Um, so that's very, very good. And I think this is a really, really interesting limit.
+It sets a lot of, you know, bounds on kind of lepton flavor, uh, physics beyond the Standard Model.
+Um, but there's other things you can do that are really, you know, not just, you know, a good environment and things that are nice to me on Collider.
+Uh, there's kind of unique, high energy problems if you start thinking about these other operators.
+So if I write down one of these, you know, like Higgs current, uh, operators that modify the gauge interactions, I can write down processes like this.
+Right. Uh, and really, you can think about this as kind of like the W and a photon or Z scattering and producing these things.
+But you can just computer this, this whole process here and here.
+I have some lepton flavor violating final state, uh, plus a Higgs, um, and a Higgs can generally be at really, really high at high end.
+Um, the only background to process is like, that's because the lepton flavor is conserved in the Standard Model.
+The only way to get these different flavor of leptons is if you produce, say,
+two W's and have them decay in different ways or two towers and have this how to get to a muon or electron?
+Um, but all of those come with extra neutrinos in the final state, and they really look nothing like these kind of high energy scattering processes.
+Right? And so it's really trivial to set up some, you know, pretty basic nuts that reduce the background noise down to the,
+you know, order one or so background, uh, background event model.
+Um, and then you can, you know, probe all of these things and get really, really great sensitivity to all of these.
+Here's just an example of like, you know, what a set of what this would actually look like with the scale set of ten TV.
+And you're gonna see this is really easy to pick up the signal. Right.
+Um, there's a similar process goes to Tao that does essentially the same kind of thing and, you know, probes a complementary set of operators.
+Um, the other thing you can do, if you think about the four fermion operators, this was alluded to in the talk yesterday, as you know here,
+you benefit from the fact that if you have this four fermion interaction, uh,
+it grows like that's right, relative growth, uh, growth in the center of mass energy.
+And so the signal ends up being peaked way out here.
+You know, if you have the DT of the muon and the Tao in the new, that system is really, really, really boosted.
+And again, the backgrounds are where how tall or something with extra neutrinos.
+They just look nothing like the signal. And this rate can be huge, right.
+Um, and there's essentially zero backgrounds at the end. Uh, and this easily beats the sensitivity from things like tout a three meter K, which,
+you know, you can just think of the diagram going this way is the same underlying process.
+Um, so here's just a comparison of where everything is, you know, compared to the low energy constraints.
+The dipole operators, like I said earlier, are not really interesting for all of the other ones.
+One of these kind of low, uh, high energy probes is always going to beat the current sensitivity and be sensitive to about,
+you know, the best that you could possibly expect from the, uh, the next generation of low energy experiments, or for these four fermion interactions,
+they're just going to, you know, much, much, much higher skills. Uh, that they're probably.
+Yeah. Um, so it's really, you know, nice set of clean, um, discovery potential.
+The last few slides are just kind of showing, you know,
+you can put these things in different things and kind of understand the structure more than just getting.
+This one measurement. Uh, and here are the last thing I'll show is just, you know, that what you really want to do is compare.
+The best probes at low energy are things like beauty transitions.
+And Collider is really probing, mostly muted transitions.
+And actually comparing those things 1 to 1 requires some insights about what lepton flavor violation looks like beyond the Standard Model.
+Um, we don't really have very many good ansatz of what that could actually look like.
+Uh, but you can see here these are different kind of choices. Um, you know, how these things kind of stack up, uh, depending on what that looks like.
+You know, the mu tau transitions to the most important enemy on Collider is really probing a bunch of new ground.
+Um, and I will leave it on my summary slides there some. Ask a question?
+Sure. Uh, why didn't you look at Kamala? Divided city in Q or in Q?
+Uh, that, uh, these are the ones that, uh, usually charge local labor organization.
+So are those different than this? Is this.
+So can you repeat what operators clearly do?
+Violating operators like to lock onto parks?
+Uh, sorry. Yeah. I mean, partly just for simplicity, because then there's a lot of them.
+But to lock to to locked onto parks within, I guess you can do different types of structures in there.
+Yeah. The only reason was because I was literally looking for constraints on them.
+Uh, yeah. So there are some. So here this is just a link to the giant 400 page ESPN report.
+But there's a section in there on flavor where I think they do look at some of these.
+I mean, what no collider could get. No. Sorry. Yeah. That's what I mean.
+This is this is the new one. Collider uh, submission. And they have, you know, these things the bounds are pretty similar.
+Right. Because it's again, it's Mew Mew who goes to two parks and two parks that that new on Collider.
+It's you know they're really high energy. Um, so they don't look like anything else.
+And so the bounds are probably pretty similar to, uh, to what I put here.
+Okay. Yeah. Um, one factor is thrown in if I'm reading this correctly, you're saying for,
+uh, uh, for left operator operators, the reach with the of the order of 280.
+Yeah. Ballpark. Yeah. Okay. Thank you. Sorry.
+First, uh, on your slide, 13 had this really cool process with, uh, Higgs permission.
+Uh, it was a little too quick. I couldn't catch it. He's been reach for this.
+Better than Higgs decay complementarity. It's it's complementary because this.
+So this this, like Higgs boson. Mu tao, uh, thing is induced by, like, this kind of operator Y of like an h dagger d mu h times a lepton current.
+The Higgs decays are really only probing. Um.
+This operator where it's this is a Yukawa coupling. And then, you see, I cannot invert that diagram.
+I cannot get a Z move to find.
+Oh, good. I could look for for a Higgs to a that I didn't think about, I guess.
+I mean, in principle, you could do it. I would bet that this is a better approach.
+Um, just because everything is high energy. Uh, yeah.
+Uh, the on principle, you could look for for that with the Z to reject.
+So I'm a little confused a couple of your students.
+So let me ask this question, um, to how do you treat the tell in your simulations, in your modeling?
+I mean, the Taos or are you not, uh, we are decaying the Taos.
+Um, we consider only we just only consider the hadronic final states.
+Okay. So then so all of these things have some efficiency for how?
+Well, a jet. It's a jet. It's a jet. Yeah.
+Yeah. Because the neutrino that's your end, you're saying.
+And so then this is I'm still a little confusing because you're saying that you don't have many backgrounds,
+but, you know, you you will have jet some standard model jets at TV scales that will look like this shortly.
+This is just going to be a light jet that's misidentified as a towel.
+Yeah. So you also are saying things like there's not met but we're talking about TV scale met.
+So I'm a little good. Yeah I should be a little bit more careful I guess.
+Right there is met in all of this. Had any any time decay involve some summit.
+Um, you know, we accounted for all of it. You know, we actually run these things through it.
+We have the Taos decay, and then we cluster them in Delphi's and do it.
+And so all of it and and then the backgrounds, we include all of the ones with, with jets and stuff like that.
+So, so they're all it's all included. But I did gloss over it really, really quickly.
+Um, I should say I did leave it on one of my summary slides that it is crucial that you can tag the Taos.
+Um, what we did was essentially just assume that the performance is going to look roughly like it does at the LHC.
+Um, which is pretty good, right? I mean, the the light quarks being misidentified as tall jets is it's a small mass tagging rate.
+And the efficiency for that reconstruction, um, is taking rate times 10 trillion, billion larger rate.
+You know, it's not going to be on Collider though. Right. And again and again, you know, for really, really, really hard jets.
+And usually you only have one and it's recoiling against someone or something like that.
+So that's that's the point, right? I mean, if you had multiple quarks maybe I, I absolutely this needs to be have multiple.
+What's that color conservation says you'll have to have multiple. Yeah that that's my point right.
+Whereas here I just have one tangent. That's that's that's my point.
+Right. Um, and so you know, the backgrounds where you get a single.
+Yes, yes. That's right.
+So, so I think the bigger backgrounds are probably more like things where instead of just, you know, having a, a bunch of like quarks or something,
+you know, the W can decay hydroponically and then it's really like your tau versus your hadronic w, uh, misidentification.
+Um, when these things are super, super, super boosted, um, and that's where you're never going to get more boosted in the tail.
+That's a pencil. Yeah, yeah, yeah, exactly.
+Um, but that's something, you know, I don't know what the performance looks like at an actual muon collider detector.
+So we assumed the Atlas rates, and then the delta r plots make the delta.
+Okay. That's that's that's fair. We should we should we should do this. Yeah.
+Um, yeah. But good. Thanks. Thanks for the question and answer. You had a couple of questions and I know, but I'm satisfied.
+I'm not sure. Okay. Let's. Thanks.
+Uh, some. So the last video description is additional.
+You can also choose from all of us here, plus reading the headlines into the text.
+Are you sure you're surprised at all this insight?
+All right. Uh, thank you for being here. And thank you for the invitation.
+Uh, so basically what I'm going to talk about is.
+Uh, so what I'm going to talk about is basically aspects of electric scimitar restoration at a high energy collider.
+So this is very much still a work in progress with, uh, Matthew first and then Neil and uh, Patrick mean.
+So, uh, the idea here is as we go higher and higher in greater energy, for example, like ten DV Collider,
+uh, we're probing physics far above the electroweak symmetry breaking scale, up to 46 GB.
+So at this energy, we can, uh, estimate the cross, uh, the cross sections where I can take the mass of the W's in the z h to be zero,
+or in other words, uh, ammo, where it starts becoming very small as I take the energy to higher and higher.
+Uh, essentially what I can say that, uh,
+the massive amplitudes that we detect in our colliders should start converging to the massless amplitude predicted by a standard model.
+And what I mean by massless amplitude is take the vector zero from the corresponding Lagrangian, find amplitude.
+So in that sense, uh, test of convergence is, uh, what we are trying to achieve.
+And uh goal is to impose an equivalence which states that, uh, longitudinal uh modes of W and Z should correspond to the Goldstone amplitudes.
+Uh uh, with some m over e corrections are interesting,
+because what we eventually want to talk about is, uh, is the symmetries that the scalars in the U.
+V theory, which is not necessarily, uh, predicted by low energy physics from, say, perturbative unitarity and other methods.
+So that's why we want to, uh, specifically talk about Goldstone equivalence.
+So, uh, just to give you an outline of the talk, uh, I will, but, um,
+most of it I will try to define and quantify what I mean operationally by restoration.
+And uh, in the last part we will talk about can we observe that, uh, in a main collider,
+which I think is going to be very important because if it's has if it's to work, I think precision is going to be very important eventually.
+Uh, tests for convergences. That's all I have then.
+Okay. So I'm going to actually spend a quite a bit of time talking about Goldstone Rosen equivalence,
+which I know very all of you are very familiar with probably are familiar with the diagram because I took it from.
+That's good.
+Uh, but it's basically one version of it states that, uh, if you have an external state on show w longitudinally polarized at high energy level,
+it should correspond to exactly the goals from both amplitude.
+Plus you have moderate corrections and which this specifically is true for spontaneously broken things.
+Okay. Uh, and if you're more interested in goals from both on equivalence and try to actually see the equations.
+So I'll actually talk a bit about it. So, so once at the intermediate stage you will see you get something called generalized board identity which
+states that if you replace the polarization of W by its momentum and contract with the rest of the amplitude,
+this will exactly equal mass of the w times the w replaced by its corresponding constant constant.
+So this is called generalized identity because if you take the mass goes to zero limit,
+it becomes exact or the identity of the Q and a very 32nd hand-wavy proof of that is just look at the standard Yang-Mills structure on shell,
+which is true for standard model.
+Uh, so if you have three massive vector bosons and just replace one of the polarization by its momentum and contract with it,
+you will see it's exactly proportional to mass when everything is on shell.
+So this is satisfied at the three point uh level for on shell.
+And then you can just, uh,
+use an analytic continuation and prove that this since all the input and amplitude can be constructed on shell from three points,
+this, uh, generalized order of three points to generalized one amplitude, that force set is, uh, just a quick proof of this statement.
+Okay. And uh, from there, uh, uh, goes on, goes on.
+It's just a one step proof.
+Because now if you have a longitudinal vector boson, you have its polarization, which you can decompose as momentum plus and m over x.
+This momentum by generalized for that entity would correspond exactly to the Goldstone amplitude.
+And the z mu part would be multi corrections.
+And from this sense what we try to what we mean by convergence is that this is what you detect in a collider.
+This Goldstone part is going to be predicted from standard model by taking p equals zero limit.
+And this delta p is the difference in what we are trying to quantify as a convergence.
+So we want to see we have an exact convergence when it's zero and we're not an exact convergence.
+And I'll talk a bit more about it. Okay. So what do we need to test.
+I talked a bit about convergence as a first test. So you want to test low energy physics converging to the standard model physics by
+taking zero limit from standard model you can using goals from those in equivalence.
+But there are other aspects of it which I will talk about. And that is if you really, uh, follow through.
+Uh, this, uh, this last step of proof, not nowhere here.
+I talked about goals, uh, spontaneously broken,
+symmetry breaking because the statement of goal equivalence has nothing to do with spontaneously broken, uh,
+symmetry breaking is just a statement of, uh, the decoupling of the three degrees of freedom to two longest,
+uh, two transverse plus, uh, decouples different degrees of freedom.
+Uh, what do you need?
+Uh, if you have a proper, I think, uh, uh, restoration, uh, statement from three level amplitudes to talk about the symmetries of the scalars,
+the three Goldstone balls on plus the Higgs, because then all four multiplied, uh, in the Standard Model.
+So we eventually should also be trying to see, uh, can we test that sort of hope for convergence at the UV theory, uh, from our test collection?
+Okay. And a final aspect is that since everything is massless, eventually you will have transverse,
+uh, your mass vector boson, uh, sorry, massless vector boson to satisfy gauge symmetry.
+So can we have a test for that? So for most of the collider part we will actually be dealing with this.
+But what I would like you to talk about that uh, touch on it a bit.
+So. Okay. So, uh, my main inspiration for our work for restoration came from this paper by Zen and Yang Bliss and others,
+uh, where they define, uh, restoration by, uh, signal strength.
+They call me. Uh, so here. But what they do is they compute the goals on amplitude by taking that to zero limit.
+And then you have this part from model that you see in the detector.
+And then the idea is you have this mirror should be an exact should exactly go to one.
+If you have an exact illustration predicted by standard model, whereas this would deviate from one if you have other.
+So that's how they quantify image restoration by a ratio of course, to an amplitude by uh uh, background uh, which is longitudinal.
+And uh, but they specifically focus on uh, VH amplitude.
+And there is a reason behind that, uh, why they focus on VH amplitude is that if you go to a high energy limit,
+you will soon figure out that the VH amplitude, the transverse modes, they are one over s squared s, so only the longitudinal modes survive.
+So that's one of the reason. So the cross sections basically are dominated by longitudinal modes for the eight states.
+So they're basically levels should be goes up uh at time.
+So for real colliders, our first, uh, obvious thing to do was to see if we can do the same for me and colliders for same channel.
+So we did a detector analysis, and what we found out is that if you have a Z decaying electronically, uh, you get, uh,
+at one PB of, uh, Higgs equals mass and you find you have a loss of resolving powers and you get a large integral.
+And similarly, if you try to do for jets, it turns out the precision is not good enough to test for convergences.
+So that's why we didn't initially we focused on the w w channel.
+I thought, I'll talk about, uh, detector analysis,
+but we find out you can have a good precisions to focus on the WW channel for collider analysis and test for restoration.
+Okay. Before I move on to, uh.
+And we had to talk about this yesterday.
+But before I move on to actually detect, uh, climate analysis in full detail, I'll talk about the other aspect of symmetry restoration,
+which is, uh, as I said, in the transport sector, you should have a restoration of gauge symmetry.
+And they pointed out very nicely, is that, uh, for massless theory, uh, you your amplitudes should have an exact zero.
+When you have gauge symmetry, which is called the radiation zero, and you will not be an exact zero.
+And you have two methods. So what they try to do is have a very specific kinematics zero that is predicted for gauge symmetry.
+So you can try to predict, uh, try to see if that happens.
+And the other aspect of it that I want to talk about is that in standard model you have the three Goldstone bosons of the WS,
+that V and the Higgs, they should be reconstructed should become a little more.
+Uh, you mentioned that you v theory, and one way to check for that is to take ratios, uh, just to see if you compute the ratios of, say,
+W and zl from, say, fermions and w and h, it should exactly be one, because there is an O four symmetry between the Goldstone terms see and Higgs.
+So that's why it's one. And similarly you can have a very specific O for pairs from other ratios H and H.
+Uh, so a test of ratios, even though we don't do that, I think eventually would be a good test for a proper test of symmetry restoration.
+But I do want to state, uh, make two comments in here. Is that just two ratios would I don't think would not be enough because, uh,
+eventually you should also do h-h ratios where the Higgs triple coupling that the Higgs coupling comes in.
+And, uh, so a proper for restoration test, which should include other and exhaustive ratios.
+And uh, then the other aspect I think would be a very interesting study is that these are shifts, a variable predicted from standard model.
+But how does an FDR operator shift this? Uh, predictions?
+All right, that I will start, uh, talk about, uh, collider analysis and, uh, uh, basically beyond on analysis, as I say.
+Uh, we focus on mu mu 2WW.
+So if you compute the tonic cross section, you will figure out that at higher energy limit, it's dominated by transverse modes.
+But we are eventually interested in the longitudinal modes.
+So and that uh, the uh the uh it has been comes from the T channel or what enhancement of the transformer to the teacher.
+And that's meant it has been for the transverse modes. And so the way to filter that, that are the students make a backward selections.
+And once you do that you'll see the ratio goes from 100 to 1 10th.
+So we kind of isolate the uh the longitudinal most that we are more interested in.
+So that's shown in here.
+And, uh, another, uh, thing about collider analysis, uh, one is that, uh, we need to scan over the entities to show some sort of, uh, restriction.
+So we need to scan over the energies. And the way to scan over energy is we include, uh, additional gamma, and we would, uh, tag the gamma.
+And from the energies of the gamma, we would scan over different energies for, uh, cross-sections.
+And, uh, for, uh, event topologies. Uh, what we are, uh, what we are interested in is, uh, w with XM electronically.
+And there is a reason behind that is that we need to have some sort of, uh, I mean,
+we cannot afford chips in this case because we need to have some sort of forward tag and kind of figure out which,
+uh, w is speaking or have some sort of charge ID you have, uh, have a backwards to think.
+Okay. Uh, so the the backgrounds are basically listed in here, which are mostly PVC induced backgrounds,
+but it turns out after we make the cuts, they are, uh, almost negligible, uh, compared to the signal.
+And, uh, and the final comment in here is that, uh, uh, we're interested in showing restorations.
+We're interested in high energy physics so that they're produced at high energies,
+for sure, but the decay products are happening at a lower energy scale.
+So we have to somehow isolate the physics. And the way we do it, uh, is by unfolding.
+So we do, uh, as I want to mention, we include a full detector analysis, uh,
+have the full hadron, uh, virtual shower and vibrations and, uh, detector effects.
+And, uh, so we have to first compute the efficiency metric to unfold back to crude level.
+We do, uh, compute efficiency matrices for forward and backward separately.
+And once we do that, we unfold back by maximizing log likelihood to have an unfolded,
+uh, spectrum for our distribution after we have reconstructed events.
+But this is the final, uh, plot that I want to show.
+This is, as I said, the work is still very preliminary.
+Uh, so detector works are still being done, but it shows that we can indeed have some, uh, um, some test of convergence.
+Uh, and I'm excited. So this is specifically, uh, one GeV collider.
+Um, the blue in here is basically w l uh, includes w l w l w t and wtw t.
+But because we are focusing on the backward regions is dominated by the signal and the.
+This line in here is the Goldstone prediction. So where you replace the the w l by its corresponding Goldstone bosons.
+And you can see you have uh you can see at least some sort of convergence.
+But if you go ahead and find the comment here is that, uh, this shaded region is statistical, uh, uncertainty.
+So, uh, just to conclude that, uh, the divine, uh, restoration,
+at least initially by a test of convergence and as test of convergence, we see, uh, we can do at a miracle, either as shown in here.
+But just to give you an idea of what we are trying to do is to generalize this,
+uh, to 3DV and ten DV, you know, leading into a whole chapter analysis.
+I think, uh, another give you an outlook.
+Uh, I think this would be very interesting to see how this math and have, uh, affects the cross section test that I talked about.
+And this is a completely unrelated, but I think it's, uh, what we're also doing is how to see the golden equivalence and then also descriptions.
+And if you, we can have some computation of context from a different perspective of describing goals from both.
+Any goals. That's a separate, uh, project. Uh, so here I would like and thank you very much for listening and.
+Yeah. Questions?
+I've been trying. Can you go to a slide down, please?
+All right. I'm going to pick on Ian and again.
+Um, so I'm not sure. I'm not convinced.
+I'm not sure that the I about the power counting here.
+Because when you go to k the longitudinal motions or the transverse bosons, um,
+if you then compare this to the polarization vector that you show just a couple slides before,
+it is when the WS are easier to decaying to massless leptons, which is, you know, what we're going to do.
+Um, then you're going to select out the mass over energy term polarization.
+And the polarization vector contracts with the current. You don't select out the Goldstone part, you're selecting the mass over energy.
+Otherwise it's proportional to the left hand mass. So that means that at the deep halo the longitudinal uh amplitudes pick up factors of mass over
+energy to the like the fourth power or s squared relative to the transverse at the decay level.
+So on that I wouldn't. I'm not sure this is the right power counting at the production level.
+Sure this is the right power counting, but when you then take this to the decay level, the longitudinal is relatively,
+uh, suppressed by the mass over the energy terms that you're showing a couple sites here.
+I mean, I can see what I can show. This is true at the, at this level.
+And I can have some comment on the detector level, what happens.
+So maybe I just add the decay a little bit. But you do you go to the polarization vector that you're showing.
+Yeah. Here. Yeah. Multiply this because it's a 1 or 2 body decays.
+So it's a fermion current. So you just multiply the female current by the first term.
+By the Dirac equation you get mass over mass. And so you know that's KB over GV.
+And then the other one it's going to be something that goes like mass over the energy times the energy.
+So okay. All right. But, uh, I mean, they I'm just.
+I don't want to say anything, but they did make a plot like this. I don't know where they did the full detector, but I think, you know, they did it.
+Now I hear you. Okay. I don't want to, um.
+Yeah, but I think you were. I think it was a year later. Plots. I think you're seeing that it was actually more quarter of the gold.
+So that's, that's that's the reason why it's more difficult than they say.
+All right. Thank you so much for that. I get questions.
+If not, let's find the final speaker.
