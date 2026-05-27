@@ -60,6 +60,23 @@ xattr -dr com.apple.quarantine "/Applications/USMCC Publicity Helper.app"
 
 The distributed DMG includes `README.txt` with the same command.
 
+## Transcript Scraper
+
+`scripts/scrape-transcripts.mjs` downloads the talk transcripts from the USMCC
+meeting recordings page (the talks are Panopto videos; the script pulls the same
+SRT captions the viewer's "Download transcript" button serves).
+
+```bash
+npm run scrape:transcripts
+# or point it at a different Indico page / output dir:
+node scripts/scrape-transcripts.mjs <eventUrl> <outDir>
+```
+
+Requires Node 18+ (uses built-in `fetch`, no extra dependencies). For each
+recording it writes a raw `.srt` and a cleaned plain-text `.txt` into
+`transcripts/` (gitignored), plus an `index.json` manifest. The `.txt` files are
+handy as source material for the publicity generator.
+
 ## Testing
 
 Run Rust unit tests (covers TSV parsing logic):
