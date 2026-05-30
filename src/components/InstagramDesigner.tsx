@@ -145,21 +145,34 @@ interface PaneText {
   // If true, draw a big editorial open-quote glyph in the pane's upper-left
   // — a pull-quote design flourish, opt-in per pane.
   showQuoteMark: boolean;
+  // Offsets (in canvas pixels) from the quote mark's default upper-left
+  // anchor. Adjusted by drag-to-pan in the preview, so each pane can
+  // reposition its glyph independently.
+  quoteOffsetX: number;
+  quoteOffsetY: number;
   dirty: { eyebrow: boolean; title: boolean; description: boolean; authors: boolean };
 }
 
 
 const CANVAS_SIZE = 1080;
 const SAFE_PADDING = 88;
-// Geometry for the oversized open-quotation-mark ornament. Tuned so the ink
-// of the " glyph sits comfortably inside the upper-left safe area at the
-// 1080×1080 canvas size — Georgia draws the quote in the upper portion of
-// its bounding box, so a negative `top` pulls the glyph up to where the
-// padding starts visually.
+// Geometry for the oversized open-quotation-mark ornament. The default
+// anchor matches SAFE_PADDING on both axes so the glyph's bounding-box
+// inset from the canvas's top-left corner is the same horizontally and
+// vertically. The minus-30 nudge on the left accounts for the open-quote
+// glyph's side-bearing white-space inside its box, so the visible ink
+// lines up nicely with the safe area. Each pane can offset the glyph
+// further via PaneText.quoteOffsetX/Y (drag-to-pan in the preview).
 const QUOTE_MARK_FONT_SIZE = 360;
 const QUOTE_MARK_LEFT = SAFE_PADDING - 30;
-const QUOTE_MARK_TOP = -40;
+const QUOTE_MARK_TOP = SAFE_PADDING - 30;
 const QUOTE_MARK_FONT_STACK = 'Georgia, "Times New Roman", serif';
+// Approximate hit-test rectangle for the visible ink of the open-quote
+// glyph, in canvas pixels relative to (QUOTE_MARK_LEFT + offsetX,
+// QUOTE_MARK_TOP + offsetY). Slightly larger than the actual ink so the
+// drag handle is forgiving to click.
+const QUOTE_MARK_HIT_WIDTH = 240;
+const QUOTE_MARK_HIT_HEIGHT = 160;
 // Upper bound on the soft cross-fade between adjacent images. The actual
 // width is user-controlled (`crossfadePx` state slider); this constant just
 // caps the slider so a 5-pane carousel can't ask for a fade wider than a
@@ -983,6 +996,8 @@ function makePaneTextFromProps(
     showGradient: true,
     showLogo: true,
     showQuoteMark: false,
+    quoteOffsetX: 0,
+    quoteOffsetY: 0,
     dirty: { eyebrow: false, title: false, description: false, authors: false },
   };
 }
@@ -998,6 +1013,8 @@ function refreshPaneFromProps(pane: PaneText, paneIndex: number, paneCount: numb
     showGradient: pane.showGradient,
     showLogo: pane.showLogo,
     showQuoteMark: pane.showQuoteMark,
+    quoteOffsetX: pane.quoteOffsetX,
+    quoteOffsetY: pane.quoteOffsetY,
     dirty: pane.dirty,
   };
 }
@@ -1099,12 +1116,18 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   const previewMasterRef = useRef<HTMLDivElement | null>(null);
   const PREVIEW_SCALE = 0.4;
 
-  // Drag-to-pan state. `dragId` going non-null triggers the window mouse
-  // listeners (mounted in a useEffect below). `dragStartRef` carries the
-  // per-drag snapshot — start mouse position, the image's offset at the
-  // moment the drag began, plus a `moved` flag we use on mouseup to decide
-  // whether the gesture was a click (→ select pane) or an actual pan.
-  const [dragId, setDragId] = useState<string | null>(null);
+  // Drag-to-pan state. Setting `dragKey` non-null mounts window mouse
+  // listeners (in a useEffect below). It's a discriminated union so the
+  // same gesture infrastructure can move either a background image or
+  // a pane's oversized quote-mark ornament. `dragStartRef` carries the
+  // per-drag snapshot — start mouse position, the target's offset at
+  // the moment the drag began, plus a `moved` flag we use on mouseup
+  // to decide whether the gesture was a click (→ select pane) or an
+  // actual pan.
+  type DragKey =
+    | { type: "image"; imageId: string }
+    | { type: "quote"; paneIndex: number };
+  const [dragKey, setDragKey] = useState<DragKey | null>(null);
   const dragStartRef = useRef<{
     startClientX: number;
     startClientY: number;
@@ -1235,31 +1258,41 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   // listeners on the window (not the interaction div) so the drag survives
   // the cursor briefly leaving the preview while panning fast.
   useEffect(() => {
-    if (!dragId) return;
+    if (!dragKey) return;
     function onMove(e: MouseEvent) {
       const s = dragStartRef.current;
-      if (!s) return;
+      if (!s || !dragKey) return;
       const dx = (e.clientX - s.startClientX) / PREVIEW_SCALE;
       const dy = (e.clientY - s.startClientY) / PREVIEW_SCALE;
-      // A small dead-zone keeps a click-without-drag from nudging the image.
+      // A small dead-zone keeps a click-without-drag from nudging the target.
       if (!s.moved && Math.abs(dx) < 3 && Math.abs(dy) < 3) return;
       s.moved = true;
-      setImages((prev) =>
-        prev.map((i) =>
-          i.id === dragId
-            ? { ...i, offsetX: s.startOffsetX + dx, offsetY: s.startOffsetY + dy }
-            : i
-        )
-      );
+      if (dragKey.type === "image") {
+        const id = dragKey.imageId;
+        setImages((prev) =>
+          prev.map((i) =>
+            i.id === id
+              ? { ...i, offsetX: s.startOffsetX + dx, offsetY: s.startOffsetY + dy }
+              : i
+          )
+        );
+      } else {
+        const idx = dragKey.paneIndex;
+        setPanes((prev) => {
+          const next = [...prev];
+          const cur = next[idx];
+          if (cur)
+            next[idx] = { ...cur, quoteOffsetX: s.startOffsetX + dx, quoteOffsetY: s.startOffsetY + dy };
+          return next;
+        });
+      }
     }
     function onUp(e: MouseEvent) {
       const s = dragStartRef.current;
-      setDragId(null);
+      setDragKey(null);
       if (s && !s.moved) {
         // No real movement → treat as a click that selects the pane under
-        // the cursor. The click would have landed on the image's slot, but
-        // the slot can span more than one pane when imageCount < paneCount,
-        // so we map x position back to a pane index directly.
+        // the cursor.
         const el = previewMasterRef.current;
         if (el) {
           const rect = el.getBoundingClientRect();
@@ -1279,19 +1312,48 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", onUp);
     };
-  }, [dragId]);
+  }, [dragKey]);
 
   function handleMasterMouseDown(e: React.MouseEvent<HTMLDivElement>) {
     const el = previewMasterRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const xCanvas = (e.clientX - rect.left) / PREVIEW_SCALE;
-    // No images: this is just a pane selector.
+    const yCanvas = (e.clientY - rect.top) / PREVIEW_SCALE;
+
+    // 1. Quote-mark hit-test first — overlays everything else when visible.
+    for (let pi = 0; pi < panes.length; pi += 1) {
+      const p = panes[pi];
+      if (!p.showQuoteMark) continue;
+      const qLeft = pi * CANVAS_SIZE + QUOTE_MARK_LEFT + p.quoteOffsetX;
+      const qTop = QUOTE_MARK_TOP + p.quoteOffsetY;
+      if (
+        xCanvas >= qLeft &&
+        xCanvas < qLeft + QUOTE_MARK_HIT_WIDTH &&
+        yCanvas >= qTop &&
+        yCanvas < qTop + QUOTE_MARK_HIT_HEIGHT
+      ) {
+        dragStartRef.current = {
+          startClientX: e.clientX,
+          startClientY: e.clientY,
+          startOffsetX: p.quoteOffsetX,
+          startOffsetY: p.quoteOffsetY,
+          moved: false,
+          paneCountSnapshot: paneCount,
+        };
+        setDragKey({ type: "quote", paneIndex: pi });
+        return;
+      }
+    }
+
+    // 2. No images: this is just a pane selector.
     if (selectedImages.length === 0) {
       const idx = Math.max(0, Math.min(paneCount - 1, Math.floor(xCanvas / CANVAS_SIZE)));
       setActivePane(idx);
       return;
     }
+
+    // 3. Otherwise, pan the image whose slot is under the cursor.
     let targetIndex = -1;
     for (let i = 0; i < selectedImages.length; i += 1) {
       const s = paneSlotForImage(i, selectedImages.length, paneCount);
@@ -1310,7 +1372,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       moved: false,
       paneCountSnapshot: paneCount,
     };
-    setDragId(target.id);
+    setDragKey({ type: "image", imageId: target.id });
   }
 
   const handleFiles = useCallback(async (files: FileList | File[]) => {
@@ -1551,21 +1613,30 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   }
 
   function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
-    const cleaned = text.replace(/\s+/g, " ").trim();
-    if (!cleaned) return [];
-    const words = cleaned.split(" ");
+    // Honor manual newlines as hard line breaks. Each paragraph is wrapped
+    // independently; an empty paragraph (a blank line in the input) becomes
+    // an empty output line so vertical spacing is preserved.
+    const paragraphs = text.replace(/\r\n?/g, "\n").split("\n");
     const lines: string[] = [];
-    let current = words[0];
-    for (let i = 1; i < words.length; i += 1) {
-      const candidate = `${current} ${words[i]}`;
-      if (ctx.measureText(candidate).width <= maxWidth) {
-        current = candidate;
-      } else {
-        lines.push(current);
-        current = words[i];
+    paragraphs.forEach((paragraph) => {
+      const cleaned = paragraph.replace(/[ \t]+/g, " ").trim();
+      if (!cleaned) {
+        lines.push("");
+        return;
       }
-    }
-    lines.push(current);
+      const words = cleaned.split(" ");
+      let current = words[0];
+      for (let i = 1; i < words.length; i += 1) {
+        const candidate = `${current} ${words[i]}`;
+        if (ctx.measureText(candidate).width <= maxWidth) {
+          current = candidate;
+        } else {
+          lines.push(current);
+          current = words[i];
+        }
+      }
+      lines.push(current);
+    });
     return lines;
   }
 
@@ -1869,7 +1940,8 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     //     gradient so it reads against the wash but below text so glyphs
     //     don't disappear behind it.
     if (panes[paneIndex]?.showQuoteMark) {
-      drawQuoteMark(ctx, template.textColor);
+      const p = panes[paneIndex];
+      drawQuoteMark(ctx, template.textColor, p.quoteOffsetX, p.quoteOffsetY);
     }
 
     // 6. Text
@@ -2181,7 +2253,12 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     });
   }
 
-  function drawQuoteMark(ctx: CanvasRenderingContext2D, color: string) {
+  function drawQuoteMark(
+    ctx: CanvasRenderingContext2D,
+    color: string,
+    offsetX: number,
+    offsetY: number
+  ) {
     ctx.save();
     ctx.fillStyle = color;
     ctx.font = `700 ${QUOTE_MARK_FONT_SIZE}px ${QUOTE_MARK_FONT_STACK}`;
@@ -2191,7 +2268,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     // bottom-aligned template that pushes text away from the corner; on
     // top-aligned templates the mark reads as an integrated drop-cap.
     ctx.globalAlpha = 0.85;
-    ctx.fillText("“", QUOTE_MARK_LEFT, QUOTE_MARK_TOP);
+    ctx.fillText("“", QUOTE_MARK_LEFT + offsetX, QUOTE_MARK_TOP + offsetY);
     ctx.restore();
   }
 
@@ -2413,16 +2490,30 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                       <span title="Below 100% lets the whole image show with the base color around it. Above 100% zooms further in. Drag inside the preview to pan.">
                         Zoom
                       </span>
-                      <Slider
-                        min={0.1}
-                        max={3}
-                        step={0.05}
-                        value={img.scale}
-                        defaultValue={1}
-                        onChange={(v) => setImageScale(img.id, v)}
-                        title="Image zoom. Double-click slider to reset."
+                      <input
+                        type="number"
+                        className="ig-thumb-zoom-input"
+                        min={10}
+                        max={300}
+                        step={5}
+                        value={Math.round(img.scale * 100)}
+                        onChange={(e) => {
+                          // Allow the user to type freely. Empty / NaN
+                          // becomes the default; out-of-range clamps.
+                          const raw = e.target.value;
+                          if (raw === "") {
+                            setImageScale(img.id, 1);
+                            return;
+                          }
+                          const pct = Number(raw);
+                          if (Number.isFinite(pct)) {
+                            const clamped = Math.max(10, Math.min(300, pct));
+                            setImageScale(img.id, clamped / 100);
+                          }
+                        }}
+                        title="Zoom percent (10–300). 100% = fill the slot. Below 100% letterboxes."
                       />
-                      <strong>{Math.round(img.scale * 100)}%</strong>
+                      <span className="ig-thumb-zoom-unit">%</span>
                       <button
                         type="button"
                         className="ig-thumb-reset"
@@ -2990,9 +3081,9 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                   style={{
                     position: "absolute",
                     inset: 0,
-                    cursor: dragId
+                    cursor: dragKey
                       ? "grabbing"
-                      : selectedImages.length > 0
+                      : selectedImages.length > 0 || panes.some((p) => p.showQuoteMark)
                       ? "grab"
                       : "pointer",
                   }}
@@ -3098,6 +3189,9 @@ function PanePreview({
       color,
       maxWidth: "100%",
       wordBreak: "break-word",
+      // Honor explicit newlines the user typed in the per-pane textareas.
+      // Collapse runs of regular spaces / tabs the way browsers normally do.
+      whiteSpace: "pre-wrap",
       marginBottom,
       textShadow: textShadowCss,
     };
@@ -3142,8 +3236,8 @@ function PanePreview({
           aria-hidden="true"
           style={{
             position: "absolute",
-            left: QUOTE_MARK_LEFT,
-            top: QUOTE_MARK_TOP,
+            left: QUOTE_MARK_LEFT + pane.quoteOffsetX,
+            top: QUOTE_MARK_TOP + pane.quoteOffsetY,
             fontFamily: QUOTE_MARK_FONT_STACK,
             fontWeight: 700,
             fontSize: QUOTE_MARK_FONT_SIZE,

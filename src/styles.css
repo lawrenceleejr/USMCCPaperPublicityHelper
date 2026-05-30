@@ -978,7 +978,7 @@ button:disabled {
 .ig-thumb-zoom {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   padding: 6px 8px 4px;
   font-size: 12px;
   color: #6e6e73;
@@ -988,16 +988,35 @@ button:disabled {
   flex-shrink: 0;
 }
 
-.ig-thumb-zoom input[type="range"] {
-  flex: 1;
-  min-width: 0;
+.ig-thumb-zoom-input {
+  width: 56px;
+  padding: 3px 6px;
+  border: 1px solid #d8d8dd;
+  border-radius: 4px;
+  background: #fff;
+  color: #1d1d1f;
+  font: inherit;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  /* Hide native spinner: it's not useful at this size. */
+  -moz-appearance: textfield;
 }
 
-.ig-thumb-zoom strong {
-  min-width: 38px;
-  text-align: right;
-  font-variant-numeric: tabular-nums;
+.ig-thumb-zoom-input::-webkit-outer-spin-button,
+.ig-thumb-zoom-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ig-thumb-zoom-input:focus {
+  outline: none;
+  border-color: #0071e3;
+}
+
+.ig-thumb-zoom-unit {
   color: #1d1d1f;
+  font-weight: 600;
 }
 
 .ig-thumb-reset {
