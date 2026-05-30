@@ -1,0 +1,935 @@
+# Afternoon Plenary
+
+Welcome to the, uh, late afternoon session where we will be keeping you awake with very engaging talks and engaging discussion.
+Uh, my name is Dr. Yoko. If I haven't met you yet, I look forward to meeting you.
+And I'll be convening this session with Leon over there. So, Leon, I will be keeping time for you.
+We start with a talk on physics education and outreach, specifically about cork nut from Kenneth Saucier and Shane Wood.
+So take it away, okay. All right. Thank you.
+Uh, my name is Shane Wood, and I'm Kansas Theory.
+And so we're here to do the Shane and Ken show. Uh, so talking about education and outreach within the Cork nut program specifically.
+Uh, so Cork Net, a National Science Foundation sponsored teacher professional development program, has been around since 1999.
+And, um, so we're now at our 26th year,
+and we operate with a network of 56 centers around the country working with physicists at each of these centers,
+along with lead teachers, uh, to support, uh,
+nationwide community of physics educators that bring 21st century physics that really connect 21st century physics,
+including particle physics, into high school classrooms, into introductory physics, uh, classrooms as well.
+So, um, so, yeah, um, what I have up here is, uh, as well, uh, we have a link to our website at npr.org.
+Um, like I said, we have, uh, 50 plus centers at each center.
+We have on the order of ten, a little bit more teachers.
+So we have probably more like 600 or so active teachers within our program currently.
+Uh, and, um, we focused over the years on experiments from, from the, from, uh, Fermilab, from the Tevatron to LHC.
+Uh, more recently, we've begun to include data from experiments like Minerva and Nova.
+And we're really excited, uh, with the future of particle physics as well, and hoping to include things along the line of Dune eventually,
+someday, with the Deep underground neutrino experiment and perhaps, uh, Muon Collider, um, related experiments as well.
+Okay. So, um. Yeah, we, uh, what we generally do is we try to bring research data from particle physics to the classroom.
+Working with teachers and developing them to help them do that.
+Working with this so they could. Physicists like you who can tell us what what it all means.
+So, uh, it's an important thing for us. And so, um, we're very excited about the muon collider.
+Obviously, it's new technology.
+It's, uh, you know, it's trying to do something really amazing and, and, uh, and, and, and it's looking forward to the future of particle physics.
+And so we'd like to, uh, do we can to partner any way we can, uh, so that, uh,
+we can hopefully excite students, excite teachers, um, about, uh, about the future particle physics.
+That's what we do. Uh, we look at it as a mutually beneficial sort of program.
+So our teachers and our students benefiting from learning about connections to their introductory physics through examples of,
+of physics that's done today. But then hopefully for, for you all, for particle physicists as well,
+to get energy and excitement out there into the general public about what is being done.
+Um, well, with experiments, uh, that you're working with as well.
+Go back for a moment. Um, yeah. So what about, uh, those of you who are closer to my age or might not notice that that's a image from Opal.
+So, uh, we did get get a, uh, leptons lighter image in there.
+And, uh, also, uh, you know, one of the things was just great.
+Too small automatically. There's there's a great special relativity lesson for students in the muon collider.
+It's like, wow, how about that to start. Go ahead.
+So. Oh, right. Yeah.
+So, um, oh, we do a lot of different things with quark net to, to bring particle physics to the schools.
+Um, we have workshops at our, at our 50 centers.
+Not all at once, thank goodness.
+Um, and where we hope we will work with the ten or so teachers and the physics and the physicist will help us or we'll help them,
+depending on how it works.
+Um, and uh, for example, last week I did one University of Cincinnati, sort of, and we did an LHCb, uh, data workshop, which was kind of fun.
+And, uh, she's gonna do that, uh, in, in Syracuse, uh, next week.
+Next week. Um, we have a data camp every year we bring about, you know, and we're anywhere between 18 and 24 high school teachers to Fermilab,
+where they're essentially just given a lot of data in CSV form and told, okay, figure it out,
+and the data leads them to Z, the WGI, um, but they don't know that beforehand.
+And then they also go learn, uh, through our, um, our data activities portfolio as well, which we'll get to later.
+Um, we have coding camps. We, uh, bring coding into the schools as well.
+And we connect that to particle physics, of course. Um, and uh, masterclasses, which are, uh, very near dear to my heart.
+Um, where, which are some of you may be I know some of you are familiar with them,
+where you bring students into a, a lab or a, uh, university for a day.
+They get to actually analyze, uh, authentic data from, uh, experiments and, uh,
+and then have a video conference with students who've done the same and moderators from places like Fermilab and CERN.
+Okay. So in addition to our events, like our workshops at centers and camps, at places like Fermilab, bringing together teachers,
+multiple centers, we have a lot of other resources that we have to support teachers and their students.
+We do have a network of cosmic ray detectors. So, uh, these are uh, uh, collection of four, usually 3 or 4 scintillator counters that, um,
+students can set up so they can actually design experiments, collect their own data, and answer questions that they come up with themselves.
+Uh, we've already mentioned the data Activities portfolio,
+a collection of over 40 activities connected to standards that are taught at the high school level and, uh, connected to data from experiments,
+uh, or data that students have collected in some cases, uh, we have some lab,
+two different kinds of labs at this point, uh, one, accessing data that students upload, um, called the cosmic Ray lab.
+We also have an e lab, a way to interface with CMS data, uh, through this same, um, same online, uh, resource.
+Uh, we have, uh, the Friday flier newsletter that announces opportunities for teachers.
+Also news from particle physics community. Uh, resources for.
+Teachers and so on. Um, we've mentioned already Ken mentioned the coding.
+Um, coding has been something we have, uh, have uh, incorporated much more recently.
+And uh, not only for our camps, but also support and resources for our teachers to be able to do coding with their students as well.
+Uh, Ken also mentioned the particle physics masterclasses, where students become quote unquote, particle physicists for the day.
+Uh, doing an analysis at a university or national lab.
+And, um, and so those are some of the resources that we have in addition to, uh, events, uh, that we, that we host.
+Here's an example of one of our activities finding the mass of the Z.
+And so, uh, this is uh, from CMS data, which you see specifically here.
+So, um,
+teachers and then so what we often do in a workshop is have teachers go through this activity as though they're students in hopes that they can.
+Then we have a discussion, usually afterward with their teacher hats on.
+So they go from their student hats, their teacher hats, where they talk about how they might include an activity like this.
+So in this case, we have several events where, uh, two muons, uh, come up, uh,
+are tracked here through the CMS detector result of the Z that decayed in the detector.
+And so by, um, knowing the momentum information, the energy information can solve for the mass of the particle that decayed into those two muons.
+And so something that fits nicely within the momentum or energy conservation unit.
+Uh, we also have a coding extension where they use Python notebooks.
+Uh, we usually operate within the collaborative Google Collaboratory, um, framework and, um, to do very similar things with a larger data set.
+And so, um, this is, as I mentioned, one example of our data activities, uh, in our data activities portfolio.
+Right. And so a little more on the masterclasses, I think I've sort of described them uh, already.
+Um, so yeah, but there's a basic idea, right?
+It should introduce students to particle physics.
+Then they analyze them, ramp them up so they can analyze data from Atlas CMS, other experiments, um, over Ivanova.
+Um, and then, uh, they have an international video conference.
+Uh, and so it's like a masterclass in the arts, but it's particle physics.
+Okay. And next slide. And, uh, so there's just a result there.
+Uh, from a CMS masterclass, you can see where students were able to map out, you know, the, the J, C Upsilon Z boson.
+And then they can see the in the that's in the di lepton realm.
+And then the bottom plot is for leptons.
+And they pick up the Z again. And uh, and uh, sort of the, the two Z peak and then maybe a possible Higgs as well.
+So okay. And, and worldwide that a day is uh, is, is, is like a masterclass, but it's much shorter.
+It can be done, uh, in the school, soup to nuts in about two hours, including a video conference with a physicist.
+Um, very a very simple, uh, uh, measurement students.
+But students use protractors to measure, uh, muons from Atlas and CMS.
+Um, so it's just one of the ways we try to get get particle physics into into the classroom.
+And it works pretty well. All right.
+I think that's our last slide. So we have just some contact information.
+So can is at the top there. I'm uh at the bottom one of our PiS uh is listed there as well Mitch Wain from uh from Notre Dame.
+Um, but at this point I think we're ready for any other any questions?
+Okay. We have a question over here. It's a question slash comments.
+Um, so I'm part of the Society of Women Engineers at and.
+Um, you're nodding your heads. I don't know if you guys have ever considered collaborating with, uh, SWE or Ship,
+which is the Hispanic Society, Nesby or CIS, um, specifically at universities, but also at conferences.
+Um, SWE specifically has a national conference every year in October,
+and you guys can attended by like having a booth and promoting your organization.
+But also while there's a career fair going on, there's also, uh, some workshops and activities, and some of them are more intricate.
+And I think that you guys could definitely promote your organization and the ideas and really get young women into particle physics.
+And I think that's what's really important from especially an engineering standpoint.
+I think that's really interesting. So wonderful. Yeah, great. Great suggestions.
+Yeah. No thank you. Thank you very much. Yeah. Um, okay I see so we'll take this one.
+And then I think you, I think this is a great program.
+Um, I have two main questions. One being is there any sort of program in place or will there be for something more at the middle school,
+elementary school level so we can catch some of those students earlier on?
+And then also, are there any sort of systems in place to connect scientists to teachers?
+If teachers want someone to come in and talk for a day, or if students have questions about like, what it's like to be a scientist,
+because I think there are lots of us that would love to go to the schools and talk to students,
+but don't yet, like, have those connections with the local school community.
+Yeah, that's that's a great question. I'll start with the second one.
+Uh, so first of all, one opportunity is through the masterclasses that Ken did most of the describing for during the video conferences,
+we often have, uh, you will usually physicists there to answer some questions about a day in the life of, for instance, a physicist and so on.
+What, what our most normal route is at our centers that are 56 centers, we have physicists who serve as, uh, mentors.
+And they say over time, this is meant to be a long term teacher professional development program,
+so that same teachers are involved for many years and they build a relationship with a mentor.
+And so a lot of times through the mentor, they're able to access not only the mentor themselves for questions,
+but also other people within the department or neighboring departments as well.
+So that's certainly one, um, one method of getting that opportunity out there.
+I know there also are tours, like virtual tours, that many of our teachers have taken their students on through, for instance, Atlas or CMS.
+Um, now I'm forgetting the first part of your question.
+So going to middle school. Oh, middle. Yeah. So our grant specifically is targeting high school physics teachers.
+That said, we do outside of that bullseye, we do sometimes offer support surrounding.
+But that's not our area of expertise. We do have some middle school teachers who are involved in the program,
+and we also have some data activities that are perfectly usable in middle school and also worldwide data day.
+I think it'd be done by middle school students as well. So it's a great point, though,
+because a lot of students choose whether or not they are a quote unquote science person or math person by the time they're about in sixth grade.
+And so I understand this point. Well taken. So thank you.
+Yeah. And you if you contact us, you know, for example, you want to say, well, I'd like to I don't know how to connect with this.
+Contact us and we'll see if we can help you connect with the mentor and do more.
+Okay, one more question. Um, yeah. Thanks for this great presentation.
+I was wondering from the standpoint of the muon collider.
+It sounds like a lot of your activities work with experiments that already have a lot of data.
+So you can, you know, actually work with real data with with the students, which is awesome.
+But do you have any ideas of how you would get the students excited about something that's at the R&D phase,
+or how we could how we could get more students excited about the muon collider?
+That's actually kind of new for us. So, um, you know, we the previous way we did it was when the LHC was being built.
+And we would like to give people the LHC data, but it was you know,
+that was sort of not available was we use cosmic ray detectors to let people know about muons, which is great.
+Um, so I think but I think, I mean, I part of the reason we're here is to learn what,
+what you're doing and then think about, okay, well, maybe how can we connect?
+Um, so I think we're we're trying we're trying to figure that out ourselves.
+But I look ahead, I think I think one example would be like, so doing a data set where we're looking at muons from a Z decay,
+looking at data from a cosmic ray, muon detectors, our cosmic watches,
+and then connecting through maybe a talk or, uh, what we call tutorials or teachers.
+And then there's or students can learn about proposals, uh,
+for actually colliding muons at this point could be another way to bring that into our workshops without actual data yet.
+Um, but uh, as another idea as well.
+But yes, in addition to the fact that we're all ears and we're learning, and this is one reason why we're here, is to get ideas from you all as well.
+And there are a lot of simulations going on right now to make things happen.
+And, you know, maybe we can learn from that as well and then say, well, maybe we can give students ways to tap into physicists use simulations.
+We should be using simulations, too. Awesome.
+Thank you. So we have one last question from Kari.
+And then, um, I encourage everybody to chat with these two during the day.
+So. Hi. Um, I just want to say really quickly, uh, back in 2010, uh, I did this program, the day program, uh, when I was a sophomore in high school.
+And I remember someone very distinctly saying, we're hoping we're going to find the Higgs boson in the next five years.
+And then they found it was the next year. And here I am in physics 15 years later.
+So I got a wonderful. All right. Okay. Wonderful.
+Thank you so much. Thank you very much. Oh. So thank you everyone for applauding me, I guess.
+Yeah. Uh, yes, I think I think the quick thing that I just want to say about why I think this
+is a great opportunity with me on colliders is that this is a very long,
+primarily collaboration. And the thing that we can impress upon new students is that this is not something that's in process that they can join.
+This is something that they could help create. So if we could help develop some messaging to show students that science is alive,
+and this is a part of a process that they could actively contribute to,
+I think that would be an extremely you just you just answered the last question better than I could.
+Yeah, yeah. Perfect, perfect. All right. Thank you very much.
+We really appreciate the opportunity to be here. So thank you very much.
+Thank you. Okay.
+Uh, so next we have. I also might want to plug a.
+Kylie and I were talking about what a great opportunity this is earlier.
+She's now in charge of communications and also for the for.
+Kylie and I were chatting about what an opportunity this is in terms of communications,
+and also for those of you who are like early faculty looking for projects for broader impacts,
+I think developing coursework like muon collider projects for quark net could be really exciting.
+Just a little plug. So now we're going to shift gears and hear from Simone Pagan Grasso about an overview of performance studies with Maya and music.
+Perfect. Thank you very much. Um, yes.
+Okay. You can hear me. Fine. Perfect.
+Um, yeah, I will try to to give you a short overview about the status of the tattoo studies for the muon Collider.
+Um, I really want to start to give a huge thanks to a really large number of people to send me my input,
+ask answer questions they had about their inputs.
+There is a lot of, uh, work going on. So also, and apologies, I will not be able to make, um, justice to all the work that is ongoing,
+but I wanted to at least put in the slides a few key highlights and try,
+uh, as I speak, to give you a few key messages that I think are important thinking about going ahead.
+And the first message is exactly that.
+The detector is sort of our interface between the machine, this collisions and the physics we want to get out of it.
+And uh, especially for a concept like Commun Collider, which at these energies is still developing,
+there is actually the need of a really tight loop between the detector design,
+the performance evaluation, and then back to what physics can we achieve with that or what,
+uh, the physics that we want to do demands in terms of detector.
+And similarly on the accelerator design.
+So this, this, this need of a tight loop is the reason why we have, uh, a beautiful collaboration which includes accelerator physicists,
+theoretical physicist, experimentalists all together is because we want this, this loop to become, to keep tight.
+And so I will focus, of course, on the detector design and performance and of course,
+underline that there is a set of software tools that really enable us,
+uh, to basically evaluate detector design and understanding what type of performance we would expect.
+So I will do just a brief recap and introduction,
+but beam introspect on the detector layout in the remainder of the talk and give you some recent highlights.
+As I said will not be comprehensive, but will try also to give you a quick message that looking ahead,
+we are really at the level that we want to start thinking about technology choices for such a detector and what are their implications.
+And then that will hopefully then lead to, um, a refined set of requirements specification.
+I wanted to say a few more words on that, but I move this slide in back up, I hope, at least in this version.
+Um, okay, so let me just start. Uh, we've seen this.
+I will go brief images. Background is one of the main challenges for detector for reconstructing the events in Muon Collider.
+There are two main sources that turn out to be the most dominant.
+One is muon decay, which essentially we try to produce high energy electron that we try to shield, which we then they trade off.
+We trade off for, uh,
+a large multiplicity of low energy particles that pass through the shielding structures and then a set of low energy electron produced,
+um, by photo photon, if you want interaction, um, in, uh, it's included in food production near the interaction points.
+So these are produced uh, these are from beam.
+Beam effect are produced near the interaction points, but they are very soft, uh, in energy spectrum.
+And this source is heavily mitigated basically by the strength of the detector, uh, solenoid, the magnetic field from the solenoid.
+And in fact, this plot shows basically the multiplicity that we expect in the innermost layers of the detector,
+of the tracking detector as a function of this solenoid strength.
+And you see that with the chosen five Tesla, uh, magnetic field, the multiplicity is actually, um, uh, significantly reduce.
+And I can tell you much lower than the beam in the spectrum from muon, uh, decays.
+Okay. Um, and so in fact, the reason for that is that, uh, we have a pretty massive shielding that tries to, uh,
+as I said, trade off this high energy electron fermion decays to a large multiplicity of low energy particle.
+And how you do that, how what shape and what composition of these shielding you use is actually a slightly non-trivial.
+It's quite a non-trivial problem with there was quite some work that has been done in preparation to do the strategy and in fact,
+and is kind of an interplay of the shape of the shielding, but also the really the accelerator design around the interaction region.
+And here, without going into any detail, just looking in the cartoon,
+you can see basically an evolution of the various magnets around interaction point on the right in the tentative design.
+How it evolved basically in the last couple of years to date, uh,
+to the configuration we chose for the European strategy submission and for the latest iteration.
+And in fact, even the shape of the nozzle changed quite a bit.
+Um, without just giving you some highlights, this neutron absorbers.
+So this green part tries to absorb neutron just before we basically exit and enter the detector.
+This was moved slightly inwards to leave a little bit of tungsten.
+This blue area on the outside the overall size of the nozzle has been reduced actually quite a lot.
+Um, then we traded off like a pure tungsten to a tungsten alloy to make it a bit more realistic.
+And the tip of the nozzle was also have the optimizer made it a little bit more realistic and also a bit more optimal?
+Um, these are very heavily, uh, computationally heavy simulations, just to give you an idea.
+It takes about a month to simulate, uh, 10% of a bunch crossing in a dedicated cluster.
+So it just this gives you an idea of sort of how intensive these simulation are.
+We have some workarounds to avoid, to make sure that we can run several iterations and try to optimize and then run a larger statistics one.
+But these are things that sort of are significantly, uh, CPU intensive.
+Okay. So, um,
+the key point from this simulation that we get is that the key takeaway is just that the beam in the spectrum tends to have a set of soft photons and,
+uh, neutrons as the dominant composition of particle survive the shielding.
+Um, we have a very long we have a time distribution that slightly peaks around the interaction point, but it actually has a very, very long tail.
+So in this, in this unit this is 1020 nanoseconds. But this stays extends for much, much longer.
+Um, it's um, um, in the main uh, the muon decay, that sort of, uh, creates the majority of the particle.
+This is where the shielding actually, uh, are coming from, relatively far from the interaction point.
+Um, because the ones that are created very close to the interaction point are trapped basically by the magnetic field of the detector.
+Um, and there is not a dramatic energy dependance, uh, of the collider energy dependance.
+So, in fact, in the plot, if you look very carefully, there are both the ten TV and three TV, um, Collider, uh, options.
+There are some significant differences that we need to take into account, but is not a dramatic difference.
+And finally, we use this simulation also to evaluate the type of radiation environment that we have in the detector.
+So we create maps like this one that allows us to figure out if there are hotspots where we expect more, uh, radiation to be, um,
+uh, to basically concentrate the so we try to put the detector away from this region or optimize our shielding to lower this part.
+But the bottom line, the radiation hardness will be at the level of volume velocity or even, uh, less severe than that.
+So, um, in in building constants, we've seen this have been mentioned already.
+We have two detector concepts, uh, music and head.
+So both have been optimized in dimension for attentive muon Collider.
+They have a few key differences. So yeah a few key differences.
+One of them being the placement of the solenoid.
+Uh. The presence of the solenoid, which can be either before the electromagnetic calorimeter or the right after,
+and the tracking layout is also slightly different, as well as the choice of the electromagnetic technology.
+And I'll show you some implication of this.
+But it's really good thing to play with different choices, to get an idea of what is important and what are the aspects that really make a difference.
+So before going to that, as I mentioned, there is a large software suite that sort of supports the studies,
+and this is really a nontrivial effort that goes from the generation of event simulation overlay of the beam induced
+background digitization or reconstruction to be able to do really a realistic simulation of these type of events.
+Um, a lot of this software, um, is hosted on GitHub and there is also documentation include tutorial.
+And recently I wanted to mention that there was a task force that we run, uh, in the context of the CC to assess short,
+medium and long term evolution and priorities of the software, which here you can see Federico, when he gave a report for that.
+And uh, this um, it contains sort of a set of recommendation and high priority items.
+And the task will look at both the integration with, uh, um, future, uh,
+basically with the so-called key for app framework for integrating basically most of these pipelines,
+but also about best practices for software development, software distribution, for simulation and documentation.
+And this is just a picture of the task force members.
+And I just two highlights to to show you that uh been recently updates.
+One is the migration to what is called key for app, which is a framework that is being increasingly used for future collider studies.
+Um, we have several things from the event data model, the simulation part in daily construction software.
+And day number four is essentially the infrastructure to build the release that needs to be migrated.
+This is sort of the intermediate one is today situation as it was recently and as it is documented in the latest tutorial.
+And then the rightmost is the part where we are now where we actually made, uh, pretty good progress on all of these aspects, but we need still,
+uh, quite some help in, in migration or some of the remaining algorithms, validation of this updated workflow update tutorial and so on.
+And for new experts, we really rely on a handful of experts here and then on the right.
+I also wanted to highlight we have a nice way now to automatically build releases so that we can have a software container,
+can be distributed and can be generated with less human intervention.
+Okay. With that, let me let me jump into.
+A few highlights are divided by subnet that the system starting from the tracker.
+I mentioned that the two detector concepts had a slightly different layout.
+So this plot is not the best, but it is a bit quickly.
+So it shows you a little bit how the two layouts compare.
+In general, it's all a silicone based tracker with certain macro pixel strips in the outer layers,
+which are actually very similar, and you see a bit of difference in the placement of the layers,
+and especially in the innermost, um, pixel based detector,
+where the length of the barrel and placement of the end couple of years is a little bit different.
+But in general, the overall characteristics are it's a relatively similar.
+And the this is one of the most, uh, sensitive detector to be in use.
+Background.
+Um, so really there is a lot, uh, that this sort of, uh, can be done and needs to be done to mitigate the impact of beam in this background.
+And one of the key component is that the timing, um, and uh, and essentially, yeah, timing information, directional information and energy deposition,
+they all contribute to help separating, um, the product and the correlation from the beam induced background.
+So the so called for 5G tracking becomes really a requirement for a muon collider.
+And uh, and and based on that there are center two two level of studies I wanted to highlight.
+One is a set of low level studies where we look really at how beam induced background is formed into our detector.
+So how essentially what these data, the type of, um, how much signal we get from the detector,
+uh, and uh, and how is to discriminate, um, beam induced background from, uh,
+from the moon muon collisions in the in the interaction point here, two highlights are the use of,
+of, uh, specialized physics leads to to predict battery occupancy in the innermost layer.
+So this is kind of a sort of, uh, and the number of energy positions that we have as a function of the tracking detector layer with and without,
+within two different timing windows, um, with different colors.
+And so trying to do, to use these high precision, um, um, physics least allow us to bet to be better in predicting, um, the multiplicity.
+And on the right you can see basically when we use a more realistic digitization and emulation of the front end electronics
+will allow us to essentially use properties of how the signal is formed within the detector to try to reject these.
+At the same time, we work a lot on the track reconstruction algorithms.
+And um, while these we have proven that we can reconstruct um charged particle in this environment,
+the setup is at best I would say a little bit fragile in the sense that it's a lot of compromise between CPU time and performance.
+But there is a lot of work going on between optimizing the so-called track seeding.
+So when we, uh, identify a few key points, a few key layers from which we generate tracks, trajectory candidates,
+uh, to parallelize track reconstruction, there are the first results actually using music that they do,
+um, parallel track reconstruction, uh, dedicate the set up for specialized track reconstruction for non from particle,
+for instance automated optimization of track parameters and so on.
+So here there is plenty of opportunity for a smaller big projects.
+And I think is, is is a piece that is evolving very fast.
+Um similar for calorie meters. I want to just to mention that one of the key challenges in the electromagnetic calorimeter,
+this is a classic example of how a photon looks like in the electromagnetic magnetic calorimeter by itself.
+And when beam in the background is overlaid. So there are several key requirements.
+I'm not going to read them all, but that have been identified for having, uh,
+an electromagnetic calorimeter that can distinguish and work in this environment.
+And here there are a couple of different choices that were made by my own music to investigate
+different technologies and how either homogeneous or sampling calorimeter can be used,
+uh, with very different segmentation and very different technologies.
+But both they can isolate and and reconstruct these type of, um, electromagnetic objects.
+And so here are just a couple of highlights of results.
+One again is the interplay between low level simulation about how the signal is forming the detector and how is digitized and,
+and uh, in uh handled by the electronics. There was quite a lot of work done by music to emulate that.
+And uh, in heavy realistic timing distribution taking into account signal that arrives earlier and later and
+how it will masked masked interact the signal you're interested in as well as using more detailed,
+uh, Jennifer physics leads that basically show how the decomposition of beam induced background from the first three years.
+So they contributed to the last. Years of recovery, most changes.
+And how much is the relative importance of different types of particles?
+Um, so these are really informing about the technology that we choose.
+And if we need to make choices or changes to the layout of, of our detector and then similarity, uh,
+once you have that understanding, you can essentially optimize how well you, you isolate the signal in your calorimeter.
+So what we call basically optimizing the timing and energy selection to decide when a signal is selected.
+And this all feeds into then reconstructing a physics object like a photon.
+Here are two example of photon energy reconstruction from a photon energy resolution for these two type of detectors.
+Um, as a function of energy. And the two ranges are a little bit different.
+So I, I showed a little bit the comparison with the draw line.
+So you can see an ingenious calorimeter with a tends to achieve a slightly better energy resolution.
+Uh, but uh, at the same time this is far from, uh, fully optimized here.
+Okay, I will say just a word on a Johnny Calorimeter to say that.
+Mhm. There is also there a lot of work going on in terms of, um, interaction between low level simulation and reconstruction.
+Um, and uh, and at the same time is the, there is a basically, um, a nice, uh,
+project going on to try to prototype some of this solution and compare data from test beam to what we expect in our simulations.
+Um, here are just some example, uh, um,
+example plot of risk of expected resolution for some specific technology and the idea they
+have for this project to compare different technologies systematically and choose what,
+what works best in this environment.
+Um, um, we also had actually today in the parallel session, a very nice talk, uh, on particle flow reconstruction.
+So, um, this essentially is the algorithm that puts together information from various detector to identify high level objects like charts and,
+uh, flavor, uh, flavor digits and so on, but also can identify electrons, photons and differentiate them.
+There are several studies going on is a very complex set of algorithms from optimizing, uh, the various pieces of these algorithms to construct,
+to try to reconstruct it from scratch, uh, taking some pieces of it and trying to optimize each of them.
+We have results for all of them. So here, an example of jet reconstruction from different flavor jets that have been done with the music detector.
+And here with the my detector, an example of a single charge pion.
+And try to study in detail what type of inefficiency each of these algorithms introduces and how we can also optimize the reconstruction speed.
+Um, similarly, um, here I just wanted to flesh that we are starting to look into higher level objects from tower reconstruction,
+which is really, really nice.
+These are the first result of being able to reconstruct that runway's flavor, tagging us, becoming more and more sophisticated.
+And we are just starting to explore, uh, jet substructure, which, uh,
+we need quite some work, but we are starting now to look into that and to figure it out.
+If day, uh, choice of granularity of the calorimeter is good enough for the physics we want to do.
+Perfect. My, uh, last topic I wanted to touch on is DQN offline.
+Mostly because we will have to ship out this data, uh, from the detector to be able to analyze it.
+And we started having discussion about what does that mean, uh, for our detector electronics and what are the requirements for our computing model.
+So that is this is just starting. But I wanted to highlight a couple of things.
+On the right you see a very nice plot. This shows essentially a function of the collider center of mass energy,
+the rate of some physics processes of interest and how they compare to the collision crossing rate.
+And then here you see a type of streaming like architecture where data frame from ten is sent out,
+and we can store basically a subset of the data or a random subset of all the data in the detector.
+Or, or maybe processes store only the output of that data.
+And for the first time, for the European strategy,
+we started to compute the amount of storage CPU time that we expect, uh, immune collider attached to the need we need.
+And, uh, compare that to the expectations. Um, even though projecting that far in advance is always a little bit tricky.
+But the bottom line is that we don't see any, uh, specific showstopper.
+We have multiple ways that we think we can handle that. Perfect.
+There is much more I will not cover.
+I thought I hoped I'd move this slide in back up, so I will not say much about it, rather than there is much, much more going on that.
+Didn't have much update recently,
+but I hope next year we will hear about each of these topic because they really need a a significant amount of work and they are super interesting.
+And similarly, I hope by next year we'll have more people volunteering to maintain our fast simulation,
+which is used, uh, by our theorist colleague to create all these very nice projections.
+And we have really, really short two people that try to help us maintain and match our full simulation.
+We start with the first simulation, Delphi's cards. Great.
+This brings me to the conclusion.
+Um, overall, I think there was quite there is quite some tremendous progress on various aspects of simulating realistic muon collider detector,
+and it's exciting to see a lot of new people coming up with ideas and bringing their own expertise into this project overall,
+to design a detector that works well in this unique environment.
+I think we went through a few phases. We firstly wanted to understand if this is at all possible, and I think we kind of proved that.
+We then wanted to identify what is a set of baseline technology that could be developed to lead us there, and we are getting there, I would say.
+And now we need to explore different ideas and try to really move in a situation
+where we can prove and do sort of a cross-talk between low level simulation.
+See how that connects to the physics, but also, um, hardware R&D that basically connects with these studies.
+And this is sort of a pretty good connection with the talk that, uh, that will come next, uh, right after me.
+So thank you, everybody, for listening. Any questions?
+So we have an enthusiastic question here. Hello.
+Uh, do you have a plot of sort? Do we know how well we will distinguish between a hydraulically, the cane W and Z?
+Uh, you know, a combination. There is a plot. Yeah, there is a plot which I haven't put because it's not, um, hasn't been updated to recently that we.
+It stayed in the European strategy submission. And so this is basically using the full simulation.
+There is a plot showing how you can distinguish. But is it like in the LHC from like boosted objects or.
+Well, let's say this is sort of, uh, what I would call, um.
+There has been a medium amount of work. What they mean is like LSC is we are talking about tens of people trying to get that job done.
+Here we are talking about one person doing an incredible amount of work and that's what comes out.
+Okay. So if you ask me is that your definitive that you are you detector limited by how well you're doing that.
+That's separation right now I'm not sure. I think we are still algorithm limited probably.
+Um, but is one of the things we should look into to understand if there is anything when will be detector limited,
+if that separation is is good enough or not.
+And, uh, this was faster than I thought because I wanted to show, unfortunately, a backup slide.
+But it's okay. It's sitting on a where is this a five?
+If you go on, um, let's say in the, in the, in our requirements there is about, um, the separation between, uh, w c, etc.
+And it's in a qualitative way, just because we are, I think, scratching a b the surface of understanding how well we can do it.
+Other questions. Hi.
+Um, uh, thank you for the talk. I, as someone who's quite unfamiliar with kind of the history behind my music,
+I just want to quickly ask why, um, was, like, the design selection between those two.
+Um, decided, I guess. Why was the choice, uh, changing?
+Exploration. Exploratory. Literally exploratory.
+I mean, the reason there are two is that we have enough people to make two.
+Um. Okay. Thank you. We could have three for, uh, and variations of these two.
+Uh, I it's really limited by person power. So we wanted to explore some different ideas and so on, and that that's what happens.
+Um, I think the more ideas we have, etc., one can use existing the and try to change them, create a new one for different.
+It depends really on person power only. Uh.
+Hi. Um, I was just thinking about sort of the differences between baseline and aspirational.
+Yeah. Yeah. And what sort of feedback loop look like between the experimental side and the theory side?
+Because I imagine the difference here is primarily what the theories can give you on some level.
+Yeah. So this is a great question.
+And that's why I sort of I have this love hate relationship with requirements in the sense that they're really important to drive into.
+But sometimes people get fixated in the wrong way.
+So, um, we try to come up with these with a mix between what we think is achievable and what we think the physics we need to get to, um, needs.
+So if I this table was put together by essentially both experimental and theory people together.
+Um, as I said, moving ahead, I think we should try to go away from this type of table and move to sort of, um,
+more sort of distinguish what are what we call strict requirements, meaning like if you don't meet it, you will not it will not work.
+Um, or semi strict like production hardness or soft requirement,
+which is say at that point you have sort of if you want a derivative of the requirement versus of physics.
+So the method I do in that, that is how much I gain in that physics.
+And so that gives us an idea which are the um, the slopes that sort of give us the most gain if we invest in more R&D in that direction.
+Um, and so that's what I hope we can, uh, move forward, move towards in the future.
+Um, so I still see them as a lot moving targets, I hope.
+Okay, let's think Simone again. And, uh. I know there are other burning questions, but I encourage you to speak, uh, to everyone at the dinner.
+So next we have a talk about instrumentation R&D directions from, uh, Nadia Pastrana.
+Can you hear me? No.
+Okay. Yeah. Here. Okay.
+So now I have a difficult task. But thanks to Simon, I to introduce why we need to develop a new technology for our detector.
+Uh, and we concentrate on the attentive, uh, challenge, because this is, uh, where we want to improve our detector.
+So you already heard that that, uh, we don't do any physics if we don't, uh, improve and we don't, uh, really,
+uh, develop, uh, the technology that enables us to to measure as much as possible of our final state particle.
+And, um, we have to, to proceed and to reach the, the real,
+real ability of the technology and even the feasibility of the of the technologies
+to be able to really product the sensor or the electronics and even the readout,
+um, of our detector.
+So this is a procedure that requires, uh, resources, uh, both, uh, the people and, uh, and we need to train the people to do that.
+And, uh, we do these, uh, technology R&D since, uh, since the beginning of our story and, uh,
+together with the, with the train, the people, we have a to even to have the infrastructure,
+the resources to plan, but even to work together with the industry and, uh,
+all these processes, uh, both on the accelerator and the detector size is mandatory.
+And, uh, it won't be possible to get any results for any future projects if we don't proceed with, uh, with R&D on technologies.
+And this I took from, uh, the last year talk because I think is, uh, really showing on a new technology development in the 90s.
+How many years you, you require to get it to work in, you know, big experiment, such as after I saw this,
+the 3D sensors were developed in the 1990 and they were for the first time, uh,
+um, implemented in one of the layers of, uh, pixel of Atlas in the, in 2014.
+So almost 14 years. And then uh, recently they are kept, uh,
+as one of the technology for the upgrade for a Lumi and even consider the for the LHCb upgrade for, uh, the run five over LHC.
+Beep. So this is, um, an example of not only the technology,
+but even the topology of the design of the detector is quite crucial, requires many, many years.
+So you start from a design and as you show the throw and you see from, uh, Simon Stock,
+you have to improve at different stages to optimize, uh, uh, the results and to optimize the acceptance of the detector.
+And, uh, taking part of the information we discussed at the open symposium of the European strategy, uh, last month, last month.
+Um, this is, uh, an idea of how many years you you need to design a large detector, such as the upgrade of Atlas or CMS for LHC.
+So 20, 30 years and, uh, for example, for the muon Collider,
+it's clear that we can exploit whatever it was developed in thermal technology R&D but even improve the from this PDA.
+So implementing this technology in a larger detector and the next phase of
+experiment that are really close and are already designed in tier D for upgrades.
+Uh, at Alesund, LCB for Lumi, uh Bel two in uh in Japan, and uh, um, the new Apic detector for uh, the electron ion collider in Brookhaven.
+So all these um, detector are very close to be built if a final approved and, uh, they are sort of, uh, setting our paths for muon collider,
+we saw in many of the presentation that the muon collider has unique challenges due to the beam induced break around the.
+And, uh, it's very crucial how we design, uh, the machine detector interface and that we keep under control our,
+um, whatever we produce by the beam or in the collision.
+That is not due to to the events produced in the human collision.
+And we have these two detectors, Music and Maya, that were already described.
+And I want to to take them some of the, uh, recalling some of the people who presented the parallel before.
+But even what, uh, Donatella showed in her talk on the MDI that the one,
+one thing that is crucial is, uh, is the designer of the lattice of the machine attentive.
+That is new. And the. This design has implications on the level of background on the detector and the implication of
+the how much we can play with our technology to reduce the background coming from the beam.
+There is this, uh, this, uh, a plus minus pair, incoherent plus or minus pair production that,
+uh, we can take under control somehow, uh, changing our, our detector magnet.
+And so the detector magnet, uh, design plays a role because it's integrated even in our shielding,
+uh, to to mitigate the beam induced background produced by the beams.
+And then there is the halo, uh, from the beam. That is not, um, worrying as so much about, uh, it tends to be taken into account and uh, is,
+uh, let's say higher level of, uh, um, of, uh, of background, we have to keep it under control.
+And we just discussed that in the discussion from, uh, from previous talk.
+What are our requirements on the detector? We set the requirements that, uh, um, are linked to,
+even to the maximum dose that we simulated that are expecting on our, uh, vertex in our detector and calorimeter.
+We know that those those is both in ionizing particle and in, uh, one neutron equivalent are reasonable, um, for the technology we know so far,
+even though we have to, to, um, face the distribution of the background that are not the one that we saw in,
+uh, in LHC, or we are expecting that in, uh, in AI Lumi.
+But, uh, this implies that, uh, we, we should develop detector for sure with the 4D.
+So with the, um, most position and timing information in the tracking and the,
+in the calorimeter, we must start the even the timing to the energy and position measurement.
+And then, uh, there is a long discussion on, uh, whatever gas detector we are using and whatever uh,
+we construct on the sustainability and the this for sure affects the,
+the, the, the Gaussian with the fluoro and then, uh,
+even our electronics and the dissipation power on our electronics must be kept under control like we are.
+That even our trigger, if we want that, uh, it to be trigger less, we have to be smart enough to have intelligence on detector and to use,
+at best, even artificial intelligence in our reconstruction tools.
+So, uh, I will go briefly on different ideas.
+And the most of them of the material I am using is coming from the discussion at the open symposium of the European Strategy here,
+for example, on the very thing I am showing comparison between different detector.
+Uh, Alyssa, the future Alyssa Epica at I see and the FCC and all these detector are using for the Veritas CMOs technology.
+Uh, because they are light detectors and because, uh, the electronics is integrated with the sensors and the design of the mechanics, said the, um,
+the integration of the cooling on detector implies, uh, studies, for example,
+here, a complicated study done for one of the, um, experiment for FCC idea.
+And of course, it plays a role, uh, the industry and the material that I use, this is one of my all the slides to show that, uh,
+for, uh, what we consider a, uh, a possible, uh, uh, design of our tracker, uh, with the segmentation in pixel, in macro, pixel.
+And I don't think we will use micro strips, but, um, we can we have promising technology that we can develop in synergies with other project CMOs.
+I already mentioned Elgato, the low gain avalanche detector.
+And then I read the composition and there are studies ongoing, uh, for FCC to prove that we can have, uh,
+uh, the same source standing, uh, up to ten to the 1610 to the 17 neutron equivalent, uh, uh, fluxes.
+And, uh, on the algorithm, I want to show that, uh, from the present design of the upgrade of by Lumi,
+where our algorithm is using both online Atlas and CMS for the timing, uh,
+detector, uh, where the resolution timing is of the order of 30 picoseconds.
+One is already thinking of developing, uh, in, uh, in every future project, uh, um, that are planned the these, uh, evolution of, uh.
+Guard the wear somehow, uh, one keeps under control.
+The charges. Segmented batter, the the sensor.
+But even these are existing silicone detector that, uh, um, allow to go to a feel factor close to 100%.
+So really, to optimize the area of the detector without losing information in the cracks.
+And there are studies to prove that irradiated detectors can stand the maximum, uh, um, those of neutrons.
+So these are all got studies, very recent, where if we go to, to thin, uh, uh, sensors, uh,
+20 microns in, uh, thicker El God, one can reach of the order of 12 picosecond time resolution.
+This is, uh, another, uh, measurement with 30 micro microsecond, the reaching 18 picosecond.
+So these studies are ongoing, and they keep, uh, comparing, uh, different, um, thickness, different radiation levels to show that we can go for sure.
+Uh, at the our, uh, um, our, uh, requirements for Linear Collider and probably to the FCC.
+And then I talked to at the beginning about the 3D technology that there is a, um, a project for, uh, the upgrade of HCB that, uh,
+use this for the very low the detector, very close to the collision point, the 3D technologies with the a new electronics at 28 nanometer.
+And this is um, again, something that is going on and can offer a radiation resistance up to,
+uh, ten to the 16, a neutron equivalent per square centimeter.
+So, uh, this is to show that, uh, in the, in the tracking, uh, um, environment, there are a lot of studies ongoing and more for sure,
+but those are the main ones that are already thinking to be applied for the, for, for new, um, for new projects and for further calorimetry.
+You heard the what the what was presented by Simone.
+We want a 4D calorimeter. We want the night granularity.
+And we want even a segmentation because our background is uniform but comes, uh, from not from the collision point.
+And so, um, there are different ways of constructing color emitters.
+And there are calorimeter R&D that were done, um, dedicated for the muon collider.
+We are the the talks before. There are two, um, two ways to to design of the experiment that attentive muon collider.
+One is Maya that has the solenoid inside the two color emitters with some implications.
+And uh, we, we collect a silicon thousand calorimeter and have a traditional idle scintillator calorimeter and music that try to,
+uh, exploit this new designed, um,
+and that you design and that's the solenoid in between the vehicle and the skull and even consider the,
+um, the material of color as the return yoke of the solenoid.
+And this has implication in the design even on the other, um, calorimeter.
+And you probably heard the this is even from, uh, from uh, few years that we are experimenting these, uh,
+quasi calorimeter segmented in longitudinal, uh, in a, with uh, glasses that are producing Cherenkov light or read by silicon PM.
+So we want to stand the, our, uh, spray of background coming from neutron and uh, photons.
+So uh, or over 1000 particles square centimeter on the surface.
+Uh, uh, a huge amount of energy deposit per event and even radiation are in this, um, fluids of neutrons ten to the 14.
+So, uh, the, the detector, the prototypes of this detector were measured not only on test beams,
+but even, uh, a radiation test were done demonstrating bolster the crystalline.
+The silicon can stand the the the radiation, um, those that they would receive.
+And there are plans to have, uh, a full final prototype with two molar radius, uh, with five layers,
+seven by seven crystal, um, to be to be ready by next year, to be put on test beams.
+And simulation shows that, uh, we can get an energy resolution of 7.5% over square root of B, and this is, uh, is the aim this year.
+There will be, um, at this beam in September and uh, with.
+For the wrapup of the crystal. You see the prototype of small crystal four centimeters longer and the beam, the beam set up.
+So the other option that was developed within the muon collider was, uh, to,
+to have a natural calorimeter, uh, with the gas detection, uh, to optimize and maximize the rate,
+what we can get on the, on the other, um, calorimeter and is a sampling calorimeter,
+different technologies for the micropython that detector were used.
+And, um, there were different beams to evaluate the performance of a different PGD.
+It's not possible to have a full, um, covered in the full closure, uh, calorimeter, but uh, all the details.
+So the different technology we studied and the first simulation having the other um,
+calorimeter material as the yoke of the magnet are ongoing, attentive.
+So this is, uh, one, one work ongoing, the mutual system.
+I already said that there are different technologies we even exploit to some special ones, uh, to improve the timing that I'm not describing here.
+And, uh, the sustainability, since the large volume, the large area is quite important.
+And several studies, uh, are ongoing on the gases and the even on the, uh, on the technologies.
+Uh, I there is um, there is a lot of attention to the mechanics and the cooling and, um,
+and the studies to implement and, um, or all the structure and infrastructure of the detector.
+And then, uh, as was already mentioned by Simona, uh, not only the electronics, uh,
+needs improvement because a lot of, uh, readout, frontend or selection of data on detector is, uh, is aiming.
+So a lot of FPGA and, and studies to reduce data on detector.
+But then even uh is it is for the muon collider possible trigger less um experiment.
+And so these these studies are very important and they are ongoing even for other uh, for future detector future project.
+So um, I, you saw some, some numbers the are these something uh, from the past European strategy.
+We were required to prepare a roadmap for the detector R&D.
+And this roadmap, uh, was implemented the starting in 2022.
+So international collaboration were formed, the, uh, starting uh, next last year and this year on different kind of technology.
+So gases detector, liquid detector, solid state detector, photon ID, even quantum technology calorimetry and then cross uh, um,
+cut off um, technologies like electronics or integration and mechanics and uh, those, those collaboration are formed, uh, started to work.
+One can contribute at different level. And uh, the same that happened in Europe, uh, with the US collaboration of course,
+is happening after there's no mass because uh, these uh, are RDC um collaboration were formed as a,
+as the recommendation of the mass came to proceed with the R&D integrating detector technology because is, uh, crucial to for any future project.
+And the numbers are a little bit different.
+There is more focus may be on trigger and dark, but, uh, you see that in fast timing is, uh, um, and a chapter, uh, per se.
+But, uh, you see that the most important things are there, and then, uh, there is there will be tomorrow a talk dedicated to the blue sky.
+Because all the effort, uh, yes, ups all the effort is dedicated to the prototyping for the future project.
+But it's very important that the new ideas come out and grow if they have to grow.
+So, uh, what is very important is that the community works on that.
+So, um, this is how the, the level of, um, of, uh, reliability and feasibility is classified.
+And so I go to my two my final remarks that, um, what is very important is that, uh, the community trains the new people,
+and we are really aware of that, uh, is so fundamental to get results, to be able to to go forward and to see new.
+Technologies and even the two to develop reliable and infeasible technologies.
+And so no physics without instrumentation.
+And then, of course, the synergies are very important.
+Um, even the synergy with the industry and with the new technology.
+So there will be dedicated, uh, talks uh, tomorrow on the timing, on, uh, and then after me,
+uh, on the, on the synergies with the accelerator and on the blue sky and, um,
+I really I put the some of the references of the, of the, um,
+of the conference I was taking material from and colleagues and then is, uh, to thank you for the attention.
+Questions.
+Uh, said it's, uh, it's maybe just, uh, a comment, but also, uh, Nadia, I was wondering if you could say a few words also on the you mentioned MDI,
+and I think MDI is certainly very unique and challenging, and Muon Collider keeps many of us kind of awake.
+Uh, because of the important challenge there. Was wondering if you could say a few words about the, um,
+difficulties with mechanical integration of the MDI with the rest of a detector, including the need to access the detector?
+Of course, and I understand, of course, this is not a solved challenge, but if you could say a few words about,
+um, you know, the challenges there and what, what what we would need to do.
+Okay. Um, sorry if I didn't go more deeply in that.
+Um, okay, then the eye is, uh, is that is where the two beams arrive to collide inside the detector.
+And this all the the focus in magnitude that will bring the two beams to collision in in the center of the detector, the lattice.
+The design of the lattice of the machine defines, uh, um, the focus in and even defines the dimension of the cavern and the dimension of our detector.
+And what is limiting, uh, respect to the traditional experiment we know is the fact that we need the shielding protruding,
+uh, up to the collision point to, to screen, um, five, six or the magnitude, the fluxes of, uh, electrons.
+I don't have the plot. Sorry, but, um, there are the plots in, uh, in similar presentation, um, of, uh,
+of low energy particles coming from, uh, uh, the decay of the muons in the electrons and positrons and,
+uh, of course, the two tips of the what we call the nozzle that are big pieces of tungsten inside our structure, um, create our other backgrounds.
+And of course, um, since we have magnets, uh, focusing the beam here, even our detector magnets plays a role defining, um, the,
+the trajectory of the particle that, uh, that are in, in the detector and the, um, as you see, this is, uh, the saga is one of your plot.
+The level of, uh, of the beam induced background is very high because this is simply a fraction of hitting photons, electrons and positrons.
+So, um, the the study that, uh, you can see in this presentation at the school from, from the, uh, arrived, uh, um,
+converging not only on the, on the design and on the, um, installation of such and heavy object inside the light tracker, uh, as the nozzle.
+But even in the design of the of the magnet, in the how you deal with the moving and doping in the detector whenever is needed.
+And every object that has to move without destroying something that is very delicate, like a tracker, uh, that you don't want to shake or destroy.
+So, um, some some work is ongoing.
+Some more work is needed. Uh, there were meetings with, uh, with the people who designed the shielding for Atlas and CMS and, um.
+Any any help from anybody is more than welcome, of course, and is quite challenging, but even important.
+Very important. Any other questions?
+Okay. You're going from Jahan. Hi, this is Joanne Castro from northeastern.
+At one point, you should kind of like the possibility of using these, like remote robots or something.
+To access things? Yes. Uh, do we know if we like?
+If you like. Um, if this becomes a necessity.
+Uh, at the muon Collider.
+Or could we still rely on the model that we have now that humans will be able to go and change things and have access things like this?
+I'm just wondering if that becomes a necessity or if we know that yet.
+It's for sure become a necessity whenever is doing with, uh, with the AI radiation environment.
+Um. I don't, I don't know yet, but, uh, I saw the robot lab in at CERN,
+and maybe there are many in us that I don't know, and they can do quite impressive work, and maybe more precisely.
+So who knows? Um, I think is is part of our future.
+I agree. Yeah. Okay.
+If there are no other questions, let's thank Nadia again. Thank you.
+So. Tune in next week on the talk from Satara desu on.
+On, uh, detector and accelerator synergies. So take it away.
+So. Okay.
+I was asked to give this talk by Isabel. I'll try to remind her a conversation that we had with, uh,
+for one of our program managers a day where we were talking about, uh, bringing Energy Frontier to the US.
+And the program manager said, oh, we can never do that.
+Even if we had the money and all the approvals, you won't be able to do it because we don't have enough accelerator physicists.
+They're busy doing deals. And and you cannot do, uh, a new collider or demonstrator design or anything.
+So we suggested, oh, we are so many people, smart people getting PhDs in particle physics coming out, uh, from LHC program students and postdocs.
+Why can't they do it? Why can't you fund us to do a little bit of accelerator work?
+And we were ridiculed. Then we suggested that maybe we shouldn't make cartoons like this.
+Where? Where we have a gravity powered muon extractor.
+Okay. Anyway, uh, so the motivation is absolutely very strong and clear for all of us.
+Um, I, I thought that we can actually contribute towards that.
+And we have been working on trying to get people to, uh, work on that.
+They're charismatic people. Talwar has two goals, Larry.
+Um, as well. And Curry has terms working with uh, Z office as it's working beautifully.
+But it turns out that there is historical precedent for this in various context.
+And I have two examples that I know of. I'll just tell you what those are, uh, the interdependencies you know about.
+I will probably not stress on that.
+Uh, but, uh, I think that we need to work together, and I think that we can and a lot can be accomplished in short amount of time,
+and more can be done with longer, uh, times that we have at our disposal in building, uh, a designs to, uh, of the demonstrator and beyond.
+So that's what I'm trying to cover. And I try to say everything that I wanted to in this slide, but, uh, we'll see a few pictures.
+Um, I've been spending a lot of time with my three year old grandson, and he thinks that everything that you want, you just ask.
+And the Amazon delivery man brings it. So I was sitting at the airport yesterday waiting for United Bank.
+So I went on my phone, asked for my uncle, I, I was going to put some constraints.
+I was going to say, you know, uh, dialog constraint and energy constraint and luminosity constraint.
+They only had dollar constraint, but even that did not go to $10 billion, but it defaulted to 5 to 10 and gave those two options.
+You can get a movie. But, uh, I tried again, this time taking out that constraint.
+And I have this two books. So we got to do the work ourselves. Uh, and I think that I can't do very much.
+So we have to get the younger people to do it, and you have work to do, and.
+Uh, I know that there is something called inflation, you know?
+Okay. Anyway, uh, I'm supposed to digest for the evening before we go take a picture.
+Okay.
+Uh, I think that there multitude of opportunities where, uh, detector and accelerator communities can work together every place and then beyond think,
+uh, beyond collider aspects from production all the way to mitigation of unwanted radiation gets in the way, uh, whether in the detector or elsewhere.
+So that was a lot of work to do. And that's basically the same thing, which with this slide is saying I'll slide slightly differently.
+I notice a time that I have five minutes left. So I had to rush through.
+So I won't read all of it. Just to say that this interplay between physics, accelerator and detector physics sets the priorities of what we want.
+I think that we don't want to compromise too much on it, but on the other hand, we need to have the flexibility just in case we can't get there.
+We had all the risk, uh, issues earlier.
+So what is the risk that we can afford to take and what where can we draw back to meet the timing that's needed?
+That's those physics accelerator. The detector decisions go back and forth on various things.
+And then there are new technologies which we can use for detector and which we can also help,
+uh, improve the accelerator operations and things like that.
+And I think in all of those cases, we as particle physicists, uh, can contribute to it.
+And there are historical evidence for this, uh, in a couple of examples that I gave which are familiar with,
+I used to work on SLC, uh, SLC, it was called slow, lingering Death for those who remember that, uh, uh, it was a tough program.
+It started out with a very difficult accelerator, but we knew upfront that you needed to have more than more than just the,
+uh, c Paul machine in order to compete with, uh, with lab.
+So we focused on the linear Collider where we have polarization.
+So immediately particle physics get involved in it. We need to develop a polarized source.
+We need to monitor the polarization bunch by bunch if we want to get the left right asymmetric measurement.
+Uh, it was not an easy startup at the SLC. We had a very, very hard time getting the luminosity up to the right lab.
+Some of the compromises that were taken, uh, unintentionally, beam dynamics we could deal with very easily.
+So slack for those of, you know, has hills and the accelerator up and down and workspace the and screw.
+And we never got anywhere close to the luminosity.
+We got all sorts of crazy things, including, uh, something for those who worked on SL, they will remember muon backgrounds, uh, in the Ncap.
+Well, you know, all sorts of crazy things happen when stray particles hit materials.
+Uh, unfortunately, we don't have, uh, that problem now.
+Actually not we. Separately, I just learned today that even nutrition.
+That's this. So there are a lot of issues. So I think that particle physicists can get involved in that.
+And we worked on it, uh, basically varying different hats.
+I don't know why it became hands. I corrected it, but I looks like I got a little file here.
+Uh, different hats we put on to get various of these things done, and a lot of improvements were made.
+Sometimes if you can't make improvement on one end, you do some other improvement.
+For instance, we work with condensed matter physics and made the polarization, uh, go up from 40% design to 80%.
+That helps tremendously because it causes, uh, power of two to get the, uh, measurement that we want.
+That's what saved the SLAC program. And there is even a result which is still valid is very, very good.
+And there's everything everywhere you contributed to, uh, new instrumentation to learn about the beam dynamics, uh,
+beam profile in various places, even databases and software ready to be upgraded because accelerator was built in the 70s.
+Right? Uh, there's another one, the ILC, which hasn't happened yet.
+But early on in the program, people have realized that, uh, uh, there is a connection that we have to carefully devel.
+So even Daniel Schult, our leader, wrote programs to help with the, uh, basically energy luminosity coupling with all the,
+uh, being strong involved in this, the institute state radiation related thing.
+So, again, a lot of work there.
+Again, in the instrumentation phase, I know Phil Burrows and various people were particle physicists went on to do various things.
+They have to invent new polarization technologies.
+So a lot of historically that thing is there. And I think we need to exploit that.
+And this coworking is absolutely critical. Uh, I think that the university national lab or part of, uh, partnership is needed for this to happen.
+It's true that, uh, we can't do it on our own in the universities.
+We'll have to work with the people from National Lab. And that's what we started the summer.
+So how far have you got? Well, you saw this picture.
+I just told, uh, told a side and put it up there.
+Uh, not everybody was in there, but they all produce work, which we are seeing.
+So I have next a series of slides which shows the work of several of these people, which was in posters there.
+So we have students working on target and front end of the we have students working on cooling.
+We have, uh, coils working Brookhaven scientists.
+These people are working with Fermilab scientists, uh, trying to do the RCS simulation.
+They are with Scott Berg. And we even have people working on materials and beam instrumentation.
+So in every possible way. And you saw all their work. So I just flashed to the pictures.
+So I have I had a full 25 minutes of talk.
+So I said I'll just go around and take a picture for everybody in there.
+So I'm not going to use all 25 minutes to just go through. Okay.
+So, uh, Ross is working on red correlated thing.
+You saw her behavior protocol here. If you were in the panel session about the, uh, physics work that she was doing here.
+She is working on the detector, uh, on the magnet development related things where?
+Different areas. You could write a PhD thesis using both of those.
+And that's a very, very important skill that we need to have. We're in a building.
+This building was probably not there, but, uh, Enrico Fermi was on this place.
+Uh, he did everything right. It didn't do just for Fermi on model.
+He did lots of lots of things. Right. I think that we need to do at least two things.
+Okay. So that's where we are. So Ross and Rick is your first anyway.
+Okay. Uh, here is, uh, Brian.
+He worked on, uh, Cheng Su because on the Brian, he works on, uh, learning G4 beamline is working on the targets and solenoid optimization.
+Isro, uh, also from Wisconsin, is working with, uh, Katsuya and vectors and circle on, uh, learning how to use fluke uh, to do similar things.
+Plus also find out how to protect these solenoids from, uh, uh, from the radiation.
+Uh, and also I think so these are technical things, but I think they're very, very, very important things to be done.
+Uh, Caroline is working on even more complicated thing with the, uh, 60 cooling in the initial power.
+And then there are more, more work from that from Tennessee students.
+Uh, Ritika is working with Casey in Dick enough for on, uh, on the optimization of various things,
+uh, basically matching how the beam profile should look like across to each of us.
+Chain of magnets. Um, uh, we have into who decided?
+She'll do tolerant studies by moving around, uh, the values of perfect RF to slight offsets.
+And do I want a Carlo simulation of both the gradient and, uh, and the phase variations and figured out.
+Uh, but it has limited effect. Of course. You made Midvale variations.
+Fine. There's no problem. But still, uh, she showed that it doesn't make all that much fact.
+There's more work to be done. But this the work which was done in three months.
+Okay, so it's interesting that people can do a lot, not me, but younger people can do a lot in a short amount of time.
+Uh uh, unfortunately, I don't have Hannah picture here because that's in the new slide.
+I'll be done before that, I hope so. She's working on, uh, instrumentation, which is a very critical thing.
+As I'm saying, it was a traditional role where people who build particle detectors always help with the accelerator side from,
+uh, finding out where the beam is and what the, uh, evidence is looking like as it goes through all its machinations.
+Now, it turns out you can do this three month projects and make a poster.
+I think that they will all have in six months. Uh, papers put on archive, small author papers.
+If you're on CMS or Atlas, you die for that here.
+You can work for a year and get that. It's a very, very important thing when you are going for a job search.
+If you have a work that you can point to, I did this.
+It's it's really very important, I think, for young people to establish.
+So from their point of view, it is great if you really love this like Kyle though.
+So I think he wants to go all the way to the PhD on this one.
+Right. It, uh, it's a very, uh, it's like resting.
+And even more important thing is you heard from I think, uh, said earlier that we need about 50 FTE, uh, think about permanent jobs.
+These are the people who are going to get jobs, not just doing an analysis, um, in CMS or Atlas, in my opinion.
+So on that note, I think that this is a very fruitful thing.
+And, uh, these young people who are faculty in the first row have convinced private foundations to give money to these people to do this work.
+And we were told by the d.o.e. that we can spend some fraction of our time, as long as we don't talk too much about it on duty.
+That's what we're doing with our students.
+Sometimes you can get some funds if you happen to have chair of the department working with you or whatever,
+steal some funds and do so by hook or crook.
+Involve your students. Get them. That's what I was going to say.
+Uh, I think that this, uh, is very important work with the laboratory scientists on this one.
+And it turns out the laboratories also have traditional programs, internships that you can get.
+You should apply for that. Many of these things are restricted to U.S. citizens and green card holders.
+But there are also certain things like the uh, erf uh, VSP thing.
+So I would strongly encourage people to apply for this and work with wonderful people at.
+Okay. Well, at Fermilab, at slack, the many, many opportunities we talk about RF, uh, testing starting at slack.
+That's what wasn't so exhausting. I'm sure that Amelia will welcome, uh, few students into this program if it can get point sources.
+So, um. Residents. But you are not just U.S. citizens.
+You are not the lab. Lab internships often.
+Yeah, yeah, yeah, you are a is any. You are a university and most of us are in a you are a member universities anyway, that's.
+Hey, thank you, Sitara, for that inspiring talk. Uh, questions?
+Uh, I have a question, so I'm sold. I love accelerator physics, and I'm really interested in getting more involved.
+So how can I, as a person who is a CMS physicist, kind of bridge this, bridge this gap and get more involved in accelerator.
+Make friends with these people. I more I already did that okay.
+Step one no, but what's the next.
+Well that's what I did. I just pestered them. That's all I had.
+So if you look at, um, saga science, he had a list of all the recently funded ideas.
+And what all the ideas mean is that there's some expert time available.
+Um, and and also the psych, uh, guard funded one as well.
+And so, you know, what was really key for us to be able to contribute was that expert time.
+Because obviously that's a credit that we don't know about.
+So I would suggest looking through what those elder days are and then reaching out to those folks to see if they have projects.
+I agree with you. That was a real stumbling block.
+We wanted to start this last year itself, and it didn't go anywhere because we didn't have the elders in place at the bank.
+We still don't have the elder funds, I think, but still they got approved so people are able to front it.
+Um, if I can add to that,
+I think another key is to try to find students who need things like experimental projects or have funding for temporary time,
+um, before they come to do their CMS analysis, if there's also nothing.
+Thank you. Um.
+I'm a little bit surprised that you are not listening to going, at least in my memory, a very important educational program in this country.
+One is a US particle accelerator school.
+I didn't see you listed at all. And secondly, I believe, really think, uh.
+Program, which goes, you know, how to go to the Fermilab together.
+I think that they're very, very important programs. I participated in one very, very early U.S. particle accelerator schools.
+I should have that. I should have included the opportunities. I didn't do that because I'm not trying to be comprehensive.
+I'll just try somebody. I'll be happy to add all the links to this thing.
+So I'll do that. Um, that we just had a school the last three days.
+It was on it. I didn't list that either. So, uh, so she's right here, so.
+Yeah. Uh, I visited Fermilab, and, uh, one question that I have is typically, when you're writing a dissertation for some of the students, right?
+You require them to do an analysis, and there's like a typical framework and a model that,
+uh, any of these students have to follow to get through these things.
+But how do you convince funding agencies and other people that it's totally okay for these students to do completely accelerator,
+uh, best thesis and, uh, still get funded for these things?
+Oh, I'm not suggesting that it needs to be completely accelerator based, although it could be like Carl's planning to do that.
+Uh, but, uh,
+I think that's perfectly fine to have a CMS analysis and do an appendix with the projects that you worked on for a year or year and a half,
+and it was a published paper. The universities will be more than happy to have that.
+You know, we do various things. So people have developed, let's say, a completely different thing.
+Think about AIML tools or somebody did something.
+It may be generic thing, but we can write it as an appendix and the data so will be very welcome.
+And I think that those are the people who win awards and get jobs. So I think that it's fine.
+As for convincing the funding agencies, I think I'm not being recorded successes.
+I think that that's the least of our problems.
+If we try to spend all our time trying to convince funding agencies it's just to get the money afterwards,
+we should spend it the way we think is right. Um, just a couple of comments.
+First of all, thank you so much for bringing us pass. I think it's a very valuable resource.
+And we were discussing this within the team. We definitely want to, uh, try to organize something jointly with us.
+Pass. We'll be reaching out to them and hopefully we can do something in the future.
+Um, I think the school we had earlier this week was meant as a starting point for mostly
+non accelerator students to come in and get some basic education in accelerators.
+US passes much more comprehensive, longer, sometimes more difficult to get them to, but they think we can work together to hopefully make it happen.
+Uh, the other thing I want to say was, um, I think it makes, uh, what, uh, Toyota brought up with a pairing students with the lab scientists.
+Maybe we can help to coordinate that centrally, try to find opportunities and, uh, bring people together.
+Um, I think this could fall into, um, our role as the, uh, leadership of the US, uh, collaboration.
+Um, I wanted to encourage, uh, lab scientists.
+I mean, we on on one here.
+We have students, but we also struggle sometimes to find enough, um, uh, people at labs willing to supervise students and provide this guidance.
+And it doesn't have to be a full time. Right. It can be a fraction of time.
+And we understand the constraints. You're busy, but even if you can allocate a little bit of your time to provide, uh, initial, uh,
+kick knowledge for them, then they can, uh, hopefully gather that knowledge and take it to the next step.
+Um, and maybe, you know, the final product of this is not the final fully, fully, uh,
+you know, comprehensive design, but even the educational aspect of us is very important.
+And moving it a little bit forward. Thanks.
+I should say one other thing that the US passed. Well, I think there's a lot of material available online,
+and every one of us who are learning about particle accelerators recently have been using the US pass materials.
+Absolutely. Um, one one more thing to add to it, to what Sergio said.
+Um, one is that, uh, while we are kind of expert, limited on things that are really, really, really explicitly muon collider,
+there are tons of R&D things that are already funded at the labs that people are working on full time.
+Like, for example, Rosa's project with the magnets. This is not nearly as limited in terms of what lab people are allowed to spend their time on.
+So if you look for projects like that, that's also a really great place.
+Instrumentation as well.
+And then, uh, the second thing I wanted to say is, and I'm going to say it out loud because I want to put more pressure on this is that,
+you know, we kind of ran this, this program at Fermilab as a pilot program.
+And we heard from Gina at the DPF community meeting that she thinks it's great and she wants to fund it.
+And I want her to not forget that she said that. So I encourage everyone.
+Yeah, I encourage everyone to bother her about how much they love to put their students into a program like that.
+Do? Yeah. Okay. So, uh, so some final announcements.
+So up next, um, is the banquet, obviously. Oh, we have the the.
+Kyle wanted to say something. Let him. So. So, uh, just a quick thing.
+Uh, so he does have a full accelerated physics program already.
+We have PhD students. Doing accelerated physics fully.
+That's not a new thing, at least for Stony Brook.
+It's been going on in quite a while. They, uh.
+So that I mean, convincing funding agencies that it's worthwhile shouldn't be too difficult in principle, I think.
+Uh, and I can say that both the US pass and the lifting program.
+What, as someone who's been in them, uh, you know, quite valuable.
+So. Thanks, Kyle. Um, okay.
+So directly, thanks for the comment. Um, so directly after this, we have the, uh, workshop or the conference photo.
+Um, and it's going to be on the stairs just outside so you can start heading outside, but not yet.
+Uh, first, um, take out your poster bingo card.
+Uh, 23 and 25 are free spaces.
+Um, so who who got who? Anybody with bingo.
+Raise your hand if you got bingo. We got one bingo over there. Okay, we should probably get 1 or 2 more prizes.
+23 and 25 are free spaces. Okay, now we'll go by the number of stickers.
+So who got who got six stickers? How many people got six stickers?
+Okay. Who? Only people are six or more. Okay.
+Seven or more? Eight or more? Nine or more.
+Ooh, that's going to get got 11.
+12, 12. I got but she already got the.
+Bingo. How many? Yes. 99.
+Okay, okay. So. And what do you have? No, I have, I have oh.
+Okay. Okay. So I think we have we had what did you get. Oh, not what the free space is.
+No, no, no, just the stickers. Oh, sorry. Okay. It's where they're fourth day.
+Yeah. Okay. So nice and tidy.
+Okay. 11 and bingo. Okay. Congratulations to the bingo winners.
+We have some. We have some surprises. Courtesy of Taylor.
+Kerry, can you ask every one of the two presenters to upload their poster to the end of their excellent posters,
+and I think we should have it for the record. So, so for everyone who presented a poster, uh, you can upload it to your.
+So your contribution on Indigo. I don't know what just happened there. Um, so you.
+So if you go indico contributions my contribution, you can upload your poster as a PDF there.
+Um, and that would be really fantastic because, I mean, they were all beautiful, and, uh,
+we'd all really enjoyed talking to you guys about the, the physics and the projects that you guys had done.
+Um, is there anything else? Poster winners.
+Tomorrow we'll announce the poster winners tomorrow. Um, and I think let's head to the photo and then to the dinner.
+Great. Thank you.

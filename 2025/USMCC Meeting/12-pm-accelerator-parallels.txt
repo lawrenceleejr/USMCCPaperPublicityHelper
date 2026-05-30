@@ -1,0 +1,878 @@
+# PM:  Accelerator: Parallels
+
+Uh, so once he has miked up, uh, we'll have a talk from Victus on the demonstrator overview, and then we will have a talk from Emma.
+And then after that, we have a lovely 50 minute discussion time where we can talk about all the things that we keep inside our heads.
+Um, I guess about the demonstrator, um, I guess about accelerator in general, given that this is the accelerator session.
+Okay, ready? Uh, it's good. Right? You can hear me.
+Uh. All right, so, uh, this talk will be about the demonstrator overview.
+Um. Let's make, uh.
+Let's see. Maybe that's better if you keep your head down.
+Is great. Okay. All right.
+Um, try putting an open question. Uh. Let's see.
+That's it. Let's see. Let's see here.
+Okay, so, um, I hope you can hear me now.
+So, uh, I would like to, uh, say a few things about the, um, demonstrator, its motivation, and, um, what we are and what are our, uh, future plans?
+Um, so, uh, just to remind you that, uh, here, uh, on the picture on the top, uh, you can see the different subsystems,
+uh, of immune collider and, uh, the one that one has, I would say perhaps the most importance, uh, is the cooling.
+Uh, you can see this also on this table here.
+Uh, this is actually from, uh, Vladimir's talk. Uh, you can see that the cooling has the biggest impact in luminosity of a collider.
+So it's very, very important.
+But this system works the way you want it to work, because otherwise, uh, the the you might not receive the event product that you like to see.
+So, uh, also, the cooling has a lot of impact in other subsystems as well.
+For example, uh, if you cool the beam very well, uh, perhaps you can relax the parameters for the proton driver.
+Okay. You don't need to go to very, very high powers.
+Uh, and also, by relaxing the proton driver parameters, you also relax the parameters for the target as well.
+So you see it's sequential. So therefore cooling is very very, very important.
+So you have to make sure, uh, it works well. So uh, this is the baseline right now for the cooling system.
+Uh, this is uh, the most recent design from the International Muon Collider collaboration.
+So you can see you can see it right here. Uh, it's not a trivial system.
+Uh, it has about one kilometer length, and it has about 3000, uh, uh, magnets.
+Uh, and of course, it has also a lot of RF. Okay.
+Which I don't have this information. I don't have it here. Uh, but if I, uh, if I stand the magnets, uh, not all the magnets will have the same field.
+This field starts at 2.5 Tesla. However, at the end, it goes 14.3 Tesla.
+So you don't need only to have many magnets, but you have many high field magnets as well.
+And also, uh, the bore of this magnet also varies goes from 1.5m at the beginning and it's 90mm at the end.
+So what I want to say here, long story short, is that the the cooling system is a very complicated system but requires uh,
+but mixes RF coils, uh, absorbers and also, uh, the beam itself.
+Uh, a few more words about cooling. So this is the baseline, uh, cooling requirement for immune collider.
+You have seen this thing many times. One thing I would like to remind you is whether the beginning of a channel.
+Uh, this is one. So, uh, things look very relaxed and peaceful.
+So you have a coil here of yellow that is very far away from the RF cavity, and therefore cavities are very far away from the absorbers.
+And the field is about two Tesla. Okay. Nice and beautiful.
+However, at the end of a, uh, cooling section, uh, so right here, uh, you have this monster.
+Okay, so now not only the cell is this much smaller.
+Okay. Keep here. It's. You are 2.6m. Here you are, 2.8m.
+Something very compact. But also the field, uh, is of the order of 14 Tesla.
+And you have many, many, many coils. Okay. Just this cell.
+It has six coils. Okay. And you have about 50 or 100 cells that look like this.
+Uh, and also most coils are very close to each other.
+And also this coils here, see the neighbor coils us here.
+But I do not have. Okay. So there is a lot of things going on here.
+You have strong magnets forces stresses a lot of issues.
+Also the coils are very close to various cavities.
+All right. So this is also could be a challenge how you put this thing all together and of course be absorbed as well.
+So this particular cell uh is quite uh engineering wise not so easy to make.
+Okay. So that's why it's very, very important.
+Uh, if we want to go for the main collider to have knowledge and experience how to make something like that.
+Now, uh, one particular aspect that is unique, uh, for the Muon Collider is what was it?
+Because you have high fields, you have to rely on normal conducting cavities.
+You cannot use superconducting at if it will not work.
+So, uh, one big issue at least it was a big issue 15 years ago, uh, is that we had some data, but we are left cavities.
+Uh, don't operate well in magnetic fields.
+In fact, when we were opening the cavities after the experiment, we were seeing a lot of damage in the cavity.
+Okay. Which we couldn't really explain.
+Uh, also, when we measure the gradient, uh, versus field, we were seeing a reduction of a gradient of a field by more than 50%.
+You started with 40 megabits per meter, you end up a 16 megabits per meter.
+So that was a big question why this thing is happening. Uh, and then we did some simulations to understand the effect.
+One thing that we noticed is sometimes because of impurities on the cavity surface, uh,
+there is a field enhancement in some areas, and the field enhancement occurs near the iris of a cavity.
+You can have field emission. And when the field is zero, the magnetic field is zero.
+But it's not a big problem because, uh, the electrons can scatter along the cavity uniformly and do not create so much damage.
+However, when you start to ramp up the field.
+So if you go to 0.1 Tesla or even go to 0.5 Tesla, all the electrons emitted from one side, uh, go to the other side of a cavity, okay.
+And that can be a problem because remember this happens every RF pulse.
+So you basically have electrons coming in coming in coming in coming on.
+So you hit the surface then cools down. You hit the surface, uh, comes down again and again and again.
+So at some point our theory was that the surface cracks and basically because of this pulse heating,
+it cracks and you have more electrons coming out and eventually the cavity, uh, collapses.
+So that was the idea.
+Uh, and in order to address this problem, we said, okay, maybe, uh, we can build a cavity that is made of two different materials.
+So you use the copper material, which is by default. But I showed you earlier, but now use a more robust material.
+Use also beryllium. Okay. Beryllium, uh, because of its properties, uh, when you have field emission,
+the electrons, what hit the surface, they can go very deep inside the surface.
+So before we don't create this pulsating effect. So therefore we thought, at least in theory, that beryllium will work in copper will not.
+So we did an experiment to verify this. We built a cavity, uh, a modular cavity, uh, 8 or 5MHz in frequency.
+And we could change those end plates.
+And of course, when they had copper and raised the field from 0 to 3 Tesla, there was a gradient, uh, dropping the gradient.
+Uh, however, when we use beryllium, uh, it worked very well.
+I mean, you see, there was no breakdown. In fact, the gradient went up, uh, by a little bit when we use a free Tesla field.
+So that gave, uh, a hint. But, uh, but maybe if you change.
+Material. Uh, this thing will work, of course.
+Uh, but it wasn't parallel. But it was another great effort when it was very idea of using gas.
+Okay, so basically, by putting gas inside the cavity, uh, again, you block this field emission effect by the gas is doing that for you.
+So again, when you raise a field, you basically don't, uh, you don't see this.
+Drop it. Uh, dropping gradient again. This was again, uh, very nicely benchmarked.
+So we think about to have a solution. Uh, however, remember that all these tests were done with fields up to free Tesla.
+Okay. So this brings up the motivation, uh, to go to higher fields.
+And I think this could be very nicely discussed by Emma in the next talk.
+Uh, where? Because we never have done this thing before.
+Uh, now there is an effort at slack to increase, uh, the field and, uh,
+repeat the experiment and make sure that we can, uh, we can, uh, we have a good design for the cavities.
+So, uh, regarding the cooling demonstrator, uh, I showed you slide also in my previous talk on Wednesday,
+uh, we we have done several we have done two main efforts to, uh, demonstrate ionization cooling.
+Uh, so we believe that, uh, we, we have seen that we have proven.
+But, uh, so in terms of, uh, physics, uh, we think about we we have done our duty.
+So, uh, but of course, the next step that we need to do is we need to test, uh, integration, uh, how to build, uh, on a cooling channel.
+So this this brings up the motivation for the next step. So, uh, we need to build a lattice that looks as close as possible to the realistic one.
+To the one. But we use, uh, what we will use for the muon collider.
+This is the only way to get input, knowledge and experience, uh, on, on a real channel.
+And this is actually also a good way to learn how to operate these, uh, cooling channels,
+and also would be a good experience to test instrumentation, but we might need and make sure that the instrumentation is doing the thing.
+Uh, but you what you, what you want to do. So it is very, very important to make a cooling channel about this very, very close to be realistic.
+One, uh, mice has not done it when we did have a cooling experiment and still we haven't done it.
+So this should be the next step. But also in parallel you will have some spinoffs as well.
+So for example, by having a cooling demonstrator, you can, uh, also advance the magnetic technology, uh,
+since we will design and prototype and test solenoids, but the similar to the ones that we use, uh, uh, for, for the immune collider.
+And of course, we should also not forget that there are some synergies here as well with, for example, uh,
+fusion reactors and also dark matter surfaces who are also interested in high aperture solenoids of the same field.
+So therefore there is here a common, uh, very, uh, very win win here opportunity.
+Also, we will advance our technology, uh, because we will design,
+prototype and test normal conducting cavities, uh, similar to those for the muon collider.
+So we follow this opportunity and we will develop classrooms.
+Uh, that perhaps could be useful also for other, uh, facilities, uh, not only the immune collider,
+uh, but also, uh, this will be a good opportunity to develop technologies to, uh,
+develop normal conducting cavities that can have very high gradients, for example, by doing,
+applying different tricks, uh, warm copper versus cold copper or using other materials.
+Uh, but it's a possibility to, uh, increase RF gradient.
+And this could be useful for other applications as well. So, uh, here you see, uh, how we envision, uh, the demonstrator staging.
+So first you like to start with a plan to test RF cavities, uh, in magnetic fields.
+And this would be addressed in the next talk.
+Uh, then in the second step, once you define that technology, you like to build a prototype, 1 or 2 cells, uh, and start looking at integration.
+And then in the last stage, uh, you like to do a full, uh, full test of a beam, uh, and this here you of course, you will have,
+uh, many cells, uh, 5 or 10 or even 20, uh, and use your beam and see and see how you can operate a channel like that.
+So this is the Free State's approach. And, of course, uh, you cannot do everything at the same time.
+It has to be kind of sequential. Uh, an idea for a demonstrator has been already, uh, published and volumes.
+He has done some great work on that. So it's basically a facility that you see, uh, right here.
+Uh, so you start with a target, uh, and then you have a capture area,
+and then you have a rack where you transport the beam towards the cooling channel.
+Uh, right. Uh, as you see here. And then at the end, you have your cooling channel, and of course, you will have the necessary instrumentation.
+So the current designs, uh, talk, uh, talk for a cooling performance, they offer further 50%.
+Uh, and this is and of course, this numbers again, uh, might be adjusted, but this is, uh, this is what we have right now.
+Um, so then the next question becomes where would like to test this facility?
+Uh, already the IMC has done some great work at looking at possibilities.
+Where to put it in. Uh, they have one already identified, one earlier.
+Uh, CTF free. Uh, the good the nice thing that I would say the good thing of a lot of space.
+So they have 100 meter plus, uh, tunnel where they can, uh, put easily the target, the cooling channel and all the elements we need.
+And also very, uh, means what we can get is of a order of ten over six.
+One disadvantage is that it Bishara is not connected, uh, to back to their PES,
+and therefore we need some additional, uh, uh, resources to do something like that.
+The other area that, uh, CERN is considering is, uh, the, the, the T7 area, which, uh, you see, uh, right.
+Should be here, this one, this area here.
+And this area is connected to the, uh, two PES, which perhaps might make things easier.
+However, we expect the immune intensity to be lower under the CTF three, so that might be a disadvantage.
+Uh, but we are still having come up with a number yet. But we are working on this at Fermilab.
+We have also looked at different locations. We have several options.
+Uh, we can look at locations, uh, but take the beam out of a typical linac, for example, directly.
+Uh, you see right here. So we can do something with 800 MeV per seat of energy.
+Another possibility is maybe to extend the linac, uh,
+go from 800 to 1 jet and then have your demonstrator and which is a lot of room here to build your demonstrator.
+Another possibility is to use H of protons, for example, to use already the infrastructure that was used for the G minus two experiment.
+And then you do the experiment. And then of course another possibility is to look at 120 protons again.
+Or we start up what you see with free or possible Rs what you can use 120.
+So there are different options.
+Uh, the next step, of course, is now to take each of this option and see, uh, how this thing will work, uh, in, in terms of performance.
+But also you have to take into account the cost also because ideally you'd like to be in an area where there is already some infrastructure,
+a starting point to do this. So again, for the cooling cell itself, the IMC has done already some great progress.
+So this is the picture I showed earlier in my talk. So the decision from the IMC right now is to, uh, focus in this area here.
+So take B cell B5, which of course as you know this is already far away.
+So it's in the, in the I would call it uh, the dangerous regime.
+Okay. So it's a very nice area to, uh, to do your, uh, test.
+Uh, of course it's not completely at the end, but of course, uh, if you are complete at the end, uh, it becomes also very, very expensive.
+So, uh, this is a good sweet spot. Uh, right now, uh, that is the field for B cell peaks at around seven Tesla right now.
+Uh, and here you see, uh, one, uh, cell.
+And the idea is to build, uh, many, many, uh, cells that look like that.
+So is this is at this moment the starting point for from four volumes.
+See, uh, still, of course, it remains a question if this is really what we like to do or we like to look on something,
+but it's a little bit more challenging. But again, we have to take into account resources as well.
+So that's something under study. The other thing is that when we talk about the demonstrator, it's not only the cooling channel.
+So it has a lot of elements that have to be optimized and need to be optimized based on the available beam.
+So if we like to build the demonstrator at Fermilab, we need to go again for a homework, first of all to design the appropriate target.
+And then the question is what kind of technology we like to use. We like to use uh, solenoid or would you like to use a horn?
+Then the other question is how you like to design your pion decay area.
+That is also very important. And then also you need to develop a beam dump where you remove unwanted.
+Particles. You need vent to have a chicane, and also you need to have a beam preparation area where you bring the beam into the cooling channel.
+So all these things have to be optimized. So this is a we have a lot of homework to do here.
+So we have another theory for looking at these possibilities at Fermilab.
+So uh obviously Fermilab has a lot of history with high proton beams and building high power targets.
+So it could be a perfect place. Uh, to think of a demonstrator and what we like to do, uh, from well,
+there the perspective is to look at different sites within Fermilab for a demonstrator, then, uh,
+carry on an initial design and also evaluate the performance, evaluate the risks, uh,
+and come up with some preliminary engineering designs and then also, uh, perform a preliminary cost analysis and also a schedule.
+How a timeline, how we would like to develop. So right now we haven't received the funding yet.
+Uh, so we're hoping this will come soon and we can, uh, start this effort and hopefully in the next, uh, annual meeting.
+We'll have more to report on this. And I think this is my last slide.
+Thank you. We do have some of the discussion session, but any questions on this topic in particular?
+This will work. I'll get it done now. Uh, couple of comments.
+Take this. You mentioned close drugs, but really, what we need is a, uh, a high power RF source.
+And there are others on the market that are more cost effective and more, uh, power, less power hungry, right?
+Um, the, uh, my other general comment, based on experience from my sons.
+Be careful what you wish for. If you make this too ambitious, it will be a way of delaying the muon collider rather than advancing it through.
+Um. I'm not. I don't understand the motivation for doing, uh, a muon beam experiment as opposed to a single particle experiment,
+and that's worth discussing, and we can discuss it further in the, uh, discussion session.
+Okay. Yeah, that's a good point of discussion, actually.
+I had a question regarding the admittance when it comes out of the cooler.
+I see that the transverse admittance is I've been using roughly 300, uh, mil 300 micro radians.
+Is that one sigma or is that the entire, um, beam?
+And the second follow up would be. I've been concerned. I've been looking into electron cooling.
+It's highly dependent on the admittance. And the the tails of the distribution are hard to, uh, handle with electron cooling.
+And I would almost think the same thing would be true in the ionization cooling.
+So can you comment on both what the admittance is at the end and how many standard deviations?
+And are the tails, uh, lost as you go through the cooler?
+So so I think it's not a sigma. I think it's, uh, it's I have to check.
+I have to be honest with you. I have to go back and look at this, because that plot.
+I haven't done this calculation by myself. So it's better that I don't give you an answer right now about this.
+Uh, so the second part of a question, uh, are you worried about the meters too large for the accelerator later on?
+And what was the second part knowing in electron cooling, the, uh, cooling force is highly dependent on the velocity as observed in the moving frame.
+Right. And so it goes as v cubed. Okay.
+And so if you've got a two sigma muon you're going to lose a factor of eight okay.
+And so you won't you won't captured in a short enough distance. So that's the game you have to play.
+And I would think ionization cooling also works through the head.
+So although I'm not certain uh and I would think that would have a similar issue so that you would be losing the tails as you go through.
+Okay. So is that true? What about transmission right now?
+Uh, you mean a longer whole cooling channel, right? Yeah.
+So, um, I mean, I don't know what I don't remember right now the numbers, but the transmissions are not.
+Some are reasonable, but once what you expect to have basically within the desired basically, uh, specs.
+Okay. Yeah. Maybe. Maybe actually, Dave, Dave has maybe an answer, a better answer to this, but answer to that in that,
+uh, in, uh, electron cooling, you're matching your beam to the electron beam.
+And so any part of your beam that isn't inside the electron beam doesn't get cooling,
+nor in our case, we're going to through an absorber which is larger than the incoming being.
+So all the beam sees it. Okay. Thank you.
+Okay. Anything else? Fantastic.
+If not, we can move over to our next speaker. Thank Victor's again. Hello?
+Can you hear me? Yeah. Okay. Okay.
+Uh, so thank you all for coming. My name is Emma Snively.
+I'm from slack National accelerator accelerator laboratory.
+Uh, and, wow, that went way far ahead.
+I got to talk about getting playgrounds. Right. Oh, boy. Come to this.
+To the mouse. Yeah.
+Stop. So at the bottom. Towards the bottom.
+Towards the bottom. There's a closet. Yeah. Okay. That's the mouse's.
+Okay. Running away. Well, you've seen the whole talk now.
+Uh, well, this is why I don't know why the mouse keeps running away.
+Uh, well, that's, like a lot of time, right? Okay, unplug the mouse and plug it back in, and now it won't run away.
+Perfect. Okay, well, if you don't mind, maybe I will talk while you're, uh, working and started doing annotations in zoom.
+Oh, wow. Okay, so, uh, that was exciting.
+Okay. Um, so I want to talk to you today about a new test area that we are installing at slack.
+Um, and so part of why I want to talk to you is because I want to share the research directions that we are interested in pursuing.
+Um, and then I also want to make you aware of the facility capabilities and that it is available for the broader community to use as well.
+Um, so, uh, let's try try again.
+Okay. Okay. Uh, so why do we want to, uh, stand up this new test area right now?
+Um, well, uh, efficient cooling, uh, is still one of the biggest technical hurdles, uh, for muon colliders.
+So we heard about this from DEQ this just now. Um,
+and what we really need is an enabling technology that can get us from what is currently
+kind of the edge of reasonable physical assumptions to something that's actually,
+uh, a practical, viable path for ionization cooling. Uh, and the accelerator community needs a place to validate these designs.
+Um, at slack, uh, our general accelerator R&D program has made a lot of progress in the last decade or so.
+Uh, using techniques that let us, uh, take normal conducting exciter designs, uh, to,
+to new thresholds in terms of, uh, gradient power efficiency and then reducing the breakdown rates.
+Um, so at slack, we're interested in applying these techniques, uh, to this, uh, regime of operation and high external magnetic fields.
+Um, and then we're also deliberately, uh, standing up this, this new area in the nal CTA test facility,
+uh, which is a facility that is accessible to the broader community.
+Um, because we are interested in, uh, not only collaborations, but also being able to, to host experiments.
+If you have research you're interested in doing. Uh, we want you to be able to come do it at slack.
+Um, and so, uh, one of the things that I will cover in this talk are some of the kind of concrete ways that you can get involved,
+uh, or do research, uh, taking advantage of this equipment.
+Okay. Um, so, uh, this, uh, kind of research is taking place, um, uh, with a very extensive, like, humbling foundation of, uh,
+of work that has already gone into, uh, addressing the challenges of operating out of cavities in high external magnetic fields.
+Um, and, uh, as we've seen, uh, already today, uh, the maximum, uh, uh, reported result, uh, in an 805MHz cavity got up to 50 mega volts per meter.
+Um, but there are a lot of, uh, uh, challenge and challenges in terms of how we would implement,
+uh, a cavity like this in practice and scaled up to, uh, full ionization cooling design.
+Uh, and so that's where, uh, we are interested in, in pursuing, um, design strategies that are compatible with some of the things that,
+uh, Dick was mentioning just now, uh, including, uh, gas filled cavities using materials like beryllium in the window.
+Um, we're interested to see if there are things we can do, uh, that are synergistic to that, um,
+so that we can continue to advance kind of what we can achieve in terms of gradient,
+uh, and make these designs even more robust, uh, in this operating regime.
+Uh, so, uh, we heard from Sandhya earlier today, uh, slack has already been very involved in the modeling and design of these cavities.
+Um, and so I would point you to his talk to get into some of the details of the modeling that's been done in ACP and the capabilities there.
+Um, but I just want to highlight that, uh, with this new capability at slack to do this high power testing,
+I will have this very nice kind of quick turnaround time between our ability to
+model these cavities and then test them and benchmark our results in the lab.
+Um, okay. Uh, so you've heard about the simulation capabilities from Sanchi, uh, at slack.
+Uh, our RF accelerator research, uh, division covers, uh, the full spectrum of accelerator design from the initial conception,
+uh, modeling those cavities, fabricating them, and testing them.
+Um, and, uh, so we really want to bring the that expertise to bear on this problem.
+Uh, so one of the advances that we've been kind of pursuing within this kind of last decade or so time frame,
+uh, is taking advantage of high power computing capabilities to really optimize the individual cavity geometry.
+Um, and then that goes hand in hand with the development. Of this distributed coupling architecture that lets us, uh,
+power each individual cavity so we can take advantage of that flexibility in the cavity design on the individual level.
+Um, and so taking this approach, uh, in many of the applications that we've used it for, uh,
+where we've been designing accelerators, where we were trying to make a very compact structure.
+Um, and uh, we use strategies like, uh, reentrant nose cones, uh, that let us get this higher shunt impedance.
+So better power efficiency in our cavity. Um, that's why we end up needing something like this side coupling scheme.
+Uh, because we can no longer couple power on access, but on access between cavities.
+Um, so now, uh, this is not the, uh, operating regime that we would want for a muon collider, but instead, um, we could now consider, uh,
+having windows between the cavities in which we would still want to take advantage of something like this side coupling scheme,
+which we have lots of experience in, uh, but now we have new optimization constraints to consider.
+Um, so this is be a new area for us to apply some of these strategies that we have developed in the design of these cavities.
+Um, another area that we have made great strides in is cold copper.
+RF um, so you heard from Dylan earlier today about some of the kind of analytical calculations backing up,
+uh, why we're seeing this effect with cold copper.
+Um, what we've found with actual tests, including a tested and octa, uh, is that we see a significant reduction in the break down rate.
+Um, and, uh, so we're able to make these cavities, uh, have the higher, uh, shunt impedance.
+Um, so we reduce the surface resistance. When we go to these colder temperatures, we get a higher quality factor.
+Uh, so we have better power efficiency, and we're able to sustain higher gradients.
+We want to apply this technology now, uh, to the the regime of operation in high external magnetic fields.
+Uh, another area that I want to just highlight here,
+there there are many different research activities going on in the CTA, but this one seems particularly relevant.
+Um, is an effort to develop, uh, high temperature superconducting coatings, uh, for RF cavities.
+Uh, so you see the structure on the left here? Um, this cavity was designed, uh, it's an RF pulse compressor.
+Um, and, uh, the it's composed of multiple different copper sections.
+Uh, and then there's a red tape coating on the inside of these cavities.
+Um, so we've already done, uh, low power testing of this cavity at Nikita.
+Uh, and we have plans to test this, uh, with high power RF at X-band at octa this fall.
+Um, so this is another area where we're exploring, uh, RF materials studies, uh,
+to advance, uh, what gradients and efficiency we can get out of these RF structures.
+Okay. Uh, so the test story itself. Um, so we're planning a guard research program with this new test area.
+Uh, we want to, uh, characterize the, uh, gradient dependance on, uh,
+parameters like the cavity geometry, uh, material, uh, RF pulse length, um, the operating temperature.
+Uh, and, uh, do all of this, uh, in this high external magnetic field.
+Um, so we will, will test different cavity geometries and materials.
+Um, through this program, we'll be looking at structures that are relevant to this muon cooling application.
+Uh, and then our, our intent is to benchmark, uh, our high gradient results, uh, at multiple frequencies.
+So we're going to start at S-band, um, and then within, within a few years we plan to move to album testing within the same solenoid.
+Um, and then we'll also be benchmarking our measurements against, uh, simulations done with Ace three PE.
+Um, so that's all within the scope of the research program that we are already starting to pursue.
+Um, and then we've also, uh, submitted an LDA that's specifically focused on designing a cavity for ionization cooling.
+Um, so this is a more, uh, kind of targeted project, uh, in which we would design a cavity scale to S-band,
+um, and then tested, uh, at high power RF in the solenoid.
+Uh, so the solenoid itself, uh, is a five Tesla magnet from Cryo Magnetics.
+Uh, we're expecting it to arrive, uh, by January of 2026.
+Um, and what you see on the right here is, uh, uh, schematic where we've put, uh, four cell band cavity, uh, into this, uh, solenoid.
+It has a 9.5in diameter border. Um, this structure is, is, uh, not one that we have been designing for the specific application.
+It's actually one that we pulled from our kind of arsenal of many structures that slack has designed, uh, over the years.
+And so we have a great foundation, uh, to launch from, with the design of new structures, uh,
+because we have lots of experience in, uh, prototyping cavities both at S-band and L bend.
+And with this test area, we're starting at S-band, uh, in part because we already have high power RF at S-band.
+And that means we can hit the ground running with this, uh, research and really start cranking out results immediately.
+It also makes it much easier and cost effective, uh, to prototype these cavities and for doing an S-band instead of, uh, lower frequencies.
+Um, and CTA already has, uh, the infrastructure.
+So we have close runs at El band, and the bunker is already plumbed for the waveguide to route L band, uh, to this area.
+Um, but those close runs have not been in service for a number of years now.
+So we do expect that it'll take some time to bring them back.
+Back online. Um, and in the meantime, we want to already be, uh, producing, uh, um, actionable results at S-band, uh, from this program.
+Uh, okay. So I wanted to do a brief, uh, overview of, uh, and I'll CTA.
+Um, so here in this photo of, uh, the slack campus, I've highlighted the building, uh, where CTA is located.
+Uh, that's in the old and station B, um, now CTA is participating in a network of test facilities called beam at us.
+Um, up in the map there, you can see, uh, the various locations across the country that are participating in this test facilities network.
+Um, the goal of this network is to advance accelerator research and technology, um,
+provide access to these accelerator facilities and the specialized equipment there.
+Um, and also to help foster collaboration, exchange ideas, skills and resources.
+Um, it's also intended as a way to, um, bring more kind of new user communities, uh,
+to these facilities that might not be aware, uh, that these capabilities are available for use.
+Um, beam net uh, has a, uh, proposal process, um, that awards beam time, uh, and supports, uh, the, uh, funding for travel.
+Um, and then the beam net program also provides funding to the facilities.
+Um, so for users that get beam time through this program, uh, we are really able to,
+to treat it as a kind of all hands on deck moment where our staff can help you,
+uh, with your experiments and collaborate kind of in more depth than might otherwise be true.
+Uh, at a larger user facility. Um, so, uh, for example, um, we had our first users at CTA this year.
+They were actually the very first users of the beam net program, uh, as a whole.
+Um, and it was a team of undergraduate students from Harvey Mudd College.
+Um, so they were doing, uh, senior thesis project, and they reached out to us about doing.
+The experiment. Um, and uh, staff worked with them throughout the entire process.
+So with beam net, you're actually the idea is to to reach out to the facility first, um, and talk about, uh, how the facility, whether it can,
+can kind of meet the needs of your experiment and then work together on the proposal so that it is,
+uh, really geared towards, uh, success and, um, work with the facility throughout the entire process.
+Um, so we're now still working with that team of students, uh, and, and they have, uh,
+submitted a contribution to the North American particle accelerator conference, uh, next week.
+And they're going to be going to present on this research.
+Um, so it's a great way to get kind of new users and new people involved and test facilities.
+Um, and doing, uh, research, taking advantage of equipment that you might not otherwise have access to.
+Um, yeah.
+Uh, and also in general is a great environment for early career scientists and engineers to really have hands on experience in an accelerator,
+uh, research environment. Um.
+Okay. So, uh, I don't think I'm going to go into too much depth here.
+This is just kind of an overview of, uh, facilities at CTA.
+But if you are curious, I mean,
+these slides are posted and there's a link to a virtual tour where you can walk around the building and inside of the bunker.
+Um, we're set up with, uh, comparatively, uh, like very easy access to the outer housing and there's no cooldown period to wait for entry.
+That makes it kind of more accessible for new groups that might have more troubleshooting to do.
+Uh, less experience with an intensive user experiment. Um, okay.
+Uh, test facility capabilities. Um, so here I just wanted to, uh, highlight that we are very open to opportunities for collaboration.
+Um, and new proposals. Uh, so, like, we're interested kind of, uh, at all levels.
+Maybe you have your own idea. You don't need our help at all. That's totally fine.
+Apply for some time. We'll help, like, make it available to you.
+Um, and that's fantastic. Uh, maybe you are interested in getting involved in the work, but you don't know what?
+You, uh, don't have an idea that you want to pursue yourself quite yet.
+Um, you can come get involved with what we're doing.
+And here I also want to highlight, uh, the Dewey's science undergraduate laboratory internship program.
+Um, so this is a great way for students to come get involved.
+Uh, there's a ten week internship over the summer, and you can also come for 16 weeks, uh, during the fall or spring semester.
+I know you're on the quarter system, so, uh, maybe it doesn't work out quite as well.
+Um, but usually the start and end dates can be flexible. Um, so this is a paid internship.
+Uh, and it would give you a way to get involved in projects happening here.
+Okay. Um, so if you're interested about, uh, doing research or dental CTA, uh, get in touch with me.
+I'm the point of contact.
+Um, and let's see, I want to, uh, end with this slide just giving an overview of the research that we are looking to do in the near term at CTA.
+Uh, at this test area, we're going to be starting with, uh, high power RF at S-band, looking at cavities at room temperature.
+Um, then we're going to look at cryogenic testing. Uh, and then we're going to move to uh, el band.
+Uh, and then do el band. Uh, cryogenic temperatures.
+So that's kind of within the span of the next 1 to 5 years. Um, in terms of material studies, uh, we're looking at normal conducting cavities.
+Uh, we're going to be doing cold copper, different materials and geometries.
+Um, and then we're also looking at developing high temperature superconductors.
+Uh, for RF cavity, uh designs. With design studies we've got, uh, multi physics analysis.
+So, um, I want to point again to the great talk that Sang-hyun gave earlier.
+Uh, we're looking to be able to quickly benchmark, uh, results that we get from our modeling against, uh, measurements in the lab.
+We want to, uh, have results on frequency scaling, and this can inform choices when we do need to go to lower frequencies.
+Uh, we want to follow up on, on optimizing, uh, cavity designs for the cooling application.
+Um, and then eventually start looking at multi cell cavities. Um, and yeah, so there's opportunity to collaborate, uh, across all of this.
+Um, and then I also want to acknowledge, uh, the great team of people at slack that have contributed to this,
+um, and collaborators, uh, around the world.
+Um, and, uh, yeah. So a lot of people have been doing a lot of great work for this.
+I have been all of the cold copper research, uh, the research on the high temperature superconductors, it's it's a lot of people involved in this, so.
+Yeah, that's a. Thank you for this fantastic view.
+We have straight into a question. Uh, very nice talk.
+Good work. I think this is cool. Uh, one question I have regarding the application of the test stand for the Muon Collider is can
+you comment on how the frequency scaling studies would work for the break down test in?
+Because. Do we actually know how break down scales with frequency or.
+Um, yes. So we have uh, uh, kind of a rudimentary understanding from like an analytical estimate, but we really need empirical measurements to know.
+Um, and, uh, so, uh, yeah, I think one of the biggest kind of challenges to this approach is as a comment of like, why are you doing this at S-band?
+That's very far from the frequencies that we actually would want to use for ionization cooling.
+Um, and I guess one comment I want to make is kind of in response to some of the questions before about like,
+oh, if you're too ambitious, you might actually delay, uh, the, uh, kind of muon collider effort.
+Uh, I think this, uh, kind of accelerator R&D program does a good job of striking a balance between kind of the fundamental physics of addressing,
+like breakdown studies, um, and scaling, like with frequency, uh, without making,
+uh, like, uh, necessarily it will inform the designs for a muon collider.
+It does not make a definitive claim of this is the way it must be done.
+Um, so we can start, like,
+making actionable kind of research results immediately without kind of undercutting any of the effort for a full scale design.
+Yeah, I think that since you will do two frequencies, right, you do S-band and then you go l band.
+So maybe from, from this study you can already get an understanding, you know, how things scale.
+And maybe we can extrapolate later to very lower frequency.
+And so I also I do know kind of there's like well uh the, the, the magnet that we've got is only up to five Tesla.
+Uh, I'm sure there's kind of, uh, well, why why don't you get one with a larger bore going to a higher field?
+Um, I think that once again comes around to kind of.
+This is what we have, uh, at hand, like, readily usable right now with S-band going to el band.
+Um, and if we kind of I think this this gives us a path to, to to make results quickly that can inform results without getting hung up on.
+Oh, the magnets going to be too expensive if we get one that's a big enough bore to go to even lower frequencies,
+or it's not going to reach the field that you would need for the actual demonstrator.
+Like we're we're not trying to to claim to be the way that it will be the actual demonstrator.
+We just want to inform kind of the underlying physics choices. Great.
+Anything else? You, uh.
+I didn't understand this from the presentation. I worked with this stuff with the people.
+This is just, uh. Uh, no beam. This is only high power RF.
+No beam. Yeah, yeah. So at NLC to we do have an electron accelerator.
+Uh, but we're this is a different area within the bunker, so no beam.
+Yeah. Uh, I heard of cold copper earlier. Is there any plan to maybe put a cryostat in it at any point?
+Uh, yes. So we have not yet looked at whether we would attempt to immerse the structure in liquid nitrogen or use, like, a cold head.
+Um, so we do have both options available to us. Um, a lot of the work that's been done in the division for Cold Copper has been looking at immersing,
+uh, structures in, uh, large doors of liquid nitrogen.
+So notably the C cubed project. Um, that's a very kind of cost effective way to handle this, but it comes with other challenges.
+Uh, and yeah, so we're looking at both options.
+We haven't committed either way. Cool. Thank you. If nothing else, let's thank MRA again.
+And now we have 45 minutes to discuss. So I'll invite, uh, dict us to introduce that, uh.
+No, you don't want to facilitate. Uh, what are some topics you'd like us to talk about when I think about the topic, right?
+I think Dan already opened the one topic already, so maybe we can start from there.
+Okay, we can escape the slides. We have four microphones.
+Uh, okay. We're going to start with Mel up here, and I'll give you this and I'll run down.
+I'll get another microphone. Thank you.
+Uh uh uh, I want to ask a general question, and, uh, it's actually one that I asked last year as well as I understand,
+as I understand the schedules was presented yesterday, the idea is to carry out the cooling test and assuming success,
+then go for full approval of the project of the $15 billion project and start construction.
+And what concerns me is that the cooling test will do a great job showing that you can cool by a factor of two.
+Then in order for the muon collider to work.
+You have to cool. Go down another factor of 40,000.
+And will you be able to convince all of us and the reviewers and the funders that there are no subtle problems that will cause heating?
+Uh, at a low level, something you wouldn't see when you when you successfully cooled by a factor of two.
+You know, I don't know, uh, collective effects between the, uh, the muons and the channel between the muons and material in the channel,
+but things that that would cause you not to be able to get the factor of ten to the to five,
+maybe not even close, but would not be perceptible when you're cooling a factor of two.
+How do you how do you make the jump from cooling factor of two to approving the entire project?
+Uh, Mel, that's a great question. I would suggest that by choosing, uh,
+a piece of the cooling channel near the end where you have a low emission stream coming in and even lower emissions beam coming out,
+you're testing one of the harder parts of the channel. Um, and if there are subtle effects, they could well show up.
+Doing an easier test could also make sense.
+But I don't understand why something would show up in a test with a larger admittance than a lower cooling factor that wouldn't show up here.
+So in this test. In this test, the incoming beam into the channel would already have the very low admittance that you would have in the full.
+Uh, yes. Cooler. Okay. That helps.
+Of course, we should also not exclude the possibility, but maybe we can derive some scaling laws with protons as well.
+I mean, protons could be intense and maybe some intense.
+The effects of intense protons could be similar to me.
+And so therefore we can perhaps derive some scaling. So that's another route.
+But we can answer some other questions. If I can come back to the point I raised after this is talk, you really want to define something.
+That's the minimal necessary thing to demonstrate and eliminate as many extraneous factors as you can.
+Uh, we have no reason, based on simulations, to expect any collective effects of any kind at the admittance that we're talking about here.
+Uh. Are you. Are the simulations good enough?
+Or do you know that all of the relevant interactions are there?
+That. Well, we certainly have time to refine the simulations.
+Not, uh. But but the, uh, the other comment in that context is if there are no if there are no, uh,
+collective effects at a million muons per bunch, then what are you learning by doing a million muons instead of one muon at a time?
+Uh, you're investing a lot of money and effort in preparing the million muon bunch that if you if you were happy with one muon at a time,
+you wouldn't need to invest. And there are all kinds of problems you wouldn't need to solve.
+Uh, figuring out how to make a million muon bunch doesn't teach you much, because it's not the thing you have to solve to make a muon collider.
+Another thing I'd like to add. So not on Plex effects, but for the heating effects.
+I'm a little concerned about B sub tank.
+Uh, I don't want to speak for the most people in the room, but that was the thing that happened when the downstream solenoid broke.
+And and so then the beta beating heating effect outweighed the cooling effect.
+And and this is something we also have to be very sensitive to in simulations is having these matching areas to minimize a beating.
+And so this is part of the reason why these tolerance studies are so important.
+Because the engineering effects can result in heating.
+And I think that that's another reason why it's important to do the engineering design, because it tells us about any solenoid field misalignments.
+And so I think even a million particles could pick up on a beta beating.
+Uh, and probably single particle as well.
+Single if you do single particles, as we know from mice, you know everything there is to know about the bunch.
+Uh, it's a million muons. You just took it over a period of a day or whatever instead of all at once.
+Yes, but as a kilometer long cooling system in the real collider, I would be concerned that somewhere in that system,
+you have a small effect which dominates any heating benefit you might get.
+The other thing that we have to consider is what kinds of effects did people
+encounter when they built previous accelerators that they then learned how to solve?
+There will certainly be problems of that kind that you can't anticipate and that you can't seek to test in advance.
+But you have to be you have to have confidence in the tremendous ingenuity of accelerator builders.
+Uh, every accelerator that I know of has exceeded its initial design specs, and we would hope that the muon collider eventually would do that as well.
+B and SLC, I guess, are the counterexamples.
+Has come up for you live. With another aspect, I think.
+Initially I didn't appreciate it much, but now I realize it's very important is the instrumentation,
+and we need to make sure that we have developed the required tools to measure the maintenance without, of course, interrupting the beam also.
+Right? I mean, that's another, uh, critical item.
+But we have to do and perhaps for what you need some muon intensity as well, because if you don't have any,
+if you have, you know, ten over three muons, I doubt what we can use any will be very hard to to see the beam.
+So I think the fact that we have ten over six means I think it's a. But why couldn't you develop that with proton?
+Well, if you want to measure cooling. Right.
+Uh, if you want to see the cooling effect, uh, versus position, um, but the instrumentation is not specific to cooling.
+It's just a maintenance measurement. You can measure the admittance of a proton beam.
+That can be done. Uh, at BSI, for example, BSI has a quite, uh I mean, it's low momentum, but they have an intense muon plus beam.
+So they are studying actually, they are also wondering what you are saying.
+They are, uh, going very high intensity and probably also g Baka don't know what they will have the same problem.
+So, uh, they are studying new methods, uh, to measure the emissions because is not trivial at all.
+And actually, you know, one problem in the Muon campus, for example, is yes, we can do a measurement,
+but when we interfere with a beam and then we basically destroy the whole beam downstream and G minus two cannot collect any data.
+Right. So you want to do it in a way that you don't, uh, create the opposite effect.
+Yeah. Yeah. Right. I'm not going to repeat myself from yesterday, but I'm going to present in an alternative universe, you know, where,
+uh, we actually run Muda e from the first run and we go on to mutiny to with the Pip, to Moodie with the pip two.
+And, uh, people collectively decide. Yeah, maybe we go with a muon collider slash neutrino factory type front end,
+because we have to tear apart so much of the experiment anyway, and because there's already been engineering done.
+In fact, some of that engineering was used for those, uh, transport solenoids on the, uh,
+on the helical cooling channel and the, uh, off axis, uh, high, uh, high field rings, Hopfield solenoids.
+We build a section of helical cooling channel for collection and not for cooling.
+Even though we do have we do have absorber in it. It's we tune it for, uh.
+And I saw Cronus being so that the we think which you can do and I would say that if that went ahead,
+you would have accomplished much of what you were going to do with the demonstration experiment,
+because you would have you would have had a real running experiment, a real high intensity beam.
+Uh, uh, you would have to be able to instrument this.
+You would have to be able to determine how well it ran. And, you know, I think we're focusing too much on the cooling.
+I think Dan made that point is that it's not, uh, measuring cooling.
+It's measuring, uh, nonlinear beams.
+I mean, it's it's how do you characterize a beam that you can't use the traditional twist parameters to characterize and that so, you know,
+again, I'm just kind of thinking that if we go with what, how long a cooling channel do you want to build that thinks that answers your question?
+I think we just need experience with, uh, non-conventional type, uh,
+beam lines and unholy kind of collections of, of RF inside of magnetic fields filled with explosive gas.
+Um, no, not really, not if you keep the oxygen out.
+Um, but anyway, that's what I'm saying.
+It's it's like I see another long term project, phase one of what you presented, this, uh, was like 20 years and, uh, 117 million or what?
+I don't even know what the final cost was.
+And I think that's probably impolite of me to ask, but, you know, what I'm saying is that it took a lot to get there.
+We should be doing all kinds of things like this as we're doing, you know,
+the as we're doing the current physics project, and it just needs somebody like, it's smarter than I am,
+but somebody nimble that has kind of a vision of, you know,
+the collective of all of our collective capacities and a whole range of things and particle physics to,
+you know, just have faith that we can build it. We didn't do a Tevatron demonstrator, as I recall.
+We, the Timothy Ron David story theater, was the Tevatron.
+And we sort of maybe it was a leap of faith, which we're going to have to do if we're doing science that.
+But, you know, not a big one. I mean, you know, it's not like there's new physics involved in any of this now.
+But I think that, for example, in order to decide what kind of technology of RF you like to use for the for the immune collider,
+right, you need first to do the study, for example. Well, you can do you know, I don't see why a lot of that stuff can't be done in parallel.
+If it can, yes. I don't you know, it doesn't lock you into a particular.
+But this is part of a demonstrator as well, part of a demonstrator program basically.
+So you have basically you have to define with technology what you will use for your RF.
+You have to define the technology, what you and the experience will be, margins that you have to use and how to build them.
+Because the unique aspect of a cooling channel, if we go for a convenience, for example, is that we have all this, it's not so much.
+Building the magnet is more about putting the magnets together and how to basically hold this thing.
+Yeah, right. Do you understand?
+I mean, we have a program basically we had an SBIR that dealt with just that issue like over 12 years ago and successfully, I might add, in a month.
+And actually, I have to go, I my apologies. Uh, not surprisingly, we had the same discussion 25 years ago.
+Uh, and Alvin actually raised the question, is a muon cooling experiment going to be an unwise use of our limited resources?
+Uh. Uh, so Mike encountered it with an interesting question.
+He said, I've invented this thing. I call it a car.
+It's based on Maxwell's laws and Newton's laws, and certainly it will work.
+Right? We understand all that physics. Would you like to test it?
+And naturally, you would ask. Well, have you tested it?
+Has it been tested?
+You know, I'm not going to get into something that's supposed to go at 60 miles an hour if it hasn't been carefully tested by competent engineers.
+And that was his argument why we had to do a muon cooling demonstration.
+Yeah, I would say his counterargument, though, was because the whole spectrum of thing we didn't test because we were locked
+into what was quickly kind of an arcane sort of vision of a cooling channel,
+plus a whole bunch of other things that happened. And it was political.
+But, you know, um, you know, I'm not I'm not saying that there wasn't a boatload of R&D to do,
+but I'm just saying even our, you know, our framing of this whole thing,
+we have to, like, build a significant piece of this, you know, with one design and that will like, you know, and how much, how long will that take?
+You know, when we should just be building the design we already have.
+We're already building the source. Right? You know, we've got a multi megawatt beam source at Fermilab.
+So that's step 1AA key a key question here is who's the audience.
+Who is it who has to be convinced. Is it the entire field of particle physics in the world.
+Is it accelerator physics physicists of the world?
+Is it administrators of funding agencies?
+We never really articulated that in a clear way, but, uh,
+it does seem to be the case that if you convince the community that something is feasible and worth doing, that they'll get behind it.
+Uh, and to convince them that it's feasible. This is a difficult engineering problem.
+You should at least build a difficult cell and show that you can solve the engineering problem.
+If you've done that, the question of whether you put muons through it or not maybe is less important.
+So I think to follow up on your question of who is this four year college?
+And here you guys. Okay.
+Uh, is that better? Yes. Um, I think the question of who we're doing this for, uh, who are we convincing is all of the above.
+Right. I'm not convinced that we can build a view on clutter today.
+Um. I think we need to convince other people in physics and different areas.
+I think we need to convince people in other areas of science because it is such a big price side project.
+I think we need to convince funding agencies, and I think we need to convince the public.
+Um. That being said, I think we have a reasonably good understanding of the things that we want
+to the questions we want to answer before we start building a muon collider.
+Um, I have a very naive question, and I have to confess,
+I have not read the full 400 page Espoo report yet, so I'm sorry if it's in there, but is there,
+um, you know, I'm thinking of kind of a table or list where you have the question that you want to ask and mapping this on to a specific test.
+Um, and that test could be things that you have today.
+I really like the idea of what do we have in hand today and what what questions can we start answering today.
+And then, you know, something on the intermediate term in something longer term.
+Because for me, you know. Building a demonstrator where we're testing a late stage of cooling, it doesn't need to.
+I could be convinced with a lower emissions proton beam, you know, high intensity going through,
+um, that beam, if it's a lower intensity muon beam going through,
+then I would want to test collective effects or, um, intensity effects on the absorber or things like that in a different place.
+And I feel like just making that list and then making sure that we have a plan for
+doing all of those tests is the first way to define what we need to be doing.
+So we do have a list, and I'll try and get up if someone knows how to open the internet on that.
+Um, like, uh, the list is not from that kind of holistic perspective of why.
+And then answer the list is here are all the magnets we want to try.
+Here's all the RF we want to try of the cooling demonstrator.
+We want to try one cell, then a five cell cryo module, and then a five cell cryo module and a beam,
+and then six sets of five cell cryo modules to test cooling principles.
+And so that's the the list. But then that isn't going to consider collective effects,
+because I think it's been said before that when you're testing collect effects of a me on Clyde Beam, then it's a muon collider.
+Uh, and I also think that you need to quantify the collective effects and simulations first before we worry about a collective effects demonstrator.
+Um, uh, I'm we're just starting the point where we have a solid enough lattice that we can start to test the,
+um, loading Wakefield's impedance, uh, plasma absorber and Wakefield's as an absorber.
+Um, and then has it also been connected from the list of things that you,
+the list of tests that you want to do to resources in existing expertise in the world, and where one could do that, has that already been done?
+It's been connected to funding and PhDs for the R&D plan but not for global.
+Got it. Sightings okay. It's mostly making things rather than looking for beams.
+Um, and I can I just also echo what Carrie is saying and especially that the the mapping
+is actually I think what we found also about by how was talk a DPF was received.
+Um, it's kind of well, it's kind of profound for the community to be able to see this mapping, like put this in terms that they understand because,
+um, yeah, it just the, the clarity of the talk at DPF has really made a dent in terms of convincing people that the R&D is worth it.
+Could you say that I got to.
+Uh, so we've already heard feedback from Maria Blue, uh, this week that the clarity with which Tovah gave the talk a DPF putting in.
+I mean, uh, with easy diagrams and, um, understandable terms made a profound effect on skeptics in the community to say,
+okay, these are the things that we need to do. This is how things work. Um,
+and so I think what Kerry is saying about having specific questions that we want to
+answer and how we're going to answer those questions will make an impact in terms of,
+uh, convincing the community that this is worthwhile.
+And okay, since since I'm going on more, I'll say that I've talked to somebody who is high up at FCC e and they've said,
+you know, if we can prove to people that we can build a muon collider, there's no reason to build it.
+So I think there's there's actually a lot of, um, opportunity to make inroads with the rest of the community.
+Okay. Do you want to cover some of this, or should I go ahead?
+Can read it. And if, uh, it's it's something related to what Mel was Mel was asking earlier.
+So we can either do this first or however you want to do it.
+Uh. Thanks, Taylor. Um, so I wanted to, for a second to go back to what Mel was saying.
+I think it it's a fair question to ask, right?
+If you're going from 20 cooling cells, what are you reducing emissions by a factor of 2 to 850 cells or something like this,
+where you're reducing the 60 emissions by five orders of six orders of magnitude?
+Are you absolutely sure that you're not, um, not taking something into account that may impact your performance?
+Um, I think some answers were given, but I would also say that the cost of a collider, um, is not dominated by the cooling channel.
+Right? A lot of the cost of a collider lies in what's downstream of the cooling.
+So a lot of it in the cooling, the the the three TV through 410 TV, a lot of it in the arcs is in the final Collider ring.
+Um, and also, if I recall correctly, for the Neutrino Factory, for example,
+the requirements on the cooling were much more relaxed compared to the specs of the muon collider itself.
+So you can imagine that you build a cooling channel, and if it's not even performing according to your specs and you need,
+um, some time to understand it, you can still attach some physics to it and extract interesting physics.
+Uh, of course, the question is then the delays, the timescales, which are already long, and I certainly appreciate that argument that's there.
+But what I'm trying to say is that there could still be a lot of use case for that, um,
+cooled muon beam, which maybe is not quite yet to cooled to the specs of a muon collider.
+Um, and then the other thing, uh, in relation still in the relation to what that was saying,
+uh, well, I wanted to say is I think even in Ecmc discussions and some of the US discussion.
+So it's pretty clear that the within the accelerator community, which, uh, I don't come from the accelerator community,
+but to me was obvious there are sort of two camps of how people see what needs to be demonstrated.
+Right? There's a part of a community that's firm believer that it's an engineering problem.
+Whether you can manufacture a cell, put multiple cells together with coils of high magnetic field,
+opposite polarities next to each other, absorber RF all together integrated.
+If you build that to first order, the you don't need to put the beam you you kind of you convince yourself you can do it.
+And then there's the other camp that says building it alone is not sufficient.
+You need to put build through it. You need to demonstrate that you can operate that beam.
+You can measure the parameters of a beam, because in the final collider you would need to do it,
+tuned things as you go and you need to demonstrate your ability to do that.
+So it's great that these things are brought up.
+Uh, what I'm saying is, I don't think there is a clear consensus on on what is the main thing.
+And I think the MK plan attempts to address both issues and to a good conclusion for the three days of the demonstrator workshop last year.
+I as you say. So we're trying to cover everything. I don't even know if we have a design which needs to meet a specific cooling percentage.
+Uh, I don't know. Yeah. I mean, number factor of two was taken out of a hat to to some extent it could be, uh, factor of five.
+It could be factor of ten. I don't think there's a magic number.
+Uh, and also we have another demonstrates a meeting, uh, 3rd to the 5th of November.
+And I'm gonna send Milano, uh, just to comment that you can attend.
+Sorry if we have funding and go can go to Milano.
+I doubt that we will.
+Uh, just saying that it exists and and we can have these discussions because it was nice to have it in Fermilab last year, though.
+Yes. I was just going to add, I, I really like, uh, this is really useful, uh, conversation.
+I really like what Carrie said about sort of from a,
+like going in the reverse direction because we've done a lot of bottom up, kind of like we need to build this.
+So what are we going to show with it? What can we whatever. But the point is for convincing other people who are not into in this community,
+I think the direction that Carrie suggested is really useful, and I think we should try and do that.
+Um, I hear some people sounding maybe antagonistic to the concept of a demonstrator, period, which to me is sort of like beyond the point.
+Like no one's going to give us $18 billion right now, and we might be able to get a significant chunk of money for a demonstrator.
+So I think we should really be thinking, how do we make this as useful as possible to us in advancing towards this muon collider?
+Right. So not only, you know, I think this is this is our prototype for when we make a cooling cell from right.
+We need to do that. So this is great. This is a way for us to get money now.
+Um, so I think it's really like we should see this opportunistically as what we can, what we really want to design now and get money for now.
+In addition to thinking what's convincing, which is a more like wishy washy, I think concept.
+That I don't know. A question similar to what you just mentioned in the.
+So the as you mentioned, I'm CC decided we're going to choose the be five of the 60 cooling cell,
+and I wonder if the U.S. demonstrator would want to take the same approach of taking from a 60 cooling cell,
+or if there's another design philosophy that's worth doing that can explore synergistic or perpendicular types of R&D.
+I think that he also has the microphone. If you want another highlight, I want to add a more, um, let's say, time,
+timeline and political issue that we are discussing and preparing the next the European strategy that is ongoing.
+And then in the past one, as it was for Snowmass, uh, uh,
+showing that we are advancing even a small steps, uh, in a, in a clear direction is very important.
+And everybody is waiting for us to, to get some something more on the demonstrator.
+That is a crucial step and mandatory step.
+So I think we should, uh, make this effort, uh, and work coherently on both side of the ocean to,
+to show that we are working to get as much as possible on the bottom test, on real test, and on simulation to show that we are advancing.
+Uh, I don't know. I might be sent home missing something very important.
+But in my books, you know, Collider is really.
+We know that I own it from physics works and stuff like this.
+Uh, I believe the muon collider is more technological problem and engineering problem than physics.
+And what really kind of also worries me is the cost not only of the component, but also operations of this type of machines.
+And nobody is talking about how we can improve the cost of the magnets or the cost of dive systems.
+And I mean, it's really great to say, well, we will use Clay, Sly Stone and we will.
+Design efficient license. But somehow I want to remind.
+Remind people. For last.
+Almost 100 years. We are here in license and we never made it more than 50% efficiency from the classrooms.
+On the other hand, we have migrant drones. Pitch around for the last 50 years and very easily making efficiency in the range of 80%.
+Why we don't concentrate on technologies like this and try to see can we develop that which will be extremely important for the muon collider,
+but at the same time extremely useful for existing machines.
+So what I'm trying to say is the following. Uh, let's not worry about cooling and stuff like this.
+Okay, fine. That is great. But let's worry more about technology and trying to Dell to develop new technology for these type of machines.
+This much I want to say. For example, I really I'm kind of surprised for last two days nobody is saying anything about not if.
+Uh, and once again, I'm selling you to fly students today.
+Uh, efficient to 50%. I mean, probably somebody will make in the future a fish classroom, which can be efficient to 70%.
+But keep in mind we have magnet drones, which are ordered efficiency 80%.
+And which can be used. I mean, in accelerator it's not only muon colliders but any other.
+So this is more common than anything else.
+Whatsoever using it, calling a project a cooling demonstrator and, uh, you know,
+sort of broadening the definition of what that is to include a whole host of things like,
+for instance, phase and frequency locked magnetron in your cooling demonstration project.
+That would be an awesome synergy. I mean, it's like but again, I would I think it just it takes a little bit of imagination and, you know,
+just kind of being we're being aware of locking ourselves into a 10 to 20, even 30 year project, you know, which is going to be a sideline mean.
+Um. How much were we going to ask for this, uh, muon cooling demonstrator, by the way?
+Little R&D plan was 300 million, but the cooling demonstrator was part of that.
+Uh, and I don't think I have. Oh, yeah.
+So this table, if you plot, it shows the time spreads over the ten years.
+Were I to X is the time from being greenlit?
+Uh, and so then you could assume that a lot of the Zero Sun and technology material would go towards the demonstrator.
+Uh, that would also include RF magnets.
+Has it separate category? RF will be an accelerated design and technologies along with the absorbers along with targets.
+To accelerate the design and technologies of the first row.
+Yeah. Which contain RF material.
+So. Yes. So the list of RF.
+Uh, the list of the RF that we would want to test within the, the, uh, R&D is is these four.
+So yes, the, uh, RF muon cooling system prototype industry, 704MHz and then 352MHz.
+Clay strong prototype. Well, put this together, please.
+He or she went on to think twice to this great power source.
+Relatively efficient, inefficient and expensive.
+And I mean, the people are promising to have multi being price terms which will go up to 70%.
+It's not you comparing to your go to market.
+You mean comparing the discussion for so solid state and also microphones.
+So you'd want to compare flies, drones with microphones? Yes.
+At least you tried to use them. Yes.
+With your right over the phone. You so much? Yeah.
+Let me echo that. We certainly shouldn't lock ourselves into close drones at the beginning of a long development period.
+Uh, coming back to the table, it seemed to me the cost of the demonstrator was grossly underestimated, but I didn't.
+I didn't see what the units of FTE was. Was that person years or was that translated into money?
+Yes. Uh. Cost of plus mints.
+So doing the demonstrator. Oh, there's not a total over the ten years.
+That's each individual year. Uh, this is each individual year, and then this is a sum of all of.
+That accelerates another bit. Uh, but we're discussing the demonstrators specifically.
+So, so so it's it's it's something like $500 million, isn't it?
+Yes. Yes. So you could say it's a proof of manhood, so to speak, that that this community can command that kind of resources.
+Uh, or there's probably a difference between how people feel about this on the east and west sides of the Atlantic.
+Because you have certain backs, you then you can certainly get that level of resources.
+But in the US, our community has never been able to. We've always been on a shoestring.
+Uh, and the US is no longer a reliable partner when it comes to funding big projects.
+So we've got to be careful if we're going to do a demonstrator in the US who's going to fund it.
+Can we count on the funding continuing over the long term?
+Uh, that's why I'm saying we shouldn't bite off more than necessary.
+Donatella on audio comment. I think one of the things.
+That, Steve, you want to comment on, my I was getting at or that can you can you say it again or can you say it again?
+Preoccupied. Oh, okay. What I'm saying is, uh, I'm not confident that we can do a $500 million project in the US, even in Europe.
+I think we're all in the same boat. It's very easy. Uh, let's call it that.
+And if we say that, uh, it's a prerequisite, we don't want to do a muon collider unless we can do a $500 million demonstrator.
+I think we're shooting ourselves in the foot.
+We're better off to define the demonstrator as the minimal thing that's necessary to make the point, and then try to get the resources to do that.
+Well, you know, I think I don't think we can come up with a pitch overnight.
+I think what we have to do is, first of all, keep the community together and then, you know, uh, organically grow a case, right?
+So, you know, just keep pushing and keep. I mean, this has to evolve in somewhat of a natural way, I think.
+You know. So we have around five minutes left.
+Final comments. Uh, I mean, uh, yeah, I do kind of want to comment because it is, um, this the the cost and the size of the project is a lot.
+And it's something that, um, we've been hearing, uh, over, over and over again.
+But I also don't think, um, I think, you know, we should still we shouldn't be discouraged by current events like I.
+It's easy. It's easy for millennials to get discouraged after so many housing crashes.
+And it's easy, you know, like, uh, grant suspensions.
+I think we should we I mean, I think we should just define what we to find.
+Likely minimum. Uh, these are important.
+Um. Uh, yeah. We should put an envelope of what we need to try to do.
+But I also think that, you know, um, the pursuit of doing something interesting is why we're here.
+And so if we think that, uh. Yeah.
+And I think that, you know, if it's technologically feasible and, um, we'll determine if it's going to be economically feasible,
+but I don't I don't see that we should let it discourage us at this point.
+Okay. Yeah, I, I okay, I don't know okay.
+I mean I just this kind of, this kind of funding is not unprecedented.
+Right. And this is a bad example. But you know, ITR was funded at about $200 million a year for a long time.
+And, uh, you know, so it's possible, like I said, it's not a great example, but, um, you know, it's doable.
+As a novice young person,
+can you guys explain the context of why you're thinking getting the demo funded could possibly make the real one less likely?
+It's not understandable to new people. It'll push it way off into the future.
+If you if your goal is a ten year program that spends 500 million and it turns into a 30 year program,
+then when do you actually build the muon collider?
+But if it turned into a 30 year program, isn't that challenges you would have had to solve for the real one anyways, but it doesn't.
+When that happens, it's not for a good reason. It's because the funding was delayed and you weren't.
+You didn't have the resources to solve the unanticipated technical problems that came up.
+It it's not because of the intrinsic difficulty. The problem is because you didn't have the resources to attack in the best way.
+Uh, but if you're too ambitious, that's what that's what can happen.
+So my original comment had to do with something else I want to say.
+We're actually building several multi-billion dollar projects right at the moment, including pivot to LP,
+UNF, Dune, um, and then few others that are at the scale of a few hundred million.
+So I think it's not impossible.
+And I would assume that if something like this gets approved in the US, hopefully U.S. is not the only country that has to pull it off.
+And there are international contributions that help to offset, at least partially, the cost of us.
+Um, the other thing I want to say is, I mean, it's hard for me to imagine that construction of a muon collider facility of this scale can real.
+Even if you were to solve many technical, uh, challenges, the system was simply saturated with the ongoing projects.
+Right? And if you look at the projected, uh, timeline for, you know, completion of, uh, LBM have to pivot to mutually,
+uh, high Lumi upgrades, you're already pushing yourself, um, to, uh, kind of late 30s beginning for this, right?
+Including al-Banna. Uh, Dune phase two. Um, so it's you.
+You're already kind of looking for that something that's 15 years, uh, removed from today.
+Uh, that's by definition, unless there is unless is no new money, significantly more money in the system than there is today.
+Um, and then not for the demonstrator.
+I meant for the facility itself. You see, a demonstrator, you can get a lot of enthusiasm to build an accelerator to do science.
+And you can defend that project and its inherently strong.
+This is inherently fragile. The whole muon collider is vulnerable.
+If you say you need $1 billion project before you even started.
+Yeah, I think we agree that if we can attach good physics to the demonstrator project, we would all benefit from it.
+There is no question. A final point from Deb.
+I mean, well, there is a question whether we are learning anything by building a string of modules when we if we can actually establish
+that we can build one module reliably and then have a big construction project to build half a dozen of them or a half dozen.
+Uh, uh, maybe it'd be better to go to another of the challenging hardware things that we need to demonstrate instead.
+So, uh, on, uh, at time, uh, we can continue with the discussions.
+Interesting. I do want to add a couple more things. And that thing is, well, for the 60 cooling.
+So, you know, we're putting so many students and time towards designing it.
+But before now it was just a bunch of dual beam lined floating cylinders until we said we're going to build the demonstrator.
+Uh, now we have a Chrome module.
+Now we have an engineering design, and now you can really see what the cooling and the 60 cooling needs in order for it to exist.
+And I think that's a really nice direction that the intent of the demonstrator has already got us the and and just to put some, uh,
+enthusiasm rather than just depression on the feature, I really like that we can see,
+you know, the pancakes are starting to form and they're starting to be wound.
+And that's something really new and exciting. And I'm really looking forward to the, uh, RF system, uh, and the five Tesla magna.
+And I think the vision we have is then bringing us closer through the demonstrator.
+Uh, uh, not final. Another thing.
+Oh, I think there might be some points, but also we haven't mentioned industry connections and the fact that the,
+uh, capture solenoids are 40 Kelvin, 40 Tesla, large aperture, high radiation environment.
+We're starting to have those conversations. Uh, and because the magnets in a similar environments, uh, and so I think it's not completely hopeless,
+uh, you know, depression and talk of funding and this whole idea that this is too big.
+Was there any other wrap up points? Don't tell, did you?
+Was switching off. Let me say that I think I see these things in a little.
+I mean, in a different way is my own, uh, vision of that.
+I think we should start with something. I mean, as was discussed.
+So that is already available. So starting what? We have a building, uh, a building, a sale, maybe, and doing some, uh, some testing,
+bringing them on beams and see, uh, what exactly we can learn from that.
+But there are other experiments, other facilities that already have, uh, um,
+muon beams where we can, uh, do something, learn how to deal with with muon beams, for example.
+And, uh, the, uh, all idea of the demonstrator, to me at least, uh, is really tied to physics.
+So we should try to build something that.
+Okay, we call it demonstrator, but for me, something like, uh, I don't know if facility where we can start having,
+uh, performant the muon beams where we can do some measurement, like, uh, dark matter searches,
+uh, uh, as, uh, an A64 mu is doing at CERN at the moment or other searches a China I know that is proposing uh,
+uh, some, some some, uh, uh, lepton flavor charge, lepton flavor violation searches with muon beams.
+So probably we should start investigating these kind of things.
+Or neutrino, uh, physics. Uh, related to that, we can do measurements that we can do with, uh, some beam.
+So muons, and at the same time studying physics and doing, uh, these, uh, R&D for,
+for the muon collider, otherwise, I think is very difficult to, to keep the community engaged.
+Uh, on the physics community engage engaged in uh, is so difficult uh, a technical,
+uh, technical, uh, uh, studies, uh, or advancement that we have to do.
+Uh, and I agree that we should proceed with the muon collider without waiting for having, uh, the full chain or the full demonstration.
+Because I agree with Melissa is it is almost impossible if you go to a funding agency and you demonstrated a little bit,
+uh, and because we will compete with other projects, uh,
+and it is going to be very easy for our competitors, uh, to say, oh, by you just don't come back when you have,
+uh, the full object that they must see it and that it will be the Neverending Story.
+Thank you for your thoughts on. Let's Go to coffee.

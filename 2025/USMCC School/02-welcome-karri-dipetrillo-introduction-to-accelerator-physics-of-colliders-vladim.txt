@@ -1,0 +1,1023 @@
+# Welcome, Karri DiPetrillo / Introduction to Accelerator Physics of Colliders, Vladimir Shiltsev
+
+Okay. Welcome. Um, it's 9:00, so we're going to get started.
+I have some intro slides with logistical information about how the meeting is.
+The school is going to go. Um, so let's try and get through them quickly so you can get to the actual content.
+Um, okay. So what is sort of the philosophy in mind behind why we're having the school and what the goals are for the week?
+Um, the goal for at least from the perspective of Usmca in the organizers, is to kickstart us.
+We want Collider Accelerator R&D efforts.
+And as a part of that, we know that the accelerator challenges associated with the muon collider are some of the most interesting challenges,
+uh, that we'll have to address. Um, but we know we need to strengthen the US accelerator workforce.
+So a big goal is to bridge the traditional gap between, um, collider disciplines.
+So experiment accelerator in theory. Um, so that's a big part of our goal this week.
+So making friends across fields, um, and, uh, learning new, new things and different topics.
+Um, with that in mind, the goal is to introduce students or attendees to key accelerator concepts, the main challenges of a muon collider.
+Um, and give you a taste of the current status of those technical challenges.
+Um, and we also want to, you know, build up the community and want you to to meet more people in it.
+Um, the school is modeled after US particle accelerator schools.
+Um, where there are lectures, uh, during the day.
+Plenty of break time, plenty of time for discussion, followed by daily homework sessions.
+Um, so the idea is that important concepts will be delivered or message to you during those lectures.
+Um, and the homework sessions and problem sets will reinforce, um, your learning of those concepts.
+And it doesn't rely heavily on textbooks. It's mainly what's transmitted through slides and through from the instructors.
+We strongly encourage active participation. There are a lot of great questions last night.
+Let's keep that up. Um, keep asking questions during lectures, after lectures.
+Um, and keep discussions going through the coffee breaks and meals.
+Um, so who are we?
+We have 75 students, and I have the breakdown by career, stage and experiment.
+We asked, do this as part of the registration form. Um, and I think it's really fantastic.
+We've got, you know, majority students, a good number of undergraduates as well.
+Um, but also a number of postdocs, professors who are attending as students, um,
+and even master's students, the people who are full time research associates.
+Um, in terms of people where they come from in their primary discipline.
+Uh, we're about half experiment. So this should be a really great way to build up that accelerator workforce.
+Um, a little over a quarter accelerator. And a good number of theorists as well.
+So we should have some good mixing and cross-fertilization of ideas. Um, and we have 13 expert instructors from across accelerator physics.
+Um, they're all fantastic. Uh, yesterday we had a lecture from Steve Gourlay, um, who we didn't give a proper introduction to.
+Um, but he's fantastic. And, um, Vladimir is going to kick us off today.
+Um, and and you'll see, obviously, the rest of these faces throughout the week.
+So keep an eye out for these people. Um, everything you need to know about the school.
+Um, should be on the indico.
+Um, the welcome packet we have, uh, I think, you know, the schedule is a little bit, uh, there's a mistake in the schedule.
+So basically, just refer to the Indigo for the latest schedule and any other information you might need.
+We'll keep that, um, as updated as possible. We have three very full days of classes, going from 839 to sometimes 839.
+Um, there's a lot of material to cover during those days, so stay rested, stay hydrated.
+Um, stand up and stretch when you need to. Um, do your best to pay attention and be, you know, polite, uh, engaged, active, etc.
+Um, if you have any questions, ask the registration desk, especially if they're logistical.
+Um, if you have questions about the physics or the material, we suggest joining the USBc slack.
+We have a USBc 2025 channel. Um, where you guys can talk to each other, um, ask questions and whatnot.
+And if anything is not addressed through those two channels, then you can send an email here.
+Um, and we'll do our best to address it as soon as possible. Okay.
+So where are the school take place? Um, obviously in this building.
+Christian Physics teaching center. The address is here. Um, this is mostly where we're going to have lectures, coffee breaks, breakfast, lunch, etc.
+Um, and then we're going to use the Michelson Center for physics.
+It's about a five minute walk away. Um, this is where the Enrico.
+Gil Fermi Institute, where the particle physicists offices and labs typically are.
+Um, make sure to use the south entrance. The north entrance is usually card access only, um, and the doors will lock at 8 p.m.,
+so everybody should make sure to get inside for any sort of last minute homework or anything like that around 8 p.m., or ask a U.
+Chicago student to let you in. Um, and you can do that via the SoC.
+Um, okay. So the progression of topics today we're going to focus on an introduction to accelerator physics.
+Um Tuesday transitions to machine design where the idea is to walk through each subsystem of the muon collider in detail.
+Um, that's going to continue through on Wednesday, um, with some special topics associated with muon collider technology.
+So the cooling magnets, RF cavities, etc. Um, the lectures will always take place in this room.
+Um, and it's the homework sessions that will take place in Michelson Center for physics.
+Um, this is the time slots for those homeworks is also on the Indico agenda.
+And the idea behind the homework sessions is we're going to divide all of the attendees up into groups.
+You can find a link to those group assignments in room agendas here.
+Um, we tried to have a good mix of career stages and area of expertise in those groups with at least one quote unquote,
+accelerator expert, um, per group.
+Um, and at least for today, each we have six groups and they're each going to be paired into two at the end of the homework sessions.
+And they'll present solutions to each other. So it's like peer learning kind of thing.
+Um, in terms of meals, we're providing breakfast coffee and box lunches.
+Um, this is where you to check in. Um, and breakfast was today.
+Um, you're on your own to find dinner. Uh, we've given everybody $75 gift cards.
+Um, there's a list of nearby restaurants, sort of vaguely separated by walking distance.
+Um, so you can, you know, prioritize depending on how long we have for dinner.
+Um, and we really strongly recommend getting lunch with, with the other attendees and talking about, uh, what you've learned that day.
+Um, okay. And then in terms of photos, we're going to have a workshop photo today just before.
+So just after the morning session, but before lunch, um,
+we're going to exit through the south side of the building and take a photo somewhere, either on the steps or nearby.
+Um, we're also going to have a number of people taking photos throughout the entire week.
+If you have any issues with that, if you don't want to be pictured or want your photo posted somewhere,
+please just let one of the organizers know and we'll note that down.
+Um, Kyle is organizing some IMC videos he's waving right now.
+Um, so if you're interested in doing one, please, uh, reach out to him.
+I think I think the link here is to your email, your Stonybrook email.
+Um, and then, um, sort of if you have if you feel so inclined, you guys can post, um,
+photos or anything about your experience, um, with the hashtag, why am you in clutter?
+Uh, this is the detailed agenda for today.
+I'm not going to go through it in detail, but like I said, the general concept is lectures during the day, homework sessions in the afternoon dinner.
+And then we'll have a special lecture from Taylor today on the muon Collider machine overview.
+Um, and then big thank you to people who who made this possible.
+So, um, the staff here at Chicago are fantastic and have saved my butt quite a bit in planning this.
+Um, in particular Mary and Ramona. You'll see them around and there.
+If you have logistical questions, please don't hesitate to ask them.
+Um, and then we also want to say thank you to the people who made this financially possible.
+Um, so we had a lot of donations, um, which enabled support for many, many of the attendees lodging throughout the entire week.
+Um, and everybody's meals. So the idea here was to try and make this as accessible as possible to all students who are interested.
+Um, and then a final reminder, we do have a code of conduct.
+I don't think that's going to be a problem, but, um, it's on the indico if you have any questions about it.
+And thank you very much for coming. Um, we really hope you enjoy the week.
+And it's very productive. Um, and so let's kick it off with Vladimir.
+Does anybody have any questions about the organization of a school or logistics or
+any other question related to what's going to happen during the next three days?
+Feel free to ask. Yep.
+Uh, where can we find the link for the groups? It's on the indigo.
+So these photos are on. Um.
+I don't see any other questions, so maybe we proceed. Okay.
+Can I start? Yes. Okay. So welcome to Chicago.
+Uh, we start our school. School is short, so.
+And the first day will be about the basics of accelerators and colliders.
+So it. And myself. Uh, Jeff Eldridge.
+Jeff, wave your hand sitting here and Ben Simmons.
+Uh, three of us will be kind of coordinating you this this day today.
+Monday. Uh, as Cory said, uh, we have not only lectures, but also, uh, homework.
+Uh, and you will be broken into groups, uh, and, uh, to, to solve homeworks.
+You will be given some time to solve the homework.
+But even more important, probably more useful, will be the time when we discuss your solutions, even if solutions will not be complete.
+So we'll have opportunity to talk about what what what is the physics.
+What what's happening in this homework problems. Uh, it probably will be a lot of fun there.
+So we can we we will focus mostly on this discussion part, uh, when it comes to homework.
+And again, me, Jeff and Ben will be helping you with homework, see and discussion and will be discussion afterwards.
+Okay. So, uh, today I start lecture one about just what accelerators are, access technologies are and what's the history of, uh, colliders.
+What's the what is the luminosity and concepts related to colliders?
+Uh, myself, I'm, uh, Vladimir Schultz of I'm, uh, professor at Northern Illinois University.
+In the past, I, uh, worked on 35 accelerator projects.
+Seven of them were successful. I built four accelerators.
+I was head of the Tevatron for many years, and for many years I was director of the physics center.
+And, uh, since about like 5 or 6 years ago, I started teaching, uh, at various, uh, uh,
+various schools, um, and including, uh, most important, uh, uh, uh, US particle accelerator school.
+I will say a few words about that. So the first lecture today will be about colliders in general.
+Second one will be given by Jeff Felder, uh, on beam optics and the related stuff.
+And, uh, lecture three will be mostly, uh, concentrated on effects of we called beam dynamics.
+How how beams move. Uh, the homework as I said, will be in groups, uh, and coordinated by us.
+But this school just be aware that's, uh, just about concepts.
+Not much more can be said, but no means it will be when the comprehensive introduction, uh,
+again, given that muon collider will be the first beyond the standard model of accelerators.
+Collider. So standard model of accelerators, if you have a bunch of magnets and the vacuum chamber and and detector, that's that's your collider.
+Um, collider will be far beyond that, far beyond this standard way we built the colliders.
+So from that perspective, a lot of, uh, basic knowledge is required in order to make it reality.
+Uh, moreover, a lot of ideas and invention of new,
+new approaches very much recommended that all of you consider coming to and getting more kind of rigorous, uh,
+education in beams and accelerators that education is provided either by courses
+at universities or crash courses called the US Particle Accelerator School.
+When students come for, uh, two weeks and they get, uh, trained in a variety of courses from technologic technology,
+of, uh, of beams and accelerators to the more sophisticated use of, uh, beam dynamics and, and so on, so forth.
+US particle is created. The uh, accelerator, uh, uh, webpage is here.
+So they right now basically this school comes, uh, gets together twice a year for two weeks at different locations.
+Basically, you can wait a little bit and find out where where they come close to your,
+your favorite university or place and join their, uh, or look at the schedule of courses.
+Right. So, for example, just, uh, earlier this February, so myself, uh, uh, taught, uh, course on colliders in, uh, Knoxville.
+Right. So Tennessee, uh, and who?
+Kyle. Wave your hand again? Kyle was there. So you can talk to Kyle and, uh, Martin.
+Martin is sitting there. So if you have questions, come to me. Come to Martin.
+Kyle. You'll see how how the school work. Similarly successful school.
+And that school gives good education. It's a lot of work from 8 a.m. to 11 p.m. every day, but for two weeks.
+And you get a lot. Right. Similar type of structure, uh, is in this school called Certain Accelerator School.
+So if you are closer to Europe or like Europe, you can go there, right?
+But as I said, better of for would be sign up for integrated graduate programs and accelerators.
+There are more than a dozen of universities in the US which do that. So, uh, it's uh, believe me, it's a lot of fun and many, many.
+Trusting things happening in beams. So next one, uh, this lecture will not bring us beyond the most basic facts about accelerators and colliders.
+So, uh, as a supplemental material in Indico,
+you can find the chapter written by me and Frank Zimmerman about the physics of colliders that will be even
+even less than what what's what's written in those 20 pages of accelerators and colliders in the PDG?
+Uh, review. Right. So, uh, again, some facts and numbers can you will be able to borrow them for your homework, for example,
+from, from that uh, chapter and chapter is available on the web or in the supplemental material on Indico.
+But I start with the very basic principle of acceleration. Acceleration is increase of energy.
+And energy gain is nothing but force times distance.
+And uh, again, the stronger the force, faster the energy gained.
+For long time or longer distance, you act more the energy you get.
+And, uh, so the forces, of course, are limited. We have only like four known forces, right.
+Strong nuclear forces, the extremely strong but extremely short distance.
+So you can get as much you can the best you can get, like hundreds of mega electron volts out of strong nuclear interaction.
+So weak interaction, which is number three here right, is indeed weak.
+And it's also point like uh, electromagnetic interaction is the most widely used, uh, force which we use for accelerators.
+Of course, some people thought about gravitational acceleration and uh, uh, it's considered to be fun.
+But then just recently people proposed that, oh, indeed, there are kind of gravitational colliders possible if particles spiral up in the,
+uh, in the black hole and then, uh, close to the horizon.
+So a particle some rotating in the rotating black hole, kind of, uh, moving in one direction, collides with particles, uh, rotate in other direction.
+And people estimated that, uh, you can get to up to hundreds of TV of energy in such collisions and, uh, what we call luminosity or effectiveness.
+So now production of collision collision rate is enormous.
+So it's, uh, uh, by by our standards, it will be probably like 40 orders of magnitude higher than we can get in,
+in our, uh, in our, uh, colliders we built.
+But again, this is totally hypothetical.
+And again, so far, no one kind of practically thought about how how how these colliders can be like super colliders can be, can be employed.
+So, uh, for vector electromagnetic, it's interactions.
+So, so, uh, it all comes that only electric field can accelerate can increase the energy.
+Magnetic field is always perpendicular to velocity.
+While you need to to have a product of force times coordinate or distance, uh, you know, to get the energy gain.
+So magnetic force doesn't change energy, it can only change the direction of the particles.
+But electric field can. And, uh, the ways to produce electric field, uh, few.
+So in the past, people started originally with electrostatic, electrostatic, uh, uh,
+accelerators when they were able to get enough electric field between two electrodes.
+And the maximum field achieved in such a parada was about the order of like from ten kilo electron volts, like in TV sets to ten MeV.
+The largest electrostatic accelerators, uh, big tower like structures.
+Uh, still some some of them used for, for various purposes.
+Uh, uh, but that again, ten megahertz on what is essentially world record.
+Right. Uh, the problem is that, uh, the electric fields you can get, they are very much limited by discharge.
+So if you have two electrodes, one and two, and there's so much voltage between them, and you want particle to go from one place to another.
+Yes. The particle gets the energy, uh, traveling from one electron from, from here to there.
+But the electric field is limited. Limited by discharge.
+Right. So strong forces existing for very long time, basically forever.
+It's permanent voltage. Uh, whatever we tried, uh, it's, uh, of the scale of, you know, mega volt over a meter, roughly speaking.
+So at best, sometimes even more. Otherwise you have Sparc, you have a is glorious, uh, pictures.
+When the big discharges happen, it's like a lightning.
+Right. So and that lightning, uh, of course, is damage. And it's damage due to the electrode.
+So, uh, and this machine doesn't, doesn't work for a long time, so you need to repair it.
+Then we figured out that if you don't keep voltage for very long time, uh, and we either turn it on, turning it off,
+or change polarity back and forth and between positive and negative electrode, that reduces the time for development of the discharge.
+Basically, whatever is happening on the surface of your electrode, uh, will not happen if you quickly reverse the process.
+Right. And we figured out that the, uh, faster you do that, the better it usually if you look into the maximum gradients you can achieve.
+In the normal conducting structures at least, uh, these gradients, uh,
+used to be thought that they are proportional to to frequency than square root of frequency.
+Basically it grows. Now essentially, you know that it doesn't grow infinitely, infinitely, but it still, uh, grows significantly.
+And so far this is the main method. The main method to get, uh,
+one beam accelerated is to send it through a sequence of oscillation that's just related to electric fields, electromagnetic fields.
+So, uh, it's not kind of stationary electrodes, uh, where the the field goes back and forth.
+Right. So, but it's, uh, instead, uh, sequence of acceleration processes right now, for example, you'll see later in a circle,
+um, colliders for like storage means you accelerate your particles in a certain phase of electric fields.
+When a particle gets the energy, its proper phase of electromagnetic, uh, RF field.
+RF stands for radio frequency. It radio frequency is usually from tens of, uh, short to tens of gigahertz.
+Uh, right.
+So at proper phase, you come, you get the energy out of, uh, RF, uh, electromagnetic field, then you exit the your, your gizmo, your cavity.
+In this case, return your particle back to the same, the same RF cavity.
+Right. And again in proper phase, if you just arrive in a proper time,
+you get additional piece of energy, and you get these pieces of energy over and over again.
+You can do it in a circle, efficient or in a linear fashion.
+When you put your cavities one after another and every time you arrange time in such as that,
+uh, oscillating electric fields always are the energy, right?
+So that was an idea. Number two, make your electric fields changing fast.
+That doesn't give time to develop discharge. Idea number three was, uh.
+Uh. Whoa. Yeah, we can do it for single beam.
+Uh, but, uh, for particle physics, it's important to get not just the energy of the beam,
+but the energy that you can deliver into the production of reactions. Right.
+And for production of reactions or generation of new particles or new processes, you need to bring particles, uh, to collision.
+And it gives you enormous kinematic advantage.
+So when you collide the particles, it's much more advantageous to get very high center of mass energies,
+what we call energy is available for production. Then if you have a singular high energy beam.
+So colliders allowed us to move from a recent type of accelerators which originally, oops, I let's press something wrong.
+Yeah. Uh uh reach the energies do like from kind of, I don't know away from hundreds of.
+Uh, uh, hundreds of MeV to to hundreds of GeV colliders allow us to move to GV multi hundreds of.
+Given the ten TV scale 14 TV probably the center of mass energies the the energy available in a large Hadron Collider.
+Right. So and so far these three main breakthroughs, uh, foundations.
+So for accelerators. Right. So either electrostatic acceleration or RF acceleration and colliders,
+there are two more things which we believe generally can allow us to proceed further in increase in energy of, uh, you know, for particle reactions.
+Right. The these two evade available tricks, which we definitely will need to explore because there are no others.
+We figured it out. One is switching from traditional particles to nontraditional particles.
+And basically there is significant advantage in using heavy leptons instead of electrons or protons.
+So heavy leptons are neurons, right.
+And that will allow us to get to the realm of, uh, tens, uh, maybe sometimes people even to up to the center of mass energies in collisions of muons.
+And the last trick, which we still believe can be played eventually, not now, is to use extremely high oxalate ingredients produced in the plasma.
+Remember I told you that discharge limits the maximum electric field?
+Make discharge kind of, you know, uh, uh, suppressed by fast switching.
+That helps you a lot in other opportunities. Completely forget about this church.
+Completely discharge state of, uh, state of matter.
+That is a fully ionized plasma when everything is already broken.
+So ions and electrons kind of floating around each other and interact a little bit and maybe sometimes don't interact only electromagnetically.
+And if you separate the charges in the plasma electrons and the and ions, then very strong electric field can be created.
+And this electric field potentially can bring us to hundreds of TV.
+And some people believe up to one PV PV is 1000 tera electron volts, which if everybody knows what electron volt is, right?
+Mega electron volt kilogram wants mega giga tera.
+And now Petta pet is thousand of, uh, TV's.
+So two tricks left, three tricks played out already.
+So. And what we are talking today and this crowd is about muon collider is a trick number four.
+Uh, in this structure of a century of development.
+And maybe another century will take, uh, to realize, uh, the remaining two tricks.
+So continue if you compare. Oh, you know what?
+Given the time is limited, uh, I don't know how you do it.
+Uh, the slides are scheduled to. This is finished at 1015, whatever it is.
+So any question will reduce the information I can give to the entire audience if it's super important, but totally unclear.
+Right? So ask me right now. I don't want you to stumble, but if it's something of curiosity, talk to me.
+Talk to Jeff, talk to Ben. There will be a coffee break. So I think that again, if it's not supercritical, hold on.
+There will be opportunity. Sorry.
+Okay, so, uh, speaking of, uh, the energy available and when and just if you want to get it, Mother Nature, give us an example.
+How far how how far we can potentially in physics process bring us the energy of the particles.
+Uh, for example, if you compare, uh, the, the flux in, uh,
+how many particles come pure square meter per stay, radian per second, per GV, uh, out of cosmos.
+Right. You'll see that the standard, uh, standard, uh, spectrum of the flux.
+Where's that, uh, force? Very quickly. This is double look, I think scale 10 to -20 and ten one and so on and so forth.
+Right. Then, for cosmic rays, we know that we've seen and detected particles up to the energy of ten to the 21 electron volts.
+So that is uh, it's uh, ten to the 12 giga electron volts.
+And that was observed only once in Utah in 1991.
+So it was 51 joules in a single particle, which entered the atmosphere and hit the detector in Utah.
+So and since that what's called oh my god particle.
+Right. So because they the event was horrendous. Right.
+We know that these particles do exist in nature somehow due to various methods of acceleration.
+So Mother Nature was able to accelerate particles to such a great energies.
+But again it happens in unpredictable time, unpredictable place.
+So nothing energy is not predictable. You basically will be hard to catch.
+At the same time, if you look into what, uh, particle colliders deliver, they deliver,
+uh, 2030, it's like 45 orders of magnitude, uh, larger flux at a certain time.
+That's where particle physics is going to enjoy. And they have in place put their detectors and study this event.
+But again, 45 orders of magnitude in flux. But eight orders of magnitude low energy.
+So that gives us hope that given that there is something that exists in nature, right?
+So we can potentially close that gap of eight orders of magnitude, maybe by another,
+you know, order 2 or 3 of the past over the next, say, decades, somehow, somewhere.
+Right. So but it gives you a comparison.
+We are extremely successful in production, but not very successful compared to Mother Nature in, uh, delivering very high energies.
+Uh, of of the particles is still very high, right? So for your homework, uh, for your homework assignments, uh, it will be important.
+Uh, for you to recall what you learned from from from your classes about Lawrence.
+Environmental. Some variables. And the most important of them is the center of mass energy, uh, or very mandelstam, uh, uh,
+variable s, which is a square of center of mass energy, which is, uh, square of uh, for uh,
+four dimensional momenta, uh, of particles in the reaction, particularly because we will be talking about colliders when you have particle one,
+particle two colliding and producing, producing something else.
+Right. So I skip that slide.
+Uh, kinematics of collision is such that, uh, uh, from this one, this invariant also basically from very basic kinematics of relativistic collisions,
+is that center of mass in, uh, energy is proportional to square root of this very long,
+uh, product, uh, which includes two E1, E2 and so on and so forth and so on.
+So for there is a cosine theta angle between the particles when they, when the particle velocities when they collide.
+But if you simplify this long formula from mandelstam variables, uh, so the for the case when one of the particles is stationary,
+for example, energy of particle two is equal to mass times c squared.
+Then center of mass energy available for, for or again for particle reactions is square root of two e energy of incoming particle and MC squared.
+If both particles move basically e1 and e2 two energies are much larger.
+Then uh, then the the their energy at rest for both particles, then center of mass energy is nothing but two times square root of e1 e2.
+If e1 and e2 equal to the same energy.
+For example, five TV muon and five TV muon when you collide them, square root of five times five is five multiplied by 2 to 2 times the energy.
+So ten TV. That's what we are talking about. So the gain is enormous that it was a great invention at some time, uh, some time ago that the gain,
+for example for LHC uh, uh, again, the time when I wrote this slide, the energy efficiency was 6.5 TV.
+So now it's 6.6.8, right.
+So for for let's see energies. So if particles wouldn't collide you would lose factor of hundred 20 in the center of mass energy available.
+So it will not be uh it will not be 13 to the center of mass energy, but only 0.11 which is 110 GV center of mass energy.
+So that's enormous gain. That's why again, it was one of these no five tricks which we know should work.
+So and colliding colliding beams is a trick number three into one of the most important.
+So the colliding facilities were from because of this enormous kinematic advantage.
+Again factor of candidate might not look like a big factor by astrophysics.
+Uh, you know, um, you know, astrophysics scales even when parameters change by tens of orders of magnitude.
+But for our real, practical accelerators where everything then goes to cost and energy efficiency.
+So a factor of factor of hundred is enormous gain out of a simple trick of colliding the particles.
+We the colliding facilities were extremely popular just because of the reason they were built in various configurations,
+or at least they can be imagined in various configurations when particles move in two different circles,
+for example in this circle and in that circle and collide. And one interaction point, one of the, uh, some colliders might go this way.
+Most of the color just look like a circle of colliders intersecting like two rings interact, intersect.
+And one of the colliders was built when you have a singular linear accelerator and particles two plus particles and minus particles,
+electrons and positrons will send through different arcs and collide. Here one of the largest will be this way, but configuration D is called uh, uh,
+linear colliders because they use two Linux Linux then for linear accelerator Linac linear accelerator.
+So if you have particle accelerated by Linac one colliding with particle accelerator by a Linac two and they collide interaction point,
+it's called Linear Collider. None of this configuration deep collider has been built yet.
+But again there are many plans for it.
+Other configurations include the colliding rings and the Linac colliding recent so-called energy recovery Linux, and so on, so forth.
+But those are not been realized yet. So.
+Collider's, uh, landscape, uh, started 61 years ago.
+The first collisions observed in the spring 1964, one accident in Italy and one accelerator in Soviet Union delivered the first detectable,
+uh, collisions of uh, uh, electrons, positrons, and electrons and electrons.
+Since then, since 61 years ago, 31 Collider has been, uh, brought to operational stage, and they are all listed.
+So this article by myself in front similar one where we have all the key parameters in this, uh, review of Modern Physics Review.
+Right. So seven Collider starting operations right now. Two under construction, one in the United States called electron nine Collider.
+Another one in Russia called the uh Nica Collider for heavy ions.
+At least two more types of colliders, uh, considered to be needed for particle physics progress over the next decades.
+One is called so-called, uh Higgs colliders, which, uh, generate Higgs particles or electroweak for, for studying the electroweak interactions.
+So basically it's energies of now 200 to 300 GV center of mass energies.
+And people believe that eventually we need to proceed beyond the energy available at the Large Hadron Collider.
+Right. And muon Collider. So for one of the ways, as we'll see, uh, later on.
+Right. So the energy of the colliders, as I said, 31 of them were built energies are listed here.
+Again, this is double logarithmic. Uh, this is a logarithmic plot.
+Energy center of mass energy has grown by, uh, six orders of magnitude from earlier ways.
+When you had like a some GV energies to for future to to LHC right now.
+Right. So over the again over six decades five orders of magnitude increase in energies.
+But people are thinking about higher and higher energies in various uh, uh, configurations of uh, colliding beam facilities.
+All right. So the only way to increase energy, just repeat the story of the first slide is for now, uh,
+from physics principles is to use electromagnetic forces, electromagnetic, particularly electric force.
+Only electric force gives you energy.
+And because of the way we build colliders right now.
+So in order to get very high gradients of acceleration, the highest possible, we need to use so-called RF,
+radiofrequency electromagnetic field fields, which which change change polarities.
+And in order to effectively generate these fields we use resonant structures called cavities.
+So uh, and in this particular case you see structure which consists of uh one, two, three, four, five cavities brought together.
+They have one single source of RF power, basically the electromagnetic, uh, waves of a certain frequency, Phi, uh, fill this structure a resonant, uh,
+and given that this structure has a Q factor quality factor for normal conducting cavities of the order of like 10,000 for superconducting cavities.
+So the order of uh, billion. Right.
+So 4 billion cycles of RF frequencies, you fill up, you build up the amplitude of electric field inside this cavity.
+And then when the amplitude is there or it's continuously there, you send your particle from the left, it enters the cavity.
+And when the particle goes through the cavity, it gets, for example,
+boost of the energy in the first of these cavities while simultaneously exactly at the moment when the particle is here,
+the the the field in the neighbor cavity is opposite.
+But when the particle traverses from cavity one to cavity to the field in the second cavity change,
+this is sign because that's the leads back and forth. So it basically when it arrives to the second cavity particle gets uh energy
+boost again and then again and then again and then again if you do it properly,
+basically you need to make sure that particle always synchronously gets in phase with the electric field in the cavity.
+So at the end of the day traversing through that field.
+So the particle gets the energy boost proportional to e charge of the particle and integrated product of electric field,
+which is usually vector times the velocity vector multiplied by time uh integrated over time.
+So and if cavity in total delivers, you know, maximum voltage v sec right.
+So then the gain is proportional to VAC multiplied by charge of the particle of course.
+And depends of course on the face at which the particle enters the cavity.
+So if it uh, again it oscillates. If you a little bit of the phase you can get decelerated as effectively as you can get accelerated.
+Right. So unfortunately, somehow it's, uh, not shown here.
+But again, this is, this is where the particles are in order to get the maximum acceleration because the field versus time and versus z
+changes in the oscillatory measurement in the matter of fashion and particles getting either high and high energy,
+or if you of the phase if you don't match the phase. You can get either no acceleration or even deceleration.
+You don't want to get into this regime.
+So how much power is needed in order to deliver in order to deliver this energy to the beam is dependent on, uh, dependent on two things.
+First of all, if you have very high current of, uh, of, uh, of your beam, then, for example,
+you have for one empire of the beam, which goes through one mega electron volt of acceleration.
+It means one ampere, one mega electron volt product of that gives you the power which you send into the beam.
+Basically, this is the power which comes out of irfc, which is somehow magically right and, uh, delivered into the beam.
+So the first part of the RF power required is just product of acceleration, Delta energy increase right times the current of the beam.
+If beam current is large, this is a large factor. But at the same time, you should make sure, uh, that we account for what is lost.
+Not in the beam energy lost in the beam, but elsewhere.
+And that we call this losses due to the, for example, finite resistance of your cavity or if, uh, if cavity not effectively used.
+So this, uh, losses uh,
+power of the losses typically is proportional to the square of the voltage of the cavity voltage squared divided by what we call shunt impedance.
+This is a characteristic characteristic, uh, efficient of your cavity which is proportional to how what how how how how will,
+uh, conductive from conductance of the walls of your cavity?
+Basically, if the cavity superconducting, you don't lose that much energy in the walls.
+But if cavities normal conductor. Of course you can imagine that strong electric fields inside the cavity, the hit the wall right.
+The wall of the RFK which is send some power is lost in the walls.
+Right. Uh, and that should be accounted. And why are we talking about two of, uh, two of this part?
+Because for low intensity machines, even current is small.
+The first part is, uh, is basically can be negligible for, for example, you have just single particle in your accelerator.
+And then the second term starts to dominate, right.
+So basically you essentially do nothing but you heat the walls of your cavities.
+Right. But in some accelerators when especially colliders or machines for production of in a very,
+you know, copious amounts of beams, this first factor becomes very important.
+Sometimes it dominates the second factor. Right. Once again, to repeat this quality factor which goes into this equation.
+And this shunt impedance is proportional to quality factor times. Essentially this is like kind of term uh parameter.
+Right. This quality factor Q for copper cavities uh 300 K is approximately 10,000 for superconducting cavities.
+Its factor for about in 1 billion or 10 billion.
+Right. So that's why people very often try to minimize the second term, uh, by switching from normal conducting cavities to superconducting cavities.
+But again, it requires different technology f k with, you know, basically the next tomorrow, for example, you hear about the cavities of all kinds.
+They look weird sometimes. The structures usually say simple cavities.
+Like I show me one of the slides. It's a cavity cavity, but sometimes it's a little bit more complicated.
+So the maximum gradients achieved in the cavities, uh, of the order of uh, the bottom of this slide of the order of 100 per meter.
+The maximum oxygen gradient in normal conducting cavity is at 12GHz.
+Right. While for superconducting cavities, for example, on the right hand side of the slide at the bottom,
+you see International Linear Collider, uh, um, design of cavity for International Linear Collider,
+which operates with the eight, uh, cavities together in one structure at 1.3GHz,
+and they achieve 51.5 mega watts per meter in superconducting cavities, you see normal conducting cavities.
+Why people still use them because they can deliver much higher gradients.
+So if you need shorter distance of your linear accelerator, you use the highest possible gradient.
+But remember in the previous slide the losses are proportional to the voltage squared.
+Basically you increase the voltage and losses go the voltage squared.
+So basically yeah you can go you can operate with much higher gradients, much higher voltages you know cavities.
+But the walls will be heated more and more and more. So normal conduction could just allow one important thing.
+You can turn them on for microsecond or nanosecond T1, right?
+Only for very short time. Only when the particles go through, especially like in a linear colliders, particles go through this system just once.
+That's why, again, this very high heating power off of the power dissipation in the walls will appear only for a very short period of time,
+and it's still become efficient for superconducting cavities.
+Given that the quality factor in superconducting cavities is enormous, the particle the fields are in there for seconds.
+Basically put the power in. The power essentially stays there, right?
+So you can turn it on. Turn it off effectively. That's why the gradients in superconducting cages are very comparatively low by a factor of three.
+Could be one by a factor of 4 or 5 compared to normal conduction.
+So superconducting cavities are high quality quality factor intensive physical processes.
+Basically distillation stand there for a long time, right? And they are usually used for very high average power production facilities.
+While when it goes to the highest possible energies achievable,
+people usually think about using normal conduction cages and normal conducting cages can be turned on.
+Turn off quickly. Right. That's about RF cavities.
+So and uh, um, again, two types of accelerators which are most widely discussed right now I the circular ones or linear ones in the circle of Wands,
+you send the particle through a sequence of, uh, cavities.
+That's where particles get injured.
+And every time you get the energy boost, you need to figure out how to return that particle back to your accelerating cavities.
+Right?
+Basically, we arrange the return of this particle, uh, back, uh, to the RF, to the accelerating cavities in the proper, in a proper time, right.
+In a linear colliders or linear accelerators, uh, where you can just for a very short period of time, turn on irfc,
+which is simultaneously send your particle from the left accelerator,
+then a sequence of cavities, bring it to the various to the highest energy you can achieve.
+Do the same for particles on the right. So for in this case electrons and positrons and collide.
+So yes your you in a normal conducting accelerator this particular thing right.
+Like like that you can accelerate particles in a linear fashion.
+Right. Basically always accelerate accelerate accelerate accelerate.
+Don't don't waste time on spending. You know, time on rotating your particle back, back, back to the RF cavity.
+Right. So continue acceleration continuously in the clinic. Right.
+That gives you in some sense the fastest way to bring particles to very high energies.
+The problem is that RFK, which is cost so much compared to to magnets that for now,
+for at least for previous, uh, for previous in the 51 colliders, there was out of 31 colliders.
+Only one collider was built this way, and it was very expensive way to build it, right?
+Linear collider type. While 30 colliders were built in a circular way.
+Right. So because magnets are cheaper than RF cavities.
+All right. That's the fundamental, fundamental, uh, fact about uh, about, uh, you know, about accelerators, right.
+So but again, it's not necessarily no law of nature.
+Right. So maybe it will change, particularly when you accelerate in the super high gradient structures like plasma in the future.
+But for now, this is this is the reality. The type of circle accelerators were many.
+The first one was invented by Ernest or now Harlan Lawrence in Berkeley in 1936.
+He got Nobel Prize for it, uh, called cyclotron. Then they have, you know, Metatron, synchrotron and so on.
+And so so far, the most colliders we are talking about and those cooperative for, for particle physics, uh,
+so-called synchrotron synchrotron, uh, and like Tevatron, LHC and muon Collider, we are we are talking about will be so-called synchrotron.
+What happens in this synchrotron. So you have one accelerator of some few accelerator cavities.
+These cavities um, like go to LHC. Uh, these are what, how many uh eight cavities installed in the, in a large, large collider.
+Right. So the each cavities of the size of this table, roughly speaking.
+Right. So you have four of them. It's a relatively short piece of acceleration section.
+Right. And the rest of the machine is nothing but magnets.
+Magnets, magnets. Uh, I would say simplified picture.
+There are many other interesting, uh, uh, devices there for, for collimation of the particles, for injection of the particles,
+but essentially it's a cavity somewhere, uh, which, which brings the energy of the particle and bunch of magnets.
+So what's important that if you want to save on on magnets and make magnets with small aperture, uh,
+then you need to follow, uh, you need to keep them in the same position all the time at various energy.
+For example, you at LHC, you inject particle with 450 GeV energy and then accelerate, uh, and increase the energy up to 6.8 to 6800 GV.
+How come particles with such different energies you the energy sweep is what factor of 14, roughly speaking.
+Right. So by a factor of 14 and uh, and it just a different but particles still travel the same circle and the
+moreover the same circle within the vacuum chamber which is 50mm in diameter,
+roughly speaking. So how how is the table how how it's possible to do it is possible if you keep.
+The simple conditions which relate. Bending radius of your magnet and energy.
+If magnetic field be in your magnets or all your magnets increase simultaneously
+with the increase of the energy energies gained by energies increased by RFK.
+Which is right. If you increase energy, you simultaneously need to increase magnetic field and then radius stays constant.
+In case of LHC, for example, radius is 4.24km.
+So this is fixed and fixed within. Basically radius is not different by essentially even less than a millimeter, frankly speaking, for all images.
+But the reason for why particles can circulate over the circle is that we increase simultaneously energy and magnetic field.
+Right. And that allows us to keep particles always on the same trajectory.
+And that in case of exceeds the 2020 6.7km.
+Right. So particles always go through the same trajectory with orbit.
+All right. So of course, uh, the maximum energy you can achieve in such in such arrangement is just proportional to the maximum magnetic field.
+Remember the previous equation energy is point three magnetic field in Tesla radius in meters.
+Right. So if magnetic field is one Tesla you can get only so much energy.
+Its magnetic field is ten Tesla. You can get much ten times higher for the same radius ten times higher energy.
+So that's why maximum magnetic field is the most important parameter for synchrotron like LHC, Tevatron, muon Collider and others or IC.
+Right. So the first superconducting magnets which allow to get above two Tesla field were built for Tevatron in 80s.
+All right. So it's really sort of sort of in scale. So the Tevatron magnet is that big right.
+Then there are magnets built for big machines called Hera in Germany.
+Uh, 3.5 Tesla magnets for machine called the Relativistic Collider, the Brookhaven,
+the piece of art and magnets with a dual aperture for protons moving in opposite directions,
+were built for LHC, and the 1200 of them were built and installed in the LHC tunnel and the field there is 8.3 Tesla.
+So. And uh, this process progress took 40 years.
+Roughly speaking, you increase by and uh, magnetic field by a factor of two and took 40 years of, uh, magnet development.
+What we need for muon Collider, as you learn today and later, we need the magnetic fields of the order of 12 to 16 Tesla magnetic fields again.
+And you can just prorate maybe 20 years from now so we can make this world record it.
+8.3 Tesla in operational, uh, magnets.
+Right. You do have samples. Which of of magnets with prototype devices which achieved already uh, 15 and even 16 Tesla.
+But those are not technologically prepared. Essentially it's for physicists and engineers to play.
+Right. But 8.3 is current record. We need to get higher if you want to build muon collider, for example.
+8.3 Tesla in order to get, you know, to get very high energies in the synchrotron arrangement,
+the key for the magnets when you start building magnets to more, of course, and day after tomorrow,
+you will learn about how people actually build these magnets, what leaves, what is in the essence of, uh, of,
+uh, building this magnetic field that you need electric current in order to generate magnetic field, right.
+For arrangement, which requires dipole magnetic field, for example, vertical arrangement, magnetic field.
+And if particle moves this way if you the bend in the horizontal plane.
+So for vertical magnetic field, uh, the way to arrange uh,
+to arrange the magnetic field in vertical orientation so far was to properly place conductors.
+So the distribution of the current in the magnet looks like this particular case is called cosine theta.
+Cosine theta means that the theta is angle between x and y, right.
+If n is equal to zero, a lot of current goes on right hand side or on the left hand side.
+Positive and negative current and less and less and less current should flow.
+Uh, when you go to to the kind of, uh, to the mid plane of, of y.
+Right. Basically no current in the poles and the big currents on the left.
+On the right. In this arrangement, you can especially if it's exactly cosine pepper.
+Right. You can get purely dipole magnetic field.
+And that's what's required for, for our magnets. Right. Can can this arrangement be done.
+The answer is yes because we don't deliver all this big current uh in a single conductor.
+So in fact we use wires and wires sometimes all cables, uh, the cables, uh,
+for superconducting magnets out of the scale of like one millimeter by five, six, seven, ten millimeters.
+So it's a tapes inside the lot of wires inside.
+Right? Or really, you know, millimeter size wires, usually superconducting.
+If you get very high, if you want to get super, super high fields, right, which gives you a lot of a lot of current.
+Right. And you put individual wires at proper location, uh, and each wire carries the same current.
+Right. So and then basically you have many, many tons of wire properly placed.
+And then voila, you get the magnet you like.
+For example, you can get this dipole arrangement.
+What's important is that the the maximum field is proportional to the current density times aperture.
+But the cost grows to do that because there's a trend. What do you want to save the cost of the magnet.
+Uh, or you want to get the maximum magnetic field. Uh, and but in in any case, the key parameter for uh, for the magnets is the current density.
+Not just the current, the total current, the but how much, how much current you can send through, uh, for example, you know,
+centimeter square of your of your conductor, uh, space or space where you put your, your coils, your, your, your wires, right.
+For, uh, and that's where the difference, uh, comes when the between room temperature conductors and superconductors,
+room temperature conductors take a piece of copper for example here.
+Right. So you can send of the order of one maximum ten and pierce through millimeter square of copper wire.
+Depends on how well you cool it. Because if you don't cool it heats up at very high current.
+Right. So and basically if you, you, if you don't care, of course, uh, uh, it breaks.
+It just melts. Right. So and you can work this way for superconductors the resistance is equal to zero.
+Exactly. Right. So so superconductors. What we found out that what kills superconductivity is the magnetic field produced by the current themselves.
+Current wires themselves. Because each each worker is magnetic current right.
+And current generates magnetic field. Eventually it results in very strong magnetic fields which kill the superconductivity in the neighbor current.
+Right. So anyways, practical limits for superconductors like thousands of my peers can go through millimeter square.
+So one millimeter by ten millimeter cable can carry ten 15km of current.
+So that's an enormous current. And that generates enormous magnetic fields.
+And that's what the used for for magnets like that. So I skip these details about the and about superconducting, uh, materials so far.
+What's important for you to understand that. Again the current density is key parameter as I showed in the previous slide.
+Current density depends on what is the material.
+Of course you can't use copper, but you can use superconducting materials.
+So far three of them will develop. One is niobium titanium so-called it's a type two superconductor.
+Another one uh, which uh works up to like approximately an eight Tesla eight nine Tesla magnetic fields.
+Next one is now M 13.
+It's the material which is used in the high luminosity upgrade of, uh, LHC, and that material can operate up to 1516 Tesla magnetic fields.
+But the big hopes of, uh, of future machine will decide to use high temperature superconductors,
+which potentially have can have uh, uh, 30, 14, even 50 Tesla maximum magnetic fields of the period.
+This question is not the record. Tesla question is how much of current density.
+Remember, key word for magnet builders is current density.
+So yes, it can operate at very high magnetic fields, but how much current it can carry.
+And that's a trade off. That's where solid state physicist come in engineers.
+And they develop better and better materials.
+And they try to increase using their methods increase the current density which superconductors can can carry out.
+That's what's important for the magnets. So this is a picture of happy people, which, uh, just a year ago or two years ago,
+built a 14.5 Tesla demonstrator of superconducting magnets built on, uh,
+niobium 3D technology, which is again, enough aperture, approximately a big,
+big aperture magnet, but relatively short LHC magnets, for example, uh, 12m long.
+There are tall magnets for six meters long. This is like what, the meter meter in the half magnets?
+Only small piece just to play and see, uh, how it works.
+Uh, what's important for this magnets is that back going back.
+What is this? Apertures. Where? Essentially like this. The conductor is somewhere there.
+The rest is support that keeps conductor from moving, uh, moving away from the outside.
+Because when currents, for example, you have current going this direction and current going in that direction,
+two opposite currents, they repel each other. You remember that, right?
+So and the forces are enormous at some moment the force is produced by you try to increase the magnetic field, put more and more current in there.
+The forces get larger and larger. At some moment. The forces, the pressure or from the magnetic forces breaks the material of the superconductor.
+Right. And in order to keep that material in shape, you put a lot of, you know, in stainless steel.
+You put a lot of hard material which holds the superconductor in the proper locations.
+So that's why all of these superconducting magnets, as we see right now, look like it's like a beer can that much of diameter.
+It's sausage, but again, very, very thick. So LHC magnet is approximately that much of diameter right.
+So for for muon collided it will be approximately the same aperture.
+So that small. So that much of stuff and the sausage is what, 12 sometimes 16.
+Some people think that even 20m long uh, magnets uh optimal for, for production and so on, so forth.
+That's actually it's a piece of art by itself. Right. So and for muon Collider, they'll need many of these pieces of art for various, uh,
+systems besides dipole magnets, which turn particles around in the horizontal plane.
+You need to keep these particles away from, uh, from going astray in, for example, vertical plane.
+And I encourage them to play the bent in the vertical and horizontal plane.
+You would like to keep the beams contained, and you need to build what they install in the same ring.
+Uh, magnets called quadruples. These are magnets which generate magnetic field which is proportional to the deviation.
+There is no magnetic field on the center of the quadrupole, but strong kind of focus in field generated.
+If particle deviates from the from the from the central orbit of your machine.
+Uh, LHC magnets have two apertures, right. So you see that the aperture one and aperture two for two different beams.
+And again, any deviation from the center in this beam in this magnet.
+And any deviation in this magnet result in the forces which return particle back to the center.
+All right. So when you return particles back to the center, uh, and the particle for example,
+is injected, you know, in the LHC there are ten to the 14 particles circulating.
+And believe them, each of them is a total democracy.
+Each of them is follows their own, their own trajectory.
+So you inject that particle, you live, for example, 100 microns away from the center.
+It will continuously 800 microns away from the center, over and over and over again.
+Because there is no damping mechanism for protons, essentially there is no damping mechanism for problem.
+So you see, uh, the beams which we see in the colliders like LHC, uh, collections of individually oscillating particles.
+Right. So and yes, there is probably one particle out of ten, the 14, which stays exactly on the same trajectory over and over again.
+All the remaining ten, the 14 particles go back and forth longitudinally in transfer.
+So what's important is that how how effective is that focusing?
+Uh, uh, there are different parameters which describe focus.
+Instructors. Jeff Eldredge and his lecture will go through objects and how we focus the beams and why it is important to keep,
+uh, fine tuned, uh, parameters of the focus and elements.
+The most important parameter for for people operating the machine is what we call tune tuned.
+It's like a tune of the guitar string,
+like you see the three to each frequency distillate tune is the car many oscillation one particle makes for example,
+um, perfect particle which goes back and forth.
+For example, in the vertical plane, boom boom boom boom boom boom boom returns back how many oscillations it's done right.
+And usually it's for small machines. It's a small number. For big machines it's a big number,
+for example for 64 oscillations plus fractional part 0.31 64 oscillations basically says that how strong is the focusing.
+So how quickly you return particle back to the central position when it deviates to the central position.
+But this fractional part is very important because if the fractional part is incorrectly chosen,
+usually it requires a little bit of perturbation in order to change focus and
+perturbation in order to change what we call fractional part of the tune.
+For example, this .31. But it can have enormous consequences, because if that 0.31 number, for example,
+if it would be 0.31, but 0.30 for LHC lifetime of particles in LHC would be equal to,
+I would say between 10 to 20 turns, because 0.3 is a rational number,
+it's a three divided by ten and we call that resonance when you have integer number divided by another integer number.
+For example, two divided by seven, three divided by ten, one divided by four.
+Any rational number in this tune result in concern.
+Concern is that, uh, perturbations will explain how particles oscillate.
+But when particles oscillate and come, uh come common resonance, even in non-linear resonance,
+when even a different fractional tune at the same time 510 for example, three divided by ten means ten turns.
+The larger particle will come to the same kind of the same place, with the same amplitude and the same, uh, velocity.
+And if there is a teeny tiny perturbation, uh, what you call 10th order resonance, you know,
+perturbation, that perturbation may cause that particle to increase its amplitude.
+And that's what we don't like. We. Like to inject the particle, for example.
+Microns away from the center, not more. Right. And the particle always stays within 100 microns.
+So if you're incorrectly choosing your focus in property of hearing, that amplitude can grow.
+And as I said, for some resonances it can grow extremely fast.
+As I said, the LHC operates for tens of hours, like 20 hours.
+The best, right? If focus on properties like properly tuned up.
+And this is really fine tuning, it's, uh, the level of then the minus four of the units of oscillations, right?
+If it's improperly set the machine lifetime, beam lifetime can be, as I said,
+tens of turns could be hundreds of turns, but not more, basically milliseconds.
+Right. Uh, important parameter for the beam is, as I told, the beam is collection of individual particles,
+which in many cases don't interact with each other. They don't even know about their existence of neighbors.
+Right. So an independent collection of the particles, each having different amplitudes of oscillations is what we see.
+Yeah, we see momentum. Okay. So it's a bunch approximately eight centimeters arms.
+It means four sigma will be about that long a bunch of particles and you know,
+ten to the ten to the 12 of them in a in this little object object is about 200 microns thick.
+And that that long. Right. But inside there are billions and billions of particles oscillating back and forth every turn.
+When did you run the length transversely?
+And the parameter which describes their average quote quantity is important for for luminosity are parameter called the meters.
+Again, this word will appear over and over. Impedance is kind of Rmse.
+Angular spread times Rmse uh, beam size, right product of mass beam size,
+and how much energy spread uh, is called emitters in meters is again key word for it is the builders.
+Normalized admittance is the same product. Mass times are mass multiplied by gamma or beta gamma, to be precise.
+Uh, what's important about the two meters is that if there is no damping mechanism, mechanism which cools down the particles,
+uh, again, that's that's the case for most accelerators that emit and normalized mutants.
+Gamma times are mass, uh, spread out mass and both square times the mass beam size is so-called that diabetic invariant.
+So basically you can accelerate your particles in this normalized mutants will stay.
+So why this is important because luminosity the parameter of uh collider which is very important for us.
+How how how many how many particles you can produce per second, uh, is proportional to how dense are your beams?
+It means it's proportional to square of intensity of the beam divided by beam size squared and beam size squared is this limit.
+Essentially it's just inversely proportional to it's smaller.
+They meet smaller beams the better. Uh, see how it works?
+I don't care about where that's an integer in LHC. Yeah.
+I'm calling one point is again what's missing here behind behind this white bar is in LHC.
+This emit and is something that is saved over not only in time normalized emissions, but also at different points of the machine.
+The semi beams come either larger or smaller sizes,
+but such a way that emissions is constant everywhere in mutants is product of angular spread times.
+Beam size. For example, the LHC interaction point transverse beam size is about eight microns transverse beam size,
+but the angular spread is large, and the product of a small beam size by large angular spread is the same that everywhere in the ring.
+For example, you go to a typical arc, for example, one of the kilometers in LHC, and you see that the product of the beam size,
+which is not eight microns anymore, which is approximately 250 microns in the at the kilometer position.
+But, uh, it's a 30 times larger beam size, but then the spread is 30 times smaller, so the product stays the same.
+So that's what this ah, transformations. What uh, typical for what we called linear optics.
+And once again, generally it's been more how it works in reality.
+But this is extremely important right.
+So the the this product, this mutants is the same in any point of your, of your, of your machine where particles circulate.
+So uh, particles equation of motion. So um, so how much time I have?
+Uh, maybe ten minutes. And then we take some questions.
+Okay? That's why when it comes to generating something, it important for you, for your particle colliders,
+for example, you need to generate extremely dense beams at the interaction point.
+And that's what we do. We focus the beams, focus on the beams, employs very strong focus and magnets,
+which you kind of increase the angular spread in the machine at the same time decreasing the the beam size.
+So the beam size is uh proportional to.
+Again, use this formulas again. You will use them for. You don't need them for homework.
+Beam size will be proportional to so-called better funtion geometric parameter,
+usually like meters or millimeters times times in meters of the beam with square root.
+Uh, and that focus in that course over over certain kind of waist length of the waist, which is proportional to this better function.
+So again I'm introducing various various and jargons.
+Importance is number one very important parameter. Another one is better function.
+Jordan to Jeff to explain why this better function is to say important.
+So it's a. Basically function that describes focus and properties of your.
+Of your machine. So when you need to focus your beams right.
+So you make this better funtion small will be equivalent to making the beam size small.
+Right. But again it can be done only for so much. And there are limitations of uh,
+and how to to repeat again conceptually if particles and they mostly don't interact with each other and they
+sort of independently wobble in longitudinal play back and forth in vertical plane and horizontal plane,
+that's a collection of oscillators, right? So, uh, in linear, you know, motion, as I said, the typical arm is, uh, bunch lengths.
+And the LHC, for example, is eight centimeters, right.
+Uh, and particles which go back and forth in the, in the fields of RFK, which is the top energy,
+RFK, which is what such a way that they don't need to add energy anymore.
+So and particle. Yes, RF activities are still on their slate continuously,
+but particle gets in the face when there is net acceleration equal to zero and
+only if particle is deviated a little bit in time arrives earlier on sooner.
+Right. It gets, uh, either decelerating voltage a little bit or accelerating voltage in order to
+return it back to the condition where there is net acceleration equal to zero,
+because the top energy you don't need to energy need, you don't need to change the energy anymore.
+Right. So and uh, on the previous slide it shows what happens there.
+So you put your particle in the center of the RF cavity or just RFK,
+which is such as the face of RF is equal to, uh, to 90 degrees or the hundred 80 degrees.
+And particle doesn't get energy, but particles still oscillate. They some of them have slightly different energies.
+Uh, typical energies spread in LHC beams is about 10 to -4.
+It's about one GeV. So average energy spread is one GB out of, uh, 6800.
+Right. So ten minus four, roughly speaking.
+Uh, and these particles, they always have this energy deviation from the center and they go back and forth.
+So it's a collection of billions and billions of particles with, uh, different, uh,
+different amplitudes in it, you know, and energetic, uh, energetic parameters, energy parameters.
+So the time scale of these oscillations is such that the lowest oscillations are these longitudinal oscillations.
+Right. So in that, you know, the solutions are the slowest, for example, in LHC at 70, the particle makes full oscillation from bunches that long.
+Right. So particle comes from this side of the bunch to another side of the bunch 23 times a second.
+It's a back and forth. So a period of 20, uh, frequency of 23Hz revolution frequency in the LHC is 11kHz.
+It's kind of low 90, 90 microseconds. Right.
+So the frequency of better translations is 60 times more 680kHz RF frequency in the RFC,
+which is a harmonic of revolution frequency is harmonic number 35,640.
+So basically one particle makes, uh, one turn around the LHC uh, voltage in the RFK,
+which just changes 35,640 times, back and forth, back and forth, back and forth.
+Right. This is the highest frequency. Right.
+So and of course, again, these are the relatively fast frequencies, the lower frequency, uh parameter changes drift happened due to various things.
+Uh, like injection extraction ramp, ramp is very slow like 20 minutes.
+Right. So sometimes cooling occurs over hours with all the while cooling luminosity case because particles die and so on, so forth.
+So I don't know whether it will break or not. But given that we have only ten minutes for my lecture one, I have ten slides to show.
+What's important is that for particle uh, reactions you need to bring two beams together.
+And effectiveness is proportional to parameter called luminosity.
+Basically, the number of your, uh, reactions which you observe is proportional to the cross-section of the reaction times.
+Integrated luminosity. Luminosity which goes under this integral is how often you collide the beams.
+Frequency of collisions.
+Number of particles in bunch one number of particles in branch two, and the denominator product of bunch size at the interaction point x and y.
+So for on beams it will be sigma squared right. That's why it's very important to compress beam in the direction point as much as possible.
+Right. So I skip I skip that D again.
+This luminosity of course is proportional to intensities and beam sizes.
+But if if the bunches are very long or bunches collided uh crushing then golden luminosity can can suffer.
+So sometimes it is necessary to collide bunches uh, in the direction point that certain cross is not particularly important for,
+uh, electron positron colliders or electron proton colliders, because there is a lot of background radiation, synchrotron radiation,
+what you call and beams need to go this way in LHC beams need to go to an angle because there are so many.
+Branches. You don't want, uh, you don't want them to see each other.
+Right. So, uh, when the when the kind of, you know, when they go out of interaction point.
+So beams are separated, right? So anyway, sometimes crossing angles are important.
+Not for me. On Collider, for anyone. Collider will collide. Beams Head-On.
+Essentially. But when? When, uh, when crossing angles are important, they may affect luminosity.
+Luminosity goes down. For example, in the electron nine collider being built in Brookhaven,
+the crossing go is such that if you don't correct the effect of the crossing, then because bunches don't collide.
+Head-On. Basically, particles go through each other. A lot of probability to interact.
+If if collides this way there is probability of interaction drops because effectively cross the intersection of the beams is larger and larger.
+The beam size transfers beam size lower luminosity. So people need to correct for this crossing.
+And basically they figured out that we need to rotate the bunches of little bunches when they come to interaction point, they make it like this.
+And when they go to the interaction point, they go through each other and then continue propagating in the tilted way.
+So this is called crossing scheme. So for this kind so um called glass effect uh, and so on, so forth.
+Basically when it comes to luminosity, when you need to squeeze as much as possible out of collides, we are extremely ingenious.
+So people figured out various way to increase what we call the minority by better focusing, uh,
+high intensities, uh, or colliding more frequently, or generating more bunches and accelerating more bunches.
+And the luminosity has grown over these 31 colliders by 7 or 8 orders of magnitude
+over the same time when energy has grown by 4 or 5 orders of magnitude.
+But we are still below this desired by theorists.
+The scaling between energy and uh, and luminosity as luminosity should be proportional to like energy square three.
+We are still still not there. It's still able to generate pretty decent luminosity in colliders.
+In future colliders, luminosity will be even higher. What's important is that this parameter luminosity is time dependent.
+Of course, if there are no beams, there is no luminosity.
+So basically you need to wait until you inject, accelerate the beams and bring them to collision.
+That's what you usually do. Indeed, in the Tevatron and do in the LHC, you inject the beams, they are separated.
+They don't collide because collisions is another interesting process which essentially kills the beams.
+Right. So but so you accelerate the beams to top energy and then bring them to collisions.
+And they generate these reactions in four detectors in the LHC for example.
+Right. And if you look in the uh, luminosity equation, it has many factors.
+And all of them except probably better function changes in time and the frequency of collisions in gamma intensity changes in mutants,
+beam sizes changes, bunch lengths changes. And uh, usually they decay.
+Very rarely they, they either improve. Right.
+So in luminosity decays, uh decays because intensity decays because beams become longer, beams becomes fatter, and so on, so forth.
+Look in the LHC, that's a typical, uh, typical, uh, let's see, luminosity decay form.
+So this is nine hour run, right?
+You start with very high luminosity.
+And nine hours later the luminosity is half of what you, you know, originally obtained it just because intensities of the beams are, you know,
+getting lower and lower due to the pile up effect, due to the fact that protons, when they interact with protons, they kill each other.
+Basically these particles disappear. They come out of out of the machine.
+Right. So the colliders most important effects just repeat myself, that the energy is essentially totally dependent on technology.
+Whatever you use, either your magnets need high energy.
+Please provide highest, uh, highest magnetic field magnets are f k as high as the gradients,
+power supplies, vacuum system sources, targets, collimation diagnostics, and so on, so forth.
+Basically, engineering essentially determines your energy.
+You can achieve same full Moon collider, right? So, uh, beam physics kind of gives you a limit on the maximum luminosity you can obtain.
+There are problems related to just individual particle. Forget about billions of particles.
+Even a single particle motion can be unstable.
+Right. So you need to avoid all kinds of resonances losses.
+What kind of mechanism you would like.
+Vacuum, for example, should be good enough that diffusion of the particle when scattered on something should be small enough,
+and particle can leave for 4 hours or 4 seconds in your machine.
+Then there are effects related to collection of particles in individual beam, even without presence of other beams.
+If you have two beams, then the variety of problems which we can counteract is enormous.
+So there are beam beam affect beam, beam compensation techniques, so-called beam straw and machine detector interface problem, so on, so forth.
+So assuming that particle physics interest. Is growing, going to high and high energies.
+So the choice of the scheme very much depends on know what is.
+What technologies are available? What are the cost and power consumption.
+And again, as you've heard many times already, muon colliders.
+Just recently over the past two decades were proposed as the way to proceed another order of
+magnitude in high energies because you figured out the technology is available or feasible,
+right? Uh, and the cost range is reasonable, right.
+So energy consumption is reasonable.
+So with that moon colliders, muon colliders, your own colliders, muon colliders to see how how we do it I I'm sorry not to talk too much.
+The most important factor which affects luminosity evolution. The moon collided.
+That means die, right? So that's why it's very important to have very strong magnetic field in the final stage.
+So you force your particle to go through your interaction point as many times as possible.
+And that number is, if you can remember 300 times magnetic field.
+That's how many terms particle survives in neon survive.
+So if you have ten times the magnetic field survival rate will be 300 times ten 3000 turns.
+That gives you enormous advantage compared to linear colliders. So collider subsystems.
+Boy interesting. Interesting. Uh, cooling.
+So so Vladimir will we'll have some lectures later on.
+Subsystems. Um, I've suggested maybe if you have some general content you can finish up,
+and then we ask students to ask some questions, bringing us to, to the essence of the school muon colliders.
+So I told you several times that, you know, after many decades of development,
+we figured out that muon collider is feasible and they can offer us the way to increase energy compared to,
+let's see, so-called parton center of mass momentum.
+Our current center of momentum energies, uh, ten times higher than LHC can provide right now.
+How big are the risks? Right. So risks are twofold.
+So first of all, as I said, technology determines your energy and whether you can get the energy or you cannot within certain cost.
+Or you basically that extremely practical question. And there are uncertainties of the order of factor of two in cost and uncertainty of the other
+factor of 30% in energy and uncertainty of the order of five orders of magnitude in luminosity.
+That's again, this is broken up by pieces. Uh, later on at the workshop, I'll be given more detailed account of where the sanctions come from.
+But you see how we started the center price is, I told you, neon color.
+This is trick number four out of center of development of accelerators.
+And over the next 20, 25 years, we need to address, of course, uncertainties in cost,
+develop this technology and make sure we understand how these things work.
+Of course, that will tell us how much, uh, what what is the energy reach is possible.
+At the same time, we develop technologies to figure out how we can maximize the luminosity and avoid
+these five orders of magnitude risks due to various subsystems of the muon collider.
+Essentially, this is it. And thanks for your attention. Um, so we have some time for, uh, questions before the coffee break.
+So let's, uh, let's take a few, at least.
+Um, so, uh, if you're accelerating, uh, particles in a bunch of RF cavities, you care about the arrival time versus the AR phase,
+but if they're being accelerated, then surely they're moving faster from, like, cavity ten to cavity 11 than, like, cavity one to cavity two.
+So how come you don't have to change the RF frequency? Can you.
+But yeah, you said your name. I'm sorry.
+I should have said that. Um, I'm CC Hannah, and I'm a graduate student at Princeton.
+Yeah. Um. Two factors.
+Again, the substance is factor number one. The particles we accelerate, at least in the final stage, usually are ultra relativistic.
+The difference in the speed for relativistic particles is approximately from speed of light is one divided by two gamma squared.
+If your gamma is 10,000, the difference is negligible.
+Now you ask, what if gamma is ten? For example, at lower stages, then with the following.
+Yes, we know that because of this factor gamma squared.
+Right. So uh, there is a variation. You increase the gamma, the speed becomes closer and closer and closer to the speed of light.
+Uh, and frequency, uh, of revolution frequency essentially changes, uh, you tune up the frequency and phase of irfc,
+which is because RFK, which is and they said, yeah, in principle, you can keep them at the same frequency, the same amplitude.
+But the both, uh, frequency and amplitude depend on RF source.
+So if the RF source changes the frequency or change the phase, change the the amplitude.
+Yeah. You can tune up basically in synchrotron like main injector or Tevatron or LHC.
+Yeah. You have a complicated system which keeps track. What is the energy and frequency.
+And you tune up phase and frequency simultaneously with the particle acceleration.
+Right. Not only magnets track energy but also RF system, you know, properly adjusted, you know.
+Yeah. Bunch of tricks we play so far we are successful in, uh, in linear colliders.
+Uh, it's again also you know, that is section one, section two, section four and section 100.
+Right. Yeah. Just make sure that, uh, RF uh, RF, uh, rf, rf frequency is the same RF phase RF phrase is properly adjusted.
+So particles kind of always ride the wave. There are RF wave are never comes the negative phase but always comes at a time.
+For example section two has independent power supply RF power supply.
+And in that power supply you can adjust amplitude and phase. Right.
+It just the phase the time and always arrive in the proper time synchronization.
+Uh, the biggest collider built this way is the Linear Collider again up to 50 GV.
+We had no problem. All right. So this is the biggest linac linear linear accelerator built in the world 50 GV the
+next next in energies the 27 GV or so 18 GV uh x if you go in Germany no problem.
+At least for sequence of carriages is even easier. There is no magnetic field.
+Basically send them through phase cavities.
+Yes problem. Thank you. So we'll take one here and then follow okay.
+Introduce yourself. Yeah. Hi. My name is Joel. I'm from University of Iowa, first year graduate student.
+Um, about the sinking, actually. So that's, uh, I also had a question about that.
+So because we're sending like, bunches, not just a single particle, they're obviously not all going to have the exact same energy.
+So, um, now bunches do.
+Oh, bunches all have the average average energy at the same because that energy is given by circumference of your machine in some sense.
+And magnetic field. Remember the very first equation I showed you energy is equal to 0.3 times magnetic field in Tesla, which is super stable.
+It's stable to the level of ten minus seven times radius.
+And radius in LHC is super stable to a millimeter.
+You have 27 kilometer long, 77 kilometer long orbit, which is stable to a millimeter or better.
+Actually, it's better than millimeter, right.
+So you have super stable radius, super stable magnetic field that gives you average central value of energy, super stable.
+But it's average. Yeah. Central around it one GB of life is happening around 6.8 thousand GV one GB of oscillations back and forth.
+Because particles are not the same they all different. Yes.
+Right. So I was wondering so then in order to like are they uh are they RF uh cavities like kind
+of sink up in a way so that the lower energies can kind of catch up to the higher energies.
+It's like. Or is that that's one of the slide which I kind of very quickly went through.
+Huh. That's a difficult cover it. But it was a greatest invention of 1944.
+It's called, uh, how it's called, uh, phase focusing or basically stable acceleration in RFQ.
+Just in if your in your in uh if you arrange some parameters to team.
+Yeah definitely explain then it happens that automatically if you have the same RF continue basically don't change anything.
+The referee facilitates the solid. You know at you know 400MHz.
+But if the particle comes a little bit earlier right.
+That means it goes faster than others like. Energy is like it gets decelerated a little bit.
+So it comes for example one centimeter sooner. It gets decelerated by one volt or whatever.
+Yeah. Right. And then it slowly gets back to the center.
+And then it comes before it should come.
+It gets on the left face. It sleeps. Time of arrival is such that now it's one world, one world, one wheel until it goes back.
+And we continue this story 23, 23 times a second.
+Back and forth, back and forth, without changing anything.
+RF it's naturally happens in the arrangements of the circle of machines.
+Right. It's a yeah, focus. You know, focus in effect.
+Yeah. Uh, yeah. Worth of a Nobel Prize in 1944.
+Okay. That's awesome. Thank you. Okay.
+Um. Hi Pearce from University of Florida.
+Um, what makes RC car is so much more expensive compared to magnets?
+Um. Huh? Um, I think it's, uh, it's, uh, intelligence in some sense.
+Cost of intelligence.
+Uh, you see, the magnets consist of, uh, essentially current carrying wire, and you buy them at $6 a pound and stainless steel, $4 a pound and labor.
+And that labor is mechanical labor.
+You can, uh, again, sometimes it's very cheap, uh, but it's steel of the scale of, you know, between 200 to $200 an hour.
+Right. If you go to China, that's why Chinese collectors appear to be much cheaper.
+The cost of labor materials cost the same, right. But the cost of labor is six times the cost of labor in Europe.
+Right? You go there and you build these magnets extremely cheaply.
+Moreover, when you industrialize this process, it's simple enough for big industry to make it effective.
+Right. So the cost of the magnet is essentially proportional to weight.
+And labor intelligence is there. Right.
+But it's limited in RF cavities. Uh, so you need an intelligence in the design of the cavity, maintenance of a cavity stability brain and RF power.
+In this power we're talking about is of the order of like 100 megawatt of RF power should go through waveguide, which is the size of this.
+Right. And you can imagine. And then there is a vacuum inside RFK.
+Right. And there is a pressure some pressure outside.
+You need to separate by the window. It's called RF window. This RF window is when you send 100MW of power through such a referee.
+And the windows just overheat and break, right.
+Besides that, you need the waveguide because all your power sources, uh, somewhere else in LHC, there are eight power supplies.
+Each covers approximately what, the 3.5km. Right.
+And they say God knows where. Right.
+Because nobody cares that superconducting superconducting wires, they carry current without any resistance, right?
+No losses. RF cavities should stay close, relatively close to sources.
+Basically you need this additional gallery then like ten 20m of RF guide and then complicated piece by itself, uh, called Crestron and Kleisler.
+And there's a mini accelerator.
+It's a linear accelerator approximately that tall, three meters tall, with a source accelerator, cavities absorbing collector.
+Uh, this it's a radar type device. And radars, you know, for for military.
+You can imagine. It's a it's a it's a, it's a room to room filled with equipment to just feed one cavity.
+So and all of these systems usually fail.
+Right. So there's a lot of effort is needed there. So there's a lot of industry I would say it's very important to touch.
+Very important question. Question of complexity right. Complexity of magnets in some units and complexity is logarithmic factor.
+Right. So logarithm basically factor of one unit is factor of three complexity of magnets.
+You say there's still complicated piece of work.
+Complexity is equal to three in some units. Complexity of RF cavity.
+One kind of cavity is approximately six.
+So it's A333 factor of 30 more complex.
+And that's where the brain goes. Right. And the brain costs a lot.
+So material is maybe comparable. Yeah. You need just that much of copper that much of niobium.
+But what is all around for example, cryogenics around superconducting cavities.
+It's you pay a fortune.
+So one TV of, uh, of, uh, RF system, one TV of acceleration, one tera electron warp acceleration cost 5 to 10 times more than one TV of magnets.
+One do you have magnets as LHC magnets? You know, six kilometers of good magnets, right?
+And one tier electron volt of RF cavities.
+This is international linear collider times four, right?
+It cost again. Tevatron would cost $4 billion.
+Now that thing would cost $2,025 billion.
+You see factor of five 5 to 10. Extremely expensive.
+Uh, reasons are complexity. And you know how much mind goes into that, you know, intelligence.
+Thank you. So I think we have time for one more question before we in you.
+And even if you take coffee break because we are gonna. Yeah.
+You can stop. And so what I suggest as we take one more, I saw one in the front and then we can take more questions after presentation coffee break.
+Um, so keep hope.
+Keep your questions in your head if you didn't get an opportunity to ask them after this presentation and then after Jeff's, we'll have more time.
+What you can ask them then. We'll do one more thing.
+Let's get. Introduce yourself. Hi. My name is Augustine from Stanford University.
+Um, what's the motivation for increasing the fundamental frequency of an RF cavity?
+From what I recall, LEP was around 300 MeV, uh, 300MHz.
+And then I think, like slack was at 60 476MHz.
+And I think the LHC is at around 500MHz. So, like you said, you can increase your ability to accelerate particles at a higher fundamental frequency.
+But what are the limitations and what are the motivations for increasing that that number.
+Really the previous question worth with that is intelligence.
+Right. So and uh, industrialization, so many of these frequencies, particularly particle sources, uh, sorry, RF sources,
+uh, commercially available because their applications, TV, radio frequencies, uh, radars and so on, so forth.
+They were developed during the Second World War. They gave a boost to like a gigahertz frequencies like 2.2.5 six gigahertz,
+as in metrics like frequency stand for excited the frequency because they were quite strong developed by,
+uh, what the name of these brothers, Varian brothers.
+Right then during the Second World War.
+So the license became available that set that certain frequency as a frequency of choice, because there is a lot of industry.
+Basically, instead of reinventing the sources as a physicist every time.
+Right. So you basically buy them lower frequencies, have advantage.
+And again, for example, if you now have Vladimir.
+Yeah,
+he told us that the gradients available in cavities may potentially grow with frequency or higher the frequency less time for discharge evolution.
+Basically you supposed to have like the square root.
+Right now it's probably one fourth power of frequency, but still teeny tiny increase of, uh, maximum available.
+Maximum available gradient at higher frequencies. Only if sources exist.
+Only if you have these hundreds of megawatt of its peak power of RF sources at that frequency,
+you can get this gradient equation is that these sources don't exist because generate uh,
+one thing is to generate, uh, like with strong electromagnetic waves at the range of, you know, 400MHz or 2.5GHz.
+And now the thin case, for example, can be 30GHz for 230GHz or one terahertz.
+Uh, there are no, no available sources which can deliver that much power there.
+Right? They're not developed. Yes, they exist in the physics labs, but these are not industrialized.
+And the cost is important factor. Right? So, yes, at very high frequencies, usually power supplies, RF sources don't exist.
+Right. But they have advantage of high gradients at low frequencies.
+Uh, sources do exist because there is a lot of industry.
+And what makes, uh advantage for creative is, is that usually the size of the structure is larger at lower frequencies.
+For example, uh, you know, 400MHz. Okay.
+We just saw that big, right? So 100MHz cavity saw that big.
+Right. So, um, ten gigahertz cavities have aperture of three millimeters.
+Right. If your beams are small, right or low intensity.
+Right. They can go through this small aperture, high frequency, uh, high frequency cavities.
+If your beams are very high intensity or large size, low energies.
+Right. Usually we use that that be cavities because they have bigger apertures.
+They have a lot of, you know, power stored in them.
+Power is proportional to gradient square multiply by volume.
+Volume is large. A lot of power there for low energy high intensity applications go in use low frequency cavities for extremely high gradients.
+Low intensity low power applications use highest possible energies available.
+Right. So gigahertz if you have terahertz sources, would be even better.
+What people use for plasma acceleration, they have frequencies even even beyond terahertz for example, and a hundred micron wavelength.
+Right. So uh, and apertures uh millimeters or sub millimeters.
+Right. But the gradients you can achieve again, the latest record is ten GB of acceleration and the plasma Wakefield acceleration over 30cm, ten GB.
+Right.
+But for for ten particles that's not ten to the 14 high energy, low intensity very high frequencies, high intensities a lot of power, low frequencies.
+That's typically a rule of thumb. Yes. And again other questions will come to the coffee break.
+Right. So let's break for uh, the break for uh, 23 minutes.
+We should be back sharp at 11. I think Jeff, Ben and Vladimir will be.

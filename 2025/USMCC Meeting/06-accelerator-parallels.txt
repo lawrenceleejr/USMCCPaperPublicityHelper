@@ -1,0 +1,865 @@
+# Accelerator: Parallels
+
+Uh, my name is Emma Snively.
+I'm from the Slack National Accelerator Laboratory, and I'll be helping to introduce speakers and moderates to this session.
+Uh, our first speaker for today is Caroline McCall, uh, from the University of Tennessee.
+And take it away. Okay. Thank you.
+Um, okay, so some of you may have just heard this pitch at the poster session, but if not, I'll be discussing progress on the H4 for snake.
+Um, for initial 60 cooling. Um, so I'd like to start just to get all on the same page with a really basic picture of ionization cooling.
+So the idea is we have these lithium hydride, which absorbers are some low heat absorbing material, and we induce dispersion via some dipole field,
+uh, to separate high momentum particles and selectively pass them through more absorbing material.
+And we can model ionization cooling with this equation.
+Basically, if you have some ionization cooling term and then you have some multiple scattering heating term.
+Um, so the problem with this basic picture is that by nature this is charge dependent.
+So using a basic dipole field um, is going to have uh say amu plus NMU minus moving mirror symmetrically.
+Um, so this means that we need separate cooling channels, uh, if we're going to use this approach.
+However, today I'd like to present, uh, an idea for ionization cooling, uh, which is inherently charge agnostic.
+So I'd like to be very upfront with, uh, this idea was here for Alexa.
+Hence during the map era, unfortunately, year is no longer with us.
+So what I'm going to talk about is characterizing his design, um, which over the last year is what I've been doing in a lot of depth.
+Um, and then talking about moving forward, how we're going to try to optimize this channel and what the outlooks are for it.
+Um, okay. So let's start. Some of you may have seen this during map or during the poster presentation, but if not, let me introduce you to each photo.
+Uh, so you can see here a single period in the lattice.
+Um, this is composed of alternating polarity solenoids, hence the photo.
+Um, embedded within those we have RF cavities to restore longitudinal momentum.
+And in the gaps between them we have these lithium hydride wedge absorbers.
+Um, so altogether the channel is about 30 of these periods, making for about 120m in length.
+Um, so H2O flow operates on three basic principles, which I'd like to discuss in more detail.
+Uh, namely the alternating polarity solenoid focusing, which is inherently charge agnostic.
+Then the use of solenoid rotations to induce a periodic rotating dipole field,
+which is how we end up with some really unique behavior that allows this channel to be charge agnostic.
+And finally, uh, the uh, operation near resonance condition, which allows for, um, a higher dispersion scheme.
+So I'd like to start by breaking down the solenoid lattice design, which is really interesting.
+So we can start by building up from a photo lattice. So alternating polarity solenoids.
+Um and then we apply a small rotation about the x axis uh on the order 2.5 Miller radians.
+So very small rotation. And what this does is it creates like an upward dipole field.
+But of course that's charge agnostic. So you're it takes a that's a next step and applies these periodic rotations about the z axis.
+So you can see groups of three rotations repeated twice per single period.
+And the consequence is rather than having mirror symmetric orbits like we might intuitively expect,
+the mu plus and minus have these identical orbits offset by half a period longitudinally.
+So we can see this in this animation here on the left. That's a rudimentary, uh, representation of a single period.
+You can see the, um, positions of the solenoids and their polarity,
+and we can see on the right the orbits of the mu plus in blue and mu minus in red in the transverse plane.
+So you can see, indeed they execute these identical helical orbits, hence the H in each photo.
+Um, this is dominated by a little more motion, that large circle.
+And then you see these little tiny loops that happen, uh, when the muons get to the oppositely charged solenoid.
+So a mu plus at a negatively charged solenoid and vice versa.
+Um, so, uh, to kind of summarize.
+Again what I've said, but to really bring it home.
+Um, uh, at standard channel, like the rectilinear might use a physical dipole component or a single solenoid tilt to generate this charge specific,
+more traditional dispersion, uh, scheme. But here it with fulfilled.
+These periodic rotations generate what we call a rotating dipole field,
+which is something if you look at a field map you can actually see the field rotating and flipping.
+And this allows us to have um, placement of wedge absorbers in such a way that it's in-phase with the mu plus and minus orbits.
+So you can see the single period is six solenoids are six cooling units because we have two types of orbits and then three groups of rotations per.
+So three times two is six. And this is this is the setup of the lattice.
+So this is a really clever brilliant design that Harry made. And so we're trying to do it justice.
+Um one other thing that he's done here that's really bold, um, is he's chosen to have this channel operate in a resonance condition.
+So if you were here, uh, earlier in the week at the accelerator school, you'd see Taylor's really nice, uh, visualization of what a tune is.
+And typically, we don't want to operate, uh, near a resonance tune, uh, because it can limit your momentum acceptance.
+But by doing so, you generate this positive momentum compaction factor that essentially means larger dispersion,
+higher momentum particles traveling longer paths. And we can have this localized large path lengthening where the wedge absorbers are placed, uh,
+to have more cooling happening effectively if you imagine wanting to shrink your momentum distribution.
+Um, so this is another really unique facet of is design. Um, if we look at the beta function to further characterize the lattice,
+you'll notice the wedge absorbers are placed near the minimum of the beta function.
+So there's room for improvement on this.
+And the reason for this is because if we think back to the equation I showed on the first slide, if we solve that,
+uh, for the equilibrium admittance of the minimum achievable admittance, this is proportional to the beta function.
+So having our or rather the transverse beta function. So having our wedge absorbers near the minima um allows us to achieve further cooling.
+Okay. And one other aspect of the design are the RF cavities. So these are to restore longitudinal momentum.
+So as particles deposit energy via ionization this allows us to achieve cooling.
+But also we don't want the particles to stop.
+So hence the the RF cavities and the placement such that the minimum of the base function align with the absorbers.
+So these operate at 325MHz. Um and also present designs include some gaseous hydrogen to enable that RF gradient
+and some additional homogeneous cooling of that may not be present in future designs.
+The last thing I'd like to note about each photo is that it acts sort of like a de facto matching section.
+Um, so in the design, we start with muons coming out of the front end at around 2250, um, Nev.
+And then along the channel this is degraded to around 200 MeV.
+Persie. So this really nicely primes the rest of the cooling channel to operate at that minimum ionizing point of 200 MeV, which is ideal for cooling.
+So not only would having H4 as an initial cooling channel provide some initial cooling before charge separation,
+which might in fact even be necessary for charge separation to be achievable.
+Um, but it would also be able to nicely prime the rest of the cooling channel to operate, uh, in the ideal performance regime.
+So having pretty in-depth characterized your design, I'd like to talk about the current performance.
+Um, so these are your results as of 2015, but we've been able to replicate similar performance.
+We don't have the exact files he's working with.
+Um, but what you can see here are the initial and final phase space distributions from U plus, but very similar from U minus.
+And the big takeaway here is that we are seeing evidence of cooling.
+This distribution is shrinking. Of course this is also with losses.
+So perhaps a more quantitative metric. Here we can look at the Igen mode admittance on the left.
+So the red mode is approximately the longitudinal. And then the blue and green are some linear combination of the transverse modes.
+We have a solenoid lattice. So there's coupling between the transverse planes.
+And what we see is around two orders of magnitude in admittance reduction 60 admittance reduction mostly in the transverse plane.
+Um and this is with a transmission rate era reports of 65%.
+Um, so something worth, uh, investigating to try to optimize.
+And in the simulations we've done presently with a more modern front end.
+This transmission rate is a lot lower. So we actively have to work on making the design more up to date with the current version of the front end.
+Um, so to kind of summarize what Yuri has demonstrated. Um, about two orders of magnitude intermittent reduction.
+Um, for both of you, plus and minus in the same channel, which is very novel.
+Um, but like I said, since the map project, there hasn't been a lot of work on this design.
+And indeed, versions of the the, uh, Collider schematic have just removed the initial cooling channel.
+So what I'd like to show is what we're working on now to make this a viable candidate to include in the nominal design again.
+Um, so to kind of lay out logically, what we've been working on, as I've shown, is design is rather non-trivial.
+So we've gone through some sort of archeology to reconstruct what theory was was working with and trying to systematically,
+uh, study how the design works. So we're moving forward now with trying to do some optimization.
+So we've started with, uh, a sort of simplified version of the channel with a constant momentum, trying to replicate his results study,
+uh, the beam optics in this really complex field configuration and work to an optimization stage.
+So just to show a few highlights from this and not enough time to show everything,
+but you can see here from my G4 beamline simulations, uh, reference mu plus orbit along the full channel with series original design.
+And then in our sort of simplified version, where we have set the momentum to be a constant 200% with no degradation,
+just to study the the complex optics in a little simpler environment.
+Um, we've also studied the dispersion and beta function to more systematically, uh, study the, uh, beam optics.
+So you can see the dispersion curve along the channel is dominated by these large like larger than a single period oscillations.
+And then within a single period indicated by the, uh, vertical bars, um, we see about six extrema occur,
+um, which we'd like to kind of nicely, uh, align with the absorber placement to have ideal cooling rates.
+Um, so to kind of put this a little more explicitly, so far we've tried to understand the lattice design.
+We're working on a report right now to summarize our findings and present, uh,
+a more theoretically, systematically motivated, um, description of h fo fo for reference.
+Um, we're working now on creating a suitable, uh, admittance calculator, um,
+and understanding the momentum degradation along the channel and the cooling performance.
+And then in the future, we want to try to improve the admittance reduction,
+but mostly get that, uh, transmission rate up to make this, uh, a viable design,
+but also trying to make it a bit more physically realizable because we realize 2.5
+million radian solenoid rotations are going to be difficult to physically build.
+Um, so we're concluding this characterization now and starting on our report.
+And then in the fall we're going to start on the optimization.
+Um, so just, uh, to conclude here with a few ideas moving forward with the optimization.
+Um, we're looking at trying to taper the length of elements along the channel.
+Shortening the channel will help us reduce decays,
+but also we want to try to make these minimum of the beta function line up with the absorbers better so we can achieve even further cooling.
+Um, and also uh, which is that second point there as well.
+Um, and we're very open to other ideas.
+Uh, there have been suggestions of trying to look at a brute force optimization or, uh, trying to do something more systematic.
+We're trying to approximate Hamiltonian now, and so maybe we can take a more theory motivated approach.
+Uh, but in the end, uh, thank you so much for your attention.
+And I know the poster session already happened, but if you didn't get to see, uh, Ritika,
+another UT student was studying the matching section of each photo, which is so complicated, I didn't even talk about it here.
+Uh, so definitely check that out as well. But with that, thank you. I've got a couple of comments on this.
+Very nice work. Uh, as it happens, a couple of posters over from you, Aubrey Zhang, was presenting a genetic optimization of the 60 cooling channel.
+So if the two of you get together, you might be able to generate some new ideas about how to optimize.
+Yes. Uh, I have a nagging engineering question that you're in a position to address,
+which is that there's an awful lot of new, um, energy deposition happening, uh, in these absorbers.
+And how do you keep them from overheating? Uh, so it would be worth doing a calculation of, uh,
+what the temperature rise would be if they had if they were cooled only radioactively, for example.
+And if you could add water cooling around the outside edges and what, how much heat transfer you could get, etc.
+Yes. That's a very interesting idea. I can't say that I know anything about that now, but definitely interested.
+Thank you. I was just going to kind of comment.
+We have some nice hydrogen pressure, uh, functions, which you can use if you want to answer that question.
+Thank you. Thanks.
+Uh, so very nice and interesting. The first time I've seen this was the poster.
+And now. Now this talk. It's quite interesting work. Um, I was curious, um, and naively, if you if if you were just to even get, uh,
+you know, reasonably close to the efficiency of the one charged on channeling,
+you would immediately get like a factor of two, reduction in the price ratio of one rather than to cooling channels that you have to build.
+So is there any reason to believe that like this is going to be significantly less?
+Because otherwise it would seem to be, you know, very promising, just in the fact that you can use it for both charges.
+Right. Uh. Right. Uh. Sorry.
+I just was wondering if. So, the overall, uh, I guess the question is, is the cooling, uh, you know, roughly the same level of, uh,
+cooling that you can get out of this, you know, and, and transmission fraction roughly the same as the traditional method.
+I see, um, I'm actually not terribly sure what the performance looks like for the rectilinear channel.
+I am very interested in working with some people on the rectilinear channel to try to do an H photo into rectilinear and see how that performs,
+but if anyone in here knows the numbers. So as a precursor, yes it is.
+Yes, I am going in to direct you. Exactly.
+Yes. So definitely, uh, this channel has some limitations, uh, because ah, um, uh,
+can I also describe, uh, so this inducer, uh, close to the resonance condition.
+So therefore the system is very, uh, very unstable, especially like a lower admittance condition.
+So, uh, usually always tried, uh, like I extend, like a cooling.
+But there he never solved. So we are now like a challenging Riker.
+Uh, what he failed to say. Okay, okay.
+For the minutes. Okay. Uh, yeah.
+Just to follow up on. So you guys, uh, Oman.
+I think what we'll try to do is maybe we can use.
+Maybe we can use this channel to replace a big part of a linear channel.
+Uh, before we merge, I think that would be the goal. Uh, so we'd like to see, uh, what are the limits?
+How long we can go. And I think Yuri started doing that, but it never finished, basically.
+So I think Caroline will take over and do that. Okay.
+Any more questions or comments? Uh, could you briefly comment on the matching problem?
+I was unable to see that poster, but what's there?
+Uh, so the idea is there's one period at the beginning of the channel that is like the most complicated period.
+Everything in the steady state is repeated.
+Uh, but that one, the idea is it takes the particle to the correct position and angle to start to execute that helical orbit.
+So basically the transition from the front end to full flow.
+And it's very complicated and has done a really great job trying to motivate, uh,
+how that works and how we can make, um, that matching scheme, um, kind of design agnostic.
+So as we change the flow lattice, we'll still be able to match to the front end.
+Okay, let's take this. Okay.
+So our next speaker will be Kyle Capo Bianco Hogan from Stony Brook University.
+Yes. You got it. Okay. Okay.
+Can you hear me? All right. Okay, so I'm, uh, presenting an update on the TeV acceleration for the Fermilab, uh, muon Collider.
+So main goals right now are to accelerate muon and anti on beams from 63 JV to, uh, to five TeV.
+We we're trying to see how far we can get on site since cutely fitting that on site is a bit problematic.
+So trying to find out how far we can actually get and then what it takes to actually get to five TeV.
+Yeah. Uh, yeah. There's, uh, two, uh, basic forms that we're looking at right now for the, uh, rapid cycling synchrotron chain.
+There's a conventional process.
+Is this, uh uh oh. Okay. Yeah, that's probably, uh, okay.
+Uh, you have a conventional osseous chain which uses a ramp dipole magnets.
+We have quadrupole magnets, and it's fairly simple.
+Doesn't, uh, do anything crazy.
+Hybrid ox, on the other hand, is capable of getting to much higher fields and much higher energies.
+But as you can see, you have, uh, large excursions in the beam path, in this case, larger than that, the substantially larger than the beam width.
+Uh. Uh, this is based on having an iron dominated, uh, thick, iron dominated lamp field magnets, uh, which can operate at up to about 1.75 Tesla.
+Uh, for the maximum field in, uh, I should note in the conventional X, you going between some part?
+Well, depending on the orientation of your beams, you'll either have positive,
+uh, a minimum positive and a maximum positive field or a negative equivalent,
+uh, whereas you ramping over the full field range of you normal conducting magnet in the hybrid scenario.
+So, um. You do get more of that field range.
+Add it that way. Problem is.
+So the problem with these WIMP magnets is the limit to about 1.75 Tesla.
+So we look at, uh, using coil dominated superconducting magnets to get us up from, uh, to increase our average, uh,
+or average bend field overall and allow us to accommodate higher energy beams in a, in a tunnel of a given size than we otherwise would be able to.
+Uh, in this case, we're looking at, uh, 14 Tesla for it.
+I think it's. A decently reasonable number, though it is pushing, uh, things somewhat that they're trying to design those for the FCC as well.
+So hopefully we can get those. Uh, basically out of a lattice.
+Uh, beyond that, we have two types of straight sections.
+Now instead of, uh, just one, we used to just have a straight section completely filled with OS,
+as you can see over here, uh, just an off, uh, number of straight cells filled with.
+I have, uh, two cells for dispersion suppression on either side and then arc cells connected by them.
+We have, uh, since last year, we have added, uh, longer straight cells, uh, total of six of them to each ring,
+uh, in order to accommodate, uh, two additional utility cells for injection and extraction.
+Uh, we were able to fit all of the injection extraction within that, based on our current estimates.
+Uh, quite nicely. Though I should note in the case of some wings, there were only six super periods,
+so we only have the long type of super period and don't have the short type at all.
+But the first to be wings will use that alternating pattern of long and short super periods.
+Uh, we have a ring geometry overall. Uh.
+Uh, just to give you an idea of it. Uh, here we have the two.
+Super. We have a, uh. Unlike the previous diagram we are centered on, we're ending at the center of the street section.
+So this is half of the Long Street section. This is half of.
+This is a full short street section that is half of a long street.
+And you can see our, uh, dispersion suppressor, uh, dispersion suppressor over here.
+And it's reduction in our beam size there.
+Uh, we're using half bends. So again, as you saw earlier, uh, we need two cells for dispersion suppression loop.
+Uh, putting it half filled in the bend. Magnets normally.
+Uh. Now the layout has some constraints to it.
+Uh. One off.
+We have to distribute it around the wing. That's why we have all of these.
+I have sections instead of just having one off section and every other street section being a utility street.
+It's all of those straight sections contain RF and some of them contain utility sections.
+Uh. This is because we have to reduce the mismatch because between field and energy, which you can see here just, you know, arbitrary units.
+Uh, just a schematic. Our, uh, field ramps up continuously because we know at the weights we're going at kill a Tesla per second.
+We can't stop and start. Uh, for the energy, though, we're ramping up, you know, accelerating in our straight section through Earth,
+then proceeding at a, uh, fixed energy e to the next straight section.
+As a result, we have a mismatch, except, uh, at the middle where we cross through and match up.
+Um, I should note there was a counter propagating beam.
+That's why we can't just time everything so that it all matches up.
+Otherwise, we'd be able to adjust the timing of each ramp of each magnet's ramp individually, at least in principle.
+Uh, for this, uh, I think major consideration on this aspect of it is, uh, uh, to maintain a synchrotron tune at,
+uh, reasonable number, uh, we'd lose the approximation that it's all continue.
+That acceleration is continuous. If we have too much of a synchrotron to too much of a single phase advanced, uh, post application.
+Uh, really we're looking at post super period.
+However, since that's how often we have our RF, unlike in a typical link, would be spread out, uh, would be all together in one location.
+Some of the constraints on it. We have a quadruple length. They increase with cell length.
+Since, uh, we're using a fixed, uh, 90 degree phase advance post-sale.
+Uh, we end up with a fixed. Oh, we end up having to scale up there a quadruple length, but it doesn't scale as quickly as cell length.
+So we end up with a quadruple packing fraction that decreases with cell length.
+So I think, okay, let's just make the cells as long as we can.
+But there are two issues with with that.
+Um, all of our cells are the same length.
+Longer cells mean that we're going to have more space, you know,
+straight sections which once you have something long enough to accommodate all of you off,
+you have no further benefit to to increasing that length, and you're lowering your average, uh,
+gradient because you're incorporating more dispersion suppressors in, uh, but you dispersion suppressor becomes a larger, uh, every time you, uh,
+for whatever amount you increase the cell length since the scaling the same way, uh, you end result, you end up with an optimum like you can see here.
+This happens to be an example of, uh, one of the scenarios I'm going to show you later.
+Uh. So, uh, finally, we have what we said, our average accelerating gradient to.
+Which ends up being constrained by our survival rate.
+We. This is a bit flexible since there is some room to sacrifice a bit of luminosity for a better energy reach in our wings,
+but we try to keep it as high as we can and ultimately strike a balance between these parameters.
+Uh, looking at one of the more extreme cases for beam exclusions,
+you you can see an example of ISIS Fourier, which I'll show you in a bit the details on.
+But I wanted to show how significant the exclusions are here.
+It's just on the low energy ad injection.
+You have over 100mm. I'm not a magnet design person, but I'm guessing the folks won't be happy about that if I ask them to make one like this.
+Uh, fortunately, it's asymmetric, so we don't have as much on the the extraction side, but it's still ends up being pretty big.
+There is a way to reduce this, but it comes at the cost of energy, which.
+Here you can see a from a previous design.
+Iteration we can subdivide use one uh, super oh one hybrid bend unit, the superconducting and normal conducting magnets.
+He would split so that we have a normal connect to here and here between superconductor segments and so on.
+I have reducing the exclusion size to the point where it's on the order of the beam size of all.
+But as you can see here from again, these are earlier iterations.
+It has a serious impact on injection energy. Uh, we haven't applied this yet to the current designs.
+Uh, but we'll be doing that in the near future.
+Unless I. Get the excellent news from someone in Maggie magazine that.
+Oh, yeah, these exclusions are totally fine. I doubt I'm getting that. So are we going to have to do that now?
+I'm going to break this into two parts at this point, uh, for acceleration.
+And look at 65 to 1.54 to have first, which fits quite nicely on Fermilab's site.
+Oaks one and two in hopefully the Tevatron tunnel.
+We don't know for sure if we can fit that because of the geometry, but the circumference is at least set so that we can in principle fit it.
+And then you have the site filling for S3 at 15.5km in circumference.
+Uh. Uh, this one is two pi kilometers in circumference, so I don't need a scale.
+This is just two kilometers in diameter for that.
+So. Here's how we end up getting through that.
+Uh, getting through that acceleration phase. Uh, again, injecting at 63 jev, we end up extracted at 1.54 Kev.
+You can see the energy ratio is lower on the first two arcs.
+Uh. One of the reasons and the first one you see here, it's more than 50% quadrupole, which is far from ideal.
+Uh, so that's one of the things that we're going to work on. I'll talk a bit about that in a minute, hopefully on time.
+Uh, and you can see that we have 12 super periods in each one,
+and we're changing on a number of, uh, number of cells and a number of arc cells quite a bit.
+Uh, we're actually decreasing the number of arc cells.
+Uh, when we go into X-2, which is superconductor, which is a hybrid rather than a ramped only or conventional arcs,
+and you see that the average accelerating gradient is decreased a little bit in x two and three compared to x one, since our.
+So, uh, decay rate is going to be highest in osseous one.
+We're using a higher energy, a high accelerating gradient, to get up to higher energies where we will have a lower k weight.
+Uh, we're trying to get up to that faster. Uh, this is just some of the parameters for it.
+We're pretty far off question our acceleration, as you can see.
+Uh, our super populated, uh, single 20, which I had on the side of blue, but forgot to mention that.
+No, I did mention. Yeah, we need to keep that small. Fortunately, it's ten to the minus two, so that's fine.
+Uh, however, Sigma PC, uh, is, uh, what we're using to, uh, gauge our, uh, the degree of mismatch.
+We try to keep the energy mismatch. The energy gain super divided by the injection energy.
+Uh, we try to keep that to about the same order as of you.
+You can see it's around twice that in red, depending on the wing, but we're hoping to improve that a bit.
+But to do that, we'll have to make a sacrifice on energy range.
+So we're a bit hesitant to do it. The issue becomes that.
+The larger mismatch is, the greater the potential for non-linear effects, and potentially meaning even larger apertures than we're already estimating.
+Uh, some other people families survival rate. You see pulling we're getting better than 0.9.
+So better than 90% pulling. And by three we're at, uh, better than 78% survival.
+Uh, total, um, handful of tunes in these ones, especially the first one, um,
+that's just ends up being the way it is because, uh, how quickly will accelerating that wing, uh.
+Like I said earlier. Injection and extraction. Pretty small.
+We need less than a meter at 0.2 Tesla.
+Uh, in the, you know, kick magnets, we'd need less than a immediate for injection into one.
+And on the high end, 4.5m to extract out of a box three utility drifts.
+There are two sell. They end up replacing the, uh, the bending magnets that you saw in the the orc cells only, uh.
+They were substantially larger than the injection extraction kit.
+So we're all right on that. Uh. Now getting up from 1.54 to 512.
+We have three scenarios here one a 15.50, sorry a one.
+So a 35 kilometer ring. I'm saying numbers that gave me up that other accelerators circumference.
+Uh, so 35km circumference going off site.
+Uh, to do it in a single ring to go from, you know, about a factor of three here.
+If we instead use two rings off site, we can decrease it to, uh, 30 up to 27km.
+And if we put a fourth, if we put Oxford in the same town as ISIS three.
+You on site. We can then get to, uh, 2.7 TeV on site, and then use a single ring off site to get to five TeV.
+At that point, we're looking at 22km. So getting closer to the site, uh, limits, but still not quite there.
+Uh, is the primary fluid, as you can see.
+Uh, the only time we're seeing a factor of three is for asks for a scenario aid design, which is that 35 kilometer one.
+Uh, also, we've reduced the average accelerating again to, uh, one mega volume to, uh,
+just to make it easy to fit everything together and to keep our accelerating gradient,
+uh, to keep our average energy, uh, energy gain per super period divided by our energy.
+That is. Yeah. Uh, forgive me for a mismatch to keep that low, uh, and keep our number of our cells that we need.
+Uh, yeah. Packing fractions are looking. Better.
+Still not great for these wings at least. But they're better than at least one was.
+Uh. I have parameters.
+Yeah. A little closer to quest, but still off quest.
+Um. We are again so that it would have to between these, uh.
+And, uh, I if I will wait for each of these, since we're using the same average gradient based indicator.
+We end up with 65% left, uh, of only ones at the end of it.
+And again, the kickers fit quite easily inside of this.
+Um. Just for an idea of it. This is what it looks like for if we end up putting a sign with man.
+Uh, so if I look for the center of mass energy, um, there will also be a red point.
+You. But one of them. But that purple dot for that ox.
+Uh, five B and C caboose up. Ox for a.
+So, uh, it would be there as well. Uh, now, how do we actually get to five TV?
+Can we get to five TV? TV with the industrially? Uh, potentially.
+Uh, though it's going to require some extreme magnets.
+Uh zunes. Uh, Espoo submission, uh,
+does have this one sided design in the Espoo submission does have a rather
+extreme magnet coil dominated at three Tesla with a 500 Tesla per second ramp.
+It's slower than the other ones, but, uh, still pretty fast ramping.
+And assuming that it could be done. Would it be enough? And it is.
+Yeah, we can work with that. Uh, I think they would.
+Wait. So we would end up needing, uh, there is only 2.57 Tesla to actually do it, but it would take two wings if we tried to fit it on the site.
+Plus that neighboring industrial area. So, uh.
+Those. If anyone has a question about that. Yeah.
+So yeah, we're able to reach it through a few scenarios for it.
+And we're going to be working on reducing mismatch and exclusions and tracking simulations next.
+Um, so if anyone has any questions I mean I still have time for that probably.
+All right. We have time for one quick question. I think this morning we saw, um, this morning we saw a presentation on the risk assessment,
+uh, and costs associated with different design alternatives.
+Uh, you spoke about the magnet board being or the magnet size being an issue with some of these designs.
+And so we're trying to compensate by using more super periods.
+Do you have any sense for the cost differences or the technical risk of the different alternatives you've presented?
+So um, short answer.
+Is the scenario A is going to be cheapest since it can be anywhere to at least since it involves the least amount of additional be mine.
+Since that's the magnets and RF not really are interested in magnets.
+Are you leaving cost contributions? So, uh,
+that the reason to try and minimize the off site circumference or avoid it entirely is
+because otherwise you have to get people to let you build an accelerator under the house,
+which. It's not the easiest thing to convince people.
+Maybe we can, but better off if we don't need to in the first place.
+Thanks. I have one under my house.
+I think. Okay.
+Our next speaker is Austin Hooper from Oak Ridge National Laboratory.
+Stable. Okay.
+Um. Thank you. Um, okay, so I'll be discussing the proton driver, um, which is the first stage in the muon collider.
+And I'll specifically be discussing the possibility of using the Spallation Neutron Source as a testbed for the proton driver, um, technology.
+Um, so, uh, I'll start by discussed, uh, describing the SNS, um, its basic operating parameters and comparing to the muon collider.
+Um, I'll also focus on the unique beam diagnostics in the SNS.
+Um, and then the third part of my talk will describe the feasibility of a bunch of compression experiments in the SNS.
+Um, and finally, uh, show some preliminary experiments and simulations.
+Um, so I'll start with the overview of the SNS. Well, sorry.
+Uh, just first, um, uh, just giving an overview of the Muon collider, and we're focusing on this little, um, purple triangle.
+Um, so the the goal of the proton driver is to create extremely high density proton bunches that collide with the target to produce pions,
+which eventually decay into muons. Um, currently, the the current Ehmke uh design report.
+I think that's where this figure is from.
+Uses one ring for accumulation, and then a separate ring for, uh, compression and merging of different bunches.
+Uh, this design isn't set in stone, but I'll assume this is the basic, uh, idea.
+Um, the operating or desired, uh, parameters of the bunch include, uh,
+2 to 4MW of beam power at 5 to 10 GeV, energy, uh, around ten hertz repetition rate.
+And the final bunch will be only two nanoseconds long. So, uh, these are, uh, very difficult parameters to satisfy.
+So the current high power facilities are just below two megawatts.
+Um, and they haven't demonstrated this compression yet.
+Um, okay. Um, the SNS, uh, this is an overview of that SNS at Oak Ridge National Lab.
+Uh, it's a very close analog to the the proton driver.
+So, um, we start with an H minus linac, um, including an RFQ and kind of a standard front end at 42 milliamps, beam current.
+And then we have a partially normal conducting and partially superconducting linac that accelerates the, the beam to, uh.
+Uh, but now it's 1.3 GeV. This is an old slide.
+Um, those, uh, bunches are injected into an accumulator ring.
+So we inject a thousand, what we call mini pulses into the ring.
+Um. We use charge exchange injection.
+So we have a foil that strips two electrons from the minus particles.
+Um, and this final bunch has on the order of ten to the 14, uh, protons.
+Um, so this is essentially a compression of one very long post from the linac into about 700 nanoseconds.
+Um, and finally, that beam is sent to the target at, uh, currently 1.8MW at 60Hz.
+Uh, so. So the beam power of the SNS has slowly climbed over time since its, uh, creation.
+Um, it's only recently that we started operating at around 1.4, um, megawatts, uh, stabilize to the past, like five years.
+And currently we are on a on a mission to increase the beam power to 2.8MW over the next few years.
+So that is, uh, going to be a world leading, uh, beam power.
+Okay. Um, a couple unique things to highlight about SNS.
+Um, we have a quite sophisticated injection painting scheme.
+So this is just the variation of the position and momentum of the injected beam.
+And this allows us to modulate the collective effects in the ring.
+Um, we also have the ability to tune the, uh, ring energy over a big range.
+So 1.3 down to 0.8 GV. Um, this will amplify collective effects which scale inversely with the beam energy.
+Um, so, uh, compared to the muon collider, um, it may be too faint to see there's supposed to be a light gray region.
+Um, here. Um, on the vertical axis, we have basically a measure of longitudinal density divided by the energy.
+This is called the pervious. So this is a measure of space charge strength um, versus the bunch length in the ring.
+So normally that the bunch fills about three quarters of the ring.
+Um, so this would be, uh, a compressed bunch.
+And you can see that the space charge increasing.
+Um, so we think that if we reached significant compression, we would start to probe the envisioned muon collider space charge, uh, regime.
+If we further decrease the energy to 0.8 GeV, um, then we might be able to exceed it, um, because of the strong inverse scaling of space charge.
+Um, we also have a few different diagnostics in the ring to measure the beam.
+Um, I won't go through all these, but, um, I'll highlight especially an electron scanner,
+which will give us the density at the transverse density of the bunch on every turn.
+Um, like instant feedback. Um, and also a set of wire scanners.
+So these provides, um. Constraints on the accumulated bunch.
+So we can take a set of these one dimensional wire scanner measurements and infer what is the two dimensional phase space distribution,
+or the four dimensional distribution as a function of time during injection.
+So these are all things we could use to benchmark, uh, beam dynamics experiments in the SNS.
+Um, okay. Uh, I'll move on to, um, possible the possibility of a bunch of compression experiments in the SNS.
+So we basically need to do two things for these experiments.
+Um, first, we need to accumulate the bunch. And the goal here is to accumulate the bunch with a very small spread in energy.
+So the vertical axis here is the energy deviation from the synchronous particle or the reference particle.
+And the horizontal axis is the, um the distance along the bunch z.
+Um, so when we rotate the bunch, um, probably most of you are familiar with this, this picture.
+Um, uh, the final spread in Z will be basically the initial spread in D, um, plus some nonlinear, uh, tails.
+So first goal is to accumulate, uh, with something called barrier waveforms.
+And I'll talk about those shortly. Um, and the second stage is to just take a single cavity.
+H equals one means it's the same frequency as the ring.
+Um, and turn that, turn this to maximum voltage and compress the bunch, uh, as fast as possible.
+And we call this, um, rotation bunch rotation. Um, so our current RF system, uh, uses, uh, two harmonics H equals one and h equals two.
+Um, this is some, uh, uh, data, some measured, um, bunch profiles versus turn number.
+So we basically just accumulate the bunch for a thousand turns, um, and immediately extract it.
+So the second harmonic here is basically broadening the beam profile.
+Um. We actually have four of these cavities, so we only use the first column.
+Here is the um. Uh h equals one cavity and the second is the h equals two cavity.
+Um, and we only run those at about half, half of their design voltage, which is um.
+Almost 13 kilovolts, so we only ran about six kilovolts.
+So if we include all these cavities together, we do have some extra, um, RF power that we could try to use to rotate the bunch.
+Um, these plots basically show, um, as a function of time that the RF, uh, drive amplitude and phase.
+So the beam is coming in, uh, right about here. Um.
+Okay, but I'm actually going to focus on the first question first, which is accumulation.
+Um, so how do we minimize the energy spread of the accumulated bunch?
+Um, there's a couple ideas. We're not quite sure how to do this yet, but we have a couple ideas.
+So, um, the first is just to simply turn off the cavities, so there's just no, ah, focusing at all.
+Um, but we found that there was so much, uh, beam induced voltage in the cavities that, uh, this really limits the beam intensity.
+So, um, a second idea is to try to use a feedback system in the RF cavities, um, to force neurons that, uh, zero net voltage.
+So applied plus beam induced voltage. Um, so this is a recent experiment we did where, um, it's showing the measured RF voltage in the cavity.
+Um, so basically it slowly ramps to its set point, which is here, uh, five kilovolts.
+And this little bump is where the beam comes in. So that's a beam induced voltage drop in this case.
+But then the feedback system is is offsetting that.
+So we get back to five kilovolts. Um, so the idea would be to set.
+That the voltage is too close to zero.
+Um, so here we set it to 1.5 kilovolts, and you can see it's working a little bit harder, but it does get back to 1.5.
+And here we set it to 0.5. And there's a kind of huge spike here.
+So we're interested in pursuing this more and seeing if we can kind of damp this huge, um, excitation.
+This was for a very low beam current. So we want to try this at much higher, uh, beam currents in the future.
+Um, a third idea is to, um, use additional harmonics.
+So I mentioned this idea of a barrier waveform. Um, a barrier waveform is basically just a square.
+Well. So basically, there's no refocusing except at the very edges compared with a normal, um, sine wave.
+And that's going to maintain a very small energy spread in the bunch.
+So if you take, um, four frequencies, uh, h equals one through four here,
+you can create something that's pretty flat, that could kind of, um, satisfy this this requirements.
+Um. Actually, this was, uh, simulated a long time ago.
+Um, we haven't reproduced the simulations yet. Um, these these are the, um.
+Uh uh. Uh.
+Waveforms in blue. The combined waveform sits fairly flat in the center of the bunch.
+And this green curve is the energy distribution compared with the nominal and red.
+So this could also be promising. Um, but it's unclear if we can do this with the current hardware.
+So we may need new, uh, ferrite rings in our cavities.
+So a new hardware upgrade, but it is possible.
+Um, the last option would just be to install a new RF system, um, which is very, very, uh, expensive.
+Um, uh, there may be space to do this, but it's kind of a last resort right now.
+Um, okay. Uh, so that's the accumulation phase.
+Uh, the the second phase is compression. So can we actually compress the bunch?
+Um. Just some quick numbers.
+We. Let's say we just have two cavities. We would have about 20 kilovolts, um, of voltage.
+Um, that would give synchrotron period of about 20 turns.
+And so a bunch rotation would happen at about 500 turns.
+Um, so you could do a bit better if you had lower energy or higher RF power.
+Um, this is much longer than the muon collider.
+The muon collider would compress in, like, tens of turns. Um, but it may be enough to still study the same physics during compression.
+Um, there's some other specific issues here.
+Um, um. That are maybe not so exciting for this group, but there's some technical issues, um, that need to be overcome.
+So it's an engineering, uh, problem mostly. Um, and this last one is just, um,
+the optimal RF settings accounting for the space charge of the beam and the beam induced voltages in the cavity that needs to be studied.
+Uh, still. Um.
+Okay. Uh, briefly show, uh, just an initial experiments.
+So, um, just if you don't know, at operational facilities like SNS,
+we only have one day per month to do experiments, and sometimes it's canceled, so maybe a few few chances per year.
+So we wanted to do something easy. Um, so what we did is we basically, um.
+Set, the H equals one cavity to ten kilovolts.
+Here. Um. Uh.
+Um, because this is quite a low voltage. The synchrotron period is quite long.
+Um, and we chose to inject for only 300 turns.
+So that means that, um, the bunch only rotates a little bit during injection.
+So it kind of smears out the distribution. But after that we just store the beam and it, it rotates.
+And so you should see some, some compression. So the the idea here was to get just some benchmarking data.
+Um, um, so this plot up here shows the Rmse bunch length versus turn number.
+So 300 turns is when we stopped injecting.
+And here you see the the bunch rotation in black I'm sorry in red.
+Um um, the profiles for these cases are shown at a few different turns on the bottom.
+Um, the black curves here from a simulation.
+Uh, we made some assumptions about the initial distribution and kind of fit those parameters to the data.
+And we got a pretty good, um, agreement. In the future, we'll try to reconstruct this distribution from these, uh, profiles.
+Performance. Okay. Thanks. Um, yeah, I'm almost done here.
+So, um, just a note about future modeling concerns for these compression experiments.
+Um, there's different codes to choose from.
+The accelerator physicists will be familiar with some of these, um,
+and they need to be benchmarked across each other or to each other and against real data.
+Um, there's also different ways to handle space charge, weight fields, um, etc.
+Um, and this effect, electron cloud is something that is not in most of these codes,
+um, that we know exists at the Sims and may or may be influenced by the compression.
+So we're interested in studying that. Um.
+One specific effect is, uh, nonlinear space charge forces.
+So we expect a fourth order resonance to develop as the bunch density increases during compression.
+Um, in the transverse phase space. Um, and we also expect non-linear effects in the longitudinal phase space.
+And we could measure all these distributions, um, using our, our current diagnostics.
+So it'd be interesting to um, understand those.
+Well, when we're designing the proton driver.
+Um, yeah. In conclusion, um, we're, we've started some, some experiments at SNS.
+There's some engineering challenges and, uh, we're interested in and continuing these studies.
+So, uh. Thank you. Couple questions.
+Uh, could you expand on those engineering challenges? Um, well, not much, because I'm not an engineer.
+Um, but the challenges, um.
+Let's go back to the. Um, these would be the, the, the main challenges.
+So.
+Can we, um, modify our current hardware software to run our cavities at different harmonics, even though they're, they're developed for only 1 or 2?
+Um, um, this is also a possible challenge in designing the optimal feedback system to offset the beam induced voltage during compression.
+So those are two. Yeah.
+I, uh, I'm a little bit puzzled. Uh. When you are talking about compressing the bunch.
+Why you just don't slow the energy of the linac.
+We have plenty of time. I mean. System to basically overlap itself.
+I'm not sure I understand. It could lower the energy.
+To do what? Exclude the energy of the linac during the pulse.
+Initial pulse coming with lower energy. Initial portion of the forthcoming lion energy, then final fossil soldier.
+Energy of the beam will be spread, and it'll normally, uh, keep bunching itself.
+Um, so introduce some energy chirp, essentially.
+And then it will be like this in longitudinal phase space and go like, like that.
+That was proposed by Natalia. Um, at, uh.
+What's your last name? Yes. She has this idea. Um, we can't do it in the SNS because, um.
+Uh. We have this bent.
+So, um. Yeah, that that there's tight constraints on the the energy spread among the many pulses.
+I mean, you you lost it. But anyway, you are doing the experiment. Mhm.
+Trying to to see what you can. Uh, yeah.
+At low, at low rep rates. Maybe. Maybe we could do it.
+Um, we haven't looked into that. Really? Okay.
+Okay. Okay, I have to secure it somewhere.
+You're going to have an important lesson. Okay, so, um, today's my talk about the, uh, target system.
+All right. So, um, as you heard many times.
+So I don't go to repeat, but there, uh, the important parameters are, uh, to create a target, we have to take a look at the.
+What is the initial, uh, input program being power. So we expect, like, a ten to the 50s and, uh, per bunch or post bail.
+And again, uh, as previous speaker sets, uh, the bunch of angles is very short, and the rep rate is like a, uh, five hertz.
+So therefore, uh, estimated proton drive, a proton power is like, uh, uh, six mega, uh, six megawatt.
+So that's basically, uh, based on this, like a numbers. So, uh, this is very challenging.
+Uh, there's no target system which can accept such a, uh, beam so far.
+Um, before I, uh, go into the detail, I just want to recap in mind.
+What is the target? So the target is actually the one with a primary function with a target.
+Either we convert that like a proton beam into the, uh, the secondary particle.
+Secondary particle most likely. Uh, uh, like a finite lifetime.
+So, um, this means that we have to collect the record the secondary particle effectively.
+Okay. So this means that, uh, when we send the proton beam into the target and the target lengths typically like a 1 or 2, like, uh,
+interaction or X and create a, like a secondary, and we put their, uh,
+collection or focus in magnet to like, uh, concentrate, uh, the secondary particle.
+And the third mission is, uh uh, we also have to think about how we maintain how we like, uh, uh, safely, uh, operate as a system.
+So that's like a three, uh, main missions we have to take into account to design the target.
+So this means, uh, this is like our, uh, three domain structures.
+Uh, first we have to definitely. Most people here is a physicist.
+We look at their. What is a view you we can create and what is like a, you know, phase space after the target system.
+And then, um, also, we have to, uh, discuss with the engineering folks what is like our,
+uh, the target which can stand for, uh, such kind of, like, intensity proton beam.
+So this means here the, uh, engineering folks look at this, uh, stress analysis.
+And they also have to understand what is a mechanical property which can be, uh, degraded,
+um, during a, like a, uh, like a the beam operation because of their, uh, radiation damage.
+So that's like the other, uh, important parameters.
+And the third one is the safety and maintenance.
+So definitely, uh, in practice, uh, in a simulation design, we never thought about, like, safety or maintenance, but in reality,
+we have to think about what is a lifetime and what is a tolerance of the system itself and the some point we have to replace the like the system.
+So so those are like a very, quite important parameters.
+So we have to take into account like a three main domain.
+Um, so by the way, so this is kind of like a uh iteration cycle to like a design the channel.
+So, uh, if we have like a very sophisticated AI, um, machine learning system,
+I think we add this like a machine learning can take into account all three components together.
+So this means that we need a, some interface between like a physics input and an engineering input and a safety input.
+So far there is no such interface. So that is our main issue right now.
+Anyway, so what is a challenge?
+So the, uh, um, we have, uh, very low, uh, uh, experience about like, a practical target system for the high energy physics.
+Um, this means our, uh, most pi, um, production data.
+Of course, there are tons of data, but most data come from a, uh, so-called, uh, think target.
+So means, like, a, uh, the target system is very, very easy to minimize, uh, like, uh, additional interactions.
+But our case, we need a thick target to create a, uh, pions, as many as possible.
+Also, uh, like, uh, if we, uh, uh, accumulate the beam or, uh,
+beam the position which drastically influence the like a, uh, material properties change.
+Unfortunately, we don't have much like, a database, uh, to, like, predict what is a material properties change due to the radiation.
+Okay. Uh, so the second part is, uh, very efficient, insufficient understanding of high intensity effects.
+So the past, uh, target system, we don't send a match to, like, a B primary B,
+but our case, uh, record, uh, in the distance between, uh, product B is nanometer scale.
+So therefore definitely the proton get into the, uh, the, the material it induces, um, plasma.
+So this plasma actually induces some local field which induce like, uh, some effects on,
+uh, like a primary and secondary B we don't have a such like a model right now.
+So that is like, uh, other, uh, possible concern.
+Third one is, uh, there's no robust design to eliminate the contamination, uh, over the, uh, in a mean phase space.
+So we talk about, like, uh, the target and, uh, focusing magnet, but differentially primary beam still remaining.
+So there even, like a two interaction and a longer target, but still like a 10% of the primary protons remaining.
+So that proton is very, uh, uh, um, evil for the the downstream of beam.
+Like, we have to, uh, design how to eliminate the, like, our, uh, such kind of primary beam.
+Okay. Uh, the last one is, uh.
+Um. Yeah, that's right guys, I said.
+Uh, we don't have a, like, our, uh, we should like a green dot on the domain, like a B map.
+Uh, like a physics output, uh, engineering output and, uh, uh, safety output to make a satellite, uh, design.
+Uh, we should have a, like, a, uh, like a, uh, analytical or semi analytical model to optimize those, like a cycle.
+But unfortunately, we don't have any, like, a, uh, guide.
+Right? Right now. Okay.
+Uh, then the last one is, uh, the radiation tolerance means we send a proton beam, intense proton beam and create a secondaries.
+Definitely. We should have some diagnostic system.
+What is the target condition? What is a beam condition?
+So that just diagnostic system has to be radiation reversed.
+And we also have a, like a ceiling, uh, to protect, for instance, like a superconducting magnet.
+Um, and also we have to think about the remote handling, how we like, uh, depress a target, and, uh, shielding.
+That's like the design is needed. Uh, we also have a instruct infrastructure.
+Uh, if we heat up the target, we have to clear it out.
+So we need a, like, a, uh, cooling manifold, uh, gas plan for or a support structure.
+Okay. All right. So, um, first I, I'd like to say, like, uh, how much we know about the, uh, like, a pie in production.
+So the pie in production, there is a Sam model theory and lots of, uh, theories, uh, produce.
+But most likely, uh, the theory is actually, uh, to ideal in the real case, uh, we like to use, like, a pie, um, production rate, using a,
+like a, uh, phenomenological model, which means that in case of the Gen four, we use, like a Bertini model, uh, to create a, like a soft pio's.
+Soft Pio means like our, uh, if the proton kinetic energy is above regular, about 200 MeV, then we start creating a pions.
+So those pions, us, uh, so-called the soft bio. And, uh, uh, why would I like a dictionary?
+Uh uh, so called the Delta residents and the Delta residents is their regular excitation with a proton beam.
+And, uh, I'm sorry, the proton and the proton is a decay.
+And, uh, and induce a sound like a perfume. Uh, right.
+As a secondary, uh, particle. So this, like a type of, like a production, uh, pion can be a kinetic energy around, like a 3000 day move.
+And the cross-section is quite large, like, up to, like, 100 mega, uh, burn.
+And uh, uh, there's other, uh, methods that's like a, uh, like a multiplicity,
+so called a multiplicity that's like a, uh, sometimes called or the merge by production again.
+So the cross-section is quite large still like a micro bar, a mini bar, uh, within the range, like at 1 to 10 GB.
+Uh, again. So this pions are typically like a kinetic kinetic energy.
+Uh, I don't this 300 moves. And the pioneer distribution is a kind of isotropic.
+Uh. After the python, uh, created.
+So the python eventually decay and making, like, a Mayans.
+That's what we want. And as you know, the lifetime of a python is a, uh, like a 2.5, a 2.6 times ten to the minus eight gamma seconds.
+So this means, like, uh, within, like a 30m, uh, almost like 90% of the pythons, uh, decay and, uh, record producer like a moo moo.
+Plus or minus. And interestingly, me on kinetic energy is very low compared in like a pile, uh, in a stationary state.
+Uh, me on kinetic energy is only four, uh, MeV, which means that by comparing a pie on kinetic energy.
+So, uh, me on contribution is very, very small by comparing a rag, a pile, uh, kinetic energy.
+So this means the initial, uh, me on phase space is most likely predominantly determined by the energy energy, energy, uh, spread.
+So one possible idea is, uh, if we could have a way to cool the initial pions,
+then maybe we could like a mitigated, like a cooling, uh, for the later stage.
+However, of course, the issue is a pion has a, like, a shorter lifetime, and the pion has a some strong interactions.
+Maybe, uh, we as. But enough. Maybe we can find some way later.
+I just want to keep you, Abi. Um. So, um.
+As I said. So that passed like a pie in production measurement is or uh, usually happens in a thin target,
+but in reality, so that we want it to have a thick target, which is, uh, like a multiple interaction length.
+So this means, uh, we we should have a more like a stochastic process because the pi, um,
+primary, uh, channel is like a proton creates a, like a pion, uh, from a target material.
+But this python could also interact with our, uh, material if, uh, the target length is longer.
+So just like, uh, uh, additional, like, uh, multiplication actually induce more like uncertainties.
+Uh, so which is, uh, making a huge uncertainty if we have a, like, a multiplicity.
+So that's the reason why, especially for the neutrino target system, we usually have a, like a, uh, like a pie, uh,
+measurement using a, like a, uh, creating a, like a prototype target system and putting a, a, uh, spectrometer.
+So this is a, uh, two, uh, examples. Why the so-called A61 shine, uh, at, uh, uh, CERN.
+So the we have a, like a beam and we, uh, have a target.
+So this target has, uh, can be like our, uh, prototype target, uh, like a very thick target here.
+And we could measure the the spectrum of the secondary particles, or, uh,
+recently Fermilab develop or, uh, like a very compact, uh, uh, spectrometer, uh, by comparing, like,
+a shine so that the in a 61 shine, the tolerance is about 20m, but emphasis it is so-called with the emphasis,
+uh, so we can put the target again, uh, uh, before that, like this, like, uh, spectrometer.
+But the total length is, uh, uh, the spectrometer itself is like a one meter.
+So the we could try to make, uh, like a similar type of measurement using a, like a conductor spectrometer.
+So this is one possible, like a consideration, like R&D, uh, items we have to think about for the future.
+So according to the radiation's damage.
+So this is kind of like a, uh, very, uh, uh, like a schematic, uh, like a simulation.
+Uh, so, so each point corresponds to that, like a target material.
+And, uh, uh, so this, like a, uh, simulation starts from our, uh, primary, uh, knockout, uh, atom, which is actually,
+uh, primary particle knockout, uh, like a, uh, like a secondary particle, which is actually corresponds to, uh, PCA.
+And the PCA is, uh, the activity low energy and this low energy actually interact with, uh, like a, uh, like a nuclei of the material,
+uh, because the kinetic energy is so low, so that the, this particle can directly interact with the nuclei.
+So this makes a such cascade. And, uh, the red one is a lack of placement, the material, uh, the particle.
+And it is like a process suddenly like a, uh, enhance.
+So as you see the like a time structure. So the, uh, zero picoseconds we studied here and the ten because, uh,
+the point eight picoseconds, it's already like a, uh, very drastically increased.
+But there is a, uh, because like, uh, the summer effects.
+So the sand particle is actually went back to that original regulators position.
+So overall. So the, uh, if you look at the initial and the final, uh, is out so that, uh, we have only like a few particles I actually displaced.
+Uh, this amount is so called the displacement atom.
+So, uh, in this example, we have like a five or like a displacement.
+Uh, dpa. So this DPA is actually the, uh, scaling, uh, to, uh, a variate like, uh, uh uh, uh, radiation damage.
+And as I said, uh, we have to look at the mechanical properties change due to the radiation.
+So, uh, the high energy physics, physics community, we don't have much like, uh,
+information database for the this, like, a, uh, type of, like a, um, material change measurement,
+but, uh, nuclear reactor group actually take a lot of, like, a data point, uh,
+so we could, like, extrapolate, uh, their results for the high energy physics,
+but because, uh, like, a kinetic energy is completely different, some some model doesn't, uh, uh, much do that, uh, for the high energy physics, uh,
+target system, but this one showing, like, uh, if we like a, um, uh, send a, like, a, uh, charged particle into the material building material.
+So how the stress strain Covid, uh, changed.
+And, uh, in the past, we don't have any, uh, good model to predict, like a, uh, reproduced, uh, like the behavior, but recently,
+uh, they use, like, uh, uh, quantum computer grid to start making a such, like, a, uh, reproduction in a simulation.
+So we have to definitely use, uh, their, uh, expertise for our experiment.
+Uh, for our, uh, system. This case, we don't need a, like, a, uh, like a, uh, beam radiation measurement.
+But we can predict what type of a material we can use for our system.
+Uh, so the more that, uh, degradation issues. Uh, so there are lots of, like, uh, uh, mechanical parameters.
+That's a macroscopic parameters. And again, unfortunately, we don't have a any good model to translate from, uh,
+like a simulation results into a, like a this like a, uh, macroscopic, uh, uh, issue.
+So that's an issue. Uh, we have to develop, uh, like a, uh, like a simulation tool.
+Uh, the other interest is, uh, uh, if we use a, some specific material, uh, uh,
+some material can be, uh, annealed during a beam radiation so that if we heat up so that,
+uh, some ratty structure is, uh, reconstruct, and, uh, uh, actually, we actually, uh, come back some, like our, uh, mechanical property.
+So that's it. Like, uh, such annealing is dominant, especially like a graphite.
+So that's the reason why some people look at a graphite target for the intense beam for, uh, applications.
+So this is an example. So the how Riker sweating is, uh uh uh, if we create, like, a, uh, like a helium bubble,
+which is caused by the radiation, but the sweating, actually, uh, it's gone if we increase, like, a temperature.
+So this type of Riker, uh, features, uh, we could utilize, uh, we did, uh, use this, uh, Riker feature for their, like, high power target system.
+Okay. Uh, all right, so I should go very quickly, so I have only one minute.
+Uh, so we have other, uh, idea, uh, for the, uh, radiation robust, uh, target system.
+Why isn't, uh, nano fiber? Uh, why would a, uh, the most critical Riker, uh, issues, uh, for the target user?
+Uh, heat. Uh uh uh, heat shock.
+Like a thermal shock. If you have, like, uh, uh, nanostructure, uh, you can eliminate the, like, a heat shock propagation into the material.
+So that's a idea we we have, like, another fiber. Um, uh, target a production system, and we tested the otherwise ah, uh, high entropy alloy here.
+So that is, ah, uh, like a similar idea. So the, uh, because the structure is very like a chaotic.
+So, uh, the, the, the some are stress actually hard to propagate through.
+So therefore the, uh, we can use, like a, uh, itchy type or the material for the, uh, very high radioactive environment.
+Uh, there's the issue, the idea. Like using a liquid and the fruit as a target study.
+Uh, so if we have a microstructure, then somewhere. So please note that the, uh, the most concern.
+So there is a several like a, there are several, like a target system, like a lithium.
+Mercury. Uh, red this Mars, uh, target fluidized the tanks there.
+Now, they have actually, uh, is applied for the high energy physics yet.
+So the there are several, uh, issues still, and we have to go through the R&D.
+All right. Uh, okay. So, uh, uh, we again, so IDPs three, uh, emphasize we need some measurement or simulation.
+So this is the one possible simulation, uh, as I said, so that if we have a very intense proton case,
+uh, we create a lot of plasma situation where the, like a, uh, ionized electron go into the material.
+That's a mystery. Big mystery. We have to understand how the electron propagates through the material.
+So that's like we have possibly like a simulation, uh, tool to, uh, understand, like our, uh, ionized electrons.
+Okay. So this is like, uh, we propose, like a diagnostic system for the, uh, radiation, robust environment.
+Uh, one possibility is, uh, uh, like measuring, uh, uh, reflectivity of the material so the reflectivity can be, uh, changed by the radiation damage.
+So I have a, like, the area, uh, about, uh, to investigate the this, uh, uh, um, uh,
+detector system, the otherwise, uh, uh, for instance, we got these, uh, uh, uh, radiation robust.
+So maybe we can use this, uh, technology for their, uh, target system.
+Okay. Um. All right, so, uh, this is like, uh, two possible scheme.
+Okay. So why is that solenoid. Uh, to correct the magnet.
+Uh, correct the pions or, uh, horns. So we recently developed our alcohol, uh, uh, mechanism.
+I think of wrong. Could be other candidate to correct the pions.
+All right, so this is part summary. Uh, probably I should omit the summary.
+So that's all. Take a question or two, then we're going to.
+Okay. Yeah.
+So I was wondering, uh, how much how things scale with intensity or if you've got a feel for that, like if you would only need a third.
+The number that's presently designed, does that clear up everything or or does it.
+It's a more linear or quadratic. So which parameter you talk about the number of muons that we desire to make for the collider.
+Uh, yeah. So in simulation that's different.
+Use like a linear scale. Right.
+But. But then in reality, we don't know. That's right. Or not.
+Most likely we expect, like our, uh, reco, uh, correction effects, uh, induced and, uh, um, enhanced uh, inference.
+The, the muon production. Pi, um, production. So that's a question mark.
+I don't know what what's going on? Okay, so there was a target free experiment like 20 years ago, the merit experiment.
+And that was a liquid that was a liquid mercury target.
+And that was, you know, that was a multi megawatt beam that was on it.
+I mean, is that being abandoned is a concept.
+You briefly mentioned Mercury there, but uh, yeah.
+But there it's missing a lot. So like a um R&D part.
+So um, as you remember when we sent the proton beam, mercury is actually sprayed.
+Yeah, right. We have to stop with such kind of like a mercury means a unit.
+We need a some additional component. Okay? We don't have a such kind of, like, a structure in the market.
+And they didn't do any of that kind of study. I mean, I really don't know.
+I'm I'm kind of questioning that.
+The second, um, the second question is, uh, couldn't a lot of this, uh, so you mentioned ten to the 15th protons per bunch, right?
+Couldn't that be reduced?
+Because I remember when we were trying to integrate the, um, Neutrino Factory muon collider in front end and what they did, how they did that was, uh,
+the a lot of the bunching you'd have,
+you'd have re bunching of cooled muons so that you would need that you wouldn't need to have such intense bunches of protons per bunch.
+Is that a consideration still? Oh, so, uh, for the muon Collider, uh, the our primary, uh, uh, formula is a luminosity.
+So to increase the luminosity, singular banshee's away.
+Yeah, but I wouldn't say that is true, but, I mean, you would do the bunching of the muons, right?
+So after initial cooling. And that might mitigate the target tree requirements upstream.
+Uh, okay. So like a the branch gap between like a protons, uh, in the present, like our, uh, proton driver scheme is not, uh, record close.
+So we cannot merge such kind of like a, uh, recommends like a, uh.
+Yeah. Okay.
+Um, I guess who was a year ago at the previous, uh, Muon Collider collaboration meeting?
+I also raised the question of the mercury results for merit,
+and the answer I was given was that we can't pursue that R&D because of international agreements to limit the use of mercury.
+So that raises the obvious question what about lead bismuth?
+Uh, uh, what's the word? I'm blanking on the word.
+Yeah. Uh, nobody's working on it, I don't think.
+For the neutron. Uh, like aspiration source.
+People still use you. Technically, that's the word. Yeah, but but you could you could do a jet experiment, uh, a liquid, right.
+So definitely making a producing a jet structure.
+So you have to be like a heat up and there. Uh, right.
+So those like our mechanical structure, I'm not sure how much like a, we have, like a technology.
+So maybe, maybe, uh, my point is. Ah, yes, we can definitely look into like a, uh, uh, uh, read business case.
+Which is similar to like a lithium lithium target also.
+Uh, issues are how you heat up lithium, but there you don't have the density that we want for lithium.
+Yes. But, uh, um, I think the density might be the, uh, the secondary issue.
+The primary issue is how right we stand. Right.
+The target within with the, like, a, uh, several megawatt, uh, uh, like a, uh, proton beam case.
+Right. Well, I was going to make a comment that the IMC is pursuing a liquid led simulation and targeting study.
+And so that's right. Yeah. So that was my comment.
+I chose to address the history of it.
+I believe that the reason why Macquarie is not actively pursue this literally in Europe, it's forbidden for this purposes.
+So of course we can try to develop something that's specific for the US.
+But I think it's I mean, it kind of defeats in a lot of ways the collaborative nature of us.
+I think we should be working towards a common solution.
+Also, my understanding is that the operating facilities using liquid mercury are trying to move away from this.
+But in terms of, uh, fluids, targets, I think lead and uh, uh, fluids, tungsten or are being actively considered.
+And I think that that's a possibility. And then I actually have a real question, which is you mentioned LCDs on your previous slide or two slides ago.
+And what confused me is, I mean, the advantage of, oh, God.
+So of course, I mean, through that you have radiation hardness, but you also have precision timing capabilities.
+And I wasn't quite sure why you need those.
+Um, I mean, if maybe you did explain it and they didn't get otherwise, you could just get away with standard silicon sense.
+So, um, I have a now, uh, uh, big, uh, I mean, uh, the background of my experience is a neutrino experiment and a neutrino target.
+Uh, so far, we don't have any, like, a robust, like our, uh, detector, the second particle detector system.
+But recently we found, like, a, uh, the muon, which is actually, uh, developed from, uh, a pion decay.
+Uh, we have a, like, a specific. I did locate the muon monitor downstream of the target.
+This, like a meal. Uh, if, uh, has a lot of information about, like, the primary proton beam and the target system.
+So if we have a, like, a time structure with a meal, we can actually target, like a with respect to the, uh, like a spectrum.
+So that's, uh, actually, uh, deconstruct the like, a primary, uh, pions phase space.
+So there is advantage if we use aeroguard. I want to open this up to a broader discussion.
+There any last question or comment that people want to share before we go to the coffee break?
+We'll was. Okay, uh, let me say something to.
+With all due respect, guys, I guess I'm old enough so I don't have to care, uh, about the authorities.
+So let me remind you that this field was a.
+Field or group of the people who were really opening new frontiers.
+And the statement it's something part of the whole somebody didn't like, uh, some material has nothing to do with.
+Our attempt to use this material. I have been proponent of the liquid target, especially mercury, for the new me or whatever yogurt experiment.
+These days. I never understood why we gave up one.
+I mean, the statement of the object is hard to contain and stuff.
+It's really not correct. It's a question of the investing little bit of time and money to find the right way of containing.
+I mean, what I. What I'm trying to say.
+I mean, this is. Scary.
+So the future. So why? Example.
+I'm sorry. Right. So why? Example?
+What you say is, uh. Riker. If I were you, could we, like, go presents like the.
+We use a like a mercury, uh, as a, like a target system, like outside of public.
+Then they might. They're like a start, like exciting.
+Oh, wow. So the. You look like the mad scientist. So the why use a such a, like a toxic material?
+Similar happens like a medium. Humanity was using a mercury 400 years very carefully mentioning the future.
+So I do not like against you. No, I do not against you.
+Uh, but we have to also think about the, like a commonsense definition, you might say.
+So, uh, maybe I need to clarify myself.
+I wasn't trying to be negative in that statement.
+What I was trying to say is, uh, if you look at the Ecmc designs, there is actually a design for two megawatt graphite target solar target.
+Now we need to understand if this is realizable in practice or if there are any flaws in that design.
+We also need to find that. But what I'm trying to what I was trying to say, I guess with my statement is if we can make solar target work,
+then that's probably a preferred option rather than going towards liquid mercury.
+So the beam powers, uh, we actually recently achieved like a one megawatt, uh, beam, and we sent, uh, into that, uh, graphite target.
+And the graphite target, uh, doesn't looks like a no degradation.
+So indeed, uh, you guys are talking about it being an experiment.
+I mean, uh, and you never produce and even try to design target in about two megawatts, and we are talking about five megawatts beam prototype.
+Here's a five minute. Listen, I don't want to go in shouting.
+You don't need to shout. You don't need to shout. I mean, believe me, it's nothing.
+Personally, I'm just calling for little bit attempt to I mean explore something.
+The nature has already given us a call. Okay, okay, let's, uh, thank all of our speakers.

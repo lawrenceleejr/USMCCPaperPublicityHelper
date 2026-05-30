@@ -1,0 +1,722 @@
+# Afternoon Plenary
+
+Hello, everybody. Okay, welcome to the last session.
+Before we get started, we want to announce the poster winners.
+Um, so we have two honorable mentions. Um, Sisi Hanna from Princeton.
+Dude. Did you leave? Did Courtney leave or is she upstairs?
+I don't know. Okay, well, when she runs in, we can surprise her to.
+Okay. And so then the second honorable mention is Caroline.
+Recall from, um, university. Why don't you come on down?
+So you missed it. Here you go.
+Congratulations. Congratulations.
+And then the best overall poster goes. Terrific. I also from the University of Tennessee.
+Congratulations. Thank you so much. It's.
+It's a yes. Let's say let's get a post a picture. And I cannot.
+Oh. Of you. Let's.
+It's game. Yeah, everybody.
+And I'm sorry that my artistic skills cannot match.
+But that's okay. You guys are. Okay.
+Um, so let's let's get started with the actual content of the session.
+Um, so. Andre. Sure. Okay, so again, welcome to the last session.
+Uh, our first speaker is, uh, Mattel's Hotz, third from Harvard, going towards, uh, University of Iowa.
+[INAUDIBLE] tell us about neutrino physics with muon colliders. Okay.
+Thank you. Uh. Thank you. My co-convener is for really inviting me.
+Very kind invitation. I feel like we heard the word neutrino a lot in this meeting, so hopefully I will do it justice.
+Uh, to what we are thinking about. Um, a couple of caveats.
+Uh, I'll only focus on sort of broad synergies between the trainers and meal colliders.
+There are many well known facts. There's a huge literature,
+and I'm not going to bother about referencing everything that's happened way back in the 90s and early 2000 is just because it's a huge literature,
+but a lot has happened. So I do encourage people to go back into the rabbit hole of the references to check that out.
+Check it out. I think Adrian compiled the very nice list of people that thought about this in the past as well.
+I'll focus on recent studies and some new ideas.
+Um, most of this talk is really questions, aspirations, and my own perspective on where we are with the synergies between these two fields.
+I can only speak for me, of course. So, uh, let me start with the first synergy.
+Oh, uh, that's that muons, fermion collider and neutrinos would be basically be produced by the same process, pion decay.
+We are very fortunate that the strong interactions are that strong, and that they like to produce as many pions as they do,
+and that the pion actually has a sufficiently short lifetime that it can produce lots of muons and lots of neutrinos for us.
+So neutrino experiments, and in a sense, the collider is a way to turn the strong force into a free, uh,
+weak force experiment in taking the strong force and converting that into a number of changes in muons.
+Neutrinos are hard to detect, but not necessarily hard to produce.
+The second kind of synergy that one can think about is that muons in the muon collider and anywhere else they do decay and they decay to neutrinos.
+That's a very good thing. If you take muons from a mile collider or anything else and you store them, if you let that,
+uh, muon beam stored for long enough, you accumulate a very well known and very precise beam.
+We have a lot of ideas of what to do with that type of beam, and that usually goes under the name of neutrino factories.
+Uh, you could also imagine the muon collider itself not trying to modify the design or anything like that.
+You just simply build the collider thinking about the interaction point.
+And if you do that, and let's say we forgot that muons decayed and only realized that again once the collider was built,
+you can still do a lot of neutrino physics. The first place where you do that is in the forward direction, just like in the LHC.
+You have things like phaser, phaser, new doing physics in the four direction.
+But unlike the LHC, the forward direction is not necessarily special anymore.
+You actually have neutrino emission everywhere throughout the machine.
+So one can talk about forward facilities.
+One can talk about tangential facilities, basically things you put on the same plane of the ring to collect those neutrinos.
+And you could also think about what we were discussing yesterday. Call the neutrino slice.
+The part of the neutrinos are crossing the main collider detector.
+It turns out that there's a lot of physics you can leverage, uh, with these high energy neutrinos here.
+And that's what I hope to tell you a little bit about, uh,
+this type of third synergy between the two fields is sort of an energy frontier type of synergy.
+And that is if you have a lepton collider. A lot of the questions that you can ask about what new particles are there, new forces and new symmetries,
+they can have very intricate, uh, intimate relationships with the physics of neutrino mass and lepton flavor.
+Those are things that neutrino physicists care a lot about.
+Uh, and finally, at these high energy collisions, you have essentially virtual neutrino colliders.
+You can take the neutrino PDF of the muon and probe things like neutrino, lepton neutrino, neutrino collisions and so on and so forth.
+That's not something you could do anywhere else. So let's begin.
+The very first point I want to make is that, uh, muon collider will require a new type of beam and a very powerful beam and a new type of target.
+So out of this R&D in beam power and target tree, uh, you essentially have, uh, a free neutrino source,
+a great example of what happens when you put a lot of beam power and a very advanced, state of the art target together is the SNS.
+Uh, there, neutrino physics can thrive even in the basement.
+And what that means is, if you put very relatively small detectors for neutrino standards in the basement of the Snare spallation source,
+uh, you can still do a lot of neutrino physics despite the very small volume.
+So great examples are coherent inelastic neutrino nuclear scattering.
+That was first observed in 2017. So it was a first of this type of program with a very, very small detector, basically kilogram scale.
+You could set limits on light particles and dark matter in this way.
+Uh, the coherent experiment, which is this suite of detectors at SNS, actually set some of the leading bounds in some models for light dark matter.
+And you can also measure things like neutrino charge current scattering at the MeV scale.
+If you're doing that in argon, for example,
+you can significantly enhance the program of doing for detector looking for supernova neutrinos and solar neutrinos.
+So this sort of, uh, physics program happens basically by accident.
+No one really designed, uh, the Neutrino Alley or the basement here for this experiment, but neutrino physics still thrives.
+Now, imagine what could happen if you brought this type of state of the art beam,
+power and target tree to a large lab, like, for example, Fermilab or CERN,
+you're taking that type of facility to a place where you have more space,
+more particle or neutrino physicists and more detectors, bigger detectors in particular.
+So I'm just showing here a sort of global view of the the Fermilab campus.
+And you can see here the three detectors of the short baseline program.
+I don't know if any of this will still be there by the time I mean, Collider is running, but for sure,
+we'll have still interest in neutrino physics, given that Dune will be operating, uh, for a very long time.
+Uh, another point I want to say is you get neutrinos from pions K on the case, uh,
+decays at rest, which is what the Spallation Source was doing, but also decays in flight.
+So sort of unavoidably, you're going to get a very bright neutrino source.
+Now was one thing I was thinking in the poster session yesterday. Typically neutrino experiments have proton beams.
+They produce pions. And then you try to focus though those pions with magnets.
+But the muon collider target is in a sense sort of putting those two things together.
+You have this very strong field around the target, and I'm just wondering what that can do for you.
+Maybe nothing. Uh, the next point I want to make is about neutrino factories.
+This is a topic that belongs to the world of low energy or intermediate energy neutrinos.
+Uh, typically it's used in the context of neutrino oscillations.
+If you're trying to measure neutrino oscillation parameters and understand oscillation physics very well,
+you have to be in a baseline that is basically given by the radius of the Earth at most,
+uh, and therefore that dictates what is the largest energy you're allowed to have before you start suppressing the oscillation probability.
+What that means is that basically the energy of the muons you're constraining to is basically this range over here.
+And people talked a lot about this. There is, for example, the International Neutrino Factory design there.
+Uh, there was a lot of work put into that. And at the time people were thinking about other things.
+For example, theta one three was thought to be very, very small.
+So a lot of the design choices were focused in actually trying to measure this.
+Now fast forward to today. We know theta one three is not small.
+So if we're focusing on CP violation instead the types of things you would do are different.
+Now we know a few GeV and basically 1000km is good enough to do what we want to do with CP violation.
+But where are even. Um, where are we with isolations right now?
+Um, I could show you lots of parameters and how well we're measuring them,
+but I think the bigger picture and sort of more conceptual one is more exciting.
+Uh, we are seeing three neutrino oscillations for the very first time very soon.
+So here's an example of a disappearance oscillation that the Juno experiment in China will be seeing.
+You can see the large oscillation wiggles here. And then the smaller oscillation wiggles due to the second oscillation frequency on top of that for
+the very first time will resolve that physics very well because that's a disappearance channel.
+You don't get to see CP violation. You can convince yourself of that.
+But if you want to see CP violation, you go to appearance channels and you need something significantly different.
+And that's where Dune and HyperCard come in. So that's the next generation that will tell us how the three neutrino oscillation picture really
+looks like in the presence of CP violation matter effects and multiple mixing angles coming together.
+So this is a highly non-trivial test of the paradigm.
+We have sort of different pieces here and there from all the past decades of oscillation studies.
+But I think for the first time, we'll see everything together in the same place with, uh, unprecedented resolution.
+So the sort of, uh, cartoon that I like to think about is currently we have sort of a skeleton on what the oscillation picture looks like.
+And as good physicists, we're sort of go for the minimal scenario.
+Okay. Standard model, like there are no new forces.
+Everything should fit into that mold. But maybe nature has other ideas and maybe they're much cuter.
+So we don't know. Uh, I don't want to speculate too much, but if you look at, for example,
+cosmological constraints on the sum of neutrino masses, you can see some weird things going on.
+Too early to tell if this is real or not, but the fact that there is some preference for negative neutrino masses,
+which is completely unphysical, is interesting. Something I'm keeping an eye on.
+If you look at Nova entity, okay, and there are joint fit, there is some sensitivity to CP violation.
+And it turns out that they don't disagree but they don't agree either.
+So statistically speaking there is some tension there, although it is definitely too early to tell.
+So that's again USA Plus Japan programs combined and not necessarily telling you the same thing.
+We may see a repeat of that in the future. We just don't know. And in turn, those have a way of surprising us.
+Massless neutrinos definitely not mixing in small no theta one and three is definitely small, though that's still not.
+And therefore we don't know what's going to happen. And without speculating too much, the point here is that it's too early to claim victory.
+We don't know if it will be done with oscillation physics after the next generation.
+And even if we are, should we stop doing oscillation physics forever?
+Personally, my take here is that that's a no. Oscillations are sort of an Earth sized flavor interferometry.
+That's just a very fancy way of saying they're very sensitive to very small effects that the neutrino may feel like,
+for example, new forces and couplings of the channels with matter.
+They would show up in things like oscillation, but would be very hard to detect anywhere else.
+And there are many ideas of how to leverage this program to look for new, new physics.
+So that's my message here. And I will say the next generation experiments will see.
+I can boast about beam intensity. They can boast about detector size and detector granularity.
+So liquid argon is essentially a microscope into the interaction byproducts of neutrinos.
+But they cannot boast about the flux systematics.
+We're sort of stuck at the level of 10%. And that's where muon beams really shine.
+So if you want to lift that pillar of the oscillation, uh, neutrino program, you really have to address this issue.
+It turns out this is not going to stop the union hierarchy from doing what they're going to do.
+But if you want to go beyond that, you do have to address it.
+So just to give you an idea of what the current status is. This is the budget of systematic uncertainties in the new beam.
+Of course, this is back in 2016. Things have shifted a little bit, but not by much.
+And this is the uncertainty on the neutrino interaction rate coming mostly from the flux at phaser new at the LHC.
+These are all hadronic beams. The uncertainties are large there at the level of 10% or more in the case of phaser.
+And that's where muon beams can do much better. And the level of percent level or better, depending on how well we can measure the current.
+So we heard a little bit about this. I'm just going to flash it. Julia, in the parallel session told us about neutrino factories in the modern era.
+So it turns out that if you take a neutrino factory in Fermilab, for instance, or at Brookhaven,
+and you adjust the energies accordingly to hit the oscillation maximum at surface,
+and you point this at the far detector, you can go beyond the current sensitivity of, uh, the future sensitivity of delta CP with Dune and hyper K.
+But I will say the sort of plot that you're looking at here, which is if I fix Delta CP,
+I take the uncertainty that I would expect in the Dune Plus hypercar era, and then I compare that with one in Neutrino Factory.
+Could do. It's really sort of underselling the big physics picture of this nature in a factory.
+There are way more parameters. You're testing way more channels than we can with pion beams.
+So sort of hard to capture that with a single plot. And I think Julia would agree with me on that.
+So there are many ideas of how to leverage neutrino factories.
+There are some references here. You can also leverage it for new physics studies with oscillation, but I won't have time to talk about that.
+Uh, you could also go to sort of smaller versions of neutrino factories, like low energy muon beams that are being stored.
+We heard a little bit about that from Carrie this morning. So new storm is one such program.
+And here I really have very strong flashbacks, because my very first PhD project was asking how well can new storm constraints tear on neutrinos?
+That was ten years ago. We never published that because we thought it wasn't interesting enough.
+The interesting nature in the factories was dying down, so who cares?
+Okay, great. So now, uh, the proposal is a little bit evolving over time, but the idea would be if you store a 1 to 6 GeV muon,
+you can do this type of physics for a near detector of oscillation experiments like
+measuring cross-sections extremely well for the oscillation physics of tune and hyper decay.
+It turns out you can sort of calibrate these systematics away, but with such dedicated measurements,
+you can really get a better picture of what's happening in the interaction and even further boost the sensitivity of doing in hyper K.
+I don't think this has been properly quantified, but that's an interesting idea to look at.
+Uh, there are some references here for those that are interested. You would also like to couple this with a very precise detector, like for example,
+a gaseous argon detector, like the kind that is considered for the near detector.
+So if you had something like that, you can get even better. Um, uh, particle identification.
+And because it's inside of a magnetic field, you also get charged discrimination, which for a neutrino factory type of beam would be very important.
+Okay. We're also asking questions about what could you do with the lower energy part of the acceleration of the muon.
+So if you go for the current sort of, uh, sketch of the muon collider, you have this free accelerator recirculated linear accelerator.
+And we're certainly on a linear accelerator to the sort of dog bones geometries.
+And Patty Fox and Petr Machado and the man they think of yunqi here.
+And for this, this plot which shows basically the neutrino interaction rate, if you could capture every single neutrino emitted by these components.
+So if you had a four pi detector around this and you can see different components,
+give you a different flux, uh, and there's your shapes and the interaction right here.
+Don't take the y axis too seriously, which you can see covers a huge span of energies.
+So the type of any kind of physics that you can do can span multiple, uh, magnitudes.
+Here. You can see pre accelerated, uh, muons can give you the energies of the hyper k energy range.
+And the early one, for instance, can give you an internal energy range that looks like the different energy range.
+So that's sort of something you get for free.
+And that's one of my student, my very first student at the University of Iowa, who's maybe some of you met, uh, early this week.
+Uh, we're currently working on taking all of these different designs of the accelerators for the muon collider,
+starting at the very beginning and turning them into what is the neutrino flexi to get anywhere around the campus.
+So he's very nicely put together, this simulation of these two components here.
+And we're currently investigating this in collaboration with Patty and Pedro.
+Okay.
+Uh, you definitely have seen this plot before, so I'm just going to flash past it as the muon collider neutrino flux from the main muon collider.
+So you can see that's a huge interaction rate. And it's not necessarily the highest energies we have seen when we have atmospheric neutrinos for that.
+But they are probably the most collimated, most well understood and highest energy in the lab that we can produce.
+Uh, in the future here. Uh, and if you have that we already discussed a little bit about this.
+Now we'll cross your main detector. And neutrinos don't interact very often, but when they do, they really do interact.
+Meaning if they are interacting, they produce very high energy particles.
+So it's very hard to miss. So if this is happening in what we're calling the neutrino slide.
+Some of your mule collider. What are some of the implications for the detector design and for neutrino physics?
+So to tell you a little bit more about that, if we calculated this using the full lattice of the five collider version,
+it's a little bit outdated, but it turns out it's not too bad.
+It gives you a picture, uh, in the bending magnets section where the muons are being geared towards the main attraction point.
+The muons are pointing essentially at the edge of the detector, and they're scanning outward,
+inwards, uh, through this neutrino slice there you're going to get lots of interactions.
+And we're basically dubbing that slice the original slice. And then those that come from the straight section here.
+Our interaction interacting mainly in the nozzles and in the beam pipe, you can call it the neutrino halo.
+There are very different types of components. The energy range is basically the same,
+but the kinds of interaction rates that we're talking about are astronomical given current neutrino, uh, experiments statistics.
+And here you can see Luke the undergraduate.
+That really, uh, was amazing in this project, presenting this very idea in the very first US SMC, uh, collaboration meeting last year.
+Uh, he's clearly very happy about those rates. It took me a while to believe him, uh, for those numbers, but he definitely proved me wrong.
+So, uh, we calculated this. So just to get an idea, this is basically half an event per bunch crossing for a tentative email collider.
+That's a lot. So we had a little bit of discussion yesterday.
+I think there's a lot of work that needs to go into this, especially dedicated simulations with a proper detector design.
+Uh, and I'm looking forward to discussions in the future instead of the the sort of neutrino slicer can go in the forward direction.
+I think Zada will tell us a little bit more about it, but there are ideas of what to do there, including new physics that is coupled to neutrinos,
+and I can only sort of show up in neutrino scattering, it turns out, gives you the leading sensitivity.
+Uh, these types of constraints. That's what you could get with a new collider compared with doing here, for instance.
+That's where statistics and the system can really help you.
+And there are other ideas to, for example, constrain the left with the for detector.
+I think we'll hear more about that from Asada. I'll also just flash.
+What is the shape of this flux 50km away from the interaction point?
+That's what it looks like. So most of the neutrinos are basically ten meters in radius.
+Once you're 50km away, that's a very collimated beam.
+So you don't need very large detectors. We also heard a little bit about ideas for tangential facilities.
+So Adrian and Andrea had this idea of like a hockey puck style detector.
+You put anywhere around the ring that can collect huge statistics of neutrinos
+and can basically give you a very clean probe of neutrino electron scattering,
+which is a very good probe of electroweak interactions.
+So one of the conclusions was that you could even establish the running of theta week with a single channel using this type of detector.
+So I think we'll also hear more about that in the summary session.
+We also heard about that this morning. So I'm again just going to flash that.
+That's not the idea of if maybe you don't go tangentially or forward. You go down, you point your beam somewhere else.
+And there are these huge detectors like IceCube and P1 that will have, uh, and maybe those are designed for TV physics.
+So maybe that's where we should be looking.
+And there are very interesting things that you can do when they train those as they transverse the entire Earth.
+So that's what the world could look like if you had a percent level measurement of neutrino nucleus cross-sections in, uh, a muon collider era.
+You have lots of measurements down here. You have the muon collider projection there with a 1.5% measurement.
+That's relatively conservative, if you ask me. And that looks way better than anything we have ever done.
+But it's even better than that because all of those data points do not trust their normalization.
+Now, these experiments were adjusting their measurements to each other.
+So it's not really a fair comparison. That's more of a shape type of measurement.
+The same thing with phaser. We talked about those large uncertainties coming from the hadronic type of beam.
+So the comparison is perhaps a little unfair 1.5%.
+Maybe we can do even better by measuring the currents. You can do dis precision physics, so try to for example, currently strange to see,
+uh, quark production is something useful for current PDFs coming from neutrino data.
+You could imagine this becomes a lot more exciting if you have the type of statistics that you would NMU and Collider.
+I'm not going to talk too much about that, but there's a great talk by one here.
+You can you can see the slides and there are other rare processes you can go through, for example, charm production in turn electron scattering,
+resonant measurement, production, Triton scattering, all of these things that would be extremely hard to access a conventional accelerator facilities.
+But just because of the large rate you can get access to here.
+So now let me just finish off with two examples of energy from tier, uh, synergies.
+So neutrino mass models, perhaps the most popular is a seesaw model.
+And then there you get heavy neutral leptons. A couple of people have looked at the sensitivity of new colliders to those.
+And if you ask questions about heavy neutral leptons above the TV scale, it is very hard to set limits if you're not in a meal collider.
+So we have very good sensitivity at the lower masses with LHC, with other beam bump experiments.
+But out here and, you know, Collider really is king. And if you look even into the properties of these channels, they violate lepton number.
+And it turns out having a muon collider with mu plus, mu plus, and therefore a net lepton number in the beginning of the collision,
+and would be a good thing to type of to constrain this type of of model.
+Just because if you look at this diagram, it looks very similar to what a neutrino lesson will be.
+The decay diagram would look like except with muons. So finally and then no PDFs.
+Uh, there's not much work being done here.
+I would point you to these two works, uh, of what you can do as far as neutrino physics goes with these, uh,
+but I posed that as a question to the room neutrino, the left on neutrino vector boson scattering and the channel neutrino collisions.
+So with that, I will leave it with my summary of the synergies and take any questions.
+All right. Thank you. We have time for questions. Um, yeah. Matthew has a fantastic summary.
+Uh. Very exciting. Yeah. Um, my question is, will there be sort of physics study book type of things that you plan to produce?
+Not that I'm aware of. Why not? That's that's if I ask you to do it.
+Really isn't. That something?
+I was hoping to answer in half an hour. So we are hoping to do that by the end of the year.
+I will talk more about it. I don't want to be great.
+Also, if whether you have enough people working on it, that's another thing I want to know.
+If not, we should figure out how to, uh. Excited?
+Okay, great. Yeah.
+Uh, so I could. I'm taking that by your tangential, uh,
+neutrino production that you're conceiving that the the accelerator ring is that that the actual orbits are fairly flat because I knew that there was,
+like, 15 or so years ago or so.
+There was a lot of work going into lattices that would undulate, you know, the, the, the beams and kind of spread them out,
+particularly in the lower Minton's Collider workshops, where, you know, the neutrino radiation was a concern.
+Yeah, that is a great point. So for things that you're putting far away forward facilities, tangential facilities, uh,
+that could be an issue because you're doing isn't essentially that I don't know what happened yet.
+Oh did I. Oh, but I can just answer for things are pretty far away.
+Yes, you have to take that into account. Uh, for things like, for example, the neutrino slice that I discussed.
+This is so close to the beam that the undulation of the beam will make this bigger, but it wouldn't necessarily miss the detector altogether.
+But that's a great point. I think essentially, my personal view from working on this, there was not enough consensus,
+consensus on what that undulation looks like such that we could put it in our simulations, but we should definitely look into it.
+Quick comment. I think you mischaracterized the intent of the International Neutrino Factory study.
+It was optimized to study CP violation under the assumption that data one three might be very small, right?
+Yes, I, I agree with that. Sorry if I said otherwise, but the context, uh, with theta one three was very different.
+Yeah. Any more questions or comments?
+And one more here. So, um, discussing the forward facility, um, neutrino oscillation frequencies strongly depend on the energy of the neutrino.
+And so does that give constraints that we can state already as to what kind of energy stability we're looking for in terms of,
+um, collisions at the muon collider that we can state already.
+Uh, you mean using muon collider neutrinos to do oscillation?
+Yeah. So the energies that you would constrain to would be few GeV to maybe tens of GeV.
+If you have anything above that, the oscillation frequency such that the oscillation would happen outside of the Earth essentially.
+Yeah. So that's the constraint. If you go much beyond GeV scale, you just don't have any hope of seeing that within the Earth basically.
+Okay. So that's the range that you're looking for right? Yeah. Thanks. Uh, we should thank my tables again.
+Thank you. Okay.
+So now we're going to hear three talks, uh, summarizing the different parallel sessions that we had.
+The first speakers have Ben Rosser from Chicago telling us about the experimental parallel sessions.
+Okay. Thanks. Um, yeah. So I will try and give a quick summary of the experimental parallels.
+Um, so, you know, we had 13 talks and kind of two scheduled discussions.
+Um, over the last two days. Uh, you can see here all of the talks.
+Um, I obviously can't summarize all of them in ten minutes, and I'm not really going to try.
+Um, so I will just kind of give you a few highlights of things from each of the sessions that I thought were particularly interesting.
+Talk about the discussions. Um, you can find all of the recordings on Indico.
+Uh, for all the talks. So if you want to see something that I didn't cover, I'm sorry, but, you know, please go look at the recording.
+Um, you also note that I had a talk in the last session, so this is a bit, uh, hastily prepared.
+I'm sorry for that. Um, I think one thing I want to emphasize, though, about everything is that, you know,
+we're really starting to do new studies and kind of put together new results.
+Um, over the past year, uh, things, you know, updated simulation studies,
+updated performance studies, looking at kind of new technologies of detectors.
+So it was really great to see this progress. Um, so from the first parallel session.
+Yeah, I mean, I think on exactly that theme, you know,
+there were several talks kind of really focusing on moving to more realistic modeling of our detector, um, in places where it was really necessary.
+Um, so here, you know, I have, you know, from JP talks about, uh,
+the importance of kind of modeling the low energy neutrino neutrons in the bib, their nuclear interactions with the detector design.
+Um, we're kind of doing a less precise version of that before.
+And if you switch to just kind of more precise, uh, physics list in John for this,
+it makes a huge difference in what you see in terms of how the beam induced background unfolds in the detector.
+Uh, so really important. Um, and yeah, I also talked about, you know, we kind of have a very simplest,
+simple digitizer, um, as part of the reconstruction chain for the tracker.
+And when you try and assess, you know, how much beam induced background are you going to see in the tracker?
+If you use a realistic digitizer, it makes a big difference.
+Um, you end up with, you know, quite a bit lower levels of bib, um, compared to what you would otherwise see.
+So these are the types of studies that I think we're now increasingly doing now that we have like a baseline detector design in place.
+Um, kind of trying to, to make things better. And there were also nice talks, which I didn't put here.
+I'm sorry. Um, from Greg, uh, and Rose and kind of other reconstruction improvements looking at calorimeter clustering,
+doing more with our particle flow algorithms and things like that.
+Um, so you this actually just kind of mention this, but I want to mention it again.
+Um, which is this, uh, you know, these beam induced neutrinos, um, which he called bins yesterday.
+Um, uh, where, you know, you have an appreciable rate of neutrino showers, um, coming off the decaying muons in the detector itself.
+Um, and I think this is something, at least from the detector side, we really haven't thought much about.
+And, you know, the rates are very high. And you can kind of to get a sense for the scale of that.
+Um, Larry and Tova made this plot of looking at, you know,
+what are the rates of all of the processes we might care about at a muon collider being produced, kind of at the hard process.
+Um, you know, compared to the overall decay rate.
+You can see that in many cases, the processes we're interested in are, you know, several orders of magnitude lower than the overall collision rate.
+And if you have, you know, one of these beam induced neutrinos in your detector every two bunches,
+most of the events we see are actually going to be neutrinos, potentially electromagnetically showering as they pass through the detector.
+So that's, I think, something we haven't thought much about up until now.
+We just started discussing it yesterday, like to continue discussing it as we go forward.
+Um, I think it's both a challenge for us, but also an opportunity to to really detect these things.
+Okay. Um, turning to the instrumentation. There's lots of really nice stuff presented here.
+Um, going to talk from grace on calorimetry. Uh, several talks on timing detectors.
+I think the message of all of the timing talks, you know, these timing detectors is,
+is the timing detectors, um, are really something critical for the muon collider.
+But, you know, if you look at what is already kind of being achieved with L guides for the LHC, we get a nice preview of this.
+Um, as well as many other detectors being built. Um, we're kind of not that far away from what is already possible.
+Um, so we need these detectors, but it's not crazy to think that we will have them.
+Um, there are also issues, you know, involved in keeping clocks synchronized across the front end of those detectors.
+Very precisely. And there are some really nice studies presented and kind of recent work, uh, in that direction.
+Um, so I encourage people to go look at these instrumentation talks. I'm definitely not.
+Doing them justice right now.
+Um, but one thing I want to point out was this performance study of look, beginning to look at a design of a far forward muon detector.
+Um, I think we know that being able to somehow tag the forward muons, uh, that get produced,
+especially when you have vector boson fusion or vector boson scattering is very important.
+Um, you might want them for precise luminosity measurements, but you definitely want to be able to distinguish,
+you know, when you have a forward muon, um, you know, from w fusion versus z fusion.
+And there are different things people are thinking about for ways to do this.
+This was a nice study of, you know,
+can you put some instrument down the beam line and actually reconstruct them and starting to look at what is possible.
+So it's also good progress on this. Um, and then finally, you know, we just had the computing session.
+Um, and I think the theme of the computing session is really when you start looking
+at running full reconstruction and full simulation and full reconstruction,
+even just today, you know, to do studies with beam induced background,
+it's really very expensive because a single bunch crossing has ten to the eight particles.
+Um, and so kind of at every stage of the reconstruction step, there's significant bottlenecks.
+You have to first produce those events.
+And Flicka, um, which even just as we heard the other day, you know, producing a 10th of a bunch crossing takes a month.
+Um, then you have to simulate them, which is very expensive if you do it full simulation and then,
+you know, even running reconstruction can be very expensive, especially because many of our algorithms,
+uh, as Gregory talked about the other day, you know, we're sort of came from a cleaner E plus C minus environment,
+and they make sort of simple assumptions that, that require updating.
+So I think there were very nice talks on this.
+Um, something we were just talking about, you know, an hour ago was, you know, how and where can we use machine learning to optimize things?
+Um, we should really should start exploring kind of generative ML approaches to Bib simulation.
+And in fact, in many cases, you know, if we can produce, you know,
+good fast simulation infrastructure that will be kind of good enough for studies, but we still want to be able to run full simulation.
+Um, you know, for really, you know, optimizing the detector design, ideally, you know,
+without something like this happening because of how intense all of this computing is.
+Um, yeah. So I think that's it for me. Happy to take questions, though I may refer them to.
+So we can take one burning question. All right.
+We can move on to the next presentation. Thank you. I'll just.
+All right. So the next speaker will be Steve from Fermilab telling us about the accelerator side of things.
+So really, I'm supposed to be dickish. But he had he had to leave.
+So he's he said, hey, we do this for me. So it's going to if I pause for a while, it's just kind of I'm trying to figure out what the slide is.
+Uh, now let me just start up. Pardon.
+Do I? Yeah. Well, you saw the picture with me and the students. Yeah.
+He fit in much better than I did. Um, so let me just say one thing I've learned from this meeting is that, um,
+we should not underestimate the capabilities and the potential of the universities to contribute to this endeavor,
+because right now, they're doing a heck of a lot of work, and that's going to carry us through until,
+you know, we can the labs can join in some, uh, meaningful fashion, which we're trying to do.
+And I'll, you know, you'll see some of that in these slides, I think. Okay.
+So these are the sessions.
+Um, we didn't have a lot of sessions, but, um, we did cover just about every important aspect of the muon collider at some level.
+And, uh, that was it was very I think it was just at the right level for people to get for those that needed an introduction, to have an introduction.
+And. Okay, so, um, uh, Oak Ridge presentation showed how they could contribute to, um, short pulse,
+uh, beams, uh, using, uh, phase space rotation and with the SNS, which is great.
+Um, I think that's, that's a good thing to do. It's a very important aspect of, of the muon collider.
+So they've looked at, uh, they can do hardware, look at hardware limits, uh, explore modifications for bench compression.
+And they proposed some experiments. And I look forward to results from that.
+And then, um, Kyle talked about, um, the RCS options.
+Uh, this this is looking more and more like a pretty challenging thing to do.
+Um, he did sort of, uh, you know, proposed to exceed the site boundaries of Fermilab, and we don't have to tell anybody,
+but, you know, uh, maybe, but, you know, it's a great way, you know, look at what we can do.
+And then if we want to get inside that, what do we have to do in terms of the of the magnets for the ring?
+And you know, that that brings up a lot of challenges, things to work on.
+But I think that that was very enlightening. Um.
+Okay. And then, um. This was a nice talk here.
+Uh, this is the, uh, charge agnostic, uh, cooling channel.
+Now, this is not a this is, uh, a map idea.
+And somebody asked me Sunday night. So how do you guys decide what technology to pick?
+And I waffled. Totally waffled that question. I don't know the answer right now.
+Think it's like how much work this group puts on in that group.
+And, you know, somehow things rise to the top.
+But I think this warrants, uh, another strong look.
+You know, let's look at the trade offs in terms of of the required technology, like for the magnets.
+Uh, we heard a lot about, uh, what magnet?
+Uh, actual fields are required for the cooling channel, but I'm telling you, the, uh, peak field on the coil is what counts.
+And that could be much, much more than the actual field.
+So we have to be really careful about what we're talking about, because these magnets are very close together and have opposite polarities,
+and there's huge forces and high fields and so on that we have to worry about.
+So that's something that we need to keep in mind. But I think this, this deserves, uh, a very careful and, uh, strong look.
+And then, um, this is from, um, Imke Luke Batra, uh,
+has done these guys have done a lot of work on the magnets and looking at the, uh, limits on the technology.
+So both now we have 310 and Remco, that's our strain.
+Sensitive. So you have to be careful about that.
+So the bigger the magnets get, the higher the strain our is and the higher the fields, and so on, so forth.
+So he's to see this this thing. Uh.
+Anyway. Okay. You can see the line there. So this, uh, yellow dotted line on the far right there, that's the limit on protection for another three,
+ten magnets, you know, can you protect them when they quench. And then the red line is the margin limit.
+So every magnet and accelerator has some operating margin.
+And right now, um, the quadruples we're making for the LHC upgrade operate at 75% of their short sample limit,
+the conductor limit, which is not that great. So the CERN magnets were intended to be 8.33 Tesla, their eight Tesla, because if they need margin,
+the Tevatron was not the Tevatron because they never quite reached the design field.
+So you give up a lot of field that way. You give up a lot of money with this margin.
+And that's something that, uh, the US magnet program is working on and has made some progress on.
+And then so that that'll help. Um, so, Remco, you look at this yellow line is left, it's out in the low field region.
+And this is uh for what they call non insulation windings.
+So these these are much easier to protect because when there's a quench current
+can go all over the place and warm the magnet up and protect the magnet.
+So if you want to move to the right and use a potential that's only limited by margin and stress,
+you need to figure out new ways to protect the magnets. And then, uh, again, uh, back to cavities.
+Um, that was there was a lot done in mapping a musical experiment.
+Uh, looking at breakdown in, uh, magnetic fields, which is super important for the cooling channel.
+And, you know, cold copper is, uh, slack has shown more recently.
+Um, helps a lot, right, with reducing breakdown.
+And also, uh, studies on the post length reduction can improve the breakdown resilience, um, of these cavities.
+There's a lot of work going on there. And then, uh, so you recognize that, you know, we need a lot of muons.
+So he said, where do muons come from? Pions. All right.
+So let's start with getting as many pions as we can. And, uh, you know, we'll lose them later down the line.
+But, uh, so he's looking at different design concepts for pion collection and, um, generating the muon beams.
+And of course, targets figure into that, uh, quite a bit. And then, um, slack is working on, uh, RF testing and magnetic fields.
+These guys have some, uh, LDA money they're using for this, and they have, uh, I have a magnet, too.
+They have, uh, they purchased, uh, five Tesla, and they're putting, uh, cavities inside the magnet to test that at the nail CTA.
+And I think that's that's a really nice thing to be doing. And that may be, you know, not quite.
+Last but not least, uh, Ditka's talked about, uh, citing the muon Collider or the demonstrator, at least at Fermilab.
+And there's various different possibilities there that we have to look at,
+which has to be integrated into, you know, whatever happens in the future at Fermilab.
+So we don't have to redo anything.
+And then there was a at the mention, there was a great discussion at the end of this whole thing about, uh, you know, what to do in the meantime,
+how not to spend all your time building a demonstrator and lose momentum and spend a lot of money and not get the muon collider.
+So what can you do in the meantime?
+So, you know, the neutrino people are talking about neutrino experiments and so on using maybe the demonstrator or beam lines there.
+And I think that's that's something that warrants a lot of, uh, a lot of discussion, uh, in the future.
+And that's it. Again, we can take one burning question or comment.
+Okay. So we thank Steve again. Thank you. All right.
+And I think our last summaries from Azaria Tabrizi from Pittsburgh on, uh, theory and neutrinos.
+Uh, you separated neutrinos from theory.
+Does it mean you don't know? Tuners are theory and neutrinos.
+Okay. Thank you. So, uh, I'm sorry that I'm in between you and the end of the conference, so I will try to be as quick as possible.
+Uh, we had three plenary talks on theory and of the order of 13, uh, parallel talks, plus a couple of posters.
+So instead of just flashing, uh, a screenshots of, uh, indico,
+I decided to make a road map to see, especially for parallel talks, uh, using just the titles.
+What are we in the theory community thinking mostly about?
+And I am not really biased to think that what we are thinking about is, um, one collider, not, you know, physics program.
+Not biased at all. So this is exactly the message that I think we can see from at least the two three talks here.
+We heard from Yan told that we need, uh, one collider in order to answer a lot of questions on Beyond the Standard Model.
+And in order to do that, we either look for physics through direct searches or by doing precision measurements.
+And if I want to say in one sense, one sentence, what is the take home message of all the theory talks that I stop laws.
+We can do this either using effective filtering or direct searchers.
+We can see that more collider come from many different physics proposals by at least two orders of magnitude.
+Uh, we saw that, for example, Corey mentioned this morning that by using a moon beam, depending on,
+uh, high energy momentum or low energy moonbeam, and depending on what type of physics uh,
+we look at, uh, we can improve, uh,
+something of the order of two orders of magnitude in the coupling versus the mass of different new physics searches.
+We also heard, uh, from, uh, Rodolfo that, uh,
+one of the things that is important to consider Atom Collider is the pdf of leptons, especially ones, uh, among neutrinos.
+Um, one of the capabilities of uh, one collider is, uh, measuring these PDFs.
+And this beliefs are important to do other beyond the Standard Model searches.
+So we heard from, uh, Puyat that sorry, taking the PDFs into account or not,
+in order to do, for example, uh, dark matter for, for searches, uh, diminishes,
+uh, the sensitivity completely, which again indicates that how important it is that on the Turi side,
+we understand how to do these as carefully as possible.
+Uh, we also heard from some that, again, if we do a lot of BSM searches, uh, indirectly using effective filter already,
+depending on what type of operators we look at, uh, what one collider can give us.
+Which is dotted lines on what, uh, existing law energy constraints give us, which are, uh, the dark green or blue regions.
+We see that especially for, for lepton operators. Uh, the root of collider is from tens of TV to hundreds of TV.
+So again, uh, that will be, with no doubt, a lot of improvement.
+Also, uh, Kevin showed us that we can also search for light, accidental light particles at a long collider.
+And again, the same message, depending on what channel we look at. Uh, what we see is for the mass or, uh, coupling versus the mass of, uh, light.
+Actually, unlike particles, we have a sensitivity, an improvement of almost two orders of magnitude.
+How about neutrino physics? I'm not biased at all.
+And, uh, there is a reason that a lot of the things I'm going to show you have been repeating throughout the conference,
+because these are, I believe, some of the most interesting questions that we can answer.
+I that one Collider, uh, we are producing a lot of neutrinos.
+So we are thinking about many possible ways to detect is not doing us.
+And as my toes explained, one of those ways are using the not in my slides or not in a halo, using a part of the main detector to detect the for you.
+So to know and you see the unprecedented number of nothing else that is expected to be observed.
+We also heard about the cool idea of kaleidoscopes that instead of putting using the main detector or putting at the door,
+we can redirect the the, the beam towards, uh, one of the existing experiments.
+And in this way, again we can use, uh, for example, IceCube to look for materials coming from in one collider.
+Uh, if uh, assuming one collider is at Fermilab, uh, then doing beyond the Standard Model search is likely looking for a signal to noise.
+That message is, again, the same. Uh, there would be an improvement of a few orders of magnitude for the, um,
+massive square difference versus the, uh, the mixing angle parameter space.
+Uh, we also heard of Neutrino Factory from, uh, might also start as well as, uh, from Yulia.
+One of the things that on the tourist site we are still thinking about, and we hope that that conversation, um,
+becomes a bit at some point we converge and we decide what we want to do is if we can
+have a notion of factory as one of the staging parts of a high energy one colliders,
+because in order to do the kind of, uh, physics that we want to do here,
+we need GV or at most tens of DV of not enough rooms in order to be able to see oscillation.
+Um, we want to do this.
+We need to do this because at best, what hypercar, um, can do is, uh, probing some of the oscillation parameters that have not been measured before.
+They cannot do precision measurement in alternate physics.
+Uh, that is what a nominal factory can. So between not three, not people.
+Um, Collider people, this is something that we should discuss.
+Uh, more seriously, um, more carefully that if we can have an original factory, uh, in our way,
+to get to a high energy manipulator, there are other ways of, uh, detecting not only at a high energy collider.
+One of them is using the, uh, going, as my toes put it tangentially, Adrian talked about this.
+It's the work that they do on on on the have done, uh, what they have done is using electron scattering to measure the mixing angle.
+Especially they saw that, uh, they can even probe the running of the mixing angles here.
+We can also put a forward detector here. Uh, this is with the assumption that it is of the order of 500m, uh, from the interaction point.
+We can make different assumptions of a small ten kilogram detector or a larger quantum detector.
+Uh, the bottom line is we can put either detector in a forward position, or we can use the tangential option.
+There are many important questions that we can answer.
+And we know what many of these questions are. We just haven't had time to try to identify what are the most interesting ones.
+So I hope is just repeating, uh, a slide here that before we die,
+because I will also probably be that by this time we can identify the important, uh, questions that we can answer.
+And it's probably on us that you are. To identify a lot of these questions.
+So under no time on site. We haven't gathered the information yet.
+So to take care of that. The plan is, uh, to have a workshop in two and a half months from now.
+Uh, we are organizing this in workshop, uh, with some of the people here, um, uh, together with Virginia Tech and Pittsburgh.
+And the goal here is we identify the important not, you know, questions that we can answer at a collider.
+We gather, uh, the efforts that different groups have made, um, designed, you know, you know, detectors.
+And one of the outputs is supposed to be the booklet that you are asking about.
+We are hoping to have a white paper out of this,
+so that the things that different groups have thought about or are thinking about would be in, in one place.
+Before we can decide what are the real interesting things that, uh, one Collider can do for us.
+So that's all from. Again, we have time for one burning question or comment.
+Thank you very much. The, uh. Didn't, you know the other side of Earth?
+Is Ice Cube. Does that mean you have to build a new.
+I want any extra hearing downwards. Yes.
+That's. So. I forgot to say, when you see someone else's torch repeats at least three times in other people's parks in a day.
+It means it's a very cool idea. So, uh, where are the speakers?
+Uh, yeah. So for Ice Cube, it's.
+You mean you can't orient the accelerator to make that happen?
+But you could think about, like, a beam dump scenario where you point the muon beam through the Earth for P1, you could maybe orient the accelerator.
+I mean, how do you think it's like it's already part, so maybe.
+It would be hard, right? It's hard to build a muon collider. So if if it's worth it, if it's interesting.
+Also it's a pun like collide a scope kaleidoscope.
+It wasn't. Okay. Okay.
+We should think so. I and all the other summary speakers again. So I am told that because Yankee asked the last question, she gets to speak now.
+What am I saying? I don't know who you are.
+What do you want? You can use that microphone. What do you want me to say?
+You can say whatever I have to say. Go to France.
+Oh, my. I don't have any plan. I mean, I came here to learn.
+First of all, thank you very much. Uh, I joined attended the Sunday evening, uh, Steve's talk.
+And so all the students are that I was, uh, just kind of kind of.
+They are the future, and they're just excite me so much.
+And I cannot thank you enough for all the organizers, uh, making this, uh, for school for me on Collider Accelerator.
+And so second year, uh, the muon collider community, this is fantastic to see as many of you.
+Um, maybe I was just to say a few things that what I'm doing, in addition to what you are doing so that you see that,
+uh, you know, I, I'm thinking a lot about, uh, long term future.
+Uh, I found love in in us and for for the whole, uh, word of the particle physics community.
+Um, one thing I actually, I asked our accelerator team at Fermilab that I want to have, uh, neon collider designed by I.
+I'm serious. I it's not that they will trust everything, but, uh, what I is good at is going through all the documents and,
+and based on that, they can think about the end to end.
+Uh, the, uh, um, we are much better in terms of, you know, reading all the documents.
+So that will be our initial step to and then we can look at whether makes any sense.
+But I think there's a workshop we are planning sometime this fall.
+So, uh, would be good if you can join. I think it's a lot of fun to see what what I think.
+So we'll plan, uh, we'll have a workshop. Uh, and, uh, uh, I think that will be super exciting.
+It does. I like to see what it. I think we should build.
+Um. And then we can correct, uh, what is if there are anything, uh, not nonsense, etc.
+Another thing I'm doing is I have, uh, um, the visit of many national laboratories in U.S.
+So there are eight national laboratories who have so-called accelerator user facilities.
+So maybe some of you, especially if you have students you may not know.
+Uh, so maybe I'll give you some background that there are 17 national labs in US supported by Department of Energy.
+So there are ten so-called, uh, labs are primarily focusing on basic science or science in general.
+So found there is one of that, uh, Argonne Berkeley like, uh, Brookhaven J lab, Oak Ridge Ames, uh, didn't miss anything.
+So ten and then there are the, uh, so-called national security, uh, sort of lab and NSA lab.
+There are three. So out of the there are the 17 science labs and, and national security lab, there are total 13.
+So, uh, from ten nation, the science labs, there are seven of them have a users facilities, X-ray user facility.
+And net the, uh, at this, uh, weapons level national security lab, there's one has the, uh, accelerator, uh, users of facility.
+So there are also the eight including film live.
+So I used all seven of them. The reason is that, of course, I want to, uh,
+have a more dialogs and collaborations because we are all sharing a lot of accelerator knowledge and current and future collaborations.
+I want to strengthen, uh, our collaborations and and connections, but also, uh, each, uh, the lab.
+I asked so whether they will join um, accelerator R&D because you saw that Ray or Chris is not, uh, this in terms of, uh, they do a particle physics,
+uh, the, uh, research about it not known as a really particle physics lab yet they are their SNS, uh, has been really, uh, important.
+Can be very critical. Uh, the the, um, the part of, uh, neon collider challenges.
+So, uh, and, uh, so the bottom line, all seven of them are interested in, um, and of course,
+and so I'm forming a, uh, so-called, uh, National Lab accelerator, uh, the study group for Muon Collider.
+So I have spoken to, uh, on Sunday, your leadership here and just, uh, because I have to write charge to this study group.
+Uh, and I think we made it, uh, the charge.
+So, um, all eight national labs will, uh, you know, they are sensitive, one national lab per person, etc.
+So 80 QA people, um, the charge is, uh, going through, of course, of the all the current studies, international community has done a lot of study.
+So you have to use that based on that. And, and uh, they, they are going to look at a very, um, diff with the fresh.
+Tickle eyes. What the. What are the major accelerator challenges for muon collider?
+So that's a step one. And then also, uh, the another charge there is um,
+what kind of capabilities all these eight national labs have for concerning accelerator exposure challenges.
+So identify, uh, the capabilities of a national labs.
+Um, so when we figure out what they are, as I'm sure that will, will bring, uh, university,
+especially as students and early careers are joining in into the, um, study together.
+National labs have so called Eldred. So let the lab director directional directed R&D.
+Uh, so that is a we pick all the texts when when federal government gives you program budget and we tax some percent,
+and then we use, uh, based on something that we really care for.
+It's more like a blue sky and something, uh, not yet, uh, program or project, but something that we can do.
+So we have a, some of that, uh, the flexibility and I my goal is getting all the eight national labs have a little bit of that.
+Uh, uh, the research money, uh, that helping the, uh, the muon collider, of course, they have to gain.
+They have to gain, too. So there's something that's synergistic to muon collider and their knees.
+So we'll have to find that sort of common areas.
+So that's, um, the, uh, going on and I'm hoping to, uh, finalize the membership of this study group by the end of August.
+Uh, and, uh. Keep you informed.
+Then probably study can be about a year or so.
+A late spring or early summer next year.
+So we'll get to that report. I think it's very important to have all the national labs are participating, to my mind,
+because Collider is challenging and having, uh, the national labs to pick some of,
+uh, the key challenges and do it and of course, together, that doesn't mean on us will do, but of course, collaborating with all of the international.
+But I think keeping or picking this eight national labs because we are all in the D.o.e. system.
+So there are some, uh, the benefit of the national lab D.o.e. national labs can to get together and, uh, work on.
+So I thought it was a good to tell you. That's what's going on.
+Again, this is not separate from your work. I've been, uh, closely discussing, uh, this idea with the leadership of, uh, the immune collider.
+So, uh, um, so I think together we can make a really good progress.
+Um, that. I, I think it looks it looks actually the, um, our colleague from Ohio Office of High Energy Physics.
+They understand what we are doing. They understand what I'm doing, these other labs and forming the study group.
+So, um, I see that we are getting a lot of support from, um, you know, all around we may not have a lot of money yet from funding agency.
+That's why I think we can. Your work is a very key.
+And the national labs. Eldred. Sum of support is is a really important step so that we can make a huge progress.
+So with that, I just want to thank you and, uh, look forward to seeing more progress in the future.
+You don't that. Uh. Probably not. And it's getting late, so we'll try not to keep you for too long.
+Just want to say a few words. Uh, about the collaboration, membership and a few other news.
+Very quickly. Maybe you kick it off. Um, thank you so much for those words, Yankee.
+Um, so, yes, I really want to encourage everybody in this room.
+If you're interested in me on Collider, you absolutely should join the USBc.
+Uh, officially. Um, and to do that, all you have to do is just email me and Sara, and we'll point you, uh, to how to do that.
+There's not really a downside. There's not a lot of cost.
+And, uh, we promise not to charge register, uh, participation fee, at least for the next two years.
+And basically, the the way that joining looks is if you're really actively contributing, you join, you become a voting member.
+If you're a supporter, you can join and become a non-voting member. Um, so we'd love to have you guys all in that collaboration.
+It basically means that you're one of the people that we are going to be trying to shape this, uh, this collaboration for.
+So that's what you get out of it. Maybe just do a few words about this.
+Uh, I think you guys have seen the charts we I showed on the first day of the meeting.
+Um, I think we have a lot of young faces in this room, early career participants.
+And I think that's not reflected than in the charts. So you clearly are contributing to the effort.
+You're, uh, working on this? Interested in this?
+Um, you are supporting the effort, but you're not officially members, and we don't intend to take 100% of your time, right?
+I mean, we understand that your you devote your time to your you have your day job that you need to continue working.
+But if you even allocate a small fraction of your time to this effort, that would be extremely helpful.
+And the same is true of, um, other frontiers.
+We are dominated right now by the experimental frontier. I think we would like to get more engagement from the accelerator frontier.
+That's absolutely crucial. Again, any fraction of the time you can devote to this would be extremely helpful.
+Uh, we showed you that the combination combination of, um, senior, experienced,
+skilled accelerator physicists and young students is very powerful, as you've seen through posters, presentations.
+Um, hopefully we can grow this effort if there is support for this at national labs, that does help.
+And I think we should we should continue doing this in there is right.
+We understand you guys are free agents and you should continue being so.
+We're not gonna we're not gonna tell you.
+But, you know, we were there during Snowmass where we had the Across Frontier Forum from Three Frontiers was extremely successful.
+People were on the same page exchanging ideas, kind of working towards a common goal.
+We would like to maintain that if possible. Um, and so, uh, we'll be sending around, um, uh,
+a doc that's basically inviting you guys to give us feedback on what this organization can do for you.
+And we especially want for the new people who are trying to get join, uh, join and get settled and find a project and contribute in a real way.
+Tell us about any stumbling blocks that you're finding. Tell us about what we could be creating and structures that could make things easier for you.
+Um, specifically. Also, I wanted to thank our international guests for this meeting.
+We have several guests from outside of the US. We're extremely grateful that you guys are here.
+We would like to continue the strong collaboration with Europe and Asia.
+Um, strengthen this collaboration. Reach out to other parts of the world.
+We did hear good news that the Office of General Counsel is making progress with certainty or collaborative agreement on muon collider.
+They're saying that they have a draft. They will, um, soon pass it to CERN.
+So hopefully we'll converge on this and we'll have, uh, official, uh, um, you know, official ways to collaborate together between the two regions.
+Well, uh, I guess then we wanted to thank Harry again for doing such a wonderful job organizing this meeting.
+And that's it all for the official closeout.
+Now thank you guys so much for your help in organizing this.
+Um, I wanted to just as I was closing out, put up photos so you guys could see all of the fun that you had this week.
+Um. Oh, this is the opposite way of my. Um, so that'll that'll just play in the background.
+Um, no, thank you very much, Sergio. And, um, and Toba, for all of your help in organizing this.
+Um, it definitely kind of come together without you guys.
+Um, same thing for all of the program organizers, um, for the meeting and the school.
+Uh, it was a fantastic week.
+Um, I couldn't pay attention to as many of the lectures or the talks as I wanted to, but everything I was able to follow was fantastic.
+Um, I was reflecting a bit on, um, how this meeting compared to last year's meeting at Fermilab and last year's meeting,
+I would characterize by just, you know, tons of enthusiasm.
+Um, but if I thought about sort of the talks that were given, it was a lot of, you know, plots from Snowmass, um, plots or mCMC.
+And if I think about what was shown at this meeting, it's a lot of new results with new faces, new names associated with those results.
+Um, it's a lot of progress from the US.
+And so I think that is really I think it's amazing that we were able to translate that enthusiasm to actual progress, to actual research.
+Um, and we were able to maintain the enthusiasm as we did, that I still felt that same enthusiasm,
+especially from all of the attendees at the school, who who made it through to the end of the week.
+Um, and yeah, I was just thinking on some of the great stuff that we've had happen this year between the Elder Desert National Labs,
+the Simons Foundation Award, um, some of the fancy fellowships and early career awards that younger faculty have gotten.
+Um, and putting this money to actually have young people be able to devote a significant amount of time and make progress.
+Um, so thinking about all of the accelerator students that were at Fermilab this summer,
+thinking about how the Maya detector design was put on the archive between last year and this year's meeting, how?
+Um, at jgi, a lot of simulation challenges were directly addressed.
+It's increasingly becoming more realistic. Um, all of the new neutrino ideas that have come out in the past year is also kind of crazy.
+So anyway, this was just to say it was it was wonderful to hear all of this science being done.
+Um, and I really enjoyed the the meeting.
+I enjoyed the enthusiasm as, um, and seeing the progress. And I and I hope we can continue to grow, um, and make more progress next year.
+Um, so thank you very much. And, uh, we'll see you guys in a year.
+If not before then.

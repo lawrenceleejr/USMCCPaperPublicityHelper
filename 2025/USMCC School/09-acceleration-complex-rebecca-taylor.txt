@@ -1,0 +1,583 @@
+# Acceleration Complex, Rebecca Taylor
+
+Um, so again people will be trickling back in, but we're going to go ahead and get started.
+Um, and now we have a blackboard lecture from Taylor.
+Uh huh. What a room of physicists.
+Uh, this is my first ever blackboard lecture. I'm. I'm really bad at maths, so I'm going to need to count on you guys.
+Uh, so this is the acceleration talk. I don't work on the acceleration.
+And so. And I thought instead of showing slides of other people's work because I'm for my MSC, I'd just be showing the IMC design.
+And we're here to think for ourselves and design new things. So I thought I'd just go through.
+We're gonna design and UX together. It's exactly the same.
+So my guest today, uh, but I think there's some of that.
+So that went through pretty quickly. So if we do that quickly, then will we get to the end?
+We can do the fun stuff that wasn't in the homework yesterday.
+Uh, so the accelerate is fun because it's the only one that the the hardware is just as hard as the rest of the facility,
+but the beam optics is more or less as difficult as a normal beam Arctic synchrotron,
+and that it's hard, but you can just derive a little from first principles,
+which you can't do with the cooling and the collider and, and the yada yada.
+Uh, so just to make sure everyone's on the same page,
+because I had some messages from like some people have an engineering background and some things are a bit too fast.
+So I'm going to explain some jargon. And then at the end of the jargon, I'll ask if there's any other jargon that hasn't been explained properly.
+But we're trying to do this, uh, try and start with the basics.
+So a synchrotron is a circular accelerator where the magnetic field of the magnets is proportional to the energy of your beam.
+And so they are synchronous. That is why it is a synchrotron.
+And this is really the heart of the uh accelerator section.
+A Linux stands for linear acceleration.
+And we will have both in our acceleration section. A radiofrequency cavity is a structure which kind of rings like a bell.
+And instead of being sound, it's electromagnets, uh, magnetic waves, which we inject into the RF cavity.
+It wouldn't go there. It would go, uh, somewhere else.
+And, and it has a mode that it oscillates at, and it has a gradient which is in mega volts per meter,
+and it has a frequency which I will only say in megahertz because we don't have gigahertz.
+And so the gradient is how much voltage across a meter of RF cavity,
+and the frequency is the frequency of the oscillation of the M wave that goes into the cavity.
+And so it depends on your beam sides. If you have a long beam size then you have need a low frequency.
+And if you have a short beam then you have a high frequency.
+Uh, just to say this will very explicitly. Then we have dipole magnets which focus north pole, South pole, quadrupole magnet.
+Sorry. Thank you. I can see the dipole magnets which bend.
+I'm bad at math and words. Uh quadrupole magnets which focus uh north south north south.
+And we have combined function magnets which I wrote here a CF which is a dipole magnet.
+And it also has some quadrupole focusing times inside A,
+and it might have some sex dipole or even multiple times inside, especially if you're the Proton Synchrotron.
+And now RLC is a time which is mentioned.
+But I'm not sure if we said it explicitly is a reason I don't want to write this recirculating linear accelerator.
+And then lastly I will write up. My circulating Linac and NHS.
+Is a rapid cycling synchrotron.
+Uh, and so we use oxides which are rapidly cycling and they go faster than a regular synchrotron.
+Is there any other jargon terms which you have heard and like today or this morning which are not?
+Yes. So we're in the always considered an RCA.
+Now the LHC is very slow.
+It takes hours to ramp up that B field.
+Uh, I was going to do this later, but I'm going to do it now because you asked.
+And we can do this in any order because it's a chalk lecture. Uh, we have multiple stages of our, uh, cycle on magnetic cycle.
+We have what's called the flat bottom. This is our injection energy and injection B fields.
+And then you ramp almost always linearly.
+And then that's the acceleration stage. And in the LHC this is what takes hours.
+And then we have what we call our flat top, which is our uh extraction energy and our extraction magnetic field, our highest magnetic field.
+And so if you were to also plot your energy, which it with the same units, it would be the same because it's a synchrotron.
+Uh, and so the sun, you can go up to like 24 hours with the, this thing, uh, and now we're talking about, uh, milliseconds, microseconds and even, uh.
+Great. Good. So then we have some equations which I'm going to assume, you know, and by assume, I mean not assume because I'm writing them right now.
+Uh, Lorentz force is, uh, the force is Q times the electric field.
+Uh, plus q velocity cross, cross-product, uh, magnetic field.
+And this is what we're saying about electric field being, uh, parallel and your magnetic field being perpendicular.
+We're going to use this nuclear decay guys and nuclear decay.
+If we have done over DT what does this equal?
+I had an M and we're gonna have a factor negative lambda, for example.
+And this is another equation we're going to use uh, relativistic gamma.
+Uh, for this I'm taking E equals gamma MC squared and gamma.
+If anyone hasn't done relativistic plus. B squared over c squared.
+And so in relativistic kinematics velocity doesn't make sense as a thing to work with because very often it goes immediately to the speed of light.
+Which is why we use this one. This is an equation I will use. And quick summary of units and electron volts I was electron volts ever introduced.
+So do we just start using it?
+Uh, for those who don't know, an electron volts is the amount of energy a single charge gets when it goes through one volts.
+And so if a single charge goes through a mega volt, it gains a mega electron volts.
+And generally we say electron, but actually it applies to all charged particles because it doesn't consider doing such a call.
+They should be muon volts. Genuinely.
+This caught me last week because I was trying to derive everything and I was like, a muon doesn't gain one MeV and omega volt it does.
+But it's not the total energy, it's the kinetic energy. So it's the kinetic energy a single charge gains.
+Um, uh, speed of light is of course equal to one.
+Uh, and uh, our single charge is also equal to one.
+And therefore if I'm talking about a mega volt per meter, um, I put, uh, Q in front of it.
+Uh, that's actually MeV per meter, because Q is one, uh, and uh,
+p z is magnetic field and Tesla, have there been any other units which have not been clarified?
+Good. Sorry. I hope you, um, you can't argue that because there are points.
+We reckon if you combine these two, like if you talk about the lack of Lorentz force, uh, then it's 0.3.
+Yeah. Yes, I made a star, but uh, yes.
+So equal sign right there. I know what you said, but.
+Right. So when you apply for the Lorentz, uh, force, like a, uh, like a, this is the of the field.
+You should be like. Yes, there is a point where you will be 0.3.
+In this, in this lecture. So thank you for, uh, clarifying.
+Good. Uh, and then also there's times where I do use speed of light in meters per second.
+Uh, so let us actually get on to, uh, our muon acceleration.
+So we have our usual diagram.
+I carry this with me everywhere. Um.
+Okay. So where are we today? We did on proton drive over Jeff.
+We did our target and our front end with David. Uh, we did our cooling with.
+Uh, and now our final cooling. It once really low energies.
+And it is so low that, uh, it doesn't get fully absorbed into the hydrogen.
+So the lowest energy which doesn't get absorbed into your hydrogen is a momentum of five MeV.
+Uh, and this is non-relativistic.
+This is pretty bad for our decay products, but we have to deal with it.
+And so there is no way we can give five MeV to a team of accelerator physicists and go ahead, accelerate it from five.
+Maybe because our final cooling introduces loads of weird correlations.
+I'll beam is banana shaped longitudinally, the tails are everywhere.
+And so we have this thing called the pre accelerator. The free accelerator has not been designed because it relies on the design for final cooling.
+And I haven't finished it yet.
+So uh downstairs I am this one that's most people work on the final cooling and then we'll have the pre accelerator designed.
+The pre accelerator is the inverse of whatever the the final cooling does.
+It has to undo all these correlations. And so the only thing we know about the pre accelerator is by the end we should have 250 MeV muons.
+Uh and this is our starting point. Now unfortunately Scott Berg is not here this week.
+If it was he would give a killer lecture on acceleration. And I would love to watch it.
+Now you have me. Uh, so we have our, uh, linac is the very first thing.
+So, um, it's I did all of that.
+I have some notes as a PDF. I'm gonna ask you some questions. The answers are in my notes, but don't look at them.
+Just. If you get lost. Uh, so, uh, we have our superconducting linac, and I told you that we start at 250, and we are going to end at 1.25 GeV.
+Uh, so can someone tell me if our superconducting linac had a acceleration gradient of 20 mega volts per meter and it's only RF, how long is it?
+This is an interactive lecture. You can also get your calculators out because I have more mom ask questions.
+I'm going to write this explicitly and then as I keep writing it, someone can shout out the answer.
+So we have 1250 movie and we're going to subtract 250 movie.
+And we divide by the acceleration and our length is 50.
+Thank you 50m for our superconducting linac LHC for conducting Linac has not been designed, but we suspect it will be made so not by Aamc.
+Maybe there was a map design. Uh, sorry for my ignorance on this.
+So if you're conducting Linac currently is made of two cryo modules.
+Uh, and has superconducting RF inside. Uh, maybe can someone can tell me more about the design if, you know.
+Uh, great. So now what we're going to do is our next point of energy is going to be 62.5 giga electron volts.
+Can someone like a particle physicist tell me why?
+226 2.5 GV it's a nice energy to accelerate to.
+You can just shout it out is the Higgs.
+If you collide two of these beams, we get a muon collider Higgs factory which can use the direct channel but has low luminosity.
+But if we're getting it for free, why the [INAUDIBLE] not?
+Uh, my PhD students recently returning to CERN is a fellow, and I asked him what he wants to do as a celebration for him returning.
+And he said, I want to do a brainstorming on designing the 125 GV, uh, muon Collider for the Higgs.
+So let's do that sometimes because it sounds fun. Uh, so next question.
+If we have only Linux and we go from 1 to 50 MeV to, uh, sorry, all the way round, 6 to 50, subtract 1 to 50.
+And again, we are only, uh, 20 mega volt for meter gradients.
+How long is this linac length? Yes thank you GV.
+I can get him to call me out on these numbers. Three kilometers.
+Thank you for doing the physics. Answer. Not all the decimal points. Uh, great.
+So do we want to design a three kilometer muon then?
+Given that people said RF is the most expensive part of an accelerator.
+Uh, no. So this is kind of the motivation for why we have all recirculating linear accelerators.
+Well, design currently has two recirculating linear accelerators, and there are two geometries that you could design them out.
+The first one we call the dog buns and the second one we call the racetrack.
+It is only recently that I put the racetrack in the IMC design.
+And between these two designs, the main problem is that as your beam goes through,
+it changes in energy, and as it changes in energy, the beam rigidity changes.
+And so you don't just have two arcs, but you go, you have multiple arcs.
+Uh, actually, how many arcs do we have if we go from R1, uh, 1250 MeV and we end at five GeV, and we have an energy gain of 850 MeV per pass.
+So we have multiple RF. How many passes do we have of our.
+Just five. It is almost five. It's not in an integer.
+4.44 full point. We can't do full because we'd have to get rid of it.
+Halfway through that you can do 4.5 and give it a half term.
+So for each of the elements one and two, we're going to have 4.5 passes of the Linux before it goes to the next one.
+And therefore you're going to need four different arcs, uh, for each of these energy levels.
+And the reason why we've transitioned okay, this one's cheaper because it's half the size.
+Uh, but it's very difficult for two reasons.
+The first reason is that you're going to end up with positive muons going this way and negative muons going this way.
+And so then you're going to have a two charge beam loading in the center of your RF cavity.
+Uh, and this is a different difficult collective effect measure. Yes.
+Why can't you change your. Field strength to make the curves all the same.
+I kind of want to calculate this now, but it will take more time for the lecture because then it's remarks is that you need rapidly ramping magnets.
+Uh, you can use fixed fields magnets, and I will get to that at the end if we have enough time.
+Uh, so then the beam loading is easier when you split the two.
+And also the optics of the ox. Easier.
+Your first 15 minutes. Thank you. The optics of the ox, uh, is a little bit.
+Turns out it's a bit easier. Uh, if anyone wants to design this, please do.
+Uh, you can work with Agni. We work with IMC.
+Um, we have a design and optics design for RLC too.
+We don't have an optics is on for everyone. Um, again, maybe there was something in math, but I don't know enough to to answer that.
+Um, this is pretty much the sum of all I can tell you that relates.
+Maybe Scott can tell you more. Yes. The calculation you're doing 1250 -5000 all the way around.
+I would like to take us over 850.
+No, the energy gain is 850 MeV per linac.
+Yeah, that's me just telling you because I could have said if it's 20 MeV per meter and I have x number of RF cavities,
+but yes, in the curvy section which is not accelerating.
+No. Just bent. Yeah. Yes. Uh, good.
+And then. Yes. Trying to get to 60.5 at the end of one step at the end of relay to.
+So this is relay one are really two.
+And this is 62.5 which is what we inject into our accelerator.
+Uh that would be a nice segue.
+But I also want to add, if you're injecting into an array, you need to really be considered about your timing in everything in the acceleration.
+Because when you get to your collider, they need to collide exactly on time.
+So any transfer line, any beam line has to be perfectly symmetrical.
+So your injection line would probably go through right in the center.
+And then you'd need some kind of charge splitter. And then the only reason you need that is because we have one superconducting line up.
+But if you had two superconducting Linux then you could injectable, you know.
+So these are the kinds of things about the design that haven't been solidified yet, uh, that we need to think about.
+Uh, nice. Just for the fun of it.
+Can you tell us about the scale of it? My understanding is this is a few hundred.
+Yeah. Uh, so early one hasn't been design or a late two.
+The total circumference is 900m.
+Uh, and so, uh, I think these, uh, 300, 304, like, that's a six.
+Yeah. And then at about like 150.
+Yeah. So I figured that for Collider meeting for geeks Factory math was about this.
+It was about 300ft or so. Yeah. Um, so just to give people a scale a little bit farther to build a new plus B minus eight that they asked us.
+To, um, click or ask your CC and um or what?
+But of course, this is low cost. Yes.
+Perfect. Uh oh. This one more. Hello. You have to set your colliders.
+I need not pretend about the money.
+Yeah, you can have two, and you oscillate the amount of phase, and then you'd have a really slight delay loop to then get them back in phase.
+I'm guessing, uh, is one way you could design it.
+So now it's not a showstopper. Have to have to. It's just expensive. And you don't you don't need to superconducting Linux.
+Uh, whereas I would say a three kilometer linac actually would be, uh, just not worth up.
+Um, fantastic. So now we have reached our 62.5 GeV, and we are now going to enter our, uh, synchrotron.
+And so what I'm going to do here is, um, I'm going to okay, first thing is why is a muon accelerates challenging decay.
+It decays. It's the answer to everything. Uh, so there is one parameter that really defines our asks ring.
+And that is what we call the energy swing. And the energy swing is very easy.
+It is the energy you get out as a ratio of the energy that you get in.
+And spoilers. A good energy swing for our asks is on order of magnitude 2 to 5, and I will explain why when we get to the conclusion of this section.
+So, uh, as I've quantified energy swing, the only other thing we need is the average acceleration gradient throughout one ring.
+And then from that we are going to derive the entire UX, including the magnetic magnetic ramp rate, the survival rates of the muons we get out.
+Uh, and then the even something about the photocell that you'll have inside of the synchrotron.
+So, uh, starting off, we are going to quantify our decays as a function of our energy swing.
+And so we're going to go back to our, uh. Uh, DNA of a d e as a function of negative lambda m.
+Uh, I got arrested for having a laser pointer. So now I have a point to point to, uh, that's not a trick.
+I'll tell you about it. Um. Uh, so, uh, what we're going to do is I want to know my, uh, delta n delta t is equal to.
+I'm just going to get this, um, delta n delta e delta e delta t.
+And so we. Know that our delta and delta T is negative.
+Okay. So I'm going to do one of a towel instead of lambda. We're in relativistic kinematics.
+So what is the half life of all particles.
+Two for two microseconds multiplied by gamma, gamma tao mu uh, and then number of particles.
+So is that what I wrote? That is what I wrote. Brilliant. Minus sign.
+Uh, and then we have, uh, delta e delta t, and I'm just going to tell you that it's your average gradient.
+And then you also have your charge to convert it from Mega Volts for me to inside of you for meter.
+And then you have your speed of light. And so that's your delta e delta t.
+And then what we want to find out is our delta in and delta e.
+So what we're going to do now is.
+Uh, where did I get my mask from?
+Oh, yeah. What's gamma? So gamma is.
+Oh, I got so many answers. Them. Uh, the one that I'm going to go for is short plus some problems.
+Gamma is e of, uh, MC squared.
+Great. And that's where our E comes from. Fantastic.
+It all it all works out. Um, so then we have a minus mass of our muon speed of light squared e tau mu.
+And. Fantastic. This should be correct.
+And then if we're going to, uh, multiply this, we know that our delta n delta e is equal to minus mass of the muon.
+Speed of light charge average gradient per ton of a synchrotron.
+The decay time of a muon. Our, uh, number of particles and our energy.
+Uh, and this is all you need to get your number, your survival rates in terms of your energy.
+We're going to integrate it. I actually hadn't integrated a I just know the answer.
+Uh, if you guys like integration, you can do the answer. Um, we get, uh.
+Just checking. I didn't do anything wrong. Yes. The number of muons we get out as a ratio of the number of muons we get, n is equal to the energy.
+Swing energy out energy in to the power of mass of the muon, the speed of light, uh, like charge average velocity.
+And then our tau a lifetime of our particle.
+And this equation should be everything you need to calculate the survival rates of your particles and your arcs.
+And so what you would do, for example,
+what we do and I ask is we say we know that we want a survival rate of 0.9 because if it was less than 0.9 and there's four of them,
+it adds up pretty quickly. Great. So now we want a survival rate of 0.9.
+And we know the average gradient that our technology can give us.
+What is the energy swing that we can get out of our asks?
+Uh, at this point, I wanted to get you guys to shout out some average gradients in extraction energy and we work out survival rate.
+But in the interest of time, and I think it's important to get a sense of the actual numbers.
+Uh, because then you get an intuition for what's too much.
+So if you have one tenth of a ring, considering that you have some RF, that you also have some dipoles in general,
+I think what would be sensible is a average acceleration gradient of about 2.4 as a point that mega volts per.
+Um, it's not mega volts per meter, it's just mega volts because it's throughout the entire ring.
+Uh, so then that's going to be our Veba. And then, uh, energy from our first asks as per the greenfield design is 314 GeV.
+Uh, it's in the parameter report. It's on archive. Um, and this is all energy one.
+And so if you want, you can follow this little through.
+Uh, but what you can kind of say is, uh, well, this is 100 MeV and this is two MeV.
+Uh, and then you what happens is because this is, um, if you have a C squared, you'll see actually ends up teleporting down here.
+And so then you multiply your 2.2 microseconds by three times ten to the eight.
+And what you basically end up with order of magnitude.
+You can trust me on this is that this is one of the, um, average gradient times six.
+Uh, and you can plug that into your calculators if you want. Uh, and if you should, hopefully you get 0.89, which is a nice survival rate.
+Yes. Just, uh, v bar is supposed to be the average gradient.
+Yes. So would that be megawatts per meter? It.
+Yes, but it's the yeah. It's mega volts per meter.
+And then you multiply. You're right. And then you multiply by the circumference of your machine.
+Uh and so it's the average gradient, including dead space like dipoles, uh, which took me a while to, to twig.
+But that's what it was because I thought it was my, my RF gradient. And I was like, that's very low for an RF gradient.
+Uh, so that is.
+Oh, I already did that one. Uh, so now that we have our, uh, survival rates, not average gradient,
+now we can work out a magnetic ramp rates, considering the, um, the circumference of our machine.
+And so, again, I was tempted to say, uh, shout out a circumference, but I'd rather just do this quickly because you did.
+This is homework.
+Um, so if we have our, uh, energy swing, which goes from 362.5 to 315 GV, what would be the length of the linac that would provide this?
+Uh, so this is 314. Subtract 62.5.
+And then I said that we had our average acceleration of 2.4.
+Okay. This is GPV.
+Oh, this is a movie. Yeah. So then this is 0.002123.
+Yeah. It's to me.
+Yeah. To me. And these are both in GV. 4001.
+Um. Four. Hundred and four kilometers?
+Yeah, probably. Yeah. I think that's right.
+Uh, I could have done something wrong. Yeah. Uh, so the total accelerating length with this gradient, uh, would be 104, uh, kilometers.
+And that is now, I think, 104,000km.
+Thank you. Yeah. That is what I wrote down.
+Um, 100, 4000km, uh, is the total amount of length that a particle is going through when it's going through the first arcs.
+And so if we design, okay, at this point, now it's geometry.
+Oh I look at my facility. What can I fit. Well I can fit the circumference of six kilometers.
+Great. So if I divide, sorry, 6000km and I get know this is 6000m and this is in meters.
+Thank you. I'm bad at math. I said this at the start, and then.
+I don't know if you believe me. Um, okay. So now.
+Sorry. Yeah. So what is the. What is right there? Uh, so now you know the number of tons that your particle is going through and your circumference,
+because then you divide by your circumference, and then we should expect that we get, uh, 17 tons in our asks one.
+And so I'd say this is a good order of magnitude.
+The rest are all fairly similar. The other, uh, for arcs, rings.
+And so, uh, yeah, this tells us that if it goes around 17 times, it's going to have a survival rate of about 0.9.
+Yes. I need to multiple rings instead of just going around one ring.
+That should be the answer at the end of the story. I should be able to tell you this if we if we work out this one super quickly.
+Great. Okay, so now we have our number of turns. We have our circumference.
+Now we're going to work out our magnetic field ramp.
+And so the way that we're going to do this is if we equal our, uh, Lorentz force equal to centripetal motion,
+then we're going to have um q um v cross b is equal to m v squared over our rigidity.
+And then if you rearrange this you get our beam rigidity, which, uh, we end up to be.
+Remember that thing about Q being 0.3 under particular units?
+Uh, I have the derivation in my notes. Uh, b rho ends up being approximately equal to 0.3 times the momentum of our particle.
+And at this point, energy is basically momentum because we're relativistic enough.
+And so then if you plug this in, uh, at our guess, uh, when p z is 62.5, uh, can someone quickly tell me what our b-field is?
+This is radius. And our radius of a six kilometer machine is c over two pi.
+I didn't get the. Yes.
+You're halfway. Just so you know. Thank you. To someone quickly.
+I can also just write down the answer. Um, the injected field.
+We expect to be 0.3 Tesla and our extracted fields.
+If you plug in p z as, um, 314 GeV, we expect to be 1.8 Tesla.
+Uh, and so this is our minimum and maximum for our X1.
+And we have quite a low energy at this rate. So those fields are fine.
+However, if we have 17 tons and we can assume that by now we're going get the speed of light.
+What is the amount of time I'm going to go to a new black belt?
+Sorry. Uh, the amount of time that a particle is spending within our, um, synchrotron, assuming that it's going at the speed of light.
+So this is just going to be circumference times the number of tonnes divided by the speed of light is circumference is 6000km.
+Number of times a 17. Yeah, but I thought that.
+But yeah. Divide that by. See. Uh, someone can show off that one.
+I have numbers. Point three.
+What? Yeah, 0.3 milliseconds, which is 300 microseconds.
+Assuming this one is correct for units. So now our B ramp delta B over delta T, which is the thing that defines everything is going to be uh,
+1.8 subtract 0.35 divided by 300 microseconds and you get the result in microseconds you end up with.
+You guys can also do it. Uh, but I'm going to tell you that it is 4000 Tesla per second.
+So while some energies and Rs1 seem incredibly reasonable, we're not even in the superconducting regime yet.
+The ram freight is at rates that I don't believe we have seen before.
+And so this ramp rate as we're showing here is linear and we're no longer the LHC.
+So this time here does not take hours. This time takes microseconds.
+And so the real challenge of this is in the power converters, because you have 200 mega joules of energy stored in your beam,
+which you are transferring from your power converter to your magnet at a rate of 400 Tesla per second.
+Uh, and so currently we're starting to see if we can work with I think I said this yesterday, I'm not gonna repeat myself.
+Um, uh, companies that also work on these high, very fast rate power converters.
+And the other fun thing, actually, now, I'll do that afterwards. Um, so what does this look like in reality?
+This kind of system. We mentioned the photocell.
+So in a photocell, you have a quadrupole. Uh, let's say we have a very extreme dipole 90 degrees.
+Okay. That's what I drew. And then a defocus and quadrupole. And so this is kind of what your standard accelerator is doing.
+Whatever quads you need to get the beam parameters you need. And then a dipole for bending.
+Now this is all very well and good when I'll be one is 1.8 Tesla.
+That's normal conducting. But what if as you calculate for the ox three for a two, three, four you're going to need higher fields than 1.8 Tesla.
+You're going to need superconducting magnets. And at killer Tesla for second that is impossible.
+So we are introducing the hybrid scheme.
+The hybrid scheme is other questions by the way. I'm a serious thousand tests per second.
+Yes. Yes. What is it in your voice?
+What's. What's in here? What? What is this for the LHC? Yeah, for the LHC.
+It's for two hours. Is it still 8000?
+Uh, the LHC injection energy is 400 GV and it goes up to, uh, seven TeV.
+So you have a much higher energy swing that you have much longer cycles.
+Uh, Fermilab boost trains 40 Tesla for 40 Tesla per second.
+Even mind LHC is two. That can be enough to beat that.
+Yeah, that's why she is doing it so slowly. Um, yes.
+Um, you said six kilometers for this conference.
+You could increase the conference and get away with lower rates.
+Yes. Other implications as well. Yes. You have to maintain the average rating over there for you over a longer, uh.
+Yes. This is kind of why I'm doing it like this. The in the notes.
+I don't really put the numbers, I just put the equations so you guys can go, oh my circumference is this.
+And I want the survival rate. What's my average gradient going to be. That's all perfectly fine.
+Um okay. So I'm going to quickly answer the question of the do you have another question?
+Okay. Um, so if now we have superconducting magnets, we need superconducting magnets to get to fields higher than 1.8.
+So what we're going to do is we are going to have a quadrupole which is superconducting.
+This is going to be static. It won't ramp next to it.
+We put a quadrupole which is normal conducting and this one will round.
+And then we put a dipole segment which is superconducting.
+And then we have two dipole segments which are normal conducting.
+And we have a dipole segment which is superconducting. And then we have superconducting quad and normal conducting quad.
+And this is a hybrid photo scheme.
+You can rearrange it however you want. Normal conducting superconducting. We don't really care so much.
+Yes you want to keep the superconducting phase.
+Through the backwash. Yeah. You can look at the implications of different photo designs um and industry.
+And so what are normal conducting is now doing is it is going from -1.5 Tesla to positive one point.
+Sorry I said eight. It's a it's I said five. I don't know why.
+Uh and then it's going from negative to positive 1.8 Tesla in as fast as we can go our four kilometers per second.
+But our superconducting magnets are going to be static at ten Tesla or 16 Tesla or whatever your maximum technology can allow.
+So what is going to happen to your beam as it changes energy?
+This is really the crux of the RCS hybrid system is if I have.
+Uh, we have our, uh, um, beam going through Z in meters, and we have the X dimension also in meters.
+Whatever. Uh, this is our, uh, superconducting section or normal conducting section.
+Our superconducting section. Think about the beam trajectory as it's going through.
+When it's all ramping together as a synchrotron should, it will all have the same position regardless of its energy.
+Once you have a static magnet, what's going to happen to your beam as it changes in energy dispersion?
+It's going to go out as a function of its beam rigidity, and then it's going to go through the normal conducting section,
+and it will all behave as it does with, uh, some level of dispersion.
+And then I'll superconducting us in such a way that it combines again, and then it goes down.
+And so your beam size, if this is zero, this is 0.05m.
+And this is like a 20 meter long photo lattice.
+Your beam is going through very large orbit excursions of five centimeters.
+Is that what I wrote? Yeah, that's five centimeters. So this is the answer to the question of why do we need multiple axes?
+Why don't we do it? And one asks the larger your energy swing is,
+the larger your orbital excursions of your beam going through your superconducting magnets
+and superconducting magnets are difficult when it is high field and large aperture.
+And so currently we're asking for an aperture of 160mm at ten Tesla.
+And then our magnet team comes back to us and says that's impossible.
+That aperture is way too large. Can you adjust the aperture?
+And we say, no, that will reduce the energy swing of our accelerator, and it will affect the survival rate and it will affect our final energy.
+So in 45 minutes, this is what the I guess the transverse region of why the UX is so hard.
+Uh, any quick questions on this exact section before I move to RF one more time where the, uh, aperture of.
+The aperture of magnets is because I have chalk over here.
+Uh, if you think about the, your beam is swerving from side to side, and so it's no longer a question of the beam size.
+It's how far your beam is traveling inside your magnets.
+Uh, we would call it the radial loop. And this is very normal in any accelerator.
+Your beam drifts.
+And this is why you have been positioned monitors to determine where your beam is and in and asks the where your beam is, is not on access.
+That's where it is. Uh, so you have to design for apertures which don't have on axis beams.
+Yes. Very purposefully. That's the thing.
+Uh, you mean superconducting? The. Does something weird on the lower energy.
+Sorry, I didn't quite get that one.
+Oh, yeah. This is because, um, in this stage of our normal conducting, it's so strong that the beam is kind of going back on itself.
+It does? Yeah. It's intentional. This is what our X2 looks like.
+There's a plot. It was published by Lisa Sobre, who works for her orbit excursions for RCS 234 look different.
+I'm sure Kyle has similar plots. Well, I would say it depends on everything.
+Your photo design essentially. But yeah, there's no way. There's no way you can't have that, right?
+I mean, you have to counter bend in order to make sure that everything matches up afterwards.
+Thank you. Kyle. Oh, I already did this one as well. Okay.
+So I want to really quickly do RF and then I want to really quickly do, uh, fixed field accelerators.
+You know, homework tutorials took 15 minutes from me yesterday.
+Can I take 15 minutes from homework today to the top.
+Um, great. Okay, so I mentioned before, this 2.4 mega volts per meter is your average gradient over your synchrotron circumference.
+Uh, now, what would be your voltage in one ton?
+So, uh, if you have 314, subtract 62.5 and you know that we last for 17 tons.
+What is our gradient? These are both in giga electron volts.
+And anyone calculating any more. As you like. Oh, you answered all the others.
+You'll answer this one. I want you guys to do this one.
+1515 Giga Volts.
+That's the amount of RF power you need in one term.
+If you had one RF cavity doing all of your acceleration.
+And this is quite clearly ridiculous because before we were talking about 20 mega, um, mega volts per meter.
+Uh, so what we do for the RCS, I think, I think this is almost certainly true of us SMC as well as we are going to use Tesla cavities.
+These were designed for the International Linear Collider. I hope people can correct me on my history.
+They're also used for expel Swiss fill.
+A Tesla cavity is an RF cavity with 123456789 of these um, um, cavities basically.
+Uh, and then this is resonating at 1.3GHz.
+And so you yourself can work out the spacing of this because it's just one over the wavelength.
+Uh, and so this the 20 Mega volts per meter is quite nice because then this goes 20 mega volts per meter.
+It is a superconducting RF cavity. The maximum the material allows is 46 mega volts per meter.
+You're never going to get that, but you can assume 30.
+I think that's what uh, IMC systems.
+And so from this you can calculate for 30 mega volts per meter how many Tesla cavities we will need and oxygen.
+And to do this we again have 314 subtract 62.5 uh which is in GeV.
+And then we know it's 30 mega volts per meter, which 0.03 uh, GeV per meter.
+Multiply the number of times, which is 17. Anyone?
+Order of magnitude three. Yeah.
+400. Well, 493. Like upper bounds I have 466.
+So that's what I'm going to. The 400 RF cavities in rc S1.
+They get more as you go to higher energies.
+This is a lot of RF cavities. Ten minutes.
+Thank you. Uh, 15. Uh, Kit, can you fit all of these 466 RF cavities in one RF segment.
+No. So many reasons.
+Oh, boy. Now the LHC and I'm sure many synchrotron because it's a normal thing to have a RF section where they accelerate every time.
+We cannot do that. We are going to have to equally distribute this RF power throughout the system.
+And it turns out that the number of RF stations is extremely crucial, because I wish I had more time.
+Uh, we have our longitudinal phase space of the beam, which is in, uh, your change in time and no change in energy.
+What are they changing with respect to? It's your reference particle.
+So you pick a reference particle of a given time and energy, and you look at how everything else rotates around it.
+So this is your orbits within your RF bucket, your particles as a function of time dot around.
+Now if you have very sudden acceleration of, for example, uh, 15 giga volts in one section, your particles are not going to do nice orbits.
+This is called synchrotron tune. It's different. I think it's causing this.
+Right. It's, um, I don't do longitudinal.
+Um, it's not the same as your transverse tuner, which is the number of oscillations that it does in one rotation.
+If your synchrotron tune is nice and small and you have very nice orbits,
+if you have all of your RF from one section, then what it's going to look like is chaos.
+You are not going to have smooth a little bit, so you're going to jump around and this is going to be outside of your buckets.
+You're going to lose particles. And most importantly you are going to increase your longitudinal admittance.
+And so what you can do if you haven't run out of board space is you can calculate for your number of
+RF stations the change in your longitudinal admittance as a function of your longitudinal admittance.
+And you will find roughly something like this where this is around 15.
+And this is if you have one. And so you want to have as many RF stations as possible so that you minimize your admittance growth.
+The other thing that I really want to quickly say on RF, I could say so much,
+is if you have your nice little phase space buckets of your RC, S1 and this is your S1 at extraction, you finally done it.
+You have extracted Joe Beam at 350. Give congratulations.
+Now I'm going to put it in ax2. My ax2 has a bucket which looks like this.
+What's going to happen to all your particles? Outside the bucket.
+This is called a mismatch. This is what I mentioned yesterday about mismatches.
+So you need to make sure your your phase of your RF matches between your sections.
+Otherwise I have a plot somewhere where you see your admittance peak increase as you go between your RF sections.
+There's also something called higher order modes. This means you don't resonate at the RF.
+You resonate at a different frequency and you need to research that. Uh, great.
+Ten minutes. Right? Yes. Good. Uh, this is one method of acceleration, and that method of acceleration is called the Rapid Cycling Synchrotron Trans.
+I wish I had more time to introduce you to a concept called a fixed field accelerator.
+A fixed field accelerator is fixed with respect to time.
+It is the opposite of a synchrotron. Where I said your b-field is exactly proportional to your energy.
+Here you have a constant field in time, but a gradient in space.
+So if you have well x and your Y of your magnet, you have a weak field over here and it gets stronger as you increase in radius.
+This is for example zero. And so if you have a beautiful injected beam which is here, what happens to your beam rigidity as you accelerate.
+Does it at once. It's more it takes more energy to bend.
+And so what it does naturally is it would go in larger radius.
+And that is what a cyclotron is. And so just like a cyclotron we're going in larger radius.
+But as we go in larger radius we experience higher gradients.
+And so you have to design a very beautiful magnet which changes in gradients with radius.
+This is difficult to do but it would make a lot of things very simple.
+Before we do, I'd like to introduce the fact that you have a vertical fixed field accelerator where you can take this thing and flip it on its head,
+and so then your gradients increases as you go to higher energies.
+And so then your particle will go up instead of going out on it increases in energy.
+We do have a v FFA design for the muon collider for the accelerating system.
+I do not. We probably have a FFA design, but I don't think we've done one recently.
+So please do because the more we invest in this, the more likely we can do FFA is instead.
+Uh, quickly mentioning, uh, there are two additional types of fixed field accelerators, one called a scaling and another called a non scaling.
+And so a scaling FFA scales the energy with the tune of your particle.
+And so if you have a this is an equation I'll write it down in a bit.
+Uh as your energy increases your tune stays the same.
+And this means your chromaticity is zero and you design your magnetic field in a very specific way to gain this condition.
+And that is the magnetic field as a function of the radius.
+And the angle of your magnets is equal to your initial field B, not your kind of radius divided by your initial radius multiplied by another factor k,
+which also depends on your magnet geometry and then multiplied by f as a function of theta, which is another thing of your magnet geometry.
+And essentially what you would do is you would tailor expand with respect to K.
+And if you do so,
+you can get your field function as a combined dipole plus quadrupole plus six to pole plus octa pole plus deca pole plus do deca pole.
+And it turns out that for an FFA to accurately capture the interest as a tease of the optics,
+you often need to expand to do a pull order, at least to capture the full range of what your beam is doing.
+And you have specific tools for this, such as there's Gooby and I'm sure there's ones that are used often in the US,
+and we have not only designed but also built an accelerator for the muon collider, which is called MRA, and it's actually non scaling.
+But that non scaling means it doesn't scale anything where the energy uh does affect the tune.
+And then as a result you have to go really quickly for your resonance lines.
+Otherwise you lose all your beam and the stands for I can't believe electron.
+Machine for muon acceleration.
+And then they changed the name to Electron Machine of many applications.
+And it has since been disassembled. It was in CFC does.
+What a beautiful machine. Please look it up. Uh, so, uh, I've had to do everything.
+Uh, so. Conclusion. Arceus is a very hard, uh, phase.
+Have a lot of benefits, uh, where you don't need to do this fast run thing.
+Magma has a lot of downsides with grass. The ref, please study it.
+Uh, and please listen to Kyle's talk call. We get details on the Fermilab Arceus designs.
+And I'm sorry I couldn't go into specific designs like Greenfield or CERN or Fermilab.
+Thank you. Okay.
+Thanks, Taylor. That was awesome. Um, we already had questions, obviously, but I think we have time to take a couple if there are more.
+It's just more curiosity. So I was struck by what you were talking about, how you can't have all your RF stations in the same place.
+Mhm. Um, because um, so typically you would think about it as um, you know that the number of kicks per synchrotron period or something like that.
+Um, so is there, is there a way to describe it in those terms, you know.
+So like if the synchrotron period would be 100, then you would have to have 100 kicks to go around and then that's that's enough.
+But if it was ten then you'd have to do ten different stations something.
+That way we have. I have. It's interesting.
+I teach a class on, you know, discrete approximations of continuous systems.
+And so I do this as an example. But I didn't know that there was an actual accelerator that has discrete kicks.
+I'm really sorry I'm the wrong person to ask about this. So I mostly learned this so I could teach this.
+Um, I think that's sort of, um.
+The simple trying to change flow, uh, because you can keep that limited when you don't want your synchrotron tuned to be one,
+because if it's one, you get that behavior. So you want then a low synchrotron tune.
+So it's the number of RF stations that give you a lower synchrotron tune one on Pi.
+But then if you get higher, higher synchrotron approaches discreteness, if that's the answer you're looking for.
+Thank you so much for the, uh, blackboard lecture. I was really hoping somebody would use the board.
+Um, so I, I sort of think I understand the basic idea of a horizontal FFA.
+I'm sort of trying to envision what happens when you make a vertical FFA and, um,
+I think you tried to get into it, but I'm not sure it really like, sunk in for me.
+Why you would flip it on its side or is that really what I should be thinking about?
+Yeah. Could you just talk about that, uh, geometry in space?
+Uh, so you can do the calculation yourself of how long your FFA magnet would need
+to be in order to encapsulate the entire beam rigidity of your energy swing,
+I would assume. I'm just guessing. Uh, from what I know about the guy who did the v FFA, uh, that if you have a very large energy swing,
+it might be easier to design a tool magnet than a very, very wide magnet just in terms of the fact that it's still 30km in circumference.
+So you it doesn't get the circumference, doesn't get more compact by doing this because you're still limited by observer zero magnetic fields.
+Actually, I think it's worse because you're off axis fields gets really high in fixed field accelerators,
+uh, to get all your perfect conditions, ma'am.
+So it's the fact that it's space because you might need a wider tunnel if you had a FFA, but I'm sure you can do the calculation.
+That depends on the energy swing, like from the talks that you would get.
+Yeah. You just get too big for FFA. Uh, some people want to start designing.
+I hate FFA that I've spoken to many people and make sure, yes, uh, FFA would be another week of lectures.
+I just really wanted to mention it because the US has such a strong FFA community compared to some, and the UK also has a really strong FFA community.
+And so this is one of the synergies I don't want to forget about just because we say that a meal collider is an off course.
+We haven't built the damn thing we can still do. FFA is it's not too late.
+Maybe if one more question if there is one.
+Hi. Uh, thanks for the nice lecture. So this might be going in a tangent.
+Uh, but do you have a sense of what the phase stability for that order that you have to distribute is along the six kilometers?
+The question was what? Sorry. Like the phase stability of that order that you have to, like, distribute across the six kilometers.
+Do you have like a sense for that? What do you mean by phase stability?
+Like go for example, you need to accelerate when the bunches come in.
+Right? So. Oh, you mean where on the crest are you exactly?
+Uh, 135 degrees. Um, that's that's a lot.
+Yeah. So you're not accelerating on crest, you're accelerating off crest. There's a really good reason why.
+And I've forgotten in this moment. Uh, I could answer your question, but it would take longer, I'm afraid.
+So, essentially, as I understand, there's, like, a lot of leeway for the RF to drift.
+And you're still good when you're distributing the RF to all the accelerating elements across the.
+Yeah, it's not clear how we would distribute the RF power supply around the ring,
+because you would need a second tunnel to house all of your strands to power all of these stages, uh, of your RF stations.
+And that is, oh, massive cost. Uh, so the question about phases, the voltage isn't entirely going into acceleration because we are of crest.
+So we have a less efficient acceleration than we would if we were on crest.
+Thanks. I'm sorry, I forgot on the reason why we're not on crest. In order to fit over the.
+In order to fit in. Um, so if we want to fit our beam out to however many Sigma three five, I think two uses three.
+Uh, we're using five for the, uh, Fermilab version, uh, to fit the beam in your, uh, longitudinal phase space.
+Given the, uh, momentum compaction that we have in the wing, we end up having to go pretty far off crest.
+So, uh. Depending on the wing may be 50 degrees from quest.
+Yeah. Thank you. Carl. Uh, and also to say, uh, I wrote some of the numbers of the specific designs in the last page of the PDF.
+If you want to take a look, it's also in the parameter report.
+I'm sure it will change for this year's parameter report, but thank you for listening and calculating.

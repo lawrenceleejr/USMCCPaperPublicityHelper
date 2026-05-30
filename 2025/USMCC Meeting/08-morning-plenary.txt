@@ -1,0 +1,1028 @@
+# Morning Plenary
+
+I'm Cameron Geddes, I'm your session chair.
+And our first speaker will be, uh, Casey's Irani from MIT talking about, uh, other opportunities with human beings.
+Kerry, looking forward to your talk. All right. Well, thank you so much. And I just want to say, uh, this is really such an incredible turnout.
+Um, last year was the first year that we did this, and we had a lot of people.
+And it's great to see that that excitement is maintained. So thank you to all of you, especially people who are newly coupled to this collaboration.
+Uh, we're super happy to have you aboard.
+So that being said, um, I'm a theorist, so I'm going to talk about some theoretical options that we could have,
+uh, for what we can do with muon beams.
+We talk a lot about colliding muons, but there are hopefully another set of options that we can do, um, potentially even along the way.
+Um, so let's start with just sort of the basics of this property, right?
+Is that before we collide, muons, the thing that we have to do is we have to accelerate them.
+Um, and so important question to be asking is, is it interesting to just accelerate muons.
+Do we need to collide them to get any interesting physics, or is there something else that we can do,
+notably in these much earlier phases of the full scale project?
+Um, and I want to present two reasons. The first reason, of course, is a strictly physics reason,
+and I think that we should constantly be reminding ourselves with the most important physics reasons behind what we do is,
+um, and first is that a high energy and intense beam of muons has never been realized.
+We've never had a laboratory controlled, high energy, intense beam of muons.
+Um, and so that's interesting for two reasons. First off, that, of course, the more energy, the more, uh, we can see in the oven.
+Uh, but that kind of goes along with the idea of why we want to collide muons.
+Um, but the fact that muons are a second generation fundamental particle is also something potentially new.
+So there's a lot of things that we could think of, uh,
+different precision tests that we could do of the standard model that we wouldn't previously had access to this sector, uh, of Standard Model physics.
+Uh, the reason two is something that combines physics with a bit of logistics, which, to be honest,
+is the game that we have to play in these very long term projects and that a muon meme might be available well before the full collider.
+Uh, we heard a lot of interesting talks yesterday about the importance of R&D and how the biggest
+uncertainty that we have is the luminosity and energy that we can create in a muon beam.
+Um, so Vladimir had a lot of great, uh, projections about what that could look like.
+But the reality is, having accelerated muons will likely be in our, uh, capacity well before the actual collider.
+Uh, so given that we are in the business of these very long time scale and exploratory science programs with the muon clutter,
+I really think that exploring the possibility of muon beams is exactly in the spirit of what we're trying to do with you on Collider.
+Uh, and the question that we should be asking ourselves is, how can we utilize these muon beams at all stages of development?
+So that's what I'll be walking through some options of today.
+Uh, so I definitely don't want to say that we haven't done experiments dedicated with muon beams before, just in a different capacities.
+And what I'm proposing, um, so to sort of warm ourselves up to what things that can be done with muons in specific.
+Let's just review some previous examples.
+Um, so muon beam experiments have been or are proposed to be used in a lot of different studies pertaining to properties of the muon,
+nuclear structure, materials science, and much more.
+Uh, so to give you, uh, some bearings about what properties of muons we've studied, for example,
+we all know this very famous experiment that happened most recently at Fermilab, uh, which is studying the muon magnetic moment.
+Um, so muon g minus two, of course, requires a very high dedicated amount of muons.
+There's also a lot of other experiments, um, at Fermilab, at P.s.i, uh, Jay Park, that deal with studying the violation of muon number.
+So looking very specifically at muons to see if they convert to electrons, um, or if they can violate that lepton number in any of these processes.
+So all of these experiments need low energy but intense neon beams.
+Um, other things that we've done with muons is studying nuclear structure with things, uh, like compass or Compass two at CERN, for example.
+Um, and they can look at different spin structures, polarizations, uh, and whatnot of these different materials.
+So we can use sort of properties of the muons to be able to study, uh, things that are in QCD as well.
+Um, and one other nice example that we have is this idea of Musser, which is muon spin rotation relaxation, depending on who you ask.
+Um, and this is a great property that we have this kind of a crossover with material science.
+So you can bombard materials with this polarized muon beams.
+And then you can learn a lot about the material properties.
+Um, so very clearly in different kinds of walks of science, having a muon beam is quite useful.
+Um, so part I, I put this up just to make sure that we all are on the same page, that physics with muons is not novel.
+But also that there's a lot of other things that we can explore besides just smashing things together and see what comes out.
+Um, so if you're not familiar with these experiments, I really suggest that you take some time to learn about them,
+because there might be some other things that we can do to improve our understanding, um, of the Standard Model.
+And then I note that I want to have is I personally like to think about the BSM scenarios of all these things.
+Um, and the back side of any sort of precision physics measurement that you're doing is you're secretly also studying new physics.
+Uh, because any deviation from the precision measurement is going to be indication of dynamics that we don't yet understand.
+So all of these experiments are also experiments for potentially beyond the Standard Model phenomena.
+That being said, all of these muon experiments have one important thing in common that we hope to be able to achieve,
+uh, with the muon collider, but we have not yet achieved, and that is that they don't have accelerated human beings.
+These muon beams are coming from the capture of the same tertiary particle production that we hope to utilize that muon clutter.
+Uh, but instead they're just sort of selecting the right muons and focusing them a bit rather than taking them from stopped and accelerate them.
+Uh, as a dedicated beam. So a grossly simple cartoon where there's tons of work going into all of these pictures, uh,
+would be this is that they're some dedicated proton beam, uh, that smashes on some target.
+The target produces a bunch of mega mesons like pions and kaons.
+And then we have muons going forward.
+So the kind of things that we have in the world, we have proton beams that kind of scan from three to heavy all the way up to 400 GeV.
+If you want to think about what we can do at certain. Um, and then the capture of all the muons come in these different ways, right.
+As you think about things that are backscattered from very low momentum, we can have magnet focusing.
+We can stop them, like I told us about yesterday.
+And then what we really hope to do with the muon collider, see what we can do with an accelerated muon beam.
+Um, so I do want to say that there's a bit of a caveat to accelerating beyond this, a completely novel technology.
+We did see at Jay Park. There was evidence that we could do a little bit of acceleration.
+Um, but, Kev, the TeV is a bit of a jump in, uh, magnitude of the energy scale.
+So there's still plenty of progress to be made here. Uh, and then one more thing, again, going back to this point about logistics,
+is that something that we know we will need for the full scale collider is to be doing this R&D for beams.
+So given that this is something that we have to do for the full scale collider and will again likely be coming first, uh,
+it's important to think about if there's any physics deliverables that we can have so
+that we're not promising something that will only happen three decades in the future.
+All right. So let's think about what we can do with a muon collider. Muon beam.
+Um, there's a couple different options that I want to present.
+So again, since the full scale collider is several decades out, even if all goes well, um,
+that's the reason that we should be thinking about what we can do with those intermediate stages.
+Um, this R&D is the highest priority, and we will produce muon beams exactly when in the timing, it will come online.
+Uh, with respect to the full collider is not necessarily decided right now, but it is something that we could work into the plan.
+Um, and then having these physics deliverables is what we want to be able to do.
+Um, so just to give you, again, this idea of flexibility, right,
+as this is a very different project and all the other future colliders that we discuss,
+because there's so much more uncertainty with exactly how this is going to be implemented and with what timescale it's going to happen.
+Um, so we shouldn't take that as, as a curse.
+It should be a blessing instead, because then we have the opportunity, especially for theorists who usually just come in, uh,
+when the data is already collected or in the stage of data collection, uh,
+we have the opportunity to influence how these things should be realized to maximize our potential of discovery.
+Um, and, you know, a lot of these things that I will be proposing,
+especially for just the high energy components, could have some fraction of it realized at the LHC.
+If we had thought about this 40 years ago, um, but we can't go and excavate a cavern to do things like beam dumps at the LHC,
+even though that would be potentially a good use of protons. So if we do not start thinking about these things now, we might miss opportunities.
+So at the time to think about these sort of auxiliary experiments really is now, um, if anything, uh, needs to be urgent on the theory world.
+So I really don't like putting up timelines because it seems to invite all kinds of criticism.
+Uh, and, you know, I just feel like we have to at this. I'm sorry, carry, but it's so far in the future.
+Um, so I'm going to put some general guidelines, of course, punctuated by the most important things in physics.
+Um, okay. So we'll think about what we can do now with beams that we already have and how we can think about data
+collection and analysis that might be influential or guiding to future muon collider experiments.
+We can think about what we do soon. Um, I don't want to put a strict timeline on that because of funding and technology and blah, blah, blah.
+So we'll just say soon, which is 20, 30 years. Um, and then sometime in the future where, um, we have our full collider come online.
+Um, so this is kind of the category of these different physics things that I will talk about.
+It is a far from exhaustive list, but this is just sort of a ballpark, uh, discussion of what we could hope to do.
+So let's start with what we do now. Um, great.
+So what we're going to do literally today, um, or what we could do literally today,
+we can't start an experiment today and hope that we can get data soon,
+but we can't take experiments that already exist and recast their data in ways that give us new bounds on,
+uh, previous models that could influence what things are interesting to look at at future colliders.
+Um, so a lot of the, uh, physics resources that we have, especially in this country, are dedicated towards neutrino sources.
+Um, so there's a lot of proton on target experiments happening that ultimately produce neutrinos.
+But of course, wherever there are neutrinos, there are also muons. Uh, so we should see this is also an opportunity for muon physics.
+Um, the example that I want to think about is mini to micro moon.
+Um, but of course there's other sources, uh, and experiments in the world that have these same sort of infrastructure that we can hope to utilize.
+Um, so we think about Miniboone and Microban. The original purpose was that they want to observe neutrino oscillations.
+They have this really nice beamline, uh, at Fermilab in this big detector,
+where they can hopefully see if there's any sort of activity coming from, uh, these scattering processes.
+So one of the measurements that they are making for backgrounds is neutrinos scattering off of nucleons producing pions and pions go to two photons.
+Uh, but there's a lot of really high quality data there.
+And so it's possible that we could take this exact study that's already been done and think about what sort of BSM we can get out of that.
+Uh, so that's what we did. You have to choose your model. Of course. That is the thing is, you can't exhaustively say if there's new physics or not.
+It always has to come with the caveat of a model. So we'll take maybe the most gratuitous model that we can, which is just coupling to muons.
+Um, and something that, of course, is near and dear to our hearts that muon colliders.
+So if we just put a new scalar into our theory, make it lighter than the muon so it can only decay via a loop.
+We can get the same process happening with either a Brimthrown like process where we irradiate the scalar, or we can have it in rare decays.
+And more specifically, we can see this happening at the exact pipeline with which we are producing the neutrino beam,
+and see our signature in the detector that was intended for other processes.
+So this whole data set was collected, this whole infrastructure exists and we can just swoop in and utilize it.
+Um, so because all of these things are already in place, we can just.
+Come in and recast and then hopefully learn from that where there's new parameter space to explore,
+um, so that we're more guided in future exploration. Okay.
+Um, so ultimately, since we have this high flux of protons,
+you get a slightly less high flux of nuance and you're able to do a little bit of progress.
+So, uh, what we recast for miniboone A microbes are these blobs here, which don't necessarily extend too far into parameter space.
+But we have improvements for speed and a similar experiment, um, in other projections.
+So you might look at this and feel discouraged,
+but I think you should feel encouraged because for basically free we were able to improve our reach in parameter space.
+So if you're thinking about what can I do with auxiliary experiments right now,
+find a data set with an interesting background and see how you can cast that into a new physics search.
+All right. So let's talk about what we can do soon. Um, so there's a lot more uncertainties about what can happen here.
+Uh, but let's think about sort of things that we can do with either neutrinos or low energy muon beams.
+These sort of early acceleration stages. Um, so I'm not a neutrino theorist, but I'll try.
+I'll try to do my best here. Um, one of the possible options we can have with very early R&D is this idea of new storm.
+Um, which is a neutrino storage ring. Um, so this is something that can happen basically extremely early in the R&D stage of our muon collider.
+Um, if we want to think about what we're doing for the muon cluster, is that, again, we'll have these protons coming in and hitting some target.
+Um, some amounts of the muons will go off to the 60 cooling demonstrator, but there will also be other particles that are underutilized.
+Right. So these would otherwise just be thrown out or absorbed.
+So if there's something else that we can do with it that would be, um, not free, but definitely a much more cost effective way of doing some science.
+Um, so yeah, the idea is that everything can happen modular up here for muon collider R&D,
+and then you just have the infrastructure of building and maintaining this storage room.
+Uh, so the idea is that again, you're capturing these muons with magnets.
+You're not accelerating them. If you want to think about your classical physics definition of acceleration, sure,
+you're accelerating them, but you're not putting them into a linear accelerator.
+Um, and you're just circulating these beams, uh, on this large, oval like track.
+Uh, so, as we all know, muons have this nice tendency that they want to decay.
+Uh, and when you have this sort of geometry to your, uh, to your ring, is that a lot of the decays will happen.
+Quite collimated.
+Um, and from there we can put either a short baseline or long baseline detector to sort of look at these sort of neutrino scattering, uh, processes.
+So the current status of what this would look like, given the proton beam of Fermilab,
+we would expect that roughly we're getting three GeV muons to circulate and decay this, which would give us about one GeV on average, neutrinos.
+But what's impressive about this setup and what's useful to, uh, neutrino experts,
+is that this would be a very intense neutrino beam with the smallest uncertainty in the energy spread of these neutrinos yet.
+So it would be a very tight beam, um, with a well understood energy.
+And so with that, we can make much more precise measurements on neutrinos.
+Um, so this is something that, again, probably wouldn't exist without sort of some infrastructure.
+Uh, certainly without the already existing proton beam infrastructure,
+but something that's less likely to happen without, um, the promise of another experiment going on, uh, synergistically.
+So this is something that I think it's definitely worth considering. Uh, now I want to pivot back to the muons and what we can do with those.
+Um, and so this is a very deep idea. Uh, what can you do with the beam?
+Well, you can smash into another beam, or you can smash it into things at rest, right?
+Um, so right now we'll think about the smashing into things at rest.
+So let's assume that we've done a little bit more R&D at this point.
+And we can accelerate these muons just a little bit.
+Um, so I'm not sure how likely this is to be realized, but I suspect that we're not going to go all the way up to the TV immediately.
+There will probably some Linux stagings and whatnot. Um, so let's assume that we're getting sort of GeV levels of acceleration here.
+Um, so the question is then what can we do with the muon beam?
+Either mu plus or minus with moderate energy and moderate intensity, since we're not going all the way.
+Um, and so the very technical description that that'll get to this kind of physics is that we can probe kind of rare sort of light new physics,
+uh, with these beam dumps of low energy. You want beams?
+Um, so the geometry of this kind of experiment is much simpler than the standard, uh, collider experiment.
+If you take your muon beam at whatever energy it is, um, you dump it into this target.
+You hope to produce some new physics here, but of course, you'll also produce a lot of standard model stuff.
+So you need some region of shielding where any Standard Model particle is wiped out or vetoed in some capacity.
+Uh, but your new physics is so weakly coupled that it can live long enough to escape the shielding propagate into this fiducial decay region.
+And if it decays somewhere in here, we can hopefully measure the visible decay products of this guy,
+um, and potentially make a discovery of this new physics scenario.
+Okay. So again, these are very economical experiments.
+If you consider what kind of instrumentation they need with respect to the full scale collider, but they're not necessarily for free.
+Um, what's interesting about the physics, though,
+is that they are very complimentary to the full scale of the collider is because we're colliding things on a target.
+We get energy cost right, is that we're no longer in the center of mass frame.
+We have to, uh, boost in to the rest frame to see what the energy that we're probing is.
+But we get this enhancement of Avogadro's number because we're doing an actual dense material.
+Um, so it's much more moderate energy, but very high intensity and small couplings that we can hope to probe.
+Um, so what we consider here, just to kind of do a sweep of the theory space and understand the lay of the land is we take some generic BSM
+model where we have a propagating massive new particle that couples with the vertex here where it's muon,
+muon and new particle. And that's effectively what's happening, um, in this little star here.
+So let's explore a couple different models at various energies for this.
+Beam them. Okay.
+Um, so of course, the goal is that we want to understand the reach of how far into this parameter space we can go.
+But this is not a question that exists without the details of the experiment itself, which of course, we do not yet have access to.
+So again, we're already in the very strong tilde asterisk region of what kind of physics reach we have.
+Um, so there are a couple choices that we can optimize in the experiments.
+So optimizing the length of the experiment, the target size, the target material, and so on and so forth.
+Um, these are things that will require much more dedication. And luckily for us, we have some amount of time before this comes online.
+Um, and then of course, there just needs to be flexibility in terms of what the parameters of the experiment will be,
+what the flux of neutrinos or muons. Sorry. Uh, with the flux of muons we can achieve would be the energy of these muons.
+Um, so on and so forth. So none of these are concrete.
+You should see these as a starting point with which we can build off of as a community.
+Um, so let's sweep through some options.
+So one model we have, um, again, if we think about sort of a generic new physics that's particularly beneficial for muons,
+um, is if it again just couples to muons, well, let's say we got to ten GeV.
+Um, so you can see the kind of parameter space where sweeping this is much smaller than this is the coupling to the new physics.
+And this is the mass. The mass is not heavy. It's in the GeV range.
+Uh, but the coupling is quite small. So these different options here are for the, uh, geometry.
+And then the different contours correspond to how many muons we can have.
+Ten to the 22 is absolutely bonkers, but ten to the 18 is pretty achievable.
+Um, so we're starting to carve out some parameter space even with this low energy.
+Uh, we can do things a little bit less contrived as a model. Go to lepton Felix.
+So it has the same couplings as the Higgs to leptons.
+Um, and see, what happens here is that if we go up to half the Higgs with which probably we won't be thinking about a Higgs with run.
+But never say never. Um, again,
+we can sort of start to push out into this unexplored GeV territory beyond what other beam dumps have done because of that muon specific couplings.
+Um, and then one more model is this L mu minus L Tero. So this is a model that only couples to muons and thousands of neutrinos.
+So it's quite unconstrained in terms of what we've been able to look at.
+So this goes back to the fact that muons themselves um are novel.
+So if you're doing low energy stuff, anything muon specific is likely to be improved even at low energy.
+But of course, we also want to think about the high energy stuff. So let's just do a quick beam dump at high energy to um,
+the motivation for this is that the luminosity of the collisions goes as the density of muons per bunch squared.
+So at some point, you're just losing, uh,
+so much luminosity in your collisions that might make more sense in terms of the physics to dump the beam rather than recirculate the beam.
+I think I'm going to get some angry comments about that remark. Um, but we can think about this at the full scale on Collider.
+Um, so if we consider those same models, um, you might have told how everyone's favorite dark photons.
+So just couples like a photon, but heavy. Um, and that same though Felix scalar.
+We just kind of blow all the existing balance out of the water because energy is new.
+And that's sort of the punchline, um, for these high energy things.
+Uh, and we can think about that is that these couplings, um,
+we can push lower and higher couplings because the particle lifetime is extended, something that would only survive this far.
+Some energy can survive this far at high energy. So it changes our parameter space.
+Um, so that's sort of the story with high energy, right? Is high energy will always be new.
+Muons are new at low energy. And then let me just say one more quick remark about neutrino physics.
+Um, neutrino physics should really be our friends in this whole process.
+Everything that we can do will certainly have a benefit for neutrino experiment as well.
+So we should always be thinking about, um, the synergies between these fields too.
+So again, let's go to that full. Um, you and clutter energy use.
+Here's some work to appear by people in the audience. Nick, if you're here.
+Yeah. Hi. Great neck. Great. Um, so they had an interesting idea where you take the muon clutter,
+and then you angle it so that the street sections of the muon collider are pointing towards other, uh, neutrino experiments.
+And then you have things go through the crust, through the mantle, um, and the core of the Earth.
+And that can give you some different measurements about neutrinos as well.
+And because the angular spread of the beam is proportional to one over gamma, um, we actually see a rather collimated beam,
+depending on your definition of collimated, uh, and can explore with a lot of different experiments.
+Um, so in their paper to appear soon, they present a lot of different studies that you can do, um, with precision measurements and things like that.
+Um, of course, the angle that I'm excited about is how we can understand,
+beyond the Standard Model phenomena with neutrino oscillations, for example, if there's a sterile neutrino.
+Um, so here are some parameters and a general, uh, sterile neutrino fit.
+And really, the most important thing that you can see is this is what we can do,
+and this is what we could be able to do if we were to realize this kind of technology.
+Um, so again, this is just mainly, uh, to encourage you to think in.
+The spirit of how can we collaborate with other kinds of of physics out there?
+Um, and if you have a beam, how can you use it in general?
+This is a really clever way, uh, to sort of utilize one man's trash is another man's treasure.
+All right. So let me wrap up here.
+Um, again, the spirit of this talk is to think about what we can do now, what we can do soon, and what we can do in the future.
+Um, and the things that will be novel about muon beams is that we have direct access to second generation,
+uh, with very well understood energy spreads.
+Um, and potentially high energy, depending on how close to the future you're willing to float your expectations.
+Um, the progress of this will all come in stages. Um, so we should utilize them as they're available and not just put all of our physics
+deliverables way off in the future so that we're giving back to the community,
+as we're putting in, uh, this quite hefty but exciting R&D program.
+Um, so I want to leave you with the with the call to action that we should always be thinking about synergies in neutrino measurements,
+in precision measurements, in flavor violation, and more. There's so much out there.
+And if we were to have this technology, it would be enriching not only for the community of colliders,
+but for the whole physics community, um, in general. So thank you so much.
+Thank you very much, Carrie. Very nice talk, and certainly an important topic to think about, about how we can stage physics as the R&D goes on.
+I so will welcome questions. We have to two mic runners here and we'll start on the right side.
+Thank you Carrie. Can you go to site 13 or 14 where you're showing the the dome for the first time?
+Yeah. Oh 13 yeah. So, um, if you were to instrument the shielding.
+Yes. Then suddenly this becomes muon nucleus, deep inelastic scattering.
+Yes. Uh, at low key squared, which is of high interest to the Hadron Collider community,
+the CDF community, because you're at the edges of the structure functions.
+Um, has this been discussed and been explored by you guys in any capacity or others?
+So I think I think that's a very interesting question. I don't know immediately how it could be realized.
+Probably the experiment that's closest to what you're describing is of a 64 where they have no Jay lab.
+This is like the entire daylight program. Uh, sure. Or Jay lab.
+That's trivial. Yeah. Um, definitely.
+Uh, I was just thinking in a 64, because they have that specific detector that I think would work well with this,
+where they have the, um, the scintillation in between the target material.
+Um, so, yeah, those would be good benchmarks to consider.
+Uh, when you smash a five TeV muon into things, a lot of other crap comes out.
+Uh, so it is outside of my, uh, intuition as to whether or not that would be a low energy.
+Well, for what energy? Oh, you're right, that's true. This is low energy.
+So. Yeah. That's. Yeah. Yeah.
+You're right. Sorry. I got excited by, uh, the prospect of 20 of you.
+Yeah. No, I suspect you're totally right. Yeah, that's a great idea.
+Very good. Thank you. Do we have another question? Uh, could you go to your, uh, neutrinos, like, uh.
+Oh, gosh. Yeah, it's an unfair question.
+I know, but, uh, and naive tourist question.
+How can you. I just think that's right. Action towards other experiments is the idea.
+Probably. Yeah, probably. Probably gray or.
+Nick, would you like to jump in about just that?
+Let me ask a question. And whoever who wants to answer that is the idea that the a straight section is more sensible,
+and you could tilt in towards different detectors to see different things.
+Or is the idea that the design should be so that because we are having to for.
+Yeah calculate it. Oh yeah.
+So for the P1 situation you need an inclination angle of six degrees.
+So I mean it's still a pretty steep angle but not so crazy for the price given came through
+that you would have to consider like a beam dump that's actually oriented vertically downward.
+Okay. But if you were to do a beam dump where you just so I mean, I think honestly,
+the smartest way to dump a muon beam, muons don't like to interact very much.
+So you would need something like a kilometer of tungsten if you wanted to fully stop it.
+So for dumping it, probably we're dumping it into the ground at some point.
+So you might need a pretty strong magnet to kick the beam into that direction.
+But I do think that, you know, in the same spirit of the straight sections, we could just orient how we.
+Yeah, yeah. I mean, where else besides the core of the Earth are we going to put a five TeV?
+So yeah, I think I think just sort of like a kicker would be the right solution and not doing the whole orientation of the matter.
+Okay, okay okay, okay. We can we can take one more question.
+But as we got our next speaker to come down, honestly, we can set you up, uh, while we're taking the last questions that we've set up.
+Okay. So we're taking this last question. I don't know.
+Yeah. Uh, you mentioned, uh, an A64.
+Yeah. So we are working actually, we are collaborating with, uh, at least a group of people from IMC with uh, an A64,
+MMU, and there is the possibility actually to, um, let's say, uh, somehow change the muon beam energy.
+So, uh, unfortunately, this pediment is very small.
+The collaboration is very small, but there are a lot of things that can be done that can be studied there.
+Yeah. Yeah, that's that's great. So Donatella mentioned that there's progress happening within a 64.
+Um, they have a very low intensity muon beam.
+And then like the GeV, two tens, hundreds of 1200s, 160 GV.
+Um, so it's a low intensity beam, but still any any ways that we can study muon bunching or whatnot.
+Excellent. Yeah. And actually, we can try to work with, uh, with a CERN muon, uh, uh, facility.
+They are willing to, uh, actually, uh, improve the muon beam.
+So, uh, the problem is them in power there, but. Okay.
+Well, thank you all very much. Thank you for a great. Can people hear me?
+Awesome. Okay. So we put this on before we get started.
+All right. Uh, yeah. Thanks a lot for an invitation. It's a pleasure to be here and talk to you about, uh.
+The task was quite, uh, you know, uh, a pretty good challenge to put everything that we're doing together in what we call blue sky.
+Let's call it the new things. Um, things that are may not be dead in the experiment.
+Uh, so I try to do my best. Uh, and there is a lot of material, so I'll move fast.
+Uh, there is a lot of talks that I highlight, uh, through my talk in the parallels.
+So there is more technical stuff. Uh, I encourage everyone to go to the parallels.
+I'll try to highlight all the ones I know, but, uh. Um, thanks.
+Uh, before I forget, uh, to everyone that helped me prepare this slide.
+I go to slide from many people. So thanks a lot for that. You all know who gave me a slide, so thanks a lot.
+Uh, okay. So let me try to set the stage.
+Uh, so, uh, before we go to the blue sky, we need to have a firm, uh, you know, footing on what we know now and what we're doing.
+So, you know, the closest that we we know what could be similar or most similar to, uh,
+know machine in the future under detectors, uh, with all the difference that we already know, uh, that they have.
+It's the the Large Hadron Collider detectors, uh, in there, we're actually going, uh, into the regime and where we are, uh, is there like a.
+Yeah. So there is, uh, we're going into what we call for the detection.
+So that means measuring very precisely the time and the position of, uh, charged particles.
+And once you have that, you can go into the next step, which is adding the energy for color emitters.
+So all of that is very complex. You have a lot of information now per sensor.
+So you need to do a lot of work to make your uh now detector to be five dimension, uh, say capable.
+So and with uh, that what I wanted to get out is he is a, uh, blue sky R&D on sensors A6.
+So, uh, basically electronics, uh, on the front end, uh, as early adoption as possible of emerging technologies that we are not experts on,
+but we should become experts will be key to achieve this, uh, goal in the future for,
+uh, you know, any machine that we have, especially the muon, uh, Collider.
+Okay, so, as I said, I wanted to set some kind of ground where we are.
+So to set the stage so people know, you know, what we know how to do now and where we want to possibly go.
+So this is a picture of, uh, what we call the, uh, maybe timing detector at CMS is the end cap region and which uses,
+uh, silicone detectors to detect, uh, charged particles.
+And this is a map, uh, of, uh, entire sensor module.
+And this blue color is the time resolution. Uh, and it's pretty striking that we can.
+And if you read all of the numbers in here, we get a resolution, uh, of about, uh, 30 to 40 picoseconds.
+Very homogeneous across the whole sensor, including the readout chip.
+There is a dedicated talk from, uh, Mutasa here.
+Uh, and probably Archer is going to cover this, too.
+So there's a lot of details in the parallel talk, but, uh, the name of the game here is this will be the first large area precision timing detector.
+And we're doing quite well on understanding, uh, how to make a system level, uh,
+say detector now, very homogeneous and at the time performance that we need.
+So that's very good news. Uh, that's just one of them.
+Uh, then we're actually the large scale production.
+Uh, a lot of it is going to happen at Fermilab, various other production centers across the US.
+Uh, but we're getting ready things that are being prepared and the production will be imminent will start early next year.
+So everything it's going, uh, according to plan.
+And we know how to do this, and we expect this, uh, detector to be installed for the high luminosity LHC.
+So that's that's really great news. So timing and four dimensional.
+And if you extrapolate that to calorimeter is possibly five dimensional in the case of in this case solid
+state detectors is another way to do five dimensional colorimetric uh with dual readout that I mentioned too.
+But in this case we're making progress towards that.
+Uh, there's one, uh, thing that you may have noticed here, uh, if you pay attention, but it was pretty fast.
+So the pixels are pretty large, uh, as you see here.
+And if you actually were to zoom in in between them, there will be a gap there.
+It will be an inefficiency gap between them. And that's the way the look are fabricated.
+These are, uh, low gain avalanche detectors.
+Uh, so if you trust my work for it or go to art stock or one of the other timing dedicated talks, you will learn why that is the case.
+Uh, so there is a gap in between two channels, neighboring channels.
+And that's what kind of prompted the, uh, say now blue Sky R&D, which is currently being developed now for what we call ACO, get.
+So the previous one where DC couple where we terminate some uh, some of the electrodes to ground.
+Now we know how to we put pads in here to read.
+Each channel differently and what you can see in the plot in the right.
+And now instead of have if I church Portugal goes through you now get uh, the charge from many uh, neighboring channels, typically 2 or 3.
+And that avoids the problem of the dead space between channels.
+So you always get 100% feel factor. So we've solved the problem, um, by the boss.
+Indeed. The electrodes at, uh, different sizes. We can also now make pixels smaller.
+So there is a question of power dissipation, so on and so forth.
+But now we've solved that problem. We know how to do that 100% feel factor and possibly smaller pixels or uh, strips.
+Uh, so there is a lot of R&D towards that. These are sensors now have recorded with the AC technology and uh, different this is strips,
+these are pixels and they all share the characteristics that are 100% field factor.
+And they share signals when a particle goes in between the two channels.
+Uh, this is a performance. So you see here, uh, as you go across, you get signals from all the channels.
+And depending on your algorithm, you can have 100% efficiency if you just require one signal in any of the sensors,
+and then you start requiring more stuff, you start to see the shape of each channel individually.
+Uh, so that's kind of detail level in here. You see the money plot where you see that on red.
+This is the time resolution. We achieve the same performance as VCO gets to 35 picoseconds roughly.
+And here you see, uh, now because you can combine the signals now, not for free, but by design you get, uh, the position resolution.
+So you can get position resolution in green of about, uh, ten, uh, microns.
+There is some feature here as you go closer to, you know, the boundaries.
+There is a it's a feature there. But this can be improved and more R&D can be done towards getting to, you know, lower and lower resolutions.
+Uh, us uh, you can also improve the position resolution.
+You can also improve the time resolution. Uh, we know how to do that. So in here you can see as we this bias voltage.
+But the in here you need to focus on the colors.
+If you make thinner and thinner sensors what happens is that the fluctuations uh intrinsic to the sensor,
+it start to get smaller, your signal gets reduced. So there is a kind of trade off factor.
+But at the end of the day, if you go for thinner sensors in black, about 20, uh, micron thick,
+you get uh, ten resolution of 20 picoseconds, which is much better, uh, than the 35.
+It may not look at it, but it's very challenging to get to this levels. Uh, so we are doing well.
+We know how to do this. And there is an optimization to be made, but it's possible for this sensor to achieve time resolutions of 20 picoseconds.
+Okay. We are not, uh, a good thing about blue Sky or indeed is that you don't want to be kind of cornered into one possible technological solution.
+Uh, so. Or material in this case. So this one was just normal silicon.
+It's another type of technology that has some advantages, uh, or possible advantages that we looked at,
+uh, which is silicon carbide, uh, in this case a bit different.
+It's the same kind of concept for another. But there is, uh, there is a gain layer and there is an avalanche.
+But in this case, the colors are not, the electrons are the holes.
+Uh, and the material itself has some properties which can possibly be run at higher temperatures.
+So that's good for cooling purposes in, uh, you know, a large scale machine and, uh, possibly also radiation heart.
+So this is just the way you make them.
+Uh, in this case, there is some, uh, development at LBL and where they have done and other institutions as well,
+uh, where they've done a DC version of the yoga and AC in this new material.
+Uh, this is uh, TCD, which is a key word for, uh, fancy word for, you know,
+a scanning laser that can take measurements and, uh, and, and get your sensors characterize this is a picture of dcgan.
+This is the amplitude, uh, very uniform using this new process.
+So it's never been done in this type of material before.
+And this is the ACO get. And they also achieve in this case with lasers.
+So there is still to be a thing measured with uh charged particles.
+Uh, but if you do with the laser you, you get the time resolution very close or comparable to normal.
+L gets uh, at about, you know, similar to a MIP type particle.
+So that's very good news and also gets a time, uh, position resolution of about, uh, six microns.
+So all the benefits of L gets come by design code.
+It's similar with design, but now we have another type of material, silicon carbide, that can achieve this.
+Uh, okay. So now we know the sensor can do it, as I said.
+And we don't only need to focus on the sensor, we need to also do the readout.
+Uh, that's very important, very challenging, as you will learn in some of the, uh, parallel talks.
+So we're, uh, and there is already, uh, readout chips at science read time.
+Uh, but in this case, for example, is an ACL gap.
+I just talked about it, uh, and in this case we've developed a new type of A6.
+So typically what you do in an essay, you look at the leading edge of a pulse and you time stamp it and you say,
+okay, this when it arrived, that works. Well, uh, but you see pulses change it.
+So there is a time lag correction effect. It means that the timing is moving as the amplitude of the pulses change.
+Uh, one way to correct that. Uh, that has been known, which is, uh, constant friction discriminator.
+Uh, basically, you take the a constant fraction of the amplitude, the that resolve that problem in principle.
+But it's really hard to implement that in electronics, more so in, uh, you know, microelectronics on a chip.
+So to our knowledge, this is the first time that, uh, uh, this has been developed.
+So there is, uh, constant friction discriminator that promises to remove the time.
+Well, correction effect, uh, that has been tested in ACL, gets uh, is produced, uh, and uh, currently tested.
+So the latest iteration of that was just given back to us on June, uh, which is called f cfd b 1.1.
+There's several iterations to, you know, build this up. Uh, it was already tested.
+Uh, we charged particles and charged injection, uh, uh, dataset with five GB electrons.
+That's the set up over there. Uh, and then if you look at the time resolution with particles, you with the chip.
+So this is not only the sensor. So everything together.
+So this means that the the chip itself is not contributing a lot to the sensor because the sensor itself as I showed you, is about 35 picoseconds.
+And this is confirmed by the plot here that tells you the when you have just the charging direction, the electronics,
+you get a time resolution of ten picosecond, which is negligible when you are in in quadrature with the sensor itself.
+So we are doing quite well. The A6 is working well and you don't have to do anything, anything.
+Basically this I think what I wrote here is that you want to change the paradigm in the architecture to low power,
+and you don't have to do any corrections. Typically what you will do with the current sensor, you have to look at the amplitude, correct that,
+otherwise your time resolution will be 60 picoseconds instead of the 30 that you can get from the sensor if you don't apply the time.
+Well. Correction okay. So we're making progress also on R&D for the chips.
+Uh, and again so you now have the, the the analog part.
+You also need to work on the time to digital. There is uh, development is say got this slide from time on and lvl.
+So it is progress to try to uh go to smaller. No process 28 nanometer.
+This is kind of new for particle physics community. So we're getting to newer stuff and they're optimizing this chip for towards for the pixels.
+So the size and also the the time readout.
+So that's made a lot of progress towards high radiation environments from from this group.
+So we're also working on the last step which is time to digital conversion.
+And another way that you can think of is like now you have my sensor.
+I can have it in one process, let's say 65 nanometer process, and I have my signal in 28 nanometer.
+So what do I do? How do I put them together? And so on and so forth.
+So typically what we do is we, we flip, uh, the sensor and then we do bump.
+One thing is for the experts, it is kind of difficult to yield.
+It's hard. Uh, it's kind of annoying, uh, but it's, uh, and then we can also do it at the basically at the day level, very small.
+And what the industry does, they can do it. These are the wafer level at this big kind of chip level.
+And that's much, much more cost efficient. And that's what industry is going.
+So we should follow them. Uh, so thing Phil, the deposition over here is one of the techniques.
+So you have your now the blue is the readout chip, the part that takes a lot of cycles and developments.
+We typically understand sensors relatively well. So the idea will be to do uh not so thin.
+Uh, it's typically thin is like, you know, can be orders of hundreds of nanometers.
+In this case, it's microns, but still call it thin film.
+So you can deposit data on on the readout chip. And that will be your sensitive element.
+So there is, uh, the best of both worlds because you can, uh, optimize independent the readout chip and,
+uh, the sensors and then put them all together at the wafer level.
+So that's kind of unique going into it, like this big mass production and following the industry standard.
+Uh, another way to do that, actually,
+it's integrated directly the chip and the sensor into one thing without another process that's called, uh, what's, uh, map sensor.
+So the maps have, uh, integrated the electronics.
+It's a seamless process. It has everything integrated together in the same, uh, chip, uh, or sensor.
+It will say whichever way you want to call it is the same. The the electronics and the sensor are together.
+And in this case, uh, there is a few efforts, uh, around the world is from an iPhone something, uh, um, from Fermilab.
+We collaborate with them very closely.
+And here you can see in this plot that, uh, if you put three of these planes together with charged particles, uh, you start scanning the threshold.
+Would you run this, uh, so not very important, the x axis, but you can see that they get a resolution of about five microns.
+So that's kind of the regime in which we want to go. The down resolution needs to be improved.
+Uh, and that's something to be worked on.
+But at least the position and the integration of sensor and uh, A6, let's say it's all done in these sensors.
+As I mentioned,
+there's another effort from slack in which they're trying to do something very similar now in different process with a different company.
+So we will see the results of this new effort uh, soon, which we expect to be comparable.
+And, you know, typically it's very for all the other get results. To show before.
+There is a large number of groups, and the interaction between these groups and the different results have pushed the effort forward much faster.
+So it's really good to see that in maps also, which is a new technology.
+Awesome. Uh, we are also doing this and various groups are interested, so we expect this to move much faster in the future.
+And we are already getting the position resolution, you know, under control.
+And we will need to do some more work on the timing part. Uh, and this again, as I said, there are three.
+There is another one, which I think it is, I believe maybe it's like the first or, you know,
+more advanced for in this case it's a that's been at CERN the previous one with the Fermilab.
+Uh, I think this has more planes, the six planes.
+But again, the position resolution is very comparable about, uh, five micron, uh, in this test of the data, uh uh uh, CERN.
+Uh, so, so that's really great for maps.
+So we're moving towards, you know, integration and how we can scale up, uh, the readout chip, um, the, the sensor together.
+And, uh, this is, say, the newest thing that we're working on, this is like, at least for us, very blue sky.
+Uh, so the way that industry does it actually, uh, very similar, maybe.
+Or another way to do this thin film and maps.
+So, uh, we've done this is what we do, for example, for the CMS, uh, timing detector, the rock.
+And uh, look at this is what I just described, maps.
+And this is thin films, which is this idea of another way to do it at the wafer level is actually yet another way,
+which is where industry is going and which is cool. It's 3D integration.
+So this is a project that we're doing together.
+Uh, Fermilab slag, uh, Livermore, in which, uh, this is how actually, for example, the cameras, uh, or, you know, the high speed cameras are done.
+You have here your, uh, say camera sensor, your well, we will call sensor.
+It's probably a, uh, you know, uh, a camera in this case, you have the memory in the second level, uh, and the high speed signal processing.
+So the electronics and then you have also another more processing engine for the image.
+So all of that is put together. All of this chips may have been processed in different notes.
+So they could be done differently. And then you join them at the wafer level.
+So this is what's called 3D integration. And uh, we haven't uh, at least in the HP community, we haven't have results on this uh, yet until just now.
+So first was to can we do this at the wafer level.
+So typically we do smaller wafers and industry uses 12 inch wafer.
+So we're basically exploring do our census work in this new process.
+Can we go to the full 12 inch wafers. So we submitted this uh different sensors in this case ACL get uh, different,
+uh, you know, configurations and trying to go to small pixels and readout that.
+So we're making sensors first in this new node in this new process to try to, you know, catch up with the industry standard.
+And at the same time, we're also producing now a different node, 28 nanometer,
+which is advanced node for for us, uh, now a full HD readout with a leading edge.
+So first you know, easier things. So we do leading edge uh time stamping plus the PDC.
+So this we already have uh, a new results.
+I encourage you to go to Archer Stock. He will describe the new results on this.
+So there's a ready results on the time resolution of this new A6 in this 28 nanometer chip, uh, with the TDC.
+And there is another submission, uh, actually in the pipeline to, to keep moving this along.
+So things are going well, uh, before I move into more exotic stuff.
+Uh, I also, uh, I think Grace, who is here, uh, primarily displayed on Colorimeter.
+There's also blue sky R&D to not go five dimensional.
+We'd say solid state detectors, but also, uh, you know, more traditional calorimetry with, uh, scintillation light.
+But there is also a lot of work to be done there in trying to get the two components of the light,
+the Cherenkov and the, uh, you know, normal scintillation as well as different materials to make this cost effective.
+So there is, uh, two big thrusts trying to do this cost effective with, uh,
+glass development towards a homogeneous calorimeter, because that has some advantages over, you know, sampling color emitters.
+As we know. I don't want to get to the details. I encourage you again, go into Grace's talk for that.
+Uh, but there is new stuff. And in this case, you can see here in the edge of this plot, you can see there's Cherenkov etch,
+which is typically much faster, and then the normal scintillation light.
+And in this case you can see very nice signals for MIPs, which I believe suggest that you can do precision calorimetry.
+We did. And feel free to correct me, Grace, if I say something correctly.
+And then there is other thrust in which you can, uh, now do the dual readout.
+So again, separate the the shrink of light and the scintillation light as much as possible to make use of that.
+That will give you also good timing resolution and uh, energy resolution as well.
+So. Uh, then the idea in this case is try to do, uh, this with plastics,
+insulators and in some cases using emerging technologies like quantum dots to, you know, put this and, uh, you can separate the scintillation.
+And, uh, in this case, you, you red shift the scintillation spectrum and you also delay in time.
+So there is different ways to separate the the two components.
+And, uh, Grace will discuss that in her talk, I'm sure, uh, and this is kind of the newer stuff.
+So I said emerging technologies. I mentioned even quantum in there.
+I will go back to that. Uh, and the case quantum dots, uh, readout chips and perfect readout chips, um, uh, sensors,
+uh, and calorimetry, uh, with readout, uh, dual readout, uh, you know, techniques.
+Uh, but, uh, can we do something with front end machine learning?
+How is that all playing together? So in this case, there is different ways to do it.
+Uh, we are kind of used to CPUs or currently is like our footing in the ground now without the blue sky, uh, CPUs, GPUs and this more blue sky,
+I believe if you're going in this arrow and we've done it with FPGAs, uh, you know, typically the, uh,
+the high level trigger, uh, in CMS and Atlas, and now we're trying to see if we can do it with A6.
+So, uh, this is just a picture to illustrate the problem.
+You. And this is an upgrade of CMS, um, from CMS.
+I'm a bit biased, but it also makes a good case in this case are about 6 million, uh, readout channels.
+Uh, it's a 60 time increase in, uh, from the LHC calorimeter.
+So, and this kind of a picture that you get. So you have a lot of information.
+That's not what we actually see at the end of the day, because we need to reduce that, uh, basically because of bandwidth constraints.
+Can we do better? Can we do something now very close to the detector, which is typically an network in which we can recover this information and do
+something smarter to be able to see this picture and have all the information,
+uh, you know, more readily available to us. So, uh, the same idea here.
+This is some synergies for maps and is a slide that I borrowed from Catarina, in which you can, uh, maps this different sensor.
+But, uh, the same idea is can you make this very pixelated and then go to digital?
+So you basically read every single particle in the detector, uh, that's, you know, going bananas.
+And this idea of, you know, 5G tracking and recording everything.
+But then when you have to do something at the electronics level to be able to, uh, make this work.
+So there is already effort on this and, well, it's called, uh, AI on chip.
+So one example is smart chips. In this case, the idea is to reduce the data, uh, or compress the data to be able to, uh, you know, this the sensor,
+this is the basic and there is some compression to be able to reduce the data volume, uh, in a smart way.
+So there is an encoder, uh, put in Basic and this has not been done before.
+Uh, so you put some smartness in the A6 and you just want to make sure that it does what you told it to do.
+And that's hard for A6 because you have to reconfigure these things. And typically A6 don't want to be reconfigured.
+You put it there and there's just few parameters. So it's kind of challenging to do that.
+Uh, in this particular case, uh, you can use the smart data reduction at the edge using the pole shapes.
+Uh, the drift times. Uh, as you can see here, there is some kind of, uh, drift times, and you want to reduce low stuff that you don't care.
+And you can distinguish that from high speed. Start by looking at these variables.
+You can encode that in the in the chip. And then try to see if you can reduce that data and reduce it.
+Uh, actually there's a lot of progress on the actual chip implementation.
+If you trust, uh, this plot is telling you that, uh, basically they have made this work and they have the A6 under control.
+So we're going towards that.
+And there is actually, you know, chips being developed with this capability so far, nothing to be put in real experiments, but we have the capability.
+And uh, then now, as I mentioned before, ACL gates also have this technology, uh, which you can share the signal.
+So it's complex. So you can try to put that to some kind of machine learning algorithm.
+Can you do better than, you know, what you would do naively. And there is this paper.
+This has not been done in a chip. It's just the proof of principle.
+But they can see that they have a huge expected performance gain, about a factor of ten.
+If you do the smart just algorithm. And assuming that you can put this in an ethic,
+but you can see the potential where we we are getting with the standard algorithm 130 microns, the easiest one is 65.
+Uh, and then uh, you can actually get to ten times better on this.
+Can I get one more minute? Uh, go quickly.
+Uh, and uh, as I mentioned, I wanted to go back to really emerging technologies, which is, uh, one example, and I'm involved on this one.
+So you can ask me hard questions on this one. So it's trying to use quantum technology.
+In this case we're using superconducting nanowire detectors.
+What this does very quickly is that if a typically if a photon came through it will, uh, impinging here, that will create a resistance very quickly.
+And because it's a nonlinear process, the resistance, then this it starts to grow.
+It quenches completely. But if you're a smart, you just put a 50 on Terminator Terminator here and you can get a pose because the
+current now it's a huge increase in resistance and you get a pulse out very quickly.
+So the question is this has been done for quantum information science experiments and is very precise and very small.
+Uh, say pitch. So you could think maybe you can do a very good time resolution because the process is very fast and naive.
+Uh, naturally it comes in, you know, nano kind of pattern.
+So maybe you can do submicron trackers. That was the idea.
+So we did this, uh, we put it is a cryostat put in if you're familiar with it.
+As we facilitated this crazy.
+We put a cryostat in there for the first time, we demonstrated how charged particles interact with this superconducting nanowire photon, uh, detector.
+We didn't know if it's going to work as charged particles, so maybe it work or not.
+We have some ideas. Uh, it was an educated guess, and it went really well.
+Uh, so now we changed the name to instead of photon particle is the team.
+Uh, that made it happen. And what we actually see is. Yeah, we do see charged particles.
+Uh, the efficiency, if you pay attention, kind of plateaus at 60%.
+So it's still not 100%. But for being the first time, I call this a big success.
+So we're doing really well. There's actually a test beam ongoing, uh, next week in which we have an idea and try to improve this efficiency to 100%.
+So that's all I wanted to say. And then, uh, now we need if we want to go with this, you need now cryogenic A6 to make this work.
+So that will be really blue sky R&D for the future.
+Uh, I'll just skip this one, but we're working on cryogenic, uh, tDCS as well, so we have a whole plan.
+Uh, but I wanted to say that advanced R&D detector calls for extraordinary talent and long term commitment.
+So if you're interested, uh, I mean, I'm not the only one working on all of these things,
+but I'm sure my colleagues will agree that we need more people. So feel free to contact me if you want to get involved.
+We need you. Thank you. Thank you.
+We can take just a couple of questions, please. I, um, thanks for the the really nice talk.
+It's a lot of fun to hear about the latest in detector R&D.
+So about these quantum sensors and the idea of putting them into the particle detectors like the last ones.
+You. Me? Yes. Yeah. So I mean, this seems like a really great tool for a different application.
+Yeah. I mean how what is the benefit of one picosecond timing if you're introducing a cryogenic
+system into your tracker and all of the material that that introduces the scattering,
+the loss in overall efficiency, right. Yeah.
+Your efficiency is just measured with the few particles that make it through the cryogenic system without crazy scattering.
+Right? Like, it must have introduced insane scattering in the test beam.
+Uh, in this particular case, you actually, if you work out the details.
+Yeah, that's a good point. When you do the calculation in this particular cryostat, uh,
+because of the way these sensors are not the most difficult to operate in in terms of cryogenic, uh, requirement.
+It's a very thin aluminum, uh, basically cryostat.
+So it actually doesn't do a lot, but it's a fair point. And if you want to do a large scale system, then you have to do it.
+That actually what can what it turns out if you go back to this.
+So there is uh, which I didn't have time to go over, but uh, there is another way to so this runs a two Kelvin.
+So it's kind of challenging, but there is a lot of R&D. So we're maybe thinking about the future and it may not work at the end of the day.
+But there is way to now make the critical temperature of this superconductor go to 20 Kelvin.
+So that will be a game changer, in which case all the requirements for cryogenics will be significantly reduced.
+It's still very hard, but we might get you know, there's a big push from industry to build large cryogenic plants.
+So it's 40 years down the road, so I wouldn't discard it. But, uh, I agree that's, you know, we have better technology.
+Yeah. I mean, if you can use it for CO2 or, you know. Yeah, yeah, yeah.
+So this might be like, for example, a very small area,
+something a specific luminosity measurements, uh, something that needs to be very radiation hard.
+Uh, this could be, for example, a technology that we should not forget.
+So we're already doing it in the labs because, you know, there's other reasons why we're doing it.
+So we should keep that in mind. So that's what I decided to include it in the talk.
+But I'm not suggesting this should be the primary. That's why it comes last.
+Yeah. So yeah. We're good. Thank you. We can take one more question.
+And while we're doing that, I'll ask the next speaker to please come down and, uh, we'll set up for the next talk as we're taking the next question.
+All right. Thank you, Christopher, for this talk. I was about to ask a very similar question than than Kerry did, but I have a question as well.
+So the only follow up to what Kerry said, I think it would be extremely helpful.
+And this is something great even for just some undergrad project and so on.
+Do some back on the envelope calculations about like so we know safety measurement.
+That's a great example. Yeah. So or why the tracker yes or no.
+What is the amount that you introduce.
+These are simple things but they will be great additions to the set of as introduction um to why in the future this blue sky can can evolve in.
+Yeah. So we can definitely do that in this case multiple probably I don't they are very thin detectors.
+So it's actually less scattering that you will get from actually silicon detectors.
+So because they're like nanometer uh thickness. Otherwise the critical temperature gets too high.
+So you kind of make them thicker. So that part is worked out for the, I guess the aluminum, uh, barrier for the cryostat.
+Yeah. Yeah. So that part is like typically that's how cryostat to build. But you can make it smaller and try to reduce that.
+But I agree with you. My my my my backup question is that is is back to the um, constant fraction discrimination is one.
+So this is a very interesting one. One thing we've seen sort of um, thinking about the detector and so on,
+is that there is a lot of ideas about logic that we need to put in the chip, and at some point you run out of space.
+Uh huh. Right. And so the question is like how we balance what how we use space.
+So, uh, in terms of concept for discriminator,
+is that something that's sort of you can think you've seen can can be made small enough that indeed can be used on a pixel by pixel basis.
+Yeah, yeah. So we, I think, uh, what we're seeing is that you can if, if, if you design it in the right way,
+we're for example, seeing lower low power consumption on various small pitches.
+So I think it's quite doable.
+And especially as you know, the note, uh, or, you know, the industry is pushing the note pitch to smaller and smaller sizes.
+So what we're seeing that it's actually less challenging than what we expected or we're getting good results,
+you know, in terms of power consumption and how small we can make it.
+So it's looking great on that front. Yeah. That's if you get.
+And we'll welcome our next speaker of Microsoft Art from.
+You'll give us a deep dive on timing detection. Thank you. Can you hear me?
+Hear me in the back. Oh, good. Okay. Yes, I think, uh, no dark mode.
+Uh, but we're going to attempt to go, uh, into a deep dive into timing.
+This is quite a challenging brief. Again, for 25 minute talk.
+So much like Christian talk, there's a there's a lot of content that I'm going to try and cover.
+Uh, but the context that we've got from Simona is really nice talk yesterday in Christian's talk,
+I think make my job a little bit easier, but, um, let's dive in.
+Oh, are all my titles not rendered? Uh, that's a that's a bit of an issue.
+I'm not sure I work. Yeah.
+Give me a. Chance.
+See if I can fix it, you know. You can just go to.
+Yes. Is that way. So just go to ten year old.com.
+You guys want to see 123456. Did you guys. So this was.
+Can you get us for real time on your own account and then put an ATM?
+I said. Six eight.
+I'm here. Oh, does that work?
+Let's see if it works. Yep. That's it.
+There we go. This time the titles. Okay.
+All right. All right. Let's begin with the deep dive.
+Um, the context for why we need timing detectors, I think was was describing this stuff really well yesterday.
+So I won't go over the details of that again. But basically, it's the beam induced background and the hit occupancies that come from it.
+Uh, that are the existential reason why we need timing detectors at these, uh, collider experiments.
+Um, these are largely out of time with the muon interactions that we care about.
+So a sufficiently tight time cut around those interactions should take care of most of this bump and get us back down to the older,
+single percent level occupancies that we really need for these detectors that we have actually be able to do tracking important thing in them.
+Um, here's a here's a Maya concept just to put some, uh, projected numbers of what these, uh, precisions need to look like in these detectors.
+Um, you can see in the innermost layer, I should I should mention here, by the way,
+that the Bab has a harder time penetrating as we get deeper into the detector.
+Um, and so the most stringent requirements are going to be, uh, on the innermost layer.
+So the vertex detector in this Maya concept here, if I believe the Maya music concept, both share, uh,
+these parameters, you need really high spatial granularity and temporal granularity to keep that occupancy effective.
+Occupancy, I should say down to about single percent level.
+So 25 micron pixel pitch and three picosecond timing resolution, which is quite a tall order given where we are now.
+And you kind of got a sense of that from Christine's talk. Um, we are at one millimeter pictures at the moment.
+This is we have quite a way to go to get here.
+But with that, a little bit of context out of the way, um, let me go into the basics of how timing detectors work.
+So I'm using here as my baseline, the very standard hybrid detector model, which, uh, you also saw in Christine slides.
+This is now pretty mature over several decades in where we have a sensor and an Asec, a fabricated in a,
+in a process that's best suited for each of those that are then electrically connected by means of a,
+of a big, um, shoulder bump or an Indian bump that that actually helps us hand off the signal from the sensor to the chip.
+That's how that scheme tends to work. But within the context of a timing detector,
+there are a couple of really important features that we need from the signal that is delivered, uh, to our research.
+The first one is a relatively quick signal.
+So we need the right type to be very fast, since we usually look at the leading edge of the signal to find when this, uh, particle arrived.
+And we would like the amplitude of this to be high.
+Uh, for our basically for the readout chip to be able to have an easier time digitizing the signal.
+So the sensor needs to be reasonably high. Those are the two main features we need.
+Um, from this little cartoon.
+I should say I have links to I've pulled a lot of material, um, from recent talks, and this is supposed to be a bit of a crash course introduction.
+I've tried to take as much material from recent press and conferences as I could,
+and I highly encourage you to follow these links if you're interested in any particular topic,
+because there'll be a lot more detailed in the link tone. Um, so here this cartoon for an end on P diode is a simple conventional diode.
+Here you can maybe already get intuition for why a thinner detector would give you a quicker rise time.
+This is also accuracy just hinted in this earlier. Uh, or your slides.
+You just have an easier time connecting the charge. The thinner the sensor is, the quicker it will come to you.
+So that solves one problem. But you still have the issue of your signal to noise ratio.
+This is where low gain avalanche diodes step into the picture.
+Um, but it's a very simple concept. Now, uh, I think more than a decade into its development.
+So it's still relatively recent in the grand scheme of pixel detectors, but still sort of a young technology.
+Simple idea. Just by adding a little gain layer before the collecting electro for the electrons,
+you introduce a region where the field is so high that you get really dramatic charge amplification,
+so you can get away with having a really thin pixel that gets you your really fast race time, and you it.
+By using this charge amplification, you also end up getting a pretty decent Snr, so you get the best of both worlds.
+This is why, um, the L got kind of why I've cheekily put this is the standard.
+Even though this is the first generation thing, we're making this up.
+There is no standard here, but I think this is a pretty decent standard timing detector, uh, concept to pursue.
+Um, the, the detailed accuracy I mentioned in a slide about the field being contained within a single pixel.
+We'll expand about an a bit here, because it's relevant to ensure that the field and this pixel are fairly uniform, uh, which makes sure that your,
+your charges drift pretty quickly and that all the charges collected by your electrode,
+you have to make sure that the field is entirely contained within each pixel.
+This forces you to have some sort of an engineered solution to contain the field, uh, for each pixel within itself.
+Um, that's what leads into that area between the pixels. Now, in the current generation of the detectors, we have like one millimeter pixels.
+Again, this that area is not, um, a significant, uh, fill factor impact.
+However, if you wanted to then take this geometry and shrink it down to 25 microns, this would not work.
+This is obviously not going to work. Um, so we'll have to come up with something else, and I'll, I'll touch upon this at the end.
+You already saw some possible solutions in person talk, but that's basically how elegant that work.
+Now going to the second second half of how the fundamental detector works.
+You have you have an asset that takes the signal that's been handed off from the sensor and does a few critical things.
+Most implemented Asics will have these fundamental components, uh, different implementations of those components,
+possibly implemented in different nodes with different power requirements. But the scheme is usually the same.
+You will have some sort of an amplifier that takes a really, uh, feeble current,
+and it will turn it into a bit more of a sizable voltage signal that you can then use to discriminate,
+or maybe get a sense of when your signal arrived,
+how long it stayed above whatever threshold you specified, which you then go ahead and digitize in your time to digital converter,
+uh, which will tell you usually two numbers, uh, in digital format when the signal arrives.
+And how long is it about this threshold? That's usually all you need to be able to extract.
+Um, the processing timing information for particles that crosses detectors.
+So those are the two pieces that go into timing detectors.
+With those two in mind, I think we can get a pretty reasonable sense of what sets the limit on the resolution of the two factors,
+which is ultimately most relevant to these, um, uh, beyond collider detector concept parameters you can express.
+I mean, this is sort of a this isn't necessarily a binding equation.
+This is one way of expressing this as different ways of writing this down. But I think this is useful for our purposes here.
+There's the main contributions from the sensor will come from how uniform the signal
+pulse coming out of the sensor looks like both in its shape and its amplitude.
+And you can probably guess again, the thinner your sensor is, the more uniform it will be,
+because there's essentially less distance for the charged particle to interact with your detector.
+So there's less variation in the charges it can create.
+And there's also less difference in the time that those charges will take to diffuse up to the collecting electrode.
+It's always convenient to have a thinner sensor. And here in this I think I believe now they also pointed out to these results,
+these are very recent results I showed that you have as you get thinner,
+the so-called Landau term, this term that encapsulates the variation in the shape and the amplitude does get better as you get thinner.
+And as I mentioned earlier, thinner is better for rise time.
+And indeed, as you get better, the rise time gets significantly quicker, which is better for your jitter.
+Um, as another of course is handled by the gain an algorithm. If you have a reasonable gain, you'll be able to sort of optimize your return.
+Those are the two main components that come from the sensor.
+Then the remaining are a second system related time arc is a pretty important factor in timing detectors.
+Um, and this mainly comes from the fact that if you have a constant threshold that you're discriminating using your signal,
+the amplitude will decide when the incoming timestamp is recorded.
+If you don't account for this effect, this will smear your recorded resolution by several factors,
+so we can easily take it from a detector that was capable of 30 picoseconds out to 100.
+This is a fairly important, subtle effect that needs to be corrected, for it is fairly easy to correct for,
+though if you measure both the time of arrival and how long the signal stayed above the threshold,
+you can actually do a pretty simple calibration to correct for this. Um, and it is fairly cheap to implement this logic to implement this in logic.
+Usually this is how both the, um, the first generation time and detectors are doing it.
+Although you did hear about the concentration discriminator idea where you can actually just get, oh,
+get rid of this term by having a discriminator that's insensitive to the amplitude variations in the signal.
+That's another solution. Um, the other two terms are related to the system and the the chip.
+The TDC error is mainly just a consequence of the fact that you are discretizing a continuous thing.
+So the bin size that you use to discretize is going to set a natural jitter.
+That's what that term is. This is a function of your TDC design. And it's uh and it's bin size.
+The term from the clock is driven by mainly two sources of clock jitter.
+One of them is going to be how well you distribute your clock to all the pixels in your readout chip.
+And the other term is going to be, uh,
+the other component of that is going to come from how well your system does a distributing a clock to all the readout chips in your system.
+That's a much larger problem. If you have tens of thousands of chips running in the system.
+Um, both, of course. Very meaningful contributions to this error term.
+All of these systematics do have to be carefully controlled to make sure that you can
+actually have a timing detector that can get you the 30 picoseconds that you need,
+for instance, in the Maya, uh, detector concept. So that was a lot of information.
+Um, but with that in mind, we can now maybe talk about what the current generation of detectors look like.
+I think I'm okay on time for now. Maybe not. Actually.
+Um, okay, so the Atlas and CMS experiments are both introducing for the upgrade and gap timing components that are silicon.
+So it's silicon elegans that I just described. And readout chips.
+These are essentially the first demonstration of this concept of doing precision timing at high energy physics detectors.
+Um, and since they are the first generation in some sense,
+that the parameters of these detectors are a lot kinder than we require them to be at the muon collider.
+Um, this is a picture of the Atlas, uh, Atlas upgrade. And here's the CMS timing detector.
+I'll probably spend most of my time here again. I'm also a little biased cuz I'm also from CMS Boulder and mostly from this detector.
+Um, for CMS, actually it's going to be hermetic. At the HLC we also have a.
+Barrel component that won't talk about here too much. Since, um, this uses crystals, it's not relevant for the tracking layers.
+So what matters to us for this discussion is the end cap, which is also going to be silicon.
+Just like the Atlas detector, there's a lot of commonalities between them to use the same type of look at the same pixel pitch.
+And I'll get into the details of the readout chips and the old guards, uh, in the next few slides.
+But first, here's a more realistic picture of what this, uh, end cap detector would look like,
+which I just wanted to show to highlight the fact that even though these are the first generation detectors, we're not really going small.
+Uh, these are going to be fairly complicated things for a first time, trying to do this in a half detector,
+um, for the, uh, for the ETF here, the end cap for the CMS detector.
+This is going to be a two meter plus in, in in diameter, 14 meter squared, 8.5 million channels.
+That's a lot of synchronization to do for something that is going to give us like 35 picosecond resolution for track.
+So it's going to be a huge challenge, uh, to do this for the first time.
+Um, I think it's always nice to appreciate the actual scale of it to, um, then not the conceptual picture.
+But now let's go to the details of the sensor on the readout chip. First, let's talk about the sensor.
+The logo has been used for the E2 and likewise for the for the Atlas HDTV.
+The design goals for them are listed up here. That's basically what informs the choices that were made for these sensors.
+So we know that these are going to be exposed to a few factors, like two times ten to the 15 neutron equivalents.
+That number, by the way, is actually quite compatible with what I just showed yesterday.
+But what we need to be able to survive at the muon collider detector is like the Maya concept.
+So that is there's a nice that these targets are actually very compatible.
+Um, furthermore, for these sensors,
+we also have to make sure that we again the the resolution contribution from them stays below uh 30 to 50 picoseconds
+because we do need that 50 picosecond per hit in this two layer detector to get a 35 picosecond resolution per track.
+That largely sets the limit on what we have for these first generation detectors.
+I should say set the width of these to 50 microns, which is not as thin as it could be,
+but it's a safe limit here, balancing both radiation hardness and race time.
+Um, and having a gain layer that gets us a gain of about 10 to 30, which is appropriate for us, uh, for these detectors to survive the full ten year,
+three universe out of bounds that we need them to survive or have put here
+the degradation in the time resolution of these sensors versus bias voltage.
+As we irradiated these sensors, getting closer and closer to what we expected.
+Let's see, uh, irradiation is going to look like of course, I should say we have two different, uh, vendors that are going to make our guides,
+in particular, the elegance that will go into the parts of our detector that are closest to the IP,
+for the ones that will actually have the hardness requirements on the radiation hardness, uh,
+these have carbon core implants and they're going, okay, have carbon coal implants in their gain layers.
+This is to ensure that the gain doesn't degrade as quickly under radiation damage.
+If we hadn't done that, we wouldn't actually be able to increase the bias on these to the point where we could
+still get the kind of performance we need from them at the end of their lifetime.
+Um, they would actually die a very violent death.
+Um, and the reason they do that is because if you keep increasing the bias, at some point, the local field gets so strong that a charge,
+any charge deposited by a minimum minus protocol will actually create a fully conducting path through the pixel.
+And it will just it will kill the pixel literally burning a hole through the pixel. Um,
+so that that carbon core implantation actually is one of the important one of the many important lessons actually
+learned during the development of these first generation detectors about how to make these guides radiation hard,
+and certainly something that we will have to carry over into these, uh, muon timing layers.
+Um, now, in a few minutes, let me talk about what the projected improvement, uh, could look like for sensors as we go to Mallorca.
+Letters that perhaps won't dwell on this because I have too much time.
+I've put a selection of four ideas that in principle, could, you know, morph into what sensors for these 40 tracking layers may look like?
+Um, and you've seen some of them already in, in both NATO stock and pristine stock.
+Um, so I'll briefly talk about them. Franchise retail guides basically replace that engineer solution at the end of the pixels that try
+to stop your field within each pixel with a deeply basically a deep trench with isolating material.
+There's a lot narrower that lets you get a pretty high fill factor, even when you shrink the pixel down to like 25 micron pixel pitch.
+So that's a pretty viable solution to get down to the sort of pixel patches we need from you on collider detectors.
+That's good. Then you heard about maps. This the basic concept of monolithic pixels is adding the transistors.
+You need to do your actual processing right on the sensor itself,
+if you have to put them within a sufficiently insulated pocket so that you can
+actually get away with all the sensitive electronics working right on the silicon,
+if you can, you actually get a much more basically monolithic sensor out.
+But these have been used at the LHC already. But in the context of precision timing,
+it is fairly easy enough for us to add a gain layer to these old guides and now make them appropriate for precision timing.
+Um, you already heard about that, I did. So I'll move on to talk about 3D sensors.
+You heard about this also yesterday, where in principle,
+you can take your pixel away from its planar geometry and insert the electrodes into the bulk of the pixel.
+That lets you not need a gain layer, because now the charges don't have to travel a lot.
+Basically, they have to travel very little to get to the electrode, so you get a really quick release time.
+You're sacrificing now on the amount of charge that you're collecting, which you then have to compensate with the readout electronic.
+That's much more sensitive.
+But this is a pretty effective way of getting pretty small pixel pictures and actually having fields isolated in each pixel.
+If we were to use this for timing, I think we probably have to use these trench, uh,
+trench like geometries over the columnar geometries because you get much more uniform fields in them.
+That's a matter of personal opinion. Then finally talking about radiation hardness.
+There are specific materials being explored.
+Diamonds have been carved by particular examples that are designed specifically to be really radiation hard.
+So precision timing maybe isn't necessarily top of mind when designing these,
+but you can actually make them in geometries like 3D geometries or again, layers of them that can make them appropriate for precision timing too.
+But these really are this are basically designed for essentially each level of radiation.
+These may be quite good candidates for putting if we wanted to instrument the, um, the shielding nozzles, you know, perhaps you have layers of these,
+but more appropriate than having the standard elements or even some of the variations of the old guys that I discussed.
+For the remaining time, I'm going to talk about the Asics, the second half of, uh, what makes timing detectors.
+So this is the, uh, the CMS, uh, and carried out to be rock 16 by 16.
+Here is the layout. It has most of the basic components that I describe in my from my very simple schematic earlier.
+Except now at LHC experiments, you do have to have memory on board because you have to buffer the data that you've collected until you receive the,
+uh, you receive a trigger from the readout system that then allows the chip to chip off the data.
+So that does add additional complexity for these chips that in principle, you may not need I mean, colliders.
+And that would be both a saving of power and real estate.
+It's an interesting thing to keep in mind when we think about how this may carry over, uh, to the collider detectors.
+Again, the design of this chip, just as the design for the sensors, largely guided by the constraints we place on them.
+First one, of course, being the noise contribution needs to be again on the order of less than 40 picoseconds
+to make sure that the combined sensor plus readout only gets you about 50 picosecond.
+That's a first, though. But you can't do this with infinite power. You actually have to make sure that you can run and cool this detector.
+Um, and so for these first generation detectors with a pretty liberal cooling budget of one watt per chip,
+this is orders of magnitude higher than what you can get away with at your innermost tracking layers in the muon collider.
+This assumes liquid cooling. If you want it to do air cooling, you have to get a bit radical.
+Um, going to lower smaller nodes. I'm going to talk about that later.
+Go with the smaller nodes. Probably a better way to make your power consumption smaller,
+in which case you would actually get possibly factors of 100 improvement in the power consumption per centimeter squared.
+That may be a solution, uh, for how you can have these readout chips doing the same kind of complicated things they're doing.
+But at the moment, the lighter the radiation hardness requirements for these A6 are sort of hundred megawatt region,
+again, very compatible with the numbers that Simone were showing for what is needed at the muon collider.
+So really for the sensor and the readout chip, the radiation hardness requirements are very compatible between what we need in the
+innermost layers of the mill collider and what we already are designing for for the HL,
+let's say. Well, that is certainly at least good news.
+The development timeline of the readout chips, much like the, uh, the laggards, tend to take a long time.
+The El gets our ten plus years into their development is usually the same thing with A6.
+I think with A6 it's maybe a little bit more challenging because the sensor development I think can continue past the technology freeze out.
+That needs to happen for for readout chips since it's much more inflexible to try and adapt readout chips.
+But it's, I think, easier to modify and home the design of your silicon before.
+That's that's perhaps a caveat that I think I we should probably keep in mind the detectors for the that are so,
+so far ahead that these, these timelines may not actually work. We may have enough generic R&D that we have.
+We could have a really exciting accelerated timeline for for readout of development for me on us by that point.
+Um, and of course, once you have a final chip, it's not as if the chip is just going to work.
+It could take several years to actually make sure that the chip you have and the sensor you have actually behave in the way that you expect them to,
+especially if you have an incredibly dense tracking layer, uh, with, with an unprecedented pixel density, all of whom are doing precision timing.
+So we'll take a level of system level integration and testing that I think we are
+just beginning to understand as we work on these first generation detectors.
+I wouldn't be doing my job if I didn't tell you that, uh, these first generation detectors.
+I think we're going to do fine. Um, both. So this is the CMS timing, performance.
+Um, you also saw, like a more detailed map in Christine's talk and also the true for the Atlas detector.
+We're pretty confident we'll hit the 50 picosecond mark on these, uh, across the full lifetime.
+So when it comes to actually our confidence in being able to pull these detectors off, it was pretty good.
+I think we should be able to pull these detectors off. So that bodes well for, I think, future tracking 4D tracking at me on colliders.
+Which I think would be critical because if these don't work, I think we can forget about, um, timing in any future for later.
+And finally, I think I'm already. Over time, I'll use a couple of minutes to talk about what we could do with A6.
+But for me, on colliders, the biggest problem again here, if we go from, you know,
+these are once again one millimeter pixels, you have to go to 25 micron pixels.
+That's a dramatic, uh, increase in the density of your logic.
+I think you can only get away with that if you go to the smaller process.
+Now, this question was pointing out, um, you not only get a higher logic density when you do that,
+you also also get lower power density when you do that.
+So it might actually just be, uh, inevitable that we do that.
+Combining that, though, with radiation hardness is challenging.
+We really have to study how radiation or for instance, 28 nanometer, uh, devices really are in the face of a hundred microns or more.
+I'll speculate here at the end, a couple of ideas for what might work in this maybe is a bit provocative,
+because it's a solution for both the Isaac and the sensor.
+I'm claiming that the final solution for these 40 tracking layers may live at the intersection of these three technologies,
+where you've already heard about maps.
+This is a different presentation now, but same concept of you will have your some element of your front end sitting right on your sensor.
+I think the element of your front end that makes the most sense to sit right on your sensor is the analog front,
+and the part that's the most sensitive to signal integrity issues.
+And that usually does suffer the most from there being a giant solder ball between your readout and your sensor.
+So if you can get rid of that and have your analog readout right on top of the sensor, you will benefit from that.
+And we know that it isn't impossible to get maps to work for precision timing.
+Uh, once you add a gain layer. So you can actually basically make the same sort of planar sensors that we have with El guides,
+just with a little bit of logic on top, that seems like a good compromise. You shall have to deal with your other layers.
+You still have to deal with your digital signal processing. There we may use the 3D integration that was just mentioned.
+Again, this is the sort of industry standard way of stacking 3D ICS.
+We could use that.
+So again, doing away with these giant single connections, having a much more dense array of interconnects between layers of silicon,
+which would allow us to basically separate the analog front end from the noisier digital signal processing and have separate planes,
+will power and clock delivery. So clean power to your our front end and a clock distribution that's far superior to what we have.
+Um, you know, current planar sensors that of course all has to then be accommodated with the smaller pixel.
+Notice that allows you to actually make something that's 25 microns with all the logic you still need and stay with,
+you know, factors of 100 less than the sort of power draw we have.
+So probably somewhere at the intersection of those three things I think is where our future probably lies.
+But I think this is a bit of a personal opinion. Uh, disclaimer I should be there.
+And I think with that, I'll end it. That was an immense amount of information.
+So thank you for your attention. Great.
+Thank you very much. We have time for some questions. So more so as we improve the individual timing detectors.
+What's the progress on the jitter and other specs for distribution or large size detectors as
+as is that confidence increased confidence and being able to distribute the timing signals.
+That's a really excellent question. So for for the EPO, for the CMS and Atlas upgrades,
+we believe that the it's actually things like the clock jitter that comes for the whole signal
+is going to be within the acceptable mark for what we only need 50 picoseconds per head,
+right? Which is in principle a bit more lenient than you would need at the Mirror Collider.
+You would need better clock distribution in principle, if you're improving a resolution,
+and there is a talk by Rohith in the parallel that is actually going to talk about possible ideas for improving clock generation.
+Um, and I mean clock distribution and getting the jitter on that better.
+So for these, for this first generation of the factors, we do have that a lot control.
+But if for projecting out to these collider detectors with this much more dramatically dense network of pixels,
+we probably and also better resolution requirements, we probably do have to actually do better on the clock distribution, among other things.
+Um, power distributions are the big one. Clock and power distribution are both really big and both acceptable right now,
+but we would really have to improve them to actually get away with it at the middle.
+Collider. Very good. Thank you. Do we have a second question?
+Maybe I can ask a little bit regarding your last slide. Uh, so these are three somewhat challenging technical steps.
+Uh, can you comment on combining them? Oh, yeah.
+This is purely speculative. So adding game to maps I think is understood.
+Right. And people are already experimenting with it.
+Theory integration is like probably the most blue sky on the set of three blobs, because that something we're just playing with.
+If we have a process that works well, getting the 3D integration to work with maps,
+which are already fragile, I think it's going to be a pretty challenging step.
+Um, so I would say this is firmly in the blue sky category of what's possible for the future,
+but if it works, I think it's a very elegant solution to the problem. Um, 29 I mean, I think this this is actually being explored.
+Also, this is somewhat more established. Probably radiation hardness needs to be established with the 28 nanometer A6.
+But like people are exploring this for sure.
+I think the interplay between maps of 3D integration is probably where it's like the most blue sky projection I think I'm making here.
+Very good. Well thank you. Do we have, uh, another question? Great.
+Well, we'll close there. Thank you again.

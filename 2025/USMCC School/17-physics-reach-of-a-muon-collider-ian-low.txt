@@ -1,0 +1,774 @@
+# Physics Reach of a Muon Collider, Ian Low
+
+Yes. All right. It was good.
+Um, I know not everybody is in yet.
+I just want to say, um, we're going to send you guys a survey link at the end of a school.
+Um, we would really appreciate honest feedback. It's the first time we're doing this.
+So any constructive feedback, uh, you can give us, uh, positive or negative would be highly appreciated.
+So if you get when you get the link, not if you will, uh, when you get the link, please take time.
+It shouldn't take more than five, ten minutes old school. And we'll we'll announce it again.
+If you stay on this side of the room, it'll work better because it can.
+Okay. Okay. Perfect.
+That's it. All right. That's perfect. So we'll wait. Yeah, yeah, yeah.
+And then coming back? Probably around time. Yeah.
+You know. How?
+It all the. So I know.
+Oh. You know, I thought I was already the to plan things like I'm going to have.
+Yeah. Hi, everybody. Yeah.
+Okay. Welcome to the last talk of the school.
+Congratulations on making it this far. Um, you have one small announcement from the organizers.
+So we put together a survey asking for your feedback on this tool.
+So that way when we do something like this in the future, we can do it better.
+Um, I'll send an email pointing to it, um, out later tonight or tomorrow.
+Please take the time to fill it out. We'd really appreciate it.
+Um, we also started the school asking the question, why am you on Collider and saying, you know,
+each of us should come up with our own kind of elevator pitch for why we want, um, to work towards a new, um, collider.
+And so hopefully, after the end of this talk, um, you guys will be able to articulate those thoughts and opinions for, for yourself.
+Um, and so we want to come back to that kind of that message.
+Um, okay, let's kick it off with the last talk of the school.
+Um, we have in love from northwestern coming to tell us about the physics of why a muon collider?
+Why attentive muon collider. So thank you. So thank you.
+All right. Uh, good evening, everybody. I hope you all had, uh, good dinner.
+I, I realize that, uh, you know, uh, a lecture is not the easiest thing to to be given a lecture right after dinner.
+No, uh, but I also understand that, you know, this is, uh, like the last lecture of this.
+A very intense, uh, accelerator summer school. And and know when I received, uh, the invite, uh, to give a lecture here.
+I know my responses are. And I'm always excited to I'll give a talk about me on Collider.
+This is really like my, my, the, you know, uh, most, uh, you know, uh, favorite subject to talk about.
+Why? Because, uh, this is about our future.
+Okay. And, and moreover, you know, it is not just about future people like, well, I can call myself old fashioned like me.
+It's the the future young people like you guys sitting in the audience and and and and that's what's so exciting.
+Uh, and so just to, uh, give me some idea how many in the audience are, like, grad students.
+Okay. Post-docs. Good, very good.
+And any undergraduate. Oh, sizable.
+Oh. Hey, Myra. Nice to see you. Okay. Yeah.
+Well, we wrote a paper together, but we never met in person, so? So, like.
+Fantastic. So. So I'm very, very excited to see that.
+I know we have such a dynamic, uh, young participant, uh, in, in this, uh, uh, school.
+So, uh, uh, what I'm going to do in the next, uh, uh, you know, hour or so is really to give you my own pitch of why we want to go to, uh, ten TV.
+Okay. And as can we say that, you know, uh, in the end of day, you know, uh,
+I think everyone should come out with his own reason why, uh, we want to go to ten TV.
+Uh, but of course, that's after some think it. No. So. So, uh, uh, for me, uh, let me give the following caveat.
+You know, I'm going to give a somewhat, uh, unconventional pitch for future Collider in the following sense.
+That is, uh, you know, if you are looking for, uh, a reach for, I'd say, you know, if I want to search for some, uh, uh,
+hypothetical particle like, uh, Galeano, you know, what is a rich, uh, of the good in all we can do at, uh, Mayan Collider?
+I'm going to apologize first. Uh, that's not what I'm going to do here at all.
+Okay. Uh, instead, what I wanted to present, uh,
+tonight is to give you what I think a very strong case of why we should go to ten TV based on what we know and what we have right now instead of,
+you know, basing our, uh, you know, how many billion dollars on searching for some hypothetical particles which may or may not be there.
+Okay. In fact, I feel very strongly that given what we know of the Standard Model and what we don't know of the Standard model right now,
+there is a fantastically strong case to go to ten TV.
+Okay? And therefore I would not show any price. Or if you look for uh uh uh uh, stop and no, you know, cannot reach uh,
+are you going to if you search for Z Prime, you're going to uh, I'm just not going to show that at all.
+Okay. All right. Very good. All right. So, uh, why do we want to go to ten TV?
+And everybody knows it's a standard model. Uh, after the discovery, the Higgs is, uh, you've complete.
+And so this is the, you know, we can write, uh, pretty much, you know, summarize the whole Standard model, uh, Lagrangian on coffee math.
+Right. So the most obvious question is, you know, why ten TV?
+Okay, that's sort of the uh, uh, uh, biggest question that we are trying to understand, uh, right now.
+And so here, before I tell you why, let me give you a little bit of reminder, especially for the younger people in the audience that,
+you know, throughout the course of history, you've completion always fails to predict the completeness of the theory.
+Yeah. I'm trying to make to one important distinction here that you've completion is different from the completeness.
+Just because the theories you have complete doesn't imply the series is, uh, complete.
+Okay. And so, for example, quantum electrodynamics, which is a theory describing photons,
+the electron is EUV complete, meaning that in principle you can write down the QED.
+The conclusion is that it up to arbitrary high energy scale and with with a caveat.
+But if nobody asks that, you know, we don't have to talk about it.
+So no, QED is a theory about, uh, photons.
+The electron is you have complete. But physics did not stop at the QED.
+Okay because in addition to our nature, also has quarks and gluons, which is described by quantum chromodynamics.
+QCD and QCD is usually complete in every sense of the word.
+Unlike in CD, there is a star that the I.
+There's a caveat and I didn't want to go into, but QCD are in every sense of the word is you become fit again.
+Physics did not stop at QCD. Okay.
+Why? Because we have these, uh uh, in actually theory we have a W boson and Z boson.
+So set a model, you know, with one generation of fermion that electrons, you know,
+electron neutrino and say up and down quarks, you know, plus the Higgs.
+So and the W and Z boson that theory with one generation of Fermi's you've complete.
+And again, physics did not stop at just one generation of Fermi.
+We know they have three generations instead of a Fermi.
+And that's one of the biggest mysteries that we are facing today.
+Why three generations? Pretty much everything.
+Every process that we know of in nature is sufficient.
+Uh, as long as we have just one generation. So what are those two extra generations good for?
+We don't know. Okay, so this is the famous, uh, who order that question, right?
+So, you know, this is just due to, uh, a very quick reminder to to everybody whenever someone tells you that, uh, you know,
+a standard model with the Higgs boson SUV company, therefore, we shouldn't expect anything else, you know, don't believe anything that person says.
+Because he or she doesn't understand the history of physics well.
+Okay. All right. So I think TV, I'm going to structure my talk, uh, in the following way now.
+First, uh, I want to, uh uh uh, tell you that I know the kind of questions that,
+given our knowledge of the model right now, there are still many questions.
+Uh, we can't answer. Okay.
+So I'm going to talk about these questions that we can't answer given our present day knowledge.
+And then tell you a little bit, you know what?
+You know, we can learn by going to ten TV. And then after that, there are also predictions of cinema model that are not tested so far.
+Surprise, surprise, everybody talks about a standard model as if it's been verified.
+Uh, every piece of it. But that's just not true.
+They are very important predictions of standard model that just have not been tested.
+Even today. Okay.
+So therefore it's extremely important that we now we we stop pretending that Standard model is a test, a theory, and everything is done.
+Now we need a new collider to see, to test every single prediction of the standard model.
+All right. And then for the third part, I would argue that, you know, uh, go out going to ten TV is a very special number because, uh,
+I know every I hope everybody knows the standard model is a quantum field theory based on the symmetry group of S3 cross S2 to cross you one.
+Okay. And moreover, at the low energy that ask you to cross you, one is spontaneously broken.
+Right? So it's a spontaneously broken Yang-Mills theory for the, the, uh, send model.
+Uh, here I want to argue that, uh, by going to ten TV, we are entering a new regime,
+uh, the quantum field theory that has never been observed or studied before.
+This is like a new phase of matter that in the language of condensed matter, condensed matter conics, they like to talk about new phase of matter.
+Right. So in this science, you know, by going to ten TV, we will be observing a new, uh,
+regime or new phase of quantum field theory that we will not be able to observe at lower energies.
+Okay. So that's sort of the the game plan for the, uh, rest of the night.
+Uh, but before I go, um, any questions? Yes.
+Um, so you mentioned there were some pictures that haven't been. Yes, I will cover that.
+Yes. But.
+All right. At least one person is paying attention right now. Yeah.
+All right. Very good. So, anyway, feel free to send me anytime.
+All right. Okay. So questions unanswered. What are the questions that are not answer even after the discovery of Higgs?
+In fact, I was reminded by one such question no, ten years ago when I was reading my My Kids, a very nice children's book, I vrc.
+And in fact, this is a younger audience.
+You know, maybe in 20 years when you have kids, I think about getting, uh, uh, a children's book on the LHC, uh, and read it to your kids, you know.
+So. So because think about this, uh, 2025.
+So, you know, ten years ago, 2015, three years right after the Higgs discovery.
+Right? So I was very excited.
+You know, I was telling my kids you would discover this new particle if there is called the Higgs boson, blah, blah, blah, blah, blah.
+Okay, then. So he asked me one simple question for which I have no answer to.
+In fact, I still have no answer to today.
+Okay. So? So that was my then seven years old.
+So anybody want to give it a shot? What what what what a no.
+What could a seven year old have asked ten years ago about the Higgs boson that we still have no answer to?
+Try to think very simple. Think like a seven years old. Why?
+Why? What exist?
+Why does is okay? Very close, very close. Okay.
+Well, what? What do you ask? Is that what is made of? Uh.
+Okay. What is the Higgs made of? Does anybody know in this audience?
+Let's ask the professors, please.
+There are only four professors. What is the Higgs made of? I'll be the first to admit that we don't know what the Higgs is made of.
+Even. But this is a 13 years after the discovery of the Higgs.
+Okay. Again, everybody.
+A lot of people talk about standard model as if we are done.
+But we can't even answer such a simple question from a seven years old.
+What is the Higgs matter? All right. But a lot of us, uh, in this, uh, people in this audience have PhDs in physics or are pursuing PhD in physics.
+So we should ask the question in the most sophisticated way right now after taking, uh, you know, first year, uh,
+enm, you know, uh, and quantum mechanics, QFT, you know, let's try to ask this question in a more sophisticated way.
+So a physics PhD could rephrase the question in the following way.
+That is, what is the microscopic theory that gave rise to the Higgs boson and the potential like this.
+This is the famous Mexican potential that triggers electroweak symmetry breaking, right?
+It has a minus sign in front of quadratic term, and it has a quantum that with a simple lambda term.
+So this is an extremely simple potential. Okay.
+And so, uh, the question is, what is microscopic theory that give rise to the Higgs potential in the, uh, Higgs boson and these potential?
+And again, you know, I like to, you know, uh, talk to other people in my department and try to, you know,
+get a sense of, I know what what they are doing and what they think of what we are doing and so on.
+So, so, you know, but so in terms of condensed matter physics, you now, this is a kind of a question, uh,
+that our condensed matter colleagues are very used to asking and starting that is if I hand you some kind of,
+uh, potential and then ask, what is the microscopic theory that give rise to this potential?
+Uh, so this is still a little bit vague. Let me give you a very concrete example of what our condensed matter cortex like to study.
+Okay. Uh, the most viewed example, a beautiful example that the conventional superconductivity discovery in 1911.
+Okay, everybody know this. This is that, you know, once you lower the temperature below the critical temperature,
+you go into a superconducting phase and there is a machinery fact that the field enters to enter into it.
+And the role the conductivity drops to zero after, uh, when you go below the critical temperature.
+Okay. So, uh, the two famous physicists, uh, in London, uh,
+they come up with the effective or macroscopic theory in 1954 with this convention of superconductivity.
+So what they proposed is this very simple, uh, mighty potential that, you know, there is a, uh, scalar quantity, psi square and so forth.
+And the coefficient depends. Alpha and beta depend on the temperature.
+And it turns out that the the coefficient of the size squared term depends on temperature t minus uh t c.
+Therefore, when the temperature drop below the critical temperature, the quadratic term changes sign.
+Now you have a negative mass square. Okay, that's spontaneous symmetry breaking.
+When the temperature drop below a t c.
+Okay, so the Gizmo Landau is a very famous, uh, probably the most famous example of, uh, spontaneous symmetry breaking in the history of physics.
+Okay. And so, um, however, Gizmo Landau is only a macroscopic, all effective theory.
+So our condensed matter colleagues, they asked exactly the same question.
+You know, what is the microscopic origin of this principle and the potential?
+Where does it come from? Okay, so this question was answered by putting Cooper and Trefor in 1957.
+This is the famous BCS theory for super conductivity.
+So Pixar or what they, uh, provided the uh,
+is that a microscopic understanding that allows us to first interpret the scalar quantity size square as the number density of Cooper pair.
+And moreover, it allows us to calculate the coefficient of psi square and psi to the fourth in the potential.
+So this is what I mean by having a microscopic theory.
+Uh, for the genes.
+Landau potential, that is, you know, given this effective description, we have a microscopic understanding of what the psi square means,
+and we can calculate these alpha and beta from our first principle theory.
+Okay. So this is what the PCA theory does.
+And we do not have the corresponding microscopic theory for the Higgs boson.
+Period even today. And in fact, not in the next, uh, 5 to 10 years either.
+Okay. And moreover, we have not even measure the principal and the potential for the Higgs.
+We postulate that the Higgs potential has a negative quadratic, um, and the positive, uh, quadrature, but we have not measured it.
+Okay. And I don't think we'll measure it in the next, uh, five, uh, to ten years.
+I think we will make some progress.
+Okay, but we will not be able to say how the effective mechanism for electro symmetry breaking is precisely the conceptual and the potential.
+We do not know that yet. Okay.
+So the question can even be revelatory once again in terms of quantum criticality.
+Okay. And again, if you've taken the thermodynamics, do you know something about the phase diagram.
+So this is some kind of very roughly speaking some kind of phase diagram for electro symmetry breaking.
+And we have a Mexican I have potential n squared psi squared plus lambda phi to the fourth.
+Okay. And so the critical line lies along where m square is zero.
+And you know, on one side when when m square is positive, the Higgs doesn't have a web and there is no spontaneous symmetry breaking.
+But on the other side, when n square is negative, you know, the Higgs pick up a wave and there is spontaneous symmetry breaking.
+And in fact, moreover, RG realization group evolution tells us psi in most of the uh parameter space,
+the natural value for the Higgs bed is Planck m Planck.
+Okay. But however it's primarily what we measure is a Higgs is 125 GV.
+So we are sitting very close to this critical line. Okay.
+So question is why? Why are we sitting so close to the criticality of electro asymmetry?
+That's another way of asking the same question.
+What is the Higgs matter? Or what is the underlying theory given rise to the conceptual and our potential for the in actually symmetry?
+Sorry. Can you say more about. What?
+What are you talking about? That's the point, right?
+Like we just made it very quickly diverges as you get further away now.
+Right. Okay. Good. So so so here I glossed over a lot of theory here.
+So basically now when we talk about the phase diagram, uh, of matter, uh,
+the idea is there is some you know, all of these parameters are controlled by some underlying parameter.
+So these are the axes that I did not specify, just like, you know, in the London Kings.
+But potentially these alpha and beta can be calculated in some more fundamental theory.
+Okay. So in that case, you know, and when you compute quantum correction then you will see uh,
+in most of this region the A where for the Higgs is very quickly dominated by contribution coming from the Planck mass.
+That's what I mean. That is actually. Like mass. Like the best becomes right.
+Exactly right. Right, right. Okay if we add another one when the verb is plunk mass, that means the Higgs potential.
+The Higgs mass most naturally is also m plunk, but we measured the Higgs mass to be 1.5 gv.
+So we are sitting very close to this critical line, and we don't know why we are sitting so close to the critical line.
+So one possibility and which again, you know, uh, it's the exactly the BCS theory that is the critical line is selected dynamically.
+And this is the analogy of pKa theory for electron stream to breaking and goes by the name of Technicolor,
+which turned out to be strongly disfavored experimentally. Okay.
+So so so if you know, nature is very simple minded.
+We should have a BCS version. Uh, for the electro symmetry breaking and that PC version, uh, for an extra Sims break, it is called Technicolor.
+And it turns out that Technicolor is just strongly disfavor, uh, by our data.
+So it actually symmetry breaking is not conventional super activity.
+Okay? Yes. What is technical?
+Huh? Okay, technically, just saying that the Higgs doesn't exist.
+And what you see is that, uh, in in in place of Higgs, you should see a lot of resonances at around TV scale.
+Okay, that would play the role of the Higgs. And so in this sense, uh, the Higgs, uh, both, um,
+that we have in the Standard Model is like the most economical solution, uh, to trigger electroweak symmetry,
+because if it were a PC theory, you know, it would not just use one single Higgs,
+it would use lots of different resonances to trigger this electroweak symmetry.
+That's. Thank you. All right. And so the fact that, uh, we see just shakes and nothing else.
+The fact that Technicolor is ruled out is what prompted a very prominent, uh, theory says that the universe is not a piece of crappy matter.
+Meaning that the universe is not a simple rpcs, uh, a theory.
+Okay. And so in this sense, every day we don't observe any signs of new physics.
+The mystery deepens. That is why. Why are we sitting so close to the critical line of electro symmetry breaking?
+Okay. And in fact, uh, as I was talking to some of my can, this moto contacts, one of them once told me, hey, Ian, I have a microscopic theory for it.
+Actually, symmetry breaking from our condensed, very esteemed condensed matter theory context.
+So I ask him, okay, just tell me, do we have just one Higgs boson and nothing else?
+And that's when he shut up. Now, because, you know, if you are coming from that side of the PC side of thinking,
+you know, you always have lots of new stuff and that will trigger the rapture,
+extremism and the fact that at the Collider, we see just one single Higgs and nothing else is deeply mysterious.
+Okay, so in this sense, are we even claimed the electroweak symmetry breaking is the most exotic state of quantum criticality?
+Because we have not seen anything like this anywhere else in nature.
+Okay. All right. So then, you know, uh, uh, what kind?
+Attentive clarity. So it's a bit more, uh, in particular attentive, left some clarity, like a meal.
+Clarity would be a super Higgs factory. Meaning that throughout the lifetime, we could produce, like 10 million Higgs bosons.
+Okay. And this one could give us, uh, you know, just lots of Higgs boson to study the detailed structure.
+I don't know the simple minded question. What is a Higgs matter?
+Okay. And in fact, a by comparison, an ordinary Higgs factory produces only 1 million Higgs bosons.
+Okay. But, uh, ten TV, uh, lepton collider could actually produce, uh, 10 million Higgs bosons.
+And you can do even more, uh, interesting physics in addition to the Higgs.
+Okay. All right.
+So then there is a rich program to understand the microscopic nature of the Higgs.
+For example, you know, we can measure deviations off in the coupling structure of the 125 GV Higgs.
+And we can study rare and new decay channels of 125 GV.
+You know, when you have a new a rare decay channel. Then what you need is to produce lots of Higgs boson.
+Right? So that when you multiply by a small pension, you have the hope of seeing, uh, some of these rare decays.
+That's why, you know, it's so great to have 10 million Higgs bosons, uh, lying around.
+And we can also study, you know, whether they are, uh, partners.
+I've seen the model thought that, uh, that coupled significantly to a 125 GV Higgs and these kind of thinking again,
+followed from the more like, uh, uh, Technicolor OPCs, like, uh, kind of thinking that, you know,
+if, you know, the nature is not just a simple, uh, one Higgs and nothing else kind of, uh, theory,
+then the expectation is that there is always some kind of partners of the top quark then that we can look for.
+And of course, then. No, the other question, very simple minded question, is why is there only one?
+Why couldn't there be 2 or 3 so we could search for a new Higgs boson as well?
+So there is a very and now rich program to, uh, given the 10 million Higgs boson to to have a really, you know,
+very detailed and very global look of property of the Higgs at the ten TV, uh uh, uh, lepton collider.
+Uh, so that almost is, uh, a separate talk itself.
+All right. So I'm going to just to, to just give you the leave you with, uh,
+pretty much just these were so far so that I can talk about other aspects of the muon cloud,
+but feel free to ask me either afterwork or send an email to me.
+I'll be happy to to answer more detailed questions and so on and so forth.
+Okay. So again any questions? So. Yes.
+Uh, just a question. Um, I guess this is something that I'm wondering why.
+Could this be done? Like so specifically, can this program be done?
+Uh, for GTV also? Why is it specific?
+Typically tend to be in a boat or could be. Good, good.
+So so yeah. So in this uh, for this program the the the the important thing is to have, uh, as many Higgs boson as possible.
+So in this sense you can say maybe, uh, ten TV, three TV.
+You know, I it's no, not that it's a big difference, but the important thing is a luminosity.
+Yeah. It is for this specific, specific purpose.
+Yes. But there are other purposes that are for which is important.
+Recall retentive. Any other question. How much time I have.
+It's 8:00. Okay. Let's, uh, speed up. All right, so some other excellent empirical questions, then.
+Tomorrow cannot answer. And this is very well known dark matter, you know.
+So there is no candidate for dark matter within the Standard Model?
+No. Uh, so, uh, the that's the other thing that is great about, uh, being able to go to ten TV.
+Uh, uh, as far as searching for dark matter at the collider is concerned.
+Why is that? Because, uh, in principle, you know, whatever the center of mass energy for a, uh,
+collider and because of dark matter, has this property that, you know, it has to be produced in pairs.
+Okay, because that has to do with the fact that, you know, usually we assign that matter some kind of parity of parity,
+so that to make sure that is stable, that it doesn't decay to other particles.
+That's why if we search for dark matter at the collider, we need to produce them in pairs at the same time.
+So that means if I have a ten TV, uh, central mass energy, I should be able to produce two, five TV, five TV particles.
+So that's the rough idea, uh, to search for dark matter.
+Okay. And so people have done this study that, you know, uh, for the dark matter case for a long time, uh, a long, long time.
+Way before you guys, uh, there is this wimp scenario.
+How many people heard of wimp scenario? Okay, so pretty good number.
+Okay. So he's got weakly interacting massive particles.
+I used to be, I say, used to be the most popular scenario for dark matter.
+Meaning that you have, uh, a dark matter particle at around 100 GV to one TV with the interaction strength that is, uh,
+roughly the same as it actually, uh, it, uh, strength that happens to produce the right amount of, uh, density that we observe in the universe.
+Okay, that's a WIMP scenario. So, you know, in fact, you know,
+if you assume dark matter is thermal in the sense that if you participate in the thermal path in the expansion of universe,
+okay, it turns out the most natural target for, uh, the wind, uh, dark matter is, well, about one TV.
+Okay. So in this case, uh, in fact.
+Uh, of the some very simple scenario, you know, put these, uh, a mass of a most natural thermal WIMP, uh, mass around several TV.
+So that means if we want to pair produce these multi TV with, uh, dark matter particles, we need twice the amount of mass for our central mass energy.
+And that's why, uh, uh, uh, for this kind of, uh, dark matter search is very, very, uh, helpful to have the energy reach of going up to ten TV.
+Okay. So this is, uh, another example of trying to answer, uh, questions that we have.
+We are not able to answer today. That is no dark matter.
+And another preliminary study for the wimps, again, just to show the reach of, uh, uh, ten TV, 14 TV, uh uh, and six TV.
+What is the reach of these? Uh uh uh uh, muon collider versus the thermal target for the different,
+uh uh uh, representation or different, uh, symmetry property of the dark matter?
+Okay. Uh, I suspect and I will talk more about this tomorrow.
+So go to his talk and another, uh, slides on these, uh, reach for the dark matter.
+All right. So now, uh, given the time, let me move on to to the second part of the talk.
+That is, uh, there are still predictions in the standard model that have not been tested, uh, even today.
+Okay. And so, again, give me let me give you a very quick reminder.
+You know, this the Standard Model Higgs boson is a very special particle.
+Why is that? Because if you look at the company in the Standard Model, the Higgs two massive plus one is given by,
+uh, the metric square divided by that and also RMS square divided by that.
+Meaning that the coupling of the Higgs to the massive particle is given by the mass of the particle divided by the Higgs.
+And this is the same thing for the fermions.
+The coupling to fermion is given by the mass of a fermionic divided by the event and the coupling the self coupling of the Higgs.
+For example, the tri linear coupling and the quad coupling can also be written as the mass of the Higgs divided by the event.
+Okay, so this is one very special property about the Higgs boson in the Standard Model,
+that the coupling of the Higgs to a massive particle in the Standard Model can
+always be written in terms of the mass of the particle and the Higgs that.
+But then you asked him, what about the mass of these particles? So mass of these particles is a special case.
+So the coupling to the gluons and to the photons and the photon plus Z are however, you know,
+they are not defined by the mass of these particles because I know they involve massless particle.
+However, within a standard model we can calculate these coefficient very precisely.
+Okay. So the message I want to convey is that, uh, the special part with property about the Standard Model is that, uh, once the mass is known.
+Okay. We're not everything about the cinema. There is no free parameter at all that allows you to dial this this way, dial that, that way.
+So that means it's a very predictive model okay.
+And if you for a young student, I want to emphasize this over and over again,
+because I did not appreciate this fact until very later when I have been working on these other beyond the standard model of physics for a long time.
+Then it suddenly hit me that in all of these other models, okay,
+the coupling of the Higgs to all of these particles, they always have some free parameter.
+That's why, you know, when you look at the triad associates coming out of Iraq, it's always constrained in parameter space.
+Have you ever noticed that it's always constraining parameters?
+Why is that? Because there is always some free parameter for us to constrain.
+But this is not the case for the cinema is all or nothing.
+That is, you know, if you predict the coupling to be 2MW square over V, if you measure it to be different from two square over V.
+You know it's not in the model. It's ruled out right away.
+There is no wiggle room. Okay. So this is something that is very special and highly non-trivial for the Standard Model Higgs.
+Okay. And so therefore that means that we need to measure every single coupling of the Standard Model Higgs to the rest of the Standard Model.
+Okay. And because there is no wiggle room, that means once we measure one deviation, one tiny deviation, we can rule it out right away.
+Okay. And so we need to prioritize measuring couplings.
+I have yet to be established experimentally. And so far, you know, we have measured the third generation, uh, coupling and the WAC pretty well.
+And so we need to do better with the first and the second generation.
+Me and we are making progress. Okay, but we are not there yet.
+So a very simple example of what you know.
+There are predictions of the Standard model that have not been tested, that the Higgs cup into the first generation, like, uh, fermions.
+Okay. And muon Collider could offer some promise in direct measurement from the Higgs decay.
+And this just to give you some, um, benchmark number in terms of, uh, uh, this is so-called the cut off framework.
+Now, I don't want to explain what it is, but basically it's a measuring, uh, uh, the Kix coupling to the rest of our particle.
+And if the kappa is one, that's the standard model prediction.
+Okay. And so this is sort of the, the, um, the, the percentage that we can constrain on these different Kappas,
+especially even kappa to mu and kappa to Tau Kappa to charm.
+So you can see for yourself a comparison between ten TV Muon Collider and the high C or high number C plus a 250 GV uh,
+circular E plus E minus collide. Okay.
+So the ability of the muon collider to pursue these kind of precision, uh, measurements for the Higgs coupling is really fantastic.
+Again, this has a lot to do with the fact that we're producing so many Higgs bosons.
+Okay, so that's one example, uh, how we can use, uh, muon collider to measure these untested, uh, send the model predictions.
+And now, in addition to Yukawa, the extra two important class of Higgs couplings I have yet to be as a savage X-Men x, my Murray.
+The first one is the Higgs self coupling. This has to do with what I was telling you that we have not even measure the on potential you.
+Is because we have not measure the, uh, trade in a campaign, and we have not measured the quartet hex coupling.
+Okay. And this is something that is very difficult to measure.
+Uh, the arc, of course, our X-Men mechanics are very, very smart and very capable.
+So they are making progress.
+And in fact, uh, what I learned is that, you know, if our experimental colleagues make a projection saying that they can only do it to this,
+uh, amount, they always find a way to do much better than their projection.
+That's just, uh, the history's historic lessons.
+Okay. Uh, so. But nevertheless, this is, uh, everybody agrees is something very hard to measure at the arc.
+And also, a second class of coupling is still largely missing from the picture.
+Is a four point h-h v v coupling. Okay.
+This is a company involving to expose online to your bosom or to expose on to Zappos owners.
+And they come from part of the gauge kind of term for the Higgs boson.
+Okay. So in this sense this kind of four point coupling is a prediction of gauge invariance.
+And we have not tested this prediction of gauge invariance so far.
+Okay because gauge invariant predict very special values.
+Very specific value for these uh two uh four point coupling.
+All right. So and also uh uh, so how can we do a pursue these coupling at the, uh, say 25 Mile Collider?
+One example is to work, in fact, uh, at the 25 mile plateau.
+What we can do is we can now that both tried linear coupling and the quantum coupling at the same time,
+because they, uh, both participate in the so-called the double Higgs production at the ten DV, uh, um, muon collide.
+So these are the three diagrams contributing to the double Higgs production at the ten TV Muon Collider.
+This is the tri linear coupling I was telling you about. And this is the other, uh, aquatic w w uh, hopping that was I was telling you about.
+Okay. And so we can use one single process to measure both the linear and the quartic couplings at the ten TV.
+Uh, muon. Right. So this is just some example of, uh, uh, very preliminary studies, uh, about constraining these kind of,
+uh, uh, uh, tri linear and also the four point, uh, coupling as a ten TV, uh, muon collider.
+And so. What other things can we do?
+Okay. As attentive men cried here, uh, let me ask how many of students, uh uh uh uh, from the the LHC, either Alice of CMS.
+Okay. Go ahead. All right. No, no, no, I am asking no need.
+Because, uh uh uh, I want to invoke something that says this is a great achievement of our experimental context
+about our standard model measuring all the different Standard Model particles at the RC.
+Okay. So what is a horizontal axis here or other axis here.
+You see that we have measure the photon production w z production.
+Then we have the PA production. We have uh uh two uh production of two vector boson production or two gamma.
+We have single Higgs, we have a single Higgs plus jet jet.
+We have vector boson plus Higgs. Then as you go to this side, you see we started measuring t pa plus vector, borrowing t t bar plus Higgs.
+We even try to measure the triple, um production. Okay, so why do I want to show this plot?
+The reason I want to show this is just to show you this trend that, you know, as we start running more and more, uh, collecting more and more data.
+Okay. Now the days are very my theory agnostic way of pursuing my research is that you look for single production, you send a model particles.
+When you are done, you look for the production of Standard Model particle.
+Right? Then we are done. You look for I triple production of send number of particles.
+Right. Okay. Is a very theory agnostic way of running the searches.
+So the reason I want to tell you this is that, uh, I want you to start applying this mentality to the search of Higgs bosons.
+Have done searching for a single Higgs production. And we are just starting to look for Tableau Higgs Productions.
+And what is next thing to do? The triple Higgs production.
+If you follow this mentality and in fact they are, you know, very important, uh, information we can get by looking at a triple Higgs production.
+One example of this, uh, Higgs quartic coupling.
+Okay. That will contribute to the triple production of the Higgs. All right.
+And so this is not a place where having a ten TV muon collider could really shine.
+That is, uh. Uh, we actually have the energy to produce three Higgs bosons in the Standard Model at the ten TV, uh, muon collider.
+This is, again, something very, very hard to ever see because of the energy limitation.
+Okay. So another great thing to pursue.
+Uh, the ten TV machine, that is a, uh, for example, uh, a higher multiplicity of Standard Model particles, including the Higgs.
+Okay. And so.
+The other thing I wanted to single out that is a very important prediction of the model Higgs that we should be measuring it very precisely.
+Uh, has to do with, uh, again, this is a very important statement in the Standard Model.
+That and the why before we channel the arc, we really believe the Higgs boson exists.
+It has to do with, uh, so-called, uh uh uh, uh, vector boson scattering in the Standard Model, if you calculate this, uh, scattering of uh,
+w w boson, Z boson without the Higgs contribution, what you find is that the amplitude growth energy S and T are the standard, uh, variable.
+Okay. So if you calculate the w w scatter in the Standard Model with other Higgs contribution, you find the empty groves with energy.
+So that should tell you right away that something is wrong. The amplitude cannot grows indefinitely with energy.
+Right. Because amplitude is a probability amplitude.
+So I some point, you know, probability will become larger than one and unitarity will be violated.
+Okay. And the way, uh, the Standard Model curity problem is precisely to introduce a contribution coming from the Higgs model interchange.
+And this is one of the miracles in the Standard Model. That is, once you introduce a Higgs boson change in the W double scattering,
+you find that these energy go in terms in the amplitude is cancel exactly 100%.
+Okay. Meaning that this term here. That depends on S and T.
+Once you include the Higgs, you change that term. It becomes zero.
+And this order. So the cancellation is not 99% is not 99 99.99% is 100%.
+Okay. But if you look at these, uh uh uh uh uh, new contribution, you see that one entry into this cancellation mechanism?
+Is this a coupling with a single Higgs with two gauge bosons?
+Okay, so the reason I'm going through these details is that this suggests that if the
+captain of the single victim was to catch boys on TV from the cinema by just 0.1%,
+that was to go up the cancellation of the energy quantum.
+And unitarity would be violated. Okay.
+So that's why this is a very important to be able to measure the coupling of one single Higgs with two gauge bosons in the Standard Model.
+Because if we measure that, it deviates from standard model, even just 0.01%,
+then we know, you know, 30 has to be violated at some point in the standard model.
+Okay. So this is a, uh, I placed a very important, uh, value on, um, measuring this coupling very precisely.
+Okay. And this we can, in light of time, we can skip.
+And then here a very simple, uh, hand-waving argument, because I argue that we need to measure Higgs coupling very precisely.
+And you should ask me, how precise is precise? Is 1% good enough?
+Is 5% good enough? Is 0.1% good enough? So here's is a very nice to hang with an argument that is, you know, by accident in the standard model,
+the generic deviations are quadratic in one over M, which is the whatever mass of new physics is.
+Okay, this is an accident in the standard Model and for the theorists in the audience, basically, he says, it has to do with the following statement.
+If you take the standard model as an effective new theory, then you start adding higher dimensional operator to the Standard model.
+Okay. The upper bounds of the operator you can add are dimension six.
+There is only one single dimension five operator you can add.
+That's just an accident note in the standard model. So because of the fact that the most of the operator, we are adding a type six,
+that means that of the effect of these high dimension six operators I v square over m square instead of v over m.
+Okay. And so if you put it in the generic expectation that the massive scale of new physics one TV or higher,
+you find that the generic deviation in the a large company is 5% times, uh, whatever, you know, higher than one TV.
+So if you put the mass scale of a new feature, a one TV, the very hand-waving way of estimating the generic deviation is 5% or less.
+Okay. So that means to a stable, uh, established, credible deviation, you know, if you want to measure a 5% deviation.
+And usually we say we need five sigma. So that means roughly one sigma has to be 1%.
+Right. So that gives you some idea of how precise is precise.
+That is for all of these heat coupling measurements. That's why we always aim for some percent level precision.
+Okay. And so at the highest muon collider, you know, uh uh, again, this is an example of how,
+uh, to measure these, uh, single Higgs with two W's down to sub percent level.
+Okay. And these are some, uh, again, preliminary study that people have done at the ten TV Muon Collider.
+And what's interesting here is that, uh, again, for the, uh, students working at the sea,
+you are very used to, uh, dealing with a notion of a proton distribution function.
+An inclusive process because it's very hard to tag an exclusive channel.
+So it turns out that there is something like this, uh, occurring in the, uh, muon collider as well,
+because, uh, at the very high energies that this is the big surprise for me.
+The first time I learned about these very high energies, the muon colliders behave almost like a hadron collider,
+in the sense that we also need to introduce some notion of partons distribution function.
+Okay. Yeah. So these are again, some give you some idea of how well can we constrain these a couple in and just you probably not be able to see.
+But you know the vertical axis the unit is uh, 10 to -2.
+And for these horizontal axis the units 10 to -3.
+So indeed we are ending for the a percent and sub percent of a precision at the muon.
+Clyde. Right. And the W scattering as I mentioned, is very important.
+And so there is also a preliminary study on the uh, studying the uh, scattering at the muon Collider.
+And now, uh, last ten minutes,
+I want to talk to you about this new regime of quantum field theory that we would be seen attentive and in fact, only attentive, not lower.
+Okay. Why is that? Uh, just because I tend TV, cinema enters into what I call, uh, sort of, uh, uh, nearly massless, uh, non-abelian gauge theory.
+Why is that? Because, uh, you know, at a low energy, all the particles in the Standard Model behave like massive particles.
+But when you go to the end, the heaviest particle in the Standard Model top quark is about 170 GeV, right?
+But when you go to ten TV, even US 175 GeV is a very small mass compared to ten TV.
+That means, effectively, we can treat all of the standard Model of particle as if they are massless particles.
+At the TV level. So what's so special about being able to treat these particles as if they were massless?
+What's so special is like that in photon electron.
+Photon is massless. Okay. And because photon is mass, that means that you can emit a photon with very small energy.
+A very soft photon. In fact, the probability for a mate in a, uh, a very soft photon is infinite at the origin or in quantum field theory.
+But no, that aside, basically the probability for emitting a soft massless particle is enhanced.
+So that means when you go to 20 v energy, the probability for emit, emitting or radiate in lots of,
+uh cinema particles become enhanced because they effectively behave like massless particles.
+And the way to quantify and to quantify the probability of this emission of these multiple,
+uh, cinema particle is given by these so-called the lecture is through lack of law.
+That is it's a alpha2, which is a gauge coupling for the, uh,
+as you two divided by Python log square energy of m w energy is, uh, basically the center of mass energy of the collider.
+And W is, um, you know, mass scale. That's sort of, uh, the mass scale of, uh, particle in the cinema.
+So when the energy E goes to roughly ten TV, it turns out this whole double log factor of become order one.
+Okay. So that means that there is a one probability to emit multiple, uh, send amount of particles along the process.
+This is the enhance electro radiation region.
+And this is very similar to QCD in QD in the high energy regime where that is why we see that again as we go to higher energy,
+basically radius lots of, uh, mass a particle.
+So in this sense it's the same, but it's also very different. Why?
+Because, you know, QCD is confined.
+So the kind of particle is the color charge is confined and QD is, uh, an obedient Yang-Mills.
+Unlike in ratchet theory, it's a non-abelian gauge theory.
+So bovver the electroweak symmetry is different, but quickly because they actually color is not confined.
+Okay, so in this sense, the enhanced radiation coming from electro symmetry is very distinct from either QCD of QED because first is broken.
+Second, the electric charge is not confined and it's observable.
+So it's it would look very different from the radiation in QCD and QED.
+This is what I mean by a new phase of non-Abelian gauge theory that we would not be able to observe at lower energies,
+because you need this electro itsuka log to be out of one, and for that you need the center of mass energy to be at the ten DV scale.
+Okay. And so the fact that the rate enhanced in actual radiation has a lot of interesting phenomena,
+and one is what I already told you is that, you know, the muon effect,
+they become like a composite particle,
+because a very high energy muon has a probability of emitting a gamma or Z or a W o'clock, and so on and so forth.
+Is there a question? Yes. So I think this, like you were mentioning how like, um, the newer devices, uh.
+Uh, that is quite. Right for electrons.
+Protons, right? I understand, but in the case of electrons, wouldn't this be.
+Not like, I guess what we. Because we're in that like.
+Because I thought. Right? Massive.
+Right. In the first place. Right now we're kind of returning back to the.
+Electrons are. Yes. Why would that be something?
+We would want to look at. Not quite like.
+What we look at instead. Like I not even said model, but we kind of observe electrons like in in I guess the current regime.
+Right. We have encourage us. Right.
+Why is it important to study a regime? Oh, right.
+Okay, good. Right. So so so let me clarify. So that's why I use the word nearly massless.
+So. So that that's a very important distinction in that it's not exactly massless.
+That's why you know in terms of the collider signature, you know, this nearly massless, uh, origin is very different from the exact mass, this region.
+Okay. So. And that's just, uh. Uh, and in fact, it happens, uh, very often that, you know, the the myth goes to zero limit is not a smooth limit.
+That happened a lot of time. Okay. Yeah. Any other question?
+Yes. The color of electric is not.
+Yes. What would it be? Attractive to a new one.
+And between us all attracted to. Yeah, right.
+Okay, good. So. So when when we think of attraction and repulsion, we are used to thinking.
+It turns out that, uh, we have plus charge and x charge, same side charge, repel and opposite side.
+But for now, obedience theory.
+And now you have to give this notion, uh, of, uh, repulsion and attraction because we have more than just plus and minus.
+We like in the color we have red, green, blue.
+Right. So in electro you charge, we have to ask you to have three kind of charge.
+Right. So so you just have to give up the notion that, you know, there is a repulsion or attraction.
+Right? Right. Right is a force. Yes. Is a force.
+Yes. And this three. Yes. That's why there is a W and they are three to uh gauge bosons.
+Right. So yeah. Any other question.
+Yes. The third electronic color is, if we think of it in terms of charge.
+Well, there are three, uh, electrodes. There are three actually gauge bosons, right.
+W plus, W minus and Z. Right. Yeah.
+Yes. Yeah. Oh. Yes.
+Okay. Very good. And so, uh, here is, uh, a plot of showing that, you know,
+the probability for muon to emit all of these difference in amount of particle as a tentative.
+So we really should be thinking of these, uh uh uh, uh, using these apart from distribution function, uh, just like in the Hadron Collider.
+So that's really one very interesting feature of having an enhancer in actual radiation.
+And more importantly, uh, also at the energies of far above it actually scale, you know, uh, the proton distribution function there should,
+uh, follow, uh, the prediction of crank one, um, broken ask you to cross you one, because we are at the very high energy.
+So so it looks like the issue to cross you one is nearly unbroken.
+Okay. So that has important predictions in terms of these uh uh pardon sharing as well.
+And then, uh, there is also a process that is the analogy of deep nasty scattering, which probes the composite ness of the Higgs.
+Because, uh, let me remind you what is deep in in that we have, uh, you know, uh,
+and that down here coming in, uh, uh, uh, the very high energy and a collide with the proton.
+And this is how we learn about the inner structure of proton. And here we can do the same thing because we have the vector modum fusion.
+We have uh, uh, IMU emission coming in and somehow, you know, uh, uh, uh, interact with, uh,
+with, uh, uh, uh, Higgs and trying to use these to probe the inner structure of the Higgs.
+And there's been, uh, study on these kind of, uh, uh, uh, deep analysis scattering for the Higgs at the Attentive Muon Collider.
+And then, uh, the fact that there is, uh, electric potential sharing also gives rise to the concept of so-called a weak jet.
+So you guys all know about QCD, meaning that you have very energetic quark of very energetic, uh, a gluon.
+It was shower into multiple product of multiple gluons and hence the name J.
+Right. So now if I tell you there is an older one, radiation for it actually, uh, symmetry as well.
+That means if I have a Higgs boson, a tentative Higgs boson coming in,
+the Higgs should have a non-zero probability to shower into multiple electric particles in the final state.
+Okay. That's a notion of Hicks Jr. The same for w j if I have very energetic people.
+This is a study by by these, uh, people saying that if I have a transverse stop, it was on at the ten TV and this is the probability of,
+of seeing one to be in the final state to be in the final state or three W in the final state.
+Okay. Because this, these kind of enhanced in actual radiation are very energetic in actually particle
+with shower into multiple or electric particle in the final say just like QCD chain.
+So that's the notion of the weak jet, which I find very fascinating.
+And in fact, I this is the the example of Higgs jet that studied by Sterman and company.
+And one of the most interesting, uh, possibilities that I can think of is a neutrino jet.
+We are always, uh, told by our professors that neutrino is invisible in a collider.
+Therefore, it's missing energy. But what if a ten TV neutrino has a finite probability of showering into charged leptons?
+Then, you know, a very energetic neutrino coming in.
+And we see multiple leptons going now along the direction of neutrino.
+Hence the possibility of neutrinos, which I find very fascinating.
+Okay.
+And so, uh, this, uh, uh, uh, you know, just given the time very quickly, you know, so we are so used to thinking the broken face that we forget that,
+uh, the resolute restoration to the unbroken phase is by no means guarantee and should be tested.
+Uh, experiment again. You know, we take it for granted that the electric symmetry asked you to cross.
+You want is broken at, uh, low energy, and it's restore at the high energy.
+Again, that should not be taken for granted. That should be tested.
+Okay, so that's, uh, what they're going to give.
+We'll give you a small window into this possibility.
+All right, so that's, uh, not a more than an hour of your time.
+So let me very quickly summarize, you know, what is the case for ten TV?
+Uh, Collider. So I would say that, you know, standard model is our no rules theorem, noting that,
+you know, in this talk, as I said, I try, uh, to avoid any talks of hypothetical particles.
+Everything I talk about today is based on what we already know.
+Okay. So tomorrow is our no rule theorem.
+Go into TV. We have a very rich program in the Higgs physics looking at heavy farplane exotic Higgs microscopic nature of the Higgs.
+We can look we have a very interesting problem typos on physics.
+When we look at the top without the scattering, whether it's 100% new to rise by the Higgs boson.
+And these also could help help us answer the question, you know,
+what is the microscopic picture for the principle and the potential and the top physics, which I did not have time to talk too much about,
+although I did briefly mention that in a lot of these, uh, models that there is a color partners of a certain number of top that are heavy,
+that in principle we could look for and there is geophysics in a multi jet postage jet and so on and so forth.
+And in fact these jet physics could be very important when looking for these kind of a dark matter, uh, as a collider.
+And then there is a first of the new phenomena that we would not be able to see a lower energy.
+Such a weak jet neutrino. Jake. Restoration of CO2 cross U1, uh, etc.
+So I hope I convince you that there is a very rich program for TV.
+Uh, mean Collider and and really, you know, uh, I like to think that the high energy colliders, uh,
+microscopic microscope into the quantum fabric of space and time and attentive high energy collider would be the ultimate quantum microscope,
+allowing us to observe the tiniest building blocks of the universe.
+Okay, so I'll stop here. Thank you. All right.
+Thank you very much. I'm sure we have a lot of questions. I know we had some already, but.
+Hi. Uh, thank you for the talk. So in the unbroken phase, you said that we would expect the longitudinal components again to go back to the Higgs.
+Right? So, uh, would the yes or no?
+Yes or no? Okay. Would that affect the polarizations?
+Right. Right. So? So, yeah. So I didn't have time to make a more precise time.
+So a more precise timeline is that, of course, um, the in quantum theory, through theory, what we usually say is that the we have a Higgs doublet.
+Right. And the charge shakes are eaten, goes down that become non-zero component of the w and z.
+And so we are left with a neutral Higgs. Right. So the statement about restoration of actually cross U1 is the following to make it precise.
+That is the longitudinal component of the w z.
+The coupling to the rest of the model would become identical to the h 125 coupling to the rest of the Standard Model at high energies.
+And because if Asatru is restored, that means it does not distinguish which component of the Higgs it is,
+and therefore they will have identical properties. That's a more precise statement of issue to restoration.
+Okay. I mean, would we expect, like, more like changes in, like the spin correlations of processes involving.
+Uh, no, actually it would. Well,
+it would have to do with what do you need to do it take some ratio of some decay involving longitudinal component of the W versus the decay of the H.
+And you see that at high energies a ratio result one for example.
+Thank you. So so it's a bit more subtle than.
+Any more questions? Hi.
+So there is an idea, albeit preliminary, for producing and cooling muons in a way that it preserves the polarization of the beam.
+So I was just curious how, uh, if at all, having polarized beams might enhance the physics reach.
+Yes. Very good. In fact, uh, they are pro cross-sections.
+That depends on polarization of the muon. In fact, uh uh, I believe the Higgs production is single.
+Higgs production is very sensitive to the polarization of the muon, and having a polarized muon could actually enhance the production cross-section.
+So it is very useful. Yes. Thank you.
+Um, really compelling, uh, talk and much to get excited about.
+Certainly. Um, I was curious, uh, you mentioned very exciting the potential for a high energy neutrino to shower and,
+like, scatter into several different, um, particles.
+Um, you mentioned charge. I was curious about, like, what that might look like.
+Like, what could a neutrino possibly shower into and then, like, maybe what, like what other properties would.
+Right. And so, so good. Right. So so, uh, uh, one very, uh, simple example of neutrino in the center model.
+You look what are the, uh, three point coupling involving neutrino, a neutrino, a charged lepton, and the charged w?
+So if you have a very energy neutrino, in principle, it could shower into a charged lepton and charged up, for example, and the W could further decay.
+Right? That would be one simple example. You know, I have more of an absurd question.
+Uh, if you have, uh, so the the kind of semi massless bosons that are radiating from the muon beam,
+their radiation from the muon beam, you don't need to collide for them to be radiating.
+Right.
+So assuming that, uh, we could get rid of all background, which would be really high, uh, what are the chances of a W boson synchrotron light source?
+Oh, uh, that's, uh, very interesting thought, you know, and, and and.
+Uh, I have not thought about that, to be honest. And but that's okay.
+You know, uh, uh, I think that that's something that the give everybody in this room more food for thought.
+Uh, but I believe and my colleagues can, can, can correct me if I'm wrong,
+that we people are much more worried about the radiation from neutrino and than photon from strong together.
+You need to beam together w sure. Yeah. Beam radiate.
+Right. Well, rush of a lifetime at the W.
+I mean, even if you were to Lawrence boosted by a factor of 100 or 1000.
+It's going to decay. It's going to decay. Yes, it's going to decay.
+So you wouldn't get a large enough luminosity.
+And that's the thing you have to show it's still then you'd have to have a really close experiment, actually.
+Can I ask a question? Um, sure. Uh, can you go to the this dis picture you had at the end?
+So I wanted to ask a bit about this form factor. Uh, on the, the electroweak side.
+Let me actually. Which one?
+Tell me this one. Okay. Yeah. So on the left hand side, this is a classic device in which you have the lepton.
+Correct? Uh, with the photon exchange to to, uh, some hadronic target.
+And this is in the Deus kinematic regime.
+This is clearly factorize the ball because it's a lepton of current, an abelian exchange.
+Right. Uh, boson and a hadronic system. Right.
+On the right hand side, you're talking about an electroweak boson possibly carrying electroweak charges to the W,
+for example, has an electrical charge scattering off an electroweak system that a priori is not obviously gauge invariant.
+So what's the what does that form factor. But but gauge gauge invariance is broken in nature.
+To cross you one you still have to conserve electric charges.
+You still have to conserve electric charge for sure. Uh, but what why do you say the electric charge is not conserved?
+It depends on what's going on here. As in, right.
+This could be a neutrino and these could be charge leptons. So it depends on what's going.
+Now if it's a W this could be a neutrino.
+Let me put it a different way. Okay. Diagrammatic representations are gauge dependent okay.
+This particular diagrammatic representation in which you have a W with the charge scattering off of a Higgs, for example.
+Right. I can write this down in a perverse pathological gauge in which maybe that particular diagram doesn't exist.
+Right. And that means that f at least from this picture,
+it seems like f has a gauge dependent definition as oppose on the left hand side in which that is a gauge in very definition.
+So my question is what is the interpretation of F good?
+Uh, not. That's a fair question.
+And at this point, I don't think I know enough detail to give you a straight answer.
+So. But but maybe we can look up the paper by Andreas and see what he says.
+Yeah. But that's a good question.
+Yes. Yeah. Thanks. Uh, I have a question on electroweak jets.
+So my physical picture of this is you have a very high energy muon traveling, and it can radiate a Z, just as it can a photon,
+and keep a fair amount of its kinetic energy, and therefore do this in some sort of collimated manner like a normal jet.
+But we know the coupling between, uh, the z mu mu coupling.
+So my question is what sort of mechanism would have to be in place for the kinematics of an
+electroweak jet to be different from standard model prediction or the current data set that we have?
+From this. But but I should say I'm hesitating because, uh, only because of the current data.
+Say the energy regime is completely different. Yeah, yeah, but these are just couplings between these and muse.
+Correct. So it could be coupling potency, the muse. And they could be coupling between WS and charged leptons and so on and so forth.
+Yeah. But these are measured right now. These are measure. This is totally like this is like perturbative.
+You can calculate. Yes.
+So what would be what would you what sort of you know, maybe BSM theory would change the, you know the like this calculation from.
+Oh okay I see I see what you're saying. Good, good. So so, uh,
+what what I am trying to emphasize in this particular example is not that that the coupling is
+different from the center model is that even the the existing prediction coming from the center model,
+they are new phenomena that we have not observed before.
+So in this sense, it's a new prediction coming from the same set of couplings.
+So it's not like it's the same coupling that is causing these, uh,
+enhanced electro radiation of the well, which is really just coming from the center model itself.
+But it's a new phenomenon. That we have not seen before.
+And that's why it's worth looking for it. Okay, thanks.
+Thanks again. So maybe it's a three part question. Could you say a few words about the electroweak scalar on a b?
+Could we see it here? If not, what energy would it take?
+Oh, uh, well, a quick answer is no no no no.
+Okay. Not what I'm saying. No. Uh, that's a very good question.
+And I have not thought about that myself. And I'm not aware of anybody who has written a paper on that, but but, you know,
+uh, that that just means that, you know, there's so much room, you know, so.
+Yeah. So a quick explanation. You can get one of these electrodes forever.
+Just so people understand what I'm asking. Well, okay.
+It's a it's a simple non-perturbative process that, that, you know, uh, it's a particular kind of field.
+Field configuration is a solution, uh, to the quantum field theory that is now putative, that be a certain, uh, process in the cinema.
+Okay. Like, you know, in the Standard Model, you know, people, you say the barrier number is conserved, lepton number is conserved.
+Uh, in fact, these are actually B0 number.
+That, um, number, they are violated by this so-called spectrum process, but only the p minus L is conserved.
+And that's why it's important to think about these very long process, you know.
+Hi. Yes. Um, when you were talking about whimsy, you showed a plot with, like, this sort of kappa parameter.
+Yes. I've never seen that before. Can you explain sort of briefly, what that means?
+All right. Let's go back. The Cape Flats.
+Here. This one. Right. So, so basically the kappa W is the ratio of what we measure over the standard model expectation.
+Okay. So that's the coupling of a single Higgs to w w.
+That's kappa W. So when kappa W is constrained to be one that means we measure the h w w to be the standard model that okay.
+And so that's the same that they say Kappa Z is a single Higgs coupling to Z Z and so on, so forth.
+And Z gamma is a single pickup into z gam.
+And so these are the so the, the uh, the degree to which we can constrain these kappa couplings.
+Yeah, yeah. Okay.
+I think that's our last question of the evening and comment on this table.
+Yes. That last column in the first column compares pretty well.
+Yes. Do you want to address and say. Okay being on the line to.
+Recently replaced the two of GV, FCC. Well, I said, I guess so.
+Well, what do you want to say? Say carefully and say slowly.
+I mean, I was just I was just going to. I mean, I was staring at it and I was wondering, you know, how much does the 250 GB plus C minus machine add?
+Um, that's you need with respect to attend to even you, I'm quite sure.
+Uh, I think, uh, you don't have to convince me, but I'm not the one to convince, uh, I that's what you were asking me.
+Yeah, yeah. So then why do we need the verbal. Yeah.
+I mean, yeah, uh, you don't have to convince me, you know?
+So. But but but we all know that they are. Okay.
+All right, I'll. I'll stop here. I'll get myself into two.
+Yeah, yeah, yeah, yeah. So did you.
+Oh, I was just going to say I think we were talking about this at lunch.
+I think saying ten TV and Muon Collider and independent from LHC is kind of like,
+why would you not have LHC be the first column and then like, what could Attentive Muon Collider get on top?
+Because we kind of can think of HL 80 as a given. So I was curious in this table starting with LHC right.
+What does muon Collider get us kind of thing. But anyway I know it's the muon smashers guide, so.
+Right. But anyway. Yeah. Okay.
+All right. Yeah, I think there's a lot of, um, interesting ways one can present the comparisons between different colliders.
+And I'm sure if Michael Peskin would here we're here, he would have a reason for building an plus minus collider after 20 with me on Collider.
+So he said that was part of the reason.
+Yeah, yeah.
+I was going to say, uh, you know, in all fairness, right, there's something to be said about technical readiness of E plus or -250 GeV Higgs factory.
+So of course, we all aspire to build a ten TV, the muon Collider.
+It may take a while, and I think we all also excited to learn more about Higgs physics.
+So E plus or minus may be a faster way to get there.
+That's I think, uh, if there's data and let's not forget that, you know,
+you know, it's not a given in terms of technology that we know how to build it.
+So we need a lot of work still. And I think that's an important consideration.
+I. Also, I don't think all of physics can be summarized by some.
+And of course, there's a lot of other stuff going on. Yeah. Okay.
+All right. Thank you again for short talk.

@@ -1,0 +1,452 @@
+# Muon Cooling Experiments, Diktys Stratakis
+
+Okay, so this talk will be a little bit different than the talks.
+What you heard so far. Um, I will talk about cooling experiments.
+Um, but in reality, it's about one cooling experiment.
+Uh, and I will focus on the one what we did here at Fermilab, that Fermilab local, uh, which, uh,
+I think will be very, uh, in of interest of you because it has it has a relation to the main colliders as well.
+So, uh, let's first of all talk about, uh, ionization cooling.
+So there are three processes that are involved in analyzation cooling.
+One is good. Uh, and two are bad. Okay. And you have to tune those three together to make it work.
+So let me start, first of all, with a good, uh, process, which is, uh, the loss of, uh, muon energy because of ionization.
+So and for that, I know that Katsuya has talked a little bit about that yesterday.
+Uh, the key item is this diagram, what you see here when I plot the energy loss, uh, versus, uh, momentum.
+So there are three different regions here. Uh, so first of all, it's the expensive region.
+Uh, so this is at high energies. So above, uh, one, uh, momentum is higher than one, uh, GV per c.
+Uh, and this is expensive because if you operate in this regime, uh,
+the problem is when you need ultra strong focusing and this becomes very expensive, now there is another regime, uh, what I call unstable.
+And this is because here you have this rapid change of energy.
+And again, this is not good because different particles will see different energy.
+So it's very hard to design a cooling channel in this regime. And as I will show you also later in my talk, this is also bad for not cooling.
+You cannot do not cooling if you are in this regime. So you end up in this very narrow regime.
+And that's why are cooling channels are optimized somewhere between 200 to 300%.
+Now the next thing, the next process is struggling.
+Uh, and this is a bad process. Now everything is explained in this picture here.
+Now, due to the statistical nature of ionization energy loss, large fluctuations cannot cure.
+Uh, on the amount on energy, uh, deposited, uh, by the particle.
+Well, it pass one absorber. So you might start with this energy.
+You go from material and then you end up with this distribution of energy.
+And at the end you have lower energy than you had initially.
+And this effect, uh, which is a bad effect, becomes worse at higher energies where higher energies, the more struggling you have.
+The other bad process is scattering. Okay.
+This is also very bad. And what happens is when the beam goes through a material, uh, it basically is getting scattered by an average angle theta.
+But you see right here, now this scattering angle has a dependance of a thickness.
+Of course, you see the k parameter here, but also depends on the properties of a material.
+Okay. So you can tune this thing somehow. So you see here the radiation length.
+And also uh it has a dependance of energy for beam.
+You see here the momentum. Right. So here if you are at higher momentums you have less scattering, which is exactly the opposite of a struggling.
+So you see it's a nightmare okay. It's not unfortunately things are not working together.
+So you end up, uh, with this beautiful equation for the transverse cooling.
+So which shows you how the transverse admittance, uh, is getting, uh, cooled.
+And you can see that you have two different processes, two different terms, the good term, the cooling term and the bottom.
+Now you notice but the bottom depends on the scattering angle okay.
+The less scattering you have the better uh the more you cool.
+Also it depends on the focusing okay. The smaller the better function is, the better.
+Uh, the smaller this term is and therefore you less scattering you have.
+And also of course it depends on the properties of a material.
+So in other words, you can see that the transverse cooling depends on the material properties,
+but also depends on the lattice properties and the beam properties as well.
+So all these things have to work together for you in order to do the transverse cooling.
+Now keep in mind we have talked only about transverse cooling for not cooling.
+Things become a bit more complicated. Okay. So this is the formula that describes the transverse cooling.
+The sigma E is the momentum spreading and then the spread.
+So the smaller the momentum the energy spread is the smaller the midtum going to limit.
+And says. Now notice again that you have two terms.
+Uh, one good term, but depends of course, on this gradient here of energy loss and also the bad term, but depends on the on the struggling effect.
+But I described uh earlier. Now in order to cool the beam, uh you need to have a right sign.
+So metaphor, it means that the higher energy particles need to, uh, have um,
+they need to be decelerated in the low momentum and low moment particles need to be accelerated.
+And the only way to do that is you have to operate in this regime here.
+You cannot be in this region here. I think it becomes clear.
+So that's why, uh, all if you want to do cooling, you have to operate, uh, in this area, except except the final cooling.
+Where? There, uh, you don't care so much about internal cooling.
+And that's why if you read carefully the papers, you will see that when they do final cooling,
+they operate around 100 per c because they're gonna relax a little bit by focusing as well.
+Now, the problem is, of course, if you look at these curves here, uh, you will realize that the,
+uh, the, the, the X, uh, so this, this gradient here, uh, is not changing rapidly.
+Okay. It's very, very smooth change. Okay.
+So therefore, uh, you cannot really look eternally cool by being very well, but you have to play a trick in the trick.
+What you do is you arrange things so that you can separate the particles in position.
+Okay. So basically a higher momentum particle is going to move in a different x one.
+The low momentum particles. If you play this trick then you can enhance this term.
+And then if you arrange things in such a way that the high momentum particles will move through more material flow,
+less material when the low momentum once you can enhance, uh, this gradient and therefore you can cool the beam longitudinally.
+That's why we use wedges. That's why we talk about dispersion.
+When we talk about low we do not cooling because you want to play this trick and enhance this gradient.
+So of course, uh, we need, uh, cooling for the main collider.
+Uh, I'm passing this slide. Uh, I'm also passing this slide because we shows you the scheme, how we call the beam, uh, flow transition cooling.
+Just to emphasize that the channels are very, very long.
+We're talking about kilometer long channels. And of course, what we like to see is we like to see this thing here.
+You're going to see the transverse admittance transverse phase space to getting reduced.
+And we want to see the same thing, uh, for the null phase space.
+So initially uh, when before even me joining uh, uh, the muon collider,
+I thought back in 2008 the, the default scheme for cooling was this structure here.
+So they had rings. Okay. So the idea was, first of all, to start with a large ring, okay.
+And let the beam go around and around and around around and cool the beam.
+Then go to the next ring. But now has a little bit higher field okay.
+So therefore the beam building becomes smaller again.
+Go around around around cool. Then go to the next one, next one, next one, next one, next one and end up here in this very very small a ring.
+What you have is 1014 Tesla magnets. So on paper a very beautiful okay.
+You could do it. It's economic. You can use various cavities.
+You can reuse the magnets. Very nice. But but it's a problem how you can go from this ring to the other one or from this one to the other one.
+Okay. So a little bit later people realized, nah, this is not going to work.
+This is not the thing, but I want to see. So they moved to something else.
+They moved to this structure here, which we call the Guggenheim.
+Okay. So and this is an influence from the Guggenheim Museum in New York.
+So now you connect both rings and you can create a helix.
+Okay. You go this way. So therefore you don't have to worry about, uh, injection next actions a continuous thing okay.
+But in fact, this was so beautiful that when we published this paper, uh,
+in Physical Review, the editors took this picture and put it on the colored kaleidoscope.
+They had a special edition where they put some nice images from pictures.
+Uh, and in a special issue, I'm not sure if I do it still right now, but that was ten years ago.
+Uh, however, the one problem with this structure was at the end.
+Remember? When the field becomes very high, you need to have very small rings, right?
+The problem is, if you have very high fields, very small rings, you have to start very.
+But fringe feels okay. So they thought, okay, if I have Freshfields in the back, then the particle will not do really a circle,
+but it will start see the friends fields of nearby calls.
+It will not work. It will be a nightmare. So we realized. But yes, this looks pretty for a publication.
+But it's not the thing that you want to do at the end. So then we move to something else.
+So basically we worked on a lattice for this trade. So basically imagine if you take this Guggenheim and you stretch it okay.
+This is what you really do. So you have a linear channel.
+The problem is you don't reuse the elements of a beam pass one time, but at least you don't have to worry about many, many other defects.
+And then on so we published this. This became the baseline for cooling.
+And this is the one that the emcee is using right now as well as the default scheme.
+So now there has been two major efforts.
+So until 2015, let's go back. Uh, people were hammering us about ionization cooling.
+Okay. But it was no, really, uh, demonstrator demonstration of ionization cooling.
+Okay, so but always we're saying, uh, you know, Dick, this you did this very nice.
+But, hey, you know, what are the data will show us? You know, if it's, uh, you know, real life.
+Okay. You wanna see some data? So, uh, this thing has progressed and it has been done two different efforts, but basically showed cooling.
+And, of course, those two efforts had two completely different scopes.
+Okay. One was, uh, the Mice experiment, which was funded for that purpose.
+Okay. And they showed, uh, transverse cooling. It worked very well, very nice.
+Uh, but then here at Fermilab, we designed also one experiment, uh, specifically dedicated for G minus two,
+but indirectly for the muon collider, and were able actually to use the idea of cooling to enhance the beam, uh, for G minus two.
+And each of this topic could be a separate talk.
+Okay. So I decided for this meeting here, uh, to focus on this, uh, because there are many, many interesting elements with Immune Collider as well.
+Uh, and then, uh, another time we can talk about this experiment.
+So let me talk about the a G minus two experiment.
+First, uh, give you an introduction. So the idea of a G minus two was to use,
+we store a drink and basically bring a moon beam inside this ring and basically measure anomalous magnetic moment.
+Okay. Now, this experiment has been done at Brookhaven.
+Okay. But the purpose of the G minus two experiment was to improve uncertainty, okay, by a factor of four.
+In order to do that, you had to deliver ten over 14 muons in this ring.
+Okay. So that was the plan. And this way you could get 20 times more the statistics of a Brookhaven experiment okay.
+And then you could basically claim, uh, victory. It was a key time of experiment was to deliver the beam at momentum 3.1.
+Sure. Because this simplifies the analysis was very, very important to stay at 3.1 GeV.
+No more, no less. Now, when we wrote, uh, the technical design report, uh, back in 2014, before the experiment started,
+we thought, okay, will be done in 18 months, what was actually the best make 18 months.
+However, it took us five years.
+Okay. Just to let you know that things sometimes don't happen as we think on paper.
+Okay. However, it was successful. We got six runs.
+We had of course Covid between and some other things going on, but were not uh, against us but were against us.
+But when we made it, we actually passed the 20 times Brookhaven statistics.
+Okay. So this was this was a quite successful experiment that we in now here, I don't want to focus somewhat about the data of experiment,
+but I would like to focus more on how we delivered beam to the experiment, because this is also related to with me on Collider.
+And for that we had a facility called the Muon Campus.
+Okay. So what we do is we start with h of protons, like you want an immune collider compressed at 120 nanosecond, not two nanosecond, of course.
+So it's a little bit easier. But when you have a target, it will be somewhere here.
+And then you have a decline. So this line is about 200m long where basically the muons decay.
+And you, uh, what they pions decay and you, you create muons and then you have a ring that we call the delivering,
+not to be confused with, uh, with uh, with a G minus string.
+And the idea of this ring is to let the means to separate the protons so that you can only move a proton.
+So I will come back into this.
+And then once you remove the protons, you take the clean moon beam and you send it to the G minus the ring, which is right here.
+Okay. Uh, in the future, uh, actually very near.
+Future, we will use the same facility. Deliver beam to meet we.
+So this has been me on campus. From the top. Uh, and here I would like now to start describing the target.
+Okay, so we start the feature beam like the beam collider, and we hit this target.
+Now, the target looks like a soda can in real life.
+Okay. We use a material called, uh, Inconel. It's a nickel alloy, but you see here in blue, and then it's surrounded by beryllium.
+Okay, we'll use beryllium. It's a very robust material. And you want to protect the target.
+And this target also rotates. Okay. Slowly. So that to make sure that when the beam hits the target, the damage happens uniformly.
+Okay. That's very, very important. So on for beam hits the target.
+You generate the secondary beam. And then you have a uh a magnet uh lithium lens.
+But it's focusing the beam again. The parameters are much more relaxed about the main collider, but it's same concept.
+And then you have a column meter, but you see right here and the column meter has this thick layer.
+But you see, uh, I don't remember what material it is,
+but the idea is to remove the high momentum particles from the beam path, and then you have a dipole.
+This green thing is a dipole. And the purpose of a dipole is recall.
+But the g means to experiment once 3.1 of means right.
+So when you come out from the target you have this a mess here right.
+This is the means and this is the energy. So you have this long tail.
+By going through this bending magnet you select the beam okay.
+So now you see a nice peak at 3.1 GeV.
+Okay. Once you pass this magnet, you have a right momentum.
+And now you travel along the beam line to go to the ring. And this shows you, uh, the evolution of a beam so you can see with a black color.
+Of course, you see the total, uh, the total, uh, intensity of a beam.
+So this is the decay line, 250m. We had only one instrument.
+Okay, unfortunately, to get data and compare with a simulation.
+Uh, this was at the end of a line. You see this black box here?
+The the data agreed, actually, with, uh, with the predictions from the simulation, which is shown by the curves, which I was very happy to see that.
+But of course, unfortunately, I could not tell what particles I have. Okay.
+Because you measure an intensity, but it could be anything.
+Okay. So for what? I have to rely on simulation.
+And based on the simulation, we had, uh, pions and we showed you how battalions decay along the lines of the pions should drop.
+Okay. Then you have muons, which should be created.
+This is the green line, but it's some collimation going on.
+We know what's happening there. Uh, but didn't worry as much.
+And then also we have positrons. Okay. And of course we had a lot of protons.
+Okay. But was that was not wanted okay. Because these protons arrive in very minor string, then it will be, uh, very messy with electrons.
+Won't to worry so much because of signal radiation. They will there will be there will be gone.
+But the protons had to have to be removed.
+So therefore, before moving to the storage ring of G minus two, we have to go through with the labeling, which was our ring just before the ring.
+And the idea was here to circular the beam. And initially protons and muons overlap.
+Okay, don't ask me why the the profile has B shape because that could be a separate lecture.
+But there is a reason for that okay. So they separate.
+But what happens is because the protons are heavier they have higher evolution times okay than 1 million.
+So you basically do four revolutions okay around with delivering you you you create a spacing between the bunches.
+So you see uh, muons with red uh protons with blue 210 nanoseconds.
+And that's the right time to separate the beam. Now, why this is the right time.
+Because in order to remove a protons, what you really do is you have a kicker.
+So what you do is you have a magnetic field. So the beam is going around like this, right?
+So you apply a horizontal magnetic field, uh, at the right time.
+Uh, and then that extracts the beam vertically and sends its descendants away.
+That's the idea. But because, uh, our facility, uh, is not fancy enough, you have to wait.
+Because the erasing time of this kicker is around 180 nanoseconds.
+Okay, so you have to wait for four turns, do the 210 nanosecond separation, and then apply, uh, the kicker and then remove the protons.
+Okay. You have to do the right thing. Of course. Don't take out the muons. You want to take the protons.
+So that's why you do four turns. Again. You don't want to do so many terms either, because if you do so many turns the muons decay.
+Uh, and then of course G minus two will not be happy. So you have to be careful with this as well.
+All right, so then, uh, once you clean the muon beam, uh, then you take your moon beam, and then you have another kicker here somewhere here.
+And you extract the beam vertically again, the muon beam out of a delivering,
+and then you basically walk to the store I drink, so you go this way, okay.
+And this is the storage. And this is how you send the beam uh, to G minus two.
+And of course, later, uh, this line will be used for the, uh, for the to experiment.
+Now, at the end, uh, of again here. This picture here shows you sometimes how much the data, uh, can be different from the simulation.
+Okay. So now compare, uh, for focus on on the green line and, uh, on the green on the, on the green line and on the green square here.
+So the green, uh, square tells me how many millions I had at the end.
+Okay. So the means, whether arriving to g -2 or 3 times ten over five.
+Okay. Now parenthesis here, if you look at the demonstrator pathway, AMC has they talking about the same roughly number of means for the demonstrator.
+Okay. What I want to say here is that this number could be very good for us as well, even if you want to talk about demonstrators.
+But anyway I close the parentheses. So you have three times ten over five means predicted uh, measured.
+But in reality the simulation was more optimistic. Okay. You were expecting, uh, about almost six times ten over six.
+Ten over five. Okay. So there was about a 40% discrepancy.
+Okay. So that's something else you have to keep in mind.
+But sometimes what you see in the simulation is not necessarily exactly, uh, the same, uh, what you see in real life.
+And a factor of two in this particular case was not so bad according to my context, but some other people were very unhappy with that.
+So now this brings the motivation of a cooling. Now okay. So this now I start the interesting part.
+So what is now the problem. The good problem is that if you look at this histogram here you with blue you
+see what is the distribution of means that survive inside the storage ring.
+Okay. So you have means at 3.10 okay.
+But very narrow okay. So the momentum spread is point 1% okay.
+This is the means. But survive in the storage ring.
+So has a very narrow acceptance okay. The problem was about the beam but we delivered two G minus two.
+So just outside the ring has this red profile okay.
+So now you see what you have is you delivered basically a beam that is an order of magnitude more in momentum spread.
+So it's 1.21.2 versus point 12 okay.
+So when I said but this is a waste, you know, all this neon means by the outside the acceptance of a ring is wasted.
+Okay. Why we should waste this beam okay. And this is where the magic, uh, trick came up.
+Okay. Is why we don't use a wedge to cool the beam longitudinally so that we can put more miles, uh, within this range.
+Uh, so this was my idea. So we said we take the beam before it goes to the G minor, storing, uh, in a this.
+So we on a dispersive area. So in a dispersive are the particles are separated in momentum.
+Right. Uh, so we follow different paths and then further downstream we create a wedge.
+We put a wedge with the idea that low momentum particles will be unaffected.
+Okay. But the high momentum particles will go for more material than the one below momentum ones.
+And then if you tune this thing right at the end, everything will have the same momentum, which in our case was the 3.1.
+And this way we could basically, uh, help us to, to collect more data.
+So that was the principle. And then we thought, okay, where should we do it?
+Okay, where we should do this experiment. So we looked very carefully.
+This is the immune campus. Again. We thought if we do it here at the beginning, no it's not good because you have to deal with protons.
+You have to deal with pions. It will be very, very confusing if we do it in the delivering.
+Not really good because you have very high beta function. Okay. Remember for the cooling you need to have low beta functions.
+So we said okay here at the end, here at the end. But it was the sweet spot.
+So but it was a particular area just before the started drink.
+What was an order of dispersion. Okay. What you see here with green okay.
+Which is the thing that you want. And the beta functions luckily were very not very low okay.
+Because before the low ten ten meters okay. You don't want to go here okay.
+But but functions are 100m is crazy. But here they are very, very low okay, so this is this area.
+But I'm talking about about 12m. I have three dipoles already in place.
+You have magnets already in place. The only thing that you need to do is you need to buy a wedge and just stick it over there and you're done.
+That was my idea. What was the principle? Here, I show you a little bit more details about the data functions.
+Okay. So this is again this this thing. What you see here is just this this area here.
+Okay. So the wedge sits right here with solid lines.
+You see the better functions, the design better functions.
+So they look especially because they're the horizontal one.
+But you can't have it most. It's very low. It's about three meters which is great.
+But uh, we thought maybe we can do better.
+So we'll try it out a bit to play with your optics, because we have quadruples.
+And we're able also to load a little bit of a better function on the wedge location, which is shown by the dashed line.
+Same thing about the dispersion. We have already natural dispersion where horizontal plane.
+Uh, but if we play with optics we can even, uh, increase the dispersion of one of the wedges.
+So we did that to improve the cooling. Now this is the principle, uh, simulated.
+So, uh, this is big, which we assumed, remember, about the dispersion in the horizontal plane.
+So the wedge using the horizontal plane, the beam is going this way.
+The wedge is looking this way. So we really want to touch only the high momentum particles, okay.
+We don't want to slow down the beam because this could be a nightmare as well.
+So in this curve here you see the number of miles momentum with blue.
+You see what happens when you don't have a wedge. Okay. You are centered at 3.1 but you have this high momentum tail.
+If you start putting the wedge in. So if you look at the red uh, histogram, if you are right here, so you are near the bottom center.
+So you touch on the up a small fraction of a beam. You can see that the high momentum tail disappears.
+We don't do anything to the low momentum tail okay.
+However we increase the number near the mean, which is exactly what you want to do if you put the wedge even more along the beam path.
+So if you are right here. So if you follow the orange histogram, you will see.
+But again nothing happens. The below momentum tail.
+The high momentum tail shrinks shrinks a little bit more and then boom you have more particles along the mean.
+So that was the trick. At least in the simulation. It looked very nice.
+So I passed this now before, uh, looking at materials.
+The next question was, okay, what kind of materials should we use? All right.
+So I had to go exercise to look at materials.
+And what did we do? We did something that simple. We took the periodic table, printed it out.
+And then for each material, we we take a ratio between the energy loss, which is the good thing divided by the scattering term.
+Okay. So you if Vanjie loss term is very large in the scattering term,
+which basically is but ideation length is very low when this ratio is very high this means but your material is great right.
+So we looked at different materials here and we said okay well iron Q is about 30.
+Uh, you know, diamond is about 70.
+So diamond is better. Uh, if you go to lithium hydroxide or lithium, it's fantastic or brilliant.
+Okay. But we wanted to involve students in this experiment.
+And if we talk about lithium lithium hydride, beryllium was it became immediately a no no okay.
+We don't want to deal with it. We are afraid of this. But we found actually something else okay.
+We found but polyethylene. So plastic surprisingly is very good okay.
+And you can actually very cheap to give $200. Uh, almost $100.
+Yes. That was a price you could buy. Uh, wedge of plastic.
+Okay. Which was amazing. Another material that we liked is the so-called black diamond is a bond carbide.
+Okay. Boron carbide looked also very good. It was very heavy, very dense.
+And the reason why we like boron carbide not solid, because it has a high two.
+But remember we have also very limited space okay. So the more denser material is the smaller the wedge should be higher in terms of thickness.
+So therefore we like this idea of using a more dense material as well.
+So we picked two materials okay. We book we picked the plastic and boron carbide.
+Bone carbide was about 5000 was a bit more expensive. Um and then we developed a quick Monte Carlo code, uh, thanks to, uh, Mike cyphers,
+who helped us with that so we could quickly, uh, optimize that wedge, uh, for a quick Monte Carlo.
+We could quickly tune the wedge thickness, uh, uh, wedge angle and see, you know, which range is better.
+Okay. So we could make this color maps. So this is for plastic.
+Uh, and this, this number here tells you the game in millions.
+Okay, so the gain, of course, was crazy. We didn't never got these numbers, really, but at least could give you an indication.
+Okay, so what you can see is that if the angle is low is 100 degrees, uh, of a wedge, you basically get nothing, okay.
+And no changes with a thickness of a wedge.
+But if you are in a sweet spot around 160, uh, degrees, then with appropriate thickness, you are in this beautiful range.
+Or you can get the most, uh, means, uh, out of it.
+So right around thousands of simulations, we couldn't do it for beamline. We want.
+That's why we usually were using this mode. The color would be the same thing with a bottom carbide.
+Okay. Now, again, you see, with a bone carbide. Uh, the nice thing is.
+But you could get the optimum with far less thickness.
+And that was the thing. But we want that because we were limited. So next, once we designed our wedge, uh, the parameters, we order them.
+And then next thing was to think about how we should measure the things, how we should measure, uh, the the experiment.
+So the wedge was sitting before the drink, and we had two data points.
+One data point was of intensity of a moon beam after the wedge, but before it enters the drink.
+So we could measure the intensity of immune beam there. But that was just an intensity measurement.
+The critical measurement was using the calorimeter stop at G minus two,
+because after the beam is doing 1000 terms, because that number would really give you the flux.
+But the G minus two wand. And that's the number that you want to see to increase if this number increases.
+This means what the wedge is doing things for you.
+So we were using. So we're putting the wedge in the beam path.
+And we're looking at these two two data points. Uh and we're basically uh say optimizing uh, our, our lattice.
+This is some pictures of a experiment. So here you see, uh, the plastic wedge.
+Uh, here you see, uh, the boron carbide, uh, wedge.
+Uh, then we had to design a special device to bring the beam in the beam path, an actuator, uh, with submillimeter precision.
+But was very important because, remember, if is way too small and you want to be sure that you are at the point where you want to be.
+So, uh, here you see the plastic wedge on the actuator.
+We had to build a special housing, uh, to put the wedge in here.
+You see the, uh, image of a wedge. And, uh, here you see the actual housing of a wedge.
+I think the beam was going this way. And this is used for the accelerator.
+So the wedge was hitting somewhere here. Uh, and then also had to change, uh, some of our power supplies.
+Uh, in order to tune the magnets that we needed in order to get the desired, uh, focusing effects for the wedge.
+This another picture, uh, of our wedges. This is very our wedge we used, uh, this wedge was a trial wedge.
+Uh, we call it, uh, for some reason that we never really understood, uh, this wedge worked, uh, much more better than this one.
+It could be that the optics, uh, were a little bit different than when we actually thought, um, from the outside, of course.
+Uh, you. But you cannot see anything, really. But that's that's that was.
+But it was more which here one which you, uh.
+And this is the first, uh, data point, uh, that we took.
+We used the first the plastic wedge. And so what you see here is you see the relative wedge offset, okay.
+When when you are at zero offset, this means about the tip of a wedge touches the beam center.
+Okay. So if this w is very large it's about 15 -15.
+Which means that you are far away from the beam. You are somewhere here. You don't touch the beam.
+And if you look at this point, the intensity.
+So this is the intensity before the beam enters a drink, uh, is basically untouched.
+So that's why I use a scaling one. Uh, and same thing about the gain of a start means it's one.
+Okay. So I scale everything with these two data points, because both are when the wedge is far away from the beam.
+Now, as we go closer to the beam, as the wedge starts to touch the beam, you see two things happen.
+First of all, the intensity. The total intensity goes down.
+Okay. So this is again before we start a drink, but after a big wedge.
+So intensity goes down. But another beautiful thing happens.
+The start means increases okay. So here you see the cooling effect.
+You see more means within the acceptance.
+But you uh of a beam and bespeaks somewhere here.
+So around 5%. So when actually w is zero.
+So when half of a beam is covered by the wedge, that was optimal, after that things are going downhill.
+Okay. And my theory was that was because when you have a beam change as well.
+So in order to improve things further, you have to accelerate the beam before you go for the wedge.
+However, because whenever you have to do something like this, we had to take beam time for G minus two and G minus two was not happy with that.
+We said, okay, you know 5% is good enough for us. Please don't, uh, you know, mess up with a beam anymore.
+Stop, uh. Stop protesting. So we decided, okay, we don't want we'll leave it like this, okay?
+So we don't want to tune the beam more. Then we tried to do the same thing with boron carbide.
+Uh, here, you have a bit more time. Uh, and, uh, also, we collected more data, uh, and you can see.
+But again, the intensity goes down, as you can see here, but the stored means go up.
+Okay. And the peak again near the point. What a big wedge. It's touching the beam.
+And again, again things go go downhill. Uh, for.
+So this was, uh, again, another experiment with a different material that showed,
+uh, that showed, uh, velocity not counting and, uh, one slide before the end.
+Uh, this is just a simulation versus experiment comparison.
+So, uh, I had, uh, uh, had a few summer students who were helping me with it.
+We wanted we knew the data from the experiment, but we wanted to do the same thing with G for beam line.
+So we had we built a model of, uh, M five line of A on campus.
+So we we build a model of a, a drink, and then we built a model of a wedge.
+And we wanted to compare. And what was very interesting is about the agreement was actually quite impressive.
+We show exactly the same trend. Uh, in in simulation has been an awesome experiment which, which actually make us, uh, very happy.
+Uh, so okay. And then I would like to thank all to some people who were involved with this project I mentioned.
+You see also Ben Simmons, who was here on on Monday, uh, who uh, was supported by, by this program.
+But some other students as well. Uh, and we have also some very nice, uh, papers, uh, on this work.
+Uh, and, but it from my side. Thank you. Thank you.
+Yeah. Right up here. Okay. I'm going to go over here first and then I'll go.
+Um, I was just in minor. UW Madison and so on.
+Slide 17. Title production. You mentioned that culminated with, uh, removing high energy muons.
+Is there a reason why you would want to do that? If it's going through the absorber and like the absorber to reduce its energy?
+Anyways, you're talking about this device? Yes. So what you want to do is you want to take out the vinegar and get the particles,
+because you are worried that sparklers could destroy your instrumentation and in the end, the surrounding, uh, elements of accelerator as well.
+So in order to protect the components of accelerator, you want basically to remove those high momentum particles.
+What was the idea and was well, I mean, remember, but at this point you have also protons as well.
+You don't have only me on some pions. So that was the idea.
+Um. Thank you. Um. It's perfect. While we're on slide 17, I was curious.
+You mentioned that target has this soda can design and that you need to kind of, like, diffuse the, uh, impact or damage.
+Equally, is there a reason for the soda can design in that regard?
+Maybe. Maybe we should become clear in Bob. Start to talk about targets next thing.
+But, uh, I guess I don't know if there's something to try to answer.
+Yeah, sure. It was really, uh, to put it in target.
+Okay. So?
+So the beam cuts a cord through the target. It doesn't go through the center of the cylinder, so it cuts a cord through it, and then it rotates.
+And that helps dissipate. Dissipate the heat. It's an air cooled target.
+Um, and so it's really just done for that purpose. It's not the shape in particular.
+Thank you. Um, so I wanted to ask about, uh, the plot on slide 2929 where you have the cooling term and the scattering length,
+and you look at all these different materials, um, and, uh, the best there is lithium hydride.
+And I assume that that's part of the motivation for why we're looking at lithium hydride absorbers.
+Um, but then there's also talk for cooling using, um, liquid hydrogen.
+How does that compare to lithium hydride in the same way?
+Uh, I don't have the parameters here, but I think that's also should be high in the list here.
+Uh, so they use they use this. They use the same quality factor, basically the same principle.
+Okay. So that's you want basically to minimize scattering, maximize d dx.
+That's why do you think they're on over here.
+Oh okay. Okay. I'm hiding in the corner uh, in your, in your optimization skin.
+Yeah. Sort of the optimal parameters should, you know, expected 60% gain, I believe.
+And then. Yeah, experiment. It was 5%.
+So I was curious what the, uh. Where where is the gap?
+There is this, you know, the simulation fidelity. Is it, uh, just real life is hard.
+You know what? What made the gap from 60% to 5%?
+Oh, here you go. Okay, so not here, but, um, when you do the wedge, uh, shape and, uh, thickness.
+Scan rate. Oh, you're talking about this one here? Yeah.
+What? One has 60%. All right. So so this was a quick Monte Carlo.
+We don't have any apertures. We assume, uh, no muon decays.
+Uh, no collimation. Uh, the whatever comes, uh, whatever comes out of, uh, beamline goes directly to the storage ring.
+Um, completing the list in real life, uh, all the quadruples we use, uh, have a very narrow aperture, so you have some losses.
+Uh, and also, when the beam enters this, the storage ring itself is going through a very complicated process where you have actually the device,
+what they call the inflect or, uh, what? Basically the beam has to go through material.
+It has to go through very small regions where again, you have many, many losses.
+So all of these things, uh, played, played into this.
+So this dropped from 40% to 10% was not surprising to me.
+Yeah. In any way you validated it with the G4 beamline simulation.
+So yeah. You do have that. Yeah. Yeah. Basically when we did it, when I had more time and I had to have some help from students, we did.
+We did very well simulation. And then we found actually what's, what's going on because there we include everything.
+Hey. Uh, so on slide 2626, uh, is there any intuition for why the optimized beta is not symmetric?
+Well, initially, usually, yes. Initially the design lattice is symmetric, but it was like, do we know why the optimized one the like.
+Because almost all the beta function plot we've seen over the last few days after symmetry with the optimal dozen over here.
+Now the optimum was symmetric here. The what is some solid curve was what what the G minus two wanted.
+Right okay. But dotted line. Yeah yeah but no no no no not at all.
+It's a good solid line. The solid line uh is the design which is symmetric.
+So this is uh it's symmetric. Right.
+But when when we started to play with optics we didn't want to change anything on the left on the right.
+So we want to be very careful. But what we really wanted to do well we changed a few things.
+But oh and by the way, this never really worked in real life.
+But, uh, we, we wanted to adjust things, so maybe we can go to a little bit lower,
+better function, uh, in both planes and then of course, create this a symmetry.
+But this is not really what the G manage the experiment wanted. And perhaps this.
+Why why this thing isn't didn't work so well at the end. Okay.
+All right. I think with that let's thank our speaker again. Let's get up for another stretch break.

@@ -1,0 +1,579 @@
+# Muon Capture and Transport, David Neuffer
+
+If you guys don't know, Dave is really a superstar of the Muon Collider, like basically the adventure of, um, Collider.
+Um, fantastic physics. And so we're really lucky to have him here.
+Um, so, Dave, whenever you're ready. Okay. So this is half of this is, uh, yeah.
+Okay. Half of this is actually coming from summer school from 20 years ago.
+But, uh, but that's okay because physics hasn't changed since then.
+And, um, so I'm just going to go through some of the introduction and be on Collider stuff and,
+and then go to the more specific talk topic of what we call the front end.
+Uh, and again, this is somewhat inspired by this crazy idea that we should host the world's largest,
+highest energy particle collider, which means starting a muon collider research program.
+And and just go ahead and go ahead and doing it. That's during some of the history behind this is sort of let's see if I can do this.
+First thinking about, well, maybe you could smash muons together and make, uh, something new.
+It's, uh I mean, this is fair warning. This is difficult.
+Maybe not impossible. You have been warned.
+But actually, if you add more physics and I put in foil cooling, you can make it into something.
+But, uh, something a little more realistic. That actually looks a lot like the current scenarios.
+And in 1994, when Bob Palmer joined, we he he his goal was getting to high luminosity.
+And he added a lot of ideas to do that.
+Oops. Uh, it's hard to get on the one you want to be on.
+Let's see. So uh, and I think going on to developed by Marc Palmer in the In the Map program and of course, hundreds of collaborators.
+Hundreds isn't enough.
+Uh, we've now added the, uh, International Real and Collider collaboration, which has refined and improved the previous version.
+And your job is to refine and improve their version into something that will actually work or actually get built, which, uh, um, let's see what it is.
+Uh, I always go for it too easily anyway.
+Oops. And uh, let's see.
+So the and so my assignment was as a front end and what what's the front end is not quite clear,
+but, uh, I tend to think of it everything from here to the colliders front end, but, uh,
+but anyway, so the part I am sort of focused on is the part between the proton driver where we start
+trying to make a very intense proton bunch or bunches that could be also be explored.
+Uh, multi branch scenario if necessary. Uh, and, and make uh, as many pions as possible and decay and then uh, bunch and phase rotate them.
+I'm sorry. Uh, actually this part usually includes an initial cooling step, so I'll mention that anyway.
+And then hopefully cool. Um, again uh, as um, uh, as was pointed out yesterday, the cooling is a bit slower than I would like.
+We would like. So that's, that's, uh, improving. That is certainly one of our goals and that scene and then of course acceleration.
+And that's not as easy as it looks either. And then in the collisions.
+So this is sort of I'm just sort of put down some of the parameters here of, of what we want to get to, sort of.
+We're going to start with, uh, a large number of protons here.
+Uh, I, I'm giving away the homework answer, but it's five,
+ten to the 14 protons making a lots of muons and um, and then um, uh, pions and then making muons.
+And so this is, this is kind of a critical because any, any muon you don't have here isn't, isn't going to come back.
+Some of the other places you can recover previous losses.
+But whatever you get uh, whatever.
+But uh, if you can increase the amount coming out of here, hopefully you can get enough more going to the collider.
+And there actually is considerable room for improvement in this section.
+Uh, and this is just showing the muon collider layout.
+Um, uh, uh, as, uh,
+CERN has just come up with an interesting scenario where they essentially you reuse the existing CERN campus for most of the facility.
+And the only thing that goes outside the vicinity is the LHC, which is already built.
+And we'll just use that as our acceleration tunnel.
+If you do this scenario and Fermilab, we initially tried to come up with a scheme that puts everything on site, uh, uh, to get up to turn TV.
+Again, that's probably a little ambitious with current not knowing magnetic fields, although actually,
+if you may, uh, well, with current fields, if you extend the arcs out a bit, you probably can get there.
+Uh, otherwise you end up a couple TV short again with current fields.
+But of course the next versions will have higher fields.
+In an art tour in the front end is to take, uh, protons from the target.
+Uh, uh, again, we've sort of been thinking about ten GeV, the energy of the protons.
+Again, that can be very two and and and another job is trying to figure out what other options we could try.
+Uh, but any rate and, and just collect all the secondaries we can.
+And what comes out is mostly pions. Um, well, electrons and stuff like that too, but, uh, hadronic, mostly pions in a very broad energy range.
+And the idea of, of, uh, or capture from the target is to take as many of them as possible.
+And it turns out, because that in the end we want to have both mu plus m u minus, we'd like to get both of these and probably plus n pi minus.
+Um, we had other schemes where we had to have separate channels for, for the pluses or minus.
+And so, so we want to capture as much of the secondaries, uh, as possible.
+Uh, and again over as broad an energy range as possible.
+You know, this is at least more under, say, half of the GV.
+Uh, and we started thinking about using, uh, well, this scheme here is like the Fermilab scheme where we have a rotating target going into a,
+uh, lithium lens, which, um, which is pretty good, but only captures one sign.
+We've thought of using a magnetic core. And again, it's, uh, hard to get as many as we would like.
+And you don't actually get, uh, some as many as of what we end up as our scenario is using solenoids.
+And so the other problem, okay, we suppose we collect, uh, up to 500 MeV, half a GeV or so.
+What are we, uh, what are we going to do that to keep it?
+And, um, actually, Bob Palmer initially thought, well, let's, uh, well, let's, uh, capture them longitudinally.
+Uh, again, we've first have to worry about the magnetic fields like that's solved by the solenoid, but it's not easy.
+Uh, we want to capture longitudinally. So we want to start with this broad energy spread and rotate it to something with a slower energy.
+And so we use phi uh, z energy correlation to get a bunch with a, um, small energy spread.
+Problem with that is, uh, if you end, uh, trying to use conventional RF or even induction Linux,
+you end up with bunches that are at least ten meters long. And we and it didn't look like we had RF that could do that quickly enough.
+Uh. Uh, actually, this is back to the proton driver.
+I probably should've placed this on earlier, but this this is, uh, again.
+Uh, actually, Jeff will discuss this in more detail, but it's sort of taking a linac.
+Accumulated. It accumulated in, in, uh, an accumulator ring and then compressing it into an, uh, finite number of bunches.
+And map was doing this with four bunches. Uh, and the AMC.
+See, uh, they they're using two, but we don't know for sure what we'll really want to do.
+Um, uh, uh, at any rate, uh uh um uh, so right now, this is all linac plus absorbers.
+I'm just putting a, uh, point here, here that we don't really.
+We've had other scenarios that use rapid cycling synchrotron, the Jay Park RC us actually,
+in terms of, um, energy per bunch, really close to our muon collider parameters.
+Again, not the rep rate, but that otherwise could be done.
+Not quite the rep rate close. Uh.
+Yeah. We need to target again.
+It must accept a very large, um, not all of this being multi megawatts.
+Um, and without destroying the target or at least being able to renew the target.
+And here we've had options like using, uh, a graphite target, um, helium cooled, that sort of current technology baseline.
+But we've also thought of using say, a liquid metal jet or heavy metal, uh, and uh, target.
+And again, that's another job for us to think about and re optimize, particularly if we want, uh, go to four or even more megawatts.
+So I'm going to return to the solenoid lens idea.
+Our target is immersed in and high field solenoid.
+So what it'll do it'll trap particles into larger more orbits.
+If they normally if this is starting in the, uh the pions are produced in the target.
+They would then come out spiraling with forward momentum, which isn't changed very much by the, uh, solenoid,
+but with a longitudinal, um, and, uh, transverse imminence, which can be captured up to something like the uh, uh, the, uh, uh rate.
+Well, the this rate is this, uh, they, they get caught into a circular helical orbit where the radius is given by the transverse momentum,
+but divided by 0.3 divided by the b, uh, um, um, for right field and uh, magnetic rigidity divided by the solenoid field.
+So is 20 Tesla and uh, 7.5 uh centimeter radius.
+You can capture up to a transverse momentum of 225 GV MeV.
+Uh, uh, which is kind of what the kind of get out of the target, you sort of get some things,
+uh, up to the scale of the pion mass and transverse at them, maybe a bit and a bit further.
+Uh, so that's sort of the scale of what we want to capture.
+Again, there's a cost and, uh, and complexity optimization to be done.
+And, and the solenoid does have uh, the feature focus has both positives and negatives.
+So at least up to this point we still have positive and negative.
+And turns out they're relatively similar in number.
+Uh, last simulation showed them very close.
+I think other simulations of production from the target aren't quite as equal.
+Uh, any rate, we'll get plenty of both, we hope.
+Okay. Then the thought was to robotically, um, decrease the magnetic field over something smaller.
+That would then be something we could use as a transport further down field.
+Uh, actually, Jeff covered this yesterday.
+The idea is that as you go down field, the the, uh, the magnetic field times the radius orbit decrease, uh, squared is sort of constant.
+So if you go from 20 to 2, the the radius of the, uh,
+of the lawnmower orbits goes up to 12 centimeter and the transverse momentum goes down by a factor of three, a bit more than three in this case.
+And if you look at the outgoing beam, you sort of look at the almost beam size times the mass momentum and uh,
+divide by the mass, which then turns things into, um, normalized events.
+Typically, the normalized events coming out of the solenoid of the beam is 0.02m, and it'll be at least 15 meter radius and maybe 20.
+Uh, so that's the problem, but at least you can put it within, um, uh, along to Tesla Solenoid.
+That is uh, maybe. And it as it transports down pions to k the muon, you end up with more muons and um, um, uh,
+mostly muons after a couple of pion lifetimes, which would be again on the order of 50m or so.
+And again, it's a sort of a picture of how the that long solenoid looks.
+This is not really to scale this. The transverse size is bigger than the longitudinal.
+This is to scale closely. And uh again the exact numbers of the sizes.
+But the the field that you're looking at is roughly the same 22 going to down to roughly two Tesla.
+Um, and again that probably should be three. But that's another question.
+So I put in a few homework problems. Uh, sort of half of them are sort of numerology and trying to understand what we're trying to remember.
+What, uh, what, uh, how to transfer number of protons and energy into into power and how to how to, uh, think about what happens when,
+when, uh, when you, uh, produce, uh, how much of the energy of the proton you can maybe get into pions and then think about,
+uh, this focusing going down from 26 to, well, I change the numbers around a bit to give slightly different numbers,
+but, uh, what happens to the beam size and, and the, uh, as one goes through this normally adiabatic transfer?
+Uh, and then for a here's something, uh, once you're in the two Tesla solenoid and you want to know what's a beta transfer function is, uh,
+what we're focusing for effect of radio focusing from the solenoid is given by this, um,
+and the well, the beta function you can get from, uh, from, uh, the lecture Vladimir gave yesterday.
+And then, then look at how, how big the beam would be.
+Again, I chose a 300 if you muon for a reason.
+Uh, so anyway, we start. Uh, so this is going through the Captcha problem.
+Oops. What was this? Oh, I went the wrong way. Uh, okay.
+So this is again looking at the beam, uh, in a simulation coming off the target.
+Just off the target, uh, on this, uh, old simulation, the pions are black and muons are blue.
+And you start with a one meter long, uh, scale bunch, 3 to 1.
+Uh, yeah. Whatever. I think it was arm's one nanosecond at this point, but I'd have to look up in detail.
+And as it drifts down and this is this one for this simulation, we went out to 100m.
+You get this long bunch, uh, with, uh, but with the position energy correlation.
+And the tricky thing is how do I decelerate the high energy ones and accelerate the lower energy ones?
+Uh, very long. Ah. Uh, in this case, I needed, like, a ten megahertz RF bucket to try to do it with a single frequency RF.
+Uh, and we were puzzling over that.
+And Bob was saying, is there a way to do that with higher frequency things?
+And we sort of thought about, well, he sort of said, well, suppose we start with, uh, uh,
+we'll try to keep the beam, bunch the beam, but try to keep the spacing of the beam,
+uh, correlated with energy as you go down, try to keep this kind of, uh, uh, position energy, which actually is um, well, I'll get to that next part.
+And so the thought here is, uh, okay, let's take a couple of reference particles and put them through RF,
+uh uh uh, where the, uh, spacing between these two reference particles.
+Well, I chose a ten times of rated, uh, Lambda RF.
+And that's my goal is to go from something like, um, um, that turns out this would be about 300MHz RF uh, and, and and then try to match to getting,
+uh, what turns out we wanted to match to a 1.5m wavelength at the end, uh, which would be 200MHz in this example.
+So any rate, for the thought we could do that, that's fine. We let it drift and and they'll bunch and, uh, that sort of good.
+But we still don't have the big energy spread.
+Um, again, the thought was to do it adiabatic and that sort of works, but and doesn't really have to be as adiabatic as we initially thought.
+And the, the problem here was what to do to get some up in energy.
+So I thought of a scheme that said, okay, we'll put some special phasing of the RF, uh,
+into each into sort of, uh, into this, um, bucket to bucket, uh, from bucket to bucket and see what happens.
+Uh, and it turns out when I tried it, it didn't work, did it?
+Worked like a miracle. Uh, the reason why it did.
+Well, then. And it looked great, but there was one problem.
+I had miscalculated the phase shifts from what I thought they should be.
+It puts in a light left on a factor two pi. So I thought, oh, great, I put it in the right phase shift.
+So work better. It didn't work at all. Um uh, yeah.
+And uh, so then I said, wait a minute.
+Fortunately, uh, this is a rule. Don't race old versions.
+I go back to the original version. It did work. Tried to figure out why it worked.
+Turns out it didn't need the phasing at all. You just had to match the wavelengths.
+And so I left out the phase shift correction work better.
+And and and and, uh, so that's how sort of that worked.
+Uh, so anyway, so the idea is, okay, we've got this drift.
+It turns out, well, we show this here is I actually in this case, I think it's kinetic energy versus uh, versus uh, uh, length along the bunch.
+But my macro bunch, uh uh, but uh, it, the evenly spaced points aren't in momentum.
+They're in and one over beta, one over the velocity.
+So the idea is that, uh, the one over velocity, um, uh,
+the length times the difference in the velocities that one over inverse velocities gives you the RF wavelength,
+um, and that this is a formula if you're just to.
+First punch in the second bunch, or zero and one if you're using C plus.
+Plus. Um. Uh, and anyway.
+So my first game is I just change the RF to the decelerate.
+High energy bunches and accelerate low energy bunches.
+And for that initial example,
+this uh meant changing the wavelengths between reference particle one and a reference particle 10 to 10.1 times the RF wavelength.
+And what happens then is after, um, I'm actually was about nine meters,
+you ended up with a string of bunches of different energy spread, um, uh, all lined up with the same energy.
+Uh, that worked pretty good.
+And, uh, and actually, we might go back to that particular scheme, but as we developed this, we, uh, instead, uh, did this more gradually over,
+over, uh, well, initially about 30m and, uh, changing the frequency along the channel a bit to maintain phasing.
+And so. So this is sort of the details.
+I'm kind of repeating this partly because it's, uh, you know, at any rate, to give you time, me time to remember how it went.
+Let's see. So anyway, so the, the, uh, this is sort of the algorithm for,
+for doing the phase energy rotation in the fast version where we again picked two reference to the particles.
+Originally thought of it as sort of the spread of what we wanted to pick.
+Um, and in this case, it went from 205 MP overshoot momentum to 78.
+Uh, but of course it collects below and above, um, and you keep the reference spacing at um,
+uh, and then when you get to the rotator, you add this delta to the wavelength shift.
+In that case, the, the after, uh, half synchrotron period or, or uh, quarter synchrotron period,
+the uh, bunch energies match up and uh, um, and then the there's a trick here,
+of course, you kind of do an iteration to see that you get the wavelength you wanted at the end,
+which in our case was, I think, 2 or 1.2 five megahertz for this example.
+Uh. Uh, if we do it more idiomatically, we we again run the, the this, uh, thing with, uh, um uh uh uh, start off the same in the,
+in the here but in the rotator and again using I cool I,
+I sort of gradually change the ah wavelength to from one point forward to 1.5m, merging into the 200, 1.25MHz.
+So I got, uh, an idea particularly at least came up with, like in our simulations, maybe 10 to 20% more.
+And me, once again, within our particular constraints at the time and sort of this is, uh, again,
+uh, that's like, uh, the same thing was, is sort of let it drift a while, let it bunch and,
+and end up with a rotated beam, where, again, we'll probably only, uh, there's a tales of high energy and low energy ones,
+which we would lose downstream, but most of it's captured in, uh, relatively compact bunches.
+Uh, and so this is sort of where we were this this is actually, uh, uh, um, at the end of the Neutrino factory studies where we had this system was,
+um, um, again, and this shows some details of this, of that particular scenario.
+One of the problems here is that, um, because we're trying to keep track of the bunch spacing as we go down in the beam spreads,
+we go from shorter wavelengths to longer wavelengths as you, as we go down the system.
+But that means that the start of the system, you have higher frequency RF,
+which if you're using anything like pillbox cavities, means smaller aperture RF.
+So there's going to be a squeeze point where we start putting in RF cavities.
+Um, and that'll define an aperture that uh depends.
+Uh, but it certainly in the newer versions is probably smaller than the beam coming in by a bit.
+Um, but this started and, and this and in this case, we actually went after the rotator interval,
+uh, cooling system, which we'll discuss a little bit later.
+Um, and this, uh, but the idea of this replaces is a very low frequency,
+ten megahertz file RF with, uh, with, uh, high frequency RF that we know we can build it.
+And, and we actually end up capturing both signs all the way through this.
+And that's and initially, I thought the new Trino factory wouldn't want to run with both signs, but they said they were very happy with that.
+And they wanted both signs in the, um, uh, you know, in storage ring for neutrinos.
+Uh, okay. We, uh, in the map program, we thought the 200MHz scale RF was a bit too expensive, and and maybe it was,
+but we again, it's something to look at it again, because obviously costs everything.
+Everything is expensive sometimes, uh, going to the older technology might work better.
+And it was uh, and with newer things. But anywhere in the map system, we uh, and ended up we tried to match to a three 25MHz system,
+uh, which was, uh, significantly lower cost initially in the beginning of the cooling channel.
+Um, so, so any rate, this is sort of the, uh, the, um, numerology I chose for that one.
+In that case, we, uh, decided to focus on a little higher momentum.
+I think we thought we gained a little bit more by putting the center of our of our of our capture at 250 MeV,
+rather than, uh, close to 200 for the neutrino factory.
+And again, uh, uh, here I sort of said I'll pick, uh, reference particles 12, uh, apart.
+And uh, in our initial geometry, this is sort of the lengths of the system.
+The drift to decay was 42m and bunching starting here, um, a bit roughly 20m long.
+And then uh, uh, 20m start to rotate here, which, because it's longer, is less offset from the integer and,
+um, and eventually put in a little bit of deceleration to get us to 45.
+Again, I know none of these things are intelligently optimized, so I expect we can do.
+Better and then cooling for and what was a very simple first order system.
+And we also looked at some variations of uh, which, which are also being looked at by the International Module and Collider collaboration one.
+And our initial front end, everything was straight ahead. There's no bends.
+Anything that's going forward in a straight line from the target was to follow through.
+And that could include protons, electrons, positrons.
+Um, uh, those are the ones I know would survive.
+Neutrinos survive to and they may we don't consider them a problem here, but we never, never know might be an advantage.
+Um, yeah. So any rate. So, uh, actually, I see Chris Roberts, uh, sort of, uh, worked out this idea first, but the idea was,
+gee, if we put a chicane, which is really about solenoid, we've been to beam, uh, in this case.
+Well, and this and this projections it down, but I think it was left for right, I forget and then bend it back to a straight line, a parallel line.
+And the idea here, well, very high energy stuff won't be bent by the bent story line.
+It'll go ahead, all the protons will disappear.
+And then also, to make the final beam cleaner, we put in a solid absorber somewhere downstream, which had to be.
+Well, that should be after the all the pines have decayed.
+And again, there's a, um, uh, some optimization there.
+And, and. And, uh, a solid absorber will take all the positrons and electrons out.
+Uh, any leftover, any low energy protons have made it through here.
+And any pions that haven't decayed yet and plus other hadronic stuff.
+So the, uh, the absorber is designed to get rid of that and get it as a clean value of muons over here.
+And this is the model at the AMC they're developing for that.
+And uh, with the protons beam kind of going straight ahead here and the lower energy muons roughly there's a cutoff at 500 MeV actually oversea,
+uh, on muons that, uh, stay in the bent solenoid and that on to the cooling section.
+Um, that's the current scenario. Uh, or at least that's one of the scenarios being worked out.
+Um, this is, uh, actually doesn't show the absorber, but be further downstream.
+We did that scheme for the muon, uh, accelerator, uh, for the Map program.
+And this is that same scheme, but in detail with some of the numbers of,
+of the scenario scenario we used uh, with uh, uh, the uh, uh, and again, these are sort of detailed things.
+There is a trick here because this absorber messes up the energy of the beam.
+And when we're trying to do this bunching and rotation, we're using reference particles in order to make up for the fact that you're losing energy.
+And that means your reference particles have to start off at higher energy.
+We end up somewhere where we want to be, uh, going into the bunching, phase rotation.
+That kind of works. One of the problems here is the chicane is actually more ice like Ice Acronis than a drift.
+So that means we have to add extra length to the drift before the bunching rotator to, um, uh, um, uh, to, well, to match up the energies.
+So if you do that, you can get the whole system to work.
+And this kind of shows projections of simulation.
+This is without the chicane where you can kind of see the high energy stuff stays around longer and there's always a lower energy tail.
+Uh, on unaccepted shows here, this is without, uh, chicane on the left and right is sort of oops.
+Uh, to me again. Um, and on the right we have, um, sort of the chicane blocking out beam.
+What is that? Yeah. Well, I should have figured that out.
+Uh. Okay.
+So this unfortunately, this arrow pointer is right on top of the advance button and it's hard to touch one without the other.
+Okay. So anyway this is what happens when you go through this chain of high energy stuff that's chopped off.
+And then and the absorber chops off the low energy tails which shows up, which is actually kind of there, but maybe not as much as we'd like energy.
+Right? You end up with a cleaner bunch. I'm not.
+It's not entirely clean. So there is still some question about whether we need whether we should use those.
+And we could remove the protons from the original by an off center, um, or, uh, path for the protons.
+Um, anyway, so that's another research topic.
+Oh, this is sort of new numerology on what we, uh, on how many RF,
+who or how many RF cavities are we needed to do and, and for the hardware requirements of this in terms of,
+uh, RF, the cooling system initially was simply lithium, uh, lithium slabs with um, uh, three 25MHz RF and and it cools.
+It really cools only transversely, although actually the longitude gets a little smaller but not much.
+And in 3D sort of, you say, uh, this is cooling actually pretty well up to, uh, well,
+you get close to, uh, the equilibrium mittens, but it doesn't do 3D, but it, uh, cooling.
+So, uh, any rate, as they say, this has not yet been fully, intelligently optimized near the end of the map progress.
+Uh, um, uh, postdoc, uh, said come on.
+Said did some, uh, optimization, um, station using the north computer using an evolutionary optimization algorithm.
+And he kind of found that instead of kind of the program we were using, uh, the frequencies are a little better like this.
+And, uh, it's, uh, in general, it wants more RF voltage than what we put in our initial simulation.
+That's to be expected. And we sort of had a cutoff here of 20 mega volts per meter for the RF, which again, um, I hope we can do better.
+Uh, but we shall see. Um, um, any rate, and actually, if you look at the scheme,
+it looks like you might be better off making the whole system a little bit shorter or that looks like about 15% shorter.
+Again, that's something that's needs optimization.
+The initial version had only, uh, the transverse cooling, but, uh,
+Yuri Election invented an idea to get cool initially and to call both positives and negatives, and that is his.
+He called it a helical snake. Uh, this is something we are studying now to see if we can implement in the, uh,
+in our in the current version, the idea is by rotating the wedge absorbers, uh, to follow a helical orbit.
+Uh, you could then, uh, you can actually cool, uh, both positive and negative muons in the same channel.
+And the idea is actually that three of these absorbers are in phase with one sine of,
+of, um, muons, and the other three are in phase with the other sine.
+Any rate, uh, he was able to get this, which as it cools longitudinally and transversely, uh, again gaining, um, uh, significant factor.
+Let's see, I guess, uh, this this is showing off the screen, but it's almost, uh, three times, six times five of roughly a factor of 100 and cooling.
+It is a longer channel. And again, I probably with efficiency for efficiency you'd cut it a little shorter.
+It was not quite as much cooling. Again we want more efficient cooling everywhere.
+It's more everything is more efficient at the start. But at any rate, sort of this uh, uh is a possible start.
+And then this would then go into the rectangular cooling channel with this, uh, somewhat reduced emissions.
+And that's getting that into the current systems and optimizing is our current job.
+So the front end design I've sort of showed you I've, um, generated initially some empirically,
+but with an, an algorithm that you can use in a computer program like I call a G4 beam line.
+And this sort of uses the algorithm I've shown in that, um.
+In that today. And the international human colliders has not re optimized and rematch to their current scenario.
+One more technical difficulty in their case as they start their cooling channel at three 52MHz,
+which is uh means smaller apertures and uh, uh, rather than 325, it's,
+you know, it's 10% difference and you can do it, but, uh, you may lose 10 to 20% or something,
+or maybe they'll figure out how to overcome that by stronger focusing.
+Anyway, the whole system needs reassessed.
+Uh, reassessment and optimization, as we sort of particularly from, uh, the Map program, we know some ways which will probably improve it.
+I hope you people can think of more and, um, and sort of that's uh, uh, I guess, uh, and as we look at this,
+Chris has kind of looked at and said, maybe we'll do the very front end of 176MHz, and that might be a good idea.
+Um, again, but in general, we haven't really optimized this properly.
+And, uh, and, uh, so that's some sort of the sort of where I start, you start to can ask questions.
+Um, but any rate, we've been struggling with this for years.
+Uh, someone will come in here with some will solve it, and then you'll come back and look at it again and say, well, wait a minute.
+We've been we've been doing very, very, uh, several cycles of this already.
+Oh, this is sort of, uh um, uh, uh, the prescription for, for how you might set this up and I call, um, like, repeated.
+Um, and this is sort of actually it's just another picture of the same with that system and, um, getting ready rate.
+This is another possible look at the end of this slide.
+All right. Thank you so much. Those questions.
+Hi. Uh, mine is just a mine is just a really quick question.
+I think in one of your slides, you showed, um, 21 bunches, which is a number that I've seen in other papers as well, especially Ecmc papers.
+Um, and I was wondering why specifically 21, but I think it was the general number on everybody.
+Okay, that's a good question. Actually. We don't know.
+The we don't actually know that's the correct answer.
+But okay, it's sort of when you go to, uh, if you go to the end of the bunch or and you sort of say, well, I can't take forever on this.
+And if you, uh, and this example, uh, we sort of said, well, if you take 21 bunches,
+you sort of and end up with, uh, roughly 80% of the ones that are in that band,
+because actually these, uh, this scale shows because it's pixel sized a little more density than really just downstream.
+So we sort of, uh, came up with 21 bunches, captures about, uh, um, uh, uh, 80% or was 75% something like that.
+And, and uh, and the idea is that these 21 bunches then go into the cooling system, and later we figure out how to get them into one bunch at a time.
+They had a scheme where you, you would say and work out, uh, you 21 bunches, at any rate, transversely combining the uh.
+Oh, right. Uh, yeah. There were trends split transversely seven ways and then longitudinally three ways.
+And, and that way you could turn 21 into one.
+Was that converter they had at that time. Uh, again, there are probably other scenarios for recombining them at the end there,
+there and which are uh, but that was that scenario, the previous version.
+And that sort of also dictated a little bit by the RF frequency, uh, in that, uh, uh, let's say, for instance,
+the when we were doing it using the 200MHz system, we ended up with, uh,
+decided we get about similar capture with about I think it was about 14 bunches.
+And then we had another scheme for combining 14 bunches, which actually works pretty good too, and could have been adaptive for 21.
+But, you know, those are the things, uh, can be looked at again and improved, definitely can be improved.
+And, and the recombination section is something that hasn't been re optimized yet.
+Hi. Uh, Martin. Uh, Fermilab. Uh, thanks, David, for a nice talk.
+Um, on the topic of optimizations, um, maybe I was wondering, what are the, um.
+Directions to optimize. Like, uh, are you trying to also there room.
+So optimization is it is shorter.
+Uh, I constraints are we optimizing for like size specific to size or uh, what kind of optimizations are we looking for?
+Uh, from pretty much all of those. But, uh, yeah, again, trying to improve the overall capture.
+One thing, uh, at least maybe.
+I'm not sure if it's more important for this system or downstream systems, but I sort of like to get all of the systems shorter quickly.
+Stuff with RF and, uh, Highfield Magnum.
+So these are relatively low field magnets to test.
+Well, in the cooling system, we maybe there are three Tesla or uh, or,
+or if we use higher field, make it short magnets uh, in a shorter length if that's better.
+So so that's uh, certainly an optimization way to go.
+Maybe try to make sure you get a shorter bunch of training at the end if uh, uh, which goes, uh, yeah.
+So pretty much all those, um, and I hope you think of some more maybe just to add,
+I think cost is another important consideration that we should fold into this.
+Maybe not so much. Dave, correct me if I'm wrong, but I would say not so much.
+Maybe for the front end, but certainly for some of the acceleration schemes.
+What we've seen is something that could work, but I think is prohibitive from the or very difficult from the cost point of use of some.
+That's another dimension that should be folded in. Well, that's true in the cooling system too.
+But yeah, yeah, it's pretty much everywhere.
+We, we get everything. You can use stuff.
+Yeah. Hello. Uh, Cinda, uh, from Carnegie Mellon.
+Yeah. You mentioned that there's some debate surrounding the use of chicanes when you said that
+there's some debate surrounding the use of chicanes for the purposes of animating protons.
+What would be an alternative if tandem not used?
+Okay, the one thing we could easily do is, uh,
+one thought was instead of kind of having the protons going straight ahead and then needing a chicane to drop them off,
+have the proton go at an angle through through the interaction region,
+possibly with the target then and then having an outlet for the interacting protons other than the chicane.
+Now the problem is, is that other outlet will have the same problems with the outlet to the chicane,
+that is, you'll it'll be a hotspot which will need extra, um, cryogenic handling.
+Uh, we had a thought with the liquid version.
+We had the, uh, uh, the, uh, on, uh, non-interacting beam going forward and hitting the liquid, uh, at initially we're using mercury,
+but now molten LED as being sort of hitting the, uh, pool where the, um, where the, uh,
+uh, the liquid metal circulates again, that still would have to be cryogenically handled.
+And, and then the heat would be recirculated out with the, uh, with, with the target material.
+So that would that's another scheme. It has its problems.
+And the other thing is, if you do it on an angle, you still got to have some sort of gap in the magnet,
+or at least in the, in the supernova, you magnet coils to let out.
+Not not non-interacting, your weekly scattered beam.
+And and you know, there are ideas for that.
+Um, so yeah. And of course there are changes of the chicane idea you can imagine.
+Certainly the lenses and field strengths in the chicane can be varied significantly.
+Uh, I think Jersey is doing optimization of the chain.
+Uh, the picture I showed kind of shows the opening getting larger and larger because we keep worrying about how the heat that is the first surface,
+that the outcome nearest to the first surface of the out coming beam goes through.
+And in trying to minimize that heating, keep them moving to a larger and larger gap for the proton out for further chicane.
+But yeah. So yeah, this is um, it's not fully a solved problem.
+Um, thank you for thank you for their talk.
+Uh, probably a naive question, but from what I understand, we lose most of the muons in the front end and the cooling.
+Right. So you said we start with a ten GeV proton beam.
+Yeah. If we do start with a higher beam, wouldn't we get more boosted muons?
+Or is that more difficult to deal with? Well, that's another optimization to think about.
+I mean, yeah, you'd end up you'd probably start off with a bit higher energy distribution.
+You might, uh, you might initially need to capture a broader energy spread of muons.
+Yeah. You know, there's an optimization. There is. Think about there are certain advantages to the high energy proton beam,
+the space charge problems that develop when you try to make a short one come become easier.
+Uh huh. Yeah. Yeah.
+It could be done with the 32 proton beam. And, uh.
+And there'd be advantages and disadvantages. Uh, but nice thing with the output.
+Pion power per proton power is, I think, a little less, but not a lot less.
+We saw in our simulation was a little less. Not a lot. And maybe the advantages of a shorter bunch might overcome that.
+But then we need a 30 jump proton driver. But maybe the Tanaka's.
+Maybe that's easier to build. You have 30 job machines.
+Uh, and like I said, Jay Park is just awfully close.
+So maybe, uh, one possible comments. Uh, so people look at the optimization.
+Yeah. Um, as you see. So we try to like our developer the whole system together.
+Right. But there because over there limited over the manpower we usually like to work on, like the individual parts.
+So if we have, like, our integrated efforts, then maybe we could optimize rack of stuff,
+uh, like a rack, a proton beam down to the rack, including John.
+Now, that is a most ideal situation.
+Uh, but so far, even like in the map era, we didn't do such a way.
+So, uh, for now, I think we have more like a computing power and the more like our AI technologies.
+So maybe this is the opportunity. Maybe we could see, like a whole integrated system together to optimize there, like a situation.
+So that's probably, uh, the one possible, uh, record answer of some of the questions.
+Um, maybe just to add something.
+I know some people in this room are thinking about differentiable programing and using this for accelerator beam simulation tools.
+I think that goes along the direction of what Katsuya was saying.
+If we were to enable this capability, then potentially you could, um, you know, interface it with, uh,
+machine learning tools and come up with the optimizations that, uh, more broad and cover across multiple subsystems.
+Uh, but of course, that needs to happen because I don't think any other tools are directly, uh, compatible with that.
+Um, um, I have a question.
+So in one of the slides in slide 16 where you are showing, uh, the shape of the,
+uh, the shape of the, uh, beam as it moves from L equals one to L equals, uh, 112.
+Can you explain what the x axis is?
+Oh, I have to find the slide. But yeah, let's see.
+Uh, uh, which, uh, probably going back the other way.
+Yeah. That's a very small parenthesis. Maybe this one. Yeah.
+So I see that the bigger numbers are in meters, and I guess those are.
+Yeah, that's sort of bunch. Um, uh, there's the Z coordinate inside the bunch or the bunch strain.
+Okay. And then so the total train a bunch is, uh, the total distance here is 80m.
+And typical wavelength there is one meter. Okay.
+So the bigger numbers are the total length. And this small numbers are the coordinate.
+I mean the you know, I sort of tried to make it a little clearer.
+Maybe it's actually it's there's a mistake there and that this should go to 0 to 600 GV obviously that's Sho 1600.
+I don't know why. Oh well that should have been 600 there.
+Uh, and again a typo which was repeated. So yeah.
+Uh, so this is the uh. Oh wait, it should.
+Have been MTV overseas. Cut. Okay. Anyway, this.
+Sorry. This. Uh. Yeah. Yeah.
+That's that's that's a mistake there. Actually come to think of it.
+If not, I don't know. Maybe it's. Maybe it is 1.16 year obviously.
+Now I look at the fine print, so it's kind of showing in a bit more condensed.
+I think that yeah, that is 0 to 1.6 TV over.
+See. That was perhaps to show more clearly the effect of the chicane.
+What's that. Yeah yeah I'm, I the original was correct except in movie obviously.
+You know previous one. Uh.
+It's not the same. Okay. So I think it's the next slide because in the ones that are visual, uh, there's another one.
+I'm 16. This is our first time. Yeah.
+Oh, yeah. Well, sometimes the slide numbers do pop out of the cave.
+I think this is clear. The next. The one that you were in before?
+No, the other side. Uh, well, uh, you know, I probably need about five minutes training.
+Okay. This was different. Yeah, the the other one again was, uh.
+And I apologize for not remembering, but.
+Oops. Uh, that thing, those, uh, these buttons don't work the way it should do.
+Yeah, this this one has a scale from zero to point five.
+God. Oversea. So that's why the bunches here look much longer there.
+Whereas in the other one, when I was trying to show you. No.
+And I remember I was trying to show the effect of the of the, of the chicane on, um, um, on the Captur.
+This went up to 1.6 GB over C, and in which case these bunches look much nicer, although, you know, they're all accepted in the RF bucket.
+So any but again, you can see how uh, on this one, you can see how sparsely populated the later bunches are.
+Yes. Thank you. Yeah. So yeah, you did catch us.
+Uh, but thankfully. Thank you. No, they have more questions.
+I can ask one. So Dave, you mentioned for the chicane that the selection is to select muons below 500 MeV.
+Um, I would assume that at least some of us was motivated by the fact that if you select well, the higher mu momentum gets,
+the harder it is probably to cool it because your multiple scattering starts to become more significant.
+And there's always those two two things playing together, right.
+Like cooling and the increase due to the multiple scattering.
+So the question was why was 500 MeV chosen?
+What was the primary reason for this, and how much room for optimization is there for the, you know, acceptance?
+I mean, one of the problem is, uh, is, yeah, that's difficult.
+That's another optimization to be done again. Uh, the 500 M heavy.
+Um, well, at least going from the target, the, uh, sort of, you know, um, uh,
+stuff that can have our initial bunch rotation catchers captures stuff up to about 500 MeV,
+oversee maybe probably really a little bit less, um, and, and more than 20 or 30,
+um, and, uh, and so that's preserving at least that slice of the beam.
+Now, the efficiency isn't perfect on both ends.
+And um, and depending on, um, the chicane design, you, you, you, um, in the process, you do lose some muons you would otherwise be able to keep.
+If you make it more selective, you lose more of the muons you want to keep.
+On the other hand, there's a significant amount of the high energy stuff that makes it through that isn't useful and gets lost along the beamline.
+Um, so yeah, so there's that's, uh, a detailed optimization, um, in some of it's, uh, uh, the 500 was kind of a rule of thumb of where to go to and,
+and, uh, and actually the chicane was a little cleaner for our 200MHz case and then the 325 one.
+But, you know, it's, uh, another optimization.
+Hi. Um, I had a clarifying question on the other slide that we were looking at that also had the simulation results.
+Um, I might have just missed this, but you had a box around the 21 punches that looked pretty good and we were going to use.
+Yeah. What's the plan for the other bunches that aren't those 21?
+Well, what are we doing with them? We don't have a clear plan normally what we could do.
+Um. Uh oh.
+Uh, you know, one thing to think is the beam actually is moving this way or.
+Woops, uh, the beam is really moving this way.
+So this is the head of the beam. Is the tail. Uh, for the later bunches we can imagine put putting some sort of kicker that sort of,
+sort of keeps them from the, the doubt, uh, the downstream systems, the, the ones that are a little too early.
+Well, that's, there's sort of in this case they're like this.
+So they aren't really captured downstream again.
+So they're probably going to land on the walls further downstream are they'll be uh, well, it's going into the cooling system.
+There'll be low density bunches there that will that will cool but not be used because that later will only.
+So we'll have a kicker that selects 21 or whatever the number is going into the bunch of combiner.
+And that's again another thing to and again, this is sort of the somewhat cleaner beam, uh, or less clean beam without the chicane, uh,
+where you have these precursor with relatively a significant number of higher
+energy muons that just won't match the cooling at all and end up lost somewhere.
+Um, and and again, how much we can tolerate in that is a simulation we haven't fully done.
+Um, and since we can look at and say, oh, gee, if I put this much shielding, maybe that's okay, maybe not.
+Um, how differently does the front end look, or is it different for the collider versus for the demonstrator?
+What's that? Uh, how does the front end look for the demonstrator versus the collider, or is it different at all?
+Oh, we look quite a bit different. Uh uh.
+We won't. Really beginning a systematic.
+Uh, yeah. Preventing the, uh, for the demonstrator will make things shorter to, uh.
+What we may be able to capture is a small slice in the middle here, like, plus or -10% momentum swing.
+Even with a bit of our initial RF. I mean, sort of how much you can capture goes as the total, our RF voltage you can have, you need at least, uh, um,
+hundred MeV of our, uh, voltage to capture the 100 MeV and then, uh, with, with stability, probably twice that, but yeah.
+So, so if we only put it in to 2040 MeV of capture RF, that's roughly there any energy spread we can capture.
+And is that just because it's like we don't need the whole, uh, setup or because it's,
+it's well, for the demonstrator, we again, not trying to put extreme intensity.
+It's really Cavendish we won't need um, the full efficiency of the collider if we're a factor of ten.
+Worse, which is probably the scale we would be.
+That would be okay for the demonstrator. Thank you.
+Yeah. According to their, uh, demonstrator, I think are the concepts of the demonstrator.
+You should demonstrate most critical components.
+So I think a Dave's point is, ah, we do not worry much about their front bench.
+So that's probably the one of the reasons why we have a kind of mimic type of our front end for like a demonstrator.
+Hmm. That may be a mistake, but yeah. Well, I mean, yeah, it's a choice.
+Of course. In reality. Uh, so we have to develop what I call components very, uh, significantly.
+But, uh, I think, ah, the because the demonstrator, the cost is a humongous already right to build like our cooling channel.
+But there is, of course, like a cost limit. So which part we have to reduce?
+I think our target tree and the front then might be there like a part which we should find like a cheaper way.
+Yeah. Yeah. So, so typically we're thinking of a lower lower field capture like a for Tesla capture.
+So like for instance we send capture maybe a third fourth of what our or less of what the 20 Tesla one would capture.
+And then downstream when we try to capture into the, uh, cooling system lose another factor of ten there.
+So yeah, maybe 1% the scale of what we hope to do with the collider, but that that would still be, um, uh, 10 to 10.
+Well, probably proton and ten should be less ten to the eight.
+And my for me, one for scale. Hopefully. Let's scale at least ten seven.
+Mhm. I was just going to say but I think it's a really good question because um,
+in the past people have brought up the issue of if you put beams of only partial intensity into the demonstrator through,
+you can maybe measure the admittance reduction and say that behaves as you expect.
+But then if the question is what does intense beam do to your absorber and the integrity of the absorber,
+you're not going to be able to do it with, uh, low intensity bunches.
+Then I know people proposed putting intense proton beams, but proton interaction with, uh, the absorber will be different from muons.
+So again, it's not clear that you will learn the answer to the ultimate question you're trying to address.
+So it's it's challenging. But um, yeah, not not everything I guess can be demonstrated with, uh, what we have in mind, but we well,
+CERN is working on their version, but we haven't really worked out sort of what kind of front end for a demonstrator we can do.
+And again, we're going to it'll all be very cost limited if we want to put it in, uh, a premium collider.
+Um, uh, um, experiment. Demonstrating everything at full scale is what we call a on collider.
+So there's only so much you can do to set targets.
+So if you want to demonstrate two megawatt target, you need to build it.
+And you have it's part of the collider. It's, uh. Right, right.
+So so at a certain point, you just you need to make the actual thing to show that it works at scale.
+But but the demonstrator, we're really trying to isolate some, some things we have open questions about.
+Um, so you can't demonstrate everything at a demonstrator by, by its nature.
+Okay, I think. Any last questions? Um. If not, we'll go to coffee break and then we'll come back at 11 for Katsuya talk instead of Jeff's.
+Okay. Let's thank our speaker again.

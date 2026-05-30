@@ -15,6 +15,22 @@ interface Props {
   generating: boolean;
 }
 
+type Mode = "paste" | "manual";
+
+const BLANK_ROW: PaperRow = {
+  timestamp: "",
+  email: "",
+  paperTitle: "",
+  plainTitle: "",
+  authors: "",
+  publicationDate: "",
+  category: "",
+  publicAbstract: "",
+  paperLink: "",
+  figuresOk: true,
+  additionalComments: "",
+};
+
 export default function InputPanel({
   onParsed,
   onError,
@@ -27,6 +43,7 @@ export default function InputPanel({
   onGenerate,
   generating,
 }: Props) {
+  const [mode, setMode] = useState<Mode>("paste");
   const [text, setText] = useState("");
   const [parsed, setParsed] = useState<PaperRow | null>(null);
   const [parsing, setParsing] = useState(false);
@@ -46,24 +63,61 @@ export default function InputPanel({
     }
   }
 
+  function handleSwitchToManual() {
+    setMode("manual");
+    // Fire a blank row immediately so the Instagram designer appears
+    // and the user can edit everything directly in the per-pane editor.
+    const blank = { ...BLANK_ROW };
+    setParsed(blank);
+    onParsed(blank);
+  }
+
   return (
     <div className="input-panel">
-      <h2>Paste row from Google Sheet</h2>
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Paste one tab-separated row (with or without header line)…"
-        onPaste={() => setTimeout(handleParse, 50)}
-      />
-      <div className="input-controls">
+      <div className="input-mode-tabs">
         <button
-          className="btn-secondary"
-          onClick={handleParse}
-          disabled={!text.trim() || parsing}
+          className={`input-mode-tab ${mode === "paste" ? "active" : ""}`}
+          onClick={() => setMode("paste")}
+          type="button"
         >
-          {parsing ? "Parsing…" : "Parse Row"}
+          Paste row
         </button>
+        <button
+          className={`input-mode-tab ${mode === "manual" ? "active" : ""}`}
+          onClick={handleSwitchToManual}
+          type="button"
+        >
+          Manual entry
+        </button>
+      </div>
 
+      {mode === "paste" ? (
+        <>
+          <h2>Paste row from Google Sheet</h2>
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Paste one tab-separated row (with or without header line)…"
+            onPaste={() => setTimeout(handleParse, 50)}
+          />
+          <div className="input-controls">
+            <button
+              className="btn-secondary"
+              onClick={handleParse}
+              disabled={!text.trim() || parsing}
+            >
+              {parsing ? "Parsing…" : "Parse Row"}
+            </button>
+          </div>
+        </>
+      ) : (
+        <p className="manual-hint">
+          Manual mode — every field starts blank. Edit titles, text, authors and images directly
+          in the Instagram designer below.
+        </p>
+      )}
+
+      <div className="input-controls">
         <label>
           <input
             type="checkbox"
@@ -107,9 +161,9 @@ export default function InputPanel({
         </button>
       </div>
 
-      {parsed && (
+      {parsed && (parsed.plainTitle || parsed.paperTitle || parsed.authors) && (
         <div className="parsed-meta">
-          <strong>{parsed.paperTitle}</strong>
+          <strong>{parsed.plainTitle || parsed.paperTitle}</strong>
           <span>
             {parsed.authors}
             {parsed.publicationDate ? ` · ${parsed.publicationDate}` : ""}

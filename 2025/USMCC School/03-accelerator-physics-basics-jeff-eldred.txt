@@ -1,0 +1,908 @@
+# Accelerator Physics Basics, Jeff Eldred
+
+Um, so what we're thinking of, Jeff, is, if you have questions, uh, please keep them for the end.
+We probably will have, uh, at least 20 minutes left for questions.
+Uh, on the other hand, of course, if you need some clarifications or a typo or something, please feel free to to interrupt.
+So, Jeff, please, uh. Go ahead.
+Okay. Thank you. Um, yeah. So my background, um, is in, uh, particle accelerators, especially proton particle accelerators, charge dominated beams.
+And then I also do a little bit on beam dynamics where it starts to get into fun topics like chaos and, you know, nonlinear dynamics.
+And, um, I teach regularly at this, uh, US particle accelerator school that, uh, Vladimir advertised earlier.
+So, um, again, I will show, you know, some links to that.
+Um, but, um, you know, I like from, uh, effort in beam dynamics and charge dominated beams.
+That's how I got into the muon collider world, especially on the proton driver side.
+I'll give a talk on proton driver, uh, tomorrow. Um, but thinking about how can we, um, use the, the, uh, everything we've learned about building, uh,
+high intensity accelerators and combine essentially some of the energy frontier topics that,
+uh, Vladimir was talking about with intense frontier topics. And so you have a very intense, very high energy, um, facility.
+Okay. Uh, so I think, uh, simplifying um, so, you know, now I'm going to talk through basically the,
+the basic dynamics of how, how do you think about the stability of ring of particles in a particle accelerator?
+What is math used? It basically builds on the classical mechanics that you may have.
+Uh, but at the simplest level this is your particle accelerator.
+That's that's a ring. You bend it around in a circle and that's so you can use your RF cavity multiple times.
+Vladimir impressed upon us how expensive those are. So if you can pass around 10,000 times, then you can use the same cavity 10,000 times.
+Uh, but the cost is you now have to keep, uh, your beam stable for 10,000 revolutions passing through the same magnetic elements.
+Uh, so there's the, um, the dipoles, and it's just a vertical magnetic field, and it bends it in the plane.
+And then there's the quadruples, which I'll talk up a little bit more about, but they play a focusing role.
+Um, so first dipoles, you know, you have your basic Lorentz force.
+And um, so that means that you should be moving around in a circle.
+So the, um, the radius of the circle is going to be proportional to that momentum.
+And um, it's going to be inversely proportional to the um the dipole field.
+Um, so, uh, one of the things that we do sometimes is we calculate the particle momentum and then we multiply.
+So that would be units of GeV passing. Then we multiply by 3.3357.
+Uh, you know, which would basically it's a unit conversion to go to units of Tesla meter.
+And so this B rho is uh, you know, it's a dipole field times event radius.
+But it's also you can think of it as something that's proportional to, um, to our momentum.
+And um, so then you can use that to for instance, if you know your dipole field and you know your,
+uh, particle momentum, then you can easily calculate your bend radius.
+And, you know, you can say, for instance, the total bending of the ring is always two pi.
+So two pi rho is the total length of your dipoles. So let's do a practical example.
+Here's the LHC has 12,012 sorry 1203 32 dipoles.
+Each one is 15m long. But if you actually look where the like active region, it's more like 14.3m.
+So that means of the 26.7km circumference, uh, 18.5km of that is dipole.
+So it's about 70%. And of course we say circumference and we say ring.
+But really it's a 1232 sided polygon.
+Um, so now I can just do that math that I was just saying,
+which is I can calculate the magnetic bending radius in the dipole and find that it is 2.8km.
+And uh, you know, so if I take a dipole field, um, then that tells me what the,
+uh, proton energy is, and then that tells me what the colliding beam energy is.
+So now if you want to ask the question of what is the highest possible energy I can have in a circular proton collider,
+um, then you tell me the dipole fill fraction, that should be about 70%.
+Uh, you tell me the dipole field strength, and you tell me how long the tunnel is.
+And I tell you how much bending you have to do this. So if you have for you know, FCC, they talked about doing, you know,
+four times the tunnel circumference and then factor two or factor of three larger in the peak dipole field.
+So if you do that you get a factor of ten and your collision energy. And you can see how the rules scale.
+You either have to keep going, uh, greater and greater scale with the rings or you have to um,
+you have to get better and better magnet technology so you get more bending per unit length.
+And, uh, one of Davis's great overview on the technology, the critical current, the temperature,
+you know, and then, uh, you also have to think about the manufacturing and reliability,
+uh, not just from a cost point of view, but if you think about, uh, you're going to set the same magnetic field on all 1200 of these dipoles.
+So actually your worst dipole is going to set your peak magnetic field.
+So that gives you a sense of how reliability goes into it.
+And then just to give you a, uh, brief comparison, you know, the normal conducting, uh, electromagnet, you know,
+you have this big iron pole and you have, uh, the copper wrapped around it and it magnetize that iron.
+And then, uh, that's where the magnetic field comes from. And if you look at the, you know, the, the quality of the magnetic field, you know,
+the multiple components of it, it is often dominated by the exact shape of that iron pole tip,
+whereas for the superconducting dipole, um, you see, they pat the, uh, the conductors as close to the beam as possible.
+And that's what's actually providing the magnetic field and the iron.
+Um, you know, obviously it's going to be, uh, saturated. So basically it has the role of just capturing the return flux.
+So you have all this iron around the outside, but you bring your conductor as close to as possible.
+So it just shows you visually the difference in magnet design from the current density that you're able to achieve.
+And a little bit on how these are manufactured.
+You have your your very fine filament of your superconducting material, and then you surround that in copper strands.
+And actually you pack that in, you compress it, you stretch it so it ends up even finer.
+You cut that, you stack it and you repeat that process. And that's how you make these superconducting cables.
+The reason why you do that is you want the superconducting material to be always close to copper material.
+And the reason why is what happens if one part of your superconducting material gets hot.
+So a particle crashes into it and you know that one superconducting material part is no longer superconducting.
+Now it's normal conducting. Now it's incredibly resistive. And so you have all this massive current going through it, this one spot that's resistive.
+Then it's going to heat up even more. And so that one single point that became normal conducting will become a point of failure for the whole magnet.
+So the reason why you have the copper there is now the current is going to flow to the adjacent copper, and it's like a nice orderly egress path.
+So when it's superconducting it prefers superconductor when it's normal, conducting it before it prefers the copper.
+And it's safer for the magnet to have a nice uniform sheet where it comes.
+The whole magnet comes normal conducting at the same time, rather than these hot spots and cold spots.
+Um, and so that's called the quench. And so every superconducting magnet needs to be able to safely quench, in fact,
+before it even goes into the accelerator, they're going to deliberately, uh, quench it.
+And in fact, sometimes the performance gets better as it quenches, sometimes it will quench many times and fail,
+but many times the peak current that it can sustain will actually improve over time, essentially, as it's and don't not working out the kinks.
+So it gives you a sense of the the practical things that come into this.
+Um. Okay. So I kind of, I think I hope I convince you what the limits of, uh, maximum ring proton accelerators.
+What's the limit of the maximum electron ring? Uh, well, you have synchrotron radiation.
+So you take any charged particle, you bend it into a circle, it's going to give off synchrotron radiation, you know, um, tangent to the path.
+And then so for a hadron machine, uh, it's usually pretty negligible.
+You can calculate, you know, you can observe it and LHC, for instance.
+But, um, it's a dominant feature of electron machines.
+So if you look at the power radiated, uh, this is on a per particle basis, then you have these relative, uh, relativistic factors of beta.
+So it's gamma to the fourth and it goes over rho to the squared.
+Um, so all that or that you radiate in one revolution, your RF system has to restore.
+So, um, that's actually what's going to set the maximum energy that electron ring can achieve is when is your RF just treading water.
+And it's just restoring all the energy that's going to be radiated away in every turn.
+And so if you look at the scaling of this, if you want to double the energy, then, uh,
+you would have to have four times the bending radius for the same, you know, for the energy restored.
+Um, and uh, so that's not a very favorable scaling.
+And that's why, uh, Vladimir started talking about, okay,
+linear colliders is how people started to think about, you know, electron, uh, positron colliders.
+At some point you have to switch to linear technology. But then the issue that was described, which is RF, is very expensive.
+And, um, since you're only using all of your RF systems once you're doing a single pass,
+um, you also, um, you know, it's challenging to make it all very compact as well.
+Um, so this is why, um, you know, let's say in the high energy left on collision limit,
+people think we have to switch to neurons at some point sooner or later.
+Um, and just, um, some more, uh, for the homework problems, some more, uh, detail on this.
+You know, you have the power radiated or energy loss per turn.
+It's a lot of unit conversion, making sure, you know, uh, how to you kind of remember what, uh, vacuum permittivity constant is and all this, um,
+and then, you know, with the critical frequency, so also the frequency of light, it's going to get higher and higher with gamma cubed over rho.
+And so, uh, with these synchrotron light sources, uh, this is where they deliberately cultivate,
+you know, uh, as much radiation as possible as an X-ray source, for instance.
+Um, and so, uh, you, you definitely want to think about whether or not you have experimental users for, for your light.
+Um, so now for, for RF cavities.
+Um, so I've mentioned this already.
+Well, which is, you know what the role of the RF cavity is, is to efficiently trap an electromagnetic wave, magnetic wave at a single frequency.
+Um, and, uh, so you think of the electric field oscillating back and forth, and this is why you have to synchronize with the arrival of the bunch.
+So you want the bunch to arrive when it's in an accelerating phase.
+Um, because, uh, if it arrives at the wrong time, you would even decelerate it.
+Um, so often the longitudinal momentum, we would say, let's call it the reference momentum p naught,
+and then p would be the, uh, the momentum of each particle in the beam.
+So, uh, all the particles are supposed to be the same momentum, but in practice they would have some small deviation.
+So then we could have the fractional deviation of momentum. And that's, that's delta.
+Um, so you know, it may be, you know, from ten to the minus two to, you know, ten to the minus four or something like that.
+Then you have, um, how much RF, uh, energy you put into, uh, the beam.
+So you have, depending on the rival phase, phi um, how much of a kick you're going to get.
+So now to think about what this is going to be as, uh, a system of equations,
+um, you have to think about how does the fractional deviation of momentum,
+how does the slightly higher and slightly more momentum, uh, particle affect the arrival time?
+So on the one hand, you think, okay, higher momentum, higher velocity, it's going to take a shorter time around.
+Uh, the ring. But uh. Oh yeah.
+Yeah. That's on the next page. Okay. Um. So the change in momentum.
+Yeah. So the change in momentum here. Um I'm just changing for delta units.
+So you should be v over beta squared. You're not. Yeah okay.
+So now here I think about the arrival time. Uh so on the one hand higher velocity means shorter transit time for the same path length.
+On the other hand, higher momentum means greater beam rigidity, which means it's going to take it's going to be harder to bend.
+And in general it's going to take a longer path. So for for low energy machines, uh, higher momentum means it arrives faster.
+But for a sufficiently high energy machine, high momentum means it arrives later.
+And, um, so this factor which takes into account both of those effects is called the phase slip factor.
+Put it here is ETA. So ETA could be negative or it could be positive depending on the energy.
+And in fact if you have a machine that ramps like the booster, um, it goes from negative ETA to a positive ETA.
+So you're actually going to have to go through the period of time where you're focusing at one phase to a point where you're focusing another phase.
+Um, but you can characterize from the lattice properties something called the momentum compaction factor.
+So by choosing your layout of your magnets, you can make it so you don't have to cross from a negative to positive, uh, phase slip factor.
+And, uh, this is part of the, um, you know, this would be part of the proton driver design.
+Absolutely. Critical component would just be, uh, uh, sorry.
+Um, to choose the this phase slip factor is going to be at the right level so that an off momentum particle is going to be having the right phase.
+Um, so a linear. So depending on this essentially linearization of the momentum effect on the arrival time,
+uh, you have phi dot which is should be proportional to delta.
+So now I have uh phi dot is proportional to delta.
+And delta dot is uh proportional to v sine phi.
+And you put these together you have phi double dot proportional to sign of phi.
+And this is essentially the equations of motion for a simple pendulum.
+So uh what does this mean. It means that a small higher momentum particle is going to receive a kick.
+So it's going to send a essentially decelerate and a slightly lower momentum particle.
+It's going to receive a kick. So it slightly accelerates. So you would see.
+So for a constant RF frequency you're going to have phase focusing.
+And that's what's going to maintain the longitudinal focusing on your bunch.
+Uh so then uh the arrival time is always going to the momentum is always going to push it into arrival time.
+Or it has a phase where it gets the kick that it needs. So, uh, let's see if I can now I can't.
+And then, uh, you have a characteristic oscillation frequency.
+Uh, we call it the singer Tron frequency. And that would be the time it takes for, let's say, an off momentum particle to come back.
+And so if you were to displace the momentum of the whole beam, you would actually see it go, uh,
+lower momentum and then higher and lower and just kind of tumble in this, um, separate tricks.
+Um, so, uh, inside of this separate tricks is where you have what's called phase focusing.
+So you restore the bunching of the beam. But if the momentum is too high or too low, then essentially it would slip with respect to the beam.
+You can think of this, uh, for a pendulum. It's going to rock back and forth for some range of angles and velocity.
+But if I just throw the pivot point, the pendulum over the pivot point,
+then it's just going to do laps and it's not going to be staying synchronized to the bottom.
+It's just going to do laps and it's going to speed up as it goes down and slow down as it goes up.
+But it's going to be at a totally different phase than, uh, anything that would just rock back and forth.
+Um, so if in a stationary RF system, this would just mean that your beam debunkers,
+so you have all these particles bleeding out, and now they're going to arrive at all times.
+And, uh, you know, you've lost the longitudinal structure, but if you are accelerating the beam,
+then you actually move to a moving reference frame and your separate tracks looks more like this.
+And so any particle that is following the, uh, not staying synchronized to the RF cavity as the, uh, frequency changes is going to accelerate.
+Essentially, the beam is going to pick up the energy it needs to stay synchronized to the system.
+But anything that's too far out of sync, it's just going to fall behind.
+So it's not going to receive net acceleration. And so you now you're going to have, you know, uh, you know, you would have an A ring.
+You know, let's say you're going from uh, 50 GV to 100 GV, you know, uh, and you lose the particles at 50 GV,
+you know, your magnets are going to, uh, increase in strength to match the accelerating beam,
+but eventually you're going to have, uh, your magnets matched to your 100 GV beam,
+or any particles that didn't receive acceleration would be lost a long time ago.
+Um, so essentially, you want to keep all of your particles inside the separate tricks.
+We use the terminology buckets and bunches.
+So a bunch of particles that go inside the bucket, you want all of your particles to be happy in the bucket.
+And you don't want to increase the longitudinal maintenance too much, because that's going to increase that.
+That's going to decrease the luminosity and reduce the beam quality.
+Um, so I was mentioning earlier, this Facebook factor could be negative or positive.
+Um, so you have, um, some accelerating phases from zero to pi and decelerating phases from pi to two pi.
+But, uh, what's going to happen is you're going to change from longitudinally focusing to D focusing depending on the sine of ETA.
+Uh, so what you would want to do is you want to be right on crest somewhere here.
+So you receive a combination of focusing and acceleration.
+So in a linac you're not going to spend very much time in there.
+You want to get the most, uh, energy per pass.
+So you're going to be very close to on crest and a storage ring.
+You receive no net acceleration. So you're just going to stay somewhere over here maximally focusing not net accelerating.
+And your synchrotron are going to be somewhere in between depending on how rapid cycling your synchrotron is.
+For the muon collider cases, you're going to be pretty high because you want to you want that beam to be going.
+Um. And, uh, just for, for some interesting beam dynamics to to show you what it looks like.
+This is what it looks like when you cross, uh, transition. So you have some, uh, you have some separate tracks.
+That is for the positive case and for the negative case.
+And somehow you have to go from let's see if I can gesture with my mouse now.
+Okay. So you have to go from the, the one separate tricks to the other without losing your beam.
+And so there's a loss of beam quality there. Um, some other fun longitudinal dynamics topics.
+Um, so at the CERN, uh, piece, they do a bunch splitting.
+So, um, Vladimir was mentioning, uh, for space charge reasons, you want, uh, longer bunch points and,
+uh, uh, lower frequencies, uh, when you are accumulating your, uh, your intense, uh, proton beam.
+But to get the maximum accelerating gradient, you want higher frequencies.
+So what they do is at certain boost booster to the certain piece, to the space, to the LHC.
+They stack up the frequencies. At some point they have to make the transition so the bunches can go to the new frequencies.
+So they slowly split.
+They take one RF system and one frequency, and they turn on the another ah system, and they slowly ramp down one frequency while increasing the other.
+And you, you 80 basically deform the bucket to three times the frequency, then twice that frequency.
+And um, so this is the technique that uh, that can come up. And again you don't want to lose, uh, your longitudinal uh, beam quality.
+You don't want it to just dilute through the whole space. So you want to keep the same phase space area across all of these individual little bunches.
+So here on the bottom left, that's from Jay Park. And that is when they are accumulating the particles inside the first proton ring.
+Uh, they have to match to, uh, from the, from the linac.
+The longitudinal beam quality is much smaller than what they're going to in their, uh, RCS.
+And so they have to slowly paint essentially a wider distribution.
+And they want that to be as even as possible. Again,
+what they're trying to do is they're trying to avoid a peak of charge that would have a distortion free space charge effect that would cause the beam,
+uh, to defocus itself. And Vladimir will talk a little bit in the next lecture.
+Um, so often.
+So they've also added a second harmonic to their system to deliberately distort the shape of that separate Trix to be, again, as flat as possible.
+Um, slip stacking, I think, uh, doesn't have too many applications for, um, the one collider.
+But I think this is just very fascinating because, uh, it was my dissertation work.
+And basically you can have two beams of different momentums in the same ring, and you have two RF systems,
+and so one beam is synchronized, one RF system, the other beam is synchronized to the other system.
+And they have a relative difference in arrival time.
+So these particles that start at different longitudinal positions they phase over each other and they overlap.
+Uh, but now you've added a, um, interesting, uh, you no longer have a time independent Hamiltonian.
+You have a time dependent Hamiltonian. You could call this a one and a half degree, uh, freedom system, where instead of just having energy and phase,
+you now have energy phase and essentially the phase of the second half or time.
+And so you get chaos, you have resonances. And these are some Poincare sections from that.
+And uh, so um, there's some, some rich dynamics when trying to do some manipulations.
+Something I'm gonna talk about a lot more, um, tomorrow is, um, bunch rotation.
+And this is, uh, longitudinal manipulation that is actually critical for me on Collider.
+Now, the basic challenge is suppose you have a bunch that naturally,
+through whatever is going to be your best way to accelerate, it has a low momentum spread and a long temporal spread.
+But what I want, uh, is I want all of my protons to arrive on my muon production target at the same time.
+So I want as much as lowest temporal spread as possible.
+Um, and that's because if you think about what survives the, um, uh, what, uh, uh, phase space,
+uh, is preserved across the process of, uh, protons to scattering, to pion production, to muons.
+Um, you know, if you have a very short, uh, proton pulse to begin, it's going to increase the,
+the that longitudinal density, um, and reduce the amount of longitudinal cooling you have to do,
+um, in your cooling channel right after, um, so you want all your protons to arrive in the target, ideally at the same time within two nanoseconds.
+And let's say you have something that's more like 20 nanoseconds. Um, so what you do is this bench rotation.
+So you suddenly jump up the voltage.
+And here you see, um, the beam initially has a distribution that matches the contours of the low voltage, but now you've jumped up the voltage.
+Deliberately, not idiomatically. And what's going to happen is those particles are going to follow the new contours,
+and that's going to effectively rotate them because you change the aspect ratio.
+And so the, uh, distribution, you end up at the end.
+Uh, basically a quarter synchrotron oscillation is now high momentum spread, uh, low temporal spread.
+And actually that goes with, uh, the square root of the voltage between,
+you know, square root of V2 over V1, uh, whereas if you were to do a adiabatic,
+you'd only have v, uh, to the one fourth power, which is obviously means you need a lot more voltage to make this.
+Um, so now you can think about doing a simulation, and you can have all of the antiparticle interactions and say, okay,
+as you squeeze these particles into, um, overlapping in the same longitudinal space, um, they're going to start to repel each other.
+So what does that do to your beam quality then? You may also have a distortion.
+I said pi over two phase advance away. Uh, sorry, Pi over two.
+Um synchrotron oscillation. But those larger amplitude particles will have a different synchrotron tune, uh, than those inner most particles.
+If you think back to the pendulum, if I have a large amplitude of oscillation, the frequency is going to slow down.
+Um, so you might distort that bucket to improve the efficacy of this process,
+you may have a trade off between what is the most rotation that I can achieve while keeping the beam stable.
+Um, so there's some interesting questions there.
+Uh, Vladimir talked a lot about superconducting RF R&D just to show you what some of these things look like.
+So usually you want to maximize Q factor, which means you have the highest stored energy for the lowest input RF power.
+So it's basically your your RF sources can can go further.
+He talked about how expensive those are. Um, and then you also want the high accelerating gradient.
+So you want to have the fewest number of cavities of the fewest length of tunnel and get to the energy that you want.
+So achieving both of those at the same time, um, is a constantly, um, um, moving benchmark.
+And uh, yeah. And you see these curves and, you know, they are specific to a certain frequency.
+So you may get better curves at a higher frequency, but then at the cost of lower, uh, aperture, different resources, higher machining precision.
+Okay. Um, so next, um, so I kind of going back and forth here between I give you the overall view of particle accelerators.
+Then I gave you a deep dive of the longitudinal focusing. Now I'm going to go to the transverse focusing.
+I mentioned these quadrupole magnets. Um, but uh, what is the purpose of that?
+Um, so here, um, Vladimir talked a lot about luminosity.
+And luminosity is so important because this is proportional to the number of particle interactions that you get.
+So this is this is the number that people care about. And essentially it's density squared.
+And if you think about the, the uh, 60 uh, or the 3D density, uh, uh, of each beam,
+uh, density squared is what luminosity is going to be proportional to.
+So now as the result of collisions or the result of muon decays or any other thing, luminosity tends to decrease over time.
+And um, so really what you care about is over the course of a cycle,
+the integrated luminosity, what's going to give you the most number of events, um, per cycle.
+And, you know, you may have issues where at the highest luminosity you have pile up.
+And this is why the luminosity leveling comes into play of, you know, like the highest sustainable luminosity or something like that.
+Um, so it's natural for the beam quality to degrade over time. Uh, muons also decaying from the process.
+That'll be another interesting trick to handle. Um, but, uh, ultimately, uh, integrated luminosity is the name of the game.
+So part of maintaining that small longitudinal means I mean, basically you have all these, like, uh, similarly charged particles.
+And so what do they want to do? They want to expand like a flashlight or, you know, um, uh, ball of charge.
+Um, what want to do?
+So these quadrupole magnets, what they have is to have the role of bending the particle trajectories back towards, uh, the center line.
+Um, and so one of the nice things about a quadrupole is that it is a linear restoring force.
+So that means the large amplitude particle has the same, uh, focusing frequency at the same focal length as the lower amplitude particle.
+Um, now, the trick of Maxwell's equations, we're using transverse magnetic fields because we want to have the greatest, uh v cross B uh.
+But given the way Maxwell's equations work for magnetic fields,
+if you're focusing in one plane, it turns out you are also focusing and the other plane.
+So, uh, this is, uh, trick. How can you do this?
+Well, it turns out if you alternate between focusing d focusing, focusing d focusing, you can actually achieve net focusing in both planes.
+Um, and uh, so now you have a specific layout of focusing on your, your ring.
+And you have to think about how, uh, the effect is going to accumulate as you go around.
+Okay. So now let's talk about the motion of the particles themselves.
+I'm going to start out with something very familiar, which is your harmonic oscillator. So as I said quadrupole is a linear.
+So you know, you know, your harmonic uh, linear restoring force.
+You have a single oscillation frequency. You have an amplitude, you have a frequency, you have a phase.
+And then, uh, you may also say, oh, I'm going to do this as action angle.
+So I'm conserving the area inside my, uh, ellipse here.
+I've drawn it as a circle because I normalized the axis.
+Okay. Um. And uh oh.
+Another thing I want to point out is if I were to sample this trajectory at some rate, um, so not matching the,
+uh, the oscillation frequency, but I just turned on the strobe light and checked periodically.
+Then, you know, I would find it at these various green dots here and snares there.
+And, you know, it can appear to be frozen in place. It can be a period going maybe on opposite sides may appear like the dots are going backwards.
+I don't know if you've heard of the wagon wheel effect, but, you know, they had these old Western movies.
+They're shooting em out at a low frame rate, and it looked like the wagon wheels were spinning backwards sometimes, you know?
+So, uh, the, the frequency that you're sampling this may not match the oscillation frequency.
+You think, uh, just to show you where this is headed, you know, you have oscillations as you go around the,
+uh, uh, particle accelerator ring, and then you're going to come back to the same point.
+So are you in the same phase of your oscillation as last time you visited that same location in your accelerator?
+If you are, then any errors will accumulate, and that's a resonance.
+If you're at a very different phase, then they'll average out. So this is one of the things you have to think about for keeping the beam stable.
+Okay. So I mentioned the quadrupole is a linear focusing force.
+So uh, what we have now is instead of having um, uh, uh x dot we have x prime.
+Basically what we're doing is we're keeping track of the slope of the beam as it passes through the particle accelerator components,
+and as it passes through different elements, it's going to receive different focusing conditions.
+So this is like a spring constant that that is changing.
+So first it's focusing but it's focusing that it's nothing. And then so how can you solve this kind of system.
+It's called it's called Hill's equation. Um so some trajectories are going to be bent in.
+Some are going to be bent out. And what you can do is for particular element, here's just a quadrupole of some length.
+I can calculate what the trajectories are going to do within just this one quadrupole.
+I can start there. But ultimately what I care about is the overall stability.
+So I'm going to now make this a black box. And I'm just going to say here's my input trajectories, here's my output trajectories.
+And I can make a linear matrix that describes the matrix encodes all the information about what's in the black box.
+And all I need to know is how the map, the inputs, the outputs.
+So this is now a linear transformation. And um, uh, and as I said, the way you would define X prime, uh, is uh,
+the difference between, uh, the transverse momentum over the longitudinal momentum.
+So that'd be x prime.
+And so nice thing about making this a linear matrix is now I can figure out what happens if I pass through a sequence of elements.
+So here I've written down the transfer matrix for a drift region of length L.
+Um, so if you mentally do this, you know, I'm going to change my position, but I'm not going to change my slope if I pass through this.
+On the other hand, I could talk about a thin quad, which is an instant instantaneous kick to my slope.
+Um, but it's, um, if it's thin, then I haven't had much time to change my transverse position.
+So the position is the same, but the, uh, the slope changes.
+Um, so by going between these elements and you can have a, you can have a realistic quad as well.
+You can have a quad to some extent. That's just what I was showing on the page before.
+Um, then you can find out what is the effect of passing through all of all of these.
+And I can still multiply by x prime. And for any particular trajectory calculate what is the effect of passing through the sequence of elements.
+Uh, but that's still one trajectory at a time.
+And we do tracking like this.
+It's important to keep track of all your particles, but you may want to get a sense of what's happening to the beam as a whole.
+Uh, actually. Wait. Okay. Sidebar here. So I've only talked about one motion in one plane.
+In principle, you would have horizontal position and slope, vertical position and slope.
+And for these perfect idealized quadrupole, then, um, there would be totally, uh,
+diagonal, uh, you know, uh, block diagonal two by two with zeros on the off diagonals.
+Um, and then I mentioned this issue where horizontally focusing is, uh, vertically focusing.
+So I just change the sign. But there are elements which are going to mix up your x and y.
+You can have a skew quadrupole.
+So if I, if I rotate my quadrupole by 45 degrees that's going to definitely mix the planes of motion or I'll that's something that we use a lot.
+Um, for uh some of the accelerator applications for muons is solenoids.
+So this is where you actually have a longitudinal, uh, magnetic field.
+So going in the same direction as your beam, but that any small deviation that your beam has,
+it's going to make it spiral around that longitudinal magnetic field.
+So I'll show you what I mean, which is the blue lines here are the magnetic field.
+And you may have a particle that's mostly going forward.
+But any the x prime and y prime are going to interact with the field and cause it to slowly spiral around that magnetic field.
+So to write down and this is just shown without proof, you know, uh, the you're going to have a effect that definitely is going to couple,
+um, x prime and y prime because it's going to be going around in a circle in Z space.
+So, um, just like I had a bending radius for a in-plane magnetic field.
+Same thing. I would have a bending radius for this Balmer radius for spiraling around.
+And it's just related to that, uh, the transverse momentum. Okay, so this is how I make sense of, uh, the health equation as a whole.
+So suppose I just magically know that I would like to write down my x and x prime in this format.
+Um, so I'd like something like an action, but I'd like an amplitude, which may be s dependent.
+So I'm at a focusing point. The amplitude is smaller, I'm at a diverging point, the amplitude is higher.
+Then I should also have some oscillation phase. So I mention I'm going to be doing this transverse oscillations in time as I go around the ring.
+But also what is the oscillation phase as I go from one point to the ring?
+Um, so if I put in this ansatz, then I can find that, um, there's a relationship, you know, phi equals the integral of one over the beta function.
+Um, and, um, I can find that, uh, there's a solution of this form, and then I can ultimately figure out what the beta function is.
+And this other factor, factor alpha, which is just beta prime, uh, as a function of this changing, focusing strength.
+Okay. Uh, so if I can do that, if I can find these Alpha Beta Phi, um, then I have a very I've written my trajectories in an incredibly useful form.
+So what I've underlined in green here j x and phi, those are like your action and angle.
+Those are specific to one particle. And you could talk about the action and the angle anywhere in the accelerator lattice.
+Then you have your beta x and your your phase advance.
+And those are the same for all particles depending. But it depends on accelerator location.
+So I don't need to know what the beam distribution is. If I know what the magnet layout is I can tell you what the beta functions are.
+I can tell you are these magnets going down to a focusing point? Are they diverging?
+What is the phase relationship between these two different locations in the ring?
+And uh, so this is a modular way of describing the particle trajectories.
+That's incredibly useful. And so that's why that's why we do this.
+So with the two pieces of information, describe any one trajectory, uh, without if you have the beta functions,
+you don't need to go back to the transfer matrices and the focusing strength of the individual magnets.
+You now what you need to do, which is the linear optics parameters.
+So just to give you a sense of what this looks like, you know, one particular trajectory is falling within this envelope.
+And so there's uh, on the one hand is this let's see if I can.
+So here. The beam is at the edge of the envelope, so it's at a phase in which it is achieving the maximum size.
+But the envelope is that a beam waste. So it's not a very large amplitude.
+Whereas over here, you know, the overall envelope is blown up.
+And uh, then uh, the phase is not the highest possible.
+But then essentially your trajectories are going to be basically taking place within this envelope, which represents the action of that particle.
+So this would be a trajectory from one pass.
+And then if you think about it's going to go all the way around the ring and then it's going to come in at a different phase.
+And so it's going to be now sampling a different part of that envelope.
+But there's still a relationship between, uh, how extreme, you know, what the phase is here and what the phase is here.
+And, uh, that's the role of the phase advance. And you talk about the RMS beam size.
+We define this parameter of beam quality called the admittance.
+This is a sense of phase space area.
+So if I take the phase space area times this beta function square root that gives me the beam sigma and real physical coordinates,
+what is the footprint of that. So that's basically measuring the size of this envelope for um, you know, the one sigma particle.
+Uh, so this is how we talk about beam size as well. And if I plot x versus x x prime, you know, I get essentially a tilted ellipse.
+And you see this is what a Gaussian distribution looks like an x versus x prime.
+And as I go through the accelerator this ellipse is going to be changing in orientation.
+It's going to be focusing in down in different ways. But I have clearly a conservation of phase space area as I go around as well.
+Uh, we call this that the current Snyder invariant. And at any of these locations I could switch back to I kind of normalized coordinates.
+So I've talked about it's just this action angle, uh, motion times these optics parameters.
+So I could do a skew and scale transformation and deform all these different locations back to a circle.
+And so, uh, essentially, uh, I could get back to something like your harmonic oscillator,
+uh, square root of an action times, uh, a cosine of an angle.
+Um, and thinking about that, how would I relate the trajectory at two different points?
+Well, I could, um, skew it. Go to normalized coordinates.
+Now, between the two locations, it's just a rotation, which is the phase advance.
+Then I can go back to the optics parameters at the second location.
+And so I can, uh, do an inverse transformation rotation and a transformation.
+And now I have a parameterization of those transform matrices I was talking about in terms of these optics parameters.
+So I know the general form of all these transfer matrices in terms of its optics parameters.
+Um, so this should be between two locations. But now if I were to talk about, uh, the transfer matrix for going around the entire ring once,
+then I have a boundary condition, which is my betas and alphas have to begin and end at the same place.
+So now I have a much simpler form for my transfer matrix. Um, I have this cosine of this phase alpha beta.
+And this gamma is something we do for brevity, but it's really just a combination of alpha and beta.
+And so these are known as the current Snyder parameters. Uh uh, twist parameters.
+You may also hear them. You can think of them as a parameterization of those transfer matrices.
+Or you can think of them as the functions which solve that Hill's equation.
+Uh, both. Um, and so now I come back to this photo lattice.
+Suppose I have a one turn photo.
+Uh, my my entire ring is just made out of photos. Uh, sorry.
+Focusing d focusing. That's what we call them.
+Photos. Um, so the simplest channel you could do, which is, uh, a focusing magnet space, a d focusing, and then a focusing magnet again.
+So now by looking at the properties of this transfer matrix, I can extract these optics.
+I can find the phase advance I can find the beta function I can find this alpha.
+And these parameters relate to the physical things.
+What is the physical distance between magnets. What is the focusing strength.
+Um, how strong are, uh, the magnets relative to the beam rigidity?
+Um, and that, you see, I've given a specific answer for the beta function, you may ask.
+Okay, I found the beta function, but what location? That I find the beta function.
+Well, that's the beta function at this, uh, these end points.
+So I can multiply the matrices in a different order. And then I would get something centered at a different location.
+I get a different beta function.
+So essentially all of these uh, you could say that the optics functions would be related by this like similarity transform.
+Um, so even though this is all linear, the optimization of the beta functions, um, and the phase advances is not a trivial optimization problem.
+And you can use your, you know, um, fancy solvers and, um, you can use your power.
+Method and you can use for machine learning. Um, so it's actually um, because for each um, quadrupole and length which you would set independently,
+it would be another contribution to this polynomial which would describe what the beta functions are and what the phase advances are.
+So this is something you can now put specific lengths of magnets into a computer and do a simple linear tracking code.
+And this will calculate very quickly. And so here's the beta function something I optimized.
+So you can see I wanted the the beta functions to be very flat in that region because I'm going to use the same aperture limit.
+And so it doesn't make sense for it to be big at one location.
+And then uh, that would set, you know, all my magnet aperture has to match that one location.
+Um, I uh, so the orange is focusing and d focusing quadruples.
+The blue is dipoles. And you can see I've interleaved. So I've done a kind of photo like lattice but on the edges.
+Um I needed that drift space. And so I actually use three quadruples at the end,
+a triplet to convey the beam through that drift space where I wasn't going to be able to just do quadrupole focusing d focusing,
+focusing d focusing, I had to break up my pattern.
+Um, and so then the specific values, uh, this layout is actually it was, as I was saying, I used a simplex method to optimize this.
+And um, uh, you know, and uh, you know, it's a, it's a, it did the job for what I wanted, but you can always design more.
+Um, then I last topic, our last topic.
+But the last thing I want to say about the optics here is, um, I talked about this one turn map,
+and, um, essentially, uh, you can you start and you end at the same location.
+So now I can think about what is the effect of an revolutions at that one thing.
+And essentially I'm going to keep accumulating the rotation.
+But, uh, the transformation part is just going to be constant.
+So this is basically an eigenvalue decomposition of M.
+And so you know, if you do an eigenvalue decomposition m to the nth power is just going to be following the diagonal.
+Um so the eigenvalues are e to the I you call it nu x um or sometimes it's called q x.
+This is called the better Tron tune. So this is the fundamental oscillation frequency.
+And this is what I was saying is if the beta tron tune is integer,
+then it means you're going to come back to the same phase every single time at the same element.
+If it's, uh, 6.5, it means every two turns you're going to come back to the same spot.
+Um, so some more, uh, plots of beta functions.
+So this is now what, a, uh, collider optics looks like.
+Uh, this is LHC ipx5. And if I zoom in on this, you see that the beta functions blow way up and then they focus way down.
+And that's because to have the highest charge density for the highest luminosity, you want to basically have these as this very fine point.
+And um, the but you can't have any of your accelerator magnets in that because that's where your,
+your big detector is, where all that exciting stuff happens.
+Um, so you need a certain distance between these focusing quadrupole, but at the same time you need to focus down to the smallest points possible.
+So you need the strongest possible focusing quads.
+Except it turns out that if I blow the beta functions higher, then I can focus down to a smaller point.
+And so actually you need a large aperture focusing quads as well.
+So for the high Lumi LHC, um, they, they switched from the uh, niobium titanium to the niobium tin or maybe have that backwards.
+Uh, but um, so you blow uh, so what they actually did is they didn't, uh, they, um,
+actually increase the aperture inside these quadrupole magnets so they can focus down to a tighter point.
+And the other thing is, I believe they need to increase the distance between these triplets to have more room for the detector.
+Um, so these are. So now you have a real interaction between the accelerator problems, the technology,
+the magnet technology, the accelerator optics and the detector technology.
+Um, but, um, you have some trade offs that you get to choose.
+Um, just a little bit on that, uh, the beta function in any drift region, uh, would be, uh, something like this.
+So you have, uh, beta star, that would be the minimum beta, and then S stars the location where you have a minimum.
+So you have essentially this, this parabola and um, uh,
+so then you place your interaction points in these drifts and you tightly focus and you have a minimum.
+Ideally you want a minimum, uh, in both X and Y, um, and uh, uh, so it seems a little funny at first.
+Why should it be something that's s squared if I'm talking about something that's just particle trajectories traveling in a straight line.
+Uh, but think about the fact that x is proportional to the square root of beta x.
+So there should be this should be squared because once you take the square root it's going to look like a linear trajectory.
+And those hourglasses that Vladimir was drawing earlier you know, it's composed of individual linear trajectories coming in.
+Um, yeah. So uh, the focusing triplets are actually, uh, so defocus, focus, defocus and one plane focus, defocus focus and the other plane.
+And again you're going to achieve that focusing in both planes uh, by doing this.
+Um, but uh, the, the, the way you do it is you use the D focusing to bring the beam out.
+And the reason why you bring the beam out is just going to give you a bigger lever arm.
+You're increasing the amplitude. So now you're actually increasing the size of the quadrupole kick that you can give to focus back down.
+Um. All right, let me just check out. I'm doing all right.
+Um, so I just want to talk about what you actually look at often is the beam position.
+So I can have a very simple device, which is just two metal plates that are electrically isolated from the beam pipe.
+And what happens is, when the beam passes through these metal plates, it leaves an image current,
+and it'll leave a stronger image current on the right one if it's close to the
+right and a stronger image current on the left one if it's close to the left.
+And so, uh, to figure out the beam position, uh, then I just have to take the left, minus the right, divided by the left, plus the right.
+That's a very simple device, but it's actually very effective for telling us.
+Well, specifically, it tells us where the centroid of the beam is. So I don't get to see every individual particle with this technique.
+There's a couple of other techniques we can try to see the profile of that. The beam.
+Uh, but you see the centroid, you see the average transverse position and x and y.
+So that gives you x and y. But I just impressed upon you how the dynamics extend into x prime and y prime.
+So how am I going to do that. Well I have another bpm pi over two phase advance away.
+So now I have two measurements of x and y. But the x at the second bpm has a relationship to the x prime at the first BPM.
+So if I am confident in my optics between my two bpm, then I can reconstruct the full 4D position.
+And so you can see here that if I plot x one versus x two for some arbitrary phase events, you know,
+I get this ellipse plot like this, which should remind you of this x versus x prime plots that I was showing before.
+Um, and then thinking about when does a angle become a position and a position become an angle is also very important for collimation.
+And so this is a picture of the very sophisticated LHC collimation.
+And so you have something that scatters the beam. Uh, it comes into the first primary kilometer.
+Um, and you, uh, you don't just stop it at that first kilometer, it now scatters.
+So now it's become a shower. So you need to think about where all those particles are going to shower.
+And you need to set your secondary and tertiary, uh, column meters to protect your cold regions.
+Because I was just impressing upon you that if you have a superconducting magnet and you put a bunch of particles into it,
+you create a hot spot and you're going to cause a quench. So you don't want to do that if you don't have to.
+So you want to have this warm region you see here, it's in the red.
+Uh, the warm region is going to collect all the particle losses.
+If you're gonna lose a particle, if it's on the outside, if it's gonna crash, you might as well lose it.
+And someplace that is safe. And that's kind of the idea. You clean the edges of the beam so you don't have an uncontrolled loss at a later point.
+So typically we want to reduce the number of losses. But really we want to reduce the number of uncontrolled losses.
+And you have the primary uh call meter which helps scatter the beam.
+And the secondary calibrator which helps catch the beam.
+So I want to show you a little bit of the principle of how you typically would set your secondary km pi over two phase advance away from your primary.
+And the reason why. So you scatter. That's changing the x prime.
+That's changing the slope.
+But if you look at something that's at one position and you just add an X prime to it, then you haven't actually changed the position yet.
+You have to let it drift. It has to shower and have that effect.
+So then pi over two advance and I may even go through some focusing elements in the meantime.
+That's when the extreme kick that you received is going to be the maximal excursion in position.
+So that's when you can bury a particle in the deepest part of the column and are not just scattering off of the surface.
+Um, or you can think about if you want to extract the beam, I want to physically move the position of the beam.
+I'm going to put some electrostatic element that's just going to, you know, apply a transverse electric field and or transverse magnetic field.
+And I'm just going to steer it. But it still takes a certain amount of time for the beam to go.
+So when I want to put, uh, my scepter, which is basically a device that separates this part,
+this the magnetic field in this region from the magnetic field in this region that's going to be again, pi over two phase it it.
+And so you can look at so this is just an example with that let's say electrostatic kicker.
+So I put in some kick called a delta theta. And then I can find the corresponding action associated with that.
+And then I can find what that action does.
+Pi over two phase away at you know let's call x1 and x2.
+So at x2 where does that action do. And so the displacement at that second location is going to be proportional to the size of the kick.
+The beta function at the first kick location and the beta function at the location I'm now observing.
+So, um, that's linear optics. That is all of the longitudinal dynamics.
+But, uh, just to get into some of the more advanced dynamics. Well, I put, um, my particle beam through a dipole to bend it.
+But I told you, not all the particles in the beam have exactly the same momentum.
+So what's going to happen to a higher momentum particle is it's going to take this outside trajectory.
+Um, so that is called dispersion.
+And each particle will still undergo its better try an oscillation but around a different center.
+And that orbit, that different center. That's why we call it that.
+The orbit um, is given by the dispersion.
+So the dispersion is another optics function which is going to tell me how much does it shift the beam if it's off momentum.
+So I multiply the dispersion by the by the delta.
+And that's how I shifted the beam. And that's also going to blow out the spot size if I have a larger dispersion larger beam spread.
+Because essentially the particles of different momentum are now at different transverse positions.
+Now you may have chromaticity. So I have a same concept here.
+I have a quadrupole. But the focal length is not going to be the same for all particles.
+And so the the beater on tune is not going to be the same for all particles.
+So the chromaticity is just the dependance on the beta tune on uh delta.
+So it's a linearization of that dependance.
+And um, that's going to be proportional to the beta function and the focusing strength.
+So now I have sometimes particles have the wrong position depending on momentum.
+And sometimes they have the wrong, uh, tune depending on momentum.
+So how can I fix this? What if I want all my particles to have the same tune?
+Or at least I want to control what the tune dependencies? Um, on, uh, momentum?
+Well, that's when you would introduce your higher order magnet. This is why you would put in accessible so secs to pull.
+You can think of it as a focusing lens on one side, a D focusing lens on the other side.
+So I have the dispersion is going to sort my particles by momentum.
+And uh pull is going to provide a tune shift depending on position.
+And so you use X to Paul to restore, um, uh, your uh, particles to all have the same tune.
+So, um, chromaticity control and having sectionals throughout the ring is an essential feature of accelerated design.
+Um, so it's something that we need to have as well. Um, and then you can use this idea that you have to focus the beam.
+At some point, you're probably gonna have something photo like, even if it's not exactly a photo,
+and you get some estimates of what are some natural parameters.
+So the chromaticity, the natural chromaticity, the uncorrected chromaticity is approximately minus the tune.
+Uh, the average beta is something like the radius of the whole ring divided by the tune.
+You know, uh, the dispersion is going to be even more heavily suppressed by the tune,
+because the more closely I interleave, uh, those quadruples that the greater the dispersion suppression.
+And then this, uh, transition gamma, the energy gamma in which I would have transition crossing from negative,
+uh, phase factor to positive phase factor.
+It's also related to the dispersion around the ring, because I mentioned that larger momentum particles take a longer path.
+So that's directly as a result of dispersion. But I can calculate essentially a ballpark all of these parameters based off that simple model.
+And uh, one of the reasons why is so important to have that is you think about something as complex as the muon collider is,
+we are designing and a whole accelerator chain, and each part you kind of have one person design the whole thing as a fully formed vision.
+So they need to take for granted some parameters while they're designing some other parameters.
+And I think that's why it's so important to have some common reference parameters.
+You can change them later if that's where the optimization leads. But you can't optimize in a vacuum.
+Um, because all these pieces need to be part of a self-consistent story,
+and they need to think about how you don't just want to take the problems that you're experiencing and shove them to the next,
+the next, uh, accelerator down the chain. You have to think about how you optimize the performance as a whole.
+So, you know, target luminosities.
+Uh, you know, I was talking about, you know, what is the peak magnetic field that's going to determine, uh, what your colliders, um, energies can do?
+What the, um, what the bending radius can be. Um, how many muons are you going for?
+Uh, what is the emissions parameters that you have to maintain as you're passing through all these elements?
+All very important to keep in mind. Um, so I'm coming up on my summary.
+I actually had one more topic I want to I'm going to I'm going to do one more topic before I come in,
+which is very briefly talk about Metatron resonances.
+Um, so Vladimir, uh, showed this this idea that where are you in your, uh, phase oscillation when you come to the same point?
+Uh, so just like you can see how a integer would end up accumulating phases in the same direction,
+if you think about the interaction between a quadrupole IR and a,
+uh, betterthan tune, that's a half integer slice 6.5, then you're going to accumulate errors in the same direction, uh, from quadrupole as well.
+And as you can guess, are going to be, um, if you are tune is 6.333,
+you're going to have problems from six poles unless all your saxophones are tuned up.
+So you would have a tuned diagram like this where you carefully pick your beta channel tune to avoid nearby resonances,
+or if the resonance you can avoid, then you have to carefully compensate that resonance to improve your beam quality.
+And so I can't avoid putting sectionals in because I need to control my chromaticity.
+But now that I've put my six and I have to think about how they are tuned, um,
+and if you only had one tune for one particle to worry about, this wouldn't be so challenging.
+Um, but you have a finite space that you're being takes up in tune space because space charge that the interaction of the beam with itself,
+that's going to cause a spread in frequencies in the transverse nonlinear magnet.
+So sexy. Pulse ox, pulse chromaticity. So all of these things spread out your tune,
+and you can calculate the strength of these resonances by thinking about how the strength of
+each magnet and the phase advances between them contribute to a specific thing that's advanced.
+But just to let you know that it is part of the more sophisticated aspects of lattice optimization.
+Um, but just to give you a very simple example, if I know I'm going to put saxophones in my ring, I might put them at pi phase advance away,
+because then that will just naturally contribute, uh, cancel the contribution to the third order resonance.
+And if I use a bunch of sexual pairs, pi phase events, I might put those pairs high phase advance away.
+So whatever doesn't cancel from the pi. Well said.
+B cancel the next level. So thinking symmetrically and thinking very carefully about how, um,
+errors at different phases accumulate is something you have to, uh, that comes up for these, for these larger rings.
+And if you don't, you have these phase space distortions. So this triangle shape distortion, that's a third order of resonance on the right there.
+That's, uh, fourth order resonance that was passed through.
+So it starts this cloverleaf shape, and then you end up with particles and what's called halos, these outlying particles.
+That's bad because we want charge density, and we don't want to have to lose particles at the edge of the beam.
+And then a second order resonance, a very low powerful quadrupole resonance.
+And in the bottom left. And I believe this one is caused by space charge itself.
+So now over time, you will smooth those out because your beam is going to follow the phase space contours.
+Um, but it's essentially want to have the effect of diluting your beam quality.
+And that's called the, uh, nonlinear decoherence. Okay.
+So now now I, I'm happy to say that's the end of the summary.
+So I gave you what is usually A2A course or at least a one week course an hour.
+So if you got 30% of that you're doing great. And that's why we put all these links.
+So that's okay. I can geek out about this. Um, this is not to scare you off.
+Um, so we learned about hell's equation. We learned about this transfer matrix.
+We learned about these current smilers. So if you take away someone says beta functions high, that means the beam is big, beta functions low.
+That means being small. You got all these higher order effects that you have to think about once you get past the first pass lattice design.
+Um, so it's something that is art. It is, um, uh, theory.
+It is simulation, it is experience. And increasingly it's machine learning and optimization tools.
+Um, so there's all of these things go into this, um, optics engineering.
+Um, so thank you. Thank you.
+Jeff. Uh, this is the best time.
+Now for questions. Hi.
+Uh, my name is Angie. I'm from University of Chicago, and I was wondering, so when you were talking about bunk splitting.
+Yeah. Um, in in that case. Right. If we were to try to, like, for example, for me on Collider, there's a stage at which we merged these bunches.
+And so I'm assuming I don't know if this is actually true, but, um,
+the more bunches that you've split your initial bunch to, the harder it might be for to merge all of those.
+Um, yeah, in at least the time. Like the amount of time we need them to be a singular bunch.
+In that case, how do you decide how many bunches you would need for any type of, uh, change of our frequency or any type of.
+Yeah. So, um, yeah, this process takes few milliseconds.
+I would say so. It can't. And, um, obviously, the more time you have for it, the more adiabatic it can be, and therefore the more reversible.
+So you can do exactly this process in, in reverse.
+But yeah. Um, so for the, it has to do with the specific, um, uh, ways that the um,
+CERN accelerators work out because they step up the frequency as they go up the rings.
+But it also means, um, that, uh, the ratio between the ramp rates and the circumference, it means that, um,
+they don't fill up their rings, so they, that SPS has to start accelerating to go before, um, you know, the can fill it up.
+And so that's why they can now you can split it into, you know, into multiple, um, and um,
+so you do if you, if you just look at this process like if this was the last thing I did before colliding,
+I would lose luminosity on this process because I'm reducing the the charge density at each of these points.
+And I'm having more bunches, um, more tiny bunches, but I think I would lose out in that.
+Um, so I'd say this is, this is something it may come up and the process of accelerating the beam can come up in that, uh, the proton side.
+I don't know that it would come up on the muon RCS side.
+Um, you would just want to, um, make sure you have enough acceleration to match your magnet ramp.
+Um, but it's bad for, uh, coming off, so you would just merge.
+Um. Hi.
+My name is Joel. I'm from University of Iowa. Um, about the twist parameters and the beta functions.
+So you said at the very end, uh, the greater the beta functions are, the bigger the beam is.
+Uh, and we, uh, there was several slides about optimizing this beta function.
+Right. So we want to get the biggest being possible to increase the luminosity.
+Is that um, or not quite. Uh, so, uh, say, if I can show us, um, yes.
+Right before so specifically. Okay.
+So specifically here, the collision point is right there where the beta function is very small.
+So you have to, um, blow up the beta function only, uh, as a side effect for your trying to squeeze it down to the smallest point.
+Um, generally speaking, you're happy if the beta functions are small, because if the beta functions are small, it means the beam size is small,
+which means the the the aperture can be small, which means or magnet can be small, which means you save money.
+So um, so typically you would want to beta function small, but to get a really small beta function everywhere,
+the only way to do that is to tightly interweave your quadruples.
+So you're constantly doing focusing, refocusing, focusing D focusing means more magnets.
+It means more complexity.
+You need a certain distance between your magnets because there's there's the coils and everything, and there's a vacuum flanges and all of that.
+So it's kind of a balance between, uh, that the complexity and that the aperture, um, in general.
+But for that point specifically, um, your it's going to go your beam sigmas are going to be proportional to the square root of beta times admittance.
+So small beta means small sigma, which means good density.
+Okay. So the purpose of maximizing like optimizing is so that you can like decrease at the very end.
+Yeah. That's okay. Until unless you get really used to staring up this like transfer matrices and it might not make sense.
+So that's probably why I, I just, uh, set it as an article frame.
+Okay. Okay. Thank you. She's just passed it down for me.
+Okay. Thank you.
+Uh, my name's Dominic. I'm with, uh, Purdue University.
+Um, I was curious at the very end you touched on it, but, uh, the tuning diagrams you have, like.
+Oh, yeah. Several, several parameters that are kind of going in there.
+And that's mostly to determine, like where along the accelerator you're positioning those or so it,
+um, you're deciding what your transverse focusing is.
+And actually you're, you're deciding the fractional part.
+So if I had a tune of 6.75, that means that I've done six and three quarters oscillation as I've gone around the ring.
+But what's going to really matter is that .75 part, because it means that, um,
+I've got a three quarters remainder and it means every four revolutions, I'm going to come back to the same phase space oscillation,
+which means if I had a far outlying particle, let's say it far to the right, and it picked up an error,
+then four turns later, it would encounter that same error and it would be kicked in the same direction.
+So if I have an irrational number, then I would an average out and I end up in a different phase every point.
+But if I have a rational number, then I will have some resonance that I will encounter a certain number of integer times.
+I will come back to the same point. And um, so it depends on how much error you accumulate in that time.
+And the lowest order resonance is your integer quadrupole.
+Those are the most dangerous.
+The higher order ones are less dangerous, one, because you're less likely to have a magnet with those properties because they were you know,
+you're talking about like a dough decouple and might just be like the error component of an other magnet.
+Um, although they, they do use some to take a pulse.
+But anyway, because, you know, the higher magnets tend to be more specialized and, um, they tend to be more on a case by case basis.
+Um, so, uh, I hope that helps answer a little bit more.
+That's related to like the, the fractional component. Yeah.
+So your you can think of this as showing your fractional x versus your fractional y.
+So you're operating on a specific point. So I can make a small tweak to my quadrupole I'm going to change where I am on my diagram.
+I'm not going to change very much else on this.
+Because if my my tune is 6.67 and I want to change it to 6.68, and, you know, it's a small it's not going to you're not going to see it every well.
+So in practice we just think we have a couple quadruples which we tune.
+And then we get to choose where we we're on this diagram.
+Got it. Thank you. Hi, this is Greg from Yale.
+Can you go back to the slider? You drive this solution to Hill's equation?
+Sure. I think there might have been two. Is the first. Yeah.
+I, uh, I went through quickly, so. Yeah. Yeah, I'm gonna ask a broad crowd question here.
+Yeah. Yeah. So there are these three assumptions.
+Can you remind me what the physical interpretation of these and maybe whether it's required for an analytical solution?
+Yeah. So, um, I just did the expression for x and x prime.
+Kind of like as an, as an on sides.
+Um, you can do, you can derive this in a more rigorous way where you make fewer assumptions and then find you need something like this.
+Um, so, uh, beta is related to the amplitude of, uh, the oscillation.
+Um, but, you know, you have a separate action.
+So it's related to the amplitude of the oscillation at this particular location.
+Um, alpha is beta prime. So it is how beta is changing.
+So if I'm focusing down to a point, then I'm going from a large made at the small beta.
+So I have a negative. Uh, so I have a positive alpha. Um, and uh, so that essentially has a, uh, a tilt in the ellipse.
+So there's now a correlation between x and x prime, because all of the higher, uh, amplitude particles are being focused down more,
+um, and then phase advance the phase of oscillation between two points as, uh, related to the beta function.
+So here the phase advance I started out with it being I just some phase, some beta.
+But what I found in order to solve this differential equation,
+you can plug this in and find out that the phase advance is has to be the integral of inverse of the beta function.
+And uh, so that means like if I'm squeezing down to a point, I would have a large phase advance just in that, that interval.
+Um, and if I have a photo lattice where my beta x and beta wire bouncing around,
+it means I would advance my x face, that my face that my x face and my wife has.
+And then, uh, share this alpha, uh, this last equation says how that relates to k.
+So alpha is just being defined as beta prime.
+For convenience I could just make it beta and beta prime uh phase.
+And those last two equations are I just as. Result of plugging in to hell's equation and and constrain what what you have to do.
+Okay. Thanks. Yeah that helps. Go ahead.
+Hey, um, so I noticed that there was a slide earlier where you had alpha set to zero.
+What is the physical implications of that? Yeah. So that would mean that I'm neither focusing nor, uh, otherwise I'll show it.
+So here I've set up my photo lattice, um, where I'm in the center of one quad.
+So if I have a focusing quad, a distance D focusing and then distance of focusing,
+um, I could start at the end of one of those, but that would be like not symmetric.
+So to make the math easier and cleaner I split one of these quadruples in half and I set half a focusing quad,
+then a distance foldy focusing quad, then a distance, then the other half.
+So right at that half I'm going from the beam being defocused to the beam being bent back down.
+So right at that halfway point alpha is zero. So it means the beam is neither being focused nor d focusing.
+But it's kind of like the top of a parabola. So, you know, in just a little bit downstream of that it's going to be focused.
+Hi. I'm writing from University of Wisconsin. So I was wondering if, uh,
+you could put these optical instruments in the beginning part of the collider where we are still collecting
+most of the pions and muons and most of the particles are still bound and they haven't decayed.
+So, you know, so that we could just focus the beam from the emission part itself so that we don't have to focus it again.
+After the decay. I'm sorry. Can you repeat the question?
+Can you put these optical instruments in the beginning part of the collider, where the part most of the particles are still found, so that.
+We have already focused the particle beam entering the further channels.
+Yeah. So unfortunately, as you go along the length of the accelerator, you have to keep focusing because if you stop focusing,
+you're going to have trajectories which are just kind of kind of diverge.
+But there is something like what you're talking about. Um, that reminds me of I don't know if it's an answer your question,
+but for making neutrino beams, neutrinos don't have charge, so you can't focus them.
+What you do is you very intensely focus all of the charged particles before this.
+So you use either solenoids or these focusing horns, and you keep your pions, your cans and your muons going vaguely in the right direction.
+You have to do a charge selection, um, and um, and you have to do some sort of energy optimization.
+But then when those decay, then the neutrinos are going to be going in that direction.
+So if I have a pion beam, I absolutely have to capture my pion beam.
+I have to focus it. So that way when it decays into muons I'm going to get a better behaved muon beam.
+By focusing my pans I couldn't neglect my pions and I can't neglect my muons.
+But together I'm going to put everything in the same direction. Thank you.
+Um, I actually have a question. So, um, when thinking about tuning the beam or something along these lines,
+could you talk about some of the the like challenges in design that aren't covered by these
+equations and also challenges in operating a beam like setting it up or operating it,
+actually doing the tuning just because I have no idea what it's realistically like.
+Sure. Um, I can talk about some of those factors. Um, so I my day job is to work on the booster.
+So it's an operating machine. And we're thinking about this Pip to upgrade. So, um, some things that you may have to think about.
+Um, as we have some extra RF cavities. So if one of the RF cavities go down, we can still get the acceleration that we need.
+Uh, we can't really do that with our magnets. If the magnets down or down.
+We got to make sure that we can design the magnet so it can be pulled out and replaced quickly.
+Um, as you go around, um, if I lose my particles, I'm creating radiation at that location.
+So I'm running into a beam pipe or absorber or something, and I'm activating that.
+I'm turning it to something radioactive.
+And that means that residual radioactivity is something the work person is going to encounter when they go to fix the magnet or the RF.
+So we have our radiological limits as we go around.
+And no matter how safe you are or not safe you want to be, you have to set the limit someplace, which means you can't lose every particle.
+Which means if you're going to lose particles, you want to lose them safely. Um, in a column or an absorber.
+Um, so I mentioned the quench limit, which obviously would be for superconducting,
+but for, you know, your, your proton side, it's going to be the activation limit.
+It's actually going to be um so redundant components activation.
+Uh, there's a lot of special regions where you may need diagnostics.
+You need injection, you need extraction. So you need a lot of space real estate for these extra things.
+And um, you know, I say in the early days of particle accelerators, they focus very high, much on high degrees of symmetry.
+Like, let's have a, you know, the booster supposed to be 24 repeating periods so that it would help all the objects.
+But then they kept on being things where they have to break the symmetry to have some component that needed to be there for operational purposes.
+So now I think the focus is a lot less on that. A lot of the future proton drivers are like racetrack designs.
+So symmetry at best two. And you have injection on one side.
+So you might not even have two fold symmetry.
+Um so I guess those are some of the things that we, uh, we think about, which is like repairability redundancy, uh, keeping your,
+your activation, I think tunnel real estate is another thing that you think about a lot, which is what is the physical size of things.
+Can you not only have the physical science, but can you have a cart? Let's say I need to replace a magnet and then I need a cart.
+Has a magnet on it to go past the other big magnet. Um, so whatever size you build things, you always wish later that you built it.
+But, uh, and, uh, so, yeah.
+So those are some of the things that come up and then in the sort of design process.
+Yeah, none of these components are perfect, right? Dipoles or quads or whatnot.
+What kinds of um. What kind of work is needed to make sure you can account for that in the eventual collider?
+Are there are there scenarios where in simulation everything looks perfect?
+And then we've built, uh, booster and there's some issue?
+Yeah, absolutely.
+Um, so this is constantly a thing where, um, uh, if you are designing the ring, you haven't seen all of the things that go wrong with that.
+So you're going to be overoptimistic for a really old machine like the booster.
+It's very hard to model because there's so many on model aspects, but usually for a new ring that they then have experienced operating like atoms.
+And, you know, that's that's a ring that's understood very well.
+So all these interface to the other things, you may have a like comprehensive electromagnetic model of your magnet.
+So here it's just like one number which is what is the bending. You know, what is the bending angle.
+Um, but in fact you would have a fringe field. So you have some falloff distance for your thing.
+You may have, you have uh, multiples. Um, so like typically you would have errors.
+So every dipole will have a sexual in it weekly. And the question is how strong is that.
+Because it's the next odd multiple. Um sometimes we define that good field region.
+So within this region the dipole quality is to 1% or something like that.
+And then that is something that I can do in the simulation and say okay, if we do that that'll be good.
+And I can pass that on to the magnet designer and they can tell me, yes, we hit, we hit that spec.
+So the good field region may be smaller than the the pipe aperture.
+And one good way to get good field is just build a bigger magnet.
+But of course it's cost and um, and simulations for studying these resonances and things I often do,
+it's very common to deliberately introduce errors and just say,
+I'm gonna put a random 1% error and show that my lattices is robust to that kind of thing.
+Um, so it's constantly, um, and back and forth between the engineering, though,
+you know, you're thinking about how much real estate did I leave for the RF,
+and then you actually build the RF and you say, oh, this is flange, and you actually need more.
+So just generally putting spaces between components,
+modeling errors and then anything you can think of going wrong saying that your, your, your lattice is robust to it.
+But often the challenge is picking the right thing to obsess over,
+because you could spend a lot of time on some obscure edge case when some much lower level thing is going to be what kills you.
+Any other questions? One more. Okay.
+Yeah. Why you. I just say I operate a lot on precedent.
+I look at what has been achieved at an existing accelerator, like Aces and Jay Park and extrapolate from that.
+It gives me a lot more confidence than saying, well, it worked in the simulation because.
+Uh, hi. Um, I just had one more question, and you kind of touched on this, uh,
+but I was kind of wondering the difference, like, why would you use, for example?
+Um, so in a photo lattice. Right. You have to do this focus in defocus.
+Yeah. Uh, whereas in the case of solenoids you actually get to kind of do both and right together.
+So what are the cases in which a quadrupole and using this photo, uh, lattice is more advantageous than using.
+I that's a great question. Um, so generally speaking, um, there's a um, essentially the, um, I'm say,
+if I see if I can say this correctly because you're using transverse focusing with your quadrupole, you have basically more power.
+You get to bend your beam and more for the same magnet field strength.
+So you need a very powerful solenoid in order.
+But then because the focusing is kind of weak, it also needs to be a very big solenoid.
+Um, but yes, it has the advantage of um, you're focusing in both planes simultaneously.
+And you can also you have a specific focal distance in mind for your quadrupole.
+So it's much better at capturing multiple species or multiple momentums.
+So you have a production target.
+It's going to go immediately into a solenoid because you want to capture all the variety of things that come in there and you need it to.
+It's diverging rapidly, so you urgently need focusing in both planes.
+You just a quadrupole,
+you'd be blowing up in one plane and you'd have challenge at some point your cooling channel you would probably switch to quadrupole.
+And exactly when you should do that. You know, also at the source, the very beginning part where we have a very low energy beam and we're starting it,
+you start out with solenoids, then we start moving into the quadrupole.
+Um, so it has, it has its uses. Um, but you have to have both.
+Oh yeah. I was going to follow that up with, like, would a hybrid system be possible?
+But I think you're already like hybrid of, like maybe using quadruples in certain areas and then.
+Yeah. So if you combine a quadrupole and a solenoid you end up with this helical channel.
+So I know there's some cooling channels that do like a weird little spiral.
+Um, I can't speak to the exact optimization trade off of that, but that's I think that's the idea.
+Thank you. Okay, maybe last question from CC and then we break.
+Um, so you mentioned in the beginning that you, uh, want your protons to hit the target, um,
+with a very low time spread so that you don't get this, uh, longitudinal admittance later.
+Um, and I wanted to ask, how hard is it to focus longitudinally,
+since I know that there's so much emphasis on the transverse focusing right now for a muon beam.
+Why do we make that trade off?
+Yeah, the longitudinal thing is that's something kind of, um, how do I say traditionally the intensity frontier for neutrino beams.
+They don't care so much about that longitudinal thing. So for neutrino beam it would be microseconds.
+So the booster extracts two microseconds. And the main factor it's like ten microseconds.
+Um, and uh so those are longer but we want two nanoseconds.
+This is a factor of a thousand reduction. The advantage that we're going to do is we're going to go to higher energy.
+So we accumulate charge in the booster right now at 400. And maybe, uh, later it's going to be 800 MeV when we have a new linac.
+But for the proton driver we talk about five HV.
+So at that very relativistic energy it suppresses space charge.
+And so now you can take your two microsecond. It goes with gamma squared.
+So I can now try to take my two microsecond beam.
+But this is why the bench rotation is actually so important. Because I can't sustain a two nanosecond beam for very long.
+So I'm going to take a 20 or even 80 nanosecond meme, and then I'm going to compress it.
+And then it's only going to be for a very short period of time, all that charge piled up on top of it.
+So I need to verify I can complete the punch rotation process, extract it, send it into target that doesn't the bunch by the time I get to the target.
+Uh, you know, our preliminary estimates is somewhere, somewhere near those few nanoseconds is achievable,
+but it's actually an active area of R&D, which is how to do this better,
+and making sure that we're thinking about all the things that could go wrong, because the beam wants to propel itself longitudinally,
+but also I pile all the charge longitudinally and it wants to repel itself transversely.
+So, uh, it's, uh, it's just something that we have to think about.
+Thank you. All right. Let's thank Jeff again.
+Okay.

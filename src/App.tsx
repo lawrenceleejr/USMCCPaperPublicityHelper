@@ -240,18 +240,21 @@ export default function App() {
         </div>
       )}
 
+      {parsedRow && (
+        <div className="output-section">
+          <InstagramDesigner
+            ref={designerRef}
+            eyebrowText="USMCC Featured Paper"
+            titleText={parsedRow.plainTitle || parsedRow.paperTitle}
+            descriptionText={content?.plainSummary || parsedRow.publicAbstract}
+            authorsText={parsedRow.authors}
+            paperLink={parsedRow.paperLink}
+          />
+        </div>
+      )}
+
       {content && (
         <div className="output-section">
-          {parsedRow && (
-            <InstagramDesigner
-              ref={designerRef}
-              eyebrowText="USMCC Featured Paper"
-              titleText={parsedRow.plainTitle || parsedRow.paperTitle}
-              descriptionText={content.plainSummary || parsedRow.publicAbstract}
-              authorsText={parsedRow.authors}
-              paperLink={parsedRow.paperLink}
-            />
-          )}
           <OutputCard
             title="Twitter / X Post"
             content={content.twitter}

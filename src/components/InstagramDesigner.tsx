@@ -111,6 +111,19 @@ interface BgImage {
    * re-fetch from arXiv or re-upload from disk.
    */
   selected: boolean;
+  // Per-image transform. `scale = 1` means the image is sized to exactly
+  // fill the slot (cover-fit). Below 1 the image shrinks below the slot
+  // (letterbox: base color shows around it). Above 1 the image is zoomed
+  // further in (more of it cropped off). `offsetX/Y` are in canvas pixels
+  // and shift the image center within the slot — positive X moves right.
+  scale: number;
+  offsetX: number;
+  offsetY: number;
+  // Populated once the image has loaded — needed to compute the cover-fit
+  // size in the preview without round-tripping through a canvas. Undefined
+  // until the first load fires.
+  naturalW?: number;
+  naturalH?: number;
 }
 
 interface PaneText {
@@ -122,11 +135,44 @@ interface PaneText {
   // logo to the opposite corner. Useful when the background image's focal
   // subject sits on the side the template wants the text on.
   flipped: boolean;
+  // If false, the gradient + tint overlays are skipped for this pane so the
+  // raw background image shines through. The other panes keep their normal
+  // dark wash so text remains readable.
+  showGradient: boolean;
+  // If false, the USMCC logo is omitted from this pane (the rest of the
+  // carousel keeps it).
+  showLogo: boolean;
+  // If true, draw a big editorial open-quote glyph in the pane's upper-left
+  // — a pull-quote design flourish, opt-in per pane.
+  showQuoteMark: boolean;
+  // Offsets (in canvas pixels) from the quote mark's default upper-left
+  // anchor. Adjusted by drag-to-pan in the preview, so each pane can
+  // reposition its glyph independently.
+  quoteOffsetX: number;
+  quoteOffsetY: number;
   dirty: { eyebrow: boolean; title: boolean; description: boolean; authors: boolean };
 }
 
+
 const CANVAS_SIZE = 1080;
 const SAFE_PADDING = 88;
+// Geometry for the oversized open-quotation-mark ornament. The default
+// anchor matches SAFE_PADDING on both axes so the glyph's bounding-box
+// inset from the canvas's top-left corner is the same horizontally and
+// vertically. The minus-30 nudge on the left accounts for the open-quote
+// glyph's side-bearing white-space inside its box, so the visible ink
+// lines up nicely with the safe area. Each pane can offset the glyph
+// further via PaneText.quoteOffsetX/Y (drag-to-pan in the preview).
+const QUOTE_MARK_FONT_SIZE = 360;
+const QUOTE_MARK_LEFT = SAFE_PADDING - 30;
+const QUOTE_MARK_TOP = SAFE_PADDING - 30;
+const QUOTE_MARK_FONT_STACK = 'Georgia, "Times New Roman", serif';
+// Approximate hit-test rectangle for the visible ink of the open-quote
+// glyph, in canvas pixels relative to (QUOTE_MARK_LEFT + offsetX,
+// QUOTE_MARK_TOP + offsetY). Slightly larger than the actual ink so the
+// drag handle is forgiving to click.
+const QUOTE_MARK_HIT_WIDTH = 240;
+const QUOTE_MARK_HIT_HEIGHT = 160;
 // Upper bound on the soft cross-fade between adjacent images. The actual
 // width is user-controlled (`crossfadePx` state slider); this constant just
 // caps the slider so a 5-pane carousel can't ask for a fade wider than a
@@ -157,7 +203,7 @@ const LOGO_HEIGHT_PX = 160;
 const LOGO_MARGIN_PX = 80;
 const FONT_LOAD_TIMEOUT_MS = 4000;
 const MAX_PANES = 5;
-const MIN_PANES = 3;
+const MIN_PANES = 2;
 const DESCRIPTION_MAX_CHARS = 240;
 const FALLBACK_FONT_STACK = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
@@ -699,6 +745,19 @@ function fileToDataUrl(file: File): Promise<string> {
   });
 }
 
+// Synchronously create a BgImage with default transform fields. The natural
+// dimensions are filled in later by the preview's onLoad handler — the canvas
+// renderer doesn't need them up front because it loads each src via loadImage()
+// at render time.
+function makeBgImage(
+  id: string,
+  src: string,
+  name: string,
+  source: "upload" | "arxiv"
+): BgImage {
+  return { id, src, name, source, selected: true, scale: 1, offsetX: 0, offsetY: 0 };
+}
+
 function bytesFromBase64(b64: string, mime: string): string {
   return `data:${mime};base64,${b64}`;
 }
@@ -926,14 +985,19 @@ function makePaneTextFromProps(
   return {
     eyebrow: isFirst ? props.eyebrowText : "",
     title: isFirst ? props.titleText : "",
-    // Pane 1 always carries authors. If there is only one pane (shouldn't happen — min is 2 —
-    // but be defensive) it also gets the description.
+    // Pane 1 always carries authors. With paneCount=1 (edge case) it also gets
+    // the description; otherwise the description lands on pane 2.
     description:
       isSecond || (isFirst && paneCount === 1)
         ? firstSentences(props.descriptionText, DESCRIPTION_MAX_CHARS)
         : "",
     authors: isFirst || isLast ? props.authorsText : "",
     flipped: false,
+    showGradient: true,
+    showLogo: true,
+    showQuoteMark: false,
+    quoteOffsetX: 0,
+    quoteOffsetY: 0,
     dirty: { eyebrow: false, title: false, description: false, authors: false },
   };
 }
@@ -946,6 +1010,11 @@ function refreshPaneFromProps(pane: PaneText, paneIndex: number, paneCount: numb
     description: pane.dirty.description ? pane.description : defaults.description,
     authors: pane.dirty.authors ? pane.authors : defaults.authors,
     flipped: pane.flipped,
+    showGradient: pane.showGradient,
+    showLogo: pane.showLogo,
+    showQuoteMark: pane.showQuoteMark,
+    quoteOffsetX: pane.quoteOffsetX,
+    quoteOffsetY: pane.quoteOffsetY,
     dirty: pane.dirty,
   };
 }
@@ -1027,7 +1096,6 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   const [textShadowStrength, setTextShadowStrength] = useState(0.4);
   const [titleScale, setTitleScale] = useState(1);
   const [descriptionScale, setDescriptionScale] = useState(1);
-  const [imageScale, setImageScale] = useState(1);
   const [gapEyebrowTitle, setGapEyebrowTitle] = useState(18);
   const [gapTitleDescription, setGapTitleDescription] = useState(36);
   const [gapDescriptionAuthors, setGapDescriptionAuthors] = useState(28);
@@ -1045,7 +1113,53 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const previewMasterRef = useRef<HTMLDivElement | null>(null);
   const PREVIEW_SCALE = 0.4;
+
+  // Drag-to-pan state. Setting `dragKey` non-null mounts window mouse
+  // listeners (in a useEffect below). It's a discriminated union so the
+  // same gesture infrastructure can move either a background image or
+  // a pane's oversized quote-mark ornament. `dragStartRef` carries the
+  // per-drag snapshot — start mouse position, the target's offset at
+  // the moment the drag began, plus a `moved` flag we use on mouseup
+  // to decide whether the gesture was a click (→ select pane) or an
+  // actual pan.
+  type DragKey =
+    | { type: "image"; imageId: string }
+    | { type: "quote"; paneIndex: number };
+  const [dragKey, setDragKey] = useState<DragKey | null>(null);
+  const dragStartRef = useRef<{
+    startClientX: number;
+    startClientY: number;
+    startOffsetX: number;
+    startOffsetY: number;
+    moved: boolean;
+    paneCountSnapshot: number;
+  } | null>(null);
+
+  // Set per-image scale (and clear/reset offsets when called with reset=true).
+  function setImageScale(id: string, scale: number) {
+    setImages((prev) => prev.map((i) => (i.id === id ? { ...i, scale } : i)));
+  }
+
+  function resetImageTransform(id: string) {
+    setImages((prev) =>
+      prev.map((i) => (i.id === id ? { ...i, scale: 1, offsetX: 0, offsetY: 0 } : i))
+    );
+  }
+
+  // Capture an image's natural pixel dimensions on first render so the preview
+  // can compute cover-fit sizing without round-tripping through a canvas. Only
+  // updates if the values changed (so we don't churn state every render).
+  function recordImageNatural(id: string, naturalW: number, naturalH: number) {
+    setImages((prev) =>
+      prev.map((i) =>
+        i.id === id && (i.naturalW !== naturalW || i.naturalH !== naturalH)
+          ? { ...i, naturalW, naturalH }
+          : i
+      )
+    );
+  }
 
   const propsRef = useRef<Props>({ eyebrowText, titleText, descriptionText, authorsText, paperLink });
   useEffect(() => {
@@ -1140,6 +1254,127 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   }, [paperLink]);
 
 
+  // Mount window mouse listeners while a drag is in progress. We keep the
+  // listeners on the window (not the interaction div) so the drag survives
+  // the cursor briefly leaving the preview while panning fast.
+  useEffect(() => {
+    if (!dragKey) return;
+    function onMove(e: MouseEvent) {
+      const s = dragStartRef.current;
+      if (!s || !dragKey) return;
+      const dx = (e.clientX - s.startClientX) / PREVIEW_SCALE;
+      const dy = (e.clientY - s.startClientY) / PREVIEW_SCALE;
+      // A small dead-zone keeps a click-without-drag from nudging the target.
+      if (!s.moved && Math.abs(dx) < 3 && Math.abs(dy) < 3) return;
+      s.moved = true;
+      if (dragKey.type === "image") {
+        const id = dragKey.imageId;
+        setImages((prev) =>
+          prev.map((i) =>
+            i.id === id
+              ? { ...i, offsetX: s.startOffsetX + dx, offsetY: s.startOffsetY + dy }
+              : i
+          )
+        );
+      } else {
+        const idx = dragKey.paneIndex;
+        setPanes((prev) => {
+          const next = [...prev];
+          const cur = next[idx];
+          if (cur)
+            next[idx] = { ...cur, quoteOffsetX: s.startOffsetX + dx, quoteOffsetY: s.startOffsetY + dy };
+          return next;
+        });
+      }
+    }
+    function onUp(e: MouseEvent) {
+      const s = dragStartRef.current;
+      setDragKey(null);
+      if (s && !s.moved) {
+        // No real movement → treat as a click that selects the pane under
+        // the cursor.
+        const el = previewMasterRef.current;
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const xCanvas = (e.clientX - rect.left) / PREVIEW_SCALE;
+          const idx = Math.max(
+            0,
+            Math.min(s.paneCountSnapshot - 1, Math.floor(xCanvas / CANVAS_SIZE))
+          );
+          setActivePane(idx);
+        }
+      }
+      dragStartRef.current = null;
+    }
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+  }, [dragKey]);
+
+  function handleMasterMouseDown(e: React.MouseEvent<HTMLDivElement>) {
+    const el = previewMasterRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const xCanvas = (e.clientX - rect.left) / PREVIEW_SCALE;
+    const yCanvas = (e.clientY - rect.top) / PREVIEW_SCALE;
+
+    // 1. Quote-mark hit-test first — overlays everything else when visible.
+    for (let pi = 0; pi < panes.length; pi += 1) {
+      const p = panes[pi];
+      if (!p.showQuoteMark) continue;
+      const qLeft = pi * CANVAS_SIZE + QUOTE_MARK_LEFT + p.quoteOffsetX;
+      const qTop = QUOTE_MARK_TOP + p.quoteOffsetY;
+      if (
+        xCanvas >= qLeft &&
+        xCanvas < qLeft + QUOTE_MARK_HIT_WIDTH &&
+        yCanvas >= qTop &&
+        yCanvas < qTop + QUOTE_MARK_HIT_HEIGHT
+      ) {
+        dragStartRef.current = {
+          startClientX: e.clientX,
+          startClientY: e.clientY,
+          startOffsetX: p.quoteOffsetX,
+          startOffsetY: p.quoteOffsetY,
+          moved: false,
+          paneCountSnapshot: paneCount,
+        };
+        setDragKey({ type: "quote", paneIndex: pi });
+        return;
+      }
+    }
+
+    // 2. No images: this is just a pane selector.
+    if (selectedImages.length === 0) {
+      const idx = Math.max(0, Math.min(paneCount - 1, Math.floor(xCanvas / CANVAS_SIZE)));
+      setActivePane(idx);
+      return;
+    }
+
+    // 3. Otherwise, pan the image whose slot is under the cursor.
+    let targetIndex = -1;
+    for (let i = 0; i < selectedImages.length; i += 1) {
+      const s = paneSlotForImage(i, selectedImages.length, paneCount);
+      if (xCanvas >= s.left && xCanvas < s.left + s.width) {
+        targetIndex = i;
+        break;
+      }
+    }
+    if (targetIndex < 0) return;
+    const target = selectedImages[targetIndex];
+    dragStartRef.current = {
+      startClientX: e.clientX,
+      startClientY: e.clientY,
+      startOffsetX: target.offsetX,
+      startOffsetY: target.offsetY,
+      moved: false,
+      paneCountSnapshot: paneCount,
+    };
+    setDragKey({ type: "image", imageId: target.id });
+  }
+
   const handleFiles = useCallback(async (files: FileList | File[]) => {
     const isImageLike = (f: File): boolean =>
       f.type.startsWith("image/") ||
@@ -1159,13 +1394,14 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
         if (file.type === "application/pdf" || /\.pdf$/i.test(file.name)) {
           src = await pdfDataUrlToPngDataUrl(src);
         }
-        loaded.push({
-          id: `upload-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-          src,
-          name: file.name,
-          source: "upload",
-          selected: true,
-        });
+        loaded.push(
+          makeBgImage(
+            `upload-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+            src,
+            file.name,
+            "upload"
+          )
+        );
       } catch {
         // ignore failures, continue
       }
@@ -1233,13 +1469,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
             continue;
           }
         }
-        newImages.push({
-          id: `arxiv-${Date.now()}-${i}`,
-          src,
-          name: f.filename,
-          source: "arxiv",
-          selected: true,
-        });
+        newImages.push(makeBgImage(`arxiv-${Date.now()}-${i}`, src, f.filename, "arxiv"));
       }
       if (newImages.length === 0) {
         setArxivError(
@@ -1273,13 +1503,12 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       const pdf = await fetchArxivPdf(paperLink);
       const dataUrl = bytesFromBase64(pdf.dataBase64, pdf.mimeType);
       const cropped = await pdfFirstPageTopFractionPng(dataUrl, 0.5);
-      const image: BgImage = {
-        id: `arxiv-pdf-${Date.now()}`,
-        src: cropped,
-        name: `${pdf.filename.replace(/\.pdf$/i, "")}-top-half.png`,
-        source: "arxiv",
-        selected: true,
-      };
+      const image: BgImage = makeBgImage(
+        `arxiv-pdf-${Date.now()}`,
+        cropped,
+        `${pdf.filename.replace(/\.pdf$/i, "")}-top-half.png`,
+        "arxiv"
+      );
       setImages((prev) => (prepend ? [image, ...prev] : [...prev, image]));
       setArxivInfo("Added the top half of page 1 from the paper PDF.");
       return image;
@@ -1329,7 +1558,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       window.clearTimeout(handle);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activePane, templateKey, images, gradientStrength, tintStrength, imageScale, paneCount]);
+  }, [activePane, templateKey, images, gradientStrength, tintStrength, paneCount]);
 
   function removeImage(id: string) {
     setImages((prev) => prev.filter((i) => i.id !== id));
@@ -1384,21 +1613,30 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
   }
 
   function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
-    const cleaned = text.replace(/\s+/g, " ").trim();
-    if (!cleaned) return [];
-    const words = cleaned.split(" ");
+    // Honor manual newlines as hard line breaks. Each paragraph is wrapped
+    // independently; an empty paragraph (a blank line in the input) becomes
+    // an empty output line so vertical spacing is preserved.
+    const paragraphs = text.replace(/\r\n?/g, "\n").split("\n");
     const lines: string[] = [];
-    let current = words[0];
-    for (let i = 1; i < words.length; i += 1) {
-      const candidate = `${current} ${words[i]}`;
-      if (ctx.measureText(candidate).width <= maxWidth) {
-        current = candidate;
-      } else {
-        lines.push(current);
-        current = words[i];
+    paragraphs.forEach((paragraph) => {
+      const cleaned = paragraph.replace(/[ \t]+/g, " ").trim();
+      if (!cleaned) {
+        lines.push("");
+        return;
       }
-    }
-    lines.push(current);
+      const words = cleaned.split(" ");
+      let current = words[0];
+      for (let i = 1; i < words.length; i += 1) {
+        const candidate = `${current} ${words[i]}`;
+        if (ctx.measureText(candidate).width <= maxWidth) {
+          current = candidate;
+        } else {
+          lines.push(current);
+          current = words[i];
+        }
+      }
+      lines.push(current);
+    });
     return lines;
   }
 
@@ -1433,8 +1671,19 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
         const loaded = await Promise.all(selectedImages.map((i) => loadImage(i.src).catch(() => null)));
         loaded.forEach((img, i) => {
           if (!img) return;
+          const bg = selectedImages[i];
           const slot = paneSlotForImage(i, selectedImages.length, paneCount);
-          drawCoverImage(mctx, img, slot.left * scale, 0, slot.width * scale, SAMPLE_SIZE);
+          drawImageInSlot(
+            mctx,
+            img,
+            slot.left * scale,
+            0,
+            slot.width * scale,
+            SAMPLE_SIZE,
+            bg.scale,
+            bg.offsetX * scale,
+            bg.offsetY * scale
+          );
           applyHorizontalCrossfade(mctx, slot.left * scale, slot.width * scale, i, selectedImages.length);
         });
         ctx.drawImage(
@@ -1614,8 +1863,19 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
         const loaded = await Promise.all(selectedImages.map((img) => loadImage(img.src).catch(() => null)));
         loaded.forEach((img, i) => {
           if (!img) return;
+          const bg = selectedImages[i];
           const slot = paneSlotForImage(i, selectedImages.length, paneCount);
-          drawCoverImage(mctx, img, slot.left, 0, slot.width, CANVAS_SIZE);
+          drawImageInSlot(
+            mctx,
+            img,
+            slot.left,
+            0,
+            slot.width,
+            CANVAS_SIZE,
+            bg.scale,
+            bg.offsetX,
+            bg.offsetY
+          );
           applyHorizontalCrossfade(mctx, slot.left, slot.width, i, selectedImages.length);
         });
         ctx.drawImage(
@@ -1668,48 +1928,61 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     }
 
     // 5. Gradient overlay — multiple layered passes per template.
-    template.gradientLayers.forEach((layer) => {
-      paintGradientLayer(ctx, layer, CANVAS_SIZE, gradientStrength);
-    });
+    //    Skipped entirely if this pane has `showGradient: false`, so the raw
+    //    background image shines through without any dark wash.
+    if (panes[paneIndex]?.showGradient !== false) {
+      template.gradientLayers.forEach((layer) => {
+        paintGradientLayer(ctx, layer, CANVAS_SIZE, gradientStrength);
+      });
+    }
+
+    // 5b. Oversized open-quote ornament (opt-in per pane). Sits above the
+    //     gradient so it reads against the wash but below text so glyphs
+    //     don't disappear behind it.
+    if (panes[paneIndex]?.showQuoteMark) {
+      const p = panes[paneIndex];
+      drawQuoteMark(ctx, template.textColor, p.quoteOffsetX, p.quoteOffsetY);
+    }
 
     // 6. Text
     drawPaneText(ctx, paneIndex);
 
-    // 7. Logo
-    await drawLogo(ctx, panes[paneIndex]?.flipped ?? false);
+    // 7. Logo (per-pane toggle; default on)
+    if (panes[paneIndex]?.showLogo !== false) {
+      await drawLogo(ctx, panes[paneIndex]?.flipped ?? false);
+    }
 
     return canvas;
   }
 
 
-  function drawCoverImage(
+  function drawImageInSlot(
     ctx: CanvasRenderingContext2D,
     img: HTMLImageElement,
-    dx: number,
-    dy: number,
-    dw: number,
-    dh: number
+    slotX: number,
+    slotY: number,
+    slotW: number,
+    slotH: number,
+    scale: number,
+    offsetX: number,
+    offsetY: number
   ) {
-    const imageRatio = img.width / img.height;
-    const slotRatio = dw / dh;
-    // Base "cover" source rectangle that fills the slot exactly.
-    let baseSw: number;
-    let baseSh: number;
-    if (imageRatio > slotRatio) {
-      baseSw = img.height * slotRatio;
-      baseSh = img.height;
-    } else {
-      baseSw = img.width;
-      baseSh = img.width / slotRatio;
-    }
-    // imageScale > 1 → zoom into the image (sample less source).
-    // imageScale < 1 → zoom out (clamp so source can't exceed the image).
-    const scale = Math.max(0.25, Math.min(4, imageScale));
-    const sw = Math.min(img.width, baseSw / scale);
-    const sh = Math.min(img.height, baseSh / scale);
-    const sx = (img.width - sw) / 2;
-    const sy = (img.height - sh) / 2;
-    ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
+    // Cover-fit factor: at scale=1 the image is drawn just big enough to fill
+    // the slot in both axes. Below 1 the image shrinks below cover (letterbox
+    // — empty area shows the base color through). Above 1 it zooms further in.
+    const coverK = Math.max(slotW / img.width, slotH / img.height);
+    const drawW = img.width * coverK * scale;
+    const drawH = img.height * coverK * scale;
+    const cx = slotX + slotW / 2 + offsetX;
+    const cy = slotY + slotH / 2 + offsetY;
+    ctx.save();
+    // Clip to the slot so an image scaled above 1 (or pushed past its slot
+    // by offset) doesn't bleed into the adjacent pane.
+    ctx.beginPath();
+    ctx.rect(slotX, slotY, slotW, slotH);
+    ctx.clip();
+    ctx.drawImage(img, cx - drawW / 2, cy - drawH / 2, drawW, drawH);
+    ctx.restore();
   }
 
   function applyHorizontalCrossfade(
@@ -1980,6 +2253,25 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
     });
   }
 
+  function drawQuoteMark(
+    ctx: CanvasRenderingContext2D,
+    color: string,
+    offsetX: number,
+    offsetY: number
+  ) {
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.font = `700 ${QUOTE_MARK_FONT_SIZE}px ${QUOTE_MARK_FONT_STACK}`;
+    ctx.textBaseline = "top";
+    ctx.textAlign = "left";
+    // Light alpha so the title can sit over the mark legibly even on a
+    // bottom-aligned template that pushes text away from the corner; on
+    // top-aligned templates the mark reads as an integrated drop-cap.
+    ctx.globalAlpha = 0.85;
+    ctx.fillText("“", QUOTE_MARK_LEFT + offsetX, QUOTE_MARK_TOP + offsetY);
+    ctx.restore();
+  }
+
   async function drawLogo(ctx: CanvasRenderingContext2D, flipped: boolean) {
     try {
       const img = await loadImage(usmccLogo);
@@ -2194,6 +2486,43 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                         ✕
                       </button>
                     </div>
+                    <div className="ig-thumb-zoom">
+                      <span title="Below 100% lets the whole image show with the base color around it. Above 100% zooms further in. Drag inside the preview to pan.">
+                        Zoom
+                      </span>
+                      <input
+                        type="number"
+                        className="ig-thumb-zoom-input"
+                        min={10}
+                        max={300}
+                        step={5}
+                        value={Math.round(img.scale * 100)}
+                        onChange={(e) => {
+                          // Allow the user to type freely. Empty / NaN
+                          // becomes the default; out-of-range clamps.
+                          const raw = e.target.value;
+                          if (raw === "") {
+                            setImageScale(img.id, 1);
+                            return;
+                          }
+                          const pct = Number(raw);
+                          if (Number.isFinite(pct)) {
+                            const clamped = Math.max(10, Math.min(300, pct));
+                            setImageScale(img.id, clamped / 100);
+                          }
+                        }}
+                        title="Zoom percent (10–300). 100% = fill the slot. Below 100% letterboxes."
+                      />
+                      <span className="ig-thumb-zoom-unit">%</span>
+                      <button
+                        type="button"
+                        className="ig-thumb-reset"
+                        onClick={() => resetImageTransform(img.id)}
+                        title="Reset zoom and pan to defaults"
+                      >
+                        ⟲
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -2245,18 +2574,6 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                 onChange={setTintStrength}
               />
               <strong>{tintStrength.toFixed(2)}</strong>
-            </div>
-            <div className="ig-slider-row">
-              <span>Image zoom</span>
-              <Slider
-                min={0.5}
-                max={2.5}
-                step={0.05}
-                value={imageScale}
-                defaultValue={1}
-                onChange={setImageScale}
-              />
-              <strong>{Math.round(imageScale * 100)}%</strong>
             </div>
             <div className="ig-slider-row">
               <span>Backdrop blur</span>
@@ -2404,6 +2721,54 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
               {panes[activePane]?.flipped ? "↔ Flip back to default side" : "↔ Flip this pane"}
             </button>
 
+            <div className="ig-pane-toggles">
+              <label title="Off = the dark gradient wash is removed from this pane so the raw background image shines through. Other panes keep their gradients.">
+                <input
+                  type="checkbox"
+                  checked={panes[activePane]?.showGradient !== false}
+                  onChange={(e) =>
+                    setPanes((prev) => {
+                      const next = [...prev];
+                      const current = next[activePane];
+                      if (current) next[activePane] = { ...current, showGradient: e.target.checked };
+                      return next;
+                    })
+                  }
+                />
+                Show gradient
+              </label>
+              <label title="Hide the USMCC logo on this pane only.">
+                <input
+                  type="checkbox"
+                  checked={panes[activePane]?.showLogo !== false}
+                  onChange={(e) =>
+                    setPanes((prev) => {
+                      const next = [...prev];
+                      const current = next[activePane];
+                      if (current) next[activePane] = { ...current, showLogo: e.target.checked };
+                      return next;
+                    })
+                  }
+                />
+                Show logo
+              </label>
+              <label title="Draw a big editorial open-quote (“) in the upper-left of this pane. Pull-quote vibe — best on panes with a short, punchy line.">
+                <input
+                  type="checkbox"
+                  checked={panes[activePane]?.showQuoteMark === true}
+                  onChange={(e) =>
+                    setPanes((prev) => {
+                      const next = [...prev];
+                      const current = next[activePane];
+                      if (current) next[activePane] = { ...current, showQuoteMark: e.target.checked };
+                      return next;
+                    })
+                  }
+                />
+                Show quote mark
+              </label>
+            </div>
+
             {paneContrast && (
               <div className="ig-contrast" aria-live="polite">
                 <div className="ig-contrast-header">
@@ -2531,6 +2896,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
               }}
             >
               <div
+                ref={previewMasterRef}
                 className="ig-preview-master"
                 style={{
                   width: masterWidthPx,
@@ -2539,25 +2905,22 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                   background: template.baseColor,
                 }}
               >
-                {/* Image layer — each image lives in a slot-sized clipping div so transform scale
-                    visually zooms within the slot without breaking the cross-fade mask. */}
+                {/* Image layer — each image lives in a slot-sized clipping div.
+                    Inside, the <img> is sized in pixels based on the image's
+                    natural dimensions, its cover-fit factor, and the per-image
+                    scale, then offset by (offsetX, offsetY). Below 100% the
+                    image shrinks below cover and the base color shows through
+                    around it ("zoom out"). Above 100% it crops further in. */}
                 <div className="ig-image-layer">
                   {selectedImages.map((img, i) => {
                     const slot = paneSlotForImage(i, selectedImages.length, paneCount);
                     const fade = Math.min(crossfadePx, slot.width * 0.45);
                     const hasLeft = i > 0;
                     const hasRight = i < selectedImages.length - 1;
-                    // Smoothstep-approximating mask. The mask ramps in / out
-                    // over CROSSFADE_PX with the same curve we use in canvas
-                    // export, so the preview and the PNG export look identical.
-                    // CSS linear-gradient stops MUST be specified with
-                    // monotonically increasing positions, otherwise browsers
-                    // clamp out-of-order stops onto the previous position and
-                    // a smooth feather collapses into a hard edge. For the
-                    // left ramp we walk the smoothstep table in reverse so
-                    // positions go 0 → fade; the right ramp is already in
-                    // order because position = 100% − (1−t)·fade increases
-                    // monotonically with t.
+                    // Smoothstep-approximating mask. Same curve as the canvas
+                    // export so preview and PNG match. CSS linear-gradient
+                    // stops MUST be monotonically increasing — walk the left
+                    // ramp in reverse so positions go 0 → fade.
                     const leftRamp = hasLeft
                       ? [...CROSSFADE_STOPS_OPAQUE_TO_TRANSPARENT]
                           .reverse()
@@ -2570,6 +2933,37 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                         ).join(", ")
                       : "rgba(0,0,0,1) 100%";
                     const mask = `linear-gradient(to right, ${leftRamp}${rightRamp})`;
+                    // Compute draw-size from natural dimensions when known.
+                    // Until the first onLoad fires we fall back to objectFit
+                    // cover with a transform scale, so initial render isn't
+                    // a flash of empty.
+                    const hasNatural = !!(img.naturalW && img.naturalH);
+                    const innerImgStyle: React.CSSProperties = hasNatural
+                      ? (() => {
+                          const nw = img.naturalW as number;
+                          const nh = img.naturalH as number;
+                          const coverK = Math.max(slot.width / nw, CANVAS_SIZE / nh);
+                          const drawW = nw * coverK * img.scale;
+                          const drawH = nh * coverK * img.scale;
+                          return {
+                            position: "absolute",
+                            width: drawW,
+                            height: drawH,
+                            left: slot.width / 2 + img.offsetX - drawW / 2,
+                            top: CANVAS_SIZE / 2 + img.offsetY - drawH / 2,
+                            pointerEvents: "none",
+                            userSelect: "none",
+                          } as React.CSSProperties;
+                        })()
+                      : {
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          transform: `scale(${img.scale})`,
+                          transformOrigin: "center center",
+                          pointerEvents: "none",
+                          userSelect: "none",
+                        };
                     return (
                       <div
                         key={img.id}
@@ -2587,13 +2981,15 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                         <img
                           src={img.src}
                           alt=""
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            transform: `scale(${imageScale})`,
-                            transformOrigin: "center center",
-                          }}
+                          draggable={false}
+                          onLoad={(e) =>
+                            recordImageNatural(
+                              img.id,
+                              e.currentTarget.naturalWidth,
+                              e.currentTarget.naturalHeight
+                            )
+                          }
+                          style={innerImgStyle}
                         />
                       </div>
                     );
@@ -2608,9 +3004,7 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                     mixBlendMode: template.tintBlend as React.CSSProperties["mixBlendMode"],
                   }}
                 />
-                {/* Backdrop blur layer — sits above image+tint, below gradient.
-                    Uses backdrop-filter so only the area under the mask is
-                    blurred; mask geometry matches the template's text-zone. */}
+                {/* Backdrop blur layer — sits above image+tint, below gradient. */}
                 {backdropBlurPx > 0 && (
                   <div
                     className="ig-blur-layer"
@@ -2622,18 +3016,32 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                     }}
                   />
                 )}
-                {/* Gradient overlay — one div per layer, each with its own blend mode and opacity. */}
-                {template.gradientLayers.map((layer, idx) => (
-                  <div
-                    key={`grad-${idx}`}
-                    className="ig-gradient-layer"
-                    style={{
-                      backgroundImage: gradientLayerCss(layer),
-                      opacity: layer.opacity * gradientStrength,
-                      mixBlendMode: layer.blend as React.CSSProperties["mixBlendMode"],
-                    }}
-                  />
-                ))}
+                {/* Gradient overlay — rendered per pane (CANVAS_SIZE-wide) so
+                    individual panes can have their gradient ducked away to
+                    let the raw background image show through. This also keeps
+                    the preview pixel-identical to the canvas export, which
+                    has always applied gradients per-pane. */}
+                {panes.map((pane, pi) =>
+                  pane.showGradient === false
+                    ? null
+                    : template.gradientLayers.map((layer, idx) => (
+                        <div
+                          key={`grad-${pi}-${idx}`}
+                          className="ig-gradient-layer"
+                          style={{
+                            position: "absolute",
+                            left: pi * CANVAS_SIZE,
+                            top: 0,
+                            width: CANVAS_SIZE,
+                            height: CANVAS_SIZE,
+                            backgroundImage: gradientLayerCss(layer),
+                            opacity: layer.opacity * gradientStrength,
+                            mixBlendMode: layer.blend as React.CSSProperties["mixBlendMode"],
+                            pointerEvents: "none",
+                          }}
+                        />
+                      ))
+                )}
                 {/* Per-pane text + logo */}
                 {panes.map((pane, i) => (
                   <PanePreview
@@ -2663,6 +3071,29 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                     style={{ left: (i + 1) * CANVAS_SIZE - 1 }}
                   />
                 ))}
+                {/* Interaction layer — on top of everything, captures
+                    mousedown to start a drag-pan of the image in that slot.
+                    On a click without movement, falls through to selecting
+                    the pane under the cursor. Sits above all visual layers
+                    so it wins the click before .ig-pane / the gradient. */}
+                <div
+                  className="ig-interaction-layer"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    cursor: dragKey
+                      ? "grabbing"
+                      : selectedImages.length > 0 || panes.some((p) => p.showQuoteMark)
+                      ? "grab"
+                      : "pointer",
+                  }}
+                  onMouseDown={handleMasterMouseDown}
+                  title={
+                    selectedImages.length > 0
+                      ? "Drag to pan the background image. Click to select a pane."
+                      : "Click a pane to edit."
+                  }
+                />
               </div>
             </div>
           </div>
@@ -2758,6 +3189,9 @@ function PanePreview({
       color,
       maxWidth: "100%",
       wordBreak: "break-word",
+      // Honor explicit newlines the user typed in the per-pane textareas.
+      // Collapse runs of regular spaces / tabs the way browsers normally do.
+      whiteSpace: "pre-wrap",
       marginBottom,
       textShadow: textShadowCss,
     };
@@ -2796,6 +3230,27 @@ function PanePreview({
       }}
       onClick={onSelect}
     >
+      {pane.showQuoteMark && (
+        <div
+          className="ig-pane-quote"
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: QUOTE_MARK_LEFT + pane.quoteOffsetX,
+            top: QUOTE_MARK_TOP + pane.quoteOffsetY,
+            fontFamily: QUOTE_MARK_FONT_STACK,
+            fontWeight: 700,
+            fontSize: QUOTE_MARK_FONT_SIZE,
+            lineHeight: 1,
+            color: template.textColor,
+            opacity: 0.85,
+            pointerEvents: "none",
+            userSelect: "none",
+          }}
+        >
+          {"“"}
+        </div>
+      )}
       <div
         className="ig-pane-text"
         style={{
@@ -2864,21 +3319,23 @@ function PanePreview({
           </div>
         )}
       </div>
-      <img
-        src={usmccLogo}
-        alt="USMCC"
-        className="ig-pane-logo"
-        style={{
-          position: "absolute",
-          ...(pane.flipped
-            ? { left: LOGO_MARGIN_PX }
-            : { right: LOGO_MARGIN_PX }),
-          bottom: LOGO_MARGIN_PX,
-          height: LOGO_HEIGHT_PX,
-          width: "auto",
-          pointerEvents: "none",
-        }}
-      />
+      {pane.showLogo !== false && (
+        <img
+          src={usmccLogo}
+          alt="USMCC"
+          className="ig-pane-logo"
+          style={{
+            position: "absolute",
+            ...(pane.flipped
+              ? { left: LOGO_MARGIN_PX }
+              : { right: LOGO_MARGIN_PX }),
+            bottom: LOGO_MARGIN_PX,
+            height: LOGO_HEIGHT_PX,
+            width: "auto",
+            pointerEvents: "none",
+          }}
+        />
+      )}
     </div>
   );
 }
