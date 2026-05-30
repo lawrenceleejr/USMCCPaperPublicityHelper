@@ -142,11 +142,24 @@ interface PaneText {
   // If false, the USMCC logo is omitted from this pane (the rest of the
   // carousel keeps it).
   showLogo: boolean;
+  // If true, draw a big editorial open-quote glyph in the pane's upper-left
+  // — a pull-quote design flourish, opt-in per pane.
+  showQuoteMark: boolean;
   dirty: { eyebrow: boolean; title: boolean; description: boolean; authors: boolean };
 }
 
+
 const CANVAS_SIZE = 1080;
 const SAFE_PADDING = 88;
+// Geometry for the oversized open-quotation-mark ornament. Tuned so the ink
+// of the " glyph sits comfortably inside the upper-left safe area at the
+// 1080×1080 canvas size — Georgia draws the quote in the upper portion of
+// its bounding box, so a negative `top` pulls the glyph up to where the
+// padding starts visually.
+const QUOTE_MARK_FONT_SIZE = 360;
+const QUOTE_MARK_LEFT = SAFE_PADDING - 30;
+const QUOTE_MARK_TOP = -40;
+const QUOTE_MARK_FONT_STACK = 'Georgia, "Times New Roman", serif';
 // Upper bound on the soft cross-fade between adjacent images. The actual
 // width is user-controlled (`crossfadePx` state slider); this constant just
 // caps the slider so a 5-pane carousel can't ask for a fade wider than a
@@ -969,6 +982,7 @@ function makePaneTextFromProps(
     flipped: false,
     showGradient: true,
     showLogo: true,
+    showQuoteMark: false,
     dirty: { eyebrow: false, title: false, description: false, authors: false },
   };
 }
@@ -983,6 +997,7 @@ function refreshPaneFromProps(pane: PaneText, paneIndex: number, paneCount: numb
     flipped: pane.flipped,
     showGradient: pane.showGradient,
     showLogo: pane.showLogo,
+    showQuoteMark: pane.showQuoteMark,
     dirty: pane.dirty,
   };
 }
@@ -1850,6 +1865,13 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       });
     }
 
+    // 5b. Oversized open-quote ornament (opt-in per pane). Sits above the
+    //     gradient so it reads against the wash but below text so glyphs
+    //     don't disappear behind it.
+    if (panes[paneIndex]?.showQuoteMark) {
+      drawQuoteMark(ctx, template.textColor);
+    }
+
     // 6. Text
     drawPaneText(ctx, paneIndex);
 
@@ -2157,6 +2179,20 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
       });
       if (wantShadow) ctx.restore();
     });
+  }
+
+  function drawQuoteMark(ctx: CanvasRenderingContext2D, color: string) {
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.font = `700 ${QUOTE_MARK_FONT_SIZE}px ${QUOTE_MARK_FONT_STACK}`;
+    ctx.textBaseline = "top";
+    ctx.textAlign = "left";
+    // Light alpha so the title can sit over the mark legibly even on a
+    // bottom-aligned template that pushes text away from the corner; on
+    // top-aligned templates the mark reads as an integrated drop-cap.
+    ctx.globalAlpha = 0.85;
+    ctx.fillText("“", QUOTE_MARK_LEFT, QUOTE_MARK_TOP);
+    ctx.restore();
   }
 
   async function drawLogo(ctx: CanvasRenderingContext2D, flipped: boolean) {
@@ -2625,6 +2661,21 @@ const InstagramDesigner = forwardRef<InstagramDesignerHandle, Props>(function In
                 />
                 Show logo
               </label>
+              <label title="Draw a big editorial open-quote (“) in the upper-left of this pane. Pull-quote vibe — best on panes with a short, punchy line.">
+                <input
+                  type="checkbox"
+                  checked={panes[activePane]?.showQuoteMark === true}
+                  onChange={(e) =>
+                    setPanes((prev) => {
+                      const next = [...prev];
+                      const current = next[activePane];
+                      if (current) next[activePane] = { ...current, showQuoteMark: e.target.checked };
+                      return next;
+                    })
+                  }
+                />
+                Show quote mark
+              </label>
             </div>
 
             {paneContrast && (
@@ -3085,6 +3136,27 @@ function PanePreview({
       }}
       onClick={onSelect}
     >
+      {pane.showQuoteMark && (
+        <div
+          className="ig-pane-quote"
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: QUOTE_MARK_LEFT,
+            top: QUOTE_MARK_TOP,
+            fontFamily: QUOTE_MARK_FONT_STACK,
+            fontWeight: 700,
+            fontSize: QUOTE_MARK_FONT_SIZE,
+            lineHeight: 1,
+            color: template.textColor,
+            opacity: 0.85,
+            pointerEvents: "none",
+            userSelect: "none",
+          }}
+        >
+          {"“"}
+        </div>
+      )}
       <div
         className="ig-pane-text"
         style={{
