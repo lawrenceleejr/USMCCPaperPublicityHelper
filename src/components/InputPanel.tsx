@@ -17,27 +17,17 @@ interface Props {
 
 type Mode = "paste" | "manual";
 
-// Manual-entry form fields. We keep this struct flat so the form is trivially
-// serialisable into a PaperRow when the user clicks "Use these values".
-interface ManualForm {
-  plainTitle: string;
-  paperTitle: string;
-  authors: string;
-  publicAbstract: string;
-  category: string;
-  publicationDate: string;
-  paperLink: string;
-  additionalComments: string;
-}
-
-const EMPTY_MANUAL: ManualForm = {
-  plainTitle: "",
+const BLANK_ROW: PaperRow = {
+  timestamp: "",
+  email: "",
   paperTitle: "",
+  plainTitle: "",
   authors: "",
-  publicAbstract: "",
-  category: "",
   publicationDate: "",
+  category: "",
+  publicAbstract: "",
   paperLink: "",
+  figuresOk: true,
   additionalComments: "",
 };
 
@@ -55,7 +45,6 @@ export default function InputPanel({
 }: Props) {
   const [mode, setMode] = useState<Mode>("paste");
   const [text, setText] = useState("");
-  const [manual, setManual] = useState<ManualForm>(EMPTY_MANUAL);
   const [parsed, setParsed] = useState<PaperRow | null>(null);
   const [parsing, setParsing] = useState(false);
 
@@ -74,34 +63,14 @@ export default function InputPanel({
     }
   }
 
-  function handleUseManual() {
-    const row: PaperRow = {
-      timestamp: "",
-      email: "",
-      paperTitle: manual.paperTitle.trim(),
-      plainTitle: manual.plainTitle.trim(),
-      authors: manual.authors.trim(),
-      publicationDate: manual.publicationDate.trim(),
-      category: manual.category.trim(),
-      publicAbstract: manual.publicAbstract.trim(),
-      paperLink: manual.paperLink.trim(),
-      figuresOk: true,
-      additionalComments: manual.additionalComments.trim(),
-    };
-    if (!row.plainTitle && !row.paperTitle) {
-      onError("Enter at least a title (plain-language or paper title).");
-      return;
-    }
-    setParsed(row);
-    onParsed(row);
+  function handleSwitchToManual() {
+    setMode("manual");
+    // Fire a blank row immediately so the Instagram designer appears
+    // and the user can edit everything directly in the per-pane editor.
+    const blank = { ...BLANK_ROW };
+    setParsed(blank);
+    onParsed(blank);
   }
-
-  function updateManual<K extends keyof ManualForm>(key: K, value: ManualForm[K]) {
-    setManual((prev) => ({ ...prev, [key]: value }));
-  }
-
-  const canUseManual =
-    manual.plainTitle.trim() !== "" || manual.paperTitle.trim() !== "";
 
   return (
     <div className="input-panel">
@@ -115,7 +84,7 @@ export default function InputPanel({
         </button>
         <button
           className={`input-mode-tab ${mode === "manual" ? "active" : ""}`}
-          onClick={() => setMode("manual")}
+          onClick={handleSwitchToManual}
           type="button"
         >
           Manual entry
@@ -142,97 +111,10 @@ export default function InputPanel({
           </div>
         </>
       ) : (
-        <>
-          <h2>Manual entry</h2>
-          <p className="manual-hint">
-            Fill in whatever you have. Plain-language title and abstract drive the Instagram
-            graphic; the other fields feed Claude / Hugo export when present.
-          </p>
-          <div className="manual-form">
-            <label className="manual-field">
-              <span>Plain-language title</span>
-              <input
-                type="text"
-                value={manual.plainTitle}
-                onChange={(e) => updateManual("plainTitle", e.target.value)}
-                placeholder="Short, public-friendly title shown on the graphic"
-              />
-            </label>
-            <label className="manual-field">
-              <span>Paper title</span>
-              <input
-                type="text"
-                value={manual.paperTitle}
-                onChange={(e) => updateManual("paperTitle", e.target.value)}
-                placeholder="Formal / technical paper title"
-              />
-            </label>
-            <label className="manual-field">
-              <span>Authors</span>
-              <input
-                type="text"
-                value={manual.authors}
-                onChange={(e) => updateManual("authors", e.target.value)}
-                placeholder="Comma-separated list"
-              />
-            </label>
-            <label className="manual-field manual-field-wide">
-              <span>Abstract / plain summary</span>
-              <textarea
-                rows={5}
-                value={manual.publicAbstract}
-                onChange={(e) => updateManual("publicAbstract", e.target.value)}
-                placeholder="The blurb that drives the generated posts and the graphic description."
-              />
-            </label>
-            <label className="manual-field">
-              <span>Category</span>
-              <input
-                type="text"
-                value={manual.category}
-                onChange={(e) => updateManual("category", e.target.value)}
-                placeholder="e.g. Detector, Accelerator"
-              />
-            </label>
-            <label className="manual-field">
-              <span>Date</span>
-              <input
-                type="text"
-                value={manual.publicationDate}
-                onChange={(e) => updateManual("publicationDate", e.target.value)}
-                placeholder="YYYY-MM-DD"
-              />
-            </label>
-            <label className="manual-field manual-field-wide">
-              <span>Paper link</span>
-              <input
-                type="text"
-                value={manual.paperLink}
-                onChange={(e) => updateManual("paperLink", e.target.value)}
-                placeholder="https://arxiv.org/abs/…"
-              />
-            </label>
-            <label className="manual-field manual-field-wide">
-              <span>Comments</span>
-              <input
-                type="text"
-                value={manual.additionalComments}
-                onChange={(e) => updateManual("additionalComments", e.target.value)}
-                placeholder="Optional notes from the submitter"
-              />
-            </label>
-          </div>
-          <div className="input-controls">
-            <button
-              className="btn-secondary"
-              onClick={handleUseManual}
-              disabled={!canUseManual}
-              type="button"
-            >
-              Use these values
-            </button>
-          </div>
-        </>
+        <p className="manual-hint">
+          Manual mode — every field starts blank. Edit titles, text, authors and images directly
+          in the Instagram designer below.
+        </p>
       )}
 
       <div className="input-controls">
@@ -279,7 +161,7 @@ export default function InputPanel({
         </button>
       </div>
 
-      {parsed && (
+      {parsed && (parsed.plainTitle || parsed.paperTitle || parsed.authors) && (
         <div className="parsed-meta">
           <strong>{parsed.plainTitle || parsed.paperTitle}</strong>
           <span>
