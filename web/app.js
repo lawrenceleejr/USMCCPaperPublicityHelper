@@ -16,6 +16,7 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
 const TOUCH = matchMedia('(hover: none) and (pointer: coarse)').matches;
 const MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+const PHONE = () => TOUCH && matchMedia('(max-width: 760px)').matches;
 
 function el(tag, cls, text) {
   const e = document.createElement(tag);
@@ -1114,23 +1115,29 @@ function swatches(colors, current, onPick, { custom = true } = {}) {
 let inspFor = '';
 function renderInspector(force) {
   const l = selLayer();
-  const key = `${S.cur}:${l ? l.id : '-'}:${S.crop}:${S.doc.theme}`;
+  const key = `${S.cur}:${l ? l.id : '-'}:${S.crop}:${S.doc.theme}:${S.inspOpen}`;
   if (!force && key === inspFor && insp.contains(document.activeElement) && document.activeElement !== document.body) return;
   inspFor = key;
-  const keepOpen = !insp.classList.contains('collapsed');
   insp.replaceChildren();
   const head = el('div', 'ins-head');
   const title = el('h3', '', l ? { image: 'Picture', text: 'Text', logo: 'Logo', shade: 'Theme light' }[l.kind] : `Slide ${S.cur + 1}`);
   head.append(title);
-  if (TOUCH) {
-    const t = el('button', 'link', keepOpen ? 'Hide' : 'Show');
+  if (PHONE()) {
+    // phones: a one-line bar with the most used action; the rest on demand
+    insp.classList.toggle('collapsed', !S.inspOpen);
+    const quick = el('span', 'quick');
+    if (l && l.kind === 'text') quick.append(actBtn('Edit text', '', () => editText()));
+    if (l && l.kind === 'image') quick.append(actBtn(S.crop ? 'Done' : 'Crop', '', toggleCrop, S.crop), actBtn(l.fit === 'contain' ? 'Fill' : 'Fit', '', toggleFill));
+    if (l) quick.append(actBtn('Delete', '', deleteLayer));
+    const t = el('button', 'link more', S.inspOpen ? 'Less' : 'More');
     t.onclick = () => {
-      insp.classList.toggle('collapsed');
-      t.textContent = insp.classList.contains('collapsed') ? 'Show' : 'Hide';
+      S.inspOpen = !S.inspOpen;
+      renderInspector(true);
       requestRender();
     };
-    head.append(t);
-  }
+    quick.append(t);
+    head.append(quick);
+  } else insp.classList.remove('collapsed');
   insp.append(head);
   if (!l) slidePanel();
   else if (l.kind === 'image') imagePanel(l);
@@ -1530,7 +1537,7 @@ function layerActions() {
 function editText(selectAll) {
   const l = selLayer();
   if (!l || l.kind !== 'text') return;
-  insp.classList.remove('collapsed');
+  S.inspOpen = true;
   renderInspector(true);
   const ta = $('#text-edit');
   if (ta) {

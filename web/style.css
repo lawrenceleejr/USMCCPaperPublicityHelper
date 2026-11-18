@@ -91,7 +91,8 @@ body.tauri #bar { padding-left: 84px; } /* the macOS window buttons */
   position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; background: var(--bg);
   border: 1.5px solid var(--accent); border-radius: 2px; pointer-events: auto; touch-action: none;
 }
-body.touch #selbox .h { width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; }
+body.touch #selbox .h { width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%; }
+body.touch #selbox.k-text .h[data-h=e], body.touch #selbox.k-text .h[data-h=w] { display: none; }
 #selbox .h[data-h=nw] { left: 0; top: 0; cursor: nwse-resize; }
 #selbox .h[data-h=n] { left: 50%; top: 0; cursor: ns-resize; }
 #selbox .h[data-h=ne] { left: 100%; top: 0; cursor: nesw-resize; }
@@ -283,7 +284,11 @@ body.touch #toolbar.touch-only { display: grid !important; }
   #insp {
     flex: 0 0 auto; max-height: 44dvh; border-left: 0; border-top: 1px solid var(--hair); padding: 8px 14px 14px;
   }
-  #insp.collapsed { max-height: 42px; overflow: hidden; }
+  #insp.collapsed { max-height: 50px; overflow: hidden; }
+  .ins-head { align-items: center; }
+  .ins-head .quick { display: flex; gap: 6px; align-items: center; }
+  .ins-head .quick .btn { padding: 5px 10px; }
+  .ins-head .more { padding: 6px 2px 6px 8px; }
   #insp:empty { display: none; }
   .ins-head { position: sticky; top: -8px; background: var(--bg); padding: 4px 0; z-index: 1; }
   .thumb canvas { height: 46px; }
