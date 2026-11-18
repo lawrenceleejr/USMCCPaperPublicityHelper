@@ -237,9 +237,9 @@ const Sheets = (() => {
     if (!list || !list.length) return toast('No figures found in ' + from, 4000);
     toast(`${list.length} figure${list.length === 1 ? '' : 's'} found`);
     const picked = [];
-    const items = list.map((f) => ({ name: f.name, blob: b64ToBlob(f.data, f.mime), mime: f.mime }));
+    const items = list.map((f) => ({ name: f.name, caption: f.caption || '', blob: b64ToBlob(f.data, f.mime), mime: f.mime }));
     show('figures', `Figures · ${from}`, 'wide', (b, c) => {
-      b.append(el('p', 'note', 'Tap the figures to add, in order. Each goes on its own slide, on a card. PDF figures are drawn at full sharpness.'));
+      b.append(el('p', 'note', 'Tap the figures to add, in order. Each gets its own slide, with its caption from the paper. PDF figures are drawn at full sharpness.'));
       const addBtn = btn('Add figures', 'primary', add, '↵');
       const grid = el('div', 'grid-pick');
       const cells = items.map((it, i) => {
@@ -248,7 +248,8 @@ const Sheets = (() => {
         const badge = el('span', 'badge');
         badge.hidden = true;
         cell.append(pic, badge, el('span', 'name', it.name.split('/').pop()));
-        cell.title = it.name;
+        if (it.caption) cell.append(el('span', 'cap', it.caption));
+        cell.title = it.caption ? `${it.name}\n\n${it.caption}` : it.name;
         cell.onclick = () => {
           const k = picked.indexOf(i);
           if (k >= 0) picked.splice(k, 1);
@@ -297,7 +298,7 @@ const Sheets = (() => {
         const chosen = picked.map((i) => items[i]).filter((it) => it.mime !== 'application/pdf');
         close();
         const n = await U.addPictures(
-          chosen.map((it) => ({ blob: it.blob, name: it.name, photo: false })),
+          chosen.map((it) => ({ blob: it.blob, name: it.name, caption: it.caption, photo: false })),
           { photo: false }
         );
         toast(`Added ${n} figure${n === 1 ? '' : 's'}`);
@@ -424,16 +425,17 @@ const Sheets = (() => {
     });
   }
 
+  // The first sentences of a summary, up to `max` characters (never cut
+  // mid-sentence unless the first sentence alone is too long).
   function firstSentences(text, max) {
     const t = String(text || '').replace(/\s+/g, ' ').trim();
     if (t.length <= max) return t;
-    const parts = t.match(/[^.!?]+[.!?]+(\s|$)/g) || [t];
     let out = '';
-    for (const p of parts) {
-      if ((out + p).length > max) break;
-      out += p;
+    for (const p of U.sentences(t)) {
+      if (out && (out + ' ' + p).length > max) break;
+      out = out ? out + ' ' + p : p;
     }
-    return (out || t.slice(0, max - 1) + '…').trim();
+    return out.length > max * 1.3 ? out.slice(0, max - 1).replace(/\s+\S*$/, '') + '…' : out;
   }
   const shortAuthors = (a) => {
     const s = String(a || '').trim();
@@ -448,8 +450,8 @@ const Sheets = (() => {
     const s = U.blankSlide();
     const g = uid();
     if (shade) s.layers.push({ id: uid(), kind: 'shade', strength: 1 });
-    for (const b of blocks.filter((b) => b.text)) s.layers.push({ id: uid(), kind: 'text', role: b.role, text: b.text, x: 0, w: 100, y: 0, ...(b.k ? { k: b.k } : {}), flow: { g, gap: b.gap || 0 } });
-    if (logo) s.layers.push({ id: uid(), kind: 'logo', h: 140, x: 0, y: 0, flow: { g, logo: true } });
+    for (const b of blocks.filter((b) => b.text)) s.layers.push({ id: uid(), kind: 'text', role: b.role, text: b.text, x: 0, w: 100, y: 0, ...(b.k ? { k: b.k } : {}), flow: { g, gap: b.gap || 0, ...(b.k ? { k: b.k } : {}) } });
+    if (logo) s.layers.push({ id: uid(), kind: 'logo', h: 168, x: 0, y: 0, flow: { g, logo: true } });
     U.reflow(s);
     return s;
   }
@@ -457,17 +459,17 @@ const Sheets = (() => {
   function makeSlides() {
     const P = S.doc.paper;
     const title = (P.plainTitle || P.paperTitle).trim();
-    const tk = title.length > 110 ? 0.66 : title.length > 70 ? 0.8 : undefined;
+
     const link = (P.paperLink || '').replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
     const cover = stackSlide([
       { role: 'eyebrow', text: 'USMCC Featured Paper' },
-      { role: 'title', text: title, gap: 18, k: tk },
-      { role: 'caption', text: shortAuthors(P.authors), gap: 36 },
+      { role: 'title', text: title, gap: 20 },
+      { role: 'caption', text: shortAuthors(P.authors), gap: 40 },
     ]);
     const summary = stackSlide(
       [
         { role: 'eyebrow', text: 'In short' },
-        { role: 'body', text: firstSentences(P.publicAbstract, 300), gap: 22 },
+        { role: 'body', text: firstSentences(P.publicAbstract, 280), gap: 26 },
       ],
       { logo: false }
     );
@@ -1142,7 +1144,17 @@ const Sheets = (() => {
     });
   }
 
+  // A PDF figure as a PNG (2400 px on its long side); other pictures as they are.
+  async function figurePng(blob) {
+    if (blob.type !== 'application/pdf') return blob;
+    const d = await openPdf(new Uint8Array(await blob.arrayBuffer()));
+    const cv = await pageCanvas(d, 1, 2400);
+    d.destroy();
+    return canvasBlob(cv);
+  }
+
   return {
+    figurePng,
     open: () => !!cur,
     key,
     close,

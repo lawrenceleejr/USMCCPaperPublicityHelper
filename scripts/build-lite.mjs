@@ -18,6 +18,7 @@ execSync('cargo build --release --target wasm32-unknown-unknown', { cwd: r('lite
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(path.join(out, 'img'), { recursive: true });
 fs.mkdirSync(path.join(out, 'vendor'), { recursive: true });
+fs.mkdirSync(path.join(out, 'fonts'), { recursive: true });
 const files = {
   'render.js': r('web/render.js'),
   'app.js': r('web/app.js'),
@@ -34,6 +35,7 @@ const files = {
   'icon-192.png': r('lite/icons/icon-192.png'),
   'icon-512.png': r('lite/icons/icon-512.png'),
 };
+for (const f of fs.readdirSync(r('web/fonts'))) files[`fonts/${f}`] = r('web/fonts', f);
 const hash = crypto.createHash('sha256');
 for (const [name, src] of Object.entries(files)) {
   const buf = fs.readFileSync(src);
@@ -101,8 +103,8 @@ fs.writeFileSync(
 
 // Offline: the page and its files are kept on the device, refreshed when a
 // new version is published (the version is a hash of everything above).
-const unversioned = (f) => /\.(png|svg|mjs)$/.test(f);
-const cached = ['./', ...Object.keys(files).map((f) => (unversioned(f) ? f : `${f}?v=${v}`)), 'manifest.webmanifest'];
+const unversioned = (f) => /\.(png|svg|mjs)$/.test(f) || f.startsWith('fonts/');
+const cached = ['./', ...Object.keys(files).filter((f) => !f.endsWith('.txt')).map((f) => (unversioned(f) ? f : `${f}?v=${v}`)), 'manifest.webmanifest'];
 fs.writeFileSync(
   path.join(out, 'sw.js'),
   `// USMCC Publicity Helper Lite ${v}: works offline once opened.

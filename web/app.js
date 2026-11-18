@@ -82,6 +82,14 @@ function reflow(s, t = theme(), sz = size()) {
   for (const ls of groups.values()) {
     const texts = ls.filter((l) => l.kind === 'text');
     const logo = ls.find((l) => l.kind === 'logo');
+    // a title shrinks (to 60%) until it fits the theme's number of lines
+    for (const l of texts) {
+      if (l.role !== 'title' || l.size) continue;
+      l.w = W - 2 * R.SAFE;
+      let k = l.flow.k || 1;
+      l.k = k;
+      while (k > 0.6 && R.textLayout(l, t).lines.length > (t.fit || 4)) l.k = k = Math.round((k - 0.04) * 100) / 100;
+    }
     let total = 0;
     texts.forEach((l, i) => (total += R.bounds(l, t, W, H).h + (i ? l.flow.gap || 0 : 0)));
     const lh = logo ? logo.h : 0;
@@ -356,6 +364,7 @@ function syncSpan(l) {
 
 wrap.addEventListener('pointerdown', (e) => {
   if (e.button && e.button !== 0) return;
+  if (e.target.closest && e.target.closest('#empty-hint')) return; // its buttons
   wrap.setPointerCapture(e.pointerId);
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
   const l = selLayer();
@@ -751,18 +760,85 @@ function placePicture(id, opts = {}) {
     l = { kind: 'image', asset: id, x: 0, y: 0, w: W, h: H, fit: 'cover', zoom: 1, px: 0.5, py: 0.5 };
     return addLayer(l, { below: true });
   }
-  const maxW = W - 2 * R.SAFE;
-  const maxH = H * 0.62;
   const ar = pic ? pic.w / pic.h : 4 / 3;
+  const s = slide();
+  // a plot on its own slide becomes a figure slide: the theme light, a
+  // "Figure n" label, the logo, the picture on a card and its caption
+  const own = s.layers.every((m) => m.kind === 'shade');
+  let top = R.SAFE;
+  let bottom = H - R.SAFE;
+  if (own && opts.figure !== false) {
+    const t = theme();
+    const n = S.doc.slides.filter((x) => x.layers.some((m) => m.fig)).length + 1;
+    if (!s.layers.length) s.layers.push({ id: uid(), kind: 'shade', strength: 1 });
+    const lh = 92;
+    s.layers.push({ id: uid(), kind: 'logo', h: lh, x: Math.round(W - R.SAFE - lh * R.LOGO_RATIO), y: R.SAFE - 14 });
+    const eb = { id: uid(), kind: 'text', role: 'eyebrow', text: `Figure ${n}`, x: R.SAFE, w: W - 2 * R.SAFE - lh, y: R.SAFE + 10 };
+    s.layers.push(eb);
+    top = R.SAFE + lh + 30;
+    const cap = shortCaption(opts.caption || '');
+    if (cap) {
+      const c = { id: uid(), kind: 'text', role: 'body', k: 0.86, text: cap, x: R.SAFE, w: W - 2 * R.SAFE, y: 0 };
+      const ch = R.bounds(c, t, W, H).h;
+      c.y = Math.round(H - R.SAFE - ch);
+      s.layers.push(c);
+      bottom = c.y - 44;
+    }
+  }
+  const pad = 22;
+  const maxW = W - 2 * R.SAFE - 2 * pad;
+  const maxH = Math.max(200, bottom - top - 2 * pad);
   let w = maxW;
   let h = w / ar;
   if (h > maxH) {
     h = maxH;
     w = h * ar;
   }
-  const dark = theme().logo === 'light' && !slide().bg; // a dark slide: plots go on a white card
-  l = { kind: 'image', asset: id, x: Math.round((W - w) / 2), y: Math.round((H - h) / 2), w: Math.round(w), h: Math.round(h), fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 6, card: dark ? { color: '#ffffff', pad: 20 } : null };
-  return addLayer(l);
+  const y = own ? top + pad + (maxH - h) / 2 : (H - h) / 2;
+  l = { kind: 'image', asset: id, fig: own || undefined, x: Math.round((W - w) / 2), y: Math.round(y), w: Math.round(w), h: Math.round(h), fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 8, card: { color: '#ffffff', pad } };
+  // the picture goes above the theme light, below the words
+  const i = s.layers.findIndex((m) => m.kind === 'text' || m.kind === 'logo');
+  l.id = uid();
+  if (i < 0) s.layers.push(l);
+  else s.layers.splice(i, 0, l);
+  S.sel = l.id;
+  S.crop = false;
+  changed('add image');
+  return l;
+}
+
+// A figure's caption, cut to its first sentence (or two short ones).
+function shortCaption(text) {
+  const t = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!t) return '';
+  const parts = sentences(t);
+  let out = '';
+  for (const p of parts) {
+    if (out && (out + ' ' + p).length > 150) break;
+    out = out ? out + ' ' + p : p;
+    if (out.length > 90) break;
+  }
+  return out.length > 190 ? out.slice(0, 187).replace(/\s+\S*$/, '') + '…' : out;
+}
+
+// Sentences, without breaking at "U.S.", "e.g.", "et al.", "Fig. 2" or
+// an initial ("S. Smith").
+const ABBREV = /(?:^|\s)(?:[A-Z]|[A-Z]\.[A-Z]|e\.g|i\.e|et al|etc|vs|Fig|Figs|Eq|Eqs|Ref|Refs|Sec|No|approx|ca|cf|Dr|Prof|St|Jr|Sr)\.$/;
+function sentences(t) {
+  const out = [];
+  let start = 0;
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    if (c !== '.' && c !== '!' && c !== '?') continue;
+    const next = t.slice(i + 1, i + 3);
+    if (!/^\s[A-Z0-9“"(]/.test(next) && i !== t.length - 1) continue;
+    const head = t.slice(start, i + 1);
+    if (c === '.' && ABBREV.test(head)) continue;
+    out.push(head.trim());
+    start = i + 1;
+  }
+  if (t.slice(start).trim()) out.push(t.slice(start).trim());
+  return out;
 }
 
 function slideHasPicture(s) {
@@ -784,7 +860,7 @@ async function addPictures(list, opts = {}) {
       const fits = photo ? !slideHasPicture(s) : s.layers.every((l) => l.kind === 'shade');
       if (!(first && fits)) addSlide(S.cur);
       first = false;
-      placePicture(id, { photo });
+      placePicture(id, { photo, caption: item.caption });
       n++;
     } catch (e) {
       toast(`Could not add ${item.name || 'that file'}: ${e.message}`, 4000);
@@ -1312,6 +1388,7 @@ function textPanel(l) {
         (v) => {
           l.role = v;
           for (const k of ['size', 'k', 'weight', 'italic', 'upper', 'font', 'color', 'lh', 'ls']) delete l[k];
+          if (l.flow) delete l.flow.k;
           changed('role');
           renderInspector(true);
         }
@@ -1324,16 +1401,16 @@ function textPanel(l) {
     renderInspector(true);
   };
   const fmt = el('div', 'acts');
+  const fonts = el('div', 'fontpick');
+  const cur = R.FONTS[st.font] === R.FONTS.sans && st.font !== 'inter' ? 'inter' : R.FONTS[st.font] === R.FONTS.serif && st.font !== 'newsreader' ? 'newsreader' : R.FONTS[st.font] === R.FONTS.mono && st.font !== 'plexmono' ? 'plexmono' : st.font;
+  for (const [k, label, stack] of R.FONT_LIST) {
+    const b = el('button', k === cur ? 'on' : '', label);
+    b.style.fontFamily = stack;
+    b.onclick = () => set('font', k);
+    fonts.append(b);
+  }
+  insp.append(grp('Font', fonts));
   fmt.append(
-    seg(
-      [
-        ['sans', 'Sans'],
-        ['serif', 'Serif'],
-        ['mono', 'Mono'],
-      ],
-      st.font,
-      (v) => set('font', v)
-    ),
     seg(
       [
         [400, 'Regular'],
@@ -1814,7 +1891,7 @@ async function boot() {
     if (list.length) doc = await api('GET', `/api/doc/${list[0].id}`).catch(() => null);
   }
   openDoc(doc || newDoc());
-  R.logosReady().then(() => {
+  Promise.all([R.logosReady(), R.warmFonts()]).then(() => {
     requestRender();
     dirtyThumbs(null);
   });
@@ -1854,6 +1931,8 @@ window.U = {
   addSlide,
   addLayer,
   reflow,
+  sentences,
+  shortCaption,
   go,
   pickFiles,
 };
