@@ -769,8 +769,9 @@ function slideHasPicture(s) {
   return s.layers.some((l) => l.kind === 'image');
 }
 
-// Pictures (Blobs) onto slides: the first onto this slide if it has none,
-// each of the rest onto a new slide after it.
+// Pictures (Blobs) onto slides, each on its own. The first can use this
+// slide: a photo if the slide has no picture yet (it goes behind the words),
+// a plot only if the slide is empty.
 async function addPictures(list, opts = {}) {
   let first = true;
   let n = 0;
@@ -778,9 +779,12 @@ async function addPictures(list, opts = {}) {
     const blob = item.blob || item;
     try {
       const id = await storeAsset(blob);
-      if (!(first && !slideHasPicture(slide()))) addSlide(S.cur);
+      const photo = opts.photo ?? item.photo ?? /\.(jpg|webp)$/.test(id);
+      const s = slide();
+      const fits = photo ? !slideHasPicture(s) : s.layers.every((l) => l.kind === 'shade');
+      if (!(first && fits)) addSlide(S.cur);
       first = false;
-      placePicture(id, { photo: opts.photo ?? item.photo });
+      placePicture(id, { photo });
       n++;
     } catch (e) {
       toast(`Could not add ${item.name || 'that file'}: ${e.message}`, 4000);
