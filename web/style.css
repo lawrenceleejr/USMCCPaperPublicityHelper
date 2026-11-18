@@ -399,7 +399,9 @@ textarea.txt.big { font-size: 18px; line-height: 1.45; min-height: 180px; }
   body.touch .row { min-height: 36px; }
   body.touch .seg button { padding: 7px 11px; }
   body.touch .acts .btn { padding: 8px 12px; }
-  #toast { bottom: calc(var(--strip-h) + 76px + var(--safe-b)); }
+  /* at the top on phones: never over the action bar, the strip or a sheet's buttons */
+  #toast { bottom: auto; top: calc(var(--bar-h) + var(--safe-t) + 10px); transform: translate(-50%, -6px); max-width: calc(100vw - 48px); font-size: 12.5px; }
+  #toast.show { transform: translate(-50%, 0); }
   #empty-hint h2 { font-size: 18px; }
 }
 @media (min-width: 761px) {

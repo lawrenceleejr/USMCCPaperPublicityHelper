@@ -35,17 +35,26 @@ the camera roll, in order, ready to post.
 - **Simple edits.** Move, resize and turn anything (with snapping to the
   centre and the margins); crop and zoom a picture inside its frame, to the
   one panel of a plot that matters; brightness, contrast, saturation,
-  warmth; rounded corners; spread one wide photo across several slides so
-  the carousel swipes as one picture.
+  warmth; rounded corners.
 - **Text.** Eyebrow, title, body and caption styles from the theme, or your
   own size, font, weight, colour, alignment, shadow and a box behind. A
   contrast readout (WCAG, on a log scale) says when text gets hard to read
   over a photo.
-- **Six themes**, each with its own Google Fonts pairing, and three sizes
-  (portrait 4:5, square, story 9:16): Editorial (Fraunces + Inter), Bold
-  Sans (Bricolage Grotesque), Punch (Anton), Ocean (Manrope), Soft Serif
-  (Newsreader), Minimal Mono (IBM Plex Sans + Mono). The fonts ship with the
-  app, so it works offline. Text is sized to read on a phone.
+- **Carousels that flow.** The theme's backdrop (its gradient and soft
+  light) is one piece across all the slides, so they join without a seam
+  when swiped. A figure or photo can be the background too, running behind
+  any number of slides: plots glow on dark themes (inverted, colours kept)
+  and print into light ones; or duotone, mono, as is, with strength and
+  blur. **Make slides** puts one of the paper's figures behind the carousel,
+  crossing from the cover into the next slide. **Preview** (`V`) shows the
+  slides side by side, swipeable on a phone.
+- **Six academic themes**, each with its own Google Fonts pairing, and three
+  sizes (portrait 4:5, square, story 9:16): Midnight (Instrument Serif +
+  Source Serif), Paper (Newsreader), Blueprint (IBM Plex, on a grid), Ink
+  (Fraunces + Inter), Glacier (Manrope), Signal (Anton). Folios ("02 / 05")
+  and hairline rules; plots on white join the slide instead of sitting on a
+  card. The fonts ship with the app, so it works offline. Text is sized to
+  read on a phone.
 - **Export** JPEGs or PNGs (1080 px wide) for Instagram, X and Bluesky, or one
   PDF for a LinkedIn document post. Desktop: into a folder. Phone: the share
   sheet, **Save Images** → Photos.
@@ -73,10 +82,13 @@ launch needs that extra step.
 ("Lite") is the same app with nothing to install, on an iPhone, an Android
 phone, an iPad or any computer.
 
-- **Phone:** tap **Add** for photos (from Photos or Files), **Paper** to paste
-  the row, **Export** then **Save Images** to put the slides in Photos. Drag
-  with a finger, pinch to resize and turn, double-tap text to edit it or a
-  picture to crop it. Share → **Add to Home Screen** keeps it like an app,
+- **Phone:** tap **Paper** to paste the row (or an arXiv link) and **Make
+  slides**; **Add** for photos (from Photos or Files); **Preview** to swipe
+  through the carousel as it will look; **Export** then **Save Images** to
+  put the slides in Photos. Tap something to select it (the bar above the
+  slides has its main actions; **More** for the rest), drag with a finger,
+  pinch to resize and turn, **Edit** opens text full screen. A swipe across
+  the slide (or its background) goes to the next slide. Share → **Add to Home Screen** keeps it like an app,
   offline too.
 - **Computer:** Chrome and Edge export into a folder you choose; other
   browsers save to Downloads. All the keys work.
@@ -105,11 +117,12 @@ standalone `usmcc-cli-…` builds are on the releases page too.
 | `P` | the paper: paste its row or arXiv link; figures and PDF pages |
 | `W` | write the posts |
 | `E` | export |
-| `T` / `L` / `K` | add text / the logo / the theme light |
+| `T` / `L` | add text / the logo |
 | `[` `]` or `←` `→` | previous / next slide (arrows move the selected layer; `⇧` by 10) |
 | `N` / `D` / `⌘⌫` | new / duplicate / delete slide; `{` `}` move it |
 | `C` | crop the selected picture (drag to pan, scroll to zoom) |
-| `B` / `R` / `X` | fill or fit the frame / turn 90° / spread across slides |
+| `B` / `R` / `X` | fill or fit the frame / turn 90° / use as the background (and back) |
+| `K` / `V` | add a background picture / preview the carousel, slides joined |
 | `,` `.` | send backward / bring forward |
 | `Tab`, `Enter`, `⌫` | select the next layer, edit text, delete |
 | `⌘D` | duplicate the layer |

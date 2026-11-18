@@ -73,13 +73,19 @@ API. If it fails, fix the regression rather than raising the budget.
   is ≥ 40 px (it shows at a third of that on a phone).
 - **Text drawn on a canvas needs its font loaded**: `Render.fontsReady` /
   `slideReady` before exporting; layout is re-measured on `loadingdone`.
+- **Carousels flow across slides.** The theme backdrop (`drawBackdrop`) and
+  `doc.bg` (background pictures, in carousel coordinates: x runs over all
+  slides) are drawn per slide as that slide's window, so slides meet without
+  a seam. Never add per-slide gradients or vignettes; `test/ui` checks the
+  edges match. `shade` layers are legacy and not drawn.
 - **Auto-placed text has `flow`** (`reflow` in app.js stacks it per theme and
   fits titles); moving it by hand drops `flow` for its group.
 
 ## Conventions
 
-- The slides are the content: minimal chrome, one accent colour (amber =
-  selected / primary action), Tufte-style data displays (the contrast scale
+- The slides are the content: minimal chrome, one accent colour (a cool blue
+  = selected / primary action; no amber, cream or purple: it must not look
+  like an AI product), Tufte-style data displays (the contrast scale
   and the post-length gauges: hairline axes, direct labels, no chart junk).
 - Every tool needs a key and an entry in `MENU` (`web/app.js`) and in the Mac
   menu bar (`src-tauri/src/gui.rs`); a UI test checks this.

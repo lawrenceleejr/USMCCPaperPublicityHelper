@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+**Carousels that flow**
+- One backdrop across all the slides: the theme's gradient and light run
+  on from slide to slide, so a swiped carousel has no seams.
+- Figures and photos as backgrounds behind any number of slides: plots glow
+  on dark themes, print into light ones, or duotone / mono; strength, blur,
+  span. Make slides puts one of the paper's figures behind the carousel.
+- New academic themes: Midnight, Paper, Blueprint, Ink, Glacier, Signal
+  (Instrument Serif, Source Serif 4 added); folios and hairline rules. Plots
+  on white join the slide (glow / print) instead of sitting on a white card.
+- Preview (V): the slides side by side, swipeable.
+- Phones: full-screen text editor, clearer one-tap actions, swipes over a
+  background flip slides, messages at the top. The accent is now blue.
+
 **A visual overhaul, tested on real muon collider papers**
 - Google Fonts, kept in the app (works offline): each theme has its own
   pairing (Fraunces, Bricolage Grotesque, Anton, Manrope, Newsreader, IBM

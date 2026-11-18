@@ -5,7 +5,7 @@
   --muted: #8e8a82;
   --faint: #3a3936;
   --hair: #24231f;
-  --accent: #f0a640;
+  --accent: #4d94ff;
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 * { box-sizing: border-box; }
@@ -48,7 +48,7 @@ a:hover { color: var(--accent); text-decoration-color: var(--accent); }
   .dl li { grid-template-columns: 1fr; }
 }
 .get { margin: 22px 0 0; color: var(--muted); font-size: 15px; }
-.get a:first-child { color: var(--accent); text-decoration-color: rgba(240,166,64,.4); }
+.get a:first-child { color: var(--accent); text-decoration-color: rgba(77,148,255,.45); }
 .sub { margin: 14px 0 0; color: var(--muted); font-size: 18px; line-height: 1.5; max-width: 34rem; }
 
 /* keys, drawn like the app draws them */

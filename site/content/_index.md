@@ -22,10 +22,13 @@ Bluesky, LinkedIn and the website.
 3. **Pull in pictures.** Your photos, plots (PNG, SVG, PDF), pages of the
    paper's PDF, or its figures straight from arXiv, each with its caption
    from the paper. Photos fill a slide; plots sit on a white card.
-4. **Edit.** Move, resize and turn anything; crop and zoom a picture to the
+4. **Let it flow.** The theme's backdrop runs across all the slides, and a
+   figure from the paper can run behind them, glowing on dark themes or
+   printed into light ones, so the carousel reads as one piece when swiped.
+5. **Edit.** Move, resize and turn anything; crop and zoom a picture to the
    part of the plot that matters; adjust brightness, contrast and colour; add
    text and style it. A contrast check tells you when text gets hard to read.
-5. **Export.** JPEGs or PNGs for Instagram, X and Bluesky, or one PDF for a
+6. **Export.** JPEGs or PNGs for Instagram, X and Bluesky, or one PDF for a
    LinkedIn document post. On a phone, **Save Images** puts them in Photos,
    in order, ready to post.
 
@@ -54,6 +57,7 @@ On a computer, every tool has a key, and <kbd>?</kbd> lists them all.
   <dt><kbd>P</kbd></dt><dd>the paper: paste its row or arXiv link, get figures and PDF pages</dd>
   <dt><kbd>T</kbd> <kbd>L</kbd></dt><dd>add text, add the logo</dd>
   <dt><kbd>C</kbd></dt><dd>crop the selected picture (scroll to zoom)</dd>
+  <dt><kbd>X</kbd> <kbd>V</kbd></dt><dd>use a picture as the background; preview the carousel</dd>
   <dt><kbd>[</kbd> <kbd>]</kbd></dt><dd>previous or next slide</dd>
   <dt><kbd>Y</kbd></dt><dd>theme and slide size (4:5, square or story)</dd>
   <dt><kbd>W</kbd></dt><dd>write the posts</dd>
