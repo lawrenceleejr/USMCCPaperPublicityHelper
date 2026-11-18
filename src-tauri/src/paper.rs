@@ -1720,7 +1720,7 @@ mod tests {
         assert_eq!(detex(r"$|Δa_τ|<1.2\times10^{-5}$, $|d_τ^Z|<1.0\times10^{-19}\,e\,\mathrm{cm}$"), "|Δaτ| < 1.2×10⁻⁵, |dτ^Z| < 1.0×10⁻¹⁹ e cm");
         assert_eq!(detex(r"at the nominal $95\%$ confidence level"), "at the nominal 95% confidence level");
         assert_eq!(detex(r"$\sqrt{s}=10$ TeV and $\bar{\nu}$, $\sigma(\mu^+\mu^-\to hh)\sim 1$ fb"), "√s = 10 TeV and ν̄, σ(μ⁺μ⁻ → hh) ∼ 1 fb");
-        assert_eq!(detex(r"Schr\"odinger, Ma\v{c}ek, Fran\c{c}ois, Jos\'{e} --- a ``test'' of `quotes'"), "Schrödinger, Maček, François, José — a “test” of ‘quotes’");
+        assert_eq!(detex(r#"Schr\"odinger, Ma\v{c}ek, Fran\c{c}ois, Jos\'{e} --- a ``test'' of `quotes'"#), "Schrödinger, Maček, François, José — a “test” of ‘quotes’");
         assert_eq!(detex(r"\textit{Snowmass} 2021--2022 \emph{report}, \textbf{U.S.} plan"), "Snowmass 2021–2022 report, U.S. plan");
         assert_eq!(detex(r"$m_{H}$, $x_{12}$, $e^{i\pi}$"), "mH, x₁₂, e^(iπ)");
         // plain text goes through untouched
