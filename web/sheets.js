@@ -223,11 +223,21 @@ const Sheets = (() => {
     }
   }
 
+  // A paper's figures, fetched once per link.
+  const figCache = new Map();
+  function getFigures(link) {
+    if (!figCache.has(link)) {
+      const p = api('GET', `/api/arxiv/figures?url=${encodeURIComponent(link)}`).then((r) => r.figures);
+      p.catch(() => figCache.delete(link));
+      figCache.set(link, p);
+    }
+    return figCache.get(link);
+  }
+
   async function arxivFigures(link) {
     toast('Getting the figures from arXiv…', 20000);
     try {
-      const r = await api('GET', `/api/arxiv/figures?url=${encodeURIComponent(link)}`);
-      figures(r.figures, 'arXiv');
+      figures(await getFigures(link), 'arXiv');
     } catch (e) {
       toast(e.message, 6000);
     }
@@ -239,8 +249,9 @@ const Sheets = (() => {
     const picked = [];
     const items = list.map((f) => ({ name: f.name, caption: f.caption || '', blob: b64ToBlob(f.data, f.mime), mime: f.mime }));
     show('figures', `Figures · ${from}`, 'wide', (b, c) => {
-      b.append(el('p', 'note', 'Tap the figures to add, in order. Each gets its own slide, with its caption from the paper. PDF figures are drawn at full sharpness.'));
+      b.append(el('p', 'note', 'Tap figures to add them, in order: each gets its own slide with its caption from the paper. Or make one the background that runs behind every slide.'));
       const addBtn = btn('Add figures', 'primary', add, '↵');
+      const bgBtn = btn('Use as background', '', asBackground);
       const grid = el('div', 'grid-pick');
       const cells = items.map((it, i) => {
         const cell = el('button', 'pick');
@@ -266,11 +277,13 @@ const Sheets = (() => {
           cell.querySelector('.badge').hidden = k < 0;
           cell.querySelector('.badge').textContent = k + 1;
         });
-        addBtn.firstChild.textContent = picked.length ? `Add ${picked.length} figure${picked.length === 1 ? '' : 's'}` : 'Add figures';
+        addBtn.firstChild.textContent = picked.length ? `Add ${picked.length} as slide${picked.length === 1 ? '' : 's'}` : 'Add as slides';
         addBtn.disabled = !picked.length;
+        bgBtn.disabled = picked.length !== 1;
+        bgBtn.textContent = picked.length > 1 ? 'Background: pick one' : 'Use as background';
       };
       const acts = el('div', 'bar-actions');
-      acts.append(addBtn);
+      acts.append(addBtn, bgBtn);
       b.append(acts, grid);
       update();
       c.onEnter = () => picked.length && add();
@@ -294,6 +307,13 @@ const Sheets = (() => {
           }
         }
       })();
+      async function asBackground() {
+        const it = items[picked[0]];
+        close();
+        const blob = await figurePng(it.blob);
+        await U.addBackground(blob, { photo: false, replace: true });
+        toast('The figure now runs behind every slide · tap it to change how it looks');
+      }
       async function add() {
         const chosen = picked.map((i) => items[i]).filter((it) => it.mime !== 'application/pdf');
         close();
@@ -454,10 +474,9 @@ const Sheets = (() => {
 
   // Text blocks stacked as the theme places them (see reflow in app.js),
   // with the logo in the opposite corner.
-  function stackSlide(blocks, { logo = true, shade = true } = {}) {
+  function stackSlide(blocks, { logo = true } = {}) {
     const s = U.blankSlide();
     const g = uid();
-    if (shade) s.layers.push({ id: uid(), kind: 'shade', strength: 1 });
     for (const b of blocks.filter((b) => b.text)) s.layers.push({ id: uid(), kind: 'text', role: b.role, text: b.text, x: 0, w: 100, y: 0, ...(b.k ? { k: b.k } : {}), flow: { g, gap: b.gap || 0, ...(b.k ? { k: b.k } : {}) } });
     if (logo) s.layers.push({ id: uid(), kind: 'logo', h: 168, x: 0, y: 0, flow: { g, logo: true } });
     U.reflow(s);
@@ -527,6 +546,19 @@ const Sheets = (() => {
           last.layers.splice(last.layers.findIndex((l) => l.kind === 'text'), 0, { id: uid(), kind: 'image', asset: id, qr: P.paperLink, x: 0, y: 0, w: 300, h: 300, fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 14, card: { color: '#ffffff', pad: 0 }, flow: { g: anchor.flow.g, qr: true } });
           U.reflow(last);
           U.changed('qr', { quiet: true, slides: [last.id] });
+        }
+      } catch {}
+    }
+    // and one of the paper's figures behind the whole carousel, in the
+    // theme's treatment (unless a background was chosen already)
+    if (S.settings.autoFigure !== false && /arxiv/i.test(P.paperLink || '') && !(S.doc.bg || []).some((l) => !l.auto)) {
+      try {
+        const figs = await getFigures(P.paperLink);
+        const f = figs.find((x) => x.mime !== 'image/svg+xml') || figs[0];
+        if (f && !(S.doc.bg || []).some((l) => !l.auto)) {
+          const blob = await figurePng(b64ToBlob(f.data, f.mime));
+          await U.addBackground(blob, { photo: false, auto: true, replace: true, px: 0.5 });
+          toast('A figure from the paper now flows behind the slides · tap it to change it', 3500);
         }
       } catch {}
     }
@@ -1088,7 +1120,7 @@ const Sheets = (() => {
           cv.height = Math.round(H * sc);
           const copy = JSON.parse(JSON.stringify(s));
           U.reflow(copy, R.THEMES[k]);
-          R.drawSlide(cv.getContext('2d'), S.doc, copy, sc, { theme: R.THEMES[k] });
+          R.drawSlide(cv.getContext('2d'), S.doc, copy, sc, { theme: R.THEMES[k], index: S.cur });
           cell.append(cv, el('span', 'name', R.THEMES[k].name));
           cell.onclick = () => {
             S.doc.theme = k;
@@ -1101,7 +1133,7 @@ const Sheets = (() => {
       drawSizes();
       drawThemes();
       b.append(el('h4', '', 'Size'), sizes, el('h4', '', 'Theme · shown on this slide'), grid);
-      b.append(el('p', 'note', 'A theme sets the background, the light over photos (the “theme light” layer) and how each kind of text looks. Text you have styled by hand keeps its style.'));
+      b.append(el('p', 'note', 'A theme sets the backdrop (one piece across all the slides, so they join when swiped), how background figures are drawn, and how each kind of text looks. Text you have styled by hand keeps its style.'));
       c.onKey = (e) => {
         const i = keys.indexOf(S.doc.theme);
         if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
@@ -1183,6 +1215,79 @@ const Sheets = (() => {
     });
   }
 
+  /* ---------------------------------------------------------------- preview */
+
+  // The carousel as it will be swiped: every slide side by side with no gap,
+  // so the backdrop and backgrounds can be seen joining up.
+  function preview() {
+    show('preview', 'Preview', 'preview', (b, c) => {
+      const { w: W, h: H } = U.size();
+      const track = el('div', 'pv-track');
+      const n = S.doc.slides.length;
+      const vh = window.innerHeight - (U.TOUCH ? 150 : 170);
+      const phone = window.innerWidth < 760;
+      const cssW = phone ? window.innerWidth : Math.min((vh * W) / H, 560);
+      const cssH = (cssW * H) / W;
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      const k = (cssW * dpr) / W;
+      S.doc.slides.forEach((s, i) => {
+        const cv = document.createElement('canvas');
+        cv.width = Math.round(W * k);
+        cv.height = Math.round(H * k);
+        cv.style.width = cssW + 'px';
+        cv.style.height = cssH + 'px';
+        R.drawSlide(cv.getContext('2d'), S.doc, s, k, { index: i });
+        track.append(cv);
+      });
+      const dots = el('div', 'pv-dots');
+      for (let i = 0; i < n; i++) dots.append(el('i'));
+      const mark = () => {
+        const i = Math.round(track.scrollLeft / cssW);
+        [...dots.children].forEach((d, j) => d.classList.toggle('on', j === i));
+      };
+      track.addEventListener('scroll', mark, { passive: true });
+      b.append(track, dots, el('p', 'note pv-note', phone ? 'Swipe as you would on Instagram: the backdrop and background figures run on from slide to slide.' : 'Every slide side by side, as they join when swiped. ← → to move.'));
+      requestAnimationFrame(() => {
+        track.scrollLeft = S.cur * cssW;
+        mark();
+      });
+      c.onKey = (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          track.scrollBy({ left: e.key === 'ArrowRight' ? cssW : -cssW, behavior: 'smooth' });
+          return true;
+        }
+        if (e.key.toLowerCase() === 'v') {
+          e.preventDefault();
+          close();
+          return true;
+        }
+      };
+      c.onEnter = close;
+    });
+  }
+
+  // Phones: the text in a large editor above the keyboard.
+  function textEdit(l, selectAll) {
+    show('text', 'Edit text', 'narrow', (b, c) => {
+      const ta = el('textarea', 'txt big');
+      ta.value = l.text;
+      ta.rows = 6;
+      ta.oninput = () => {
+        l.text = ta.value;
+        U.changed('type', { quiet: true });
+      };
+      const acts = el('div', 'bar-actions');
+      acts.append(btn('Done', 'primary solid', close));
+      b.append(ta, acts);
+      setTimeout(() => {
+        ta.focus();
+        if (selectAll) ta.select();
+      }, 60);
+      c.onEnter = null;
+    });
+  }
+
   // A PDF figure as a PNG (2400 px on its long side); other pictures as they are.
   async function figurePng(blob) {
     if (blob.type !== 'application/pdf') return blob;
@@ -1194,6 +1299,8 @@ const Sheets = (() => {
 
   return {
     figurePng,
+    preview,
+    textEdit,
     open: () => !!cur,
     key,
     close,

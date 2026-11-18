@@ -1,5 +1,5 @@
 /* USMCC Publicity Helper: the slides are the content; the chrome recedes.
-   Inter for the interface (web/fonts). One accent colour, amber: the
+   Inter for the interface (web/fonts). One accent colour, a cool blue: the
    selection and the primary action, nothing else. */
 
 :root {
@@ -12,9 +12,9 @@
   --muted: #8f8c84;
   --faint: #45433f;
   --hair: #262522;
-  --accent: #f0a640;
-  --accent-ink: #1b1305;
-  --accent-dim: rgba(240, 166, 64, 0.14);
+  --accent: #4d94ff;
+  --accent-ink: #ffffff;
+  --accent-dim: rgba(77, 148, 255, 0.15);
   --bad: #ef7d63;
   --good: #8fc79a;
   --r: 7px;
@@ -88,11 +88,11 @@ body.tauri #bar { padding-left: 84px; } /* the macOS window buttons */
   transition: border-color .15s, background .15s, color .15s; white-space: nowrap; font-weight: 500;
 }
 .btn:hover { background: var(--raised-2); border-color: var(--faint); }
-.btn.primary { border-color: rgba(240,166,64,.55); color: var(--accent); background: transparent; }
+.btn.primary { border-color: rgba(77,148,255,.6); color: #8dbaff; background: transparent; }
 .btn.primary:hover { background: var(--accent-dim); }
 .btn.primary.solid { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); margin-left: 8px; }
-.btn.primary.solid:hover { background: #f5b55c; }
-.btn.primary.solid kbd { color: var(--accent-ink); border-color: rgba(27,19,5,.35); opacity: .8; }
+.btn.primary.solid:hover { background: #69a6ff; }
+.btn.primary.solid kbd { color: var(--accent-ink); border-color: rgba(255,255,255,.45); opacity: .85; }
 .btn.primary kbd { color: inherit; border-color: currentColor; opacity: .6; }
 .btn.quiet { color: var(--ink-2); background: transparent; }
 .btn.quiet:hover { background: var(--raised); }
@@ -206,7 +206,7 @@ textarea.txt, input.txt {
   width: 100%; background: var(--bg); border: 1px solid var(--hair); border-radius: var(--r); padding: 8px 10px;
   resize: vertical; line-height: 1.45; transition: border-color .15s;
 }
-textarea.txt:focus, input.txt:focus { outline: none; border-color: var(--faint); box-shadow: 0 0 0 3px rgba(240,166,64,.12); }
+textarea.txt:focus, input.txt:focus { outline: none; border-color: var(--faint); box-shadow: 0 0 0 3px rgba(77,148,255,.16); }
 textarea.txt { min-height: 68px; }
 select.txt { width: 100%; background: var(--bg); border: 1px solid var(--hair); border-radius: var(--r); padding: 6px 8px; }
 .fontpick { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
@@ -330,6 +330,22 @@ body.touch #toolbar.touch-only { display: grid !important; }
 .note { color: var(--muted); font-size: 12px; }
 .err { color: var(--bad); }
 .dest { font-family: var(--mono); font-size: 12px; color: var(--ink-2); word-break: break-all; background: var(--bg); border: 1px solid var(--hair); border-radius: var(--r); padding: 8px 10px; }
+
+/* ---------- preview: the slides side by side, joined ---------- */
+#sheet.preview { background: rgba(5,5,6,.92); }
+#sheet.preview .sheet-panel { width: 100vw !important; height: 100dvh; max-height: none; border-radius: 0; border: 0; background: transparent; box-shadow: none; }
+#sheet.preview #sheet-body { padding: 0; display: grid; align-content: center; justify-items: center; overflow: hidden; }
+.pv-track {
+  display: flex; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory; max-width: 100vw; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+}
+.pv-track::-webkit-scrollbar { display: none; }
+.pv-track canvas { display: block; flex: none; scroll-snap-align: start; }
+.pv-dots { display: flex; gap: 6px; justify-content: center; margin: 14px 0 6px; }
+.pv-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--faint); transition: background .2s; }
+.pv-dots i.on { background: var(--ink); }
+.pv-note { text-align: center; max-width: 520px; padding: 0 16px; }
+textarea.txt.big { font-size: 18px; line-height: 1.45; min-height: 180px; }
 
 /* ---------- toast ---------- */
 #toast {

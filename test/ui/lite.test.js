@@ -70,6 +70,7 @@ async function openLite(opts = {}) {
   page.choose = filePicker(page);
   await page.goto(web.base + '/');
   await page.waitForFunction(() => window.S && S.doc && window.UsmccLite);
+  await page.evaluate(() => U.saveSettings({ autoFigure: false })); // no arXiv download in tests
   return { ctx, page, errors };
 }
 

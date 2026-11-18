@@ -4,13 +4,17 @@
    the slide strip, the theme previews and the exported JPEG/PNG files all use
    it, so what you see is exactly what gets saved.
 
-   A slide is a background colour plus layers, drawn in order:
+   A slide shows its window of the carousel's backdrop (the theme's
+   gradient and light, one piece across all the slides) and of the
+   carousel's background pictures (doc.bg, in carousel coordinates: a
+   figure can run behind several slides), then its own layers, in order:
      image  a photo, plot or PDF page in a frame (cover or fit, pan and zoom
             inside the frame, light adjustments, rounded corners, a card behind)
-     shade  the theme's light: tint and gradients over everything below it
      text   eyebrow / title / body / caption, styled by the theme unless
             overridden on the layer
      logo   the USMCC mark
+   ("shade" layers from the first version are no longer drawn: the
+   backdrop does their work, without seams.)
    Coordinates are slide pixels: every slide is 1080 wide. */
 
 (function () {
@@ -30,7 +34,8 @@
   const FONT_LIST = [
     ['inter', 'Inter', `"Inter", ${SYS_SANS}`],
     ['manrope', 'Manrope', `"Manrope", ${SYS_SANS}`],
-    ['bricolage', 'Bricolage Grotesque', `"Bricolage Grotesque", ${SYS_SANS}`],
+    ['instrument', 'Instrument Serif', `"Instrument Serif", ${SYS_SERIF}`],
+    ['sourceserif', 'Source Serif', `"Source Serif 4", ${SYS_SERIF}`],
     ['plex', 'IBM Plex Sans', `"IBM Plex Sans", ${SYS_SANS}`],
     ['anton', 'Anton', `"Anton", Impact, ${SYS_SANS}`],
     ['fraunces', 'Fraunces', `"Fraunces", ${SYS_SERIF}`],
@@ -41,11 +46,62 @@
   FONTS.sans = FONTS.inter;
   FONTS.serif = FONTS.newsreader;
   FONTS.mono = FONTS.plexmono;
+  FONTS.bricolage = FONTS.inter; // a face the first themes used
 
-  // The six looks of the original carousel designer, as data. Gradient
-  // layers: ['r', cx, cy, r, blend, opacity, stops] or ['l', angle, blend,
-  // opacity, stops]; positions are fractions of the slide.
-  const THEMES = {"editorial": { "name": "Editorial", "base": "#0a0a0a", "tint": [  "#0d1b2a",  0.35,  "multiply" ], "layers": [  [   "r",   0.3,   0.7,   1.1,   "normal",   1,   [    [     0,     "rgba(0,0,0,0)"    ],    [     0.5,     "rgba(0,0,0,0)"    ],    [     1,     "rgba(0,0,0,0.5)"    ]   ]  ],  [   "r",   0.2,   0.15,   0.75,   "screen",   1,   [    [     0,     "rgba(245,200,66,0.22)"    ],    [     0.55,     "rgba(245,200,66,0)"    ]   ]  ],  [   "r",   0.5,   1.35,   1.4,   "multiply",   1,   [    [     0,     "rgba(0,0,0,0.92)"    ],    [     0.3,     "rgba(0,0,0,0.7)"    ],    [     0.55,     "rgba(0,0,0,0.32)"    ],    [     0.85,     "rgba(0,0,0,0)"    ],    [     1,     "rgba(0,0,0,0)"    ]   ]  ],  [   "r",   0.5,   0.5,   0.95,   "multiply",   0.9,   [    [     0.55,     "rgba(0,0,0,0)"    ],    [     1,     "rgba(0,0,0,0.55)"    ]   ]  ] ], "align": "left", "valign": "bottom", "logo": "light", "shadow": 0.4, "colors": {  "eyebrow": "#f5c842",  "title": "#ffffff",  "body": "#ffffff",  "caption": "#cbd5e1" }, "type": {  "eyebrow": {   "size": 30,   "lh": 1.2,   "ls": 5,   "weight": 650,   "italic": false,   "upper": true,   "font": "inter"  },  "title": {   "size": 104,   "lh": 1.02,   "ls": -0.8,   "weight": 600,   "italic": false,   "upper": false,   "font": "fraunces"  },  "body": {   "size": 46,   "lh": 1.38,   "ls": -0.2,   "weight": 450,   "italic": false,   "upper": false,   "font": "inter"  },  "caption": {   "size": 34,   "lh": 1.35,   "ls": 0,   "weight": 500,   "italic": false,   "upper": false,   "font": "inter"  } }, "fit": 4},"bold_sans": { "name": "Bold Sans", "base": "#1a1a2e", "tint": [  "#3c1d6e",  0.6,  "multiply" ], "layers": [  [   "r",   0.5,   0.5,   0.95,   "normal",   1,   [    [     0,     "rgba(20,15,40,0.85)"    ],    [     0.45,     "rgba(20,15,40,0.55)"    ],    [     0.8,     "rgba(20,15,40,0.15)"    ],    [     1,     "rgba(20,15,40,0)"    ]   ]  ],  [   "r",   0.5,   0.3,   0.7,   "screen",   1,   [    [     0,     "rgba(168,85,247,0.45)"    ],    [     0.55,     "rgba(124,58,237,0.10)"    ],    [     1,     "rgba(124,58,237,0)"    ]   ]  ],  [   "r",   0.5,   0.5,   0.95,   "multiply",   1,   [    [     0.45,     "rgba(0,0,0,0)"    ],    [     1,     "rgba(0,0,0,0.75)"    ]   ]  ] ], "align": "center", "valign": "middle", "logo": "light", "shadow": 0.4, "colors": {  "eyebrow": "#fbbf24",  "title": "#ffffff",  "body": "#ffffff",  "caption": "#e9d5ff" }, "type": {  "eyebrow": {   "size": 30,   "lh": 1.2,   "ls": 7,   "weight": 750,   "italic": false,   "upper": true,   "font": "inter"  },  "title": {   "size": 108,   "lh": 0.98,   "ls": -2.5,   "weight": 800,   "italic": false,   "upper": false,   "font": "bricolage"  },  "body": {   "size": 46,   "lh": 1.38,   "ls": -0.2,   "weight": 500,   "italic": false,   "upper": false,   "font": "inter"  },  "caption": {   "size": 34,   "lh": 1.35,   "ls": 0.2,   "weight": 500,   "italic": false,   "upper": false,   "font": "inter"  } }, "fit": 4},"punch": { "name": "Punch", "base": "#020617", "tint": [  "#ef4444",  0.5,  "multiply" ], "layers": [  [   "r",   0.25,   0.25,   1.05,   "normal",   1,   [    [     0,     "rgba(0,0,0,0)"    ],    [     0.5,     "rgba(0,0,0,0)"    ],    [     1,     "rgba(0,0,0,0.55)"    ]   ]  ],  [   "r",   -0.25,   -0.25,   1.9,   "multiply",   1,   [    [     0,     "rgba(239,68,68,0.92)"    ],    [     0.25,     "rgba(239,68,68,0.45)"    ],    [     0.5,     "rgba(239,68,68,0.10)"    ],    [     0.7,     "rgba(2,6,23,0.30)"    ],    [     0.9,     "rgba(2,6,23,0.7)"    ],    [     1,     "rgba(2,6,23,0.92)"    ]   ]  ],  [   "r",   0.12,   0.1,   0.4,   "screen",   1,   [    [     0,     "rgba(253,224,71,0.55)"    ],    [     1,     "rgba(253,224,71,0)"    ]   ]  ],  [   "r",   0.95,   0.95,   0.7,   "multiply",   1,   [    [     0,     "rgba(0,0,0,0.6)"    ],    [     1,     "rgba(0,0,0,0)"    ]   ]  ] ], "align": "left", "valign": "top", "logo": "light", "shadow": 0.4, "colors": {  "eyebrow": "#fde047",  "title": "#ffffff",  "body": "#ffffff",  "caption": "#fca5a5" }, "type": {  "eyebrow": {   "size": 32,   "lh": 1.2,   "ls": 6,   "weight": 800,   "italic": false,   "upper": true,   "font": "inter"  },  "title": {   "size": 128,   "lh": 1.02,   "ls": 0.5,   "weight": 400,   "italic": false,   "upper": false,   "font": "anton"  },  "body": {   "size": 46,   "lh": 1.38,   "ls": -0.2,   "weight": 500,   "italic": false,   "upper": false,   "font": "inter"  },  "caption": {   "size": 34,   "lh": 1.35,   "ls": 0,   "weight": 600,   "italic": false,   "upper": false,   "font": "inter"  } }, "fit": 4},"ocean": { "name": "Ocean", "base": "#0c4a6e", "tint": [  "#082f49",  0.3,  "multiply" ], "layers": [  [   "r",   0.3,   0.7,   1.1,   "normal",   1,   [    [     0,     "rgba(125,211,252,0.10)"    ],    [     0.55,     "rgba(0,0,0,0)"    ],    [     1,     "rgba(2,20,35,0.5)"    ]   ]  ],  [   "r",   0.5,   0.2,   0.65,   "screen",   1,   [    [     0,     "rgba(125,211,252,0.40)"    ],    [     0.6,     "rgba(125,211,252,0.05)"    ],    [     1,     "rgba(125,211,252,0)"    ]   ]  ],  [   "r",   0.5,   1.45,   1.5,   "multiply",   1,   [    [     0,     "rgba(8,47,73,0.95)"    ],    [     0.35,     "rgba(8,47,73,0.55)"    ],    [     0.7,     "rgba(8,47,73,0.10)"    ],    [     1,     "rgba(8,47,73,0)"    ]   ]  ],  [   "r",   0.5,   0.5,   1,   "multiply",   1,   [    [     0.55,     "rgba(0,0,0,0)"    ],    [     1,     "rgba(0,0,0,0.45)"    ]   ]  ] ], "align": "left", "valign": "bottom", "logo": "light", "shadow": 0.4, "colors": {  "eyebrow": "#bae6fd",  "title": "#f0f9ff",  "body": "#f0f9ff",  "caption": "#cbd5e1" }, "type": {  "eyebrow": {   "size": 30,   "lh": 1.2,   "ls": 5,   "weight": 700,   "italic": false,   "upper": true,   "font": "manrope"  },  "title": {   "size": 100,   "lh": 1.05,   "ls": -2,   "weight": 700,   "italic": false,   "upper": false,   "font": "manrope"  },  "body": {   "size": 46,   "lh": 1.4,   "ls": -0.3,   "weight": 500,   "italic": false,   "upper": false,   "font": "manrope"  },  "caption": {   "size": 34,   "lh": 1.35,   "ls": 0,   "weight": 600,   "italic": false,   "upper": false,   "font": "manrope"  } }, "fit": 4},"soft_serif": { "name": "Soft Serif", "base": "#f5f0e8", "tint": [  "#7c2d12",  0.22,  "multiply" ], "layers": [  [   "r",   0.3,   0.7,   1.05,   "normal",   1,   [    [     0,     "rgba(255,236,200,0.28)"    ],    [     0.5,     "rgba(255,236,200,0.05)"    ],    [     1,     "rgba(64,28,8,0.45)"    ]   ]  ],  [   "r",   0.5,   1.5,   1.7,   "multiply",   1,   [    [     0,     "rgba(64,28,8,0.7)"    ],    [     0.25,     "rgba(120,53,15,0.4)"    ],    [     0.55,     "rgba(245,200,140,0.18)"    ],    [     0.85,     "rgba(255,236,180,0.20)"    ],    [     1,     "rgba(255,236,180,0.30)"    ]   ]  ],  [   "r",   0.5,   0.05,   0.55,   "screen",   1,   [    [     0,     "rgba(255,228,180,0.45)"    ],    [     1,     "rgba(255,228,180,0)"    ]   ]  ] ], "align": "left", "valign": "bottom", "logo": "dark", "shadow": 0, "colors": {  "eyebrow": "#92400e",  "title": "#1c1917",  "body": "#292524",  "caption": "#57534e" }, "type": {  "eyebrow": {   "size": 28,   "lh": 1.2,   "ls": 5,   "weight": 650,   "italic": false,   "upper": true,   "font": "inter"  },  "title": {   "size": 112,   "lh": 1.0,   "ls": -1.5,   "weight": 500,   "italic": false,   "upper": false,   "font": "newsreader"  },  "body": {   "size": 50,   "lh": 1.34,   "ls": -0.2,   "weight": 400,   "italic": false,   "upper": false,   "font": "newsreader"  },  "caption": {   "size": 36,   "lh": 1.3,   "ls": 0,   "weight": 400,   "italic": true,   "upper": false,   "font": "newsreader"  } }, "fit": 4},"minimal_mono": { "name": "Minimal Mono", "base": "#f7f7f4", "tint": [  "#0a0a0a",  0.18,  "multiply" ], "layers": [  [   "r",   0.25,   0.25,   0.95,   "normal",   1,   [    [     0,     "rgba(255,255,255,0.40)"    ],    [     0.45,     "rgba(255,255,255,0.10)"    ],    [     1,     "rgba(0,0,0,0.18)"    ]   ]  ],  [   "r",   0.5,   -0.3,   1.3,   "normal",   1,   [    [     0,     "rgba(255,255,255,0.65)"    ],    [     0.55,     "rgba(247,247,244,0.08)"    ],    [     1,     "rgba(247,247,244,0)"    ]   ]  ],  [   "r",   0.5,   1.25,   1.2,   "multiply",   1,   [    [     0,     "rgba(0,0,0,0.16)"    ],    [     0.55,     "rgba(0,0,0,0.04)"    ],    [     1,     "rgba(0,0,0,0)"    ]   ]  ],  [   "r",   0.85,   0.12,   0.55,   "multiply",   1,   [    [     0,     "rgba(124,58,237,0.14)"    ],    [     1,     "rgba(124,58,237,0)"    ]   ]  ] ], "align": "left", "valign": "top", "logo": "dark", "shadow": 0, "colors": {  "eyebrow": "#7c3aed",  "title": "#0a0a0a",  "body": "#27272a",  "caption": "#52525b" }, "type": {  "eyebrow": {   "size": 28,   "lh": 1.2,   "ls": 3,   "weight": 500,   "italic": false,   "upper": true,   "font": "plexmono"  },  "title": {   "size": 100,   "lh": 1.05,   "ls": -2,   "weight": 600,   "italic": false,   "upper": false,   "font": "plex"  },  "body": {   "size": 46,   "lh": 1.4,   "ls": -0.3,   "weight": 400,   "italic": false,   "upper": false,   "font": "plex"  },  "caption": {   "size": 30,   "lh": 1.4,   "ls": 0,   "weight": 400,   "italic": false,   "upper": false,   "font": "plexmono"  } }, "fit": 4} };
+  // The looks. A theme's backdrop is one piece across the whole carousel:
+  // `flow` is a gradient from the first slide's left edge to the last one's
+  // right edge, with `glow`s of light travelling along it (and a blueprint
+  // `grid`), so the panes join without seams when swiped. Figures used as
+  // backgrounds get the theme's `treat`ment: `ink` (the plot inverted, its
+  // colours kept, its lines glowing on the dark), `print` (the white of the
+  // plot dropped into the paper) or `duotone` (in the theme's two colours).
+  const T = (font, size, lh, ls, weight, o = {}) => ({ font, size, lh, ls, weight, italic: !!o.italic, upper: !!o.upper });
+  const THEMES = {
+    midnight: {
+      name: 'Midnight', base: '#07111f', dark: true, treat: 'ink', duo: ['#06101d', '#a9cdfa'],
+      flow: { angle: 100, stops: [[0, '#050d19'], [0.5, '#0a1c31'], [1, '#061624']], glow: { colors: ['rgba(70,140,255,0.34)', 'rgba(56,189,248,0.22)'], every: 1.35, r: 0.95, ys: [0.1, 0.95] } },
+      align: 'left', valign: 'bottom', logo: 'light', shadow: 0.35, fit: 4, rule: true,
+      colors: { eyebrow: '#8ec5ff', title: '#f4f7fb', body: '#d5dde7', caption: '#9db0c4' },
+      type: { eyebrow: T('plexmono', 26, 1.2, 3, 500, { upper: true }), title: T('instrument', 124, 1.0, -0.5, 400), body: T('sourceserif', 46, 1.38, -0.2, 400), caption: T('inter', 30, 1.35, 0, 500) },
+    },
+    paper: {
+      name: 'Paper', base: '#f3f4f6', dark: false, treat: 'print', duo: ['#14233a', '#f3f4f6'],
+      flow: { angle: 90, stops: [[0, '#f8f9fb'], [1, '#e9edf2']] },
+      align: 'left', valign: 'bottom', logo: 'dark', shadow: 0, fit: 4, rule: true,
+      colors: { eyebrow: '#1f4fd1', title: '#0d1015', body: '#262b32', caption: '#5a6370' },
+      type: { eyebrow: T('inter', 26, 1.2, 4, 650, { upper: true }), title: T('newsreader', 112, 1.02, -1.5, 500), body: T('newsreader', 48, 1.36, -0.2, 400), caption: T('inter', 30, 1.35, 0, 500) },
+    },
+    blueprint: {
+      name: 'Blueprint', base: '#0a2340', dark: true, treat: 'ink', duo: ['#0a2340', '#bfe3ff'],
+      flow: { angle: 95, stops: [[0, '#0c2a4c'], [1, '#081c35']], glow: { colors: ['rgba(130,205,255,0.16)'], every: 1.8, r: 1.1, ys: [0.3, 0.8] }, grid: { minor: 54, major: 270, color: 'rgba(170,215,255,0.07)', majorColor: 'rgba(170,215,255,0.15)' } },
+      align: 'left', valign: 'top', logo: 'light', shadow: 0.25, fit: 4, rule: true,
+      colors: { eyebrow: '#9fdcff', title: '#ffffff', body: '#dbe9f7', caption: '#9fbad6' },
+      type: { eyebrow: T('plexmono', 26, 1.2, 2, 500, { upper: true }), title: T('plex', 100, 1.04, -1.5, 600), body: T('plex', 44, 1.42, -0.3, 400), caption: T('plexmono', 28, 1.4, 0, 400) },
+    },
+    ink: {
+      name: 'Ink', base: '#0b0b0c', dark: true, treat: 'ink', duo: ['#0b0b0c', '#e4e4e7'],
+      flow: { angle: 100, stops: [[0, '#0a0a0b'], [0.5, '#121315'], [1, '#0a0a0b']], glow: { colors: ['rgba(255,255,255,0.07)'], every: 1.6, r: 1.0, ys: [0.2, 0.85] } },
+      align: 'left', valign: 'bottom', logo: 'light', shadow: 0.35, fit: 4, rule: true,
+      colors: { eyebrow: '#b8c2cc', title: '#ffffff', body: '#d4d4d8', caption: '#8b8b93' },
+      type: { eyebrow: T('inter', 26, 1.2, 6, 600, { upper: true }), title: T('fraunces', 108, 1.02, -1, 500), body: T('inter', 44, 1.42, -0.3, 400), caption: T('inter', 30, 1.35, 0, 500) },
+    },
+    glacier: {
+      name: 'Glacier', base: '#eaf2fb', dark: false, treat: 'print', duo: ['#0b2a4f', '#eaf2fb'],
+      flow: { angle: 110, stops: [[0, '#f7fbff'], [0.5, '#e5effa'], [1, '#d9e8f6']], glow: { colors: ['rgba(255,255,255,0.85)', 'rgba(150,195,240,0.40)'], every: 1.5, r: 0.9, ys: [0.08, 0.95] } },
+      align: 'left', valign: 'bottom', logo: 'dark', shadow: 0, fit: 4, rule: false,
+      colors: { eyebrow: '#1d5fa8', title: '#0b1f38', body: '#1d3250', caption: '#4c6481' },
+      type: { eyebrow: T('manrope', 26, 1.2, 4, 700, { upper: true }), title: T('manrope', 100, 1.04, -2.5, 700), body: T('manrope', 44, 1.42, -0.3, 500), caption: T('manrope', 30, 1.35, 0, 600) },
+    },
+    signal: {
+      name: 'Signal', base: '#000000', dark: true, treat: 'ink', duo: ['#000000', '#7fb6ff'],
+      flow: { angle: 100, stops: [[0, '#000000'], [1, '#03060c']], glow: { colors: ['rgba(0,90,220,0.55)', 'rgba(0,140,255,0.30)'], every: 1.3, r: 0.85, ys: [0.92, 0.12] } },
+      align: 'left', valign: 'top', logo: 'light', shadow: 0.3, fit: 4, rule: false,
+      colors: { eyebrow: '#62adff', title: '#ffffff', body: '#e4e7ec', caption: '#9aa3af' },
+      type: { eyebrow: T('inter', 30, 1.2, 6, 800, { upper: true }), title: T('anton', 128, 1.02, 0.5, 400), body: T('inter', 46, 1.38, -0.2, 500), caption: T('inter', 32, 1.35, 0, 600) },
+    },
+  };
+  // carousels made with the first themes open in their nearest new one
+  const LEGACY = { editorial: 'ink', bold_sans: 'midnight', punch: 'signal', ocean: 'blueprint', soft_serif: 'paper', minimal_mono: 'glacier' };
 
   const SAFE = 88; // margin kept clear of text, in slide pixels
 
@@ -180,6 +236,15 @@
       ctx.fill();
       ctx.restore();
     }
+    if (layer.role === 'eyebrow' && theme.rule && !layer.plate && layer.rule !== false) {
+      // a hairline above the eyebrow, as in a journal
+      const w = Math.min(84, layer.w);
+      const x = st.align === 'center' ? layer.x + (layer.w - w) / 2 : st.align === 'right' ? layer.x + layer.w - w : layer.x;
+      ctx.fillStyle = st.color;
+      ctx.globalAlpha = 0.9;
+      ctx.fillRect(x, layer.y - Math.round(st.size * 0.75), w, 2);
+      ctx.globalAlpha = 1;
+    }
     setFont(ctx, st);
     ctx.fillStyle = st.color;
     ctx.textBaseline = 'alphabetic';
@@ -288,11 +353,14 @@
 
   // The turned / mirrored picture on a canvas, and (with adjustments) its
   // pixels to adjust; adjustRows does `n` rows of them.
-  function bakeStart(src, layer, maxEdge) {
+  const PIXEL_TREATS = { ink: 1, duotone: 1, mono: 1 };
+  function bakeStart(src, layer, maxEdge, theme) {
     const a = layer.adj || {};
     const turns = ((layer.turn || 0) % 4 + 4) % 4;
-    const flat = !a.b && !a.c && !a.s && !a.t;
-    const k = Math.min(1, maxEdge / Math.max(src.w, src.h));
+    const treat = layer.bg ? layer.treat || (theme && theme.treat) || 'natural' : 'natural';
+    const flat = !a.b && !a.c && !a.s && !a.t && !PIXEL_TREATS[treat];
+    // a blurred background is simply drawn from a smaller picture
+    const k = Math.min(1, maxEdge / Math.max(src.w, src.h)) / (1 + (layer.blur || 0) / 3);
     const sw = Math.round(src.w * k);
     const sh = Math.round(src.h * k);
     const c = document.createElement('canvas');
@@ -310,6 +378,11 @@
       job.img = x.getImageData(0, 0, c.width, c.height);
       const ct = (a.c || 0) / 100;
       job.p = { br: (a.b || 0) * 1.28, cf: ct >= 0 ? 1 + ct * 1.5 : 1 + ct * 0.9, sat: 1 + (a.s || 0) / 100, warm: (a.t || 0) * 0.3 };
+      job.treat = treat;
+      const duo = (theme && theme.duo) || ['#000000', '#ffffff'];
+      job.d0 = hexToRgb(duo[0]);
+      job.d1 = hexToRgb(duo[1]);
+      job.inv = !!(theme && theme.dark); // on a dark slide a plot's white becomes the dark
     }
     return job;
   }
@@ -322,9 +395,32 @@
       const g = (d[i + 1] + p.br - 128) * p.cf + 128;
       const b = (d[i + 2] + p.br - p.warm - 128) * p.cf + 128;
       const l = 0.299 * r + 0.587 * g + 0.114 * b;
-      d[i] = l + (r - l) * p.sat;
-      d[i + 1] = l + (g - l) * p.sat;
-      d[i + 2] = l + (b - l) * p.sat;
+      let R0 = l + (r - l) * p.sat;
+      let G0 = l + (g - l) * p.sat;
+      let B0 = l + (b - l) * p.sat;
+      if (job.treat === 'ink') {
+        // inverted, then the hue turned back: white paper goes black, a blue
+        // line stays blue but light
+        const ri = 255 - R0;
+        const gi = 255 - G0;
+        const bi = 255 - B0;
+        R0 = -0.574 * ri + 1.43 * gi + 0.144 * bi;
+        G0 = 0.426 * ri + 0.43 * gi + 0.144 * bi;
+        B0 = 0.426 * ri + 1.43 * gi - 0.856 * bi;
+      } else if (job.treat === 'duotone' || job.treat === 'mono') {
+        let t = (0.2126 * R0 + 0.7152 * G0 + 0.0722 * B0) / 255;
+        if (job.inv) t = 1 - t;
+        t = Math.max(0, Math.min(1, t));
+        if (job.treat === 'mono') R0 = G0 = B0 = t * 255;
+        else {
+          R0 = job.d0[0] + (job.d1[0] - job.d0[0]) * t;
+          G0 = job.d0[1] + (job.d1[1] - job.d0[1]) * t;
+          B0 = job.d0[2] + (job.d1[2] - job.d0[2]) * t;
+        }
+      }
+      d[i] = R0;
+      d[i + 1] = G0;
+      d[i + 2] = B0;
     }
     job.row = end;
     return end >= img.height;
@@ -334,15 +430,15 @@
     return { bmp: job.c, w: job.c.width, h: job.c.height };
   };
   // All at once (exports).
-  function bake(src, layer, maxEdge) {
-    const job = bakeStart(src, layer, maxEdge);
+  function bake(src, layer, maxEdge, theme) {
+    const job = bakeStart(src, layer, maxEdge, theme);
     if (job.img) adjustRows(job, Infinity);
     return bakeEnd(job);
   }
   // A few milliseconds at a time (on screen), so a key press always gets in.
-  function bakeSoon(src, layer, maxEdge, done) {
+  function bakeSoon(src, layer, maxEdge, theme, done) {
     setTimeout(() => {
-      const job = bakeStart(src, layer, maxEdge);
+      const job = bakeStart(src, layer, maxEdge, theme);
       if (!job.img) return done(bakeEnd(job));
       const step = () => {
         const t0 = performance.now();
@@ -357,16 +453,19 @@
     }, 0);
   }
 
-  function picture(layer, full) {
+  function picture(layer, full, theme) {
     const src = ready(layer.asset);
     if (!src) return null;
     const a = layer.adj || {};
     const turns = ((layer.turn || 0) % 4 + 4) % 4;
-    if (!a.b && !a.c && !a.s && !a.t && !turns && !layer.flip) return src;
-    const key = `${layer.asset}|${turns}|${layer.flip ? 1 : 0}|${a.b || 0}|${a.c || 0}|${a.s || 0}|${a.t || 0}|${full ? 'F' : 'P'}`;
+    const treat = layer.bg ? layer.treat || (theme && theme.treat) || 'natural' : 'natural';
+    const blur = layer.bg ? layer.blur || 0 : 0;
+    if (!a.b && !a.c && !a.s && !a.t && !turns && !layer.flip && !PIXEL_TREATS[treat] && !blur) return src;
+    const duo = theme && PIXEL_TREATS[treat] ? `${theme.duo}|${theme.dark}` : '';
+    const key = `${layer.asset}|${turns}|${layer.flip ? 1 : 0}|${a.b || 0}|${a.c || 0}|${a.s || 0}|${a.t || 0}|${treat}|${duo}|${blur}|${full ? 'F' : 'P'}`;
     let hit = adjusted.get(key);
     if (!hit && full) {
-      hit = bake(src, layer, Infinity);
+      hit = bake(src, { ...layer, treat, blur }, Infinity, theme);
       remember(key, hit);
     }
     if (hit) {
@@ -375,8 +474,8 @@
     }
     if (!pending.has(key)) {
       pending.add(key);
-      const snapshot = { ...layer, adj: { ...a } };
-      bakeSoon(src, snapshot, PREVIEW_EDGE, (pic) => {
+      const snapshot = { ...layer, adj: { ...a }, treat, blur };
+      bakeSoon(src, snapshot, PREVIEW_EDGE, theme, (pic) => {
         pending.delete(key);
         if (ready(layer.asset)) remember(key, pic);
         if (onReady) onReady(layer.asset);
@@ -406,12 +505,14 @@
     return { x: layer.x + ox, y: layer.y + oy, w: dw, h: dh, s };
   }
 
-  function drawImage(ctx, layer, full) {
-    const pic = picture(layer, full);
-    const pad = layer.card ? layer.card.pad ?? 24 : 0;
+  const BLEND = { ink: 'screen', print: 'multiply' };
+  function drawImage(ctx, layer, full, theme) {
+    const pic = picture(layer, full, theme);
+    const pad = layer.card && !layer.bg ? layer.card.pad ?? 24 : 0;
     ctx.save();
-    ctx.globalAlpha = layer.opacity ?? 1;
-    if (layer.card) {
+    ctx.globalAlpha = layer.opacity ?? (layer.bg ? 0.55 : 1);
+    if (layer.bg) ctx.globalCompositeOperation = BLEND[layer.treat || theme.treat] || 'source-over';
+    if (layer.card && !layer.bg) {
       ctx.fillStyle = layer.card.color || '#ffffff';
       roundRect(ctx, layer.x - pad, layer.y - pad, layer.w + pad * 2, layer.h + pad * 2, (layer.radius || 0) + pad * 0.5);
       ctx.fill();
@@ -431,47 +532,6 @@
   }
 
   /* ------------------------------------------------------------------ shade, logo */
-
-  function drawShade(ctx, layer, theme, W, H) {
-    const k = layer.strength ?? 1;
-    if (k <= 0) return;
-    ctx.save();
-    const [tc, ta, tb] = theme.tint;
-    ctx.globalCompositeOperation = tb;
-    ctx.globalAlpha = clamp(ta * k, 0, 1);
-    ctx.fillStyle = tc;
-    ctx.fillRect(0, 0, W, H);
-    const D = Math.max(W, H);
-    for (const g of theme.layers) {
-      let grad;
-      let blend;
-      let op;
-      let stops;
-      if (g[0] === 'r') {
-        const [, cx, cy, r, b, o, s] = g;
-        grad = ctx.createRadialGradient(cx * W, cy * H, 0, cx * W, cy * H, r * D);
-        blend = b;
-        op = o;
-        stops = s;
-      } else {
-        const [, angle, b, o, s] = g;
-        const rad = (angle * Math.PI) / 180;
-        const dx = Math.sin(rad);
-        const dy = -Math.cos(rad);
-        const half = (Math.abs(Math.sin(rad)) * W + Math.abs(Math.cos(rad)) * H) / 2;
-        grad = ctx.createLinearGradient(W / 2 - dx * half, H / 2 - dy * half, W / 2 + dx * half, H / 2 + dy * half);
-        blend = b;
-        op = o;
-        stops = s;
-      }
-      for (const [o2, c] of stops) grad.addColorStop(o2, c);
-      ctx.globalCompositeOperation = blend;
-      ctx.globalAlpha = clamp(op * k, 0, 1);
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, W, H);
-    }
-    ctx.restore();
-  }
 
   const logos = {};
   function logoImage(variant) {
@@ -501,6 +561,80 @@
     ctx.globalAlpha = layer.opacity ?? 1;
     ctx.drawImage(img, layer.x, layer.y, layer.h * LOGO_RATIO, layer.h);
     ctx.restore();
+  }
+
+  /* ------------------------------------------------------------------ the backdrop */
+
+  // The theme's backdrop for slide `i` of `n`: drawn as one piece n slides
+  // wide and shifted, so neighbouring slides meet exactly.
+  function drawBackdrop(ctx, theme, W, H, i, n) {
+    const f = theme.flow;
+    if (!f) return;
+    const TW = W * n;
+    ctx.save();
+    ctx.translate(-i * W, 0);
+    const rad = ((f.angle ?? 90) * Math.PI) / 180;
+    const dx = Math.sin(rad);
+    const dy = -Math.cos(rad);
+    const half = (Math.abs(dx) * TW + Math.abs(dy) * H) / 2;
+    const g = ctx.createLinearGradient(TW / 2 - dx * half, H / 2 - dy * half, TW / 2 + dx * half, H / 2 + dy * half);
+    for (const [o, c] of f.stops) g.addColorStop(o, c);
+    ctx.fillStyle = g;
+    ctx.fillRect(i * W, 0, W, H);
+    // light travelling along the carousel: one glow every `every` slides,
+    // alternating between the heights in `ys`
+    if (f.glow) {
+      const gl = f.glow;
+      const step = W * gl.every;
+      const count = Math.ceil(TW / step) + 1;
+      for (let k = -1; k < count; k++) {
+        const cx = (k + 0.5) * step;
+        if (cx + gl.r * W < i * W || cx - gl.r * W > (i + 1) * W) continue;
+        const cy = gl.ys[((k % gl.ys.length) + gl.ys.length) % gl.ys.length] * H;
+        const color = gl.colors[((k % gl.colors.length) + gl.colors.length) % gl.colors.length];
+        const rg = ctx.createRadialGradient(cx, cy, 0, cx, cy, gl.r * W);
+        rg.addColorStop(0, color);
+        rg.addColorStop(1, color.replace(/[\d.]+\)$/, '0)'));
+        ctx.fillStyle = rg;
+        ctx.fillRect(i * W, 0, W, H);
+      }
+    }
+    if (f.grid) {
+      const gr = f.grid;
+      ctx.lineWidth = 1.5;
+      for (const [stepPx, color] of [
+        [gr.minor, gr.color],
+        [gr.major, gr.majorColor],
+      ]) {
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        for (let x = Math.ceil((i * W) / stepPx) * stepPx; x <= (i + 1) * W; x += stepPx) {
+          ctx.moveTo(x + 0.5, 0);
+          ctx.lineTo(x + 0.5, H);
+        }
+        for (let y = 0; y <= H; y += stepPx) {
+          ctx.moveTo(i * W, y + 0.5);
+          ctx.lineTo((i + 1) * W, y + 0.5);
+        }
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  // "02 / 05", quietly, in the corner the words leave free.
+  function drawFolio(ctx, theme, W, H, i, n) {
+    const st = { ...theme.type.caption, font: 'plexmono', size: 24, weight: 500, italic: false, ls: 1.5 };
+    setFont(ctx, st);
+    ctx.fillStyle = theme.colors.caption;
+    ctx.globalAlpha = 0.85;
+    ctx.textBaseline = 'alphabetic';
+    const t = `${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}`;
+    const y = theme.valign === 'bottom' ? SAFE - 20 : H - SAFE + 44;
+    const x = theme.valign === 'middle' ? (W - widthOf(ctx, t, st)) / 2 : SAFE;
+    ctx.fillText(t, x, y);
+    ctx.globalAlpha = 1;
+    if (HAS_LS) ctx.letterSpacing = '0px';
   }
 
   /* ------------------------------------------------------------------ geometry */
@@ -536,48 +670,75 @@
     return [cx + dx * Math.cos(a) - dy * Math.sin(a), cy + dx * Math.sin(a) + dy * Math.cos(a)];
   }
 
-  // The topmost layer under a slide point (shades are never picked).
-  function layerAt(doc, slide, x, y) {
+  // The topmost layer under a slide point: the slide's own, then the
+  // carousel's backgrounds (which are in carousel coordinates, so offset by
+  // the slide's place). Shades are never picked.
+  function layerAt(doc, slide, x, y, index) {
     const theme = themeOf(doc);
     const { w: W, h: H } = sizeOf(doc);
+    const hit = (l, px) => {
+      const b = bounds(l, theme, W, H);
+      const [lx, ly] = toLocal(l, b, px, y);
+      const pad = l.kind === 'text' ? 12 : 0;
+      return lx >= b.x - pad && lx <= b.x + b.w + pad && ly >= b.y - pad && ly <= b.y + b.h + pad;
+    };
     for (let i = slide.layers.length - 1; i >= 0; i--) {
       const l = slide.layers[i];
       if (l.kind === 'shade' || l.hidden) continue;
-      const b = bounds(l, theme, W, H);
-      const [lx, ly] = toLocal(l, b, x, y);
-      const pad = l.kind === 'text' ? 12 : 0;
-      if (lx >= b.x - pad && lx <= b.x + b.w + pad && ly >= b.y - pad && ly <= b.y + b.h + pad) return l;
+      if (hit(l, x)) return l;
     }
+    const off = (index ?? Math.max(0, doc.slides.indexOf(slide))) * W;
+    const bg = doc.bg || [];
+    for (let i = bg.length - 1; i >= 0; i--) if (!bg[i].hidden && hit(bg[i], x + off)) return bg[i];
     return null;
   }
 
   /* ------------------------------------------------------------------ the slide */
 
-  const themeOf = (doc) => THEMES[doc.theme] || THEMES.editorial;
+  const themeOf = (doc) => THEMES[doc.theme] || THEMES[LEGACY[doc.theme]] || THEMES.midnight;
   const sizeOf = (doc) => SIZES[doc.size] || SIZES.portrait;
 
-  // Draw `slide` into `ctx` (already sized to W*scale × H*scale).
-  // opts.skip(layer) leaves layers out (the contrast check renders the
-  // backdrop without the text).
+  // Draw `slide` into `ctx` (already sized to W*scale × H*scale): the
+  // carousel's backdrop and backgrounds (its window of them), then its own
+  // layers. opts.skip(layer) leaves layers out (the contrast check renders
+  // the backdrop without the text); opts.index / opts.count place a slide
+  // that is not in doc.slides (theme previews).
   function drawSlide(ctx, doc, slide, scale = 1, opts = {}) {
     const theme = opts.theme || themeOf(doc);
     const { w: W, h: H } = sizeOf(doc);
+    const n = opts.count ?? Math.max(1, doc.slides.length);
+    const i = opts.index ?? Math.max(0, doc.slides.indexOf(slide));
     ctx.save();
     ctx.setTransform(scale, 0, 0, scale, 0, 0);
     ctx.globalCompositeOperation = 'source-over';
     ctx.globalAlpha = 1;
     ctx.fillStyle = slide.bg || theme.base;
     ctx.fillRect(0, 0, W, H);
+    if (!slide.bg) drawBackdrop(ctx, theme, W, H, i, n);
+    // the carousel's background pictures, in carousel coordinates
+    if (!opts.noBg && doc.bg && doc.bg.length) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(0, 0, W, H);
+      ctx.clip();
+      ctx.translate(-i * W, 0);
+      for (const l of doc.bg) {
+        if (l.hidden || l.x > (i + 1) * W || l.x + l.w < i * W || (opts.skip && opts.skip(l))) continue;
+        const b = bounds(l, theme, W, H);
+        withRotation(ctx, l, b, () => drawImage(ctx, l, opts.full, theme));
+      }
+      ctx.restore();
+    }
     for (const layer of slide.layers) {
-      if (layer.hidden || (opts.skip && opts.skip(layer))) continue;
+      if (layer.hidden || layer.kind === 'shade' || (opts.skip && opts.skip(layer))) continue;
       const b = bounds(layer, theme, W, H);
       withRotation(ctx, layer, b, () => {
-        if (layer.kind === 'image') drawImage(ctx, layer, opts.full);
-        else if (layer.kind === 'shade') drawShade(ctx, layer, theme, W, H);
+        if (layer.kind === 'image') drawImage(ctx, layer, opts.full, theme);
         else if (layer.kind === 'text') drawText(ctx, layer, theme);
         else if (layer.kind === 'logo') drawLogo(ctx, layer, theme);
       });
     }
+    if (doc.folio !== false && n > 1 && !opts.noFolio) drawFolio(ctx, theme, W, H, i, n);
     ctx.restore();
   }
 
@@ -612,7 +773,8 @@
     await fontsReady(doc, slide);
     layoutCache.clear();
     await logosReady();
-    await Promise.all(slide.layers.filter((l) => l.kind === 'image').map((l) => ensure(l.asset, load).catch(() => null)));
+    const pics = [...slide.layers, ...(doc.bg || [])].filter((l) => l.kind === 'image');
+    await Promise.all(pics.map((l) => ensure(l.asset, load).catch(() => null)));
   }
 
   // WCAG "large text" is 24 px, or 18.7 px bold, as read. A 1080 px slide
@@ -667,6 +829,8 @@
     SAFE,
     ROLES,
     LOGO_RATIO,
+    LEGACY,
+    drawBackdrop,
     drawSlide,
     slideReady,
     ensure,

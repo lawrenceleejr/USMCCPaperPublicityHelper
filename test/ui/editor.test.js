@@ -60,10 +60,10 @@ test('a carousel from a sheet row, a photo and a plot, exported three ways', asy
   await page.click('text=Make slides');
   await page.waitForFunction(() => S.doc.slides.length === 3);
   const cover = await page.evaluate(() => S.doc.slides[0].layers.map((l) => l.kind + (l.role ? ':' + l.role : '')));
-  assert.deepEqual(cover, ['shade', 'text:eyebrow', 'text:title', 'text:caption', 'logo']);
+  assert.deepEqual(cover, ['text:eyebrow', 'text:title', 'text:caption', 'logo']);
   assert.equal(await page.evaluate(() => S.doc.name), 'A Better Way to Collide Muons');
 
-  // the photo goes full bleed under the theme light on the cover; the plot
+  // the photo goes full bleed under the words on the cover; the plot
   // onto a new slide, fitted on a card
   await addFiles(page, [pics.photo, pics.plot]);
   await page.waitForFunction(() => S.doc.slides.length === 4);
@@ -139,6 +139,51 @@ test('a carousel from a sheet row, a photo and a plot, exported three ways', asy
   await page.close();
 });
 
+test('slides join without a seam: the backdrop and a background figure run on', async () => {
+  const { page, errors } = await open();
+  await page.evaluate(() => Sheets.newDoc());
+  await page.keyboard.press('n');
+  await page.keyboard.press('n');
+  page.choose([pics.plot]);
+  await page.keyboard.press('k'); // a background picture
+  await page.waitForFunction(() => (S.doc.bg || []).length === 1, null, { timeout: 15000 });
+  for (const theme of ['midnight', 'paper', 'blueprint']) {
+    // each slide's right edge against the next one's left edge
+    const diff = await page.evaluate(async (theme) => {
+      S.doc.theme = theme;
+      const out = [];
+      const edge = async (i, col) => {
+        const b = await U.renderSlide(S.doc.slides[i], 'image/png');
+        const bmp = await createImageBitmap(b);
+        const c = new OffscreenCanvas(bmp.width, bmp.height);
+        const x = c.getContext('2d');
+        x.drawImage(bmp, 0, 0);
+        return x.getImageData(col === 'right' ? bmp.width - 1 : 0, 0, 1, bmp.height).data;
+      };
+      for (let i = 0; i < S.doc.slides.length - 1; i++) {
+        const a = await edge(i, 'right');
+        const b = await edge(i + 1, 'left');
+        let sum = 0;
+        for (let k = 0; k < a.length; k += 4) sum += Math.abs(a[k] - b[k]) + Math.abs(a[k + 1] - b[k + 1]) + Math.abs(a[k + 2] - b[k + 2]);
+        out.push(sum / (a.length / 4) / 3);
+      }
+      return out;
+    }, theme);
+    for (const d of diff) assert.ok(d < 4, `${theme}: the edges differ by ${d.toFixed(1)} levels on average`);
+  }
+  // the background runs behind all three slides, and follows a new one
+  assert.equal(await page.evaluate(() => S.doc.bg[0].w), 3 * 1080);
+  await page.keyboard.press('Escape');
+  await page.keyboard.press('n');
+  assert.equal(await page.evaluate(() => S.doc.bg[0].w), 4 * 1080);
+  // and the preview shows them side by side
+  await page.keyboard.press('v');
+  assert.equal(await page.locator('.pv-track canvas').count(), 4);
+  await page.keyboard.press('Escape');
+  assert.deepEqual(errors, []);
+  await page.close();
+});
+
 test('undo, redo, and the carousel is still there after a reload', async () => {
   const { page, errors } = await open();
   await page.evaluate(() => Sheets.newDoc());
@@ -176,7 +221,7 @@ test('every tool has a key and a place in the menu', async () => {
   assert.equal(new Set(keys).size, keys.length, 'a key is used twice');
   // and the macOS menu bar lists them too
   const gui = fs.readFileSync(path.join(__dirname, '..', '..', 'src-tauri', 'src', 'gui.rs'), 'utf8');
-  const missing = items.map((i) => i.id).filter((id) => !gui.includes(`"${id}"`) && !['nextlayer', 'edit', 'menu', 'undo', 'redo', 'slideleft', 'slideright', 'shade'].includes(id));
+  const missing = items.map((i) => i.id).filter((id) => !gui.includes(`"${id}"`) && !['nextlayer', 'edit', 'menu', 'undo', 'redo', 'slideleft', 'slideright'].includes(id));
   assert.deepEqual(missing, [], 'tools missing from the macOS menu bar (gui.rs)');
   await page.close();
 });

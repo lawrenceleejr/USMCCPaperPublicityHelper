@@ -11,7 +11,8 @@ const dir = path.join(root, 'web/fonts');
 const FAMILIES = [
   ['Inter', 'ital,opsz,wght@0,14..32,100..900;1,14..32,100..900', 'inter'],
   ['Fraunces', 'ital,opsz,wght@0,9..144,300..900;1,9..144,300..900', 'fraunces'],
-  ['Bricolage Grotesque', 'opsz,wght@12..96,200..800', 'bricolagegrotesque'],
+  ['Instrument Serif', 'ital@0;1', 'instrumentserif'],
+  ['Source Serif 4', 'ital,opsz,wght@0,8..60,200..900;1,8..60,200..900', 'sourceserif4'],
   ['Anton', '', 'anton'],
   ['Manrope', 'wght@200..800', 'manrope'],
   ['Newsreader', 'ital,opsz,wght@0,6..72,200..800;1,6..72,200..800', 'newsreader'],

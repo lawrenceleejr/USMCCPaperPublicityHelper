@@ -30,7 +30,7 @@ async function desktop() {
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'usmcc-ui-'));
   const proc = spawn(BIN, ['--serve', '--no-open', '--port', '0'], { env: { ...process.env, USMCC_HOME: home } });
   const base = await listen(proc);
-  await fetch(base + '/api/settings', { method: 'PUT', headers: { 'X-USMCC': '1', 'Content-Type': 'application/json' }, body: JSON.stringify({ exportDir: path.join(home, 'out') }) });
+  await fetch(base + '/api/settings', { method: 'PUT', headers: { 'X-USMCC': '1', 'Content-Type': 'application/json' }, body: JSON.stringify({ exportDir: path.join(home, 'out'), autoFigure: false }) });
   return { base, home, out: path.join(home, 'out'), stop: () => proc.kill() };
 }
 

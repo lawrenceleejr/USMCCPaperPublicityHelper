@@ -59,11 +59,35 @@ window.S = S;
 const slide = () => S.doc.slides[S.cur];
 const size = () => R.sizeOf(S.doc);
 const theme = () => R.themeOf(S.doc);
-const selLayer = () => (S.sel && slide() ? slide().layers.find((l) => l.id === S.sel) : null) || null;
+const selLayer = () => (S.sel && slide() ? slide().layers.find((l) => l.id === S.sel) || (S.doc.bg || []).find((l) => l.id === S.sel) : null) || null;
+// A carousel background is in carousel coordinates: this slide sees it shifted.
+const offsetOf = (l) => (l && l.bg ? S.cur * size().w : 0);
 
 function newDoc(name) {
   return { v: 1, id: uid(), name: name || 'Untitled carousel', updated: Date.now(), size: 'portrait', theme: 'editorial', paper: null, posts: null, slides: [blankSlide()] };
 }
+// Carousels from the first version: per-slide "theme light" layers go (the
+// backdrop flows across slides now), and a picture spread over slides as
+// copies becomes one carousel background.
+function migrate(doc) {
+  doc.bg = doc.bg || [];
+  const W = R.sizeOf(doc).w;
+  const seen = new Set();
+  doc.slides.forEach((s, i) => {
+    s.layers = s.layers.filter((l) => {
+      if (l.kind === 'shade') return false;
+      if (!l.span) return true;
+      if (!seen.has(l.span)) {
+        seen.add(l.span);
+        const b = { ...l, bg: true, x: l.x + i * W, treat: 'natural', opacity: 1 };
+        delete b.span;
+        doc.bg.push(b);
+      }
+      return false;
+    });
+  });
+}
+
 function blankSlide() {
   return { id: uid(), bg: null, layers: [] };
 }
@@ -130,6 +154,8 @@ function changed(label = '', opts = {}) {
     for (const l of slide().layers) if (l.flow && l.flow.g === g) delete l.flow;
   }
   for (const s of opts.all ? S.doc.slides : [slide()]) if (s) reflow(s);
+  fitBackgrounds();
+  if (moved && moved.bg) opts = { ...opts, all: true };
   const fold = label && label === S.lastLabel && now - S.lastAt < 1000;
   if (!fold) {
     S.undo.push(S.base);
@@ -197,6 +223,7 @@ async function saveSettings(patch) {
 function openDoc(doc) {
   S.doc = doc;
   if (!doc.slides || !doc.slides.length) doc.slides = [blankSlide()];
+  migrate(doc);
   S.base = JSON.stringify(doc);
   S.undo = [];
   S.redo = [];
@@ -335,7 +362,8 @@ function drawOverlay() {
     $('#crop-tip').hidden = true;
     return;
   }
-  const b = R.bounds(l, theme(), W, H);
+  const b = { ...R.bounds(l, theme(), W, H) };
+  b.x -= offsetOf(l);
   selbox.hidden = false;
   selbox.className = `k-${l.kind}${S.crop && l.kind === 'image' ? ' crop' : ''}`;
   Object.assign(selbox.style, {
@@ -355,21 +383,6 @@ function drawOverlay() {
 const pointers = new Map(); // pointerId -> {x, y}
 let gest = null;
 let lastTap = { t: 0, id: null };
-
-function spanSiblings(l) {
-  if (!l.span) return [];
-  const out = [];
-  S.doc.slides.forEach((s, i) => {
-    if (i === S.cur) return;
-    for (const m of s.layers) if (m.span === l.span) out.push({ layer: m, offset: (i - S.cur) * size().w });
-  });
-  return out;
-}
-function syncSpan(l) {
-  for (const { layer: m, offset } of spanSiblings(l)) {
-    Object.assign(m, { ...l, id: m.id, x: l.x - offset });
-  }
-}
 
 wrap.addEventListener('pointerdown', (e) => {
   if (e.button && e.button !== 0) return;
@@ -393,7 +406,8 @@ wrap.addEventListener('pointerdown', (e) => {
   const [x, y] = slidePoint(e);
   const handle = e.target.closest && e.target.closest('#selbox .h');
   if (handle && l) {
-    gest = { type: handle.dataset.h === 'rot' ? 'rotate' : 'resize', h: handle.dataset.h, x0: x, y0: y, start: JSON.parse(JSON.stringify(l)), moved: false };
+    const o = offsetOf(l);
+    gest = { type: handle.dataset.h === 'rot' ? 'rotate' : 'resize', h: handle.dataset.h, x0: x + o, y0: y, start: JSON.parse(JSON.stringify(l)), moved: false, o };
     e.preventDefault();
     return;
   }
@@ -401,8 +415,12 @@ wrap.addEventListener('pointerdown', (e) => {
     gest = { type: 'pan', x0: x, y0: y, start: { px: l.px ?? 0.5, py: l.py ?? 0.5 }, moved: false };
     return;
   }
-  const hit = R.layerAt(S.doc, slide(), x, y);
-  if (hit) {
+  const hit = R.layerAt(S.doc, slide(), x, y, S.cur);
+  if (hit && hit.bg && hit.id !== S.sel) {
+    // a background is under everything: a drag over it flips slides (on a
+    // phone), a tap selects it
+    gest = { type: 'empty', x0: x, y0: y, cx: e.clientX, moved: false, bgHit: hit.id };
+  } else if (hit) {
     if (hit.id !== S.sel) {
       S.sel = hit.id;
       S.crop = false;
@@ -425,12 +443,13 @@ wrap.addEventListener('pointermove', (e) => {
   if (!gest.moved && gest.x0 !== undefined && Math.hypot(x - gest.x0, y - gest.y0) < tol * 2) return;
   gest.moved = true;
   if (gest.type === 'move' && l) {
-    let nx = gest.start.x + (x - gest.x0);
+    const o = offsetOf(l);
+    let nx = gest.start.x + (x - gest.x0) - o;
     let ny = gest.start.y + (y - gest.y0);
     [nx, ny] = snap(l, nx, ny, e.altKey);
+    nx += o;
     l.x = Math.round(nx);
     l.y = Math.round(ny);
-    syncSpan(l);
     requestRender();
   } else if (gest.type === 'pan' && l) {
     const pic = R.picture(l) || R.ready(l.asset);
@@ -439,15 +458,13 @@ wrap.addEventListener('pointermove', (e) => {
     l.px = clamp(gest.start.px - (x - gest.x0) / p.w, 0, 1);
     l.py = clamp(gest.start.py - (y - gest.y0) / p.h, 0, 1);
     clampPan(l);
-    syncSpan(l);
     requestRender();
   } else if (gest.type === 'resize' && l) {
-    resize(l, gest, x, y, e.shiftKey);
-    syncSpan(l);
+    resize(l, gest, x + (gest.o || 0), y, e.shiftKey);
     requestRender();
   } else if (gest.type === 'rotate' && l) {
     const b = R.bounds(gest.start, theme(), W, H);
-    const cx = b.x + b.w / 2;
+    const cx = b.x + b.w / 2 - (gest.o || 0);
     const cy = b.y + b.h / 2;
     let a = (Math.atan2(y - cy, x - cx) * 180) / Math.PI + 90;
     a = e.shiftKey ? Math.round(a / 15) * 15 : a;
@@ -466,7 +483,6 @@ wrap.addEventListener('pointermove', (e) => {
       scaleLayer(l, gest.start, f);
       if (Math.abs(turn) > 6 || gest.start.rot) l.rot = Math.round((gest.start.rot || 0) + turn);
     }
-    syncSpan(l);
     requestRender();
   }
 });
@@ -480,13 +496,18 @@ function endPointer(e) {
   snapLines = [];
   if (!g) return;
   if (g.moved && g.type !== 'empty') {
-    changed(g.type, { slides: spanSlideIds(selLayer()) });
+    changed(g.type, { all: !!(selLayer() && selLayer().bg) });
     return;
   }
   if (g.type === 'empty') {
     // a swipe across an empty part of the slide flips slides (touch)
     const dx = e.clientX - g.cx;
     if (TOUCH && Math.abs(dx) > 50) return go(S.cur + (dx < 0 ? 1 : -1));
+    if (g.bgHit && Math.abs(dx) < 10) {
+      S.sel = g.bgHit;
+      S.crop = false;
+      return refresh();
+    }
     if (S.sel || S.crop) {
       S.sel = null;
       S.crop = false;
@@ -520,7 +541,6 @@ wrap.addEventListener(
       e.preventDefault();
       l.zoom = clamp((l.zoom || 1) * Math.exp(-e.deltaY * 0.0025), l.fit === 'contain' ? 0.2 : 1, 8);
       clampPan(l);
-      syncSpan(l);
       requestRender();
       changed('zoom', { quiet: true });
       clearTimeout(wheelTimer);
@@ -529,7 +549,6 @@ wrap.addEventListener(
       // a trackpad pinch
       e.preventDefault();
       scaleLayer(l, JSON.parse(JSON.stringify(l)), Math.exp(-e.deltaY * 0.01));
-      syncSpan(l);
       requestRender();
       changed('scale', { quiet: true });
     }
@@ -537,7 +556,6 @@ wrap.addEventListener(
   { passive: false }
 );
 
-const spanSlideIds = (l) => (l && l.span ? S.doc.slides.filter((s) => s.layers.some((m) => m.span === l.span)).map((s) => s.id) : []);
 
 // Keep a covering picture from showing a gap after zooming out.
 function clampPan(l) {
@@ -724,7 +742,7 @@ function addLayer(l, { below } = {}) {
   l.id = l.id || uid();
   if (below) slide().layers.unshift(l);
   else slide().layers.push(l);
-  S.sel = l.kind === 'shade' ? null : l.id;
+  S.sel = l.id;
   S.crop = false;
   changed('add ' + l.kind);
   return l;
@@ -748,16 +766,6 @@ function addLogo() {
   addLayer({ kind: 'logo', h, x: Math.round(W - R.SAFE - h * R.LOGO_RATIO), y: R.SAFE });
 }
 
-function ensureShade() {
-  if (slide().layers.some((l) => l.kind === 'shade')) return toast('This slide already has the theme light');
-  // above the pictures, below the words
-  const i = slide().layers.findIndex((l) => l.kind !== 'image');
-  const s = { id: uid(), kind: 'shade', strength: 1 };
-  if (i < 0) slide().layers.push(s);
-  else slide().layers.splice(i, 0, s);
-  changed('shade');
-}
-
 // How a new picture goes on a slide: photos fill it (full bleed), plots and
 // PDF pages are fitted inside the margins on a card.
 function placePicture(id, opts = {}) {
@@ -773,7 +781,7 @@ function placePicture(id, opts = {}) {
   const s = slide();
   // a plot on its own slide becomes a figure slide: the theme light, a
   // "Figure n" label, the logo, the picture on a card and its caption
-  const own = s.layers.every((m) => m.kind === 'shade');
+  const own = !s.layers.length;
   let top = R.SAFE;
   let bottom = H - R.SAFE;
   let capLayer = null;
@@ -781,7 +789,6 @@ function placePicture(id, opts = {}) {
   if (own && opts.figure !== false) {
     const t = theme();
     const n = S.doc.slides.filter((x) => x.layers.some((m) => m.fig)).length + 1;
-    if (!s.layers.length) s.layers.push({ id: uid(), kind: 'shade', strength: 1 });
     const lh = 92;
     s.layers.push({ id: uid(), kind: 'logo', h: lh, x: Math.round(W - R.SAFE - lh * R.LOGO_RATIO), y: R.SAFE - 14 });
     const eb = { id: uid(), kind: 'text', role: 'eyebrow', text: `Figure ${n}`, x: R.SAFE, w: W - 2 * R.SAFE - lh, y: R.SAFE + 10 };
@@ -873,7 +880,7 @@ async function addPictures(list, opts = {}) {
       const id = await storeAsset(blob);
       const photo = opts.photo ?? item.photo ?? /\.(jpg|webp)$/.test(id);
       const s = slide();
-      const fits = photo ? !slideHasPicture(s) : s.layers.every((l) => l.kind === 'shade');
+      const fits = photo ? !slideHasPicture(s) : !s.layers.length;
       if (!(first && fits)) addSlide(S.cur);
       first = false;
       placePicture(id, { photo, caption: item.caption });
@@ -903,7 +910,7 @@ async function addFiles(files) {
   if (!files.some((f) => isImage(f) || isPdf(f) || isArchive(f))) toast('Those files are not pictures, PDFs or a paper’s source (.tar.gz)', 4000);
 }
 
-function pickFiles() {
+function pickFiles(opts = {}) {
   const input = document.createElement('input');
   input.type = 'file';
   input.multiple = true;
@@ -912,28 +919,45 @@ function pickFiles() {
   input.onchange = () => {
     const files = [...input.files];
     input.remove();
-    if (files.length) addFiles(files);
+    if (files.length && opts.background) addBackground(files[0]);
+    else if (files.length) addFiles(files);
   };
   document.body.append(input);
   input.click();
 }
 
+// A picture (Blob) straight in as the carousel's background.
+async function addBackground(blob, opts = {}) {
+  try {
+    const id = await storeAsset(blob);
+    const { w: W, h: H } = size();
+    const photo = opts.photo ?? /\.(jpg|webp)$/.test(id);
+    const l = { id: uid(), kind: 'image', asset: id, bg: true, all: true, x: 0, y: 0, w: W * S.doc.slides.length, h: H, fit: 'cover', zoom: 1, px: opts.px ?? 0.5, py: 0.5, opacity: photo ? 1 : 0.6, treat: photo ? 'natural' : undefined, blur: 0 };
+    S.doc.bg = (S.doc.bg || []).filter((m) => !opts.replace || !m.auto);
+    if (opts.auto) l.auto = true;
+    S.doc.bg.push(l);
+    changed('background', { all: true });
+    return l;
+  } catch (e) {
+    toast('Could not use that picture: ' + e.message, 4000);
+  }
+}
+
 function deleteLayer() {
   const l = selLayer();
   if (!l) return;
-  const sibs = spanSiblings(l);
   slide().layers = slide().layers.filter((m) => m !== l);
-  if (sibs.length) for (const s of S.doc.slides) s.layers = s.layers.filter((m) => !(l.span && m.span === l.span));
+  if (l.bg) S.doc.bg = S.doc.bg.filter((m) => m !== l);
   S.sel = null;
   S.crop = false;
-  changed('delete layer', { all: !!sibs.length });
+  changed('delete layer', { all: !!l.bg });
 }
 function duplicateLayer() {
   const l = selLayer();
   if (!l) return;
+  if (l.bg) return toast('One background is enough: change it instead');
   const c = JSON.parse(JSON.stringify(l));
   c.id = uid();
-  delete c.span;
   c.x += 24;
   c.y += 24;
   slide().layers.splice(slide().layers.indexOf(l) + 1, 0, c);
@@ -965,8 +989,7 @@ function toggleFill() {
   l.fit = l.fit === 'contain' ? 'cover' : 'contain';
   l.zoom = 1;
   l.px = l.py = 0.5;
-  syncSpan(l);
-  changed('fit', { slides: spanSlideIds(l) });
+  changed('fit', { all: !!l.bg });
   toast(l.fit === 'cover' ? 'Fills its frame' : 'Fits inside its frame');
 }
 function fillSlide() {
@@ -992,39 +1015,51 @@ function rotate90() {
     l.x = Math.round(cx - l.w / 2);
     l.y = Math.round(cy - l.h / 2);
   }
-  syncSpan(l);
-  changed('turn', { slides: spanSlideIds(l) });
+  changed('turn', { all: !!l.bg });
 }
 
-// Spread a picture across this and the next slides, so the carousel reads
-// as one wide image when swiped.
-function spread(n) {
-  const l = selLayer();
-  if (!l || l.kind !== 'image') return toast('Select a picture to spread it across slides');
+// A picture as the carousel's background: behind the words, and across as
+// many slides as you like ("all" stretches as slides are added), so it
+// joins up when the carousel is swiped. Plots get the theme's treatment
+// (lines glowing on dark slides, printed into light ones); photos stay as
+// they are. Again (X) puts it back on the slide.
+function toBackground(l = selLayer(), span = 'all') {
+  if (!l || l.kind !== 'image') return toast('Select a picture to use it as the background');
   const { w: W, h: H } = size();
-  if (l.span) {
-    // already spread: take it back to this slide
-    for (const s of S.doc.slides) if (s !== slide()) s.layers = s.layers.filter((m) => m.span !== l.span);
-    delete l.span;
-    Object.assign(l, { x: 0, y: 0, w: W, h: H });
-    changed('unspread', { all: true });
-    return toast('Back on one slide');
+  if (l.bg) {
+    S.doc.bg = S.doc.bg.filter((m) => m !== l);
+    const back = { ...l, bg: undefined, all: undefined, treat: undefined, blur: undefined, x: 0, y: 0, w: W, h: H, opacity: 1 };
+    delete back.bg;
+    delete back.all;
+    slide().layers.unshift(back);
+    S.sel = back.id;
+    changed('unbackground', { all: true });
+    return toast('Back on this slide');
   }
-  n = n || clamp(S.doc.slides.length - S.cur, 2, 3);
-  while (S.doc.slides.length < S.cur + n) S.doc.slides.push(blankSlide());
-  l.span = uid();
-  Object.assign(l, { x: 0, y: 0, w: W * n, h: H, fit: 'cover', zoom: 1, px: 0.5, py: 0.5, rot: 0, radius: 0, card: null });
-  const ls = slide().layers;
-  ls.splice(ls.indexOf(l), 1);
-  ls.unshift(l);
-  for (let k = 1; k < n; k++) {
-    const s = S.doc.slides[S.cur + k];
-    s.layers = s.layers.filter((m) => !(m.kind === 'image' && m.x <= 0 && m.y <= 0 && m.w >= W && m.h >= H));
-    s.layers.unshift({ ...JSON.parse(JSON.stringify(l)), id: uid(), x: -W * k });
-  }
-  buildStrip();
-  changed('spread', { all: true });
-  toast(`Spread across ${n} slides · X again to undo the spread`);
+  slide().layers = slide().layers.filter((m) => m !== l);
+  const photo = /\.(jpg|webp)$/.test(l.asset) && !l.fig;
+  const b = { ...l, bg: true, rot: 0, radius: 0, card: null, fit: 'cover', zoom: 1, px: 0.5, py: 0.5, opacity: photo ? 1 : 0.6, treat: photo ? 'natural' : undefined, blur: 0 };
+  delete b.fig;
+  S.doc.bg = S.doc.bg || [];
+  S.doc.bg.push(b);
+  setSpan(b, span);
+  S.sel = b.id;
+  changed('background', { all: true });
+  toast(span === 'all' ? 'Now the background, across every slide' : 'Now the background');
+}
+function setSpan(l, span) {
+  const { w: W, h: H } = size();
+  const n = S.doc.slides.length;
+  l.all = span === 'all' || undefined;
+  const k = span === 'all' ? n : span;
+  const start = span === 'all' ? 0 : Math.min(S.cur, Math.max(0, n - k));
+  Object.assign(l, { x: start * W, y: 0, w: k * W, h: H });
+  clampPan(l);
+}
+// backgrounds set to "all" follow the number of slides and the size
+function fitBackgrounds() {
+  const { w: W, h: H } = size();
+  for (const l of S.doc.bg || []) if (l.all) Object.assign(l, { x: 0, y: 0, w: W * S.doc.slides.length, h: H });
 }
 
 /* ------------------------------------------------------------------ the strip */
@@ -1230,7 +1265,7 @@ function renderInspector(force) {
   inspFor = key;
   insp.replaceChildren();
   const head = el('div', 'ins-head');
-  const title = el('h3', '', l ? { image: 'Picture', text: 'Text', logo: 'Logo', shade: 'Theme light' }[l.kind] : `Slide ${S.cur + 1}`);
+  const title = el('h3', '', l ? (l.bg ? 'Background' : { image: 'Picture', text: 'Text', logo: 'Logo' }[l.kind]) : `Slide ${S.cur + 1}`);
   head.append(title);
   if (PHONE()) {
     // phones: a one-line bar with the most used action; the rest on demand
@@ -1239,8 +1274,9 @@ function renderInspector(force) {
     insp.hidden = empty;
     insp.classList.toggle('collapsed', !S.inspOpen);
     const quick = el('span', 'quick');
-    if (l && l.kind === 'text') quick.append(actBtn('Edit text', '', () => editText()));
-    if (l && l.kind === 'image') quick.append(actBtn(S.crop ? 'Done' : 'Crop', '', toggleCrop, S.crop), actBtn(l.fit === 'contain' ? 'Fill' : 'Fit', '', toggleFill));
+    if (l && l.kind === 'text') quick.append(actBtn('Edit', '', () => editText()));
+    if (l && l.bg) quick.append(actBtn(S.crop ? 'Done' : 'Move', '', toggleCrop, S.crop));
+    else if (l && l.kind === 'image') quick.append(actBtn(S.crop ? 'Done' : 'Crop', '', toggleCrop, S.crop), actBtn('Background', '', () => toBackground(l)));
     if (l) quick.append(actBtn('Delete', '', deleteLayer));
     const t = el('button', 'link more', S.inspOpen ? 'Less' : 'More');
     t.onclick = () => {
@@ -1256,10 +1292,10 @@ function renderInspector(force) {
   }
   insp.append(head);
   if (!l) slidePanel();
+  else if (l.bg) backgroundPanel(l);
   else if (l.kind === 'image') imagePanel(l);
   else if (l.kind === 'text') textPanel(l);
   else if (l.kind === 'logo') logoPanel(l);
-  else if (l.kind === 'shade') shadePanel(l);
 }
 
 function slidePanel() {
@@ -1297,7 +1333,7 @@ function slidePanel() {
     actBtn('Text', 'T', () => addText('body')),
     actBtn('Title', '', () => addText('title')),
     actBtn('Logo', 'L', addLogo),
-    actBtn('Theme light', '', ensureShade)
+    actBtn('Background', '', () => pickFiles({ background: true }))
   );
   const sl = el('div', 'acts');
   sl.append(
@@ -1308,12 +1344,12 @@ function slidePanel() {
     actBtn('Delete', MAC ? '⌘⌫' : 'Ctrl+⌫', deleteSlide)
   );
   insp.append(grp('Slide', sl));
-  if (s.layers.length) {
+  if (s.layers.length || (S.doc.bg || []).length) {
     const list = el('div', 'layers');
-    for (const l of [...s.layers].reverse()) {
+    for (const l of [...s.layers, ...(S.doc.bg || [])].reverse()) {
       const b = el('button');
-      const name = l.kind === 'text' ? l.text.split('\n')[0].slice(0, 40) || '(empty text)' : { image: l.fit === 'cover' ? 'Photo' : 'Picture', logo: 'Logo', shade: 'Theme light' }[l.kind];
-      b.append(el('span', '', name), el('span', 'kind', l.kind === 'text' ? l.role : l.span ? 'spread' : ''));
+      const name = l.bg ? 'Background (all slides)' : l.kind === 'text' ? l.text.split('\n')[0].slice(0, 40) || '(empty text)' : { image: l.fit === 'cover' ? 'Photo' : 'Picture', logo: 'Logo' }[l.kind];
+      b.append(el('span', '', name), el('span', 'kind', l.kind === 'text' ? l.role : ''));
       b.onclick = () => {
         S.sel = l.id;
         refresh();
@@ -1325,7 +1361,7 @@ function slidePanel() {
 }
 
 function imagePanel(l) {
-  const sync = () => syncSpan(l);
+  const sync = () => {};
   const a = (l.adj = l.adj || {});
   const frame = el('div', 'acts');
   frame.append(
@@ -1338,7 +1374,7 @@ function imagePanel(l) {
       sync();
       changed('mirror');
     }),
-    actBtn(l.span ? 'Unspread' : 'Spread across slides', 'X', () => spread())
+    actBtn('Use as background', 'X', () => toBackground(l))
   );
   insp.append(grp('Frame', frame));
   insp.append(
@@ -1394,6 +1430,64 @@ function imagePanel(l) {
     );
   insp.append(cardGrp);
   insp.append(layerActions());
+}
+
+function backgroundPanel(l) {
+  const t = theme();
+  const n = S.doc.slides.length;
+  const spans = [['all', 'All slides']];
+  for (const k of [1, 2, 3]) if (k < n) spans.push([k, k === 1 ? 'This slide' : `${k} slides`]);
+  const cur = l.all ? 'all' : Math.round(l.w / size().w);
+  insp.append(
+    grp(
+      'Runs behind',
+      seg(spans, cur, (v) => {
+        setSpan(l, v);
+        changed('span', { all: true });
+        renderInspector(true);
+      })
+    )
+  );
+  const treat = l.treat || t.treat;
+  insp.append(
+    grp(
+      'Look',
+      seg(
+        [
+          ['natural', 'As is'],
+          ['ink', 'Glow', 'Inverted, colours kept: lines light up on dark slides'],
+          ['print', 'Print', 'White drops away: the plot printed into a light slide'],
+          ['duotone', 'Duotone', 'In the theme’s two colours'],
+          ['mono', 'Mono'],
+        ],
+        treat,
+        (v) => {
+          l.treat = v;
+          changed('treat', { all: true });
+          renderInspector(true);
+        }
+      ),
+      el('p', 'hint', t.dark ? 'On this dark theme, Glow suits plots best.' : 'On this light theme, Print suits plots best.')
+    )
+  );
+  insp.append(
+    grp(
+      '',
+      slider('Strength', () => (l.opacity ?? 0.55) * 100, (v) => {
+        l.opacity = v / 100;
+      }, { min: 5, max: 100, def: 60, fmt: (v) => Math.round(v) + '%', lbl: 'bg-opacity' }),
+      slider('Blur', () => l.blur || 0, (v) => {
+        l.blur = v;
+      }, { min: 0, max: 30, def: 0, lbl: 'bg-blur' }),
+      slider('Zoom', () => l.zoom || 1, (v) => {
+        l.zoom = v;
+        clampPan(l);
+      }, { min: 1, max: 4, step: 0.01, def: 1, fmt: (v) => Math.round(v * 100) + '%', lbl: 'bg-zoom' })
+    )
+  );
+  const acts = el('div', 'acts');
+  acts.append(actBtn(S.crop ? 'Done moving' : 'Move the picture', 'C', toggleCrop, S.crop), actBtn('Put on this slide', 'X', () => toBackground(l)), actBtn('Remove', '⌫', deleteLayer));
+  insp.append(grp('', acts));
 }
 
 function textPanel(l) {
@@ -1493,7 +1587,7 @@ function textPanel(l) {
           ['#ffffff', 'White'],
           ['#0a1428', 'Navy'],
           ['#000000', 'Black'],
-          ['#f0a640', 'Amber'],
+          ['#62adff', 'Sky'],
         ],
         st.color,
         (c) => set('color', c)
@@ -1542,7 +1636,7 @@ function contrastReadout(l) {
   const need = c.large ? 3 : 4.5;
   const pass = c.ratio >= need;
   const fig = el('div');
-  fig.append(el('span', 'fig num', c.ratio.toFixed(1) + ' : 1'), el('span', 'verdict' + (pass ? '' : ' bad'), pass ? (c.ratio >= (c.large ? 4.5 : 7) ? '  reads well (AAA)' : '  readable (AA)') : `  needs ${need} : 1 — add a box, shadow or the theme light`));
+  fig.append(el('span', 'fig num', c.ratio.toFixed(1) + ' : 1'), el('span', 'verdict' + (pass ? '' : ' bad'), pass ? (c.ratio >= (c.large ? 4.5 : 7) ? '  reads well (AAA)' : '  readable (AA)') : `  needs ${need} : 1 — add a box or shadow, or soften the background`));
   const W = 260;
   const x = (v) => 4 + (Math.log(v) / Math.log(21)) * (W - 8);
   const ns = 'http://www.w3.org/2000/svg';
@@ -1628,18 +1722,6 @@ function logoPanel(l) {
   insp.append(layerActions());
 }
 
-function shadePanel(l) {
-  insp.append(
-    grp(
-      'The theme’s tint and gradients, over everything below this layer.',
-      slider('Strength', () => (l.strength ?? 1) * 100, (v) => {
-        l.strength = v / 100;
-      }, { min: 0, max: 200, def: 100, fmt: (v) => Math.round(v) + '%' })
-    )
-  );
-  insp.append(layerActions());
-}
-
 function layerActions() {
   const a = el('div', 'acts');
   a.append(
@@ -1654,6 +1736,7 @@ function layerActions() {
 function editText(selectAll) {
   const l = selLayer();
   if (!l || l.kind !== 'text') return;
+  if (PHONE()) return Sheets.textEdit(l, selectAll); // the whole screen, above the keyboard
   S.inspOpen = true;
   renderInspector(true);
   const ta = $('#text-edit');
@@ -1722,11 +1805,11 @@ const MENU = [
     items: [
       ['text', 'Add text', 'T', () => addText('body')],
       ['logo', 'Add the logo', 'L', addLogo],
-      ['shade', 'Add the theme light', 'K', ensureShade],
       ['crop', 'Crop picture', 'C', toggleCrop],
       ['fill', 'Fill / fit frame', 'B', toggleFill],
       ['rotate', 'Turn picture 90°', 'R', rotate90],
-      ['spread', 'Spread across slides', 'X', () => spread()],
+      ['spread', 'Use as background (or back on the slide)', 'X', () => toBackground()],
+      ['background', 'Add a background picture…', 'K', () => pickFiles({ background: true })],
       ['backward', 'Send backward', ',', () => restack(-1)],
       ['forward', 'Bring forward', '.', () => restack(1)],
       ['duplicate', 'Duplicate layer', MAC ? '⌘D' : 'Ctrl+D', duplicateLayer],
@@ -1749,6 +1832,7 @@ const MENU = [
         S.guides = !S.guides;
         requestRender();
       }],
+      ['preview', 'Preview the carousel', 'V', () => Sheets.preview()],
       ['fullscreen', 'Full screen', 'F', toggleFullscreen],
       ['menu', 'Menu', 'M', () => Sheets.menu()],
       ['keys', 'Keyboard shortcuts', '?', () => Sheets.keys()],
@@ -1762,7 +1846,7 @@ window.usmccCommand = (id) => {
 };
 
 function cycleLayer(d) {
-  const ls = slide().layers.filter((l) => l.kind !== 'shade');
+  const ls = [...slide().layers, ...(S.doc.bg || [])];
   if (!ls.length) return;
   const i = ls.findIndex((l) => l.id === S.sel);
   S.sel = ls[(i + d + ls.length) % ls.length].id;
@@ -1791,8 +1875,7 @@ function nudge(dx, dy) {
     l.x += dx;
     l.y += dy;
   }
-  syncSpan(l);
-  changed('nudge', { quiet: true, slides: spanSlideIds(l) });
+  changed('nudge', { quiet: true, all: !!l.bg });
   drawOverlay();
 }
 
@@ -1964,6 +2047,12 @@ window.U = {
   addSlide,
   addLayer,
   reflow,
+  addBackground,
+  toBackground,
+  setSpan,
+  migrate,
+  PHONE,
+  editText,
   sentences,
   shortCaption,
   go,
