@@ -955,6 +955,7 @@ async function addBackground(blob, opts = {}) {
     const l = { id: uid(), kind: 'image', asset: id, bg: true, all: true, x: 0, y: 0, w: W * S.doc.slides.length, h: H, fit: 'cover', zoom: 1, px: opts.px ?? 0.5, py: 0.5, opacity: photo ? 1 : bgStrength(), treat: photo ? 'natural' : undefined, blur: 0 };
     S.doc.bg = (S.doc.bg || []).filter((m) => !opts.replace || !m.auto);
     if (opts.auto) l.auto = true;
+    if (!photo) plotFrame(l, opts.at ?? 0);
     S.doc.bg.push(l);
     changed('background', { all: true });
     return l;
@@ -1062,11 +1063,25 @@ function toBackground(l = selLayer(), span = 'all') {
   delete b.fig;
   S.doc.bg = S.doc.bg || [];
   S.doc.bg.push(b);
-  setSpan(b, span);
+  if (photo) setSpan(b, span);
+  else plotFrame(b);
   S.sel = b.id;
   changed('background', { all: true });
   toast(span === 'all' ? 'Now the background, across every slide' : 'Now the background');
 }
+// Where a plot goes as a background: its own proportions, the full height,
+// starting a third into this slide so it runs on across the seam into the
+// next (a photo instead covers every slide).
+function plotFrame(l, at = S.cur) {
+  const { w: W, h: H } = size();
+  const pic = R.ready(l.asset);
+  const ar = pic ? pic.w / pic.h : 4 / 3;
+  const n = S.doc.slides.length;
+  const w = Math.min(n * W, Math.max(W * 1.4, H * ar * 1.1));
+  const x = Math.max(0, Math.min(at * W + W * 0.35, n * W - w));
+  Object.assign(l, { x: Math.round(x), y: 0, w: Math.round(w), h: H, all: undefined, fit: 'cover', zoom: 1, px: 0.5, py: 0.5 });
+}
+
 // A plot behind words is texture: faint, more so on light slides.
 const bgStrength = () => (theme().dark ? 0.3 : 0.22);
 
@@ -1480,12 +1495,14 @@ function backgroundPanel(l) {
   const n = S.doc.slides.length;
   const spans = [['all', 'All slides']];
   for (const k of [1, 2, 3]) if (k < n) spans.push([k, k === 1 ? 'This slide' : `${k} slides`]);
-  const cur = l.all ? 'all' : Math.round(l.w / size().w);
+  spans.push(['fit', 'Its own shape']);
+  const cur = l.all ? 'all' : l.w % size().w ? 'fit' : Math.round(l.w / size().w);
   insp.append(
     grp(
       'Runs behind',
       seg(spans, cur, (v) => {
-        setSpan(l, v);
+        if (v === 'fit') plotFrame(l);
+        else setSpan(l, v);
         changed('span', { all: true });
         renderInspector(true);
       })

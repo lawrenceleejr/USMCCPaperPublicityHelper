@@ -554,7 +554,10 @@ const Sheets = (() => {
     if (S.settings.autoFigure !== false && /arxiv/i.test(P.paperLink || '') && !(S.doc.bg || []).some((l) => !l.auto)) {
       try {
         const figs = await getFigures(P.paperLink);
-        const f = figs.find((x) => x.mime !== 'image/svg+xml') || figs[0];
+        // a later figure (often a result) rather than the first ones, which
+        // tend to become figure slides
+        const pool = figs.filter((x) => x.mime !== 'image/svg+xml');
+        const f = pool[Math.min(2, pool.length - 1)] || figs[0];
         if (f && !(S.doc.bg || []).some((l) => !l.auto)) {
           const blob = await figurePng(b64ToBlob(f.data, f.mime));
           await U.addBackground(blob, { photo: false, auto: true, replace: true, px: 0.5 });
