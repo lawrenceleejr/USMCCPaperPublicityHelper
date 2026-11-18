@@ -23,7 +23,7 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 include_dir = "0.7"
 miniz_oxide = "0.8"
-ureq = { version = "2", default-features = false, features = ["tls", "gzip"] }
+ureq = { version = "2", default-features = false, features = ["tls", "gzip", "native-certs", "proxy-from-env"] }
 tauri = { version = "2", optional = true, features = [] }
 tauri-plugin-dialog = { version = "2", optional = true }
 

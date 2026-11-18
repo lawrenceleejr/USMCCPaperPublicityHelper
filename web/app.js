@@ -492,6 +492,7 @@ wrap.addEventListener('pointerup', endPointer);
 wrap.addEventListener('pointercancel', endPointer);
 wrap.addEventListener('lostpointercapture', endPointer);
 
+let wheelTimer = 0;
 wrap.addEventListener(
   'wheel',
   (e) => {
@@ -504,6 +505,8 @@ wrap.addEventListener(
       syncSpan(l);
       requestRender();
       changed('zoom', { quiet: true });
+      clearTimeout(wheelTimer);
+      wheelTimer = setTimeout(() => renderInspector(true), 150); // the zoom slider follows
     } else if (e.ctrlKey) {
       // a trackpad pinch
       e.preventDefault();

@@ -311,7 +311,9 @@ fn clean_name(s: &str) -> Option<String> {
 }
 
 fn agent(timeout: u64) -> ureq::Agent {
-    ureq::AgentBuilder::new().user_agent(USER_AGENT).timeout(Duration::from_secs(timeout)).redirects(10).build()
+    // the system's certificates and HTTPS_PROXY: works behind a university or
+    // company proxy that inspects TLS
+    ureq::AgentBuilder::new().user_agent(USER_AGENT).timeout(Duration::from_secs(timeout)).redirects(10).try_proxy_from_env(true).build()
 }
 
 /// GET a URL into memory, up to `cap` bytes.
