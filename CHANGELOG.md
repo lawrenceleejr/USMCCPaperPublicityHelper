@@ -11,6 +11,8 @@
 - New academic themes: Midnight, Paper, Blueprint, Ink, Glacier, Signal
   (Instrument Serif, Source Serif 4 added); folios and hairline rules. Plots
   on white join the slide (glow / print) instead of sitting on a white card.
+- Blur and darken a background in one tap (Clear, Soft, Dim, Deep; `U`; a
+  Soften button on phones), with sliders, from the slide panel.
 - Preview (V): the slides side by side, swipeable.
 - Phones: full-screen text editor, clearer one-tap actions, swipes over a
   background flip slides, messages at the top. The accent is now blue.

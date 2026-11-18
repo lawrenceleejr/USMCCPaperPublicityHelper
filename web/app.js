@@ -1348,7 +1348,7 @@ function slidePanel() {
   const t = theme();
   insp.append(
     grp(
-      'Background',
+      'Slide colour',
       swatches(
         [
           [t.base, 'Theme'],

@@ -44,8 +44,9 @@ the camera roll, in order, ready to post.
   light) is one piece across all the slides, so they join without a seam
   when swiped. A figure or photo can be the background too, running behind
   any number of slides: plots glow on dark themes (inverted, colours kept)
-  and print into light ones; or duotone, mono, as is, with strength and
-  blur. **Make slides** puts one of the paper's figures behind the carousel,
+  and print into light ones; or duotone, mono, as is. **Blur and darken** it
+  in one tap (Clear, Soft, Dim, Deep, or `U`), with sliders for anything in
+  between, right in the slide panel; photos behind the words too. **Make slides** puts one of the paper's figures behind the carousel,
   crossing from the cover into the next slide. **Preview** (`V`) shows the
   slides side by side, swipeable on a phone.
 - **Six academic themes**, each with its own Google Fonts pairing, and three
@@ -122,7 +123,7 @@ standalone `usmcc-cli-…` builds are on the releases page too.
 | `N` / `D` / `⌘⌫` | new / duplicate / delete slide; `{` `}` move it |
 | `C` | crop the selected picture (drag to pan, scroll to zoom) |
 | `B` / `R` / `X` | fill or fit the frame / turn 90° / use as the background (and back) |
-| `K` / `V` | add a background picture / preview the carousel, slides joined |
+| `K` / `U` / `V` | add a background picture / soften it (clear, soft, dim, deep) / preview the carousel, slides joined |
 | `,` `.` | send backward / bring forward |
 | `Tab`, `Enter`, `⌫` | select the next layer, edit text, delete |
 | `⌘D` | duplicate the layer |
