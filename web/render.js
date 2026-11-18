@@ -286,7 +286,9 @@
   const pending = new Set();
   const lastPic = new Map(); // layer id -> the last picture drawn for it
 
-  function bake(src, layer, maxEdge) {
+  // The turned / mirrored picture on a canvas, and (with adjustments) its
+  // pixels to adjust; adjustRows does `n` rows of them.
+  function bakeStart(src, layer, maxEdge) {
     const a = layer.adj || {};
     const turns = ((layer.turn || 0) % 4 + 4) % 4;
     const flat = !a.b && !a.c && !a.s && !a.t;
@@ -303,26 +305,56 @@
     if (layer.flip) x.scale(-1, 1);
     x.drawImage(src.bmp, -sw / 2, -sh / 2, sw, sh);
     x.restore();
+    const job = { c, x, row: 0, img: null };
     if (!flat) {
-      const img = x.getImageData(0, 0, c.width, c.height);
-      const d = img.data;
-      const br = (a.b || 0) * 1.28; // ±128 levels
+      job.img = x.getImageData(0, 0, c.width, c.height);
       const ct = (a.c || 0) / 100;
-      const cf = ct >= 0 ? 1 + ct * 1.5 : 1 + ct * 0.9;
-      const sat = 1 + (a.s || 0) / 100;
-      const warm = (a.t || 0) * 0.3;
-      for (let i = 0; i < d.length; i += 4) {
-        let r = (d[i] + br + warm - 128) * cf + 128;
-        let g = (d[i + 1] + br - 128) * cf + 128;
-        let b = (d[i + 2] + br - warm - 128) * cf + 128;
-        const l = 0.299 * r + 0.587 * g + 0.114 * b;
-        d[i] = l + (r - l) * sat;
-        d[i + 1] = l + (g - l) * sat;
-        d[i + 2] = l + (b - l) * sat;
-      }
-      x.putImageData(img, 0, 0);
+      job.p = { br: (a.b || 0) * 1.28, cf: ct >= 0 ? 1 + ct * 1.5 : 1 + ct * 0.9, sat: 1 + (a.s || 0) / 100, warm: (a.t || 0) * 0.3 };
     }
-    return { bmp: c, w: c.width, h: c.height };
+    return job;
+  }
+  function adjustRows(job, n) {
+    const { img, p } = job;
+    const d = img.data;
+    const end = Math.min(img.height, job.row + n);
+    for (let i = job.row * img.width * 4, e = end * img.width * 4; i < e; i += 4) {
+      const r = (d[i] + p.br + p.warm - 128) * p.cf + 128;
+      const g = (d[i + 1] + p.br - 128) * p.cf + 128;
+      const b = (d[i + 2] + p.br - p.warm - 128) * p.cf + 128;
+      const l = 0.299 * r + 0.587 * g + 0.114 * b;
+      d[i] = l + (r - l) * p.sat;
+      d[i + 1] = l + (g - l) * p.sat;
+      d[i + 2] = l + (b - l) * p.sat;
+    }
+    job.row = end;
+    return end >= img.height;
+  }
+  const bakeEnd = (job) => {
+    if (job.img) job.x.putImageData(job.img, 0, 0);
+    return { bmp: job.c, w: job.c.width, h: job.c.height };
+  };
+  // All at once (exports).
+  function bake(src, layer, maxEdge) {
+    const job = bakeStart(src, layer, maxEdge);
+    if (job.img) adjustRows(job, Infinity);
+    return bakeEnd(job);
+  }
+  // A few milliseconds at a time (on screen), so a key press always gets in.
+  function bakeSoon(src, layer, maxEdge, done) {
+    setTimeout(() => {
+      const job = bakeStart(src, layer, maxEdge);
+      if (!job.img) return done(bakeEnd(job));
+      const step = () => {
+        const t0 = performance.now();
+        let rows = 16;
+        while (performance.now() - t0 < 6) {
+          if (adjustRows(job, rows)) return done(bakeEnd(job));
+          rows = Math.min(rows * 2, 128);
+        }
+        setTimeout(step, 0);
+      };
+      step();
+    }, 0);
   }
 
   function picture(layer, full) {
@@ -344,11 +376,11 @@
     if (!pending.has(key)) {
       pending.add(key);
       const snapshot = { ...layer, adj: { ...a } };
-      setTimeout(() => {
+      bakeSoon(src, snapshot, PREVIEW_EDGE, (pic) => {
         pending.delete(key);
-        if (ready(layer.asset)) remember(key, bake(src, snapshot, PREVIEW_EDGE));
+        if (ready(layer.asset)) remember(key, pic);
         if (onReady) onReady(layer.asset);
-      }, 0);
+      });
     }
     return lastPic.get(layer.id) || src;
   }
