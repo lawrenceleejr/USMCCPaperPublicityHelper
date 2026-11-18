@@ -608,11 +608,13 @@
       ]) {
         ctx.strokeStyle = color;
         ctx.beginPath();
-        for (let x = Math.ceil((i * W) / stepPx) * stepPx; x <= (i + 1) * W; x += stepPx) {
+        // offset by half a small cell, so no line falls on a seam between slides
+        const o = gr.minor / 2;
+        for (let x = Math.ceil((i * W - o) / stepPx) * stepPx + o; x <= (i + 1) * W; x += stepPx) {
           ctx.moveTo(x + 0.5, 0);
           ctx.lineTo(x + 0.5, H);
         }
-        for (let y = 0; y <= H; y += stepPx) {
+        for (let y = o; y <= H; y += stepPx) {
           ctx.moveTo(i * W, y + 0.5);
           ctx.lineTo((i + 1) * W, y + 0.5);
         }
