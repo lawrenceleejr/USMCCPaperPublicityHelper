@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>USMCC Publicity Helper</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="bar">
+    <div class="left">
+      <span class="mark">USMCC<span class="lite-only lite-tag">Lite</span></span>
+      <button id="doc-name" class="link" title="Your carousels (O)"></button>
+    </div>
+    <div class="center"><span id="counter" class="num"></span></div>
+    <div class="right">
+      <button id="undo-btn" class="link touch-only" title="Undo (⌘Z)" aria-label="Undo">↶</button>
+      <button id="redo-btn" class="link touch-only" title="Redo (⇧⌘Z)" aria-label="Redo">↷</button>
+      <button class="link no-touch" data-cmd="add" title="Add photos, PDFs and plots (A)">Add <kbd>A</kbd></button>
+      <button class="link no-touch" data-cmd="text" title="Add text (T)">Text <kbd>T</kbd></button>
+      <button class="link no-touch" data-cmd="paper" title="The paper: metadata, figures, PDF (P)">Paper <kbd>P</kbd></button>
+      <button class="link no-touch" data-cmd="posts" title="Write the posts (W)">Posts <kbd>W</kbd></button>
+      <button class="link no-touch" data-cmd="theme" title="Theme and slide size (Y)">Theme <kbd>Y</kbd></button>
+      <button class="link no-touch" data-cmd="menu" title="All tools (M)">Menu <kbd>M</kbd></button>
+      <button class="link no-touch" data-cmd="keys" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">Keys <kbd>?</kbd></button>
+      <button class="btn primary" data-cmd="export" title="Export the slides (E)">Export <kbd class="no-touch">E</kbd></button>
+    </div>
+  </header>
+
+  <main id="editor">
+    <section id="stage-wrap" aria-label="Slide">
+      <canvas id="stage"></canvas>
+      <div id="overlay">
+        <div id="guides"></div>
+        <div id="selbox" hidden>
+          <i class="h" data-h="nw"></i><i class="h" data-h="n"></i><i class="h" data-h="ne"></i>
+          <i class="h" data-h="e"></i><i class="h" data-h="se"></i><i class="h" data-h="s"></i>
+          <i class="h" data-h="sw"></i><i class="h" data-h="w"></i><i class="h rot" data-h="rot"></i>
+        </div>
+      </div>
+      <div id="empty-hint" hidden>
+        <p class="no-touch">Drop photos, a paper's PDF or plots here.</p>
+        <p class="touch-only">Tap <b>Add</b> to bring in photos, a paper's PDF or plots.</p>
+        <p class="keyline no-touch"><kbd>A</kbd> add <kbd>P</kbd> paper <kbd>T</kbd> text <kbd>E</kbd> export <kbd>?</kbd> every key</p>
+      </div>
+      <div id="drop-hint" hidden>Drop to add</div>
+      <div id="crop-tip" hidden></div>
+    </section>
+    <aside id="insp" aria-label="Properties"></aside>
+  </main>
+
+  <nav id="strip" aria-label="Slides"></nav>
+
+  <nav id="toolbar" class="touch-only" aria-label="Tools">
+    <button data-cmd="add"><span class="ico">＋</span>Add</button>
+    <button data-cmd="text"><span class="ico">T</span>Text</button>
+    <button data-cmd="paper"><span class="ico">¶</span>Paper</button>
+    <button data-cmd="posts"><span class="ico">✎</span>Posts</button>
+    <button data-cmd="theme"><span class="ico">◐</span>Theme</button>
+    <button data-cmd="menu"><span class="ico">⋯</span>More</button>
+  </nav>
+
+  <div id="sheet" hidden>
+    <div class="sheet-panel" role="dialog" aria-modal="true">
+      <div class="sheet-head"><h2 id="sheet-title"></h2><button id="sheet-close" class="link" title="Close (Esc)">Close <kbd class="no-touch">Esc</kbd></button></div>
+      <div id="sheet-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="render.js"></script>
+  <script src="app.js"></script>
+  <script src="sheets.js"></script>
+</body>
+</html>

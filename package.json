@@ -1,28 +1,25 @@
 {
   "name": "usmcc-publicity-helper",
+  "productName": "USMCC Publicity Helper",
+  "version": "0.2.0",
+  "description": "Turn a USMCC paper into social posts and an image carousel: photos, figures and PDF pages, text and the USMCC look, exported for phones.",
+  "license": "MIT",
+  "repository": "github:lawrenceleejr/USMCCPaperPublicityHelper",
   "private": true,
-  "version": "0.1.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "tauri": "tauri"
-  },
-  "dependencies": {
-    "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-opener": "^2",
-    "@tauri-apps/plugin-store": "^2",
-    "pdfjs-dist": "^4.7.76",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "build:cli": "cargo build --release --no-default-features --manifest-path src-tauri/Cargo.toml",
+    "start": "cargo run --release --no-default-features --manifest-path src-tauri/Cargo.toml -- --serve",
+    "app": "tauri dev",
+    "dist": "tauri build",
+    "tauri": "tauri",
+    "test": "node --test test/*.test.js",
+    "test:ui": "node --test --test-concurrency=1 test/ui/*.test.js",
+    "lite": "node scripts/build-lite.mjs && node scripts/serve-lite.mjs",
+    "build:lite": "node scripts/build-lite.mjs",
+    "test:lite": "node --test --test-concurrency=1 test/ui/lite.test.js"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2",
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.1",
-    "typescript": "^5.5.3",
-    "vite": "^5.3.1"
+    "@tauri-apps/cli": "^2.12.4",
+    "playwright": "^1.63.0"
   }
 }
