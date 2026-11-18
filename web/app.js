@@ -1313,7 +1313,11 @@ function renderInspector(force) {
     insp.classList.toggle('collapsed', !S.inspOpen);
     const quick = el('span', 'quick');
     if (l && l.kind === 'text') quick.append(actBtn('Edit', '', () => editText()));
-    if (l && l.bg) quick.append(actBtn(S.crop ? 'Done' : 'Move', '', toggleCrop, S.crop));
+    if (!l && (S.doc.bg || []).length) quick.append(actBtn('Soften', '', soften), actBtn('Background', '', () => {
+      S.sel = S.doc.bg[S.doc.bg.length - 1].id;
+      refresh();
+    }));
+    if (l && l.bg) quick.append(actBtn('Soften', '', soften), actBtn(S.crop ? 'Done' : 'Move', '', toggleCrop, S.crop));
     else if (l && l.kind === 'image') quick.append(actBtn(S.crop ? 'Done' : 'Crop', '', toggleCrop, S.crop), actBtn('Background', '', () => toBackground(l)));
     if (l) quick.append(actBtn('Delete', '', deleteLayer));
     const t = el('button', 'link more', S.inspOpen ? 'Less' : 'More');
@@ -1359,6 +1363,19 @@ function slidePanel() {
       )
     )
   );
+  if ((S.doc.bg || []).length) {
+    const g = softenGroup(S.doc.bg, 'Background');
+    const a = el('div', 'acts');
+    a.append(
+      actBtn('Edit the background', '', () => {
+        S.sel = S.doc.bg[S.doc.bg.length - 1].id;
+        S.inspOpen = true;
+        refresh();
+      })
+    );
+    g.append(a);
+    insp.append(g);
+  }
   insp.append(
     grp(
       'Add',
@@ -1441,6 +1458,7 @@ function imagePanel(l) {
       a[k] = v;
       sync();
     }, { min: -100, max: 100, def: 0, lbl: 'adj-' + k });
+  if (l.fit === 'cover') insp.append(softenGroup([l], 'Behind the words'));
   insp.append(grp('Adjust', adjust('b', 'Brightness'), adjust('c', 'Contrast'), adjust('s', 'Saturation'), adjust('t', 'Warmth')));
   const look = l.look || (l.card ? 'card' : 'natural');
   const lookGrp = grp(
@@ -1490,6 +1508,55 @@ function imagePanel(l) {
   insp.append(layerActions());
 }
 
+// Softening a picture behind words: one tap for a blur / darken pair, then
+// the two sliders for anything in between. Works on several pictures at once
+// (all the carousel's backgrounds, from the slide panel).
+const SOFT = [
+  ['clear', 'Clear', 0, 0],
+  ['soft', 'Soft', 10, 0.15],
+  ['dim', 'Dim', 0, 0.45],
+  ['deep', 'Deep', 16, 0.6],
+];
+function softPreset(l) {
+  const p = SOFT.find(([, , b, d]) => (l.blur || 0) === b && Math.abs((l.dim || 0) - d) < 0.005);
+  return p ? p[0] : null;
+}
+function softenGroup(layers, label = 'Blur and darken') {
+  const prints = layers.every((l) => R.treatOf(l, theme()) === 'print');
+  const g = grp(
+    label,
+    seg(
+      SOFT.map(([k, name]) => [k, name]),
+      softPreset(layers[0]),
+      (v) => {
+        const [, , b, d] = SOFT.find((x) => x[0] === v);
+        for (const l of layers) Object.assign(l, { blur: b, dim: d });
+        changed('soften', { all: layers.some((l) => l.bg) });
+        renderInspector(true);
+      }
+    ),
+    slider('Blur', () => layers[0].blur || 0, (v) => {
+      for (const l of layers) l.blur = v;
+    }, { min: 0, max: 30, def: 0, lbl: 'blur' }),
+    slider(prints ? 'Fade' : 'Darken', () => (layers[0].dim || 0) * 100, (v) => {
+      for (const l of layers) l.dim = v / 100;
+    }, { min: 0, max: 85, def: 0, fmt: (v) => Math.round(v) + '%', lbl: 'dim' })
+  );
+  return g;
+}
+// U: the next preset, for the selected picture, or else the backgrounds
+function soften() {
+  const l = selLayer();
+  const layers = l && l.kind === 'image' ? [l] : (S.doc.bg || []).length ? S.doc.bg : slide().layers.filter((m) => m.kind === 'image' && m.fit === 'cover');
+  if (!layers.length) return toast('Nothing to soften: add a background picture (K) first');
+  const i = SOFT.findIndex((x) => x[0] === softPreset(layers[0]));
+  const [, name, b, d] = SOFT[(i + 1) % SOFT.length];
+  for (const m of layers) Object.assign(m, { blur: b, dim: d });
+  changed('soften', { all: layers.some((m) => m.bg) });
+  renderInspector(true);
+  toast(name === 'Clear' ? 'Background clear' : `Background: ${name.toLowerCase()}`);
+}
+
 function backgroundPanel(l) {
   const t = theme();
   const n = S.doc.slides.length;
@@ -1509,6 +1576,7 @@ function backgroundPanel(l) {
     )
   );
   const treat = l.treat || t.treat;
+  insp.append(softenGroup([l]));
   insp.append(
     grp(
       'Look',
@@ -1536,9 +1604,6 @@ function backgroundPanel(l) {
       slider('Strength', () => (l.opacity ?? 0.3) * 100, (v) => {
         l.opacity = v / 100;
       }, { min: 5, max: 100, def: Math.round(bgStrength() * 100), fmt: (v) => Math.round(v) + '%', lbl: 'bg-opacity' }),
-      slider('Blur', () => l.blur || 0, (v) => {
-        l.blur = v;
-      }, { min: 0, max: 30, def: 0, lbl: 'bg-blur' }),
       slider('Zoom', () => l.zoom || 1, (v) => {
         l.zoom = v;
         clampPan(l);
@@ -1870,6 +1935,7 @@ const MENU = [
       ['rotate', 'Turn picture 90°', 'R', rotate90],
       ['spread', 'Use as background (or back on the slide)', 'X', () => toBackground()],
       ['background', 'Add a background picture…', 'K', () => pickFiles({ background: true })],
+      ['soften', 'Soften the background (blur, darken)', 'U', soften],
       ['backward', 'Send backward', ',', () => restack(-1)],
       ['forward', 'Bring forward', '.', () => restack(1)],
       ['duplicate', 'Duplicate layer', MAC ? '⌘D' : 'Ctrl+D', duplicateLayer],
@@ -2109,6 +2175,7 @@ window.U = {
   reflow,
   addBackground,
   toBackground,
+  soften,
   setSpan,
   migrate,
   PHONE,

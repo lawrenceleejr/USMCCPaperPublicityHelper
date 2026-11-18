@@ -366,9 +366,9 @@
     const a = layer.adj || {};
     const turns = ((layer.turn || 0) % 4 + 4) % 4;
     const treat = treatOf(layer, theme);
-    const flat = !a.b && !a.c && !a.s && !a.t && !PIXEL_TREATS[treat];
-    // a blurred background is simply drawn from a smaller picture
-    const k = Math.min(1, maxEdge / Math.max(src.w, src.h)) / (1 + (layer.blur || 0) / 3);
+    const dim = clamp(layer.dim || 0, 0, 0.9);
+    const flat = !a.b && !a.c && !a.s && !a.t && !PIXEL_TREATS[treat] && !dim;
+    const k = Math.min(1, maxEdge / Math.max(src.w, src.h));
     const sw = Math.round(src.w * k);
     const sh = Math.round(src.h * k);
     const c = document.createElement('canvas');
@@ -381,7 +381,7 @@
     if (layer.flip) x.scale(-1, 1);
     x.drawImage(src.bmp, -sw / 2, -sh / 2, sw, sh);
     x.restore();
-    const job = { c, x, row: 0, img: null };
+    const job = { c, x, row: 0, img: null, blur: layer.blur || 0 };
     if (!flat) {
       job.img = x.getImageData(0, 0, c.width, c.height);
       const ct = (a.c || 0) / 100;
@@ -391,6 +391,11 @@
       job.d0 = hexToRgb(duo[0]);
       job.d1 = hexToRgb(duo[1]);
       job.inv = !!(theme && theme.dark); // on a dark slide a plot's white becomes the dark
+      // darkening, done to the pixels so a picture that covers only part of
+      // the carousel shows no edge: lighter light for a picture screened
+      // onto the dark, a fainter print for one multiplied into the paper
+      job.dim = dim;
+      job.dimUp = treat === 'print';
     }
     return job;
   }
@@ -426,6 +431,18 @@
           B0 = job.d0[2] + (job.d1[2] - job.d0[2]) * t;
         }
       }
+      if (job.dim) {
+        const f = 1 - job.dim;
+        if (job.dimUp) {
+          R0 = 255 - (255 - R0) * f;
+          G0 = 255 - (255 - G0) * f;
+          B0 = 255 - (255 - B0) * f;
+        } else {
+          R0 *= f;
+          G0 *= f;
+          B0 *= f;
+        }
+      }
       d[i] = R0;
       d[i + 1] = G0;
       d[i + 2] = B0;
@@ -435,8 +452,29 @@
   }
   const bakeEnd = (job) => {
     if (job.img) job.x.putImageData(job.img, 0, 0);
-    return { bmp: job.c, w: job.c.width, h: job.c.height };
+    const c = job.blur ? blurred(job.c, job.blur) : job.c;
+    return { bmp: c, w: c.width, h: c.height };
   };
+  // A soft blur that works in every browser (Safari's canvas has no filter):
+  // halve the picture step by step to a small copy; drawn back at full size
+  // with smoothing it reads as a blur. `amount` 0…30.
+  function blurred(src, amount) {
+    const target = Math.max(8, Math.round(src.width / (1 + amount / 2.5)));
+    let cur = src;
+    while (cur.width / 2 >= target) cur = scaled(cur, Math.round(cur.width / 2));
+    if (cur.width !== target) cur = scaled(cur, target);
+    return cur;
+  }
+  function scaled(src, w) {
+    const c = document.createElement('canvas');
+    c.width = Math.max(1, w);
+    c.height = Math.max(1, Math.round((src.height * w) / src.width));
+    const x = c.getContext('2d');
+    x.imageSmoothingEnabled = true;
+    x.imageSmoothingQuality = 'high';
+    x.drawImage(src, 0, 0, c.width, c.height);
+    return c;
+  }
   // All at once (exports).
   function bake(src, layer, maxEdge, theme) {
     const job = bakeStart(src, layer, maxEdge, theme);
@@ -467,10 +505,11 @@
     const a = layer.adj || {};
     const turns = ((layer.turn || 0) % 4 + 4) % 4;
     const treat = treatOf(layer, theme);
-    const blur = layer.bg ? layer.blur || 0 : 0;
-    if (!a.b && !a.c && !a.s && !a.t && !turns && !layer.flip && !PIXEL_TREATS[treat] && !blur) return src;
+    const blur = layer.blur || 0;
+    const dim = layer.dim || 0;
+    if (!a.b && !a.c && !a.s && !a.t && !turns && !layer.flip && !PIXEL_TREATS[treat] && !blur && !dim) return src;
     const duo = theme && PIXEL_TREATS[treat] ? `${theme.duo}|${theme.dark}` : '';
-    const key = `${layer.asset}|${turns}|${layer.flip ? 1 : 0}|${a.b || 0}|${a.c || 0}|${a.s || 0}|${a.t || 0}|${treat}|${duo}|${blur}|${full ? 'F' : 'P'}`;
+    const key = `${layer.asset}|${turns}|${layer.flip ? 1 : 0}|${a.b || 0}|${a.c || 0}|${a.s || 0}|${a.t || 0}|${treat}|${duo}|${blur}|${dim}|${full ? 'F' : 'P'}`;
     let hit = adjusted.get(key);
     if (!hit && full) {
       hit = bake(src, { ...layer, blur }, Infinity, theme);

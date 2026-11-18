@@ -191,6 +191,47 @@ test('slides join without a seam: the backdrop and a background figure run on', 
   await page.close();
 });
 
+test('a background blurs and darkens in one tap, and U steps through the looks', async () => {
+  const { page, errors } = await open();
+  await page.evaluate(() => Sheets.newDoc());
+  page.choose([pics.photo]);
+  await page.keyboard.press('k');
+  await page.waitForFunction(() => (S.doc.bg || []).length === 1, null, { timeout: 15000 });
+  await page.keyboard.press('Escape');
+  // brightness (mean) and sharpness (difference between neighbouring pixels)
+  const measure = () =>
+    page.evaluate(async () => {
+      const b = await U.renderSlide(S.doc.slides[0], 'image/png');
+      const bmp = await createImageBitmap(b);
+      const c = new OffscreenCanvas(bmp.width, bmp.height);
+      const x = c.getContext('2d');
+      x.drawImage(bmp, 0, 0);
+      const d = x.getImageData(0, 0, c.width, c.height).data;
+      let sum = 0;
+      let edge = 0;
+      for (let i = 0; i < d.length - 4; i += 4) {
+        sum += d[i] + d[i + 1] + d[i + 2];
+        edge += Math.abs(d[i] - d[i + 4]);
+      }
+      return { mean: sum / (d.length / 4) / 3, sharp: edge / (d.length / 4) };
+    });
+  const clear = await measure();
+  const pick = (name) => page.click(`#insp .seg button:text-is("${name}")`);
+  await pick('Dim');
+  const dim = await measure();
+  assert.ok(dim.mean < clear.mean * 0.7, `Dim darkens (${clear.mean.toFixed(0)} → ${dim.mean.toFixed(0)})`);
+  await pick('Soft');
+  const soft = await measure();
+  assert.ok(soft.sharp < clear.sharp * 0.8, `Soft blurs (${clear.sharp.toFixed(2)} → ${soft.sharp.toFixed(2)})`);
+  // U: the next look, from the keyboard
+  await page.keyboard.press('u');
+  assert.deepEqual(await page.evaluate(() => [S.doc.bg[0].blur, S.doc.bg[0].dim]), [0, 0.45]);
+  await page.keyboard.press('u');
+  assert.deepEqual(await page.evaluate(() => [S.doc.bg[0].blur, S.doc.bg[0].dim]), [16, 0.6]);
+  assert.deepEqual(errors, []);
+  await page.close();
+});
+
 test('undo, redo, and the carousel is still there after a reload', async () => {
   const { page, errors } = await open();
   await page.evaluate(() => Sheets.newDoc());

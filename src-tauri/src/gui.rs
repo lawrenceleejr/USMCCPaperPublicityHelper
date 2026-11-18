@@ -134,6 +134,7 @@ fn build_menu<R: tauri::Runtime>(h: &tauri::AppHandle<R>) -> tauri::Result<tauri
                     &item("rotate", "Rotate 90°   R")?,
                     &item("spread", "Use as Background   X")?,
                     &item("background", "Add a Background Picture…   K")?,
+                    &item("soften", "Soften Background (Blur, Darken)   U")?,
                     &P::separator(h)?,
                     &item("backward", "Send Backward   ,")?,
                     &item("forward", "Bring Forward   .")?,
