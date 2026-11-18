@@ -545,7 +545,7 @@ const Sheets = (() => {
         if (anchor) {
           last.layers.splice(last.layers.findIndex((l) => l.kind === 'text'), 0, { id: uid(), kind: 'image', asset: id, qr: P.paperLink, x: 0, y: 0, w: 300, h: 300, fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 14, card: { color: '#ffffff', pad: 0 }, flow: { g: anchor.flow.g, qr: true } });
           U.reflow(last);
-          U.changed('qr', { quiet: true, slides: [last.id] });
+          U.changed('qr', { quiet: true, slides: [last.id], noUndo: true });
         }
       } catch {}
     }

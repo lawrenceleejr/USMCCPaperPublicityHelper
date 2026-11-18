@@ -157,7 +157,10 @@ function changed(label = '', opts = {}) {
   fitBackgrounds();
   if (moved && moved.bg) opts = { ...opts, all: true };
   const fold = label && label === S.lastLabel && now - S.lastAt < 1000;
-  if (!fold) {
+  // (`noUndo`: something the app finishes by itself a moment later, such as
+  // the QR code after Make slides, joins that step instead of taking an undo
+  // of its own, so Undo still undoes what you did last)
+  if (!fold && !opts.noUndo) {
     S.undo.push(S.base);
     if (S.undo.length > 150) S.undo.shift();
   }
@@ -957,7 +960,7 @@ async function addBackground(blob, opts = {}) {
     if (opts.auto) l.auto = true;
     if (!photo) plotFrame(l, opts.at ?? 0);
     S.doc.bg.push(l);
-    changed('background', { all: true });
+    changed('background', { all: true, noUndo: !!opts.auto });
     return l;
   } catch (e) {
     toast('Could not use that picture: ' + e.message, 4000);
