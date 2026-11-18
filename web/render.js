@@ -455,15 +455,68 @@
     const c = job.blur ? blurred(job.c, job.blur) : job.c;
     return { bmp: c, w: c.width, h: c.height };
   };
-  // A soft blur that works in every browser (Safari's canvas has no filter):
-  // halve the picture step by step to a small copy; drawn back at full size
-  // with smoothing it reads as a blur. `amount` 0…30.
+  // A real (Gaussian) blur that works in every browser: Safari's canvas has
+  // no filter. Three box blurs approximate a Gaussian; they run on a copy
+  // reduced only as far as the blur hides (so enlarging it back shows no
+  // steps), with the edge pixels repeated so the borders don't darken. The
+  // radius is a fraction of the picture's own width, so the preview and the
+  // full-size export look the same. `amount` 0…30.
+  const BLUR_AREA = 420000; // working pixels: a few milliseconds
   function blurred(src, amount) {
-    const target = Math.max(8, Math.round(src.width / (1 + amount / 2.5)));
+    const sigma = (amount / 30) * 0.045 * src.width; // up to 4.5% of the width
+    if (sigma < 0.5) return src;
+    // reduce so that sigma is still ≥ 3 working pixels, and the copy is small
+    const k = Math.max(1, Math.min(sigma / 3, Math.sqrt((src.width * src.height) / BLUR_AREA)));
     let cur = src;
-    while (cur.width / 2 >= target) cur = scaled(cur, Math.round(cur.width / 2));
-    if (cur.width !== target) cur = scaled(cur, target);
+    const tw = Math.max(8, Math.round(src.width / k));
+    while (cur.width / 2 >= tw) cur = scaled(cur, Math.round(cur.width / 2));
+    cur = scaled(cur, tw);
+    const x = cur.getContext('2d', { willReadFrequently: true });
+    const img = x.getImageData(0, 0, cur.width, cur.height);
+    gauss(img.data, cur.width, cur.height, sigma / (src.width / cur.width));
+    x.putImageData(img, 0, 0);
     return cur;
+  }
+  // three box widths whose succession approximates a Gaussian of `sigma`
+  function boxes(sigma) {
+    const n = 3;
+    const wIdeal = Math.sqrt((12 * sigma * sigma) / n + 1);
+    let wl = Math.floor(wIdeal);
+    if (wl % 2 === 0) wl--;
+    const wu = wl + 2;
+    const m = Math.round((12 * sigma * sigma - n * wl * wl - 4 * n * wl - 3 * n) / (-4 * wl - 4));
+    return [0, 1, 2].map((i) => ((i < m ? wl : wu) - 1) / 2);
+  }
+  function gauss(d, w, h, sigma) {
+    const tmp = new Uint8ClampedArray(d.length);
+    for (const r of boxes(sigma)) {
+      boxPass(d, tmp, w, h, Math.max(1, Math.round(r)), true);
+      boxPass(tmp, d, w, h, Math.max(1, Math.round(r)), false);
+    }
+  }
+  // one running-sum box blur along rows (horizontal) or columns, edges repeated
+  function boxPass(src, dst, w, h, r, horizontal) {
+    const lines = horizontal ? h : w;
+    const len = horizontal ? w : h;
+    const step = horizontal ? 4 : w * 4;
+    const inv = 1 / (2 * r + 1);
+    for (let line = 0; line < lines; line++) {
+      const base = horizontal ? line * w * 4 : line * 4;
+      for (let c = 0; c < 4; c++) {
+        const first = src[base + c];
+        const last = src[base + (len - 1) * step + c];
+        // the window [i - r, i + r] before its first step: r copies of the edge, then 0 … r-1
+        let acc = first * r;
+        for (let i = 0; i < r; i++) acc += src[base + Math.min(i, len - 1) * step + c];
+        for (let i = 0; i < len; i++) {
+          const add = i + r < len ? src[base + (i + r) * step + c] : last;
+          acc += add;
+          dst[base + i * step + c] = acc * inv;
+          const sub = i - r >= 0 ? src[base + (i - r) * step + c] : first;
+          acc -= sub;
+        }
+      }
+    }
   }
   function scaled(src, w) {
     const c = document.createElement('canvas');
