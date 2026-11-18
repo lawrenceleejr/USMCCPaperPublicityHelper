@@ -1143,22 +1143,49 @@ fn script(a: &str, sup: bool) -> String {
     }
 }
 
-/// Collapse whitespace and drop spaces before closing punctuation.
+/// Collapse spaces (keeping line breaks, at most one blank line), drop
+/// spaces before closing punctuation, and the doubled full stop a removed
+/// reference leaves (`Ref.~\cite{x}.`).
 fn tidy(s: &str) -> String {
-    let squashed = s.split_whitespace().collect::<Vec<_>>().join(" ");
-    let mut out = String::with_capacity(squashed.len());
-    let cs: Vec<char> = squashed.chars().collect();
+    let lines: Vec<String> = s.split('\n').map(|l| l.split_whitespace().collect::<Vec<_>>().join(" ")).collect();
+    let mut joined = String::new();
+    let mut blank = 0;
+    for l in lines {
+        if l.is_empty() {
+            blank += 1;
+            continue;
+        }
+        if !joined.is_empty() {
+            joined.push_str(if blank > 0 { "\n\n" } else { "\n" });
+        }
+        blank = 0;
+        joined.push_str(&l);
+    }
+    let cs: Vec<char> = joined.chars().collect();
+    let mut out = String::with_capacity(joined.len());
+    let mut dropped_space = false;
     for (k, &c) in cs.iter().enumerate() {
         if c == ' ' {
             let next = cs.get(k + 1).copied().unwrap_or(' ');
             let prev = if k > 0 { cs[k - 1] } else { ' ' };
             if ",.;:)]!?".contains(next) || "([".contains(prev) {
+                dropped_space = true;
                 continue;
             }
         }
+        if c == '.' && dropped_space && out.ends_with('.') && !out.ends_with("..") {
+            dropped_space = false;
+            continue;
+        }
+        dropped_space = false;
         out.push(c);
     }
     out
+}
+
+/// Whitespace, newlines included, as single spaces.
+fn one_line(s: &str) -> String {
+    s.split_whitespace().collect::<Vec<_>>().join(" ")
 }
 
 /* ------------------------------------------------------------ arXiv metadata */
@@ -1243,14 +1270,15 @@ pub fn arxiv_meta(atom: &str) -> Result<PaperRow, String> {
         return Err("arXiv has no paper with that id".into());
     }
     let id = arxiv_id(&idurl).ok_or("arXiv sent an id this app doesn't recognise")?;
+    let id = strip_version(&id).to_string();
     let authors: Vec<String> = xml_all(entry, "author").iter().filter_map(|a| xml_all(a, "name").first().map(|n| xml_unescape(n).trim().to_string())).filter(|n| !n.is_empty()).collect();
     let published = get("published");
     Ok(PaperRow {
-        paper_title: detex(&get("title")),
-        authors: detex(&authors.join(", ")),
+        paper_title: detex(&one_line(&get("title"))),
+        authors: detex(&one_line(&authors.join(", "))),
         publication_date: published.chars().take(10).collect(),
         category: xml_attr(entry, "arxiv:primary_category", "term").unwrap_or("").to_string(),
-        public_abstract: detex(&get("summary")),
+        public_abstract: detex(&one_line(&get("summary"))),
         paper_link: format!("https://arxiv.org/abs/{id}"),
         ..Default::default()
     })
@@ -1458,7 +1486,7 @@ fn last_caption(body: &str) -> Option<String> {
         let k = skip_opts(body, k);
         match brace_group(body, k) {
             Some((c, end)) => {
-                found = Some(detex(c));
+                found = Some(detex(&one_line(c)));
                 from = end;
             }
             None => from = k,
