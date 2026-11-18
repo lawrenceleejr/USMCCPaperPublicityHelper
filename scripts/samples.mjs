@@ -54,6 +54,8 @@ for (const [i, row] of rows.entries()) {
       Sheets.paper();
       [...document.querySelectorAll('#sheet-body button')].find((b) => b.textContent.startsWith('Make slides')).click();
       let note = '';
+      // the automatic figure background (Make slides fetches it)
+      if (!offline) for (let k = 0; k < 120 && !(S.doc.bg || []).length; k++) await new Promise((r) => setTimeout(r, 250));
       if (!offline) {
         try {
           const f = await U.api('GET', '/api/arxiv/figures?url=' + encodeURIComponent(S.doc.paper.paperLink));
@@ -64,7 +66,7 @@ for (const [i, row] of rows.entries()) {
           for (const x of pics) items.push({ blob: await Sheets.figurePng(blob(x)), name: x.name, caption: x.caption, photo: false });
           U.go(1);
           await U.addPictures(items, { photo: false });
-          note = `${pics.length} figures`;
+          note = `${pics.length} figures, ${(S.doc.bg || []).length} background`;
         } catch (e) {
           note = 'no figures: ' + e.message;
         }
@@ -93,7 +95,8 @@ for (const [i, row] of rows.entries()) {
 // one contact sheet: a row per paper
 const html = `<!doctype html><meta charset=utf-8><style>
 body{margin:0;padding:24px;background:#111;color:#bbb;font:13px -apple-system,Helvetica,sans-serif}
-.row{display:flex;gap:10px;margin:0 0 22px;align-items:flex-start}.row img{height:300px;display:block}
+.row{display:flex;gap:0;margin:0 0 22px;align-items:flex-start}.row img{height:300px;display:block}
+.lbl{margin-right:14px}
 .lbl{width:150px;flex:none}.lbl b{display:block;color:#eee;font-weight:500;margin-bottom:4px}</style>
 ${sheet.map((s) => `<div class=row><div class=lbl><b>${s.theme}</b>${s.title.replace(/</g, '&lt;')}</div>${s.names.map((n) => `<img src="${n}">`).join('')}</div>`).join('')}`;
 fs.writeFileSync(path.join(out, 'contact.html'), html);

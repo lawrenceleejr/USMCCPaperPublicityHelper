@@ -171,7 +171,14 @@ test('slides join without a seam: the backdrop and a background figure run on', 
     }, theme);
     for (const d of diff) assert.ok(d < 4, `${theme}: the edges differ by ${d.toFixed(1)} levels on average`);
   }
-  // the background runs behind all three slides, and follows a new one
+  // a plot background keeps its shape and crosses the first seam…
+  const f = await page.evaluate(() => [S.doc.bg[0].x, S.doc.bg[0].w]);
+  assert.ok(f[0] < 1080 && f[0] + f[1] > 1080, `the background (${f}) crosses from slide 1 into slide 2`);
+  // …and set to run behind all the slides, it follows a new one
+  await page.evaluate(() => {
+    U.setSpan(S.doc.bg[0], 'all');
+    U.changed('span', { all: true });
+  });
   assert.equal(await page.evaluate(() => S.doc.bg[0].w), 3 * 1080);
   await page.keyboard.press('Escape');
   await page.keyboard.press('n');
