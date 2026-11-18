@@ -389,10 +389,10 @@ const Sheets = (() => {
       b.append(el('h4', '', 'The paper'), fields);
 
       const acts = el('div', 'bar-actions');
-      const make = btn('Make slides', 'primary', () => {
+      const make = btn('Make slides', 'primary', async () => {
         if (!P.paperTitle && !P.plainTitle) return (status.className = 'note err'), (status.textContent = 'Add a title first.');
         close();
-        makeSlides();
+        await makeSlides();
       }, '↵');
       const arx = btn('Figures from arXiv', '', () => {
         close();
@@ -456,7 +456,24 @@ const Sheets = (() => {
     return s;
   }
 
-  function makeSlides() {
+  // A QR code for a link, as a picture (dark modules on white, a quiet zone).
+  async function qrAsset(text) {
+    const q = window.qrcode(0, 'M');
+    q.addData(text);
+    q.make();
+    const n = q.getModuleCount();
+    const m = 16;
+    const c = document.createElement('canvas');
+    c.width = c.height = (n + 2) * m;
+    const x = c.getContext('2d');
+    x.fillStyle = '#ffffff';
+    x.fillRect(0, 0, c.width, c.height);
+    x.fillStyle = '#0b0b0c';
+    for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) x.fillRect((k + 1) * m, (r + 1) * m, m, m);
+    return U.storeAsset(await canvasBlob(c));
+  }
+
+  async function makeSlides() {
     const P = S.doc.paper;
     const title = (P.plainTitle || P.paperTitle).trim();
 
@@ -469,7 +486,7 @@ const Sheets = (() => {
     const summary = stackSlide(
       [
         { role: 'eyebrow', text: 'In short' },
-        { role: 'body', text: firstSentences(P.publicAbstract, 280), gap: 26 },
+        { role: 'body', text: firstSentences(P.publicAbstract, 230), gap: 28, k: 1.16 },
       ],
       { logo: false }
     );
@@ -478,6 +495,17 @@ const Sheets = (() => {
       { role: 'title', text: link || 'Link in the post', gap: 18, k: 0.62 },
       { role: 'caption', text: [shortAuthors(P.authors), P.publicationDate].filter(Boolean).join(' · '), gap: 30 },
     ]);
+    // a QR code to the paper on the last slide: links in posts can't be tapped everywhere
+    if (P.paperLink && /^https?:/.test(P.paperLink)) {
+      try {
+        const id = await qrAsset(P.paperLink);
+        const g = end.layers.find((l) => l.flow).flow.g;
+        end.layers.push({ id: uid(), kind: 'image', asset: id, qr: P.paperLink, x: 0, y: 0, w: 300, h: 300, fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 14, card: { color: '#ffffff', pad: 0 }, flow: { g, qr: true } });
+        const i = end.layers.findIndex((l) => l.kind === 'text');
+        end.layers.splice(i, 0, end.layers.pop()); // above the theme light, below the words
+        U.reflow(end);
+      } catch {}
+    }
     const slides = S.doc.slides;
     const blank = slides.length === 1 && !slides[0].layers.length;
     if (blank) slides.splice(0, 1, cover, summary, end);

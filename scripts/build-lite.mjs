@@ -30,6 +30,7 @@ const files = {
   'img/logo-dark.png': r('web/img/logo-dark.png'),
   'vendor/pdf.min.mjs': r('web/vendor/pdf.min.mjs'),
   'vendor/pdf.worker.min.mjs': r('web/vendor/pdf.worker.min.mjs'),
+  'vendor/qrcode.js': r('web/vendor/qrcode.js'),
   'usmcc.wasm': r('lite/wasm/target/wasm32-unknown-unknown/release/usmcc_lite.wasm'),
   'apple-touch-icon.png': r('lite/icons/apple-touch-icon.png'),
   'icon-192.png': r('lite/icons/icon-192.png'),
@@ -68,9 +69,10 @@ swap(
 );
 swap('<body>', '<body class="lite">');
 swap(
-  '<script src="render.js"></script>\n  <script src="app.js"></script>\n  <script src="sheets.js"></script>',
+  '<script src="vendor/qrcode.js"></script>\n  <script src="render.js"></script>\n  <script src="app.js"></script>\n  <script src="sheets.js"></script>',
   [
     `<script src="lite.js?v=${v}"></script>`,
+    `<script src="vendor/qrcode.js?v=${v}"></script>`,
     `<script src="render.js?v=${v}"></script>`,
     `<script src="app.js?v=${v}"></script>`,
     `<script src="sheets.js?v=${v}"></script>`,

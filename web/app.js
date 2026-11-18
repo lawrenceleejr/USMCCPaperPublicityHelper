@@ -101,6 +101,14 @@ function reflow(s, t = theme(), sz = size()) {
       l.y = Math.round(y);
       y += R.bounds(l, t, W, H).h;
     });
+    const qr = ls.find((l) => l.kind === 'image' && l.flow.qr);
+    if (qr) {
+      // in the corner the text leaves free (the logo takes the other one)
+      const q = qr.w;
+      const pos = t.valign === 'top' ? [R.SAFE + 14, H - R.SAFE - q - 14] : t.valign === 'middle' ? [(W - q) / 2, H - R.SAFE - q - 14] : [R.SAFE + 14, R.SAFE + 14];
+      qr.x = Math.round(pos[0]);
+      qr.y = Math.round(pos[1]);
+    }
     if (logo) {
       const lw = logo.h * R.LOGO_RATIO;
       const pos = t.valign === 'top' ? [W - R.SAFE - lw, H - R.SAFE - logo.h] : t.valign === 'middle' ? [(W - lw) / 2, R.SAFE] : t.align === 'right' ? [R.SAFE, R.SAFE] : [W - R.SAFE - lw, R.SAFE];
@@ -767,6 +775,8 @@ function placePicture(id, opts = {}) {
   const own = s.layers.every((m) => m.kind === 'shade');
   let top = R.SAFE;
   let bottom = H - R.SAFE;
+  let capLayer = null;
+  let capH = 0;
   if (own && opts.figure !== false) {
     const t = theme();
     const n = S.doc.slides.filter((x) => x.layers.some((m) => m.fig)).length + 1;
@@ -778,11 +788,9 @@ function placePicture(id, opts = {}) {
     top = R.SAFE + lh + 30;
     const cap = shortCaption(opts.caption || '');
     if (cap) {
-      const c = { id: uid(), kind: 'text', role: 'body', k: 0.86, text: cap, x: R.SAFE, w: W - 2 * R.SAFE, y: 0 };
-      const ch = R.bounds(c, t, W, H).h;
-      c.y = Math.round(H - R.SAFE - ch);
-      s.layers.push(c);
-      bottom = c.y - 44;
+      capLayer = { id: uid(), kind: 'text', role: 'body', k: 0.86, text: cap, x: R.SAFE, w: W - 2 * R.SAFE, y: 0 };
+      capH = R.bounds(capLayer, t, W, H).h;
+      bottom = H - R.SAFE - capH - 44;
     }
   }
   const pad = 22;
@@ -794,7 +802,14 @@ function placePicture(id, opts = {}) {
     h = maxH;
     w = h * ar;
   }
-  const y = own ? top + pad + (maxH - h) / 2 : (H - h) / 2;
+  // the picture and its caption, centred together in the space below the label
+  const group = h + 2 * pad + (capLayer ? 44 + capH : 0);
+  const gy = top + Math.max(0, (H - R.SAFE - top - group) / 2);
+  if (capLayer) {
+    capLayer.y = Math.round(gy + h + 2 * pad + 44);
+    s.layers.push(capLayer);
+  }
+  const y = own ? gy + pad : (H - h) / 2;
   l = { kind: 'image', asset: id, fig: own || undefined, x: Math.round((W - w) / 2), y: Math.round(y), w: Math.round(w), h: Math.round(h), fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 8, card: { color: '#ffffff', pad } };
   // the picture goes above the theme light, below the words
   const i = s.layers.findIndex((m) => m.kind === 'text' || m.kind === 'logo');
