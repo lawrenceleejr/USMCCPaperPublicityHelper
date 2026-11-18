@@ -114,6 +114,24 @@ test('a carousel from a sheet row, a photo and a plot, exported three ways', asy
   assert.equal((pdf.match(/\/Type \/Page /g) || []).length, 4);
   assert.match(pdf, /\/Count 4/);
 
+  // the closing slide's QR code reads back as the paper's link
+  await page.addScriptTag({ path: require.resolve('jsqr/dist/jsQR.js') });
+  const qr = await page.evaluate(async () => {
+    const s = S.doc.slides[S.doc.slides.length - 1];
+    const blob = await U.renderSlide(s, 'image/png');
+    const bmp = await createImageBitmap(blob);
+    const c = new OffscreenCanvas(bmp.width, bmp.height);
+    const x = c.getContext('2d');
+    x.drawImage(bmp, 0, 0);
+    const d = x.getImageData(0, 0, c.width, c.height);
+    const r = jsQR(d.data, d.width, d.height);
+    return r && r.data;
+  });
+  assert.equal(qr, 'https://arxiv.org/abs/2401.12345');
+
+  // slides draw in the theme's own typefaces (Google Fonts, kept locally)
+  assert.ok(await page.evaluate(() => document.fonts.check('600 40px Fraunces') && document.fonts.check('450 40px Inter')), 'theme fonts loaded');
+
   // the exported cover is the photo under the theme, not a blank slide
   const jpg = fs.readFileSync(path.join(srv.out, 'a-better-way-to-collide-muons', 'a-better-way-to-collide-muons-01.jpg'));
   assert.ok(jpg.length > 40000, `cover is ${jpg.length} bytes`);

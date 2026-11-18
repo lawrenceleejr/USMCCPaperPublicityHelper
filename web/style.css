@@ -80,7 +80,7 @@ body.tauri #bar { padding-left: 84px; } /* the macOS window buttons */
 .icon-btn .ic { width: 21px; height: 21px; }
 .icon-btn:active { background: var(--raised); }
 #doc-name { max-width: 30vw; overflow: hidden; text-overflow: ellipsis; color: var(--ink); font-weight: 500; padding: 6px 8px; margin-left: -8px; }
-#counter { color: var(--muted); }
+#counter { color: var(--muted); white-space: nowrap; font-size: 12px; }
 #counter b { color: var(--ink); font-weight: 600; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
@@ -113,7 +113,8 @@ body.tauri #bar { padding-left: 84px; } /* the macOS window buttons */
   position: absolute; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; background: #fff;
   border: 1.5px solid var(--accent); border-radius: 3px; pointer-events: auto; touch-action: none; box-shadow: 0 1px 3px rgba(0,0,0,.4);
 }
-body.touch #selbox .h { width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%; }
+body.touch #selbox .h { width: 15px; height: 15px; margin: -7.5px 0 0 -7.5px; border-radius: 50%; }
+body.touch #selbox .h::before { content: ""; position: absolute; inset: -12px; } /* a finger-sized target */
 body.touch #selbox.k-text .h[data-h=e], body.touch #selbox.k-text .h[data-h=w] { display: none; }
 #selbox .h[data-h=nw] { left: 0; top: 0; cursor: nwse-resize; }
 #selbox .h[data-h=n] { left: 50%; top: 0; cursor: ns-resize; }
@@ -342,9 +343,8 @@ body.touch #toolbar.touch-only { display: grid !important; }
 @media (max-width: 1180px) {
   #bar .right .link kbd { display: none; }
 }
-@media (max-width: 1000px) {
-  #bar .center { display: none; }
-  #bar { grid-template-columns: 1fr auto; }
+@media (max-width: 1060px) {
+  #counter { display: none; }
 }
 
 /* ---------- phones ---------- */
@@ -354,7 +354,10 @@ body.touch #toolbar.touch-only { display: grid !important; }
   body.tauri #bar { padding-left: 80px; }
   #bar .right { gap: 0; }
   #doc-name { max-width: 38vw; }
-  .mark { letter-spacing: .1em; }
+  .mark .word { display: none; }
+  #empty-hint { width: min(330px, 88%); gap: 6px; }
+  .start { padding: 10px 12px; }
+  #empty-hint h2 { margin-bottom: 2px; }
   .btn.primary.solid { margin-left: 4px; padding: 8px 14px; }
   #editor { flex-direction: column; }
   #stage-wrap { background: var(--bg); }

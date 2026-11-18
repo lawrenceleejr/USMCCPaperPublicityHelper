@@ -172,6 +172,18 @@
         const a = await arxiv(q('url'));
         return a.error ? fail(400, a.error) : json(a);
       }
+      if (p === '/api/arxiv/meta') {
+        // arXiv's API doesn't answer other sites' pages (no CORS); try anyway
+        const a = await arxiv(q('url'));
+        if (a.error) return fail(400, a.error);
+        try {
+          const r = await realFetch(`https://export.arxiv.org/api/query?id_list=${encodeURIComponent(a.id)}`);
+          const row = call('arxiv_meta', new Uint8Array(await r.arrayBuffer()));
+          return row.error ? fail(404, row.error) : json(row);
+        } catch {
+          return fail(502, 'The browser can’t ask arXiv for the details (the desktop app can).');
+        }
+      }
       if (p === '/api/arxiv/pdf') {
         const r = await fetchArxiv(q('url'), 'pdf');
         return r.error ? fail(r.status, r.error) : new Response(r.bytes, { headers: { 'Content-Type': 'application/pdf' } });

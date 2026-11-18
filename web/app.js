@@ -203,6 +203,7 @@ function openDoc(doc) {
   S.cur = 0;
   S.sel = null;
   S.crop = false;
+  S.inspOpen = false;
   dirtyThumbs(null);
   buildStrip();
   refresh();
@@ -1222,6 +1223,9 @@ function renderInspector(force) {
   head.append(title);
   if (PHONE()) {
     // phones: a one-line bar with the most used action; the rest on demand
+    // (nothing at all while the carousel is still empty: the start screen)
+    const empty = S.doc.slides.length === 1 && !slide().layers.length;
+    insp.hidden = empty;
     insp.classList.toggle('collapsed', !S.inspOpen);
     const quick = el('span', 'quick');
     if (l && l.kind === 'text') quick.append(actBtn('Edit text', '', () => editText()));
@@ -1235,7 +1239,10 @@ function renderInspector(force) {
     };
     quick.append(t);
     head.append(quick);
-  } else insp.classList.remove('collapsed');
+  } else {
+    insp.hidden = false;
+    insp.classList.remove('collapsed');
+  }
   insp.append(head);
   if (!l) slidePanel();
   else if (l.kind === 'image') imagePanel(l);

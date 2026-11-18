@@ -340,7 +340,15 @@ const Sheets = (() => {
           } else {
             const a = await api('GET', `/api/arxiv?url=${encodeURIComponent(t)}`);
             P.paperLink = a.abs;
-            status.textContent = `arXiv ${a.id}: get its figures or PDF below.`;
+            status.textContent = `Looking up arXiv ${a.id}…`;
+            try {
+              const m = await api('GET', `/api/arxiv/meta?url=${encodeURIComponent(a.abs)}`);
+              // fill what is empty; a row from the sheet (the authors' own words) wins
+              for (const k of ['paperTitle', 'authors', 'publicationDate', 'category', 'publicAbstract']) if (!P[k] && m[k]) P[k] = m[k];
+              status.textContent = `Filled in from arXiv ${a.id}. Add a plain title and check the summary reads well for everyone.`;
+            } catch (e) {
+              status.textContent = `arXiv ${a.id}: ${e.message} Fill in the fields, then get its figures or PDF below.`;
+            }
           }
           U.changed('paper');
           fill();
