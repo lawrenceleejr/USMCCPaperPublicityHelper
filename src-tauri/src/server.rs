@@ -13,7 +13,7 @@ use std::io::{self, Read};
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex, OnceLock};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
-use tiny_http::{Header, Method, Request, Response};
+use crate::http::{Header, Method, Request, Response};
 
 static WEB: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/../web");
 
@@ -210,7 +210,7 @@ fn split_url(url: &str) -> (String, HashMap<String, String>) {
 }
 
 fn get_header<'a>(req: &'a Request, name: &str) -> Option<&'a str> {
-    req.headers().iter().find(|h| h.field.as_str().as_str().eq_ignore_ascii_case(name)).map(|h| h.value.as_str())
+    req.headers().iter().find(|h| h.field.eq_ignore_ascii_case(name)).map(|h| h.value.as_str())
 }
 
 fn mime_for(name: &str) -> &'static str {
@@ -236,16 +236,9 @@ fn mime_for(name: &str) -> &'static str {
 /* ------------------------------------------------------------ server */
 
 pub fn start(app: Arc<App>, port: u16) -> io::Result<u16> {
-    let server = tiny_http::Server::http(("127.0.0.1", port))
-        .or_else(|_| tiny_http::Server::http(("127.0.0.1", 0)))
-        .map_err(|e| io::Error::other(e.to_string()))?;
-    let port = server.server_addr().to_ip().map(|a| a.port()).unwrap_or(port);
-    std::thread::spawn(move || {
-        for req in server.incoming_requests() {
-            let app = app.clone();
-            std::thread::spawn(move || handle(app, req));
-        }
-    });
+    let server = crate::http::Server::http(("127.0.0.1", port)).or_else(|_| crate::http::Server::http(("127.0.0.1", 0)))?;
+    let port = server.port();
+    std::thread::spawn(move || server.serve(move |req| handle(app.clone(), req)));
     Ok(port)
 }
 
