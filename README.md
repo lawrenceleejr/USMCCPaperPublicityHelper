@@ -13,6 +13,10 @@ the camera roll, in order, ready to post.
 **[Download](https://github.com/lawrenceleejr/USMCCPaperPublicityHelper/releases/latest)** ·
 **[In the browser](https://lawrenceleejr.github.io/USMCCPaperPublicityHelper/lite/)** (phones too)
 
+**Use it now, on a phone or any computer:**
+<https://lawrenceleejr.github.io/USMCCPaperPublicityHelper/lite/>
+(on a phone: Share → Add to Home Screen, and it opens like an app)
+
 ![The editor: a cover slide, the carousel below it and the text's style on the right](site/static/img/editor.jpg)
 
 ## What it does
