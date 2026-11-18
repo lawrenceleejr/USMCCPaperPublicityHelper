@@ -442,46 +442,26 @@ const Sheets = (() => {
     return names.length > 2 ? `${names[0]} et al.` : s;
   };
 
-  // Text blocks stacked as the theme places them: from the bottom, the top
-  // or the middle, with the logo in the opposite corner.
+  // Text blocks stacked as the theme places them (see reflow in app.js),
+  // with the logo in the opposite corner.
   function stackSlide(blocks, { logo = true, shade = true } = {}) {
-    const t = U.theme();
-    const { w: W, h: H } = U.size();
     const s = U.blankSlide();
+    const g = uid();
     if (shade) s.layers.push({ id: uid(), kind: 'shade', strength: 1 });
-    const x = R.SAFE;
-    const w = W - 2 * R.SAFE;
-    const texts = blocks.filter((b) => b.text).map((b) => ({ id: uid(), kind: 'text', role: b.role, text: b.text, x, w, y: 0, ...(b.size ? { size: b.size } : {}), _gap: b.gap || 0 }));
-    let total = 0;
-    texts.forEach((l, i) => (total += R.bounds(l, t, W, H).h + (i ? l._gap : 0)));
-    const lh = 140;
-    let y = t.valign === 'top' ? R.SAFE : t.valign === 'middle' ? (H - total) / 2 : H - R.SAFE - total;
-    if (t.valign === 'middle' && logo) y += lh / 3;
-    texts.forEach((l, i) => {
-      if (i) y += l._gap;
-      l.y = Math.round(y);
-      y += R.bounds(l, t, W, H).h;
-      delete l._gap;
-    });
-    s.layers.push(...texts);
-    if (logo) {
-      const lw = lh * R.LOGO_RATIO;
-      const pos = t.valign === 'top' ? [W - R.SAFE - lw, H - R.SAFE - lh] : t.valign === 'middle' ? [(W - lw) / 2, R.SAFE] : t.align === 'right' ? [R.SAFE, R.SAFE] : [W - R.SAFE - lw, R.SAFE];
-      s.layers.push({ id: uid(), kind: 'logo', h: lh, x: Math.round(pos[0]), y: Math.round(pos[1]) });
-    }
+    for (const b of blocks.filter((b) => b.text)) s.layers.push({ id: uid(), kind: 'text', role: b.role, text: b.text, x: 0, w: 100, y: 0, ...(b.k ? { k: b.k } : {}), flow: { g, gap: b.gap || 0 } });
+    if (logo) s.layers.push({ id: uid(), kind: 'logo', h: 140, x: 0, y: 0, flow: { g, logo: true } });
+    U.reflow(s);
     return s;
   }
 
   function makeSlides() {
     const P = S.doc.paper;
-    const t = U.theme();
     const title = (P.plainTitle || P.paperTitle).trim();
-    const big = t.type.title.size;
-    const tsize = title.length > 110 ? Math.round(big * 0.66) : title.length > 70 ? Math.round(big * 0.8) : undefined;
+    const tk = title.length > 110 ? 0.66 : title.length > 70 ? 0.8 : undefined;
     const link = (P.paperLink || '').replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
     const cover = stackSlide([
       { role: 'eyebrow', text: 'USMCC Featured Paper' },
-      { role: 'title', text: title, gap: 18, size: tsize },
+      { role: 'title', text: title, gap: 18, k: tk },
       { role: 'caption', text: shortAuthors(P.authors), gap: 36 },
     ]);
     const summary = stackSlide(
@@ -493,7 +473,7 @@ const Sheets = (() => {
     );
     const end = stackSlide([
       { role: 'eyebrow', text: 'Read the paper' },
-      { role: 'title', text: link || 'Link in the post', gap: 18, size: Math.round(big * 0.62) },
+      { role: 'title', text: link || 'Link in the post', gap: 18, k: 0.62 },
       { role: 'caption', text: [shortAuthors(P.authors), P.publicationDate].filter(Boolean).join(' · '), gap: 30 },
     ]);
     const slides = S.doc.slides;
@@ -1065,7 +1045,9 @@ const Sheets = (() => {
           const sc = 300 / W;
           cv.width = Math.round(W * sc);
           cv.height = Math.round(H * sc);
-          R.drawSlide(cv.getContext('2d'), S.doc, s, sc, { theme: R.THEMES[k] });
+          const copy = JSON.parse(JSON.stringify(s));
+          U.reflow(copy, R.THEMES[k]);
+          R.drawSlide(cv.getContext('2d'), S.doc, copy, sc, { theme: R.THEMES[k] });
           cell.append(cv, el('span', 'name', R.THEMES[k].name));
           cell.onclick = () => {
             S.doc.theme = k;

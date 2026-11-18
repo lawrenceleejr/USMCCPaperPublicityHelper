@@ -69,10 +69,47 @@ function blankSlide() {
 
 /* ------------------------------------------------------------------ changes, undo, saving */
 
+// Text placed by "Make slides" flows: each block carries `flow: {g, gap}`
+// (the logo `flow: {g, logo: true}`) and the group is stacked the way the
+// theme places text (from the bottom, the top or the middle, logo in the
+// opposite corner) whenever the theme, the size or the words change. Moving
+// one of them by hand fixes the group where it is.
+function reflow(s, t = theme(), sz = size()) {
+  const { w: W, h: H } = sz;
+  const groups = new Map();
+  for (const l of s.layers) if (l.flow) (groups.get(l.flow.g) || groups.set(l.flow.g, []).get(l.flow.g)).push(l);
+  for (const ls of groups.values()) {
+    const texts = ls.filter((l) => l.kind === 'text');
+    const logo = ls.find((l) => l.kind === 'logo');
+    let total = 0;
+    texts.forEach((l, i) => (total += R.bounds(l, t, W, H).h + (i ? l.flow.gap || 0 : 0)));
+    const lh = logo ? logo.h : 0;
+    let y = t.valign === 'top' ? R.SAFE : t.valign === 'middle' ? (H - total) / 2 + lh / 3 : H - R.SAFE - total;
+    texts.forEach((l, i) => {
+      if (i) y += l.flow.gap || 0;
+      l.x = R.SAFE;
+      l.w = W - 2 * R.SAFE;
+      l.y = Math.round(y);
+      y += R.bounds(l, t, W, H).h;
+    });
+    if (logo) {
+      const lw = logo.h * R.LOGO_RATIO;
+      const pos = t.valign === 'top' ? [W - R.SAFE - lw, H - R.SAFE - logo.h] : t.valign === 'middle' ? [(W - lw) / 2, R.SAFE] : t.align === 'right' ? [R.SAFE, R.SAFE] : [W - R.SAFE - lw, R.SAFE];
+      logo.x = Math.round(pos[0]);
+      logo.y = Math.round(pos[1]);
+      delete logo.variant;
+    }
+  }
+}
+const MOVES = new Set(['move', 'resize', 'rotate', 'pinch', 'nudge', 'scale', 'logo corner']);
+
 // Record a change made to S.doc. Changes with the same label within a
 // second (typing, slider drags) fold into one undo step.
 function changed(label = '', opts = {}) {
   const now = Date.now();
+  const moved = selLayer();
+  if (moved && moved.flow && MOVES.has(label)) for (const l of slide().layers) if (l.flow && l.flow.g === moved.flow.g) delete l.flow;
+  for (const s of opts.all ? S.doc.slides : [slide()]) if (s) reflow(s);
   const fold = label && label === S.lastLabel && now - S.lastAt < 1000;
   if (!fold) {
     S.undo.push(S.base);
@@ -1050,7 +1087,10 @@ function actBtn(label, key, fn, on) {
 }
 function swatches(colors, current, onPick, { custom = true } = {}) {
   const w = el('div', 'sw');
+  const seen = new Set();
   for (const [c, title] of colors) {
+    if (seen.has(String(c).toLowerCase())) continue;
+    seen.add(String(c).toLowerCase());
     const b = el('button', c && current && c.toLowerCase() === current.toLowerCase() ? 'on' : '');
     b.style.background = c;
     b.title = title || c;
@@ -1254,7 +1294,7 @@ function textPanel(l) {
         l.role,
         (v) => {
           l.role = v;
-          for (const k of ['size', 'weight', 'italic', 'upper', 'font', 'color', 'lh', 'ls']) delete l[k];
+          for (const k of ['size', 'k', 'weight', 'italic', 'upper', 'font', 'color', 'lh', 'ls']) delete l[k];
           changed('role');
           renderInspector(true);
         }
@@ -1351,7 +1391,7 @@ function textPanel(l) {
   const reset = el('div', 'acts');
   reset.append(
     actBtn('Reset style', '', () => {
-      for (const k of ['size', 'weight', 'italic', 'upper', 'font', 'color', 'lh', 'ls', 'shadow', 'align', 'plate']) delete l[k];
+      for (const k of ['size', 'k', 'weight', 'italic', 'upper', 'font', 'color', 'lh', 'ls', 'shadow', 'align', 'plate']) delete l[k];
       changed('reset style');
       renderInspector(true);
     })
@@ -1796,6 +1836,7 @@ window.U = {
   addPictures,
   addSlide,
   addLayer,
+  reflow,
   go,
   pickFiles,
 };

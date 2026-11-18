@@ -233,6 +233,8 @@ body.touch #toolbar.touch-only { display: grid !important; }
 .pick .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; }
 .themes { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
 .themes .pick canvas { width: 100%; height: auto; display: block; outline: 1px solid var(--hair); }
+.themes .pick.on canvas { outline: 2px solid var(--accent); }
+.themes .pick.on .name { color: var(--accent); }
 .post { border-top: 1px solid var(--hair); padding: 12px 0; }
 .post:first-child { border-top: 0; }
 .post-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 6px; }
