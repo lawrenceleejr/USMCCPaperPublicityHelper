@@ -785,7 +785,18 @@ fn tex_run(src: &[char], i: &mut usize, math: bool, stop: Stop) -> String {
                 *i += 1;
                 out.push('′');
             }
-            c if math && c.is_whitespace() => *i += 1,
+            c if math && c.is_whitespace() => {
+                // TeX ignores spaces in math, but `10^{34} cm^{-2} s^{-1}` means units:
+                // keep one space between a word or number and a following word
+                while *i < src.len() && src[*i].is_whitespace() {
+                    *i += 1;
+                }
+                let prev = out.chars().last().unwrap_or(' ');
+                let next = src.get(*i).copied().unwrap_or(' ');
+                if (prev.is_alphanumeric() || "⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉".contains(prev)) && next.is_ascii_alphanumeric() {
+                    out.push(' ');
+                }
+            }
             c if math && "=<>".contains(c) => {
                 *i += 1;
                 push_math(&mut out, &c.to_string(), true);
@@ -1752,6 +1763,7 @@ mod tests {
         assert_eq!(detex(r"\textit{Snowmass} 2021--2022 \emph{report}, \textbf{U.S.} plan"), "Snowmass 2021–2022 report, U.S. plan");
         assert_eq!(detex(r"$m_{H}$, $x_{12}$, $e^{i\pi}$"), "mH, x₁₂, e^(iπ)");
         // plain text goes through untouched
+        assert_eq!(detex(r"a luminosity of $\gtrsim 10^{34} cm^{-2} s^{-1}$ in a $10 \text{ } TeV$ Muon Collider"), "a luminosity of ≳10³⁴ cm⁻² s⁻¹ in a 10 TeV Muon Collider");
         let plain = "Input to the SCAC Facilities Subcommittee from the U.S. Muon Collider Collaboration (USMCC): 50% more.";
         assert_eq!(detex(plain), plain);
     }
