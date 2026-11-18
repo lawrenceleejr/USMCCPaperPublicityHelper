@@ -1039,22 +1039,33 @@ function dirtyThumbs(ids) {
   clearTimeout(thumbTimer);
   thumbTimer = setTimeout(drawThumbs, 180);
 }
+// One thumbnail per idle moment, so a batch of them (after a theme change
+// or when fonts arrive) never holds up a key press.
+const idle = window.requestIdleCallback ? (fn) => requestIdleCallback(fn, { timeout: 400 }) : (fn) => setTimeout(fn, 16);
+let thumbJob = false;
 function drawThumbs() {
-  const { w: W, h: H } = size();
-  const ch = TOUCH ? 46 : 70;
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-  for (const s of S.doc.slides) {
-    if (!dirty.has(s.id)) continue;
-    const c = thumbs.get(s.id);
-    if (!c) continue;
-    const k = (ch * dpr) / H;
-    c.width = Math.round(W * k);
-    c.height = Math.round(H * k);
-    c.style.height = ch + 'px';
-    c.style.width = Math.round((W * ch) / H) + 'px';
-    R.drawSlide(c.getContext('2d'), S.doc, s, k);
+  if (thumbJob || !S.doc) return;
+  thumbJob = true;
+  idle(() => {
+    thumbJob = false;
+    const s = S.doc.slides.find((x) => dirty.has(x.id) && thumbs.get(x.id));
+    if (!s) return;
+    drawThumb(s);
     dirty.delete(s.id);
-  }
+    if (S.doc.slides.some((x) => dirty.has(x.id))) drawThumbs();
+  });
+}
+function drawThumb(s) {
+  const { w: W, h: H } = size();
+  const ch = TOUCH ? 48 : 72;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const c = thumbs.get(s.id);
+  const k = (ch * dpr) / H;
+  c.width = Math.round(W * k);
+  c.height = Math.round(H * k);
+  c.style.height = ch + 'px';
+  c.style.width = Math.round((W * ch) / H) + 'px';
+  R.drawSlide(c.getContext('2d'), S.doc, s, k);
 }
 
 function buildStrip() {

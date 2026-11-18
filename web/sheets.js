@@ -503,17 +503,6 @@ const Sheets = (() => {
       { role: 'title', text: link || 'Link in the post', gap: 18, k: 0.62 },
       { role: 'caption', text: [shortAuthors(P.authors), P.publicationDate].filter(Boolean).join(' · '), gap: 30 },
     ]);
-    // a QR code to the paper on the last slide: links in posts can't be tapped everywhere
-    if (P.paperLink && /^https?:/.test(P.paperLink)) {
-      try {
-        const id = await qrAsset(P.paperLink);
-        const g = end.layers.find((l) => l.flow).flow.g;
-        end.layers.push({ id: uid(), kind: 'image', asset: id, qr: P.paperLink, x: 0, y: 0, w: 300, h: 300, fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 14, card: { color: '#ffffff', pad: 0 }, flow: { g, qr: true } });
-        const i = end.layers.findIndex((l) => l.kind === 'text');
-        end.layers.splice(i, 0, end.layers.pop()); // above the theme light, below the words
-        U.reflow(end);
-      } catch {}
-    }
     const slides = S.doc.slides;
     const blank = slides.length === 1 && !slides[0].layers.length;
     if (blank) slides.splice(0, 1, cover, summary, end);
@@ -527,6 +516,20 @@ const Sheets = (() => {
     U.buildStrip();
     U.changed('make slides', { all: true });
     toast('Cover, summary and closing slides added · add figures or photos with A');
+    // then a QR code to the paper on the last slide (links in posts can't be
+    // tapped everywhere); the slides are already there to work on meanwhile
+    if (P.paperLink && /^https?:/.test(P.paperLink)) {
+      try {
+        const id = await qrAsset(P.paperLink);
+        const last = S.doc.slides.find((x) => x.id === end.id);
+        const anchor = last && last.layers.find((l) => l.flow);
+        if (anchor) {
+          last.layers.splice(last.layers.findIndex((l) => l.kind === 'text'), 0, { id: uid(), kind: 'image', asset: id, qr: P.paperLink, x: 0, y: 0, w: 300, h: 300, fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 14, card: { color: '#ffffff', pad: 0 }, flow: { g: anchor.flow.g, qr: true } });
+          U.reflow(last);
+          U.changed('qr', { quiet: true, slides: [last.id] });
+        }
+      } catch {}
+    }
   }
 
   /* ---------------------------------------------------------------- posts */
