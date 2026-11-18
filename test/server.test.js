@@ -106,7 +106,7 @@ test('serves the page', async () => {
   assert.strictEqual(r.status, 200);
   assert.match(r.headers.get('content-type'), /text\/html/);
   assert.strictEqual((await fetch(base + '/nope.js')).status, 404);
-  assert.strictEqual((await fetch(base + '/%2e%2e/Cargo.toml')).status, 403);
+  assert.strictEqual(await rawGet('/../Cargo.toml', { Host: `127.0.0.1:${port}` }), 403);
 });
 
 test('only the page itself may use the API', async () => {
