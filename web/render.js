@@ -645,8 +645,11 @@
     ctx.globalAlpha = 0.85;
     ctx.textBaseline = 'alphabetic';
     const t = `${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}`;
-    const y = theme.valign === 'bottom' ? SAFE - 20 : H - SAFE + 44;
-    const x = theme.valign === 'middle' ? (W - widthOf(ctx, t, st)) / 2 : SAFE;
+    // the margin the words and the logo leave: below the text on themes that
+    // set it from the bottom, above it on themes that set it from the top
+    const tw = widthOf(ctx, t, st);
+    const y = theme.valign === 'top' ? SAFE - 30 : H - SAFE + 52;
+    const x = theme.valign === 'middle' ? (W - tw) / 2 : W - SAFE - tw;
     ctx.fillText(t, x, y);
     ctx.globalAlpha = 1;
     if (HAS_LS) ctx.letterSpacing = '0px';
