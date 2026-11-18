@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }} · paper carousels and posts for the USMCC{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ site.Params.description }}">
+  <meta property="og:title" content="{{ site.Title }}">
+  <meta property="og:description" content="{{ site.Params.description }}">
+  <meta property="og:image" content="{{ "img/editor.jpg" | absURL }}">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ "site.css" | relURL }}">
+</head>
+<body>
+  {{ block "main" . }}{{ end }}
+  <footer class="foot">
+    <p>Made for the US Muon Collider Collaboration. Free and open source on <a href="{{ site.Params.repo }}">GitHub</a>.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+baseURL = "https://lawrenceleejr.github.io/USMCCPaperPublicityHelper/"
+languageCode = "en"
+title = "USMCC Publicity Helper"
+disableKinds = ["taxonomy", "term", "RSS", "section"]
+
+[params]
+  description = "Turn a USMCC paper into an image carousel and the posts to go with it: photos, figures and PDF pages, text and the USMCC look. On a computer or a phone."
+  repo = "https://github.com/lawrenceleejr/USMCCPaperPublicityHelper"
+  latest = "https://github.com/lawrenceleejr/USMCCPaperPublicityHelper/releases/latest"
+
+[markup.goldmark.renderer]
+  unsafe = true
