@@ -108,7 +108,10 @@ const MOVES = new Set(['move', 'resize', 'rotate', 'pinch', 'nudge', 'scale', 'l
 function changed(label = '', opts = {}) {
   const now = Date.now();
   const moved = selLayer();
-  if (moved && moved.flow && MOVES.has(label)) for (const l of slide().layers) if (l.flow && l.flow.g === moved.flow.g) delete l.flow;
+  if (moved && moved.flow && MOVES.has(label)) {
+    const g = moved.flow.g;
+    for (const l of slide().layers) if (l.flow && l.flow.g === g) delete l.flow;
+  }
   for (const s of opts.all ? S.doc.slides : [slide()]) if (s) reflow(s);
   const fold = label && label === S.lastLabel && now - S.lastAt < 1000;
   if (!fold) {
