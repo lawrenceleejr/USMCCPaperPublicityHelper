@@ -65,7 +65,30 @@ pub unsafe extern "C" fn arxiv(ptr: *const u8, len: usize) -> u64 {
     })
 }
 
-/// A source archive (.tar.gz / .tar) → `{figures: [{name, mime, data}]}`
+/// The export.arxiv.org Atom feed for one id (UTF-8 XML) → the paper's
+/// fields, or `{error}`. (Lite fetches the feed itself where the browser
+/// allows it.)
+/// # Safety
+/// `ptr` must point to `len` readable bytes.
+#[no_mangle]
+pub unsafe extern "C" fn arxiv_meta(ptr: *const u8, len: usize) -> u64 {
+    let text = String::from_utf8_lossy(input(ptr, len));
+    output(match paper::arxiv_meta(&text) {
+        Ok(r) => serde_json::to_value(r).unwrap(),
+        Err(e) => error(e),
+    })
+}
+
+/// LaTeX (UTF-8) → `{text}`: readable Unicode, as titles and abstracts get.
+/// # Safety
+/// `ptr` must point to `len` readable bytes.
+#[no_mangle]
+pub unsafe extern "C" fn detex(ptr: *const u8, len: usize) -> u64 {
+    let text = String::from_utf8_lossy(input(ptr, len));
+    output(json!({ "text": paper::detex(&text) }))
+}
+
+/// A source archive (.tar.gz / .tar) → `{figures: [{name, mime, caption, data}]}`
 /// with base64 data, or `{error}`.
 /// # Safety
 /// `ptr` must point to `len` readable bytes.

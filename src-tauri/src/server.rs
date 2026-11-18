@@ -552,6 +552,20 @@ fn api(app: &Arc<App>, mut req: Request, path: &str, params: &HashMap<String, St
             Ok(id) => send_json(req, 200, paper::arxiv_links(&id)),
             Err(e) => err(req, 400, &e),
         },
+        ("/api/arxiv/meta", true, _, _) => {
+            let id = match arxiv_from(params) {
+                Ok(id) => id,
+                Err(e) => return err(req, 400, &e),
+            };
+            let body = match fetch(&format!("https://export.arxiv.org/api/query?id_list={id}"), 4 * 1024 * 1024) {
+                Ok(b) => b,
+                Err(e) => return err(req, 502, &e),
+            };
+            match paper::arxiv_meta(&String::from_utf8_lossy(&body)) {
+                Ok(row) => send_json(req, 200, serde_json::to_value(row).unwrap()),
+                Err(e) => err(req, 404, &e),
+            }
+        }
         ("/api/arxiv/pdf", true, _, _) => {
             let id = match arxiv_from(params) {
                 Ok(id) => id,

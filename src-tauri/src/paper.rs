@@ -53,12 +53,12 @@ pub fn parse_row(text: &str) -> Result<PaperRow, String> {
     let row = PaperRow {
         timestamp: cols[0].clone(),
         email: cols[1].clone(),
-        paper_title: cols[2].clone(),
-        plain_title: cols[3].clone(),
-        authors: cols[4].clone(),
+        paper_title: detex(&cols[2]),
+        plain_title: detex(&cols[3]),
+        authors: detex(&cols[4]),
         publication_date: cols[5].clone(),
         category: cols[6].clone(),
-        public_abstract: cols[7].clone(),
+        public_abstract: detex(&cols[7]),
         paper_link: cols[8].clone(),
         figures_ok: cols[9].trim().eq_ignore_ascii_case("yes"),
         additional_comments: cols[10].clone(),
@@ -197,6 +197,8 @@ pub struct Figure {
     pub name: String,
     pub mime: &'static str,
     pub data: Vec<u8>,
+    /// from the TeX source's `\caption` ("" when unknown)
+    pub caption: String,
 }
 
 fn figure_mime(name: &str) -> Option<&'static str> {
@@ -230,18 +232,49 @@ pub fn figures_from_archive(bytes: &[u8]) -> Result<Vec<Figure>, String> {
         }
         return Err("That isn't a .tar.gz or .tar archive".into());
     }
+    let entries = tar_entries(&data);
+    // the figure files, in archive order
+    let files: Vec<(&String, &[u8], &'static str)> = entries
+        .iter()
+        .filter(|(name, body)| !hidden(name) && !body.is_empty())
+        .filter_map(|(name, body)| figure_mime(name).map(|m| (name, *body, m)))
+        .collect();
+    // the TeX: reading order and captions
+    let texs: Vec<(String, String)> = entries
+        .iter()
+        .filter(|(name, _)| name.to_ascii_lowercase().ends_with(".tex") && !hidden(name))
+        .map(|(name, body)| (name.clone(), strip_comments(&String::from_utf8_lossy(body))))
+        .collect();
+    let names: Vec<&str> = files.iter().map(|f| f.0.as_str()).collect();
+    let mut order: Vec<usize> = Vec::new();
+    let mut captions: Vec<String> = vec![String::new(); files.len()];
+    if !texs.is_empty() {
+        for (r, cap) in graphics_refs(&expanded_tex(&texs)) {
+            if let Some(k) = match_ref(&names, &r) {
+                if !order.contains(&k) {
+                    order.push(k);
+                    captions[k] = cap;
+                }
+            }
+        }
+    }
+    for k in 0..files.len() {
+        if !order.contains(&k) {
+            order.push(k);
+        }
+    }
     let mut out: Vec<Figure> = Vec::new();
     let mut total = 0usize;
-    for (name, body) in tar_entries(&data) {
+    for k in order {
         if out.len() >= MAX_FIGURES || total >= MAX_TOTAL_BYTES {
             break;
         }
-        let Some(mime) = figure_mime(&name) else { continue };
-        if hidden(&name) || body.is_empty() || body.len() > MAX_FIGURE_BYTES {
+        let (name, body, mime) = files[k];
+        if body.len() > MAX_FIGURE_BYTES {
             continue;
         }
         total += body.len();
-        out.push(Figure { name, mime, data: body.to_vec() });
+        out.push(Figure { name: name.clone(), mime, data: body.to_vec(), caption: std::mem::take(&mut captions[k]) });
     }
     if out.is_empty() {
         return Err("The paper's source has no PNG, JPEG, SVG or PDF figures".into());
@@ -251,7 +284,7 @@ pub fn figures_from_archive(bytes: &[u8]) -> Result<Vec<Figure>, String> {
 
 pub fn figures_json(figs: &[Figure]) -> Value {
     json!({
-        "figures": figs.iter().map(|f| json!({ "name": f.name, "mime": f.mime, "data": base64(&f.data) })).collect::<Vec<_>>()
+        "figures": figs.iter().map(|f| json!({ "name": f.name, "mime": f.mime, "caption": f.caption, "data": base64(&f.data) })).collect::<Vec<_>>()
     })
 }
 
@@ -607,6 +640,866 @@ pub fn date_from_days(days: i64) -> String {
     format!("{y:04}-{m:02}-{d:02}")
 }
 
+/* ------------------------------------------------------------ TeX → text */
+
+/// LaTeX in a title, abstract, author list or caption turned into readable
+/// Unicode: `$τ^+τ^-$` → `τ⁺τ⁻`, `$\gtrsim 10^{34}$` → `≳10³⁴`,
+/// `\"{o}` → `ö`, `--` → `–`, `\text{TeV}` → `TeV`. Not a TeX engine: it
+/// keeps the words and the common symbols and drops the rest.
+pub fn detex(s: &str) -> String {
+    let src: Vec<char> = s.chars().collect();
+    let mut i = 0;
+    let raw = tex_run(&src, &mut i, false, Stop::End);
+    tidy(&raw)
+}
+
+#[derive(Clone, Copy, PartialEq)]
+enum Stop {
+    End,
+    Brace,
+    Dollar,
+    Dollar2,
+    Paren,
+    Bracket,
+}
+
+const RELATIONS: &str = "→←↔⇒⇔≈∼≳≲≃≤≥≠≪≫∝≡∈=<>";
+
+fn tex_run(src: &[char], i: &mut usize, math: bool, stop: Stop) -> String {
+    let mut out = String::new();
+    while *i < src.len() {
+        let c = src[*i];
+        match c {
+            '}' if stop == Stop::Brace => {
+                *i += 1;
+                return out;
+            }
+            '}' => *i += 1,
+            '{' => {
+                *i += 1;
+                out.push_str(&tex_run(src, i, math, Stop::Brace));
+            }
+            '$' if math && stop == Stop::Dollar2 && src.get(*i + 1) == Some(&'$') => {
+                *i += 2;
+                return out;
+            }
+            '$' if math && stop == Stop::Dollar => {
+                *i += 1;
+                return out;
+            }
+            '$' => {
+                if src.get(*i + 1) == Some(&'$') {
+                    *i += 2;
+                    out.push_str(&tex_run(src, i, true, Stop::Dollar2));
+                } else {
+                    *i += 1;
+                    out.push_str(&tex_run(src, i, true, Stop::Dollar));
+                }
+            }
+            ']' if stop == Stop::Bracket => {
+                *i += 1;
+                return out;
+            }
+            '\\' => {
+                *i += 1;
+                let Some(&n) = src.get(*i) else { break };
+                if n.is_ascii_alphabetic() {
+                    let start = *i;
+                    while *i < src.len() && src[*i].is_ascii_alphabetic() {
+                        *i += 1;
+                    }
+                    let name: String = src[start..*i].iter().collect();
+                    let r = command(src, i, math, &name);
+                    push_math(&mut out, &r, math);
+                    if !math {
+                        // a word command eats the spaces after it, unless it wrote nothing
+                        // visible and a word follows
+                        if !r.is_empty() && !r.ends_with(' ') {
+                            while *i < src.len() && src[*i] == ' ' && src.get(*i + 1).is_some_and(|c| !c.is_alphanumeric()) {
+                                *i += 1;
+                            }
+                        }
+                    }
+                } else {
+                    *i += 1;
+                    match n {
+                        ')' if stop == Stop::Paren => return out,
+                        '(' => out.push_str(&tex_run(src, i, true, Stop::Paren)),
+                        '[' => out.push_str(&tex_run(src, i, true, Stop::Bracket)),
+                        ',' | ';' | ':' | ' ' | '>' => out.push(' '),
+                        '!' => {}
+                        '\\' => out.push(' '),
+                        '%' | '&' | '$' | '#' | '_' | '{' | '}' => out.push(n),
+                        '"' | '\'' | '`' | '^' | '~' | '=' | '.' => {
+                            let a = read_arg(src, i, math);
+                            out.push_str(&accent(n, &a));
+                        }
+                        _ => out.push(n),
+                    }
+                }
+            }
+            '^' | '_' if math => {
+                *i += 1;
+                let a = read_arg(src, i, true);
+                out.push_str(&script(&a, c == '^'));
+            }
+            '~' => {
+                *i += 1;
+                out.push(' ');
+            }
+            '-' if !math => {
+                if src.get(*i + 1) == Some(&'-') && src.get(*i + 2) == Some(&'-') {
+                    *i += 3;
+                    out.push('—');
+                } else if src.get(*i + 1) == Some(&'-') {
+                    *i += 2;
+                    out.push('–');
+                } else {
+                    *i += 1;
+                    out.push('-');
+                }
+            }
+            '-' => {
+                *i += 1;
+                out.push('−');
+            }
+            '`' if !math => {
+                if src.get(*i + 1) == Some(&'`') {
+                    *i += 2;
+                    out.push('“');
+                } else {
+                    *i += 1;
+                    out.push('‘');
+                }
+            }
+            '\'' if !math => {
+                if src.get(*i + 1) == Some(&'\'') {
+                    *i += 2;
+                    out.push('”');
+                } else {
+                    *i += 1;
+                    out.push('’');
+                }
+            }
+            '\'' => {
+                *i += 1;
+                out.push('′');
+            }
+            c if math && c.is_whitespace() => *i += 1,
+            c if math && "=<>".contains(c) => {
+                *i += 1;
+                push_math(&mut out, &c.to_string(), true);
+            }
+            _ => {
+                *i += 1;
+                out.push(c);
+            }
+        }
+    }
+    out
+}
+
+/// Math output: relations get a space either side, unless they open the
+/// formula (`$\sim 10$` → `∼10`).
+fn push_math(out: &mut String, r: &str, math: bool) {
+    let rel = math && r.chars().count() == 1 && RELATIONS.contains(r);
+    if rel && !out.trim().is_empty() {
+        out.push(' ');
+        out.push_str(r);
+        out.push(' ');
+    } else {
+        out.push_str(r);
+    }
+}
+
+/// One argument: a `{group}`, a `\command` or a single character.
+fn read_arg(src: &[char], i: &mut usize, math: bool) -> String {
+    while *i < src.len() && src[*i] == ' ' {
+        *i += 1;
+    }
+    let Some(&c) = src.get(*i) else { return String::new() };
+    match c {
+        '{' => {
+            *i += 1;
+            tex_run(src, i, math, Stop::Brace)
+        }
+        '\\' => {
+            *i += 1;
+            let start = *i;
+            while *i < src.len() && src[*i].is_ascii_alphabetic() {
+                *i += 1;
+            }
+            if *i == start {
+                *i += 1;
+                return src.get(start).map(|c| c.to_string()).unwrap_or_default();
+            }
+            let name: String = src[start..*i].iter().collect();
+            command(src, i, math, &name)
+        }
+        _ => {
+            *i += 1;
+            if math && c == '-' {
+                "−".into()
+            } else {
+                c.to_string()
+            }
+        }
+    }
+}
+
+/// Skip `[optional]` arguments.
+fn skip_opt(src: &[char], i: &mut usize) {
+    loop {
+        let mut j = *i;
+        while j < src.len() && src[j] == ' ' {
+            j += 1;
+        }
+        if src.get(j) != Some(&'[') {
+            return;
+        }
+        let mut depth = 0;
+        while j < src.len() {
+            match src[j] {
+                '[' | '{' => depth += 1,
+                ']' | '}' => {
+                    depth -= 1;
+                    if depth == 0 {
+                        j += 1;
+                        break;
+                    }
+                }
+                _ => {}
+            }
+            j += 1;
+        }
+        *i = j;
+    }
+}
+
+fn command(src: &[char], i: &mut usize, math: bool, name: &str) -> String {
+    if let Some(s) = symbol(name) {
+        return s.to_string();
+    }
+    match name {
+        // the words inside
+        "text" | "textrm" | "textit" | "textbf" | "textsf" | "texttt" | "textup" | "textsc" | "textnormal" | "emph" | "mbox" | "hbox" | "textmd" => {
+            skip_opt(src, i);
+            read_arg(src, i, false)
+        }
+        "mathrm" | "mathit" | "mathbf" | "mathsf" | "mathtt" | "mathcal" | "mathbb" | "mathfrak" | "mathscr" | "boldsymbol" | "bm" | "operatorname" | "mathnormal" | "pmb" => read_arg(src, i, true),
+        "sqrt" => {
+            skip_opt(src, i);
+            let a = read_arg(src, i, true);
+            if a.chars().count() > 1 {
+                format!("√({a})")
+            } else {
+                format!("√{a}")
+            }
+        }
+        "frac" | "dfrac" | "tfrac" => {
+            let a = read_arg(src, i, true);
+            let b = read_arg(src, i, true);
+            let wrap = |s: String| if s.chars().count() > 1 && s.chars().any(|c| "+−-".contains(c)) { format!("({s})") } else { s };
+            format!("{}/{}", wrap(a), wrap(b))
+        }
+        "bar" | "overline" => mark(&read_arg(src, i, math), '\u{0304}', true),
+        "hat" | "widehat" => mark(&read_arg(src, i, math), '\u{0302}', false),
+        "tilde" | "widetilde" => mark(&read_arg(src, i, math), '\u{0303}', false),
+        "vec" => mark(&read_arg(src, i, math), '\u{20D7}', false),
+        "dot" => mark(&read_arg(src, i, math), '\u{0307}', false),
+        "ddot" => mark(&read_arg(src, i, math), '\u{0308}', false),
+        // accents written as letters: \c{c}, \v{c}, \u{g}, \H{o}, \k{a}, \r{a}
+        "c" | "v" | "u" | "H" | "k" | "r" | "d" | "b" => {
+            let m = name.chars().next().unwrap();
+            let a = read_arg(src, i, math);
+            accent(m, &a)
+        }
+        "href" => {
+            let _url = read_arg(src, i, false);
+            read_arg(src, i, math)
+        }
+        "url" | "nolinkurl" => read_arg(src, i, false),
+        // references and bookkeeping: dropped with their arguments
+        "label" | "ref" | "eqref" | "cref" | "Cref" | "autoref" | "pageref" | "cite" | "citep" | "citet" | "citealp" | "citeauthor" | "onlinecite" | "footnote" | "footnotemark" | "thanks" | "vspace" | "hspace" | "phantom" | "hphantom" | "vphantom" | "protect" | "index" | "nocite" | "includegraphics" | "color" | "textcolor" => {
+            skip_opt(src, i);
+            if matches!(name, "protect" | "footnotemark") {
+                return String::new();
+            }
+            let _ = read_arg(src, i, math);
+            if name == "textcolor" {
+                return read_arg(src, i, math);
+            }
+            String::new()
+        }
+        // switches and spacing that leave nothing behind
+        "rm" | "it" | "bf" | "em" | "sf" | "tt" | "sc" | "small" | "footnotesize" | "scriptsize" | "large" | "Large" | "displaystyle" | "textstyle" | "scriptstyle" | "left" | "right" | "big" | "Big" | "bigg" | "Bigg" | "bigl" | "bigr" | "Bigl" | "Bigr" | "limits" | "nolimits" | "centering" | "noindent" | "par" | "relax" => String::new(),
+        "quad" | "qquad" | "enspace" | "thinspace" | "medspace" | "newline" | "linebreak" => " ".into(),
+        // anything else: the name goes, any braced argument that follows stays as text
+        _ => String::new(),
+    }
+}
+
+fn symbol(name: &str) -> Option<&'static str> {
+    Some(match name {
+        "alpha" => "α",
+        "beta" => "β",
+        "gamma" => "γ",
+        "delta" => "δ",
+        "epsilon" | "varepsilon" => "ε",
+        "zeta" => "ζ",
+        "eta" => "η",
+        "theta" => "θ",
+        "vartheta" => "ϑ",
+        "iota" => "ι",
+        "kappa" => "κ",
+        "lambda" => "λ",
+        "mu" => "μ",
+        "nu" => "ν",
+        "xi" => "ξ",
+        "pi" => "π",
+        "varpi" => "ϖ",
+        "rho" | "varrho" => "ρ",
+        "sigma" => "σ",
+        "varsigma" => "ς",
+        "tau" => "τ",
+        "upsilon" => "υ",
+        "phi" | "varphi" => "φ",
+        "chi" => "χ",
+        "psi" => "ψ",
+        "omega" => "ω",
+        "Gamma" => "Γ",
+        "Delta" => "Δ",
+        "Theta" => "Θ",
+        "Lambda" => "Λ",
+        "Xi" => "Ξ",
+        "Pi" => "Π",
+        "Sigma" => "Σ",
+        "Upsilon" => "Υ",
+        "Phi" => "Φ",
+        "Psi" => "Ψ",
+        "Omega" => "Ω",
+        "sim" => "∼",
+        "gtrsim" | "gtrapprox" => "≳",
+        "lesssim" | "lessapprox" => "≲",
+        "approx" => "≈",
+        "simeq" => "≃",
+        "cong" => "≅",
+        "times" => "×",
+        "cdot" => "·",
+        "pm" => "±",
+        "mp" => "∓",
+        "to" | "rightarrow" | "longrightarrow" => "→",
+        "leftarrow" | "gets" | "longleftarrow" => "←",
+        "leftrightarrow" | "longleftrightarrow" => "↔",
+        "Rightarrow" | "implies" => "⇒",
+        "Leftrightarrow" | "iff" => "⇔",
+        "ell" => "ℓ",
+        "infty" => "∞",
+        "le" | "leq" | "leqslant" => "≤",
+        "ge" | "geq" | "geqslant" => "≥",
+        "neq" | "ne" => "≠",
+        "ll" => "≪",
+        "gg" => "≫",
+        "propto" => "∝",
+        "equiv" => "≡",
+        "in" => "∈",
+        "partial" => "∂",
+        "nabla" => "∇",
+        "hbar" => "ℏ",
+        "prime" => "′",
+        "dagger" => "†",
+        "ddagger" => "‡",
+        "circ" => "∘",
+        "degree" | "textdegree" => "°",
+        "cdots" | "ldots" | "dots" | "dotsc" | "textellipsis" => "…",
+        "langle" => "⟨",
+        "rangle" => "⟩",
+        "sum" => "∑",
+        "prod" => "∏",
+        "int" => "∫",
+        "perp" => "⊥",
+        "parallel" => "∥",
+        "star" => "⋆",
+        "ast" => "∗",
+        "bullet" | "textbullet" => "•",
+        "otimes" => "⊗",
+        "oplus" => "⊕",
+        "AA" => "Å",
+        "aa" => "å",
+        "ae" => "æ",
+        "AE" => "Æ",
+        "oe" => "œ",
+        "o" => "ø",
+        "O" => "Ø",
+        "ss" => "ß",
+        "l" => "ł",
+        "L" => "Ł",
+        "i" => "ı",
+        "j" => "ȷ",
+        "textendash" => "–",
+        "textemdash" => "—",
+        "textpm" => "±",
+        "texttimes" => "×",
+        "textmu" | "micro" => "μ",
+        "copyright" | "textcopyright" => "©",
+        "LaTeX" => "LaTeX",
+        "TeX" => "TeX",
+        "ie" => "i.e.",
+        "eg" => "e.g.",
+        "etal" => "et al.",
+        "percent" => "%",
+        _ => return None,
+    })
+}
+
+/// A combining mark over one or every character of a group.
+fn mark(a: &str, m: char, every: bool) -> String {
+    let mut out = String::new();
+    for (k, c) in a.chars().enumerate() {
+        out.push(c);
+        if every || k == 0 {
+            out.push(m);
+        }
+    }
+    out
+}
+
+/// Accented letters, precomposed where they are common.
+fn accent(m: char, a: &str) -> String {
+    let mut cs = a.chars();
+    let Some(b) = cs.next() else {
+        return match m {
+            '~' => "~".into(),
+            '^' => "^".into(),
+            _ => String::new(),
+        };
+    };
+    let rest: String = cs.collect();
+    let table: &[(char, &str, &str)] = &[
+        ('"', "aeiouyAEIOU", "äëïöüÿÄËÏÖÜ"),
+        ('\'', "aeiouyAEIOUYcnszCNSZ", "áéíóúýÁÉÍÓÚÝćńśźĆŃŚŹ"),
+        ('`', "aeiouAEIOU", "àèìòùÀÈÌÒÙ"),
+        ('^', "aeiouAEIOU", "âêîôûÂÊÎÔÛ"),
+        ('~', "anoANO", "ãñõÃÑÕ"),
+        ('c', "csCS", "çşÇŞ"),
+        ('v', "csznrezCSZNREZ", "čšžňřěžČŠŽŇŘĚŽ"),
+        ('=', "aeiouAEIOU", "āēīōūĀĒĪŌŪ"),
+        ('u', "agAG", "ăğĂĞ"),
+        ('H', "ouOU", "őűŐŰ"),
+        ('.', "zZ", "żŻ"),
+        ('k', "aeAE", "ąęĄĘ"),
+        ('r', "auAU", "åůÅŮ"),
+    ];
+    for (mm, from, to) in table {
+        if *mm == m {
+            if let Some(p) = from.chars().position(|c| c == b) {
+                return format!("{}{rest}", to.chars().nth(p).unwrap());
+            }
+        }
+    }
+    let comb = match m {
+        '"' => '\u{0308}',
+        '\'' => '\u{0301}',
+        '`' => '\u{0300}',
+        '^' => '\u{0302}',
+        '~' => '\u{0303}',
+        'c' => '\u{0327}',
+        'v' => '\u{030C}',
+        '=' => '\u{0304}',
+        'u' => '\u{0306}',
+        'H' => '\u{030B}',
+        '.' => '\u{0307}',
+        'k' => '\u{0328}',
+        'r' => '\u{030A}',
+        'd' => '\u{0323}',
+        'b' => '\u{0331}',
+        _ => return format!("{b}{rest}"),
+    };
+    format!("{b}{comb}{rest}")
+}
+
+/// `^{…}` and `_{…}` as Unicode super- and subscripts where every character
+/// has one; otherwise `^(…)`, or a subscript written inline.
+fn script(a: &str, sup: bool) -> String {
+    const SUP_FROM: &str = "0123456789+-−=()ni";
+    const SUP_TO: &str = "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁻⁼⁽⁾ⁿⁱ";
+    const SUB_FROM: &str = "0123456789+-−=()aeoxhklmnpst";
+    const SUB_TO: &str = "₀₁₂₃₄₅₆₇₈₉₊₋₋₌₍₎ₐₑₒₓₕₖₗₘₙₚₛₜ";
+    let a = a.trim();
+    if a.is_empty() {
+        return String::new();
+    }
+    // primes, stars and daggers already sit high
+    if sup && a.chars().all(|c| "′″‴*∗†‡".contains(c)) {
+        return a.to_string();
+    }
+    let (from, to) = if sup { (SUP_FROM, SUP_TO) } else { (SUB_FROM, SUB_TO) };
+    let mapped: Option<String> = a.chars().map(|c| from.chars().position(|f| f == c).map(|p| to.chars().nth(p).unwrap())).collect();
+    match mapped {
+        Some(m) => m,
+        None if sup && a.chars().count() == 1 => format!("^{a}"),
+        None if sup => format!("^({a})"),
+        None => a.to_string(),
+    }
+}
+
+/// Collapse whitespace and drop spaces before closing punctuation.
+fn tidy(s: &str) -> String {
+    let squashed = s.split_whitespace().collect::<Vec<_>>().join(" ");
+    let mut out = String::with_capacity(squashed.len());
+    let cs: Vec<char> = squashed.chars().collect();
+    for (k, &c) in cs.iter().enumerate() {
+        if c == ' ' {
+            let next = cs.get(k + 1).copied().unwrap_or(' ');
+            let prev = if k > 0 { cs[k - 1] } else { ' ' };
+            if ",.;:)]!?".contains(next) || "([".contains(prev) {
+                continue;
+            }
+        }
+        out.push(c);
+    }
+    out
+}
+
+/* ------------------------------------------------------------ arXiv metadata */
+
+fn xml_unescape(s: &str) -> String {
+    let mut out = String::with_capacity(s.len());
+    let mut rest = s;
+    while let Some(p) = rest.find('&') {
+        out.push_str(&rest[..p]);
+        rest = &rest[p..];
+        let Some(end) = rest.find(';').filter(|&e| e <= 10) else {
+            out.push('&');
+            rest = &rest[1..];
+            continue;
+        };
+        let ent = &rest[1..end];
+        let ch = match ent {
+            "amp" => Some('&'),
+            "lt" => Some('<'),
+            "gt" => Some('>'),
+            "quot" => Some('"'),
+            "apos" => Some('\''),
+            _ if ent.starts_with("#x") || ent.starts_with("#X") => u32::from_str_radix(&ent[2..], 16).ok().and_then(char::from_u32),
+            _ if ent.starts_with('#') => ent[1..].parse().ok().and_then(char::from_u32),
+            _ => None,
+        };
+        match ch {
+            Some(c) => {
+                out.push(c);
+                rest = &rest[end + 1..];
+            }
+            None => {
+                out.push('&');
+                rest = &rest[1..];
+            }
+        }
+    }
+    out.push_str(rest);
+    out
+}
+
+/// The text of every `<tag …>…</tag>` in `s` (not nested), in order.
+fn xml_all<'a>(s: &'a str, tag: &str) -> Vec<&'a str> {
+    let mut out = Vec::new();
+    let open = format!("<{tag}");
+    let close = format!("</{tag}>");
+    let mut rest = s;
+    while let Some(p) = rest.find(&open) {
+        let after = &rest[p + open.len()..];
+        // `<title>` but not `<titles>`
+        if !after.starts_with(['>', ' ', '\n', '\t', '/']) {
+            rest = after;
+            continue;
+        }
+        let Some(gt) = after.find('>') else { break };
+        if after[..gt].ends_with('/') {
+            out.push("");
+            rest = &after[gt + 1..];
+            continue;
+        }
+        let body = &after[gt + 1..];
+        let Some(end) = body.find(&close) else { break };
+        out.push(&body[..end]);
+        rest = &body[end + close.len()..];
+    }
+    out
+}
+
+fn xml_attr<'a>(s: &'a str, tag: &str, attr: &str) -> Option<&'a str> {
+    let p = s.find(&format!("<{tag}"))?;
+    let t = &s[p..p + s[p..].find('>')?];
+    let a = t.find(&format!("{attr}=\""))? + attr.len() + 2;
+    Some(&t[a..a + t[a..].find('"')?])
+}
+
+/// The paper's fields from the export.arxiv.org Atom feed for one id.
+pub fn arxiv_meta(atom: &str) -> Result<PaperRow, String> {
+    let entry = xml_all(atom, "entry").into_iter().next().ok_or("arXiv has no paper with that id")?;
+    let get = |tag: &str| xml_all(entry, tag).first().map(|s| xml_unescape(s)).unwrap_or_default();
+    let idurl = get("id");
+    if idurl.contains("/api/errors") || idurl.is_empty() {
+        return Err("arXiv has no paper with that id".into());
+    }
+    let id = arxiv_id(&idurl).ok_or("arXiv sent an id this app doesn't recognise")?;
+    let authors: Vec<String> = xml_all(entry, "author").iter().filter_map(|a| xml_all(a, "name").first().map(|n| xml_unescape(n).trim().to_string())).filter(|n| !n.is_empty()).collect();
+    let published = get("published");
+    Ok(PaperRow {
+        paper_title: detex(&get("title")),
+        authors: detex(&authors.join(", ")),
+        publication_date: published.chars().take(10).collect(),
+        category: xml_attr(entry, "arxiv:primary_category", "term").unwrap_or("").to_string(),
+        public_abstract: detex(&get("summary")),
+        paper_link: format!("https://arxiv.org/abs/{id}"),
+        ..Default::default()
+    })
+}
+
+/* ------------------------------------------------------------ figure captions */
+
+/// TeX source with `%` comments removed.
+fn strip_comments(t: &str) -> String {
+    let mut out = String::with_capacity(t.len());
+    for line in t.lines() {
+        let b = line.as_bytes();
+        let mut cut = line.len();
+        let mut k = 0;
+        while k < b.len() {
+            if b[k] == b'\\' {
+                k += 2;
+                continue;
+            }
+            if b[k] == b'%' {
+                cut = k;
+                break;
+            }
+            k += 1;
+        }
+        out.push_str(&line[..cut]);
+        out.push('\n');
+    }
+    out
+}
+
+/// The `{…}` group starting at byte `at` (which must be `{`): its inside,
+/// and the byte after its closing brace.
+fn brace_group(s: &str, at: usize) -> Option<(&str, usize)> {
+    let b = s.as_bytes();
+    if b.get(at) != Some(&b'{') {
+        return None;
+    }
+    let mut depth = 0;
+    let mut k = at;
+    while k < b.len() {
+        match b[k] {
+            b'\\' => k += 1,
+            b'{' => depth += 1,
+            b'}' => {
+                depth -= 1;
+                if depth == 0 {
+                    return Some((&s[at + 1..k], k + 1));
+                }
+            }
+            _ => {}
+        }
+        k += 1;
+    }
+    None
+}
+
+/// Skip spaces and `[…]` optional arguments from byte `k`.
+fn skip_opts(s: &str, mut k: usize) -> usize {
+    let b = s.as_bytes();
+    loop {
+        while k < b.len() && (b[k] as char).is_whitespace() {
+            k += 1;
+        }
+        if b.get(k) != Some(&b'[') {
+            return k;
+        }
+        let mut depth = 0;
+        while k < b.len() {
+            match b[k] {
+                b'[' | b'{' => depth += 1,
+                b']' | b'}' => {
+                    depth -= 1;
+                    if depth == 0 {
+                        k += 1;
+                        break;
+                    }
+                }
+                _ => {}
+            }
+            k += 1;
+        }
+    }
+}
+
+/// The main TeX file with its `\input`/`\include` files put in place, then
+/// any other TeX files: the figures in the order a reader meets them.
+fn expanded_tex(texs: &[(String, String)]) -> String {
+    fn find<'a>(texs: &'a [(String, String)], name: &str) -> Option<&'a (String, String)> {
+        let n = name.trim().trim_start_matches("./");
+        let n = n.strip_suffix(".tex").unwrap_or(n);
+        texs.iter().find(|(p, _)| {
+            let p = p.strip_suffix(".tex").unwrap_or(p);
+            p == n || p.ends_with(&format!("/{n}"))
+        })
+    }
+    fn expand(texs: &[(String, String)], body: &str, seen: &mut Vec<String>, depth: usize, out: &mut String) {
+        let mut rest = body;
+        loop {
+            let next = ["\\input", "\\include", "\\subfile"].iter().filter_map(|c| rest.find(c).map(|p| (p, c.len()))).min();
+            let Some((p, l)) = next else { break };
+            out.push_str(&rest[..p]);
+            let after = &rest[p + l..];
+            // \input{x} or \input x
+            let (name, used) = if let Some((g, end)) = brace_group(after, after.find('{').filter(|&b| after[..b].trim().is_empty()).unwrap_or(usize::MAX)) {
+                (g.to_string(), end)
+            } else if after.starts_with(' ') {
+                let w: String = after.trim_start().chars().take_while(|c| !c.is_whitespace()).collect();
+                let used = after.len() - after.trim_start().len() + w.len();
+                (w, used)
+            } else {
+                // \includegraphics, \includeonly…: not a file to put in place
+                out.push_str(&rest[p..p + l]);
+                rest = after;
+                continue;
+            };
+            rest = &after[used..];
+            if depth < 12 {
+                if let Some((path, t)) = find(texs, &name) {
+                    if !seen.contains(path) {
+                        seen.push(path.clone());
+                        expand(texs, t, seen, depth + 1, out);
+                    }
+                }
+            }
+        }
+        out.push_str(rest);
+    }
+    let mut out = String::new();
+    let mut seen = Vec::new();
+    let main = texs.iter().find(|(_, t)| t.contains("\\documentclass") && t.contains("\\begin{document}")).or_else(|| texs.iter().find(|(_, t)| t.contains("\\documentclass")));
+    if let Some((p, t)) = main {
+        seen.push(p.clone());
+        expand(texs, t, &mut seen, 0, &mut out);
+    }
+    for (p, t) in texs {
+        if !seen.contains(p) {
+            seen.push(p.clone());
+            out.push('\n');
+            expand(texs, t, &mut seen, 0, &mut out);
+        }
+    }
+    out
+}
+
+/// Every `\includegraphics` in reading order, with the caption of the figure
+/// environment it is in ("" outside one).
+fn graphics_refs(tex: &str) -> Vec<(String, String)> {
+    // figure environments: (start, end, caption)
+    let mut envs: Vec<(usize, usize, String)> = Vec::new();
+    let mut from = 0;
+    while let Some(p) = tex[from..].find("\\begin{figure").map(|p| p + from) {
+        let end = tex[p..].find("\\end{figure").map(|e| e + p).unwrap_or(tex.len());
+        let body = &tex[p..end];
+        // the main caption: not one inside a subfigure
+        let mut outer = String::new();
+        let mut rest = body;
+        while let Some(s) = rest.find("\\begin{subfigure") {
+            outer.push_str(&rest[..s]);
+            match rest[s..].find("\\end{subfigure") {
+                Some(e) => rest = &rest[s + e + 14..],
+                None => {
+                    rest = "";
+                    break;
+                }
+            }
+        }
+        outer.push_str(rest);
+        let caption = last_caption(&outer).or_else(|| last_caption(body)).unwrap_or_default();
+        envs.push((p, end, caption));
+        from = end.max(p + 1);
+    }
+    let mut out = Vec::new();
+    let mut from = 0;
+    while let Some(p) = tex[from..].find("\\includegraphics").map(|p| p + from) {
+        let mut k = p + "\\includegraphics".len();
+        if tex[k..].starts_with('*') {
+            k += 1;
+        }
+        let k = skip_opts(tex, k);
+        if let Some((path, end)) = brace_group(tex, k) {
+            let cap = envs.iter().find(|(s, e, _)| p > *s && p < *e).map(|e| e.2.clone()).unwrap_or_default();
+            out.push((path.trim().to_string(), cap));
+            from = end;
+        } else {
+            from = k;
+        }
+    }
+    out
+}
+
+fn last_caption(body: &str) -> Option<String> {
+    let mut found = None;
+    let mut from = 0;
+    while let Some(p) = body[from..].find("\\caption").map(|p| p + from) {
+        let mut k = p + "\\caption".len();
+        // \captionof{figure}{…} and \captionsetup are not captions of this figure
+        if body[k..].starts_with("of") || body[k..].starts_with("setup") || body[k..].starts_with('s') {
+            from = k;
+            continue;
+        }
+        if body[k..].starts_with('*') {
+            k += 1;
+        }
+        let k = skip_opts(body, k);
+        match brace_group(body, k) {
+            Some((c, end)) => {
+                found = Some(detex(c));
+                from = end;
+            }
+            None => from = k,
+        }
+    }
+    found
+}
+
+fn without_ext(p: &str) -> &str {
+    let p = p.trim_start_matches("./");
+    match p.rsplit_once('.') {
+        Some((stem, ext)) if !ext.contains('/') && (1..=4).contains(&ext.len()) && ext.chars().all(|c| c.is_ascii_alphanumeric()) => stem,
+        _ => p,
+    }
+}
+
+/// Which figure file a `\includegraphics{ref}` means: the file whose path
+/// without extension ends with the reference without extension, preferring
+/// PDF, then PNG, then JPEG, as pdflatex does.
+fn match_ref(names: &[&str], r: &str) -> Option<usize> {
+    let want = without_ext(r);
+    if want.is_empty() {
+        return None;
+    }
+    let rank = |n: &str| match n.rsplit_once('.').map(|(_, e)| e.to_ascii_lowercase()).as_deref() {
+        Some("pdf") => 0,
+        Some("png") => 1,
+        Some("jpg") | Some("jpeg") => 2,
+        _ => 3,
+    };
+    names
+        .iter()
+        .enumerate()
+        .filter(|(_, n)| {
+            let s = without_ext(n);
+            s == want || s.ends_with(&format!("/{want}"))
+        })
+        .min_by_key(|(_, n)| rank(n))
+        .map(|(k, _)| k)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -815,5 +1708,116 @@ mod tests {
         assert!(posts_from_claude(&r, "nope", false, "").is_err());
         let (_, user) = posts_prompt(&r, false);
         assert!(user.contains("thread: an empty array"));
+    }
+
+    #[test]
+    fn detex_fixture_strings() {
+        assert_eq!(detex("Probing $τ$ lepton dipole moments at multi-TeV muon colliders"), "Probing τ lepton dipole moments at multi-TeV muon colliders");
+        assert_eq!(detex(r"a luminosity of $\gtrsim 10^{34}$ cm$^{-2}$ s$^{-1}$ at $10\,\text{TeV}$"), "a luminosity of ≳10³⁴ cm⁻² s⁻¹ at 10 TeV");
+        assert_eq!(detex(r"$τ^+τ^-$ production through $μ^+μ^-$ annihilation"), "τ⁺τ⁻ production through μ⁺μ⁻ annihilation");
+        assert_eq!(detex(r"the radiative Higgs decay $H\toτ^+τ^-γ$."), "the radiative Higgs decay H → τ⁺τ⁻γ.");
+        assert_eq!(detex(r"For a $10$~TeV muon collider with $10\,\mathrm{ab}^{-1}$"), "For a 10 TeV muon collider with 10 ab⁻¹");
+        assert_eq!(detex(r"$|Δa_τ|<1.2\times10^{-5}$, $|d_τ^Z|<1.0\times10^{-19}\,e\,\mathrm{cm}$"), "|Δaτ| < 1.2×10⁻⁵, |dτ^Z| < 1.0×10⁻¹⁹ e cm");
+        assert_eq!(detex(r"at the nominal $95\%$ confidence level"), "at the nominal 95% confidence level");
+        assert_eq!(detex(r"$\sqrt{s}=10$ TeV and $\bar{\nu}$, $\sigma(\mu^+\mu^-\to hh)\sim 1$ fb"), "√s = 10 TeV and ν̄, σ(μ⁺μ⁻ → hh) ∼ 1 fb");
+        assert_eq!(detex(r"Schr\"odinger, Ma\v{c}ek, Fran\c{c}ois, Jos\'{e} --- a ``test'' of `quotes'"), "Schrödinger, Maček, François, José — a “test” of ‘quotes’");
+        assert_eq!(detex(r"\textit{Snowmass} 2021--2022 \emph{report}, \textbf{U.S.} plan"), "Snowmass 2021–2022 report, U.S. plan");
+        assert_eq!(detex(r"$m_{H}$, $x_{12}$, $e^{i\pi}$"), "mH, x₁₂, e^(iπ)");
+        // plain text goes through untouched
+        let plain = "Input to the SCAC Facilities Subcommittee from the U.S. Muon Collider Collaboration (USMCC): 50% more.";
+        assert_eq!(detex(plain), plain);
+    }
+
+    #[test]
+    fn rows_are_detexed() {
+        let row = format!("2026-11-16\tx@y.z\t{}\t\tA. B\\\"ohm, C. D\t2026-11-16\thep-ph\t{}\thttps://arxiv.org/abs/2611.21813\tYes\t", "Probing $τ$ lepton dipole moments", r"We reach $\gtrsim 10^{34}$ cm$^{-2}$ s$^{-1}$.");
+        let r = parse_row(&row).unwrap();
+        assert_eq!(r.paper_title, "Probing τ lepton dipole moments");
+        assert_eq!(r.authors, "A. Böhm, C. D");
+        assert_eq!(r.public_abstract, "We reach ≳10³⁴ cm⁻² s⁻¹.");
+    }
+
+    const ATOM: &str = r#"<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/6QbbGE7Yr2LeiyxsM9GGtEMiEQs</id>
+  <title>arXiv Query: search_query=&amp;id_list=2611.21813&amp;start=0&amp;max_results=10</title>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <entry>
+    <id>http://arxiv.org/abs/2611.21813v1</id>
+    <title>Probing $τ$ lepton dipole moments at multi-TeV muon colliders</title>
+    <updated>2026-11-16T19:29:17Z</updated>
+    <link href="https://arxiv.org/abs/2611.21813v1" rel="alternate" type="text/html"/>
+    <summary>We investigate the sensitivity of future multi-TeV muon colliders to the electromagnetic and weak dipole moments of the $τ$ lepton. We obtain $|Δa_τ|&lt;1.2\times10^{-5}$ at $95\%$ CL.</summary>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-16T19:29:17Z</published>
+    <arxiv:comment>40 pages, 21 figures</arxiv:comment>
+    <arxiv:primary_category term="hep-ph"/>
+    <author>
+      <name>Dario Buttazzo</name>
+    </author>
+    <author>
+      <name>Gabriele Levati</name>
+    </author>
+    <author>
+      <name>ZeQiang Wang</name>
+    </author>
+  </entry>
+</feed>"#;
+
+    #[test]
+    fn arxiv_metadata() {
+        let r = arxiv_meta(ATOM).unwrap();
+        assert_eq!(r.paper_title, "Probing τ lepton dipole moments at multi-TeV muon colliders");
+        assert_eq!(r.authors, "Dario Buttazzo, Gabriele Levati, ZeQiang Wang");
+        assert_eq!(r.public_abstract, "We investigate the sensitivity of future multi-TeV muon colliders to the electromagnetic and weak dipole moments of the τ lepton. We obtain |Δaτ| < 1.2×10⁻⁵ at 95% CL.");
+        assert_eq!(r.publication_date, "2026-11-16");
+        assert_eq!(r.category, "hep-ph");
+        assert_eq!(r.paper_link, "https://arxiv.org/abs/2611.21813");
+        assert!(!r.figures_ok);
+        assert_eq!(r.plain_title, "");
+        let empty = r#"<feed xmlns="http://www.w3.org/2005/Atom"><title>arXiv Query</title><opensearch:totalResults>0</opensearch:totalResults></feed>"#;
+        assert!(arxiv_meta(empty).unwrap_err().contains("no paper"));
+        let error = r#"<feed><entry><id>http://arxiv.org/api/errors#incorrect_id_format_for_1234</id><title>Error</title><summary>incorrect id format</summary></entry></feed>"#;
+        assert!(arxiv_meta(error).unwrap_err().contains("no paper"));
+    }
+
+    #[test]
+    fn figure_captions_and_order() {
+        let main = br#"\documentclass{article}
+\graphicspath{{figures/}}
+\begin{document}
+\input{sections/intro}
+% \includegraphics{figures/commented}
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}{0.45\textwidth}\includegraphics[width=\linewidth]{reach}\caption{left panel}\end{subfigure}
+  \begin{subfigure}{0.45\textwidth}\includegraphics[width=\linewidth]{figures/flux.png}\caption{right}\end{subfigure}
+  \caption[Short]{Reach for new particles at $\sqrt{s}=10$~TeV, see Ref.~\cite{x}.\label{fig:reach}}
+\end{figure*}
+\end{document}"#;
+        let intro = br"\section{Intro} \begin{figure}\includegraphics[scale=.5]{./figures/layout}\caption{The ring layout (to scale).}\end{figure}";
+        let t = tar(&[
+            ("main.tex", main),
+            ("sections/intro.tex", intro),
+            ("figures/flux.png", b"\x89PNG flux"),
+            ("figures/reach.pdf", b"%PDF reach"),
+            ("figures/reach.png", b"\x89PNG reach copy"),
+            ("figures/layout.jpg", b"\xff\xd8 layout"),
+            ("figures/commented.png", b"\x89PNG unused"),
+        ]);
+        let figs = figures_from_archive(&gzip(&t)).unwrap();
+        let got: Vec<(&str, &str)> = figs.iter().map(|f| (f.name.as_str(), f.caption.as_str())).collect();
+        assert_eq!(
+            got,
+            vec![
+                ("figures/layout.jpg", "The ring layout (to scale)."),
+                ("figures/reach.pdf", "Reach for new particles at √s = 10 TeV, see Ref."),
+                ("figures/flux.png", "Reach for new particles at √s = 10 TeV, see Ref."),
+                ("figures/reach.png", ""),
+                ("figures/commented.png", ""),
+            ]
+        );
+        let j = figures_json(&figs);
+        assert_eq!(j["figures"][0]["caption"], "The ring layout (to scale).");
     }
 }

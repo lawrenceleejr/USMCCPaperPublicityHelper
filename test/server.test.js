@@ -167,6 +167,8 @@ test('arXiv links and ids', async () => {
   }
   assert.strictEqual((await api('GET', '/api/arxiv?url=' + encodeURIComponent('https://example.com/x.pdf'))).status, 400);
   assert.strictEqual((await api('GET', '/api/arxiv/pdf?url=nope')).status, 400);
+  assert.strictEqual((await api('GET', '/api/arxiv/meta?url=nope')).status, 400);
+  assert.strictEqual((await api('GET', '/api/arxiv/meta?url=' + encodeURIComponent('https://example.com/paper'))).status, 400);
 });
 
 test('figures from a source archive', async () => {
@@ -174,7 +176,7 @@ test('figures from a source archive', async () => {
   const png = Buffer.from('89504e470d0a1a0a0000', 'hex');
   const archive = zlib.gzipSync(
     tar([
-      ['main.tex', '\\documentclass{article}'],
+      ['main.tex', '\\documentclass{article}\\begin{document}\\begin{figure}\\includegraphics{photo}\\caption{A \\emph{photo} of the $\\mu$ ring.}\\end{figure}\\end{document}'],
       ['figs/beam.png', png],
       ['.hidden.png', 'x'],
       ['__MACOSX/figs/._beam.png', 'x'],
@@ -185,14 +187,15 @@ test('figures from a source archive', async () => {
   const { status, data } = await api('POST', '/api/figures', archive, { raw: true });
   assert.strictEqual(status, 200, JSON.stringify(data));
   assert.deepStrictEqual(
-    data.figures.map((f) => [f.name, f.mime]),
+    data.figures.map((f) => [f.name, f.mime, f.caption]),
     [
-      ['figs/beam.png', 'image/png'],
-      [long, 'application/pdf'],
-      ['photo.jpeg', 'image/jpeg'],
+      // referenced in the TeX first, with its caption; then the rest in archive order
+      ['photo.jpeg', 'image/jpeg', 'A photo of the μ ring.'],
+      ['figs/beam.png', 'image/png', ''],
+      [long, 'application/pdf', ''],
     ]
   );
-  assert.deepStrictEqual(Buffer.from(data.figures[0].data, 'base64'), png);
+  assert.deepStrictEqual(Buffer.from(data.figures[1].data, 'base64'), png);
   // a paper whose source is one TeX file
   const tex = await api('POST', '/api/figures', zlib.gzipSync('\\documentclass{article}\\begin{document}x\\end{document}'), { raw: true });
   assert.strictEqual(tex.status, 400);
