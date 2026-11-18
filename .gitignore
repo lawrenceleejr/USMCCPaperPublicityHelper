@@ -19,3 +19,9 @@ src-tauri/target/
 # Environment
 .env
 .env.local
+
+# Lite build and the website
+site/static/lite/
+site/public/
+site/resources/
+*.log

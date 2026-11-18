@@ -1,0 +1,2192 @@
+/* USMCC Publicity Helper: the carousel editor.
+
+   The page talks to /api: on the desktop the Rust program answers (files in
+   ~/.usmcc, exports to a folder, Claude with the key in the keychain); in
+   Lite (the web version) web/lite.js answers the same requests in the
+   browser. Sheets (paper, posts, export, theme, carousels, menu) live in
+   sheets.js; drawing in render.js. */
+
+'use strict';
+
+const LITE = window.UsmccLite || null;
+const R = window.Render;
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+const TOUCH = matchMedia('(hover: none) and (pointer: coarse)').matches;
+const MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+const PHONE = () => TOUCH && matchMedia('(max-width: 760px)').matches;
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined && text !== null) e.textContent = text;
+  return e;
+}
+
+async function api(method, url, body, raw) {
+  const r = await fetch(url, {
+    method,
+    headers: { 'X-USMCC': '1', ...(body !== undefined && !raw ? { 'Content-Type': 'application/json' } : {}) },
+    body: raw ? body : body !== undefined ? JSON.stringify(body) : undefined,
+  });
+  const ct = r.headers.get('content-type') || '';
+  const data = ct.includes('json') ? await r.json() : await r.blob();
+  if (!r.ok) throw new Error((data && data.error) || `${r.status} ${r.statusText}`);
+  return data;
+}
+
+/* ------------------------------------------------------------------ state */
+
+const S = {
+  info: {},
+  settings: {},
+  doc: null,
+  cur: 0, // slide index
+  sel: null, // selected layer id
+  crop: false, // crop mode for the selected image
+  guides: false,
+  base: '', // the doc as last committed (for undo)
+  undo: [],
+  redo: [],
+  lastLabel: '',
+  lastAt: 0,
+  view: { scale: 1, dpr: 1 },
+};
+window.S = S;
+
+const slide = () => S.doc.slides[S.cur];
+const size = () => R.sizeOf(S.doc);
+const theme = () => R.themeOf(S.doc);
+const selLayer = () => (S.sel && slide() ? slide().layers.find((l) => l.id === S.sel) || (S.doc.bg || []).find((l) => l.id === S.sel) : null) || null;
+// A carousel background is in carousel coordinates: this slide sees it shifted.
+const offsetOf = (l) => (l && l.bg ? S.cur * size().w : 0);
+
+function newDoc(name) {
+  return { v: 1, id: uid(), name: name || 'Untitled carousel', updated: Date.now(), size: 'portrait', theme: 'editorial', paper: null, posts: null, slides: [blankSlide()] };
+}
+// Carousels from the first version: per-slide "theme light" layers go (the
+// backdrop flows across slides now), and a picture spread over slides as
+// copies becomes one carousel background.
+function migrate(doc) {
+  doc.bg = doc.bg || [];
+  const W = R.sizeOf(doc).w;
+  const seen = new Set();
+  doc.slides.forEach((s, i) => {
+    s.layers = s.layers.filter((l) => {
+      if (l.kind === 'shade') return false;
+      if (!l.span) return true;
+      if (!seen.has(l.span)) {
+        seen.add(l.span);
+        const b = { ...l, bg: true, x: l.x + i * W, treat: 'natural', opacity: 1 };
+        delete b.span;
+        doc.bg.push(b);
+      }
+      return false;
+    });
+  });
+}
+
+function blankSlide() {
+  return { id: uid(), bg: null, layers: [] };
+}
+
+/* ------------------------------------------------------------------ changes, undo, saving */
+
+// Text placed by "Make slides" flows: each block carries `flow: {g, gap}`
+// (the logo `flow: {g, logo: true}`) and the group is stacked the way the
+// theme places text (from the bottom, the top or the middle, logo in the
+// opposite corner) whenever the theme, the size or the words change. Moving
+// one of them by hand fixes the group where it is.
+function reflow(s, t = theme(), sz = size()) {
+  const { w: W, h: H } = sz;
+  const groups = new Map();
+  for (const l of s.layers) if (l.flow) (groups.get(l.flow.g) || groups.set(l.flow.g, []).get(l.flow.g)).push(l);
+  for (const ls of groups.values()) {
+    const texts = ls.filter((l) => l.kind === 'text');
+    const logo = ls.find((l) => l.kind === 'logo');
+    // a title shrinks (to 60%) until it fits the theme's number of lines
+    for (const l of texts) {
+      if (l.role !== 'title' || l.size) continue;
+      l.w = W - 2 * R.SAFE;
+      let k = l.flow.k || 1;
+      l.k = k;
+      while (k > 0.6 && R.textLayout(l, t).lines.length > (t.fit || 4)) l.k = k = Math.round((k - 0.04) * 100) / 100;
+    }
+    let total = 0;
+    texts.forEach((l, i) => (total += R.bounds(l, t, W, H).h + (i ? l.flow.gap || 0 : 0)));
+    const lh = logo ? logo.h : 0;
+    let y = t.valign === 'top' ? R.SAFE : t.valign === 'middle' ? (H - total) / 2 + lh / 3 : H - R.SAFE - total;
+    texts.forEach((l, i) => {
+      if (i) y += l.flow.gap || 0;
+      l.x = R.SAFE;
+      l.w = W - 2 * R.SAFE;
+      l.y = Math.round(y);
+      y += R.bounds(l, t, W, H).h;
+    });
+    const qr = ls.find((l) => l.kind === 'image' && l.flow.qr);
+    if (qr) {
+      // in the corner the text leaves free (the logo takes the other one)
+      const q = qr.w;
+      const pos = t.valign === 'top' ? [R.SAFE + 14, H - R.SAFE - q - 14] : t.valign === 'middle' ? [(W - q) / 2, H - R.SAFE - q - 14] : [R.SAFE + 14, R.SAFE + 14];
+      qr.x = Math.round(pos[0]);
+      qr.y = Math.round(pos[1]);
+    }
+    if (logo) {
+      const lw = logo.h * R.LOGO_RATIO;
+      const pos = t.valign === 'top' ? [W - R.SAFE - lw, H - R.SAFE - logo.h] : t.valign === 'middle' ? [(W - lw) / 2, R.SAFE] : t.align === 'right' ? [R.SAFE, R.SAFE] : [W - R.SAFE - lw, R.SAFE];
+      logo.x = Math.round(pos[0]);
+      logo.y = Math.round(pos[1]);
+      delete logo.variant;
+    }
+  }
+}
+const MOVES = new Set(['move', 'resize', 'rotate', 'pinch', 'nudge', 'scale', 'logo corner']);
+
+// Record a change made to S.doc. Changes with the same label within a
+// second (typing, slider drags) fold into one undo step.
+function changed(label = '', opts = {}) {
+  const now = Date.now();
+  const moved = selLayer();
+  if (moved && moved.flow && MOVES.has(label)) {
+    const g = moved.flow.g;
+    for (const l of slide().layers) if (l.flow && l.flow.g === g) delete l.flow;
+  }
+  for (const s of opts.all ? S.doc.slides : [slide()]) if (s) reflow(s);
+  fitBackgrounds();
+  if (moved && moved.bg) opts = { ...opts, all: true };
+  const fold = label && label === S.lastLabel && now - S.lastAt < 1000;
+  // (`noUndo`: something the app finishes by itself a moment later, such as
+  // the QR code after Make slides, joins that step instead of taking an undo
+  // of its own, so Undo still undoes what you did last)
+  if (!fold && !opts.noUndo) {
+    S.undo.push(S.base);
+    if (S.undo.length > 150) S.undo.shift();
+  }
+  S.redo = [];
+  S.base = JSON.stringify(S.doc);
+  S.lastLabel = label;
+  S.lastAt = now;
+  dirtyThumbs(opts.all ? null : [slide() && slide().id, ...(opts.slides || [])]);
+  scheduleSave();
+  if (!opts.quiet) refresh();
+  else requestRender();
+}
+
+function restore(json) {
+  const keepSlide = slide() && slide().id;
+  S.doc = JSON.parse(json);
+  S.base = json;
+  const i = S.doc.slides.findIndex((s) => s.id === keepSlide);
+  S.cur = clamp(i >= 0 ? i : S.cur, 0, S.doc.slides.length - 1);
+  if (!selLayer()) S.sel = null;
+  S.lastLabel = '';
+  dirtyThumbs(null);
+  scheduleSave();
+  refresh();
+}
+function undo() {
+  if (!S.undo.length) return toast('Nothing to undo');
+  S.redo.push(S.base);
+  restore(S.undo.pop());
+}
+function redo() {
+  if (!S.redo.length) return toast('Nothing to redo');
+  S.undo.push(S.base);
+  restore(S.redo.pop());
+}
+
+let saveTimer = 0;
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 500);
+}
+async function saveNow() {
+  clearTimeout(saveTimer);
+  if (!S.doc) return;
+  S.doc.updated = Date.now();
+  try {
+    await api('PUT', `/api/doc/${S.doc.id}`, S.doc);
+    if (S.settings.lastDoc !== S.doc.id) saveSettings({ lastDoc: S.doc.id });
+  } catch (e) {
+    toast('Could not save: ' + e.message, 4000);
+  }
+}
+window.addEventListener('pagehide', () => S.doc && saveNow());
+document.addEventListener('visibilitychange', () => document.hidden && S.doc && saveNow());
+
+async function saveSettings(patch) {
+  Object.assign(S.settings, patch);
+  try {
+    await api('PUT', '/api/settings', S.settings);
+  } catch {}
+}
+
+function openDoc(doc) {
+  S.doc = doc;
+  if (!doc.slides || !doc.slides.length) doc.slides = [blankSlide()];
+  migrate(doc);
+  S.base = JSON.stringify(doc);
+  S.undo = [];
+  S.redo = [];
+  S.cur = 0;
+  S.sel = null;
+  S.crop = false;
+  S.inspOpen = false;
+  dirtyThumbs(null);
+  buildStrip();
+  refresh();
+  for (const s of doc.slides) for (const l of s.layers) if (l.kind === 'image') R.ensure(l.asset, loadAsset).catch(() => {});
+}
+
+/* ------------------------------------------------------------------ assets */
+
+const blobs = new Map();
+async function loadAsset(id) {
+  if (blobs.has(id)) return blobs.get(id);
+  const b = await api('GET', `/api/asset/${id}`);
+  blobs.set(id, b);
+  return b;
+}
+const EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/gif': 'gif', 'image/svg+xml': 'svg', 'application/pdf': 'pdf' };
+
+// Store a picture: big photos are brought down to 3240 px on the long edge
+// (three times the slide width), named by a hash of their bytes.
+async function storeAsset(blob) {
+  let b = blob;
+  if (/^image\/(jpeg|png|webp|heic|heif)/.test(blob.type) || !blob.type) {
+    try {
+      const bmp = await createImageBitmap(blob);
+      const big = Math.max(bmp.width, bmp.height);
+      if (big > 3240 || !EXT[blob.type]) {
+        const k = Math.min(1, 3240 / big);
+        const c = document.createElement('canvas');
+        c.width = Math.round(bmp.width * k);
+        c.height = Math.round(bmp.height * k);
+        c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+        const png = blob.type === 'image/png';
+        b = await new Promise((r) => c.toBlob(r, png ? 'image/png' : 'image/jpeg', 0.92));
+        c.width = c.height = 0;
+      }
+      bmp.close && bmp.close();
+    } catch {}
+  }
+  const bytes = new Uint8Array(await b.arrayBuffer());
+  const hash = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+  const id = [...hash.slice(0, 16)].map((x) => x.toString(16).padStart(2, '0')).join('') + '.' + (EXT[b.type] || 'jpg');
+  const typed = new Blob([bytes], { type: b.type || 'image/jpeg' });
+  blobs.set(id, typed);
+  await api('PUT', `/api/asset/${id}`, typed, true);
+  await R.ensure(id, loadAsset);
+  return id;
+}
+
+/* ------------------------------------------------------------------ the stage */
+
+const stage = $('#stage');
+const sctx = stage.getContext('2d');
+const wrap = $('#stage-wrap');
+const overlay = $('#overlay');
+const selbox = $('#selbox');
+
+function fitStage() {
+  const { w: W, h: H } = size();
+  const r = wrap.getBoundingClientRect();
+  const pad = TOUCH ? 14 : 28;
+  const scale = Math.max(0.05, Math.min((r.width - pad * 2) / W, (r.height - pad * 2) / H));
+  const dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const cw = Math.round(W * scale);
+  const ch = Math.round(H * scale);
+  if (stage.width !== Math.round(cw * dpr) || stage.height !== Math.round(ch * dpr)) {
+    stage.width = Math.round(cw * dpr);
+    stage.height = Math.round(ch * dpr);
+  }
+  stage.style.width = cw + 'px';
+  stage.style.height = ch + 'px';
+  S.view = { scale: cw / W, dpr };
+}
+
+let frame = 0;
+function requestRender() {
+  if (frame) return;
+  frame = requestAnimationFrame(() => {
+    frame = 0;
+    renderNow();
+  });
+}
+function renderNow() {
+  if (!S.doc) return;
+  fitStage();
+  R.drawSlide(sctx, S.doc, slide(), S.view.scale * S.view.dpr);
+  drawOverlay();
+  const empty = S.doc.slides.length === 1 && !slide().layers.length;
+  $('#empty-hint').hidden = !empty;
+}
+new ResizeObserver(() => requestRender()).observe(wrap);
+R.onReady = () => {
+  requestRender();
+  dirtyThumbs(null);
+};
+
+// Slide coordinates of a pointer event.
+function slidePoint(e) {
+  const r = stage.getBoundingClientRect();
+  return [(e.clientX - r.left) / S.view.scale, (e.clientY - r.top) / S.view.scale];
+}
+
+let snapLines = [];
+function drawOverlay() {
+  const r = stage.getBoundingClientRect();
+  const wr = wrap.getBoundingClientRect();
+  Object.assign(overlay.style, { left: r.left - wr.left + 'px', top: r.top - wr.top + 'px', width: r.width + 'px', height: r.height + 'px' });
+  const k = S.view.scale;
+  const g = $('#guides');
+  g.replaceChildren();
+  const { w: W, h: H } = size();
+  if (S.guides) {
+    const safe = el('i', 'safe');
+    Object.assign(safe.style, { left: R.SAFE * k + 'px', top: R.SAFE * k + 'px', width: (W - 2 * R.SAFE) * k + 'px', height: (H - 2 * R.SAFE) * k + 'px' });
+    const v = el('i', 'v mid');
+    v.style.left = (W / 2) * k + 'px';
+    const h = el('i', 'h mid');
+    h.style.top = (H / 2) * k + 'px';
+    g.append(safe, v, h);
+  }
+  for (const [dir, at] of snapLines) {
+    const line = el('i', dir);
+    if (dir === 'v') line.style.left = at * k + 'px';
+    else line.style.top = at * k + 'px';
+    g.append(line);
+  }
+  const l = selLayer();
+  if (!l) {
+    selbox.hidden = true;
+    $('#crop-tip').hidden = true;
+    return;
+  }
+  const b = { ...R.bounds(l, theme(), W, H) };
+  b.x -= offsetOf(l);
+  selbox.hidden = false;
+  selbox.className = `k-${l.kind}${S.crop && l.kind === 'image' ? ' crop' : ''}`;
+  Object.assign(selbox.style, {
+    left: b.x * k + 'px',
+    top: b.y * k + 'px',
+    width: b.w * k + 'px',
+    height: b.h * k + 'px',
+    transform: l.rot ? `rotate(${l.rot}deg)` : '',
+  });
+  const tip = $('#crop-tip');
+  tip.hidden = !(S.crop && l.kind === 'image');
+  tip.textContent = TOUCH ? 'Drag to move the picture, pinch to zoom · tap Done' : 'Drag to move the picture, scroll to zoom · C or Esc when done';
+}
+
+/* ------------------------------------------------------------------ gestures */
+
+const pointers = new Map(); // pointerId -> {x, y}
+let gest = null;
+let lastTap = { t: 0, id: null };
+
+wrap.addEventListener('pointerdown', (e) => {
+  if (e.button && e.button !== 0) return;
+  if (e.target.closest && e.target.closest('#empty-hint')) return; // its buttons
+  wrap.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  const l = selLayer();
+  if (pointers.size === 2 && gest && l) {
+    // a second finger: pinch to scale and turn (or zoom the picture in crop mode)
+    const [a, b] = [...pointers.values()];
+    gest = {
+      type: S.crop && l.kind === 'image' ? 'pinch-crop' : 'pinch',
+      d0: Math.hypot(b.x - a.x, b.y - a.y),
+      a0: Math.atan2(b.y - a.y, b.x - a.x),
+      start: JSON.parse(JSON.stringify(l)),
+      moved: true,
+    };
+    return;
+  }
+  if (pointers.size > 1) return;
+  const [x, y] = slidePoint(e);
+  const handle = e.target.closest && e.target.closest('#selbox .h');
+  if (handle && l) {
+    const o = offsetOf(l);
+    gest = { type: handle.dataset.h === 'rot' ? 'rotate' : 'resize', h: handle.dataset.h, x0: x + o, y0: y, start: JSON.parse(JSON.stringify(l)), moved: false, o };
+    e.preventDefault();
+    return;
+  }
+  if (S.crop && l && l.kind === 'image') {
+    gest = { type: 'pan', x0: x, y0: y, start: { px: l.px ?? 0.5, py: l.py ?? 0.5 }, moved: false };
+    return;
+  }
+  const hit = R.layerAt(S.doc, slide(), x, y, S.cur);
+  if (hit && hit.bg && hit.id !== S.sel) {
+    // a background is under everything: a drag over it flips slides (on a
+    // phone), a tap selects it
+    gest = { type: 'empty', x0: x, y0: y, cx: e.clientX, moved: false, bgHit: hit.id };
+  } else if (hit) {
+    if (hit.id !== S.sel) {
+      S.sel = hit.id;
+      S.crop = false;
+      refresh();
+    }
+    gest = { type: 'move', x0: x, y0: y, start: { x: hit.x, y: hit.y }, moved: false, id: hit.id };
+  } else {
+    gest = { type: 'empty', x0: x, y0: y, cx: e.clientX, moved: false };
+  }
+});
+
+wrap.addEventListener('pointermove', (e) => {
+  if (!pointers.has(e.pointerId)) return;
+  pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (!gest) return;
+  const l = selLayer();
+  const [x, y] = slidePoint(e);
+  const { w: W, h: H } = size();
+  const tol = 3 / S.view.scale;
+  if (!gest.moved && gest.x0 !== undefined && Math.hypot(x - gest.x0, y - gest.y0) < tol * 2) return;
+  gest.moved = true;
+  if (gest.type === 'move' && l) {
+    const o = offsetOf(l);
+    let nx = gest.start.x + (x - gest.x0) - o;
+    let ny = gest.start.y + (y - gest.y0);
+    [nx, ny] = snap(l, nx, ny, e.altKey);
+    nx += o;
+    l.x = Math.round(nx);
+    l.y = Math.round(ny);
+    requestRender();
+  } else if (gest.type === 'pan' && l) {
+    const pic = R.picture(l) || R.ready(l.asset);
+    if (!pic) return;
+    const p = R.placement(l, pic.w, pic.h);
+    l.px = clamp(gest.start.px - (x - gest.x0) / p.w, 0, 1);
+    l.py = clamp(gest.start.py - (y - gest.y0) / p.h, 0, 1);
+    clampPan(l);
+    requestRender();
+  } else if (gest.type === 'resize' && l) {
+    resize(l, gest, x + (gest.o || 0), y, e.shiftKey);
+    requestRender();
+  } else if (gest.type === 'rotate' && l) {
+    const b = R.bounds(gest.start, theme(), W, H);
+    const cx = b.x + b.w / 2 - (gest.o || 0);
+    const cy = b.y + b.h / 2;
+    let a = (Math.atan2(y - cy, x - cx) * 180) / Math.PI + 90;
+    a = e.shiftKey ? Math.round(a / 15) * 15 : a;
+    for (const t of [-180, -90, 0, 90, 180]) if (Math.abs(a - t) < 4) a = t;
+    l.rot = Math.round(((a + 540) % 360) - 180);
+    if (l.rot === -180) l.rot = 180;
+    requestRender();
+  } else if ((gest.type === 'pinch' || gest.type === 'pinch-crop') && l && pointers.size >= 2) {
+    const [a, b] = [...pointers.values()];
+    const f = Math.hypot(b.x - a.x, b.y - a.y) / Math.max(1, gest.d0);
+    const turn = ((Math.atan2(b.y - a.y, b.x - a.x) - gest.a0) * 180) / Math.PI;
+    if (gest.type === 'pinch-crop') {
+      l.zoom = clamp((gest.start.zoom || 1) * f, l.fit === 'contain' ? 0.2 : 1, 8);
+      clampPan(l);
+    } else {
+      scaleLayer(l, gest.start, f);
+      if (Math.abs(turn) > 6 || gest.start.rot) l.rot = Math.round((gest.start.rot || 0) + turn);
+    }
+    requestRender();
+  }
+});
+
+function endPointer(e) {
+  if (!pointers.has(e.pointerId)) return;
+  pointers.delete(e.pointerId);
+  if (pointers.size) return;
+  const g = gest;
+  gest = null;
+  snapLines = [];
+  if (!g) return;
+  if (g.moved && g.type !== 'empty') {
+    changed(g.type, { all: !!(selLayer() && selLayer().bg) });
+    return;
+  }
+  if (g.type === 'empty') {
+    // a swipe across an empty part of the slide flips slides (touch)
+    const dx = e.clientX - g.cx;
+    if (TOUCH && Math.abs(dx) > 50) return go(S.cur + (dx < 0 ? 1 : -1));
+    if (g.bgHit && Math.abs(dx) < 10) {
+      S.sel = g.bgHit;
+      S.crop = false;
+      return refresh();
+    }
+    if (S.sel || S.crop) {
+      S.sel = null;
+      S.crop = false;
+      refresh();
+    }
+    return;
+  }
+  // a tap: double-tap edits text or crops a picture
+  const now = Date.now();
+  const l = selLayer();
+  if (l && lastTap.id === l.id && now - lastTap.t < 350) {
+    lastTap = { t: 0, id: null };
+    if (l.kind === 'text') editText();
+    else if (l.kind === 'image') toggleCrop();
+    return;
+  }
+  lastTap = { t: now, id: l && l.id };
+  drawOverlay();
+}
+wrap.addEventListener('pointerup', endPointer);
+wrap.addEventListener('pointercancel', endPointer);
+wrap.addEventListener('lostpointercapture', endPointer);
+
+let wheelTimer = 0;
+wrap.addEventListener(
+  'wheel',
+  (e) => {
+    const l = selLayer();
+    if (!l) return;
+    if (S.crop && l.kind === 'image') {
+      e.preventDefault();
+      l.zoom = clamp((l.zoom || 1) * Math.exp(-e.deltaY * 0.0025), l.fit === 'contain' ? 0.2 : 1, 8);
+      clampPan(l);
+      requestRender();
+      changed('zoom', { quiet: true });
+      clearTimeout(wheelTimer);
+      wheelTimer = setTimeout(() => renderInspector(true), 150); // the zoom slider follows
+    } else if (e.ctrlKey) {
+      // a trackpad pinch
+      e.preventDefault();
+      scaleLayer(l, JSON.parse(JSON.stringify(l)), Math.exp(-e.deltaY * 0.01));
+      requestRender();
+      changed('scale', { quiet: true });
+    }
+  },
+  { passive: false }
+);
+
+
+// Keep a covering picture from showing a gap after zooming out.
+function clampPan(l) {
+  const pic = R.ready(l.asset);
+  if (!pic) return;
+  const turns = ((l.turn || 0) % 4 + 4) % 4;
+  const pw = turns % 2 ? pic.h : pic.w;
+  const ph = turns % 2 ? pic.w : pic.h;
+  const p = R.placement(l, pw, ph);
+  if (p.w > l.w) l.px = clamp(l.px ?? 0.5, l.w / 2 / p.w, 1 - l.w / 2 / p.w);
+  if (p.h > l.h) l.py = clamp(l.py ?? 0.5, l.h / 2 / p.h, 1 - l.h / 2 / p.h);
+}
+
+// Snap a moving layer's edges and centre to the slide's centre lines, its
+// edges and the safe margin. Alt turns snapping off.
+function snap(l, nx, ny, off) {
+  snapLines = [];
+  if (off) return [nx, ny];
+  const { w: W, h: H } = size();
+  const b = R.bounds(l, theme(), W, H);
+  const tol = 7 / S.view.scale;
+  const xs = [0, R.SAFE, W / 2, W - R.SAFE, W];
+  const ys = [0, R.SAFE, H / 2, H - R.SAFE, H];
+  let bx = null;
+  let by = null;
+  for (const [off2, list, axis] of [
+    [[0, b.w / 2, b.w], xs, 'x'],
+    [[0, b.h / 2, b.h], ys, 'y'],
+  ]) {
+    let best = null;
+    for (const o of off2)
+      for (const t of list) {
+        const v = (axis === 'x' ? nx : ny) + o;
+        const d = Math.abs(v - t);
+        if (d < tol && (!best || d < best.d)) best = { d, at: t, o };
+      }
+    if (best) {
+      if (axis === 'x') bx = best;
+      else by = best;
+    }
+  }
+  if (bx) {
+    nx = bx.at - bx.o;
+    snapLines.push(['v', bx.at]);
+  }
+  if (by) {
+    ny = by.at - by.o;
+    snapLines.push(['h', by.at]);
+  }
+  return [nx, ny];
+}
+
+// Scale a layer about its centre by f (from its state at gesture start).
+function scaleLayer(l, s, f) {
+  const { w: W, h: H } = size();
+  const b = R.bounds(s, theme(), W, H);
+  const cx = b.x + b.w / 2;
+  const cy = b.y + b.h / 2;
+  if (l.kind === 'image') {
+    l.w = Math.max(40, Math.round(s.w * f));
+    l.h = Math.max(40, Math.round(s.h * f));
+    l.x = Math.round(cx - l.w / 2);
+    l.y = Math.round(cy - l.h / 2);
+  } else if (l.kind === 'text') {
+    const st = R.textStyle(s, theme());
+    l.size = clamp(Math.round(st.size * f), 10, 400);
+    l.w = Math.max(60, Math.round(s.w * f));
+    l.x = Math.round(cx - l.w / 2);
+    const nb = R.bounds(l, theme(), W, H);
+    l.y = Math.round(cy - nb.h / 2);
+  } else if (l.kind === 'logo') {
+    l.h = clamp(Math.round(s.h * f), 30, 1200);
+    l.x = Math.round(cx - (l.h * R.LOGO_RATIO) / 2);
+    l.y = Math.round(cy - l.h / 2);
+  }
+}
+
+// Drag a handle. Corners keep the proportions (Shift frees them for
+// pictures); edges change one side (a picture's frame crops it).
+function resize(l, g, x, y, free) {
+  const s = g.start;
+  const { w: W, h: H } = size();
+  const b = R.bounds(s, theme(), W, H);
+  // work in the layer's unrotated frame
+  const [lx, ly] = R.toLocal(s, b, x, y);
+  const [ox, oy] = R.toLocal(s, b, g.x0, g.y0);
+  const dx = lx - ox;
+  const dy = ly - oy;
+  const h = g.h;
+  let nx = b.x;
+  let ny = b.y;
+  let nw = b.w;
+  let nh = b.h;
+  if (h.includes('e')) nw = b.w + dx;
+  if (h.includes('w')) {
+    nw = b.w - dx;
+    nx = b.x + dx;
+  }
+  if (h.includes('s')) nh = b.h + dy;
+  if (h.includes('n')) {
+    nh = b.h - dy;
+    ny = b.y + dy;
+  }
+  const corner = h.length === 2;
+  if (corner && (l.kind !== 'image' || !free)) {
+    const f = Math.max(nw / b.w, nh / b.h, 0.05);
+    nw = b.w * f;
+    nh = b.h * f;
+    if (h.includes('w')) nx = b.x + b.w - nw;
+    if (h.includes('n')) ny = b.y + b.h - nh;
+  }
+  nw = Math.max(30, nw);
+  nh = Math.max(30, nh);
+  if (l.kind === 'image') {
+    Object.assign(l, { x: Math.round(nx), y: Math.round(ny), w: Math.round(nw), h: Math.round(nh) });
+    clampPan(l);
+  } else if (l.kind === 'text') {
+    if (corner) {
+      const f = nw / b.w;
+      l.size = clamp(Math.round(R.textStyle(s, theme()).size * f), 10, 400);
+    }
+    Object.assign(l, { x: Math.round(nx), w: Math.round(nw) });
+    if (h.includes('n')) l.y = Math.round(b.y + b.h - R.bounds(l, theme(), W, H).h);
+  } else if (l.kind === 'logo') {
+    Object.assign(l, { x: Math.round(nx), y: Math.round(ny), h: Math.round(nh) });
+  }
+}
+
+/* ------------------------------------------------------------------ slides */
+
+function go(i) {
+  if (!S.doc) return;
+  const n = clamp(i, 0, S.doc.slides.length - 1);
+  if (n === S.cur) return;
+  S.cur = n;
+  S.sel = null;
+  S.crop = false;
+  refresh();
+  const t = $$('.thumb')[n];
+  if (t) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+}
+
+function addSlide(after = S.cur, s = blankSlide()) {
+  S.doc.slides.splice(after + 1, 0, s);
+  S.cur = after + 1;
+  S.sel = null;
+  buildStrip();
+  changed('add slide');
+  return s;
+}
+function duplicateSlide() {
+  const s = JSON.parse(JSON.stringify(slide()));
+  s.id = uid();
+  for (const l of s.layers) {
+    l.id = uid();
+    delete l.span;
+  }
+  addSlide(S.cur, s);
+  toast('Slide duplicated');
+}
+function deleteSlide() {
+  if (S.doc.slides.length === 1) {
+    S.doc.slides[0] = blankSlide();
+  } else S.doc.slides.splice(S.cur, 1);
+  S.cur = clamp(S.cur, 0, S.doc.slides.length - 1);
+  S.sel = null;
+  buildStrip();
+  changed('delete slide');
+  toast(`Slide deleted · ${MAC ? '⌘' : 'Ctrl+'}Z to undo`);
+}
+function moveSlide(d) {
+  const j = S.cur + d;
+  if (j < 0 || j >= S.doc.slides.length) return;
+  const [s] = S.doc.slides.splice(S.cur, 1);
+  S.doc.slides.splice(j, 0, s);
+  S.cur = j;
+  buildStrip();
+  changed('move slide', { all: true });
+}
+
+/* ------------------------------------------------------------------ layers */
+
+function addLayer(l, { below } = {}) {
+  l.id = l.id || uid();
+  if (below) slide().layers.unshift(l);
+  else slide().layers.push(l);
+  S.sel = l.id;
+  S.crop = false;
+  changed('add ' + l.kind);
+  return l;
+}
+
+function addText(role = 'body', text) {
+  const { w: W, h: H } = size();
+  const t = theme();
+  const defaults = { eyebrow: 'USMCC Featured Paper', title: 'A headline', body: 'Say what the work found, in a sentence or two.', caption: 'Authors · arXiv:0000.00000' };
+  const l = { kind: 'text', role, text: text ?? defaults[role], x: R.SAFE, w: W - 2 * R.SAFE, y: 0 };
+  const h = R.bounds(l, t, W, H).h;
+  l.y = Math.round((H - h) / 2);
+  addLayer(l);
+  if (text === undefined) editText(true);
+  return l;
+}
+
+function addLogo() {
+  const { w: W } = size();
+  const h = 150;
+  addLayer({ kind: 'logo', h, x: Math.round(W - R.SAFE - h * R.LOGO_RATIO), y: R.SAFE });
+}
+
+// How a new picture goes on a slide: photos fill it (full bleed), plots and
+// PDF pages are fitted inside the margins on a card.
+function placePicture(id, opts = {}) {
+  const pic = R.ready(id);
+  const { w: W, h: H } = size();
+  const photo = opts.photo ?? /\.(jpg|webp)$/.test(id);
+  let l;
+  if (photo) {
+    l = { kind: 'image', asset: id, x: 0, y: 0, w: W, h: H, fit: 'cover', zoom: 1, px: 0.5, py: 0.5 };
+    return addLayer(l, { below: true });
+  }
+  const ar = pic ? pic.w / pic.h : 4 / 3;
+  const s = slide();
+  // a plot on its own slide becomes a figure slide: the theme light, a
+  // "Figure n" label, the logo, the picture on a card and its caption
+  const own = !s.layers.length;
+  let top = R.SAFE;
+  let bottom = H - R.SAFE;
+  let capLayer = null;
+  let capH = 0;
+  if (own && opts.figure !== false) {
+    const t = theme();
+    const n = S.doc.slides.filter((x) => x.layers.some((m) => m.fig)).length + 1;
+    const lh = 92;
+    s.layers.push({ id: uid(), kind: 'logo', h: lh, x: Math.round(W - R.SAFE - lh * R.LOGO_RATIO), y: R.SAFE - 14 });
+    const eb = { id: uid(), kind: 'text', role: 'eyebrow', text: `Figure ${n}`, x: R.SAFE, w: W - 2 * R.SAFE - lh, y: R.SAFE + 10 };
+    s.layers.push(eb);
+    top = R.SAFE + lh + 30;
+    const cap = shortCaption(opts.caption || '');
+    if (cap) {
+      capLayer = { id: uid(), kind: 'text', role: 'body', k: 0.86, text: cap, x: R.SAFE, w: W - 2 * R.SAFE, y: 0 };
+      capH = R.bounds(capLayer, t, W, H).h;
+      bottom = H - R.SAFE - capH - 44;
+    }
+  }
+  const pad = 22;
+  const maxW = W - 2 * R.SAFE - 2 * pad;
+  const maxH = Math.max(200, bottom - top - 2 * pad);
+  let w = maxW;
+  let h = w / ar;
+  if (h > maxH) {
+    h = maxH;
+    w = h * ar;
+  }
+  // the picture and its caption, centred together in the space below the label
+  const group = h + 2 * pad + (capLayer ? 44 + capH : 0);
+  const gy = top + Math.max(0, (H - R.SAFE - top - group) / 2);
+  if (capLayer) {
+    capLayer.y = Math.round(gy + h + 2 * pad + 44);
+    s.layers.push(capLayer);
+  }
+  const y = own ? gy + pad : (H - h) / 2;
+  // a plot or diagram on white joins the slide (look "auto"); a rendering or
+  // a photo-like figure keeps a white card
+  const plot = paperWhite(pic) > 0.55;
+  l = { kind: 'image', asset: id, fig: own || undefined, x: Math.round((W - w) / 2), y: Math.round(y), w: Math.round(w), h: Math.round(h), fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 8, card: plot ? null : { color: '#ffffff', pad }, look: plot ? 'auto' : undefined };
+  // the picture goes above the theme light, below the words
+  const i = s.layers.findIndex((m) => m.kind === 'text' || m.kind === 'logo');
+  l.id = uid();
+  if (i < 0) s.layers.push(l);
+  else s.layers.splice(i, 0, l);
+  S.sel = l.id;
+  S.crop = false;
+  changed('add image');
+  return l;
+}
+
+// How much of a picture is near-white paper (0…1), from a small copy.
+function paperWhite(pic) {
+  if (!pic) return 0;
+  try {
+    const c = document.createElement('canvas');
+    c.width = c.height = 48;
+    const x = c.getContext('2d', { willReadFrequently: true });
+    x.drawImage(pic.bmp, 0, 0, 48, 48);
+    const d = x.getImageData(0, 0, 48, 48).data;
+    let n = 0;
+    for (let i = 0; i < d.length; i += 4) if (d[i] > 232 && d[i + 1] > 232 && d[i + 2] > 232) n++;
+    return n / (d.length / 4);
+  } catch {
+    return 0;
+  }
+}
+
+// A figure's caption, cut to its first sentence (or two short ones).
+function shortCaption(text) {
+  const t = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!t) return '';
+  const parts = sentences(t);
+  let out = '';
+  for (const p of parts) {
+    if (out && (out + ' ' + p).length > 150) break;
+    out = out ? out + ' ' + p : p;
+    if (out.length > 90) break;
+  }
+  return out.length > 190 ? out.slice(0, 187).replace(/\s+\S*$/, '') + '…' : out;
+}
+
+// Sentences, without breaking at "U.S.", "e.g.", "et al.", "Fig. 2" or
+// an initial ("S. Smith").
+const ABBREV = /(?:^|\s)(?:[A-Z]|[A-Z]\.[A-Z]|e\.g|i\.e|et al|etc|vs|Fig|Figs|Eq|Eqs|Ref|Refs|Sec|No|approx|ca|cf|Dr|Prof|St|Jr|Sr)\.$/;
+function sentences(t) {
+  const out = [];
+  let start = 0;
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    if (c !== '.' && c !== '!' && c !== '?') continue;
+    const next = t.slice(i + 1, i + 3);
+    if (!/^\s[A-Z0-9“"(]/.test(next) && i !== t.length - 1) continue;
+    const head = t.slice(start, i + 1);
+    if (c === '.' && ABBREV.test(head)) continue;
+    out.push(head.trim());
+    start = i + 1;
+  }
+  if (t.slice(start).trim()) out.push(t.slice(start).trim());
+  return out;
+}
+
+function slideHasPicture(s) {
+  return s.layers.some((l) => l.kind === 'image');
+}
+
+// Pictures (Blobs) onto slides, each on its own. The first can use this
+// slide: a photo if the slide has no picture yet (it goes behind the words),
+// a plot only if the slide is empty.
+async function addPictures(list, opts = {}) {
+  let first = true;
+  let n = 0;
+  for (const item of list) {
+    const blob = item.blob || item;
+    try {
+      const id = await storeAsset(blob);
+      const photo = opts.photo ?? item.photo ?? /\.(jpg|webp)$/.test(id);
+      const s = slide();
+      const fits = photo ? !slideHasPicture(s) : !s.layers.length;
+      if (!(first && fits)) addSlide(S.cur);
+      first = false;
+      placePicture(id, { photo, caption: item.caption });
+      n++;
+    } catch (e) {
+      toast(`Could not add ${item.name || 'that file'}: ${e.message}`, 4000);
+    }
+  }
+  if (n) buildStrip();
+  return n;
+}
+
+const isPdf = (f) => f.type === 'application/pdf' || /\.pdf$/i.test(f.name || '');
+const isArchive = (f) => /\.(tar\.gz|tgz|tar|gz)$/i.test(f.name || '') || /gzip|x-tar/.test(f.type);
+const isImage = (f) => /^image\//.test(f.type) || /\.(jpe?g|png|gif|webp|svg|heic)$/i.test(f.name || '');
+
+async function addFiles(files) {
+  files = [...files];
+  const pics = files.filter((f) => isImage(f) && !isPdf(f));
+  if (pics.length) {
+    toast(pics.length === 1 ? 'Adding the picture…' : `Adding ${pics.length} pictures…`);
+    const n = await addPictures(pics.map((f) => ({ blob: f, name: f.name, photo: /jpe?g|heic|webp/i.test(f.type || f.name) })));
+    if (n) toast(n === 1 ? 'Added' : `Added ${n} pictures, one per slide`);
+  }
+  for (const f of files.filter(isPdf)) await Sheets.pdf(f);
+  for (const f of files.filter((f) => isArchive(f) && !isPdf(f))) await Sheets.archive(f);
+  if (!files.some((f) => isImage(f) || isPdf(f) || isArchive(f))) toast('Those files are not pictures, PDFs or a paper’s source (.tar.gz)', 4000);
+}
+
+function pickFiles(opts = {}) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.multiple = true;
+  input.accept = 'image/*,application/pdf,.pdf,.svg,.tar,.gz,.tgz';
+  input.hidden = true;
+  input.onchange = () => {
+    const files = [...input.files];
+    input.remove();
+    if (files.length && opts.background) addBackground(files[0]);
+    else if (files.length) addFiles(files);
+  };
+  document.body.append(input);
+  input.click();
+}
+
+// A picture (Blob) straight in as the carousel's background.
+async function addBackground(blob, opts = {}) {
+  try {
+    const id = await storeAsset(blob);
+    const { w: W, h: H } = size();
+    const photo = opts.photo ?? /\.(jpg|webp)$/.test(id);
+    const l = { id: uid(), kind: 'image', asset: id, bg: true, all: true, x: 0, y: 0, w: W * S.doc.slides.length, h: H, fit: 'cover', zoom: 1, px: opts.px ?? 0.5, py: 0.5, opacity: photo ? 1 : bgStrength(), treat: photo ? 'natural' : undefined, blur: 0 };
+    S.doc.bg = (S.doc.bg || []).filter((m) => !opts.replace || !m.auto);
+    if (opts.auto) l.auto = true;
+    if (!photo) plotFrame(l, opts.at ?? 0);
+    S.doc.bg.push(l);
+    changed('background', { all: true, noUndo: !!opts.auto });
+    return l;
+  } catch (e) {
+    toast('Could not use that picture: ' + e.message, 4000);
+  }
+}
+
+function deleteLayer() {
+  const l = selLayer();
+  if (!l) return;
+  slide().layers = slide().layers.filter((m) => m !== l);
+  if (l.bg) S.doc.bg = S.doc.bg.filter((m) => m !== l);
+  S.sel = null;
+  S.crop = false;
+  changed('delete layer', { all: !!l.bg });
+}
+function duplicateLayer() {
+  const l = selLayer();
+  if (!l) return;
+  if (l.bg) return toast('One background is enough: change it instead');
+  const c = JSON.parse(JSON.stringify(l));
+  c.id = uid();
+  c.x += 24;
+  c.y += 24;
+  slide().layers.splice(slide().layers.indexOf(l) + 1, 0, c);
+  S.sel = c.id;
+  changed('duplicate layer');
+}
+function restack(d) {
+  const l = selLayer();
+  if (!l) return;
+  const ls = slide().layers;
+  const i = ls.indexOf(l);
+  const j = clamp(i + d, 0, ls.length - 1);
+  if (i === j) return;
+  ls.splice(i, 1);
+  ls.splice(j, 0, l);
+  changed('restack');
+  toast(d > 0 ? 'Brought forward' : 'Sent backward');
+}
+
+function toggleCrop() {
+  const l = selLayer();
+  if (!l || l.kind !== 'image') return toast('Select a picture to crop it');
+  S.crop = !S.crop;
+  refresh();
+}
+function toggleFill() {
+  const l = selLayer();
+  if (!l || l.kind !== 'image') return toast('Select a picture first');
+  l.fit = l.fit === 'contain' ? 'cover' : 'contain';
+  l.zoom = 1;
+  l.px = l.py = 0.5;
+  changed('fit', { all: !!l.bg });
+  toast(l.fit === 'cover' ? 'Fills its frame' : 'Fits inside its frame');
+}
+function fillSlide() {
+  const l = selLayer();
+  if (!l || l.kind !== 'image') return;
+  const { w: W, h: H } = size();
+  Object.assign(l, { x: 0, y: 0, w: W, h: H, fit: 'cover', zoom: 1, px: 0.5, py: 0.5, rot: 0, radius: 0, card: null });
+  const ls = slide().layers;
+  ls.splice(ls.indexOf(l), 1);
+  ls.unshift(l);
+  changed('fill slide');
+}
+function rotate90() {
+  const l = selLayer();
+  if (!l || l.kind !== 'image') return toast('Select a picture to turn it');
+  l.turn = ((l.turn || 0) + 1) % 4;
+  const pic = R.ready(l.asset);
+  if (pic && l.fit === 'contain') {
+    // a fitted picture: turn the frame with it
+    const cx = l.x + l.w / 2;
+    const cy = l.y + l.h / 2;
+    [l.w, l.h] = [l.h, l.w];
+    l.x = Math.round(cx - l.w / 2);
+    l.y = Math.round(cy - l.h / 2);
+  }
+  changed('turn', { all: !!l.bg });
+}
+
+// A picture as the carousel's background: behind the words, and across as
+// many slides as you like ("all" stretches as slides are added), so it
+// joins up when the carousel is swiped. Plots get the theme's treatment
+// (lines glowing on dark slides, printed into light ones); photos stay as
+// they are. Again (X) puts it back on the slide.
+function toBackground(l = selLayer(), span = 'all') {
+  if (!l || l.kind !== 'image') return toast('Select a picture to use it as the background');
+  const { w: W, h: H } = size();
+  if (l.bg) {
+    S.doc.bg = S.doc.bg.filter((m) => m !== l);
+    const back = { ...l, bg: undefined, all: undefined, treat: undefined, blur: undefined, x: 0, y: 0, w: W, h: H, opacity: 1 };
+    delete back.bg;
+    delete back.all;
+    slide().layers.unshift(back);
+    S.sel = back.id;
+    changed('unbackground', { all: true });
+    return toast('Back on this slide');
+  }
+  slide().layers = slide().layers.filter((m) => m !== l);
+  const photo = /\.(jpg|webp)$/.test(l.asset) && !l.fig;
+  const b = { ...l, bg: true, rot: 0, radius: 0, card: null, fit: 'cover', zoom: 1, px: 0.5, py: 0.5, opacity: photo ? 1 : bgStrength(), treat: photo ? 'natural' : undefined, blur: 0 };
+  delete b.fig;
+  S.doc.bg = S.doc.bg || [];
+  S.doc.bg.push(b);
+  if (photo) setSpan(b, span);
+  else plotFrame(b);
+  S.sel = b.id;
+  changed('background', { all: true });
+  toast(span === 'all' ? 'Now the background, across every slide' : 'Now the background');
+}
+// Where a plot goes as a background: its own proportions, the full height,
+// starting a third into this slide so it runs on across the seam into the
+// next (a photo instead covers every slide).
+function plotFrame(l, at = S.cur) {
+  const { w: W, h: H } = size();
+  const pic = R.ready(l.asset);
+  const ar = pic ? pic.w / pic.h : 4 / 3;
+  const n = S.doc.slides.length;
+  const w = Math.min(n * W, Math.max(W * 1.4, H * ar * 1.1));
+  const x = Math.max(0, Math.min(at * W + W * 0.35, n * W - w));
+  Object.assign(l, { x: Math.round(x), y: 0, w: Math.round(w), h: H, all: undefined, fit: 'cover', zoom: 1, px: 0.5, py: 0.5 });
+}
+
+// A plot behind words is texture: faint, more so on light slides.
+const bgStrength = () => (theme().dark ? 0.3 : 0.22);
+
+function setSpan(l, span) {
+  const { w: W, h: H } = size();
+  const n = S.doc.slides.length;
+  l.all = span === 'all' || undefined;
+  const k = span === 'all' ? n : span;
+  const start = span === 'all' ? 0 : Math.min(S.cur, Math.max(0, n - k));
+  Object.assign(l, { x: start * W, y: 0, w: k * W, h: H });
+  clampPan(l);
+}
+// backgrounds set to "all" follow the number of slides and the size
+function fitBackgrounds() {
+  const { w: W, h: H } = size();
+  for (const l of S.doc.bg || []) if (l.all) Object.assign(l, { x: 0, y: 0, w: W * S.doc.slides.length, h: H });
+}
+
+/* ------------------------------------------------------------------ the strip */
+
+const thumbs = new Map(); // slide id -> canvas
+let dirty = new Set();
+let thumbTimer = 0;
+function dirtyThumbs(ids) {
+  if (!S.doc) return;
+  if (ids === null) for (const s of S.doc.slides) dirty.add(s.id);
+  else for (const id of ids) if (id) dirty.add(id);
+  clearTimeout(thumbTimer);
+  thumbTimer = setTimeout(drawThumbs, 180);
+}
+// One thumbnail per idle moment, so a batch of them (after a theme change
+// or when fonts arrive) never holds up a key press.
+const idle = window.requestIdleCallback ? (fn) => requestIdleCallback(fn, { timeout: 400 }) : (fn) => setTimeout(fn, 16);
+let thumbJob = false;
+function drawThumbs() {
+  if (thumbJob || !S.doc) return;
+  thumbJob = true;
+  idle(() => {
+    thumbJob = false;
+    const s = S.doc.slides.find((x) => dirty.has(x.id) && thumbs.get(x.id));
+    if (!s) return;
+    drawThumb(s);
+    dirty.delete(s.id);
+    if (S.doc.slides.some((x) => dirty.has(x.id))) drawThumbs();
+  });
+}
+function drawThumb(s) {
+  const { w: W, h: H } = size();
+  const ch = TOUCH ? 48 : 72;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const c = thumbs.get(s.id);
+  const k = (ch * dpr) / H;
+  c.width = Math.round(W * k);
+  c.height = Math.round(H * k);
+  c.style.height = ch + 'px';
+  c.style.width = Math.round((W * ch) / H) + 'px';
+  R.drawSlide(c.getContext('2d'), S.doc, s, k);
+}
+
+function buildStrip() {
+  const strip = $('#strip');
+  strip.replaceChildren();
+  S.doc.slides.forEach((s, i) => {
+    const b = el('button', 'thumb' + (i === S.cur ? ' on' : ''));
+    b.title = `Slide ${i + 1}`;
+    let c = thumbs.get(s.id);
+    if (!c) {
+      c = document.createElement('canvas');
+      thumbs.set(s.id, c);
+      dirty.add(s.id);
+    }
+    b.append(c, el('span', 'n', String(i + 1)));
+    b.onclick = () => {
+      if (b.dataset.dragged) return;
+      go(i);
+    };
+    b.addEventListener('pointerdown', (e) => thumbDrag(e, i, b));
+    strip.append(b);
+  });
+  const add = el('button', 'add-slide', '+');
+  add.title = 'New slide (N)';
+  add.onclick = () => addSlide();
+  strip.append(add);
+  dirtyThumbs([]);
+  drawThumbs();
+}
+
+// Drag a slide in the strip to move it (mouse; on touch, the slide panel's
+// ← → buttons).
+function thumbDrag(e, i, b) {
+  if (e.pointerType !== 'mouse' || e.button) return;
+  const x0 = e.clientX;
+  let target = null;
+  const move = (ev) => {
+    if (!b.dataset.dragged && Math.abs(ev.clientX - x0) < 8) return;
+    b.dataset.dragged = '1';
+    b.classList.add('drag');
+    $$('.thumb').forEach((t) => t.classList.remove('insert-before', 'insert-after'));
+    const ts = $$('.thumb');
+    target = ts.length - 1;
+    for (let j = 0; j < ts.length; j++) {
+      const r = ts[j].getBoundingClientRect();
+      if (ev.clientX < r.left + r.width / 2) {
+        target = j;
+        ts[j].classList.add('insert-before');
+        break;
+      }
+    }
+    if (target === ts.length - 1 && ev.clientX > ts[ts.length - 1].getBoundingClientRect().right - ts[ts.length - 1].offsetWidth / 2) {
+      target = ts.length;
+      ts[ts.length - 1].classList.add('insert-after');
+    }
+  };
+  const up = () => {
+    window.removeEventListener('pointermove', move);
+    window.removeEventListener('pointerup', up);
+    if (b.dataset.dragged && target !== null) {
+      const j = target > i ? target - 1 : target;
+      if (j !== i) {
+        const [s] = S.doc.slides.splice(i, 1);
+        S.doc.slides.splice(j, 0, s);
+        S.cur = j;
+        changed('move slide', { all: true });
+      }
+      setTimeout(buildStrip, 0);
+    }
+  };
+  window.addEventListener('pointermove', move);
+  window.addEventListener('pointerup', up);
+}
+
+/* ------------------------------------------------------------------ the inspector */
+
+const insp = $('#insp');
+
+function ctlRow(label, input, val) {
+  const r = el('div', 'row');
+  const l = el('label', '', label);
+  r.append(l, input, val || el('span'));
+  return r;
+}
+// A slider; double-click resets it.
+function slider(label, get, set, { min, max, step = 1, def = 0, fmt = (v) => String(Math.round(v)), lbl } = {}) {
+  const input = el('input');
+  input.type = 'range';
+  input.min = min;
+  input.max = max;
+  input.step = step;
+  input.value = get();
+  const val = el('span', 'val', fmt(get()));
+  const apply = (v) => {
+    set(v);
+    val.textContent = fmt(v);
+    requestRender();
+    changed(lbl || label, { quiet: true });
+  };
+  input.oninput = () => apply(parseFloat(input.value));
+  input.ondblclick = () => {
+    input.value = def;
+    apply(def);
+  };
+  input.title = 'Double-click to reset';
+  return ctlRow(label, input, val);
+}
+function seg(options, value, onPick) {
+  const s = el('div', 'seg');
+  for (const [v, label, title] of options) {
+    const b = el('button', v === value ? 'on' : '', label);
+    if (title) b.title = title;
+    b.onclick = () => onPick(v);
+    s.append(b);
+  }
+  return s;
+}
+function grp(label, ...kids) {
+  const g = el('div', 'grp');
+  if (label) g.append(el('span', 'lbl', label));
+  g.append(...kids);
+  return g;
+}
+function actBtn(label, key, fn, on) {
+  const b = el('button', 'btn' + (on ? ' on' : ''));
+  b.textContent = label;
+  if (key && !TOUCH) {
+    const k = el('kbd', '', key);
+    b.append(k);
+  }
+  b.onclick = fn;
+  return b;
+}
+function swatches(colors, current, onPick, { custom = true } = {}) {
+  const w = el('div', 'sw');
+  const seen = new Set();
+  for (const [c, title] of colors) {
+    if (seen.has(String(c).toLowerCase())) continue;
+    seen.add(String(c).toLowerCase());
+    const b = el('button', c && current && c.toLowerCase() === current.toLowerCase() ? 'on' : '');
+    b.style.background = c;
+    b.title = title || c;
+    b.onclick = () => onPick(c);
+    w.append(b);
+  }
+  if (custom) {
+    const i = el('input');
+    i.type = 'color';
+    i.value = /^#[0-9a-f]{6}$/i.test(current || '') ? current : '#ffffff';
+    i.title = 'Any colour';
+    i.oninput = () => onPick(i.value);
+    w.append(i);
+  }
+  return w;
+}
+
+let inspFor = '';
+function renderInspector(force) {
+  const l = selLayer();
+  const key = `${S.cur}:${l ? l.id : '-'}:${S.crop}:${S.doc.theme}:${S.inspOpen}`;
+  if (!force && key === inspFor && insp.contains(document.activeElement) && document.activeElement !== document.body) return;
+  inspFor = key;
+  insp.replaceChildren();
+  const head = el('div', 'ins-head');
+  const title = el('h3', '', l ? (l.bg ? 'Background' : { image: 'Picture', text: 'Text', logo: 'Logo' }[l.kind]) : `Slide ${S.cur + 1}`);
+  head.append(title);
+  if (PHONE()) {
+    // phones: a one-line bar with the most used action; the rest on demand
+    // (nothing at all while the carousel is still empty: the start screen)
+    const empty = S.doc.slides.length === 1 && !slide().layers.length;
+    insp.hidden = empty;
+    insp.classList.toggle('collapsed', !S.inspOpen);
+    const quick = el('span', 'quick');
+    if (l && l.kind === 'text') quick.append(actBtn('Edit', '', () => editText()));
+    if (!l && (S.doc.bg || []).length) quick.append(actBtn('Soften', '', soften), actBtn('Background', '', () => {
+      S.sel = S.doc.bg[S.doc.bg.length - 1].id;
+      refresh();
+    }));
+    if (l && l.bg) quick.append(actBtn('Soften', '', soften), actBtn(S.crop ? 'Done' : 'Move', '', toggleCrop, S.crop));
+    else if (l && l.kind === 'image') quick.append(actBtn(S.crop ? 'Done' : 'Crop', '', toggleCrop, S.crop), actBtn('Background', '', () => toBackground(l)));
+    if (l) quick.append(actBtn('Delete', '', deleteLayer));
+    const t = el('button', 'link more', S.inspOpen ? 'Less' : 'More');
+    t.onclick = () => {
+      S.inspOpen = !S.inspOpen;
+      renderInspector(true);
+      requestRender();
+    };
+    quick.append(t);
+    head.append(quick);
+  } else {
+    insp.hidden = false;
+    insp.classList.remove('collapsed');
+  }
+  insp.append(head);
+  if (!l) slidePanel();
+  else if (l.bg) backgroundPanel(l);
+  else if (l.kind === 'image') imagePanel(l);
+  else if (l.kind === 'text') textPanel(l);
+  else if (l.kind === 'logo') logoPanel(l);
+}
+
+function slidePanel() {
+  const s = slide();
+  const t = theme();
+  insp.append(
+    grp(
+      'Slide colour',
+      swatches(
+        [
+          [t.base, 'Theme'],
+          ['#ffffff', 'White'],
+          ['#000000', 'Black'],
+          ['#0a1428', 'Navy'],
+          ['#f5f0e8', 'Paper'],
+        ],
+        s.bg || t.base,
+        (c) => {
+          s.bg = c === t.base ? null : c;
+          changed('bg');
+          renderInspector(true);
+        }
+      )
+    )
+  );
+  if ((S.doc.bg || []).length) {
+    const g = softenGroup(S.doc.bg, 'Background');
+    const a = el('div', 'acts');
+    a.append(
+      actBtn('Edit the background', '', () => {
+        S.sel = S.doc.bg[S.doc.bg.length - 1].id;
+        S.inspOpen = true;
+        refresh();
+      })
+    );
+    g.append(a);
+    insp.append(g);
+  }
+  insp.append(
+    grp(
+      'Add',
+      el('div', 'acts'),
+    )
+  );
+  const acts = insp.lastChild.lastChild;
+  acts.append(
+    actBtn('Pictures', 'A', pickFiles),
+    actBtn('Text', 'T', () => addText('body')),
+    actBtn('Title', '', () => addText('title')),
+    actBtn('Logo', 'L', addLogo),
+    actBtn('Background', '', () => pickFiles({ background: true }))
+  );
+  const sl = el('div', 'acts');
+  sl.append(
+    actBtn('New', 'N', () => addSlide()),
+    actBtn('Duplicate', 'D', duplicateSlide),
+    actBtn('←', '{', () => moveSlide(-1)),
+    actBtn('→', '}', () => moveSlide(1)),
+    actBtn('Delete', MAC ? '⌘⌫' : 'Ctrl+⌫', deleteSlide)
+  );
+  insp.append(grp('Slide', sl));
+  if (s.layers.length || (S.doc.bg || []).length) {
+    const list = el('div', 'layers');
+    for (const l of [...s.layers, ...(S.doc.bg || [])].reverse()) {
+      const b = el('button');
+      const name = l.bg ? 'Background (all slides)' : l.kind === 'text' ? l.text.split('\n')[0].slice(0, 40) || '(empty text)' : { image: l.fit === 'cover' ? 'Photo' : 'Picture', logo: 'Logo' }[l.kind];
+      b.append(el('span', '', name), el('span', 'kind', l.kind === 'text' ? l.role : ''));
+      b.onclick = () => {
+        S.sel = l.id;
+        refresh();
+      };
+      list.append(b);
+    }
+    insp.append(grp('Layers, top first', list));
+  }
+}
+
+function imagePanel(l) {
+  const sync = () => {};
+  const a = (l.adj = l.adj || {});
+  const frame = el('div', 'acts');
+  frame.append(
+    actBtn(S.crop ? 'Done cropping' : 'Crop', 'C', toggleCrop, S.crop),
+    actBtn(l.fit === 'contain' ? 'Fill frame' : 'Fit in frame', 'B', toggleFill),
+    actBtn('Fill slide', '', fillSlide),
+    actBtn('Turn 90°', 'R', rotate90),
+    actBtn('Mirror', '', () => {
+      l.flip = !l.flip;
+      sync();
+      changed('mirror');
+    }),
+    actBtn('Use as background', 'X', () => toBackground(l))
+  );
+  insp.append(grp('Frame', frame));
+  insp.append(
+    grp(
+      '',
+      slider('Zoom', () => l.zoom || 1, (v) => {
+        l.zoom = v;
+        clampPan(l);
+        sync();
+      }, { min: l.fit === 'contain' ? 0.2 : 1, max: 5, step: 0.01, def: 1, fmt: (v) => Math.round(v * 100) + '%' }),
+      slider('Corners', () => l.radius || 0, (v) => {
+        l.radius = v;
+        sync();
+      }, { min: 0, max: 120 }),
+      slider('Opacity', () => (l.opacity ?? 1) * 100, (v) => {
+        l.opacity = v / 100;
+        sync();
+      }, { min: 0, max: 100, def: 100, fmt: (v) => Math.round(v) + '%' }),
+      slider('Angle', () => l.rot || 0, (v) => {
+        l.rot = v;
+      }, { min: -180, max: 180, def: 0, fmt: (v) => Math.round(v) + '°' })
+    )
+  );
+  const adjust = (k, label) =>
+    slider(label, () => a[k] || 0, (v) => {
+      a[k] = v;
+      sync();
+    }, { min: -100, max: 100, def: 0, lbl: 'adj-' + k });
+  if (l.fit === 'cover') insp.append(softenGroup([l], 'Behind the words'));
+  insp.append(grp('Adjust', adjust('b', 'Brightness'), adjust('c', 'Contrast'), adjust('s', 'Saturation'), adjust('t', 'Warmth')));
+  const look = l.look || (l.card ? 'card' : 'natural');
+  const lookGrp = grp(
+    'Look',
+    seg(
+      [
+        ['auto', 'Auto', 'Plots on white: glowing on dark themes, printed on light ones'],
+        ['card', 'On a card'],
+        ['ink', 'Glow'],
+        ['print', 'Print'],
+        ['natural', 'As is'],
+      ],
+      look,
+      (v) => {
+        l.look = ['auto', 'ink', 'print'].includes(v) ? v : undefined;
+        l.card = v === 'card' ? { color: '#ffffff', pad: (l.card && l.card.pad) || 20 } : null;
+        changed('look');
+        renderInspector(true);
+      }
+    )
+  );
+  insp.append(lookGrp);
+  const card = el('div', 'acts');
+  card.append(
+    seg(
+      [
+        ['#ffffff', 'White'],
+        ['#000000', 'Black'],
+      ],
+      l.card ? l.card.color : '#ffffff',
+      (v) => {
+        l.card = { color: v, pad: l.card ? l.card.pad : 20 };
+        changed('card');
+        renderInspector(true);
+      }
+    )
+  );
+  const cardGrp = grp('Card', card);
+  cardGrp.hidden = !l.card;
+  if (l.card)
+    cardGrp.append(
+      slider('Margin', () => l.card.pad, (v) => {
+        l.card.pad = v;
+      }, { min: 0, max: 80, def: 20 })
+    );
+  insp.append(cardGrp);
+  insp.append(layerActions());
+}
+
+// Softening a picture behind words: one tap for a blur / darken pair, then
+// the two sliders for anything in between. Works on several pictures at once
+// (all the carousel's backgrounds, from the slide panel).
+const SOFT = [
+  ['clear', 'Clear', 0, 0],
+  ['soft', 'Soft', 10, 0.15],
+  ['dim', 'Dim', 0, 0.45],
+  ['deep', 'Deep', 16, 0.6],
+];
+function softPreset(l) {
+  const p = SOFT.find(([, , b, d]) => (l.blur || 0) === b && Math.abs((l.dim || 0) - d) < 0.005);
+  return p ? p[0] : null;
+}
+function softenGroup(layers, label = 'Blur and darken') {
+  const prints = layers.every((l) => R.treatOf(l, theme()) === 'print');
+  const g = grp(
+    label,
+    seg(
+      SOFT.map(([k, name]) => [k, name]),
+      softPreset(layers[0]),
+      (v) => {
+        const [, , b, d] = SOFT.find((x) => x[0] === v);
+        for (const l of layers) Object.assign(l, { blur: b, dim: d });
+        changed('soften', { all: layers.some((l) => l.bg) });
+        renderInspector(true);
+      }
+    ),
+    slider('Blur', () => layers[0].blur || 0, (v) => {
+      for (const l of layers) l.blur = v;
+    }, { min: 0, max: 30, def: 0, lbl: 'blur' }),
+    slider(prints ? 'Fade' : 'Darken', () => (layers[0].dim || 0) * 100, (v) => {
+      for (const l of layers) l.dim = v / 100;
+    }, { min: 0, max: 85, def: 0, fmt: (v) => Math.round(v) + '%', lbl: 'dim' })
+  );
+  return g;
+}
+// U: the next preset, for the selected picture, or else the backgrounds
+function soften() {
+  const l = selLayer();
+  const layers = l && l.kind === 'image' ? [l] : (S.doc.bg || []).length ? S.doc.bg : slide().layers.filter((m) => m.kind === 'image' && m.fit === 'cover');
+  if (!layers.length) return toast('Nothing to soften: add a background picture (K) first');
+  const i = SOFT.findIndex((x) => x[0] === softPreset(layers[0]));
+  const [, name, b, d] = SOFT[(i + 1) % SOFT.length];
+  for (const m of layers) Object.assign(m, { blur: b, dim: d });
+  changed('soften', { all: layers.some((m) => m.bg) });
+  renderInspector(true);
+  toast(name === 'Clear' ? 'Background clear' : `Background: ${name.toLowerCase()}`);
+}
+
+function backgroundPanel(l) {
+  const t = theme();
+  const n = S.doc.slides.length;
+  const spans = [['all', 'All slides']];
+  for (const k of [1, 2, 3]) if (k < n) spans.push([k, k === 1 ? 'This slide' : `${k} slides`]);
+  spans.push(['fit', 'Its own shape']);
+  const cur = l.all ? 'all' : l.w % size().w ? 'fit' : Math.round(l.w / size().w);
+  insp.append(
+    grp(
+      'Runs behind',
+      seg(spans, cur, (v) => {
+        if (v === 'fit') plotFrame(l);
+        else setSpan(l, v);
+        changed('span', { all: true });
+        renderInspector(true);
+      })
+    )
+  );
+  const treat = l.treat || t.treat;
+  insp.append(softenGroup([l]));
+  insp.append(
+    grp(
+      'Look',
+      seg(
+        [
+          ['natural', 'As is'],
+          ['ink', 'Glow', 'Inverted, colours kept: lines light up on dark slides'],
+          ['print', 'Print', 'White drops away: the plot printed into a light slide'],
+          ['duotone', 'Duotone', 'In the theme’s two colours'],
+          ['mono', 'Mono'],
+        ],
+        treat,
+        (v) => {
+          l.treat = v;
+          changed('treat', { all: true });
+          renderInspector(true);
+        }
+      ),
+      el('p', 'hint', t.dark ? 'On this dark theme, Glow suits plots best.' : 'On this light theme, Print suits plots best.')
+    )
+  );
+  insp.append(
+    grp(
+      '',
+      slider('Strength', () => (l.opacity ?? 0.3) * 100, (v) => {
+        l.opacity = v / 100;
+      }, { min: 5, max: 100, def: Math.round(bgStrength() * 100), fmt: (v) => Math.round(v) + '%', lbl: 'bg-opacity' }),
+      slider('Zoom', () => l.zoom || 1, (v) => {
+        l.zoom = v;
+        clampPan(l);
+      }, { min: 1, max: 4, step: 0.01, def: 1, fmt: (v) => Math.round(v * 100) + '%', lbl: 'bg-zoom' })
+    )
+  );
+  const acts = el('div', 'acts');
+  acts.append(actBtn(S.crop ? 'Done moving' : 'Move the picture', 'C', toggleCrop, S.crop), actBtn('Put on this slide', 'X', () => toBackground(l)), actBtn('Remove', '⌫', deleteLayer));
+  insp.append(grp('', acts));
+}
+
+function textPanel(l) {
+  const t = theme();
+  const st = R.textStyle(l, t);
+  const ta = el('textarea', 'txt');
+  ta.id = 'text-edit';
+  ta.value = l.text;
+  ta.rows = 3;
+  ta.oninput = () => {
+    l.text = ta.value;
+    changed('type', { quiet: true });
+    drawOverlay();
+  };
+  ta.onkeydown = (e) => {
+    if (e.key === 'Escape') ta.blur();
+  };
+  insp.append(grp('', ta));
+  insp.append(
+    grp(
+      'Style',
+      seg(
+        R.ROLES.map((r) => [r, r[0].toUpperCase() + r.slice(1)]),
+        l.role,
+        (v) => {
+          l.role = v;
+          for (const k of ['size', 'k', 'weight', 'italic', 'upper', 'font', 'color', 'lh', 'ls']) delete l[k];
+          if (l.flow) delete l.flow.k;
+          changed('role');
+          renderInspector(true);
+        }
+      )
+    )
+  );
+  const set = (k, v) => {
+    l[k] = v;
+    changed('style-' + k);
+    renderInspector(true);
+  };
+  const fmt = el('div', 'acts');
+  const fonts = el('div', 'fontpick');
+  const cur = R.FONTS[st.font] === R.FONTS.sans && st.font !== 'inter' ? 'inter' : R.FONTS[st.font] === R.FONTS.serif && st.font !== 'newsreader' ? 'newsreader' : R.FONTS[st.font] === R.FONTS.mono && st.font !== 'plexmono' ? 'plexmono' : st.font;
+  for (const [k, label, stack] of R.FONT_LIST) {
+    const b = el('button', k === cur ? 'on' : '', label);
+    b.style.fontFamily = stack;
+    b.onclick = () => set('font', k);
+    fonts.append(b);
+  }
+  insp.append(grp('Font', fonts));
+  fmt.append(
+    seg(
+      [
+        [400, 'Regular'],
+        [500, 'Medium'],
+        [700, 'Bold'],
+      ],
+      st.weight >= 650 ? 700 : st.weight >= 450 ? 500 : 400,
+      (v) => set('weight', v)
+    ),
+    seg([[true, 'Italic']], st.italic, () => set('italic', !st.italic)),
+    seg([[true, 'CAPS']], st.upper, () => set('upper', !st.upper)),
+    seg(
+      [
+        ['left', 'Left'],
+        ['center', 'Centre'],
+        ['right', 'Right'],
+      ],
+      st.align,
+      (v) => set('align', v)
+    )
+  );
+  insp.append(grp('', fmt));
+  insp.append(
+    grp(
+      '',
+      slider('Size', () => st.size, (v) => {
+        l.size = v;
+      }, { min: 12, max: 240, def: t.type[l.role].size, lbl: 'size' }),
+      slider('Line height', () => st.lh * 100, (v) => {
+        l.lh = v / 100;
+      }, { min: 80, max: 200, def: t.type[l.role].lh * 100, fmt: (v) => (v / 100).toFixed(2) }),
+      slider('Spacing', () => st.ls, (v) => {
+        l.ls = v;
+      }, { min: -4, max: 16, step: 0.5, def: t.type[l.role].ls, fmt: (v) => String(v) }),
+      slider('Shadow', () => st.shadow * 100, (v) => {
+        l.shadow = v / 100;
+      }, { min: 0, max: 100, def: t.shadow * 100, fmt: (v) => Math.round(v) + '%' })
+    )
+  );
+  insp.append(
+    grp(
+      'Colour',
+      swatches(
+        [
+          [t.colors[l.role], 'Theme'],
+          [t.colors.eyebrow, 'Theme accent'],
+          ['#ffffff', 'White'],
+          ['#0a1428', 'Navy'],
+          ['#000000', 'Black'],
+          ['#62adff', 'Sky'],
+        ],
+        st.color,
+        (c) => set('color', c)
+      )
+    )
+  );
+  insp.append(
+    grp(
+      'Box behind',
+      seg(
+        [
+          ['none', 'None'],
+          ['#000000', 'Dark'],
+          ['#ffffff', 'Light'],
+        ],
+        l.plate ? l.plate.color : 'none',
+        (v) => set('plate', v === 'none' ? null : { color: v, alpha: 0.82 })
+      )
+    )
+  );
+  insp.append(contrastReadout(l));
+  const reset = el('div', 'acts');
+  reset.append(
+    actBtn('Reset style', '', () => {
+      for (const k of ['size', 'k', 'weight', 'italic', 'upper', 'font', 'color', 'lh', 'ls', 'shadow', 'align', 'plate']) delete l[k];
+      changed('reset style');
+      renderInspector(true);
+    })
+  );
+  insp.append(grp('', reset));
+  insp.append(layerActions());
+}
+
+// Contrast of the text against what is behind it, on a log scale from 1:1
+// to 21:1 with the WCAG thresholds marked: the dot is the average backdrop,
+// the line runs to the worst spot under the text.
+function contrastReadout(l) {
+  const g = grp('Contrast');
+  g.classList.add('contrast');
+  let c;
+  try {
+    c = R.textContrast(S.doc, slide(), l);
+  } catch {
+    return g;
+  }
+  const need = c.large ? 3 : 4.5;
+  const pass = c.ratio >= need;
+  const fig = el('div');
+  fig.append(el('span', 'fig num', c.ratio.toFixed(1) + ' : 1'), el('span', 'verdict' + (pass ? '' : ' bad'), pass ? (c.ratio >= (c.large ? 4.5 : 7) ? '  reads well (AAA)' : '  readable (AA)') : `  needs ${need} : 1 — add a box or shadow, or soften the background`));
+  const W = 260;
+  const x = (v) => 4 + (Math.log(v) / Math.log(21)) * (W - 8);
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} 34`);
+  const add = (tag, attrs, text) => {
+    const n = document.createElementNS(ns, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (text) n.textContent = text;
+    svg.append(n);
+    return n;
+  };
+  add('line', { x1: x(1), x2: x(21), y1: 12, y2: 12, stroke: '#3a3936', 'stroke-width': 1 });
+  for (const [v, label] of [
+    [1, '1'],
+    [3, '3'],
+    [4.5, '4.5'],
+    [7, '7'],
+    [21, '21'],
+  ]) {
+    add('line', { x1: x(v), x2: x(v), y1: 9, y2: 15, stroke: v === need ? '#e9e6df' : '#5a5853', 'stroke-width': 1 });
+    add('text', { x: x(v), y: 30, 'text-anchor': v === 1 ? 'start' : v === 21 ? 'end' : 'middle', 'font-size': 9.5, fill: v === need ? '#e9e6df' : '#8a877f' }, label);
+  }
+  if (c.worst < c.ratio - 0.05) add('line', { x1: x(Math.max(1, c.worst)), x2: x(c.ratio), y1: 12, y2: 12, stroke: pass ? '#8a877f' : '#e5735c', 'stroke-width': 2 });
+  add('circle', { cx: x(clamp(c.ratio, 1, 21)), cy: 12, r: 4, fill: pass ? '#e9e6df' : '#e5735c' });
+  g.append(fig, svg);
+  return g;
+}
+
+function logoPanel(l) {
+  const t = theme();
+  const { w: W, h: H } = size();
+  insp.append(
+    grp(
+      'Version',
+      seg(
+        [
+          [null, 'Theme'],
+          ['light', 'For dark'],
+          ['dark', 'For light'],
+        ],
+        l.variant || null,
+        (v) => {
+          l.variant = v || undefined;
+          changed('logo');
+          renderInspector(true);
+        }
+      )
+    )
+  );
+  insp.append(
+    grp(
+      '',
+      slider('Size', () => l.h, (v) => {
+        const cx = l.x + (l.h * R.LOGO_RATIO) / 2;
+        const cy = l.y + l.h / 2;
+        l.h = v;
+        l.x = Math.round(cx - (v * R.LOGO_RATIO) / 2);
+        l.y = Math.round(cy - v / 2);
+      }, { min: 40, max: 600, def: 150 }),
+      slider('Opacity', () => (l.opacity ?? 1) * 100, (v) => {
+        l.opacity = v / 100;
+      }, { min: 0, max: 100, def: 100, fmt: (v) => Math.round(v) + '%' })
+    )
+  );
+  const corners = el('div', 'acts');
+  const lw = () => l.h * R.LOGO_RATIO;
+  for (const [label, fx, fy] of [
+    ['↖', 0, 0],
+    ['↗', 1, 0],
+    ['↙', 0, 1],
+    ['↘', 1, 1],
+  ])
+    corners.append(
+      actBtn(label, '', () => {
+        l.x = Math.round(fx ? W - R.SAFE - lw() : R.SAFE);
+        l.y = Math.round(fy ? H - R.SAFE - l.h : R.SAFE);
+        changed('logo corner');
+      })
+    );
+  insp.append(grp('Corner', corners));
+  void t;
+  insp.append(layerActions());
+}
+
+function layerActions() {
+  const a = el('div', 'acts');
+  a.append(
+    actBtn('Backward', ',', () => restack(-1)),
+    actBtn('Forward', '.', () => restack(1)),
+    actBtn('Duplicate', MAC ? '⌘D' : 'Ctrl+D', duplicateLayer),
+    actBtn('Delete', '⌫', deleteLayer)
+  );
+  return grp('Layer', a);
+}
+
+function editText(selectAll) {
+  const l = selLayer();
+  if (!l || l.kind !== 'text') return;
+  if (PHONE()) return Sheets.textEdit(l, selectAll); // the whole screen, above the keyboard
+  S.inspOpen = true;
+  renderInspector(true);
+  const ta = $('#text-edit');
+  if (ta) {
+    ta.focus();
+    if (selectAll) ta.select();
+  }
+}
+
+/* ------------------------------------------------------------------ refresh */
+
+function refresh() {
+  if (!S.doc) return;
+  const n = S.doc.slides.length;
+  $('#counter').innerHTML = `Slide <b>${S.cur + 1}</b> of ${n}`;
+  $('#doc-name').textContent = S.doc.name;
+  document.title = `${S.doc.name} · USMCC Publicity Helper`;
+  $$('.thumb').forEach((t, i) => t.classList.toggle('on', i === S.cur));
+  if ($$('.thumb').length !== n) buildStrip();
+  renderInspector();
+  requestRender();
+}
+
+/* ------------------------------------------------------------------ toast */
+
+let toastTimer = 0;
+function toast(msg, ms = 2200) {
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), ms);
+}
+
+/* ------------------------------------------------------------------ commands, menu, keys */
+
+// Every tool: its key, its place in the Menu and (on macOS) the menu bar.
+const MENU = [
+  {
+    group: 'Carousel',
+    items: [
+      ['open', 'Your carousels…', 'O', () => Sheets.docs()],
+      ['new', 'New carousel', '', () => Sheets.newDoc()],
+      ['add', 'Add photos, PDFs, plots…', 'A', pickFiles],
+      ['paper', 'Paper…', 'P', () => Sheets.paper()],
+      ['posts', 'Write the posts…', 'W', () => Sheets.posts()],
+      ['export', 'Export slides…', 'E', () => Sheets.export()],
+    ],
+  },
+  {
+    group: 'Slide',
+    items: [
+      ['newslide', 'New slide', 'N', () => addSlide()],
+      ['dupslide', 'Duplicate slide', 'D', duplicateSlide],
+      ['delslide', 'Delete slide', MAC ? '⌘⌫' : 'Ctrl+⌫', deleteSlide],
+      ['prev', 'Previous slide', '[', () => go(S.cur - 1)],
+      ['next', 'Next slide', ']', () => go(S.cur + 1)],
+      ['slideleft', 'Move slide left', '{', () => moveSlide(-1)],
+      ['slideright', 'Move slide right', '}', () => moveSlide(1)],
+      ['theme', 'Theme and size…', 'Y', () => Sheets.theme()],
+      ['size', 'Next slide size', 'S', () => Sheets.cycleSize()],
+    ],
+  },
+  {
+    group: 'Layer',
+    items: [
+      ['text', 'Add text', 'T', () => addText('body')],
+      ['logo', 'Add the logo', 'L', addLogo],
+      ['crop', 'Crop picture', 'C', toggleCrop],
+      ['fill', 'Fill / fit frame', 'B', toggleFill],
+      ['rotate', 'Turn picture 90°', 'R', rotate90],
+      ['spread', 'Use as background (or back on the slide)', 'X', () => toBackground()],
+      ['background', 'Add a background picture…', 'K', () => pickFiles({ background: true })],
+      ['soften', 'Soften the background (blur, darken)', 'U', soften],
+      ['backward', 'Send backward', ',', () => restack(-1)],
+      ['forward', 'Bring forward', '.', () => restack(1)],
+      ['duplicate', 'Duplicate layer', MAC ? '⌘D' : 'Ctrl+D', duplicateLayer],
+      ['delete', 'Delete layer', '⌫', deleteLayer],
+      ['edit', 'Edit text', '↵', () => editText()],
+    ],
+  },
+  {
+    group: 'Edit',
+    items: [
+      ['undo', 'Undo', MAC ? '⌘Z' : 'Ctrl+Z', undo],
+      ['redo', 'Redo', MAC ? '⇧⌘Z' : 'Ctrl+Y', redo],
+      ['nextlayer', 'Select next layer', 'Tab', () => cycleLayer(1)],
+    ],
+  },
+  {
+    group: 'View',
+    items: [
+      ['guides', 'Safe-area guides', 'G', () => {
+        S.guides = !S.guides;
+        requestRender();
+      }],
+      ['preview', 'Preview the carousel', 'V', () => Sheets.preview()],
+      ['fullscreen', 'Full screen', 'F', toggleFullscreen],
+      ['menu', 'Menu', 'M', () => Sheets.menu()],
+      ['keys', 'Keyboard shortcuts', '?', () => Sheets.keys()],
+    ],
+  },
+];
+const COMMANDS = {};
+for (const g of MENU) for (const [id, , , run] of g.items) COMMANDS[id] = run;
+window.usmccCommand = (id) => {
+  if (COMMANDS[id]) COMMANDS[id]();
+};
+
+function cycleLayer(d) {
+  const ls = [...slide().layers, ...(S.doc.bg || [])];
+  if (!ls.length) return;
+  const i = ls.findIndex((l) => l.id === S.sel);
+  S.sel = ls[(i + d + ls.length) % ls.length].id;
+  S.crop = false;
+  refresh();
+}
+
+async function toggleFullscreen() {
+  if (S.info.shell === 'tauri') {
+    const r = await api('POST', '/api/window', { fullscreen: !S.fs }).catch(() => null);
+    S.fs = r ? r.fullscreen : !S.fs;
+    return;
+  }
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen && document.documentElement.requestFullscreen().catch(() => {});
+}
+
+function nudge(dx, dy) {
+  const l = selLayer();
+  if (!l) return;
+  if (S.crop && l.kind === 'image') {
+    l.px = clamp((l.px ?? 0.5) + dx / 400, 0, 1);
+    l.py = clamp((l.py ?? 0.5) + dy / 400, 0, 1);
+    clampPan(l);
+  } else {
+    l.x += dx;
+    l.y += dy;
+  }
+  changed('nudge', { quiet: true, all: !!l.bg });
+  drawOverlay();
+}
+
+const typing = (t) => t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable);
+
+document.addEventListener('keydown', (e) => {
+  if (!S.doc) return;
+  const mod = e.metaKey || e.ctrlKey;
+  if (Sheets.open()) return Sheets.key(e);
+  if (typing(e.target)) {
+    if (e.key === 'Escape') e.target.blur();
+    return;
+  }
+  const k = e.key;
+  const step = e.shiftKey ? 10 : 1;
+  const l = selLayer();
+  if (mod && (k === 'z' || k === 'Z')) {
+    e.preventDefault();
+    return e.shiftKey ? redo() : undo();
+  }
+  if (mod && k === 'y') {
+    e.preventDefault();
+    return redo();
+  }
+  if (mod && (k === 'd' || k === 'D')) {
+    e.preventDefault();
+    return duplicateLayer();
+  }
+  if (mod && (k === 'Backspace' || k === 'Delete')) {
+    e.preventDefault();
+    return deleteSlide();
+  }
+  if (mod && k === 'e') return; // the desktop's own shortcuts
+  if (mod || e.altKey) return;
+  if (k === 'ArrowLeft' || k === 'ArrowRight' || k === 'ArrowUp' || k === 'ArrowDown') {
+    e.preventDefault();
+    if (l) {
+      const d = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[k];
+      return nudge(...d);
+    }
+    return go(S.cur + (k === 'ArrowLeft' || k === 'ArrowUp' ? -1 : 1));
+  }
+  if (k === 'Escape') {
+    if (S.crop) S.crop = false;
+    else S.sel = null;
+    return refresh();
+  }
+  if (k === 'Backspace' || k === 'Delete') {
+    e.preventDefault();
+    return deleteLayer();
+  }
+  if (k === 'Enter' && l && l.kind === 'text') {
+    e.preventDefault();
+    return editText();
+  }
+  if (k === 'Tab') {
+    e.preventDefault();
+    return cycleLayer(e.shiftKey ? -1 : 1);
+  }
+  if (k === 'PageUp') return go(S.cur - 1);
+  if (k === 'PageDown') return go(S.cur + 1);
+  const byKey = {};
+  for (const g of MENU) for (const [id, , key] of g.items) if (key && key.length === 1) byKey[key.toLowerCase()] = id;
+  const id = byKey[k.toLowerCase()] || (k === '?' ? 'keys' : null);
+  if (id) {
+    e.preventDefault();
+    COMMANDS[id]();
+  }
+});
+
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-cmd]');
+  if (b) COMMANDS[b.dataset.cmd] && COMMANDS[b.dataset.cmd]();
+});
+$('#doc-name').onclick = () => Sheets.docs();
+$('#undo-btn').onclick = undo;
+$('#redo-btn').onclick = redo;
+
+/* ------------------------------------------------------------------ drop, paste */
+
+let dragDepth = 0;
+window.addEventListener('dragenter', (e) => {
+  if (![...(e.dataTransfer?.types || [])].includes('Files')) return;
+  dragDepth++;
+  $('#drop-hint').hidden = false;
+});
+window.addEventListener('dragleave', () => {
+  dragDepth = Math.max(0, dragDepth - 1);
+  if (!dragDepth) $('#drop-hint').hidden = true;
+});
+window.addEventListener('dragover', (e) => e.preventDefault());
+window.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dragDepth = 0;
+  $('#drop-hint').hidden = true;
+  const files = [...(e.dataTransfer?.files || [])];
+  if (files.length) addFiles(files);
+});
+document.addEventListener('paste', (e) => {
+  if (typing(e.target) || Sheets.open()) return;
+  const files = [...(e.clipboardData?.files || [])];
+  if (files.length) {
+    e.preventDefault();
+    return addFiles(files);
+  }
+  const text = e.clipboardData?.getData('text') || '';
+  if (text.includes('\t') || /arxiv\.org|^\s*(arxiv:)?\d{4}\.\d{4,5}/i.test(text)) {
+    e.preventDefault();
+    Sheets.paper(text);
+  }
+});
+
+/* ------------------------------------------------------------------ start */
+
+async function boot() {
+  document.body.classList.toggle('touch', TOUCH);
+  if (new URLSearchParams(location.search).get('shell') === 'tauri') document.body.classList.add('tauri');
+  try {
+    S.info = await api('GET', '/api/info');
+  } catch (e) {
+    S.info = { shell: 'browser' };
+  }
+  if (S.info.shell === 'tauri') document.body.classList.add('tauri');
+  S.settings = await api('GET', '/api/settings').catch(() => ({}));
+  let doc = null;
+  if (S.settings.lastDoc) doc = await api('GET', `/api/doc/${encodeURIComponent(S.settings.lastDoc)}`).catch(() => null);
+  if (!doc) {
+    const list = await api('GET', '/api/docs').catch(() => []);
+    if (list.length) doc = await api('GET', `/api/doc/${list[0].id}`).catch(() => null);
+  }
+  openDoc(doc || newDoc());
+  Promise.all([R.logosReady(), R.warmFonts()]).then(() => {
+    requestRender();
+    dirtyThumbs(null);
+  });
+}
+
+window.U = {
+  S,
+  api,
+  el,
+  $,
+  $$,
+  clamp,
+  uid,
+  toast,
+  TOUCH,
+  MAC,
+  LITE,
+  MENU,
+  COMMANDS,
+  slide,
+  size,
+  theme,
+  selLayer,
+  changed,
+  refresh,
+  requestRender,
+  buildStrip,
+  dirtyThumbs,
+  openDoc,
+  newDoc,
+  blankSlide,
+  saveNow,
+  saveSettings,
+  storeAsset,
+  loadAsset,
+  addPictures,
+  addSlide,
+  addLayer,
+  reflow,
+  addBackground,
+  toBackground,
+  soften,
+  setSpan,
+  migrate,
+  PHONE,
+  editText,
+  sentences,
+  shortCaption,
+  go,
+  pickFiles,
+};
+
+document.addEventListener('DOMContentLoaded', boot);

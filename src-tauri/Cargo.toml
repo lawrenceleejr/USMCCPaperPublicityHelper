@@ -1,38 +1,46 @@
 [package]
-name = "usmcc-publicity-helper"
-version = "0.1.0"
-description = "USMCC Paper Publicity Helper"
+name = "usmcc-publicity"
+version = "0.2.0"
+description = "USMCC Publicity Helper: paper carousels and posts"
 authors = ["USMCC"]
 edition = "2021"
+default-run = "usmcc"
 
-[lib]
-name = "usmcc_publicity_helper_lib"
-crate-type = ["staticlib", "cdylib", "rlib"]
+[[bin]]
+name = "usmcc"
+path = "src/main.rs"
 
-[build-dependencies]
-tauri-build = { version = "2", features = [] }
+[features]
+default = ["gui"]
+# The Mac/Windows/Linux app window (and the keychain for the API key).
+# Without it the binary is the terminal + browser version only
+# (`usmcc --serve`).
+gui = ["dep:tauri", "dep:tauri-build", "dep:tauri-plugin-dialog", "dep:keyring"]
 
 [dependencies]
-tauri = { version = "2", features = [] }
-tauri-plugin-store = "2"
-tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-tokio = { version = "1", features = ["full"] }
-reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
-flate2 = "1"
-tar = "0.4"
-base64 = "0.22"
+include_dir = "0.7"
+miniz_oxide = "0.8"
+ureq = { version = "2", default-features = false, features = ["tls", "gzip", "native-certs", "proxy-from-env"] }
+tauri = { version = "2", optional = true, features = [] }
+tauri-plugin-dialog = { version = "2", optional = true }
 
-[target.'cfg(target_os = "linux")'.dependencies]
-keyring = { version = "3", features = ["sync-secret-service", "crypto-openssl"] }
+[target.'cfg(target_os = "macos")'.dependencies]
+keyring = { version = "3", optional = true, features = ["apple-native"] }
 
-[target.'cfg(not(target_os = "linux"))'.dependencies]
-keyring = "3"
+[target.'cfg(target_os = "windows")'.dependencies]
+keyring = { version = "3", optional = true, features = ["windows-native"] }
+
+[target.'cfg(not(any(target_os = "macos", target_os = "windows")))'.dependencies]
+keyring = { version = "3", optional = true, features = ["sync-secret-service", "crypto-rust"] }
+
+[build-dependencies]
+tauri-build = { version = "2", optional = true, features = [] }
 
 [profile.release]
-panic = "abort"
-codegen-units = 1
-lto = true
 opt-level = "s"
+lto = true
+codegen-units = 1
 strip = true
+panic = "abort"

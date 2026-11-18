@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>USMCC Publicity Helper</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-add" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 15.5l-4.5-4.5L7 20.5"/></symbol>
+    <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 7V5h14v2M12 5v14M9 19h6"/></symbol>
+    <symbol id="i-paper" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-posts" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></symbol>
+    <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18.5" cy="12" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></symbol>
+    <symbol id="i-export" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-keys" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6.5 10h1M10.5 10h1M14.5 10h1M7.5 14h9"/></symbol>
+    <symbol id="i-preview" viewBox="0 0 24 24"><rect x="1.5" y="6" width="6" height="12" rx="1.2"/><rect x="9" y="4" width="6" height="16" rx="1.2"/><rect x="16.5" y="6" width="6" height="12" rx="1.2"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  </svg>
+  <header id="bar">
+    <div class="left">
+      <span class="mark"><img src="icon.svg" alt="" width="18" height="18"><span class="word">USMCC</span><span class="lite-only lite-tag">Lite</span></span>
+      <button id="doc-name" class="link" title="Your carousels (O)"></button>
+      <span id="counter" class="num"></span>
+    </div>
+    <div class="right">
+      <button id="undo-btn" class="icon-btn touch-only" title="Undo (⌘Z)" aria-label="Undo"><svg class="ic"><use href="#i-undo"/></svg></button>
+      <button id="redo-btn" class="icon-btn touch-only" title="Redo (⇧⌘Z)" aria-label="Redo"><svg class="ic"><use href="#i-redo"/></svg></button>
+      <button class="link no-touch" data-cmd="add" title="Add photos, PDFs and plots (A)"><svg class="ic"><use href="#i-add"/></svg>Add <kbd>A</kbd></button>
+      <button class="link no-touch" data-cmd="text" title="Add text (T)"><svg class="ic"><use href="#i-text"/></svg>Text <kbd>T</kbd></button>
+      <button class="link no-touch" data-cmd="paper" title="The paper: metadata, figures, PDF (P)"><svg class="ic"><use href="#i-paper"/></svg>Paper <kbd>P</kbd></button>
+      <button class="link no-touch" data-cmd="posts" title="Write the posts (W)"><svg class="ic"><use href="#i-posts"/></svg>Posts <kbd>W</kbd></button>
+      <button class="link no-touch" data-cmd="theme" title="Theme and slide size (Y)"><svg class="ic"><use href="#i-theme"/></svg>Theme <kbd>Y</kbd></button>
+      <button class="link no-touch" data-cmd="preview" title="Preview the carousel, slides joined (V)"><svg class="ic"><use href="#i-preview"/></svg>Preview <kbd>V</kbd></button>
+      <button class="link no-touch" data-cmd="menu" title="All tools (M)"><svg class="ic"><use href="#i-menu"/></svg>Menu <kbd>M</kbd></button>
+      <button class="link no-touch" data-cmd="keys" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts"><svg class="ic"><use href="#i-keys"/></svg><kbd>?</kbd></button>
+      <button class="btn primary solid" data-cmd="export" title="Export the slides (E)"><svg class="ic"><use href="#i-export"/></svg>Export <kbd class="no-touch">E</kbd></button>
+    </div>
+  </header>
+
+  <main id="editor">
+    <section id="stage-wrap" aria-label="Slide">
+      <canvas id="stage"></canvas>
+      <div id="overlay">
+        <div id="guides"></div>
+        <div id="selbox" hidden>
+          <i class="h" data-h="nw"></i><i class="h" data-h="n"></i><i class="h" data-h="ne"></i>
+          <i class="h" data-h="e"></i><i class="h" data-h="se"></i><i class="h" data-h="s"></i>
+          <i class="h" data-h="sw"></i><i class="h" data-h="w"></i><i class="h rot" data-h="rot"></i>
+        </div>
+      </div>
+      <div id="empty-hint" hidden>
+        <h2>Start a carousel</h2>
+        <button class="start" data-cmd="paper"><svg class="ic"><use href="#i-paper"/></svg><span><b>From a paper</b><small>Paste its row from the sheet, or an arXiv link</small></span><kbd class="no-touch">P</kbd></button>
+        <button class="start" data-cmd="add"><svg class="ic"><use href="#i-add"/></svg><span><b>From pictures</b><small>Photos, plots, a PDF or a paper’s source</small></span><kbd class="no-touch">A</kbd></button>
+        <button class="start" data-cmd="text"><svg class="ic"><use href="#i-text"/></svg><span><b>From words</b><small>A title, a sentence, a quote</small></span><kbd class="no-touch">T</kbd></button>
+        <p class="no-touch muted">Or drop files anywhere. <kbd>?</kbd> lists every key.</p>
+      </div>
+      <div id="drop-hint" hidden>Drop to add</div>
+      <div id="crop-tip" hidden></div>
+    </section>
+    <aside id="insp" aria-label="Properties"></aside>
+  </main>
+
+  <nav id="strip" aria-label="Slides"></nav>
+
+  <nav id="toolbar" class="touch-only" aria-label="Tools">
+    <button data-cmd="add"><svg class="ic"><use href="#i-add"/></svg>Add</button>
+    <button data-cmd="text"><svg class="ic"><use href="#i-text"/></svg>Text</button>
+    <button data-cmd="paper"><svg class="ic"><use href="#i-paper"/></svg>Paper</button>
+    <button data-cmd="theme"><svg class="ic"><use href="#i-theme"/></svg>Theme</button>
+    <button data-cmd="preview"><svg class="ic"><use href="#i-preview"/></svg>Preview</button>
+    <button data-cmd="menu"><svg class="ic"><use href="#i-more"/></svg>More</button>
+  </nav>
+
+  <div id="sheet" hidden>
+    <div class="sheet-panel" role="dialog" aria-modal="true">
+      <div class="sheet-head"><h2 id="sheet-title"></h2><button id="sheet-close" class="link" title="Close (Esc)">Close <kbd class="no-touch">Esc</kbd></button></div>
+      <div id="sheet-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="vendor/qrcode.js"></script>
+  <script src="render.js"></script>
+  <script src="app.js"></script>
+  <script src="sheets.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{{ define "main" }}
+<header class="hero">
+  <p class="mark">USMCC Publicity Helper</p>
+  <h1>From a paper to a carousel you can post: photos, figures, a few words, the USMCC look.</h1>
+  <p class="sub">Paste the paper’s row from the submission sheet, pull in its figures from arXiv, add your photos, and save the slides straight to your phone’s camera roll.</p>
+  <p class="get"><a href="{{ "lite/" | relURL }}">Open it in the browser</a>, on a phone too · <a href="#download">Download</a> for macOS, Windows and Linux · <a href="{{ site.Params.repo }}">Source</a></p>
+</header>
+
+<figure class="shot">
+  <img src="{{ "img/editor.jpg" | relURL }}" width="1440" height="900"
+       alt="The editor: a cover slide reading USMCC Featured Paper, with the slides of the carousel below and the text's style on the right">
+  <figcaption>A carousel made from the paper’s row: cover, summary, two of its figures and a closing slide.</figcaption>
+</figure>
+
+<main class="text">
+  {{ .Content }}
+
+  <section id="download" class="download">
+    <h2>Download</h2>
+    <ul class="dl">
+      {{ range site.Data.downloads.item }}
+      <li data-os="{{ .os }}">
+        <a class="dl-link" href="{{ site.Params.repo }}/releases/latest/download/{{ .file }}">{{ .label }}</a>
+        <span class="dl-note">{{ .note }}</span>
+      </li>
+      {{ end }}
+    </ul>
+    <p class="small">A few megabytes. Older versions and release notes are on the
+      <a href="{{ site.Params.latest }}">releases page</a>. The apps aren't signed by Apple or Microsoft yet,
+      which is why the first launch needs the extra step. On a Mac, if it says the app is damaged, run
+      <code>xattr -cr "/Applications/USMCC Publicity Helper.app"</code> once.</p>
+  </section>
+</main>
+
+<script>
+  // point at the download that matches this computer
+  (function () {
+    var ua = navigator.userAgent, os = /Windows/.test(ua) ? 'windows' : /Mac/.test(ua) ? 'mac' : /Linux|X11/.test(ua) ? 'linux' : '';
+    var li = os && document.querySelector('.dl li[data-os="' + os + '"]');
+    if (li) li.classList.add('here');
+  })();
+</script>
+{{ end }}
