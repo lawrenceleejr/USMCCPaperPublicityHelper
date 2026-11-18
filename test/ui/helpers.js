@@ -97,6 +97,21 @@ function imageSize(buf) {
   return null;
 }
 
+// Answer the page's file picker with the next files given to choose().
+// (A listener registered up front: a one-off waitForEvent can miss the
+// picker when it opens straight away.)
+function filePicker(page) {
+  let next = null;
+  page.on('filechooser', async (fc) => {
+    if (next) {
+      const f = next;
+      next = null;
+      await fc.setFiles(f);
+    }
+  });
+  return (files) => (next = files);
+}
+
 // Collect page errors so a test can assert there were none.
 function watchErrors(page) {
   const errors = [];
@@ -107,4 +122,4 @@ function watchErrors(page) {
 
 const ROW = fs.readFileSync(path.join(ROOT, 'tests', 'fixtures', 'sample_row.txt'), 'utf8').trim();
 
-module.exports = { ROOT, BIN, desktop, lite, launch, pictures, imageSize, watchErrors, ROW };
+module.exports = { ROOT, BIN, desktop, lite, launch, pictures, imageSize, watchErrors, filePicker, ROW };

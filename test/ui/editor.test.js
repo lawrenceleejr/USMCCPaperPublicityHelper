@@ -10,7 +10,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
-const { desktop, launch, pictures, imageSize, watchErrors, ROW } = require('./helpers');
+const { desktop, launch, pictures, imageSize, watchErrors, filePicker, ROW } = require('./helpers');
 
 const BUDGET_MS = 50;
 let srv;
@@ -32,6 +32,7 @@ test.after(async () => {
 async function open(viewport = { width: 1440, height: 900 }) {
   const page = await browser.newPage({ viewport });
   const errors = watchErrors(page);
+  page.choose = filePicker(page);
   await page.addInitScript(() => {
     window.__keys = [];
     new PerformanceObserver((list) => {
@@ -44,9 +45,8 @@ async function open(viewport = { width: 1440, height: 900 }) {
 }
 
 async function addFiles(page, files) {
-  const fc = page.waitForEvent('filechooser');
+  page.choose(files);
   await page.keyboard.press('a');
-  await (await fc).setFiles(files);
 }
 
 test('a carousel from a sheet row, a photo and a plot, exported three ways', async () => {

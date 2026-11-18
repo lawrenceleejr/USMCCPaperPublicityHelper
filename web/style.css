@@ -32,7 +32,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 [hidden] { display: none !important; }
-button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; touch-action: manipulation; }
 input, textarea, select { font: inherit; color: var(--ink); }
 .muted { color: var(--muted); }
 .num { font-variant-numeric: tabular-nums; }

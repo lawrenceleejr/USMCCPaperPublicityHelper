@@ -14,7 +14,7 @@ const path = require('path');
 const zlib = require('zlib');
 const { execFileSync } = require('child_process');
 const { devices } = require('playwright');
-const { ROOT, desktop, lite, launch, pictures, watchErrors, ROW } = require('./helpers');
+const { ROOT, desktop, lite, launch, pictures, watchErrors, filePicker, ROW } = require('./helpers');
 
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'usmcc-lite-'));
 const liteDir = path.join(tmp, 'lite');
@@ -67,6 +67,7 @@ async function openLite(opts = {}) {
   const ctx = await browser.newContext(opts);
   const page = await ctx.newPage();
   const errors = watchErrors(page);
+  page.choose = filePicker(page);
   await page.goto(web.base + '/');
   await page.waitForFunction(() => window.S && S.doc && window.UsmccLite);
   return { ctx, page, errors };
@@ -121,9 +122,8 @@ test('Lite keeps carousels on the device and exports them', async () => {
   await page.keyboard.press('Enter');
   await page.waitForFunction(() => S.doc.paper && S.doc.paper.paperTitle);
   await page.click('text=Make slides');
-  const fc = page.waitForEvent('filechooser');
+  page.choose([pics.photo]);
   await page.keyboard.press('a');
-  await (await fc).setFiles([pics.photo]);
   await page.waitForFunction(() => S.doc.slides[0].layers[0].kind === 'image', null, { timeout: 20000 });
   await page.waitForTimeout(700);
   await page.reload();
@@ -170,6 +170,7 @@ test('Lite on a phone: fits the screen, and a finger moves text', async () => {
   const y1 = await page.evaluate(() => S.doc.slides[0].layers.find((l) => l.role === 'title').y);
   assert.ok(y1 < at.y0 - 100, `the title moved from ${at.y0} to ${y1}`);
   // undo is a button on phones
+  await page.waitForTimeout(150); // a person's next tap comes later than a script's
   await page.tap('#undo-btn');
   assert.equal(await page.evaluate(() => S.doc.slides[0].layers.find((l) => l.role === 'title').y), at.y0);
   assert.deepEqual(errors, []);
