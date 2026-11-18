@@ -354,10 +354,18 @@
   // The turned / mirrored picture on a canvas, and (with adjustments) its
   // pixels to adjust; adjustRows does `n` rows of them.
   const PIXEL_TREATS = { ink: 1, duotone: 1, mono: 1 };
+  // How a picture is drawn: a background by its treatment (or the theme's);
+  // a picture on a slide by its `look`, where "auto" (plots and diagrams on
+  // white) follows the theme: glowing on dark slides, printed on light ones.
+  function treatOf(layer, theme) {
+    if (layer.bg) return layer.treat || (theme && theme.treat) || 'natural';
+    if (layer.look === 'auto') return theme && theme.dark ? 'ink' : 'print';
+    return layer.look || 'natural';
+  }
   function bakeStart(src, layer, maxEdge, theme) {
     const a = layer.adj || {};
     const turns = ((layer.turn || 0) % 4 + 4) % 4;
-    const treat = layer.bg ? layer.treat || (theme && theme.treat) || 'natural' : 'natural';
+    const treat = treatOf(layer, theme);
     const flat = !a.b && !a.c && !a.s && !a.t && !PIXEL_TREATS[treat];
     // a blurred background is simply drawn from a smaller picture
     const k = Math.min(1, maxEdge / Math.max(src.w, src.h)) / (1 + (layer.blur || 0) / 3);
@@ -458,14 +466,14 @@
     if (!src) return null;
     const a = layer.adj || {};
     const turns = ((layer.turn || 0) % 4 + 4) % 4;
-    const treat = layer.bg ? layer.treat || (theme && theme.treat) || 'natural' : 'natural';
+    const treat = treatOf(layer, theme);
     const blur = layer.bg ? layer.blur || 0 : 0;
     if (!a.b && !a.c && !a.s && !a.t && !turns && !layer.flip && !PIXEL_TREATS[treat] && !blur) return src;
     const duo = theme && PIXEL_TREATS[treat] ? `${theme.duo}|${theme.dark}` : '';
     const key = `${layer.asset}|${turns}|${layer.flip ? 1 : 0}|${a.b || 0}|${a.c || 0}|${a.s || 0}|${a.t || 0}|${treat}|${duo}|${blur}|${full ? 'F' : 'P'}`;
     let hit = adjusted.get(key);
     if (!hit && full) {
-      hit = bake(src, { ...layer, treat, blur }, Infinity, theme);
+      hit = bake(src, { ...layer, blur }, Infinity, theme);
       remember(key, hit);
     }
     if (hit) {
@@ -474,7 +482,7 @@
     }
     if (!pending.has(key)) {
       pending.add(key);
-      const snapshot = { ...layer, adj: { ...a }, treat, blur };
+      const snapshot = { ...layer, adj: { ...a }, blur };
       bakeSoon(src, snapshot, PREVIEW_EDGE, theme, (pic) => {
         pending.delete(key);
         if (ready(layer.asset)) remember(key, pic);
@@ -508,14 +516,19 @@
   const BLEND = { ink: 'screen', print: 'multiply' };
   function drawImage(ctx, layer, full, theme) {
     const pic = picture(layer, full, theme);
-    const pad = layer.card && !layer.bg ? layer.card.pad ?? 24 : 0;
+    const treat = treatOf(layer, theme);
+    const card = layer.card && !layer.bg && treat === 'natural';
+    const pad = card ? layer.card.pad ?? 24 : 0;
     ctx.save();
-    ctx.globalAlpha = layer.opacity ?? (layer.bg ? 0.55 : 1);
-    if (layer.bg) ctx.globalCompositeOperation = BLEND[layer.treat || theme.treat] || 'source-over';
-    if (layer.card && !layer.bg) {
+    ctx.globalAlpha = layer.opacity ?? (layer.bg ? 0.3 : 1);
+    ctx.globalCompositeOperation = BLEND[treat] || 'source-over';
+    if (card) {
+      ctx.save();
+      ctx.globalCompositeOperation = 'source-over';
       ctx.fillStyle = layer.card.color || '#ffffff';
       roundRect(ctx, layer.x - pad, layer.y - pad, layer.w + pad * 2, layer.h + pad * 2, (layer.radius || 0) + pad * 0.5);
       ctx.fill();
+      ctx.restore();
     }
     roundRect(ctx, layer.x, layer.y, layer.w, layer.h, layer.radius || 0);
     ctx.clip();
@@ -833,6 +846,7 @@
     LOGO_RATIO,
     LEGACY,
     drawBackdrop,
+    treatOf,
     drawSlide,
     slideReady,
     ensure,

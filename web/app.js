@@ -818,7 +818,10 @@ function placePicture(id, opts = {}) {
     s.layers.push(capLayer);
   }
   const y = own ? gy + pad : (H - h) / 2;
-  l = { kind: 'image', asset: id, fig: own || undefined, x: Math.round((W - w) / 2), y: Math.round(y), w: Math.round(w), h: Math.round(h), fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 8, card: { color: '#ffffff', pad } };
+  // a plot or diagram on white joins the slide (look "auto"); a rendering or
+  // a photo-like figure keeps a white card
+  const plot = paperWhite(pic) > 0.55;
+  l = { kind: 'image', asset: id, fig: own || undefined, x: Math.round((W - w) / 2), y: Math.round(y), w: Math.round(w), h: Math.round(h), fit: 'contain', zoom: 1, px: 0.5, py: 0.5, radius: 8, card: plot ? null : { color: '#ffffff', pad }, look: plot ? 'auto' : undefined };
   // the picture goes above the theme light, below the words
   const i = s.layers.findIndex((m) => m.kind === 'text' || m.kind === 'logo');
   l.id = uid();
@@ -828,6 +831,23 @@ function placePicture(id, opts = {}) {
   S.crop = false;
   changed('add image');
   return l;
+}
+
+// How much of a picture is near-white paper (0…1), from a small copy.
+function paperWhite(pic) {
+  if (!pic) return 0;
+  try {
+    const c = document.createElement('canvas');
+    c.width = c.height = 48;
+    const x = c.getContext('2d', { willReadFrequently: true });
+    x.drawImage(pic.bmp, 0, 0, 48, 48);
+    const d = x.getImageData(0, 0, 48, 48).data;
+    let n = 0;
+    for (let i = 0; i < d.length; i += 4) if (d[i] > 232 && d[i + 1] > 232 && d[i + 2] > 232) n++;
+    return n / (d.length / 4);
+  } catch {
+    return 0;
+  }
 }
 
 // A figure's caption, cut to its first sentence (or two short ones).
@@ -932,7 +952,7 @@ async function addBackground(blob, opts = {}) {
     const id = await storeAsset(blob);
     const { w: W, h: H } = size();
     const photo = opts.photo ?? /\.(jpg|webp)$/.test(id);
-    const l = { id: uid(), kind: 'image', asset: id, bg: true, all: true, x: 0, y: 0, w: W * S.doc.slides.length, h: H, fit: 'cover', zoom: 1, px: opts.px ?? 0.5, py: 0.5, opacity: photo ? 1 : 0.6, treat: photo ? 'natural' : undefined, blur: 0 };
+    const l = { id: uid(), kind: 'image', asset: id, bg: true, all: true, x: 0, y: 0, w: W * S.doc.slides.length, h: H, fit: 'cover', zoom: 1, px: opts.px ?? 0.5, py: 0.5, opacity: photo ? 1 : bgStrength(), treat: photo ? 'natural' : undefined, blur: 0 };
     S.doc.bg = (S.doc.bg || []).filter((m) => !opts.replace || !m.auto);
     if (opts.auto) l.auto = true;
     S.doc.bg.push(l);
@@ -1038,7 +1058,7 @@ function toBackground(l = selLayer(), span = 'all') {
   }
   slide().layers = slide().layers.filter((m) => m !== l);
   const photo = /\.(jpg|webp)$/.test(l.asset) && !l.fig;
-  const b = { ...l, bg: true, rot: 0, radius: 0, card: null, fit: 'cover', zoom: 1, px: 0.5, py: 0.5, opacity: photo ? 1 : 0.6, treat: photo ? 'natural' : undefined, blur: 0 };
+  const b = { ...l, bg: true, rot: 0, radius: 0, card: null, fit: 'cover', zoom: 1, px: 0.5, py: 0.5, opacity: photo ? 1 : bgStrength(), treat: photo ? 'natural' : undefined, blur: 0 };
   delete b.fig;
   S.doc.bg = S.doc.bg || [];
   S.doc.bg.push(b);
@@ -1047,6 +1067,9 @@ function toBackground(l = selLayer(), span = 'all') {
   changed('background', { all: true });
   toast(span === 'all' ? 'Now the background, across every slide' : 'Now the background');
 }
+// A plot behind words is texture: faint, more so on light slides.
+const bgStrength = () => (theme().dark ? 0.3 : 0.22);
+
 function setSpan(l, span) {
   const { w: W, h: H } = size();
   const n = S.doc.slides.length;
@@ -1404,24 +1427,44 @@ function imagePanel(l) {
       sync();
     }, { min: -100, max: 100, def: 0, lbl: 'adj-' + k });
   insp.append(grp('Adjust', adjust('b', 'Brightness'), adjust('c', 'Contrast'), adjust('s', 'Saturation'), adjust('t', 'Warmth')));
+  const look = l.look || (l.card ? 'card' : 'natural');
+  const lookGrp = grp(
+    'Look',
+    seg(
+      [
+        ['auto', 'Auto', 'Plots on white: glowing on dark themes, printed on light ones'],
+        ['card', 'On a card'],
+        ['ink', 'Glow'],
+        ['print', 'Print'],
+        ['natural', 'As is'],
+      ],
+      look,
+      (v) => {
+        l.look = ['auto', 'ink', 'print'].includes(v) ? v : undefined;
+        l.card = v === 'card' ? { color: '#ffffff', pad: (l.card && l.card.pad) || 20 } : null;
+        changed('look');
+        renderInspector(true);
+      }
+    )
+  );
+  insp.append(lookGrp);
   const card = el('div', 'acts');
   card.append(
     seg(
       [
-        ['none', 'None'],
         ['#ffffff', 'White'],
         ['#000000', 'Black'],
       ],
-      l.card ? l.card.color : 'none',
+      l.card ? l.card.color : '#ffffff',
       (v) => {
-        l.card = v === 'none' ? null : { color: v, pad: l.card ? l.card.pad : 20 };
-        sync();
+        l.card = { color: v, pad: l.card ? l.card.pad : 20 };
         changed('card');
         renderInspector(true);
       }
     )
   );
-  const cardGrp = grp('Card behind (for plots)', card);
+  const cardGrp = grp('Card', card);
+  cardGrp.hidden = !l.card;
   if (l.card)
     cardGrp.append(
       slider('Margin', () => l.card.pad, (v) => {
@@ -1473,9 +1516,9 @@ function backgroundPanel(l) {
   insp.append(
     grp(
       '',
-      slider('Strength', () => (l.opacity ?? 0.55) * 100, (v) => {
+      slider('Strength', () => (l.opacity ?? 0.3) * 100, (v) => {
         l.opacity = v / 100;
-      }, { min: 5, max: 100, def: 60, fmt: (v) => Math.round(v) + '%', lbl: 'bg-opacity' }),
+      }, { min: 5, max: 100, def: Math.round(bgStrength() * 100), fmt: (v) => Math.round(v) + '%', lbl: 'bg-opacity' }),
       slider('Blur', () => l.blur || 0, (v) => {
         l.blur = v;
       }, { min: 0, max: 30, def: 0, lbl: 'bg-blur' }),

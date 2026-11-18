@@ -64,16 +64,16 @@ test('a carousel from a sheet row, a photo and a plot, exported three ways', asy
   assert.equal(await page.evaluate(() => S.doc.name), 'A Better Way to Collide Muons');
 
   // the photo goes full bleed under the words on the cover; the plot
-  // onto a new slide, fitted on a card
+  // onto a new slide, fitted
   await addFiles(page, [pics.photo, pics.plot]);
   await page.waitForFunction(() => S.doc.slides.length === 4);
   const placed = await page.evaluate(() => {
     const photo = S.doc.slides[0].layers[0];
     const plot = S.doc.slides[1].layers.find((l) => l.kind === 'image');
-    return { photo: [photo.kind, photo.fit, photo.x, photo.y, photo.w, photo.h], plot: [plot.fit, !!plot.card] };
+    return { photo: [photo.kind, photo.fit, photo.x, photo.y, photo.w, photo.h], plot: [plot.fit, plot.look, !!plot.card] };
   });
   assert.deepEqual(placed.photo, ['image', 'cover', 0, 0, 1080, 1350]);
-  assert.deepEqual(placed.plot, ['contain', true]);
+  assert.deepEqual(placed.plot, ['contain', 'auto', false]); // a plot on white joins the slide, no card
 
   // typing in the title re-stacks the cover from the bottom
   await page.evaluate(() => U.go(0));
