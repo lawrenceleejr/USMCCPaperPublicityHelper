@@ -26,6 +26,7 @@ fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
 const home = fs.mkdtempSync(path.join(os.tmpdir(), 'usmcc-samples-'));
 const proc = spawn(bin, ['--serve', '--no-open', '--port', '0'], { env: { ...process.env, USMCC_HOME: home } });
+process.on('exit', () => proc.kill()); // also when something below fails
 const base = await new Promise((resolve, reject) => {
   let o = '';
   proc.stdout.on('data', (d) => {
@@ -38,7 +39,7 @@ const base = await new Promise((resolve, reject) => {
 const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 page.on('pageerror', (e) => console.error('page error:', e.message));
-await page.goto(base + '/');
+await page.goto(base + '/', { waitUntil: 'domcontentloaded' });
 await page.waitForFunction(() => window.S && S.doc && window.Sheets);
 const themes = await page.evaluate(() => Object.keys(Render.THEMES));
 const sheet = [];

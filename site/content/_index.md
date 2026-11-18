@@ -14,12 +14,14 @@ Bluesky, LinkedIn and the website.
 ## How it works
 
 1. **Paste the paper's row** from the submission sheet (or just its arXiv
-   link). The title, authors, summary and link fill in.
+   link). The title, authors, summary and link fill in, with any LaTeX
+   turned into readable text.
 2. **Make slides.** A cover, a plain-language summary and a closing slide
-   appear in the current theme, with the USMCC logo.
+   with a QR code to the paper appear in the current theme, with the USMCC
+   logo.
 3. **Pull in pictures.** Your photos, plots (PNG, SVG, PDF), pages of the
-   paper's PDF, or its figures straight from arXiv. Photos fill a slide;
-   plots sit on a white card.
+   paper's PDF, or its figures straight from arXiv, each with its caption
+   from the paper. Photos fill a slide; plots sit on a white card.
 4. **Edit.** Move, resize and turn anything; crop and zoom a picture to the
    part of the plot that matters; adjust brightness, contrast and colour; add
    text and style it. A contrast check tells you when text gets hard to read.

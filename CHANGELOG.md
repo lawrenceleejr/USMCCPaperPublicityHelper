@@ -1,5 +1,22 @@
 # Changelog
 
+## Unreleased
+
+**A visual overhaul, tested on real muon collider papers**
+- Google Fonts, kept in the app (works offline): each theme has its own
+  pairing (Fraunces, Bricolage Grotesque, Anton, Manrope, Newsreader, IBM
+  Plex), and a font picker in the text panel. The interface uses Inter.
+- Type sized for phones; long titles shrink to fit; a bigger logo.
+- Figure slides: a "Figure n" label, the picture on a card, the caption
+  from the paper's own TeX source, the logo. Figures come in reading order.
+- A QR code to the paper on the closing slide.
+- Paste an arXiv link and the desktop app fills in the title, authors, date
+  and abstract. LaTeX in titles and abstracts becomes readable text.
+- Summaries no longer break at "U.S." or "e.g.".
+- A new interface look: icons, quieter controls, a start screen with three
+  ways in; on phones the properties panel stays out of the way.
+- `npm run samples`: carousels from six real papers on one contact sheet.
+
 ## 0.2.0
 
 **A carousel editor, on a computer and a phone**

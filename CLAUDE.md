@@ -14,6 +14,11 @@ npm test               # server tests (black-box)
 npm run test:ui        # editor + Lite in headless Chromium (see below)
 ```
 
+`npm run samples` renders carousels from real muon collider papers
+(`tests/fixtures/papers.tsv`) in every theme onto one contact sheet
+(`build/samples/contact.png`): look at it after any change to themes,
+layout or type.
+
 `npm start` serves the UI in a browser. `npm run app` runs the Tauri app.
 `npm run lite` builds Lite into build/lite and serves it. Locally,
 `CHROMIUM_PATH=/path/to/chrome` makes the UI tests use an installed Chromium.
@@ -40,7 +45,10 @@ API. If it fails, fix the regression rather than raising the budget.
   thumbnails, theme previews and exports), `app.js` (state, undo, stage,
   gestures, inspector, slide strip, imports, keys and `MENU`), `sheets.js`
   (paper, PDF pages, figures, posts, export, carousels, theme, menu, keys),
-  `lite.js` (Lite only), `vendor/` (pdf.js, legacy build), `img/` (logos).
+  `lite.js` (Lite only), `vendor/` (pdf.js legacy build, qrcode.js),
+  `img/` (logos), `fonts/` (Google Fonts, OFL, fetched by
+  `scripts/fetch-fonts.mjs`; never link fonts.googleapis.com: the app must
+  work offline and the canvas needs fonts loaded before it measures).
 - **Lite** (the web version, `/lite/` on the website): the same `web/` page
   plus `web/lite.js`, which answers every `/api` request in the browser
   (IndexedDB, direct arXiv fetches) and `paper.rs` compiled to WebAssembly
@@ -61,7 +69,12 @@ API. If it fails, fix the regression rather than raising the budget.
 - **Exports write `.name.partial` and rename**; same name and size = skipped.
 - **The Claude API key never reaches the page.** It lives in the keychain
   (or `ANTHROPIC_API_KEY`); the server makes the request. Lite has no Claude.
-- **Slides are 1080 px wide**; every coordinate is in slide pixels.
+- **Slides are 1080 px wide**; every coordinate is in slide pixels. Body text
+  is ≥ 40 px (it shows at a third of that on a phone).
+- **Text drawn on a canvas needs its font loaded**: `Render.fontsReady` /
+  `slideReady` before exporting; layout is re-measured on `loadingdone`.
+- **Auto-placed text has `flow`** (`reflow` in app.js stacks it per theme and
+  fits titles); moving it by hand drops `flow` for its group.
 
 ## Conventions
 

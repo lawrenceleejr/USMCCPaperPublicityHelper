@@ -19,15 +19,19 @@ the camera roll, in order, ready to post.
 
 - **The paper in one paste.** A row copied from the submission sheet (with or
   without its header) fills in the title, plain title, authors, date,
-  summary and link. An arXiv link works too.
+  summary and link. Or paste just an arXiv link: the desktop app fills in
+  the title, authors, date and abstract from arXiv. LaTeX in titles and
+  abstracts (`$\tau$`, `$10^{34}$`) comes out as readable text (τ, 10³⁴).
 - **Make slides.** A cover ("USMCC Featured Paper", title, authors, logo), a
-  plain-language summary and a closing slide with the link, in the current
-  theme. The text re-stacks itself when you change the theme or the size, or
+  plain-language summary and a closing slide with the link and a QR code to
+  the paper (links in Instagram posts can't be tapped), in the current
+  theme. Long titles shrink to fit. The text re-stacks itself when you change the theme or the size, or
   edit the words, until you move it by hand.
 - **Pictures of every kind.** Photos fill a slide (behind the words); plots
   (PNG, SVG, PDF) sit on a white card; pages of a PDF are picked from
-  thumbnails; the paper's figures come straight from its arXiv source (PDF
-  figures drawn sharp). Drop files anywhere, paste them, or press `A`.
+  thumbnails; the paper's figures come straight from its arXiv source, in
+  reading order, with their captions from the paper (PDF figures drawn
+  sharp). Each figure gets its own slide: label, picture, caption, logo. Drop files anywhere, paste them, or press `A`.
 - **Simple edits.** Move, resize and turn anything (with snapping to the
   centre and the margins); crop and zoom a picture inside its frame, to the
   one panel of a plot that matters; brightness, contrast, saturation,
@@ -37,8 +41,11 @@ the camera roll, in order, ready to post.
   own size, font, weight, colour, alignment, shadow and a box behind. A
   contrast readout (WCAG, on a log scale) says when text gets hard to read
   over a photo.
-- **Six themes** (Editorial, Bold Sans, Punch, Ocean, Soft Serif, Minimal
-  Mono) and three sizes: portrait 4:5, square, story 9:16.
+- **Six themes**, each with its own Google Fonts pairing, and three sizes
+  (portrait 4:5, square, story 9:16): Editorial (Fraunces + Inter), Bold
+  Sans (Bricolage Grotesque), Punch (Anton), Ocean (Manrope), Soft Serif
+  (Newsreader), Minimal Mono (IBM Plex Sans + Mono). The fonts ship with the
+  app, so it works offline. Text is sized to read on a phone.
 - **Export** JPEGs or PNGs (1080 px wide) for Instagram, X and Bluesky, or one
   PDF for a LinkedIn document post. Desktop: into a folder. Phone: the share
   sheet, **Save Images** → Photos.
@@ -132,6 +139,11 @@ npm run lite         # build Lite into build/lite and serve it
 cargo test --no-default-features --manifest-path src-tauri/Cargo.toml
 npm run build:cli && npm test && npm run test:ui
 ```
+
+`npm run samples` builds carousels from six real muon collider papers
+(`tests/fixtures/papers.tsv`, with their figures from arXiv) in every theme
+and lays the slides out on one contact sheet, `build/samples/contact.png`,
+for checking the design. `node scripts/fetch-fonts.mjs` refreshes the fonts.
 
 `test:ui` drives the editor in headless Chromium (building a carousel,
 exports, undo, a 50 ms budget for key presses) and checks that Lite reads
