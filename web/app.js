@@ -104,6 +104,7 @@ function reflow(s, t = theme(), sz = size()) {
   const groups = new Map();
   for (const l of s.layers) if (l.flow) (groups.get(l.flow.g) || groups.set(l.flow.g, []).get(l.flow.g)).push(l);
   for (const ls of groups.values()) {
+    if (S.held && ls.includes(S.held.l)) continue; // under a finger: leave it there
     const texts = ls.filter((l) => l.kind === 'text');
     const logo = ls.find((l) => l.kind === 'logo');
     // a title shrinks (to 60%) until it fits the theme's number of lines
@@ -165,13 +166,27 @@ function changed(label = '', opts = {}) {
     if (S.undo.length > 150) S.undo.shift();
   }
   S.redo = [];
-  S.base = JSON.stringify(S.doc);
+  S.base = baseJson();
   S.lastLabel = label;
   S.lastAt = now;
   dirtyThumbs(opts.all ? null : [slide() && slide().id, ...(opts.slides || [])]);
   scheduleSave();
   if (!opts.quiet) refresh();
   else requestRender();
+}
+
+// The state Undo goes back to. Mid-drag (something the app finishes by
+// itself, like the QR code, can land then), the layer under the finger
+// counts as where the drag started: the drag records its own step at the end.
+function baseJson() {
+  const h = S.held;
+  if (!h) return JSON.stringify(S.doc);
+  const now = JSON.parse(JSON.stringify(h.l));
+  Object.assign(h.l, h.start);
+  const json = JSON.stringify(S.doc);
+  for (const k of Object.keys(h.l)) delete h.l[k];
+  Object.assign(h.l, now);
+  return json;
 }
 
 function restore(json) {
@@ -445,6 +460,7 @@ wrap.addEventListener('pointermove', (e) => {
   const tol = 3 / S.view.scale;
   if (!gest.moved && gest.x0 !== undefined && Math.hypot(x - gest.x0, y - gest.y0) < tol * 2) return;
   gest.moved = true;
+  if (!S.held && l && gest.start && gest.type !== 'empty') S.held = { l, start: JSON.parse(JSON.stringify(gest.start)) };
   if (gest.type === 'move' && l) {
     const o = offsetOf(l);
     let nx = gest.start.x + (x - gest.x0) - o;
@@ -496,6 +512,7 @@ function endPointer(e) {
   if (pointers.size) return;
   const g = gest;
   gest = null;
+  S.held = null;
   snapLines = [];
   if (!g) return;
   if (g.moved && g.type !== 'empty') {

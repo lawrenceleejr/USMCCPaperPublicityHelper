@@ -205,7 +205,12 @@ test('Lite on a phone: fits the screen, and a finger moves text', async () => {
   const cdp = await ctx.newCDPSession(page);
   const touch = (type, y) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x: at.x, y }] });
   await touch('touchStart', at.y);
-  for (let i = 1; i <= 10; i++) await touch('touchMove', at.y - i * 8);
+  for (let i = 1; i <= 10; i++) {
+    await touch('touchMove', at.y - i * 8);
+    // something the app finishes by itself (the QR code after Make slides)
+    // landing mid-drag must not become the point Undo returns to
+    if (i === 5) await page.evaluate(() => U.changed('qr', { noUndo: true, all: true }));
+  }
   await touch('touchEnd');
   const y1 = await page.evaluate(() => S.doc.slides[0].layers.find((l) => l.role === 'title').y);
   assert.ok(y1 < at.y0 - 100, `the title moved from ${at.y0} to ${y1}`);
