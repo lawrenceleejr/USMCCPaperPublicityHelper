@@ -550,13 +550,21 @@ fn api(app: &Arc<App>, mut req: Request, path: &str, params: &HashMap<String, St
                 Ok(id) => id,
                 Err(e) => return err(req, 400, &e),
             };
-            let body = match fetch(&format!("https://export.arxiv.org/api/query?id_list={id}"), 4 * 1024 * 1024) {
-                Ok(b) => b,
-                Err(e) => return err(req, 502, &e),
-            };
-            match paper::arxiv_meta(&String::from_utf8_lossy(&body)) {
+            // arXiv's API first (it has the full author list); when it is down
+            // or slow, the paper's own source
+            let api = fetch(&format!("https://export.arxiv.org/api/query?id_list={id}"), 4 * 1024 * 1024).map_err(|e| (502, e)).and_then(|b| paper::arxiv_meta(&String::from_utf8_lossy(&b)).map_err(|e| (404, e)));
+            match api {
                 Ok(row) => send_json(req, 200, serde_json::to_value(row).unwrap()),
-                Err(e) => err(req, 404, &e),
+                Err((code, e)) => match fetch(&format!("https://arxiv.org/src/{id}"), MAX_ARCHIVE).and_then(|b| paper::meta_from_archive(&b)) {
+                    Ok(mut row) => {
+                        row.paper_link = format!("https://arxiv.org/abs/{id}");
+                        if row.publication_date.is_empty() {
+                            row.publication_date = paper::id_date(&id);
+                        }
+                        send_json(req, 200, serde_json::to_value(row).unwrap())
+                    }
+                    Err(_) => err(req, code, &e),
+                },
             }
         }
         ("/api/arxiv/pdf", true, _, _) => {

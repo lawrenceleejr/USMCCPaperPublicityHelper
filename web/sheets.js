@@ -365,7 +365,13 @@ const Sheets = (() => {
               const m = await api('GET', `/api/arxiv/meta?url=${encodeURIComponent(a.abs)}`);
               // fill what is empty; a row from the sheet (the authors' own words) wins
               for (const k of ['paperTitle', 'authors', 'publicationDate', 'category', 'publicAbstract']) if (!P[k] && m[k]) P[k] = m[k];
-              status.textContent = `Filled in from arXiv ${a.id}. Add a plain title and check the summary reads well for everyone.`;
+              const names = { paperTitle: 'the title', authors: 'the authors', publicAbstract: 'the abstract' };
+              const missing = Object.keys(names).filter((k) => !P[k]).map((k) => names[k]);
+              status.textContent = missing.length
+                ? `Read arXiv ${a.id}, but its source doesn’t give ${missing.join(' or ')}: fill ${missing.length > 1 ? 'them' : 'it'} in below.`
+                : `Filled in from arXiv ${a.id}. Add a plain title and check the summary reads well for everyone.`;
+              // fetch the figures now, so the figures sheet opens at once
+              getFigures(a.abs).catch(() => {});
             } catch (e) {
               status.textContent = `arXiv ${a.id}: ${e.message} Fill in the fields, then get its figures or PDF below.`;
             }
