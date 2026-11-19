@@ -210,6 +210,7 @@ test('Lite on a phone: fits the screen, and a finger moves text', async () => {
   assert.deepEqual(small, [], 'fields Safari would zoom into');
   await page.evaluate(() => {
     S.sel = null;
+    S.inspOpen = false;
     U.refresh();
   });
   // the slide takes most of the screen
