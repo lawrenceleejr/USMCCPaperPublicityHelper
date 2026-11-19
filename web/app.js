@@ -1804,7 +1804,7 @@ function sequenceGroup(l) {
         '',
         slider('Blend', () => (l.blend ?? 0.5) * 100, (v) => {
           l.blend = v / 100;
-        }, { min: 0, max: 100, def: 50, fmt: (v) => (v ? `${Math.round(v)}% of a slide` : 'a hard cut'), lbl: 'bg-blend' })
+        }, { min: 0, max: 100, def: 50, fmt: (v) => (v ? `${Math.round(v)}%` : 'cut'), lbl: 'bg-blend' })
       )
     );
 }

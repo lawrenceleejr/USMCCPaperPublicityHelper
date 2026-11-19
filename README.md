@@ -23,8 +23,10 @@ the camera roll, in order, ready to post.
 
 - **The paper in one paste.** A row copied from the submission sheet (with or
   without its header) fills in the title, plain title, authors, date,
-  summary and link. Or paste just an arXiv link: the desktop app fills in
-  the title, authors, date and abstract from arXiv. LaTeX in titles and
+  summary and link. Or paste just an arXiv link, on a phone too: the app
+  downloads the paper's source and reads the title, authors, date and
+  abstract from its TeX (the desktop also asks arXiv's API), then has its
+  figures ready. LaTeX in titles and
   abstracts (`$\tau$`, `$10^{34}$`) comes out as readable text (τ, 10³⁴).
 - **Make slides.** A cover ("USMCC Featured Paper", title, authors, logo), a
   plain-language summary and a closing slide with the link and a QR code to
@@ -40,7 +42,9 @@ the camera roll, in order, ready to post.
   centre and the margins); crop and zoom a picture inside its frame, to the
   one panel of a plot that matters; brightness, contrast, saturation,
   warmth; rounded corners.
-- **Text.** Eyebrow, title, body and caption styles from the theme, or your
+- **Text.** Eyebrow, title, body, caption and quote styles from the theme
+  (a quote sits under a large open quotation mark in the accent colour,
+  with a line for who said it: `Q`), or your
   own size, font, weight, colour, alignment, shadow and a box behind. A
   contrast readout (WCAG, on a log scale) says when text gets hard to read
   over a photo.
@@ -50,7 +54,10 @@ the camera roll, in order, ready to post.
   any number of slides: plots glow on dark themes (inverted, colours kept)
   and print into light ones; or duotone, mono, as is. **Blur and darken** it
   in one tap (Clear, Soft, Dim, Deep, or `U`), with sliders for anything in
-  between, right in the slide panel; photos behind the words too. **Make slides** puts one of the paper's figures behind the carousel,
+  between, right in the slide panel; photos behind the words too.
+  **Backgrounds in sequence:** add a second photo on a later slide and it
+  takes over from there, melting into the one before; each covers its
+  number of slides (the last runs to the end) and the blend is a slider. **Make slides** puts one of the paper's figures behind the carousel,
   crossing from the cover into the next slide. **Preview** (`V`) shows the
   slides side by side, swipeable on a phone.
 - **Six academic themes**, each with its own Google Fonts pairing, and three
@@ -122,7 +129,7 @@ standalone `usmcc-cli-…` builds are on the releases page too.
 | `P` | the paper: paste its row or arXiv link; figures and PDF pages |
 | `W` | write the posts |
 | `E` | export |
-| `T` / `L` | add text / the logo |
+| `T` / `Q` / `L` | add text / a quote / the logo |
 | `[` `]` or `←` `→` | previous / next slide (arrows move the selected layer; `⇧` by 10) |
 | `N` / `D` / `⌘⌫` | new / duplicate / delete slide; `{` `}` move it |
 | `C` | crop the selected picture (drag to pan, scroll to zoom) |

@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+**Quotes, backgrounds in sequence, arXiv on a phone**
+- A quote style: the words in the theme's italic serif under a large open
+  quotation mark in the accent colour, with a line for who said it (`Q`).
+- Backgrounds in sequence: each covers a number of slides and crossfades
+  into the next over an adjustable blend. A second photo added on a later
+  slide takes over there.
+- Paste an arXiv link in Lite (on a phone): it downloads the paper's
+  source and reads the title, authors, abstract and date from the TeX
+  (revtex, elsarticle, JACoW, hand-made title pages; siunitx units). The
+  desktop falls back to the same when arXiv's API is down. The figures
+  reuse the download.
+- Smoother blur (a true Gaussian at every strength).
+
 **Carousels that flow**
 - One backdrop across all the slides: the theme's gradient and light run
   on from slide to slide, so a swiped carousel has no seams.

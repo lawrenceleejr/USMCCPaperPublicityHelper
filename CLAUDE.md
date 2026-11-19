@@ -78,6 +78,11 @@ API. If it fails, fix the regression rather than raising the budget.
   slides) are drawn per slide as that slide's window, so slides meet without
   a seam. Never add per-slide gradients or vignettes; `test/ui` checks the
   edges match. `shade` layers are legacy and not drawn.
+- **Backgrounds in sequence** have `chain` (slides covered; the last runs to
+  the end) and `blend`; `fitBackgrounds` lays them out with `fadeL`/`fadeR`
+  and `drawFaded` masks them pixel for pixel (no resampling, no seam).
+- **Lite reads a paper from its arXiv source** (`arxiv.org/src` allows CORS,
+  `export.arxiv.org` doesn't): `paper::meta_from_archive` via WASM.
 - **Auto-placed text has `flow`** (`reflow` in app.js stacks it per theme and
   fits titles); moving it by hand drops `flow` for its group.
 
