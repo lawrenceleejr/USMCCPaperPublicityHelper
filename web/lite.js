@@ -104,16 +104,29 @@
     await wasmReady;
     return call('arxiv', enc(url || ''));
   }
+  // The last source download, so reading a paper's details and then its
+  // figures fetches the tarball once.
+  let lastSrc = null;
   async function fetchArxiv(url, kind) {
     const a = await arxiv(url);
     if (a.error) return { error: a.error, status: 400 };
+    if (kind === 'src' && lastSrc && lastSrc.id === a.id) return { bytes: lastSrc.bytes, a };
     try {
-      const r = await fetch(kind === 'pdf' ? a.pdf : a.src);
+      const r = await realFetch(kind === 'pdf' ? a.pdf : a.src);
       if (!r.ok) return { error: `arXiv answered ${r.status} for ${a.id}`, status: 502 };
-      return { bytes: new Uint8Array(await r.arrayBuffer()), a };
+      const bytes = new Uint8Array(await r.arrayBuffer());
+      if (kind === 'src') lastSrc = { id: a.id, bytes };
+      return { bytes, a };
     } catch (e) {
       return { error: `Could not reach arXiv (${e.message}). Download the ${kind === 'pdf' ? 'PDF' : 'source'} and add it here instead.`, status: 502 };
     }
+  }
+  // 2611.21813 → 2026-11 (old ids: hep-ph/0601001 → 2006-01)
+  function idDate(id) {
+    const m = /(?:^|\/)(\d{2})(\d{2})[.\d]/.exec(id || '');
+    if (!m) return '';
+    const y = +m[1];
+    return `${y < 91 ? 2000 + y : 1900 + y}-${m[2]}`;
   }
 
   async function handle(url, init) {
@@ -173,16 +186,16 @@
         return a.error ? fail(400, a.error) : json(a);
       }
       if (p === '/api/arxiv/meta') {
-        // arXiv's API doesn't answer other sites' pages (no CORS); try anyway
-        const a = await arxiv(q('url'));
-        if (a.error) return fail(400, a.error);
-        try {
-          const r = await realFetch(`https://export.arxiv.org/api/query?id_list=${encodeURIComponent(a.id)}`);
-          const row = call('arxiv_meta', new Uint8Array(await r.arrayBuffer()));
-          return row.error ? fail(404, row.error) : json(row);
-        } catch {
-          return fail(502, 'The browser can’t ask arXiv for the details (the desktop app can).');
-        }
+        // arXiv's API doesn't answer other sites' pages (no CORS), but its
+        // source download does: read the title, authors and abstract from the
+        // paper's own TeX (the figures sheet reuses the same download)
+        const r = await fetchArxiv(q('url'), 'src');
+        if (r.error) return fail(r.status, r.error);
+        const row = call('archive_meta', r.bytes);
+        if (row.error) return fail(404, row.error);
+        row.paperLink = r.a.abs;
+        if (!row.publicationDate) row.publicationDate = idDate(r.a.id);
+        return json(row);
       }
       if (p === '/api/arxiv/pdf') {
         const r = await fetchArxiv(q('url'), 'pdf');

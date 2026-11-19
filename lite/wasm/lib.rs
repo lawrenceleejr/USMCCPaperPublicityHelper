@@ -65,6 +65,17 @@ pub unsafe extern "C" fn arxiv(ptr: *const u8, len: usize) -> u64 {
     })
 }
 
+/// Title, authors and abstract from a paper's source archive (.tar.gz).
+/// # Safety
+/// `ptr` must point to `len` readable bytes.
+#[no_mangle]
+pub unsafe extern "C" fn archive_meta(ptr: *const u8, len: usize) -> u64 {
+    output(match paper::meta_from_archive(input(ptr, len)) {
+        Ok(r) => serde_json::to_value(r).unwrap(),
+        Err(e) => error(e),
+    })
+}
+
 /// The export.arxiv.org Atom feed for one id (UTF-8 XML) → the paper's
 /// fields, or `{error}`. (Lite fetches the feed itself where the browser
 /// allows it.)

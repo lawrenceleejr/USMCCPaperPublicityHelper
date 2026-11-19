@@ -178,6 +178,18 @@ fn valid_old_id(id: &str) -> bool {
     arch_ok && num.len() == 7 && num.bytes().all(|c| c.is_ascii_digit())
 }
 
+/// The month an arXiv id was submitted: 2611.21813 → 2026-11,
+/// hep-ph/0601001 → 2006-01.
+pub fn id_date(id: &str) -> String {
+    let num = id.rsplit('/').next().unwrap_or("");
+    let d: Vec<u32> = num.chars().take(4).filter_map(|c| c.to_digit(10)).collect();
+    if d.len() < 4 {
+        return String::new();
+    }
+    let y = d[0] * 10 + d[1];
+    format!("{}-{}{}", if y < 91 { 2000 + y } else { 1900 + y }, d[2], d[3])
+}
+
 pub fn arxiv_links(id: &str) -> Value {
     json!({
         "id": id,
@@ -647,6 +659,7 @@ pub fn date_from_days(days: i64) -> String {
 /// `\"{o}` → `ö`, `--` → `–`, `\text{TeV}` → `TeV`. Not a TeX engine: it
 /// keeps the words and the common symbols and drops the rest.
 pub fn detex(s: &str) -> String {
+    let s = siunitx(s);
     let src: Vec<char> = s.chars().collect();
     let mut i = 0;
     let raw = tex_run(&src, &mut i, false, Stop::End);
@@ -793,7 +806,7 @@ fn tex_run(src: &[char], i: &mut usize, math: bool, stop: Stop) -> String {
                 }
                 let prev = out.chars().last().unwrap_or(' ');
                 let next = src.get(*i).copied().unwrap_or(' ');
-                if (prev.is_alphanumeric() || "⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉".contains(prev)) && next.is_ascii_alphanumeric() {
+                if (prev.is_alphanumeric() || "⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉".contains(prev)) && (next.is_alphanumeric() || next == 'µ') {
                     out.push(' ');
                 }
             }
@@ -1295,6 +1308,335 @@ pub fn arxiv_meta(atom: &str) -> Result<PaperRow, String> {
     })
 }
 
+/* ------------------------------------------------------------ siunitx */
+
+/// `\qty{…}{…}`, `\SI{…}{…}`, `\num{…}`, `\si{…}`, `\unit{…}` as readable
+/// numbers and units: `\qty{e34}{\cm\tothe{-2}\s\tothe{-1}}` → 10³⁴ cm⁻² s⁻¹.
+fn siunitx(t: &str) -> String {
+    if !t.contains("\\qty") && !t.contains("\\SI") && !t.contains("\\num") && !t.contains("\\si") && !t.contains("\\unit") {
+        return t.to_string();
+    }
+    let mut out = String::with_capacity(t.len());
+    let mut rest = t;
+    loop {
+        let next = ["\\qty", "\\SI", "\\num", "\\si", "\\unit"]
+            .iter()
+            .filter_map(|c| rest.find(c).map(|p| (p, *c)))
+            .filter(|(p, c)| !rest[p + c.len()..].starts_with(|ch: char| ch.is_ascii_alphabetic()))
+            .min_by_key(|(p, _)| *p);
+        let Some((p, c)) = next else { break };
+        out.push_str(&rest[..p]);
+        let after = &rest[p + c.len()..];
+        let k = skip_opts(after, 0);
+        let Some((a, end)) = brace_group(after, k) else {
+            out.push_str(c);
+            rest = after;
+            continue;
+        };
+        let (num, unit, used) = match c {
+            "\\num" => (Some(a), None, end),
+            "\\si" | "\\unit" => (None, Some(a), end),
+            _ => match brace_group(after, skip_opts(after, end)) {
+                Some((u, e2)) => (Some(a), Some(u), e2),
+                None => (Some(a), None, end),
+            },
+        };
+        let mut piece = String::new();
+        if let Some(n) = num {
+            piece.push_str(&si_number(n));
+        }
+        if let Some(u) = unit {
+            if !piece.is_empty() {
+                piece.push('\u{2009}');
+            }
+            piece.push_str(&si_unit(u));
+        }
+        out.push_str(&piece);
+        rest = &after[used..];
+    }
+    out.push_str(rest);
+    out
+}
+
+fn si_number(n: &str) -> String {
+    let n = n.trim().replace(' ', "");
+    let (m, e) = match n.find(['e', 'E']) {
+        Some(p) => (&n[..p], Some(&n[p + 1..])),
+        None => (n.as_str(), None),
+    };
+    match e {
+        Some(e) if !e.is_empty() => {
+            let pow = format!("10{}", script(e.trim_start_matches('+'), true));
+            if m.is_empty() || m == "1" {
+                pow
+            } else {
+                format!("{m}×{pow}")
+            }
+        }
+        _ => m.replace("\\pm", "±"),
+    }
+}
+
+fn si_unit(u: &str) -> String {
+    const UNITS: &[(&str, &str)] = &[
+        ("electronvolt", "eV"), ("eV", "eV"), ("TeV", "TeV"), ("GeV", "GeV"), ("MeV", "MeV"), ("keV", "keV"), ("metre", "m"), ("meter", "m"), ("cm", "cm"), ("mm", "mm"),
+        ("um", "µm"), ("nm", "nm"), ("km", "km"), ("m", "m"), ("second", "s"), ("ns", "ns"), ("us", "µs"), ("ms", "ms"), ("s", "s"), ("tesla", "T"), ("T", "T"),
+        ("hertz", "Hz"), ("Hz", "Hz"), ("MHz", "MHz"), ("GHz", "GHz"), ("watt", "W"), ("MW", "MW"), ("W", "W"), ("ampere", "A"), ("A", "A"), ("kelvin", "K"),
+        ("K", "K"), ("percent", "%"), ("barn", "b"), ("fb", "fb"), ("pb", "pb"), ("ab", "ab"), ("radian", "rad"), ("rad", "rad"), ("degree", "°"), ("gram", "g"),
+        ("kg", "kg"), ("volt", "V"), ("V", "V"), ("joule", "J"), ("J", "J"), ("pascal", "Pa"), ("litre", "L"), ("liter", "L"), ("byte", "B"), ("bit", "bit"),
+    ];
+    const PREFIX: &[(&str, &str)] = &[("femto", "f"), ("pico", "p"), ("nano", "n"), ("micro", "µ"), ("milli", "m"), ("centi", "c"), ("kilo", "k"), ("mega", "M"), ("giga", "G"), ("tera", "T"), ("peta", "P")];
+    let mut parts: Vec<String> = Vec::new();
+    let mut prefix = String::new();
+    let mut per = false;
+    let b = u.as_bytes();
+    let mut k = 0;
+    while k < b.len() {
+        if b[k] == b'\\' {
+            let start = k + 1;
+            let mut e = start;
+            while e < b.len() && (b[e] as char).is_ascii_alphabetic() {
+                e += 1;
+            }
+            let name = &u[start..e];
+            k = e;
+            if name == "per" {
+                per = true;
+            } else if name == "squared" || name == "cubed" {
+                if let Some(last) = parts.last_mut() {
+                    last.push_str(if name == "squared" { "²" } else { "³" });
+                }
+            } else if name == "tothe" || name == "raiseto" {
+                if let Some((g, end)) = brace_group(u, k) {
+                    if let Some(last) = parts.last_mut() {
+                        last.push_str(&script(g, true));
+                    }
+                    k = end;
+                }
+            } else if let Some((_, p)) = PREFIX.iter().find(|(n, _)| *n == name) {
+                prefix.push_str(p);
+            } else {
+                let sym = UNITS.iter().find(|(n, _)| *n == name).map(|(_, s)| s.to_string()).unwrap_or_else(|| name.to_string());
+                let mut piece = format!("{prefix}{sym}");
+                prefix.clear();
+                if per {
+                    piece.push_str("⁻¹");
+                    per = false;
+                }
+                parts.push(piece);
+            }
+        } else if (b[k] as char).is_whitespace() || b[k] == b'.' || b[k] == b'~' {
+            k += 1;
+        } else {
+            // literal units ("TeV", "cm^{-2}"), read to the next command or space
+            let start = k;
+            while k < b.len() && b[k] != b'\\' && !(b[k] as char).is_whitespace() {
+                k += 1;
+            }
+            let lit = &u[start..k];
+            let piece = match lit.find('^') {
+                Some(p) => {
+                    let exp = lit[p + 1..].trim_matches(|c| c == '{' || c == '}');
+                    format!("{}{}", &lit[..p], script(exp, true))
+                }
+                None => lit.to_string(),
+            };
+            parts.push(format!("{prefix}{piece}"));
+            prefix.clear();
+        }
+    }
+    parts.join("\u{2009}")
+}
+
+/* ------------------------------------------------------------ details from the source */
+
+/// Title, authors and abstract from a paper's source archive. The web
+/// version needs this: arXiv's API doesn't answer other sites' pages, but
+/// its source downloads do. The date and link come from the arXiv id.
+pub fn meta_from_archive(bytes: &[u8]) -> Result<PaperRow, String> {
+    if bytes.starts_with(b"%PDF") {
+        return Err("arXiv has only the PDF of this paper, no source: fill in the details by hand".into());
+    }
+    let gz = bytes.starts_with(&[0x1f, 0x8b]);
+    let data = if gz { gunzip(bytes, MAX_TOTAL_BYTES + 100 * 1024 * 1024)? } else { bytes.to_vec() };
+    let texs: Vec<(String, String)> = if is_tar(&data) {
+        tar_entries(&data)
+            .iter()
+            .filter(|(name, _)| name.to_ascii_lowercase().ends_with(".tex") && !hidden(name))
+            .map(|(name, body)| (name.clone(), strip_comments(&String::from_utf8_lossy(body))))
+            .collect()
+    } else if gz || data.starts_with(b"\\") || data.windows(14).any(|w| w == b"\\documentclass") {
+        // a single TeX file, gzipped
+        vec![("main.tex".into(), strip_comments(&String::from_utf8_lossy(&data)))]
+    } else {
+        return Err("That isn't a paper's source (.tar.gz)".into());
+    };
+    if texs.is_empty() {
+        return Err("The paper's source has no TeX files".into());
+    }
+    let tex = expanded_tex(&texs);
+    let mut title = cmd_args(&tex, "title").into_iter().next().map(|t| clean_meta(&t)).unwrap_or_default();
+    if title.is_empty() {
+        title = title_page(&tex);
+    }
+    let mut names: Vec<String> = Vec::new();
+    for a in cmd_args(&tex, "author") {
+        for n in split_names(&a) {
+            if !names.contains(&n) {
+                names.push(n);
+            }
+        }
+    }
+    for c in cmd_args(&tex, "collaboration") {
+        let c = clean_meta(&c);
+        if !c.is_empty() && !names.contains(&c) {
+            names.push(c);
+        }
+    }
+    let abstract_ = env_body(&tex, "abstract").or_else(|| cmd_args(&tex, "abstract").into_iter().next()).map(|a| clean_meta(&a)).unwrap_or_default();
+    if title.is_empty() && names.is_empty() && abstract_.is_empty() {
+        return Err("Couldn't find the title, authors or abstract in the paper's source: fill them in by hand".into());
+    }
+    Ok(PaperRow {
+        paper_title: title,
+        authors: names.join(", "),
+        public_abstract: abstract_,
+        ..Default::default()
+    })
+}
+
+/// A hand-made title page: the first `{\Large …}` (or `\LARGE`, `\huge`,
+/// `\Huge`) group between `\begin{document}` and the first section.
+fn title_page(tex: &str) -> String {
+    let start = tex.find("\\begin{document}").map(|p| p + 16).unwrap_or(0);
+    let end = tex[start..].find("\\section").map(|p| start + p).unwrap_or(tex.len());
+    let body = &tex[start..end];
+    let mut from = 0;
+    while let Some(p) = body[from..].find('{') {
+        let at = from + p;
+        let inner = body[at + 1..].trim_start();
+        if ["\\Large", "\\LARGE", "\\huge", "\\Huge"].iter().any(|c| inner.starts_with(c) && !inner[c.len()..].starts_with(|ch: char| ch.is_ascii_alphabetic())) {
+            if let Some((g, _)) = brace_group(body, at) {
+                let t = clean_meta(g);
+                if t.split_whitespace().count() >= 2 {
+                    return t;
+                }
+            }
+        }
+        from = at + 1;
+    }
+    String::new()
+}
+
+/// The `{…}` arguments of every `\name` (not `\namefoo`), after any `[…]`.
+fn cmd_args(tex: &str, name: &str) -> Vec<String> {
+    let needle = format!("\\{name}");
+    let mut out = Vec::new();
+    let mut from = 0;
+    while let Some(p) = tex[from..].find(&needle) {
+        let at = from + p + needle.len();
+        from = at;
+        if tex[at..].chars().next().is_some_and(|c| c.is_ascii_alphabetic() || c == '@') {
+            continue;
+        }
+        let k = skip_opts(tex, if tex[at..].starts_with('*') { at + 1 } else { at });
+        if let Some((g, end)) = brace_group(tex, k) {
+            out.push(g.to_string());
+            from = end;
+        }
+    }
+    out
+}
+
+/// The inside of the first `\begin{name}…\end{name}`.
+fn env_body(tex: &str, name: &str) -> Option<String> {
+    let b = format!("\\begin{{{name}}}");
+    let e = format!("\\end{{{name}}}");
+    let start = tex.find(&b)? + b.len();
+    let end = tex[start..].find(&e)? + start;
+    Some(tex[start..end].to_string())
+}
+
+/// Text with the commands that carry no words for a reader removed whole
+/// (affiliations, e-mails, footnotes, ORCID marks…), then made readable.
+fn clean_meta(t: &str) -> String {
+    let mut s = t.to_string();
+    for c in [
+        "thanks", "footnote", "footnotemark", "footnotetext", "affiliation", "altaffiliation", "affil", "address", "email", "institute", "inst", "orcidlink",
+        "orcid", "IEEEauthorblockA", "fnmsep", "textsuperscript", "label", "keywords", "maketitle", "noaffiliation", "homepage", "corref", "fnref", "tnoteref",
+        "thanksref", "thankstext", "authorrunning", "titlerunning", "vspace", "hspace", "vskip", "hskip", "phantom", "url", "href", "cite", "ref", "printead",
+    ] {
+        s = drop_cmd(&s, c);
+    }
+    let s = s.replace("\\\\", " ").replace("\\and", ", ").replace("\\And", ", ").replace("\\AND", ", ");
+    one_line(&detex(&s))
+}
+
+/// `\name[…]{…}` removed (the command and its argument).
+fn drop_cmd(t: &str, name: &str) -> String {
+    let needle = format!("\\{name}");
+    let mut out = String::with_capacity(t.len());
+    let mut rest = t;
+    while let Some(p) = rest.find(&needle) {
+        let after = &rest[p + needle.len()..];
+        if after.chars().next().is_some_and(|c| c.is_ascii_alphabetic()) {
+            out.push_str(&rest[..p + needle.len()]);
+            rest = after;
+            continue;
+        }
+        out.push_str(&rest[..p]);
+        // `\vspace*{…}`: the starred form too
+        let after = after.strip_prefix('*').unwrap_or(after);
+        let k = skip_opts(after, 0);
+        rest = match brace_group(after, k) {
+            Some((_, end)) => &after[end..],
+            None => &after[k..],
+        };
+    }
+    out.push_str(rest);
+    out
+}
+
+/// People's names from an `\author{…}`: split at commas, "and", `\and`.
+fn split_names(a: &str) -> Vec<String> {
+    // in an author block a line break separates names (and affiliations)
+    let mut s = clean_meta(&a.replace("\\\\", ", ").replace("\\newline", ", "));
+    // footnote marks left as superscripts or stray symbols
+    s = s.chars().filter(|c| !"*†‡§¶⁰¹²³⁴⁵⁶⁷⁸⁹".contains(*c)).collect();
+    s.replace(" and ", ", ")
+        .split([',', ';'])
+        .map(|n| n.trim().trim_start_matches("and ").trim_matches(|c: char| !c.is_alphanumeric() && c != '.' && c != ')').to_string())
+        .filter(|n| looks_like_name(n))
+        .collect()
+}
+
+/// A person's name (or a collaboration), not an affiliation that came
+/// along in the author block (as JACoW papers have it).
+fn looks_like_name(n: &str) -> bool {
+    if n.chars().filter(|c| c.is_alphabetic()).count() < 2 || n.contains('@') || n.chars().any(|c| c.is_ascii_digit()) {
+        return false;
+    }
+    let low = n.to_lowercase();
+    if low.contains("collaboration") {
+        return true;
+    }
+    const PLACES: &[&str] = &[
+        "universit", "laborator", "institut", "college", "school", "department", "dept", "center", "centre", "cern", "infn", "fermilab", "national", "academy",
+        "faculty", "lab ", "usa", "u.s.a", "italy", "germany", "france", "switzerland", "japan", "china", "spain", "canada", "korea", "india", "netherlands",
+        "russia", "sweden", "poland", "belgium", "austria", "brazil", "mexico", "united kingdom", "england", "scotland", "israel", "greece", "portugal", "finland",
+        "norway", "denmark", "ireland", "czech", "hungary", "turkey", "australia", "taiwan", "physics", "research", "foundation", "corporation", "inc.",
+    ];
+    if PLACES.iter().any(|p| low.contains(p)) {
+        return false;
+    }
+    let words: Vec<&str> = n.split_whitespace().collect();
+    // one word (a city), a state code, or too long for a name
+    if words.len() < 2 || words.len() > 5 || (words.len() == 1 && n.len() <= 3) {
+        return false;
+    }
+    true
+}
+
 /* ------------------------------------------------------------ figure captions */
 
 /// TeX source with `%` comments removed.
@@ -1644,6 +1986,34 @@ mod tests {
         let sum: usize = h.iter().map(|&b| b as usize).sum();
         h[148..156].copy_from_slice(format!("{sum:06o}\0 ").as_bytes());
         h
+    }
+
+    #[test]
+    fn details_from_a_source_archive() {
+        let tex = r#"\documentclass{revtex4}
+\begin{document}
+\title{Probing $\tau$ lepton dipole moments\thanks{Funded by DOE}}
+\author{Dario Buttazzo}\affiliation{INFN Pisa}
+\author[2]{Gabriele Levati\textsuperscript{2}}
+\author{Yang Ma \and Fabio Maltoni\thanks{fabio@example.org}}
+\collaboration{Muon Collider Collaboration}
+\begin{abstract}
+We investigate $\mu^+\mu^-\to\tau^+\tau^-$ at a $10\,\mathrm{TeV}$ collider.
+\end{abstract}
+\maketitle
+\end{document}"#;
+        let tar = tar(&[("paper/main.tex", tex.as_bytes()), ("paper/fig.png", b"\x89PNG....")]);
+        let row = meta_from_archive(&tar).unwrap();
+        assert_eq!(row.paper_title, "Probing τ lepton dipole moments");
+        assert_eq!(row.authors, "Dario Buttazzo, Gabriele Levati, Yang Ma, Fabio Maltoni, Muon Collider Collaboration");
+        assert!(row.public_abstract.starts_with("We investigate μ⁺μ⁻ → τ⁺τ⁻ at a 10 TeV collider"), "{}", row.public_abstract);
+        assert!(meta_from_archive(b"%PDF-1.5").is_err());
+        assert_eq!(detex(r"$\gtrsim\qty{e34}{\cm\tothe{-2} \s\tothe{-1}}$ in a $\qty{10}{TeV}$, $\sim\qty{22}{\micro\metre}$"), "≳10³⁴ cm⁻² s⁻¹ in a 10 TeV, ∼22 µm");
+        assert_eq!(clean_meta(r"\vspace*{1.2em} We investigate"), "We investigate");
+        assert_eq!(id_date("2611.21813"), "2026-11");
+        assert_eq!(title_page("\\begin{document}\n\\begin{center}{\\Large\\bfseries Input to the SCAC from the \\textit{U.S.} Collaboration}\\end{center}\n\\section{Intro} {\\Large x y}"), "Input to the SCAC from the U.S. Collaboration");
+        assert_eq!(id_date("hep-ph/0601001"), "2006-01");
+        assert_eq!(split_names(r"I. Karaaslan\thanks{x@y.edu}, K. DiPetrillo, University of Chicago, Chicago, IL, USA\\ D. Neuffer"), vec!["I. Karaaslan", "K. DiPetrillo", "D. Neuffer"]);
     }
 
     fn tar(files: &[(&str, &[u8])]) -> Vec<u8> {

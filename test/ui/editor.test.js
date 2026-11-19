@@ -191,6 +191,78 @@ test('slides join without a seam: the backdrop and a background figure run on', 
   await page.close();
 });
 
+test('backgrounds in sequence melt into each other; a quote has its mark', async () => {
+  const { page, errors } = await open();
+  await page.evaluate(() => Sheets.newDoc());
+  for (let i = 0; i < 3; i++) await page.keyboard.press('n');
+  await page.keyboard.press('[');
+  await page.keyboard.press('[');
+  await page.keyboard.press('[');
+  page.choose([pics.photo]);
+  await page.keyboard.press('k');
+  await page.waitForFunction(() => (S.doc.bg || []).length === 1, null, { timeout: 15000 });
+  // a second photo, added on slide 3, takes over from there
+  await page.keyboard.press('Escape');
+  await page.keyboard.press(']');
+  await page.keyboard.press(']');
+  page.choose([pics.red]);
+  await page.keyboard.press('k');
+  await page.waitForFunction(() => (S.doc.bg || []).length === 2, null, { timeout: 15000 });
+  assert.deepEqual(await page.evaluate(() => S.doc.bg.map((l) => l.chain)), [2, 2]);
+  assert.match(await page.textContent('#insp'), /Background 2 of 2/);
+  const seam = (i) =>
+    page.evaluate(async (i) => {
+      const edge = async (k, right) => {
+        const b = await U.renderSlide(S.doc.slides[k], 'image/png');
+        const bmp = await createImageBitmap(b);
+        const c = new OffscreenCanvas(bmp.width, bmp.height);
+        const x = c.getContext('2d');
+        x.drawImage(bmp, 0, 0);
+        return x.getImageData(right ? bmp.width - 1 : 0, 0, 1, bmp.height).data;
+      };
+      const a = await edge(i, true);
+      const b = await edge(i + 1, false);
+      let sum = 0;
+      for (let k = 0; k < a.length; k += 4) sum += Math.abs(a[k] - b[k]) + Math.abs(a[k + 1] - b[k + 1]) + Math.abs(a[k + 2] - b[k + 2]);
+      return sum / (a.length / 4) / 3;
+    }, i);
+  for (let i = 0; i < 3; i++) {
+    const d = await seam(i);
+    assert.ok(d < 4, `seam ${i + 1}: the edges differ by ${d.toFixed(1)} levels`);
+  }
+  // with no blend it is a hard cut on the seam: the two photos meet there
+  await page.evaluate(() => {
+    S.doc.bg[1].blend = 0;
+    U.changed('bg-blend', { all: true });
+  });
+  assert.ok((await seam(1)) > 20, 'a hard cut shows on the seam');
+  // + slide gives the first one more; a new slide goes to the last
+  await page.evaluate(() => {
+    S.sel = S.doc.bg[0].id;
+    U.refresh();
+  });
+  await page.click('#insp button:text-is("+ slide")');
+  assert.deepEqual(await page.evaluate(() => S.doc.bg.map((l) => l.chain)), [3, 2]);
+  assert.equal(await page.evaluate(() => S.doc.bg[1].x), 3 * 1080);
+  await page.keyboard.press('Escape');
+  await page.keyboard.press('n');
+  assert.equal(await page.evaluate(() => S.doc.bg[1].x + S.doc.bg[1].w), 5 * 1080);
+  // Q on a slide without text: the quote and a line for who said it
+  await page.keyboard.press('n');
+  await page.keyboard.press('q');
+  await page.keyboard.press('Escape');
+  const q = await page.evaluate(() => {
+    const ls = S.doc.slides[S.cur].layers;
+    const l = ls.find((m) => m.role === 'quote');
+    const t = R.THEMES[S.doc.theme] || R.THEMES.midnight;
+    return { roles: ls.map((m) => m.role), withMark: R.bounds(l, t, 1080, 1350).h, without: R.bounds({ ...l, mark: false }, t, 1080, 1350).h, size: t.type.quote.size };
+  });
+  assert.deepEqual(q.roles, ['quote', 'caption']);
+  assert.ok(q.withMark - q.without > q.size * 1.5, `the mark takes ${q.withMark - q.without} px above the words`);
+  assert.deepEqual(errors, []);
+  await page.close();
+});
+
 test('a background blurs and darkens in one tap, and U steps through the looks', async () => {
   const { page, errors } = await open();
   await page.evaluate(() => Sheets.newDoc());

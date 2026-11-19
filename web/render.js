@@ -100,6 +100,22 @@
       type: { eyebrow: T('inter', 30, 1.2, 6, 800, { upper: true }), title: T('anton', 128, 1.02, 0.5, 400), body: T('inter', 46, 1.38, -0.2, 500), caption: T('inter', 32, 1.35, 0, 600) },
     },
   };
+  // Pull quotes: the words in the theme's reading voice (an italic serif),
+  // under a large open quotation mark in the accent colour.
+  // [style, mark face, mark weight, mark size × the words' size]
+  const QUOTES = {
+    midnight: [T('instrument', 76, 1.14, -0.3, 400, { italic: true }), 'instrument', 400, 8.5],
+    paper: [T('newsreader', 66, 1.22, -0.6, 400, { italic: true }), 'newsreader', 400, 7],
+    blueprint: [T('plex', 58, 1.32, -0.5, 400, { italic: true }), 'fraunces', 400, 6.5],
+    ink: [T('fraunces', 66, 1.2, -0.6, 400, { italic: true }), 'fraunces', 400, 6.5],
+    glacier: [T('newsreader', 64, 1.22, -0.4, 400, { italic: true }), 'newsreader', 400, 7],
+    signal: [T('inter', 58, 1.26, -0.8, 600), 'fraunces', 650, 6.5],
+  };
+  for (const [k, [st, face, weight, scale]] of Object.entries(QUOTES)) {
+    THEMES[k].type.quote = st;
+    THEMES[k].colors.quote = THEMES[k].colors.title;
+    THEMES[k].mark = { font: face, weight, scale };
+  }
   // carousels made with the first themes open in their nearest new one
   const LEGACY = { editorial: 'ink', bold_sans: 'midnight', punch: 'signal', ocean: 'blueprint', soft_serif: 'paper', minimal_mono: 'glacier' };
 
@@ -145,7 +161,7 @@
 
   /* ------------------------------------------------------------------ text */
 
-  const ROLES = ['eyebrow', 'title', 'body', 'caption'];
+  const ROLES = ['eyebrow', 'title', 'body', 'caption', 'quote'];
 
   // The style a text layer is drawn with: the theme's style for its role,
   // with anything set on the layer taking precedence.
@@ -189,7 +205,8 @@
   function textLayout(layer, theme) {
     const st = textStyle(layer, theme);
     const text = st.upper ? String(layer.text || '').toUpperCase() : String(layer.text || '');
-    const key = JSON.stringify([text, layer.w, st.size, st.weight, st.italic, st.font, st.ls, st.lh]);
+    const mk = layer.role === 'quote' && layer.mark !== false ? theme.mark || { font: 'fraunces', weight: 400 } : null;
+    const key = JSON.stringify([text, layer.w, st.size, st.weight, st.italic, st.font, st.ls, st.lh, mk]);
     let hit = layoutCache.get(key);
     if (hit) return { ...hit, st };
     const ctx = mctx();
@@ -218,7 +235,20 @@
       lines.push(line);
     }
     const lineH = st.size * st.lh;
-    hit = { lines, lineH, h: Math.max(lineH, lines.length * lineH), widths: lines.map((l) => widthOf(ctx, l, st)) };
+    hit = { lines, lineH, h: Math.max(lineH, lines.length * lineH), widths: lines.map((l) => widthOf(ctx, l, st)), top: 0, mark: null };
+    if (mk) {
+      // the mark's ink sits on the box's top edge; the words start below it
+      const font = `${mk.weight} ${Math.round(st.size * (mk.scale || 4))}px ${FONTS[mk.font] || FONTS.serif}`;
+      ctx.font = font;
+      if (HAS_LS) ctx.letterSpacing = '0px';
+      const m = ctx.measureText('\u201C');
+      const asc = m.actualBoundingBoxAscent || st.size * 2.2;
+      const ink = asc + (m.actualBoundingBoxDescent || -st.size * 1.1);
+      const left = m.actualBoundingBoxLeft || 0;
+      hit.mark = { font, asc, left, w: left + (m.actualBoundingBoxRight || m.width) };
+      hit.top = Math.round(ink + st.size * 0.22);
+      hit.h += hit.top;
+    }
     if (layoutCache.size > 400) layoutCache.clear();
     layoutCache.set(key, hit);
     return { ...hit, st };
@@ -253,8 +283,18 @@
       ctx.shadowBlur = st.size * 0.35 * (0.5 + st.shadow);
       ctx.shadowOffsetY = st.size * 0.04;
     }
+    if (lay.mark) {
+      const mk = lay.mark;
+      const x = st.align === 'center' ? layer.x + (layer.w - mk.w) / 2 : st.align === 'right' ? layer.x + layer.w - mk.w : layer.x;
+      ctx.save();
+      ctx.font = mk.font;
+      if (HAS_LS) ctx.letterSpacing = '0px';
+      ctx.fillStyle = layer.markColor || theme.colors.eyebrow;
+      ctx.fillText('\u201C', x + mk.left, layer.y + mk.asc);
+      ctx.restore();
+    }
     // baseline: centre the font's em box in the line
-    const base = st.size * 0.8 + (lay.lineH - st.size) / 2;
+    const base = lay.top + st.size * 0.8 + (lay.lineH - st.size) / 2;
     lay.lines.forEach((line, i) => {
       const w = lay.widths[i];
       const x = st.align === 'center' ? layer.x + (layer.w - w) / 2 : st.align === 'right' ? layer.x + layer.w - w : layer.x;
@@ -455,15 +495,68 @@
     const c = job.blur ? blurred(job.c, job.blur) : job.c;
     return { bmp: c, w: c.width, h: c.height };
   };
-  // A soft blur that works in every browser (Safari's canvas has no filter):
-  // halve the picture step by step to a small copy; drawn back at full size
-  // with smoothing it reads as a blur. `amount` 0…30.
+  // A real (Gaussian) blur that works in every browser: Safari's canvas has
+  // no filter. Three box blurs approximate a Gaussian; they run on a copy
+  // reduced only as far as the blur hides (so enlarging it back shows no
+  // steps), with the edge pixels repeated so the borders don't darken. The
+  // radius is a fraction of the picture's own width, so the preview and the
+  // full-size export look the same. `amount` 0…30.
+  const BLUR_AREA = 420000; // working pixels: a few milliseconds
   function blurred(src, amount) {
-    const target = Math.max(8, Math.round(src.width / (1 + amount / 2.5)));
+    const sigma = (amount / 30) * 0.045 * src.width; // up to 4.5% of the width
+    if (sigma < 0.5) return src;
+    // reduce so that sigma is still ≥ 3 working pixels, and the copy is small
+    const k = Math.max(1, Math.min(sigma / 3, Math.sqrt((src.width * src.height) / BLUR_AREA)));
     let cur = src;
-    while (cur.width / 2 >= target) cur = scaled(cur, Math.round(cur.width / 2));
-    if (cur.width !== target) cur = scaled(cur, target);
+    const tw = Math.max(8, Math.round(src.width / k));
+    while (cur.width / 2 >= tw) cur = scaled(cur, Math.round(cur.width / 2));
+    cur = scaled(cur, tw);
+    const x = cur.getContext('2d', { willReadFrequently: true });
+    const img = x.getImageData(0, 0, cur.width, cur.height);
+    gauss(img.data, cur.width, cur.height, sigma / (src.width / cur.width));
+    x.putImageData(img, 0, 0);
     return cur;
+  }
+  // three box widths whose succession approximates a Gaussian of `sigma`
+  function boxes(sigma) {
+    const n = 3;
+    const wIdeal = Math.sqrt((12 * sigma * sigma) / n + 1);
+    let wl = Math.floor(wIdeal);
+    if (wl % 2 === 0) wl--;
+    const wu = wl + 2;
+    const m = Math.round((12 * sigma * sigma - n * wl * wl - 4 * n * wl - 3 * n) / (-4 * wl - 4));
+    return [0, 1, 2].map((i) => ((i < m ? wl : wu) - 1) / 2);
+  }
+  function gauss(d, w, h, sigma) {
+    const tmp = new Uint8ClampedArray(d.length);
+    for (const r of boxes(sigma)) {
+      boxPass(d, tmp, w, h, Math.max(1, Math.round(r)), true);
+      boxPass(tmp, d, w, h, Math.max(1, Math.round(r)), false);
+    }
+  }
+  // one running-sum box blur along rows (horizontal) or columns, edges repeated
+  function boxPass(src, dst, w, h, r, horizontal) {
+    const lines = horizontal ? h : w;
+    const len = horizontal ? w : h;
+    const step = horizontal ? 4 : w * 4;
+    const inv = 1 / (2 * r + 1);
+    for (let line = 0; line < lines; line++) {
+      const base = horizontal ? line * w * 4 : line * 4;
+      for (let c = 0; c < 4; c++) {
+        const first = src[base + c];
+        const last = src[base + (len - 1) * step + c];
+        // the window [i - r, i + r] before its first step: r copies of the edge, then 0 … r-1
+        let acc = first * r;
+        for (let i = 0; i < r; i++) acc += src[base + Math.min(i, len - 1) * step + c];
+        for (let i = 0; i < len; i++) {
+          const add = i + r < len ? src[base + (i + r) * step + c] : last;
+          acc += add;
+          dst[base + i * step + c] = acc * inv;
+          const sub = i - r >= 0 ? src[base + (i - r) * step + c] : first;
+          acc -= sub;
+        }
+      }
+    }
   }
   function scaled(src, w) {
     const c = document.createElement('canvas');
@@ -575,11 +668,53 @@
       // still decoding: a quiet placeholder
       ctx.fillStyle = 'rgba(128,128,128,0.25)';
       ctx.fillRect(layer.x, layer.y, layer.w, layer.h);
+    } else if (layer.bg && (layer.fadeL || layer.fadeR)) {
+      drawFaded(ctx, layer, pic);
     } else {
       const p = placement(layer, pic.w, pic.h);
       ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(pic.bmp, p.x, p.y, p.w, p.h);
     }
+    ctx.restore();
+  }
+
+  // A background in a sequence melts into the next: its edges fade out over
+  // `fadeL` / `fadeR` carousel pixels (an eased ramp). Drawn into a scratch
+  // canvas pixel for pixel with the target (so nothing is resampled and the
+  // slides still meet exactly), masked, then laid on.
+  let fadeCanvas = null;
+  const EASE = [0, 0.1, 0.25, 0.4, 0.55, 0.7, 0.85, 1].map((t) => [t, t * t * (3 - 2 * t)]);
+  function drawFaded(ctx, layer, pic) {
+    const m = ctx.getTransform();
+    const cw = ctx.canvas.width;
+    const ch = ctx.canvas.height;
+    if (!fadeCanvas) fadeCanvas = document.createElement('canvas');
+    const c = fadeCanvas;
+    if (c.width < cw || c.height < ch) {
+      c.width = Math.max(c.width, cw);
+      c.height = Math.max(c.height, ch);
+    }
+    const f = c.getContext('2d');
+    f.setTransform(1, 0, 0, 1, 0, 0);
+    f.globalCompositeOperation = 'source-over';
+    f.clearRect(0, 0, cw, ch);
+    f.setTransform(m);
+    const p = placement(layer, pic.w, pic.h);
+    f.imageSmoothingQuality = 'high';
+    f.drawImage(pic.bmp, p.x, p.y, p.w, p.h);
+    f.globalCompositeOperation = 'destination-in';
+    const g = f.createLinearGradient(layer.x, 0, layer.x + layer.w, 0);
+    const L = clamp((layer.fadeL || 0) / layer.w, 0, 0.5);
+    const Rt = clamp((layer.fadeR || 0) / layer.w, 0, 0.5);
+    if (L) for (const [t, a] of EASE) g.addColorStop(t * L, `rgba(0,0,0,${a})`);
+    else g.addColorStop(0, '#000');
+    if (Rt) for (const [t, a] of EASE) g.addColorStop(1 - Rt + t * Rt, `rgba(0,0,0,${1 - a})`);
+    else g.addColorStop(1, '#000');
+    f.fillStyle = g;
+    f.fillRect(layer.x, layer.y, layer.w, layer.h);
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.drawImage(c, 0, 0, cw, ch, 0, 0, cw, ch);
     ctx.restore();
   }
 
@@ -815,14 +950,19 @@
   // Every theme's faces (at start, so the theme picker and new text are ready).
   function warmFonts() {
     const jobs = [];
-    for (const t of Object.values(THEMES)) for (const r of ROLES) jobs.push(loadFace(t.type[r], 'Aa1 τμ'));
+    for (const t of Object.values(THEMES)) {
+      for (const r of ROLES) jobs.push(loadFace(t.type[r], 'Aa1 τμ'));
+      jobs.push(loadFace({ font: t.mark.font, weight: t.mark.weight, italic: false }, '\u201C'));
+    }
     return Promise.all(jobs);
   }
 
   // The faces a slide's text uses, for exactly its characters.
   function fontsReady(doc, slide) {
     const theme = themeOf(doc);
-    return Promise.all(slide.layers.filter((l) => l.kind === 'text').map((l) => loadFace(textStyle(l, theme), String(l.text || 'A'))));
+    const jobs = slide.layers.filter((l) => l.kind === 'text').map((l) => loadFace(textStyle(l, theme), String(l.text || 'A')));
+    if (slide.layers.some((l) => l.role === 'quote')) jobs.push(loadFace({ font: theme.mark.font, weight: theme.mark.weight, italic: false }, '\u201C'));
+    return Promise.all(jobs);
   }
 
   // Everything a slide needs, decoded and loaded (before exporting).
