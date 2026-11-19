@@ -44,6 +44,47 @@ async function open(viewport = { width: 1440, height: 900 }) {
   return { page, errors };
 }
 
+test('every author by default, et al. on request; labels above titles only when asked', async () => {
+  const { page, errors } = await open();
+  await page.evaluate(() => Sheets.newDoc());
+  const names = 'Ana Ruiz, Ben Okafor, Chen Li, Dana Weiss';
+  await page.evaluate((a) => {
+    S.doc.paper = { paperTitle: 'Muons at Ten TeV', authors: a, publicationDate: '2026-11', paperLink: '', publicAbstract: 'We show it works.' };
+  }, names);
+  await page.keyboard.press('p');
+  await page.click('text=Make slides');
+  await page.waitForFunction(() => S.doc.slides.length === 3);
+  const lines = () => page.evaluate(() => [S.doc.slides[0], S.doc.slides[2]].map((s) => s.layers.find((l) => l.role === 'caption').text));
+  assert.deepEqual(await lines(), [names, names + ' · 2026-11']);
+  assert.equal(await page.evaluate(() => S.doc.slides.flatMap((s) => s.layers).filter((l) => l.role === 'eyebrow').length), 0);
+
+  // the author line's own switch (in the inspector) shortens both lines
+  await page.evaluate(() => {
+    S.sel = S.doc.slides[0].layers.find((l) => l.role === 'caption').id;
+    U.refresh();
+  });
+  await page.click('#insp .grp:has(.lbl:text-is("Authors")) button:text-is("Et al.")');
+  assert.deepEqual(await lines(), ['Ana Ruiz et al.', 'Ana Ruiz et al. · 2026-11']);
+  // a line edited by hand stays as written when switching back
+  await page.evaluate(() => (S.doc.slides[2].layers.find((l) => l.role === 'caption').text = 'Ruiz, Okafor, Li & Weiss'));
+  await page.keyboard.press('p');
+  await page.click('#sheet-body button:text-is("Every name")');
+  assert.deepEqual(await lines(), [names, 'Ruiz, Okafor, Li & Weiss']);
+  await page.keyboard.press('Escape');
+
+  // labels, when switched on, come back on new slides
+  await page.evaluate(() => U.saveSettings({ eyebrows: true }));
+  await page.evaluate(() => Sheets.newDoc());
+  await page.evaluate(() => (S.doc.paper = { paperTitle: 'Muons', authors: 'Ana Ruiz', paperLink: '', publicAbstract: 'It works.' }));
+  await page.keyboard.press('p');
+  await page.click('text=Make slides');
+  await page.waitForFunction(() => S.doc.slides.length === 3);
+  assert.equal(await page.evaluate(() => S.doc.slides[0].layers[0].text), 'USMCC Featured Paper');
+  await page.evaluate(() => U.saveSettings({ eyebrows: false }));
+  assert.deepEqual(errors, []);
+  await page.close();
+});
+
 async function addFiles(page, files) {
   page.choose(files);
   await page.keyboard.press('a');
@@ -60,7 +101,7 @@ test('a carousel from a sheet row, a photo and a plot, exported three ways', asy
   await page.click('text=Make slides');
   await page.waitForFunction(() => S.doc.slides.length === 3);
   const cover = await page.evaluate(() => S.doc.slides[0].layers.map((l) => l.kind + (l.role ? ':' + l.role : '')));
-  assert.deepEqual(cover, ['text:eyebrow', 'text:title', 'text:caption', 'logo']);
+  assert.deepEqual(cover, ['text:title', 'text:caption', 'logo']); // no label above the title unless asked for
   assert.equal(await page.evaluate(() => S.doc.name), 'A Better Way to Collide Muons');
 
   // the photo goes full bleed under the words on the cover; the plot
@@ -77,7 +118,7 @@ test('a carousel from a sheet row, a photo and a plot, exported three ways', asy
 
   // typing in the title re-stacks the cover from the bottom
   await page.evaluate(() => U.go(0));
-  const before = await page.evaluate(() => S.doc.slides[0].layers.find((l) => l.role === 'eyebrow').y);
+  const before = await page.evaluate(() => S.doc.slides[0].layers.find((l) => l.role === 'title').y);
   await page.evaluate(() => {
     S.sel = S.doc.slides[0].layers.find((l) => l.role === 'title').id;
     U.refresh();
@@ -86,8 +127,8 @@ test('a carousel from a sheet row, a photo and a plot, exported three ways', asy
   await page.keyboard.press('End');
   await page.keyboard.type(' at Higher Luminosity and Lower Cost');
   await page.keyboard.press('Escape');
-  const after = await page.evaluate(() => S.doc.slides[0].layers.find((l) => l.role === 'eyebrow').y);
-  assert.ok(after < before, `the eyebrow should move up as the title grows (${before} → ${after})`);
+  const after = await page.evaluate(() => S.doc.slides[0].layers.find((l) => l.role === 'title').y);
+  assert.ok(after < before, `the title should start higher as it grows (${before} → ${after})`);
 
   for (const [fmt, ext] of [
     ['jpeg', 'jpg'],

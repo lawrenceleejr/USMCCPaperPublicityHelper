@@ -28,11 +28,14 @@ the camera roll, in order, ready to post.
   abstract from its TeX (the desktop also asks arXiv's API), then has its
   figures ready. LaTeX in titles and
   abstracts (`$\tau$`, `$10^{34}$`) comes out as readable text (τ, 10³⁴).
-- **Make slides.** A cover ("USMCC Featured Paper", title, authors, logo), a
+- **Make slides.** A cover (title, every author, logo), a
   plain-language summary and a closing slide with the link and a QR code to
   the paper (links in Instagram posts can't be tapped), in the current
   theme. Long titles shrink to fit. The text re-stacks itself when you change the theme or the size, or
-  edit the words, until you move it by hand.
+  edit the words, until you move it by hand. The author line can switch to
+  "First author et al." (in Paper, or when the line is selected), and small
+  labels above titles ("USMCC Featured Paper", "Figure 2") can be turned on
+  in Paper.
 - **Pictures of every kind.** Photos fill a slide (behind the words); plots
   (PNG, SVG, PDF) sit on a white card; pages of a PDF are picked from
   thumbnails; the paper's figures come straight from its arXiv source, in

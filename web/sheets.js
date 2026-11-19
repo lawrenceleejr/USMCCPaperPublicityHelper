@@ -422,6 +422,45 @@ const Sheets = (() => {
       };
       b.append(el('h4', '', 'The paper'), fields);
 
+      // how the slides are made: the author line, and labels above titles
+      const opts = el('div', 'fields');
+      const authorsRow = el('div');
+      const drawAuthors = () => {
+        authorsRow.replaceChildren(
+          segButtons(
+            [
+              ['all', 'Every name'],
+              ['etal', 'First author et al.'],
+            ],
+            P.etAl ? 'etal' : 'all',
+            (v) => {
+              setEtAl(v === 'etal');
+              drawAuthors();
+            }
+          )
+        );
+      };
+      const labelsRow = el('div');
+      const drawLabels = () => {
+        labelsRow.replaceChildren(
+          segButtons(
+            [
+              ['off', 'None'],
+              ['on', 'Above titles'],
+            ],
+            S.settings.eyebrows ? 'on' : 'off',
+            (v) => {
+              U.saveSettings({ eyebrows: v === 'on' });
+              drawLabels();
+            }
+          )
+        );
+      };
+      drawAuthors();
+      drawLabels();
+      opts.append(el('label', '', 'Authors'), authorsRow, el('label', '', 'Labels'), labelsRow);
+      b.append(el('h4', '', 'On the slides'), opts);
+
       const acts = el('div', 'bar-actions');
       const make = btn('Make slides', 'primary', async () => {
         if (!P.paperTitle && !P.plainTitle) return (status.className = 'note err'), (status.textContent = 'Add a title first.');
@@ -444,7 +483,7 @@ const Sheets = (() => {
         }
       });
       acts.append(make, arx, pdfBtn, btn('Write the posts', 'quiet', () => posts(), 'W'));
-      b.append(acts, el('p', 'note', 'Make slides adds a cover, a summary and a closing slide in the current theme. Add photos, figures or PDF pages around them.'));
+      b.append(acts, el('p', 'note', 'Make slides adds a cover, a summary and a closing slide in the current theme. Add photos, figures or PDF pages around them. Labels (“USMCC Featured Paper”, “Figure 2”) go on slides made from now on.'));
       fill();
       c.onEnter = () => make.click();
       c.onKey = (e) => {
@@ -471,19 +510,41 @@ const Sheets = (() => {
     }
     return out.length > max * 1.3 ? out.slice(0, max - 1).replace(/\s+\S*$/, '') + '…' : out;
   }
+  const authorNames = (a) => String(a || '').split(/,| and /).map((x) => x.trim()).filter(Boolean);
   const shortAuthors = (a) => {
     const s = String(a || '').trim();
     if (/collaboration$/i.test(s)) return s;
-    const names = s.split(/,| and /).map((x) => x.trim()).filter(Boolean);
+    const names = authorNames(s);
     return names.length > 2 ? `${names[0]} et al.` : s;
   };
+  // The author line on the slides: every name, or "First et al." when the
+  // carousel asks for it (P.etAl). `kind` 'end' adds the date.
+  const authorText = (P, kind, etAl = !!P.etAl) => {
+    const a = etAl ? shortAuthors(P.authors) : String(P.authors || '').replace(/\s+/g, ' ').trim();
+    return kind === 'end' ? [a, P.publicationDate].filter(Boolean).join(' · ') : a;
+  };
+  // Can the author line be shortened at all?
+  const canEtAl = (P) => !!P && authorText(P, 'cover', true) !== authorText(P, 'cover', false);
+  // Switch the author lines on the slides between all names and "et al.";
+  // a line edited by hand is left alone.
+  function setEtAl(on) {
+    const P = S.doc.paper;
+    if (!P) return;
+    P.etAl = !!on;
+    for (const sl of S.doc.slides)
+      for (const l of sl.layers) {
+        if (!l.authors || l.kind !== 'text') continue;
+        if (l.text === authorText(P, l.authors, !on)) l.text = authorText(P, l.authors, !!on);
+      }
+    U.changed('authors', { all: true });
+  }
 
   // Text blocks stacked as the theme places them (see reflow in app.js),
   // with the logo in the opposite corner.
   function stackSlide(blocks, { logo = true } = {}) {
     const s = U.blankSlide();
     const g = uid();
-    for (const b of blocks.filter((b) => b.text)) s.layers.push({ id: uid(), kind: 'text', role: b.role, text: b.text, x: 0, w: 100, y: 0, ...(b.k ? { k: b.k } : {}), flow: { g, gap: b.gap || 0, ...(b.k ? { k: b.k } : {}) } });
+    for (const b of blocks.filter((b) => b.text)) s.layers.push({ id: uid(), kind: 'text', role: b.role, text: b.text, x: 0, w: 100, y: 0, ...(b.k ? { k: b.k } : {}), ...(b.authors ? { authors: b.authors } : {}), flow: { g, gap: b.gap || 0, ...(b.k ? { k: b.k } : {}) } });
     if (logo) s.layers.push({ id: uid(), kind: 'logo', h: 168, x: 0, y: 0, flow: { g, logo: true } });
     U.reflow(s);
     return s;
@@ -511,22 +572,18 @@ const Sheets = (() => {
     const title = (P.plainTitle || P.paperTitle).trim();
 
     const link = (P.paperLink || '').replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+    // small labels above the titles only when asked for (Paper → Labels)
+    const eb = (text) => ({ role: 'eyebrow', text: S.settings.eyebrows ? text : '' });
     const cover = stackSlide([
-      { role: 'eyebrow', text: 'USMCC Featured Paper' },
+      eb('USMCC Featured Paper'),
       { role: 'title', text: title, gap: 20 },
-      { role: 'caption', text: shortAuthors(P.authors), gap: 40 },
+      { role: 'caption', text: authorText(P, 'cover'), authors: 'cover', gap: 40 },
     ]);
-    const summary = stackSlide(
-      [
-        { role: 'eyebrow', text: 'In short' },
-        { role: 'body', text: firstSentences(P.publicAbstract, 230), gap: 28, k: 1.16 },
-      ],
-      { logo: false }
-    );
+    const summary = stackSlide([eb('In short'), { role: 'body', text: firstSentences(P.publicAbstract, 230), gap: 28, k: 1.16 }], { logo: false });
     const end = stackSlide([
-      { role: 'eyebrow', text: 'Read the paper' },
+      eb('Read the paper'),
       { role: 'title', text: link || 'Link in the post', gap: 18, k: 0.62 },
-      { role: 'caption', text: [shortAuthors(P.authors), P.publicationDate].filter(Boolean).join(' · '), gap: 30 },
+      { role: 'caption', text: authorText(P, 'end'), authors: 'end', gap: 30 },
     ]);
     const slides = S.doc.slides;
     const blank = slides.length === 1 && !slides[0].layers.length;
@@ -1307,6 +1364,9 @@ const Sheets = (() => {
   }
 
   return {
+    setEtAl,
+    canEtAl,
+    authorText,
     figurePng,
     preview,
     textEdit,
