@@ -763,6 +763,32 @@ function addText(role = 'body', text) {
   return l;
 }
 
+// A pull quote: the words under a large open quotation mark, with a line
+// for who said it. On a slide without text it flows like the theme's text.
+function addQuote() {
+  const { w: W, h: H } = size();
+  const s = slide();
+  const P = S.doc.paper || {};
+  const first = String(P.authors || '').split(/,| and /)[0].trim();
+  const words = 'Say the one sentence worth remembering, in the authors’ own words.';
+  if (!s.layers.some((l) => l.kind === 'text')) {
+    const g = uid();
+    const q = { id: uid(), kind: 'text', role: 'quote', text: words, x: R.SAFE, w: W - 2 * R.SAFE, y: 0, flow: { g, gap: 0 } };
+    const by = { id: uid(), kind: 'text', role: 'caption', text: '— ' + (first || 'Name, institution'), x: R.SAFE, w: W - 2 * R.SAFE, y: 0, flow: { g, gap: 36 } };
+    s.layers.push(q, by);
+    S.sel = q.id;
+    S.crop = false;
+    changed('add quote');
+    editText(true);
+    return q;
+  }
+  const l = { kind: 'text', role: 'quote', text: words, x: R.SAFE, w: W - 2 * R.SAFE, y: 0 };
+  l.y = Math.round((H - R.bounds(l, theme(), W, H).h) / 2);
+  addLayer(l);
+  editText(true);
+  return l;
+}
+
 function addLogo() {
   const { w: W } = size();
   const h = 150;
@@ -942,7 +968,7 @@ function pickFiles(opts = {}) {
   input.onchange = () => {
     const files = [...input.files];
     input.remove();
-    if (files.length && opts.background) addBackground(files[0]);
+    if (files.length && opts.background) addBackground(files[0], { next: opts.next });
     else if (files.length) addFiles(files);
   };
   document.body.append(input);
@@ -958,9 +984,18 @@ async function addBackground(blob, opts = {}) {
     const l = { id: uid(), kind: 'image', asset: id, bg: true, all: true, x: 0, y: 0, w: W * S.doc.slides.length, h: H, fit: 'cover', zoom: 1, px: opts.px ?? 0.5, py: 0.5, opacity: photo ? 1 : bgStrength(), treat: photo ? 'natural' : undefined, blur: 0 };
     S.doc.bg = (S.doc.bg || []).filter((m) => !opts.replace || !m.auto);
     if (opts.auto) l.auto = true;
-    if (!photo) plotFrame(l, opts.at ?? 0);
     S.doc.bg.push(l);
+    // a second photo (or "Then another background") joins a sequence: it
+    // takes over from this slide, melting into the one before
+    const seq = !opts.auto && !opts.replace && (opts.next || (photo && S.doc.bg.some((m) => m !== l && !m.auto && (m.all || m.chain))));
+    if (seq) chainInsert(l);
+    else if (!photo) plotFrame(l, opts.at ?? 0);
+    if (seq || !opts.auto) S.sel = l.id;
     changed('background', { all: true, noUndo: !!opts.auto });
+    if (seq) {
+      const c = chainOf();
+      if (c.length > 1) toast(`Background ${c.indexOf(l) + 1} of ${c.length}: from slide ${chainStart(l) + 1}, blending into the one before`, 3500);
+    }
     return l;
   } catch (e) {
     toast('Could not use that picture: ' + e.message, 4000);
@@ -1053,8 +1088,7 @@ function toBackground(l = selLayer(), span = 'all') {
   if (l.bg) {
     S.doc.bg = S.doc.bg.filter((m) => m !== l);
     const back = { ...l, bg: undefined, all: undefined, treat: undefined, blur: undefined, x: 0, y: 0, w: W, h: H, opacity: 1 };
-    delete back.bg;
-    delete back.all;
+    for (const k of ['bg', 'all', 'chain', 'blend', 'fadeL', 'fadeR']) delete back[k];
     slide().layers.unshift(back);
     S.sel = back.id;
     changed('unbackground', { all: true });
@@ -1100,7 +1134,107 @@ function setSpan(l, span) {
 // backgrounds set to "all" follow the number of slides and the size
 function fitBackgrounds() {
   const { w: W, h: H } = size();
-  for (const l of S.doc.bg || []) if (l.all) Object.assign(l, { x: 0, y: 0, w: W * S.doc.slides.length, h: H });
+  const n = S.doc.slides.length;
+  for (const l of S.doc.bg || []) if (l.all && !l.chain) Object.assign(l, { x: 0, y: 0, w: W * n, h: H });
+  // a sequence: back to back, each over its number of slides (the last to the
+  // end), overlapping its neighbours by the blend so one melts into the next.
+  // Over an opaque photo the one behind needn't fade: the crossfade is exact.
+  const ch = chainOf();
+  const counts = chainCounts(ch);
+  let start = 0;
+  ch.forEach((l, i) => {
+    const k = counts[i];
+    if (!k) {
+      Object.assign(l, { x: n * W + 10, y: 0, w: W, h: H, fadeL: 0, fadeR: 0 });
+      return;
+    }
+    const next = ch[i + 1] && counts[i + 1] ? ch[i + 1] : null;
+    const bl = i ? Math.round(W * (l.blend ?? 0.5)) : 0;
+    const br = next ? Math.round(W * (next.blend ?? 0.5)) : 0;
+    const x = Math.max(0, start * W - bl / 2);
+    const x2 = Math.min(n * W, (start + k) * W + br / 2);
+    const opaque = next && (next.opacity ?? 1) >= 0.99 && !['ink', 'print'].includes(R.treatOf(next, theme()));
+    Object.assign(l, { x: Math.round(x), y: 0, w: Math.round(x2 - x), h: H, fadeL: i ? Math.round(start * W - x) * 2 : 0, fadeR: next && !opaque ? Math.round(x2 - (start + k) * W) * 2 : 0 });
+    clampPan(l);
+    start += k;
+  });
+}
+
+/* backgrounds in sequence */
+const chainOf = () => (S.doc.bg || []).filter((l) => l.chain);
+// slides each one covers: its own number, the last whatever is left
+function chainCounts(ch = chainOf()) {
+  const n = S.doc.slides.length;
+  let left = n;
+  return ch.map((l, i) => {
+    const k = i === ch.length - 1 ? left : Math.min(Math.max(1, l.chain | 0), left);
+    left -= k;
+    return k;
+  });
+}
+function chainStart(l) {
+  const ch = chainOf();
+  const counts = chainCounts(ch);
+  let s = 0;
+  for (let i = 0; i < ch.length && ch[i] !== l; i++) s += counts[i];
+  return s;
+}
+// Background l joins the sequence, taking over at slide `at` (the one it
+// starts in is cut there, or halved when `at` is where it starts).
+function chainInsert(l, at = S.cur) {
+  const n = S.doc.slides.length;
+  delete l.all;
+  let ch = chainOf().filter((m) => m !== l);
+  if (!ch.length) {
+    const first = (S.doc.bg || []).filter((m) => m !== l && m.all && !m.auto).pop() || (S.doc.bg || []).filter((m) => m !== l && m.all).pop();
+    if (first) {
+      first.chain = n;
+      delete first.all;
+      ch = [first];
+    }
+  }
+  if (!ch.length) {
+    l.chain = n;
+    return;
+  }
+  const counts = chainCounts(ch);
+  let idx = ch.length - 1;
+  let start = 0;
+  for (let i = 0, s = 0; i < ch.length; s += counts[i], i++) {
+    if (at < s + counts[i] || i === ch.length - 1) {
+      idx = i;
+      start = s;
+      break;
+    }
+  }
+  const m = ch[idx];
+  const k = Math.max(1, counts[idx]);
+  const cut = at > start && at < start + k ? at - start : Math.ceil(k / 2);
+  m.chain = Math.max(1, cut);
+  l.chain = Math.max(1, k - m.chain);
+  l.blend = l.blend ?? 0.5;
+  S.doc.bg = S.doc.bg.filter((x) => x !== l);
+  S.doc.bg.splice(S.doc.bg.indexOf(m) + 1, 0, l);
+}
+function chainMove(l, d) {
+  const ch = chainOf();
+  const i = ch.indexOf(l);
+  const j = i + d;
+  if (i < 0 || j < 0 || j >= ch.length) return;
+  const other = ch[j];
+  [l.chain, other.chain] = [other.chain, l.chain];
+  const a = S.doc.bg.indexOf(l);
+  const b = S.doc.bg.indexOf(other);
+  S.doc.bg[a] = other;
+  S.doc.bg[b] = l;
+  changed('sequence order', { all: true });
+}
+function chainLeave(l) {
+  delete l.chain;
+  delete l.blend;
+  l.fadeL = l.fadeR = 0;
+  setSpan(l, 'all');
+  changed('leave sequence', { all: true });
 }
 
 /* ------------------------------------------------------------------ the strip */
@@ -1390,6 +1524,7 @@ function slidePanel() {
     actBtn('Pictures', 'A', pickFiles),
     actBtn('Text', 'T', () => addText('body')),
     actBtn('Title', '', () => addText('title')),
+    actBtn('Quote', 'Q', addQuote),
     actBtn('Logo', 'L', addLogo),
     actBtn('Background', '', () => pickFiles({ background: true }))
   );
@@ -1563,21 +1698,24 @@ function soften() {
 function backgroundPanel(l) {
   const t = theme();
   const n = S.doc.slides.length;
-  const spans = [['all', 'All slides']];
-  for (const k of [1, 2, 3]) if (k < n) spans.push([k, k === 1 ? 'This slide' : `${k} slides`]);
-  spans.push(['fit', 'Its own shape']);
-  const cur = l.all ? 'all' : l.w % size().w ? 'fit' : Math.round(l.w / size().w);
-  insp.append(
-    grp(
-      'Runs behind',
-      seg(spans, cur, (v) => {
-        if (v === 'fit') plotFrame(l);
-        else setSpan(l, v);
-        changed('span', { all: true });
-        renderInspector(true);
-      })
-    )
-  );
+  if (l.chain) sequenceGroup(l);
+  else {
+    const spans = [['all', 'All slides']];
+    for (const k of [1, 2, 3]) if (k < n) spans.push([k, k === 1 ? 'This slide' : `${k} slides`]);
+    spans.push(['fit', 'Its own shape']);
+    const cur = l.all ? 'all' : l.w % size().w ? 'fit' : Math.round(l.w / size().w);
+    insp.append(
+      grp(
+        'Runs behind',
+        seg(spans, cur, (v) => {
+          if (v === 'fit') plotFrame(l);
+          else setSpan(l, v);
+          changed('span', { all: true });
+          renderInspector(true);
+        })
+      )
+    );
+  }
   const treat = l.treat || t.treat;
   insp.append(softenGroup([l]));
   insp.append(
@@ -1614,8 +1752,61 @@ function backgroundPanel(l) {
     )
   );
   const acts = el('div', 'acts');
-  acts.append(actBtn(S.crop ? 'Done moving' : 'Move the picture', 'C', toggleCrop, S.crop), actBtn('Put on this slide', 'X', () => toBackground(l)), actBtn('Remove', '⌫', deleteLayer));
+  acts.append(
+    actBtn(S.crop ? 'Done moving' : 'Move the picture', 'C', toggleCrop, S.crop),
+    actBtn('Then another background…', '', () => pickFiles({ background: true, next: true })),
+    actBtn('Put on this slide', 'X', () => toBackground(l)),
+    actBtn('Remove', '⌫', deleteLayer)
+  );
   insp.append(grp('', acts));
+}
+
+// Backgrounds in sequence: how many slides this one covers, how softly it
+// melts into the one before, and its place in the order. A strip of the
+// whole carousel shows which slides each covers.
+function sequenceGroup(l) {
+  const ch = chainOf();
+  const counts = chainCounts(ch);
+  const i = ch.indexOf(l);
+  const last = i === ch.length - 1;
+  const start = chainStart(l);
+  const k = counts[i];
+  const n = S.doc.slides.length;
+  const map = el('div', 'seqmap');
+  let s0 = 0;
+  ch.forEach((m, j) => {
+    const cell = el('button', 'seqcell' + (m === l ? ' on' : ''), String(j + 1));
+    cell.style.flexGrow = Math.max(0.0001, counts[j]);
+    cell.title = counts[j] ? `Background ${j + 1}: slide${counts[j] > 1 ? 's' : ''} ${s0 + 1}${counts[j] > 1 ? '–' + (s0 + counts[j]) : ''}` : `Background ${j + 1}: no slides left`;
+    if (!counts[j]) cell.hidden = true;
+    cell.onclick = () => {
+      S.sel = m.id;
+      refresh();
+    };
+    s0 += counts[j];
+    map.append(cell);
+  });
+  const what = !k ? 'No slides left for it: give the others fewer' : `Slide${k > 1 ? 's' : ''} ${start + 1}${k > 1 ? '–' + (start + k) : ''} of ${n}${last && ch.length > 1 ? ' (to the end)' : ''}`;
+  const step = el('div', 'acts');
+  const setCount = (v) => {
+    l.chain = clamp(v, 1, n);
+    changed('sequence', { all: true });
+    renderInspector(true);
+  };
+  if (!last) step.append(actBtn('− slide', '', () => setCount(k - 1)), actBtn('+ slide', '', () => setCount(k + 1)));
+  if (i > 0) step.append(actBtn('← earlier', '', () => chainMove(l, -1)));
+  if (!last) step.append(actBtn('later →', '', () => chainMove(l, 1)));
+  step.append(actBtn('Out of the sequence', '', () => chainLeave(l)));
+  insp.append(grp(`Background ${i + 1} of ${ch.length}`, map, el('p', 'hint', what), step));
+  if (i > 0)
+    insp.append(
+      grp(
+        '',
+        slider('Blend', () => (l.blend ?? 0.5) * 100, (v) => {
+          l.blend = v / 100;
+        }, { min: 0, max: 100, def: 50, fmt: (v) => (v ? `${Math.round(v)}% of a slide` : 'a hard cut'), lbl: 'bg-blend' })
+      )
+    );
 }
 
 function textPanel(l) {
@@ -1932,6 +2123,7 @@ const MENU = [
     group: 'Layer',
     items: [
       ['text', 'Add text', 'T', () => addText('body')],
+      ['quote', 'Add a quote', 'Q', addQuote],
       ['logo', 'Add the logo', 'L', addLogo],
       ['crop', 'Crop picture', 'C', toggleCrop],
       ['fill', 'Fill / fit frame', 'B', toggleFill],
@@ -2143,6 +2335,7 @@ async function boot() {
 }
 
 window.U = {
+  addQuote,
   S,
   api,
   el,

@@ -100,6 +100,21 @@
       type: { eyebrow: T('inter', 30, 1.2, 6, 800, { upper: true }), title: T('anton', 128, 1.02, 0.5, 400), body: T('inter', 46, 1.38, -0.2, 500), caption: T('inter', 32, 1.35, 0, 600) },
     },
   };
+  // Pull quotes: the words in the theme's reading voice (an italic serif),
+  // under a large open quotation mark in the accent colour. [style, mark face, mark weight]
+  const QUOTES = {
+    midnight: [T('instrument', 76, 1.14, -0.3, 400, { italic: true }), 'instrument', 400],
+    paper: [T('newsreader', 66, 1.22, -0.6, 400, { italic: true }), 'newsreader', 400],
+    blueprint: [T('plex', 58, 1.32, -0.5, 400, { italic: true }), 'fraunces', 400],
+    ink: [T('fraunces', 66, 1.2, -0.6, 400, { italic: true }), 'fraunces', 400],
+    glacier: [T('newsreader', 64, 1.22, -0.4, 400, { italic: true }), 'newsreader', 400],
+    signal: [T('inter', 58, 1.26, -0.8, 600), 'fraunces', 650],
+  };
+  for (const [k, [st, face, weight]] of Object.entries(QUOTES)) {
+    THEMES[k].type.quote = st;
+    THEMES[k].colors.quote = THEMES[k].colors.title;
+    THEMES[k].mark = { font: face, weight };
+  }
   // carousels made with the first themes open in their nearest new one
   const LEGACY = { editorial: 'ink', bold_sans: 'midnight', punch: 'signal', ocean: 'blueprint', soft_serif: 'paper', minimal_mono: 'glacier' };
 
@@ -145,7 +160,7 @@
 
   /* ------------------------------------------------------------------ text */
 
-  const ROLES = ['eyebrow', 'title', 'body', 'caption'];
+  const ROLES = ['eyebrow', 'title', 'body', 'caption', 'quote'];
 
   // The style a text layer is drawn with: the theme's style for its role,
   // with anything set on the layer taking precedence.
@@ -189,7 +204,8 @@
   function textLayout(layer, theme) {
     const st = textStyle(layer, theme);
     const text = st.upper ? String(layer.text || '').toUpperCase() : String(layer.text || '');
-    const key = JSON.stringify([text, layer.w, st.size, st.weight, st.italic, st.font, st.ls, st.lh]);
+    const mk = layer.role === 'quote' && layer.mark !== false ? theme.mark || { font: 'fraunces', weight: 400 } : null;
+    const key = JSON.stringify([text, layer.w, st.size, st.weight, st.italic, st.font, st.ls, st.lh, mk]);
     let hit = layoutCache.get(key);
     if (hit) return { ...hit, st };
     const ctx = mctx();
@@ -218,7 +234,20 @@
       lines.push(line);
     }
     const lineH = st.size * st.lh;
-    hit = { lines, lineH, h: Math.max(lineH, lines.length * lineH), widths: lines.map((l) => widthOf(ctx, l, st)) };
+    hit = { lines, lineH, h: Math.max(lineH, lines.length * lineH), widths: lines.map((l) => widthOf(ctx, l, st)), top: 0, mark: null };
+    if (mk) {
+      // the mark's ink sits on the box's top edge; the words start below it
+      const font = `${mk.weight} ${Math.round(st.size * 3.1)}px ${FONTS[mk.font] || FONTS.serif}`;
+      ctx.font = font;
+      if (HAS_LS) ctx.letterSpacing = '0px';
+      const m = ctx.measureText('\u201C');
+      const asc = m.actualBoundingBoxAscent || st.size * 2.2;
+      const ink = asc + (m.actualBoundingBoxDescent || -st.size * 1.1);
+      const left = m.actualBoundingBoxLeft || 0;
+      hit.mark = { font, asc, left, w: left + (m.actualBoundingBoxRight || m.width) };
+      hit.top = Math.round(ink + st.size * 0.3);
+      hit.h += hit.top;
+    }
     if (layoutCache.size > 400) layoutCache.clear();
     layoutCache.set(key, hit);
     return { ...hit, st };
@@ -253,8 +282,18 @@
       ctx.shadowBlur = st.size * 0.35 * (0.5 + st.shadow);
       ctx.shadowOffsetY = st.size * 0.04;
     }
+    if (lay.mark) {
+      const mk = lay.mark;
+      const x = st.align === 'center' ? layer.x + (layer.w - mk.w) / 2 : st.align === 'right' ? layer.x + layer.w - mk.w : layer.x;
+      ctx.save();
+      ctx.font = mk.font;
+      if (HAS_LS) ctx.letterSpacing = '0px';
+      ctx.fillStyle = layer.markColor || theme.colors.eyebrow;
+      ctx.fillText('\u201C', x + mk.left, layer.y + mk.asc);
+      ctx.restore();
+    }
     // baseline: centre the font's em box in the line
-    const base = st.size * 0.8 + (lay.lineH - st.size) / 2;
+    const base = lay.top + st.size * 0.8 + (lay.lineH - st.size) / 2;
     lay.lines.forEach((line, i) => {
       const w = lay.widths[i];
       const x = st.align === 'center' ? layer.x + (layer.w - w) / 2 : st.align === 'right' ? layer.x + layer.w - w : layer.x;
@@ -628,12 +667,57 @@
       // still decoding: a quiet placeholder
       ctx.fillStyle = 'rgba(128,128,128,0.25)';
       ctx.fillRect(layer.x, layer.y, layer.w, layer.h);
+    } else if (layer.bg && (layer.fadeL || layer.fadeR)) {
+      drawFaded(ctx, layer, pic);
     } else {
       const p = placement(layer, pic.w, pic.h);
       ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(pic.bmp, p.x, p.y, p.w, p.h);
     }
     ctx.restore();
+  }
+
+  // A background in a sequence melts into the next: its edges fade out over
+  // `fadeL` / `fadeR` carousel pixels (an eased ramp). Drawn into a scratch
+  // canvas the size of what this slide shows of it, masked, then laid on.
+  let fadeCanvas = null;
+  const EASE = [0, 0.1, 0.25, 0.4, 0.55, 0.7, 0.85, 1].map((t) => [t, t * t * (3 - 2 * t)]);
+  function drawFaded(ctx, layer, pic) {
+    const m = ctx.getTransform();
+    const sx = Math.hypot(m.a, m.b) || 1;
+    const sy = Math.hypot(m.c, m.d) || 1;
+    const x0 = Math.max(layer.x, -m.e / sx);
+    const x1 = Math.min(layer.x + layer.w, (ctx.canvas.width - m.e) / sx);
+    const y0 = Math.max(layer.y, -m.f / sy);
+    const y1 = Math.min(layer.y + layer.h, (ctx.canvas.height - m.f) / sy);
+    if (x1 <= x0 || y1 <= y0) return;
+    const ow = Math.max(1, Math.ceil((x1 - x0) * sx));
+    const oh = Math.max(1, Math.ceil((y1 - y0) * sy));
+    if (!fadeCanvas) fadeCanvas = document.createElement('canvas');
+    const c = fadeCanvas;
+    if (c.width < ow || c.height < oh) {
+      c.width = Math.max(c.width, ow);
+      c.height = Math.max(c.height, oh);
+    }
+    const f = c.getContext('2d');
+    f.setTransform(1, 0, 0, 1, 0, 0);
+    f.globalCompositeOperation = 'source-over';
+    f.clearRect(0, 0, ow, oh);
+    f.setTransform(sx, 0, 0, sy, -x0 * sx, -y0 * sy);
+    const p = placement(layer, pic.w, pic.h);
+    f.imageSmoothingQuality = 'high';
+    f.drawImage(pic.bmp, p.x, p.y, p.w, p.h);
+    f.globalCompositeOperation = 'destination-in';
+    const g = f.createLinearGradient(layer.x, 0, layer.x + layer.w, 0);
+    const L = clamp((layer.fadeL || 0) / layer.w, 0, 0.5);
+    const Rt = clamp((layer.fadeR || 0) / layer.w, 0, 0.5);
+    if (L) for (const [t, a] of EASE) g.addColorStop(t * L, `rgba(0,0,0,${a})`);
+    else g.addColorStop(0, '#000');
+    if (Rt) for (const [t, a] of EASE) g.addColorStop(1 - Rt + t * Rt, `rgba(0,0,0,${1 - a})`);
+    else g.addColorStop(1, '#000');
+    f.fillStyle = g;
+    f.fillRect(x0, y0, x1 - x0, y1 - y0);
+    ctx.drawImage(c, 0, 0, ow, oh, x0, y0, x1 - x0, y1 - y0);
   }
 
   /* ------------------------------------------------------------------ shade, logo */
@@ -868,14 +952,19 @@
   // Every theme's faces (at start, so the theme picker and new text are ready).
   function warmFonts() {
     const jobs = [];
-    for (const t of Object.values(THEMES)) for (const r of ROLES) jobs.push(loadFace(t.type[r], 'Aa1 τμ'));
+    for (const t of Object.values(THEMES)) {
+      for (const r of ROLES) jobs.push(loadFace(t.type[r], 'Aa1 τμ'));
+      jobs.push(loadFace({ font: t.mark.font, weight: t.mark.weight, italic: false }, '\u201C'));
+    }
     return Promise.all(jobs);
   }
 
   // The faces a slide's text uses, for exactly its characters.
   function fontsReady(doc, slide) {
     const theme = themeOf(doc);
-    return Promise.all(slide.layers.filter((l) => l.kind === 'text').map((l) => loadFace(textStyle(l, theme), String(l.text || 'A'))));
+    const jobs = slide.layers.filter((l) => l.kind === 'text').map((l) => loadFace(textStyle(l, theme), String(l.text || 'A')));
+    if (slide.layers.some((l) => l.role === 'quote')) jobs.push(loadFace({ font: theme.mark.font, weight: theme.mark.weight, italic: false }, '\u201C'));
+    return Promise.all(jobs);
   }
 
   // Everything a slide needs, decoded and loaded (before exporting).

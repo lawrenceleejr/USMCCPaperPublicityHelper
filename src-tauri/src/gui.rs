@@ -127,6 +127,7 @@ fn build_menu<R: tauri::Runtime>(h: &tauri::AppHandle<R>) -> tauri::Result<tauri
                 true,
                 &[
                     &item("text", "Add Text   T")?,
+                    &item("quote", "Add a Quote   Q")?,
                     &item("logo", "Add Logo   L")?,
                     &P::separator(h)?,
                     &item("crop", "Crop Image   C")?,

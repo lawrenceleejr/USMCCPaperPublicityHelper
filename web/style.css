@@ -224,6 +224,11 @@ select.txt { width: 100%; background: var(--bg); border: 1px solid var(--hair); 
 .layers button:hover { color: var(--ink); background: var(--raised); }
 .layers .kind { color: var(--muted); font-size: 11px; }
 .hint { color: var(--muted); font-size: 12px; margin: 2px 0 0; }
+/* which slides each background in a sequence covers: one strip, the carousel's length */
+.seqmap { display: flex; height: 22px; margin: 4px 0 2px; border-bottom: 1px solid var(--hair); }
+.seqmap .seqcell { flex: 1 1 0; min-width: 0; border-left: 1px solid var(--hair); color: var(--muted); font: 500 11px/22px var(--mono, ui-monospace, monospace); text-align: left; padding: 0 6px; background: none; }
+.seqmap .seqcell:first-child { border-left: 0; }
+.seqmap .seqcell.on { color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent); }
 
 /* contrast readout: a log scale from 1:1 to 21:1, WCAG thresholds as ticks */
 .contrast svg { display: block; width: 100%; height: 34px; overflow: visible; }
