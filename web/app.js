@@ -15,6 +15,16 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
 const TOUCH = matchMedia('(hover: none) and (pointer: coarse)').matches;
+if (TOUCH) {
+  // the screen stays put like a native app: Safari ignores user-scalable=no,
+  // so pinching the page itself is stopped here (the slide does its own
+  // pinch with pointer events), and the page snaps back when the keyboard
+  // goes away
+  for (const t of ['gesturestart', 'gesturechange']) document.addEventListener(t, (e) => e.preventDefault(), { passive: false });
+  document.addEventListener('focusout', () => setTimeout(() => {
+    if (!/INPUT|TEXTAREA|SELECT/.test((document.activeElement || {}).tagName || '')) window.scrollTo(0, 0);
+  }, 60));
+}
 const MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 const PHONE = () => TOUCH && matchMedia('(max-width: 760px)').matches;
 

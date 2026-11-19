@@ -192,6 +192,26 @@ test('Lite on a phone: fits the screen, and a finger moves text', async () => {
   await page.tap('text=Make slides');
   await page.waitForTimeout(300);
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 0, 'no sideways scrolling');
+  // the screen doesn't zoom like a web page: no pinch or double-tap zoom, and
+  // no field under 16 px (Safari zooms into those when one is tapped)
+  assert.match(await page.getAttribute('meta[name=viewport]', 'content'), /maximum-scale=1/);
+  assert.equal(await page.evaluate(() => getComputedStyle(document.documentElement).touchAction), 'manipulation');
+  await page.evaluate(() => {
+    S.sel = S.doc.slides[0].layers.find((l) => l.role === 'title').id;
+    S.inspOpen = true;
+    U.refresh();
+  });
+  const small = await page.evaluate(() =>
+    [...document.querySelectorAll('input, textarea, select')]
+      .filter((e) => e.offsetParent && !['range', 'checkbox', 'radio', 'file'].includes(e.type))
+      .map((e) => [e.id || e.className || e.tagName, parseFloat(getComputedStyle(e).fontSize)])
+      .filter(([, px]) => px < 16)
+  );
+  assert.deepEqual(small, [], 'fields Safari would zoom into');
+  await page.evaluate(() => {
+    S.sel = null;
+    U.refresh();
+  });
   // the slide takes most of the screen
   const share = await page.evaluate(() => (document.querySelector('#stage').getBoundingClientRect().height / innerHeight));
   assert.ok(share > 0.5, `the slide is ${Math.round(share * 100)}% of the screen height`);

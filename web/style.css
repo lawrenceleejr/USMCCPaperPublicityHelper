@@ -29,6 +29,8 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); }
+/* an app, not a page: no double-tap zoom, no text inflation */
+html { touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   font: 13px/1.45 var(--font);
   font-feature-settings: "cv11" 1, "ss01" 1, "tnum" 1;
@@ -42,6 +44,10 @@ body {
 [hidden] { display: none !important; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; touch-action: manipulation; }
 input, textarea, select { font: inherit; color: var(--ink); }
+/* Safari zooms the page into any field set smaller than 16 px */
+@media (pointer: coarse) {
+  input:not([type=range]):not([type=checkbox]):not([type=radio]), textarea, select { font-size: max(16px, 1em); }
+}
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 .muted { color: var(--muted); }
 .num { font-variant-numeric: tabular-nums; }
