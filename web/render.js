@@ -101,19 +101,20 @@
     },
   };
   // Pull quotes: the words in the theme's reading voice (an italic serif),
-  // under a large open quotation mark in the accent colour. [style, mark face, mark weight]
+  // under a large open quotation mark in the accent colour.
+  // [style, mark face, mark weight, mark size × the words' size]
   const QUOTES = {
-    midnight: [T('instrument', 76, 1.14, -0.3, 400, { italic: true }), 'instrument', 400],
-    paper: [T('newsreader', 66, 1.22, -0.6, 400, { italic: true }), 'newsreader', 400],
-    blueprint: [T('plex', 58, 1.32, -0.5, 400, { italic: true }), 'fraunces', 400],
-    ink: [T('fraunces', 66, 1.2, -0.6, 400, { italic: true }), 'fraunces', 400],
-    glacier: [T('newsreader', 64, 1.22, -0.4, 400, { italic: true }), 'newsreader', 400],
-    signal: [T('inter', 58, 1.26, -0.8, 600), 'fraunces', 650],
+    midnight: [T('instrument', 76, 1.14, -0.3, 400, { italic: true }), 'instrument', 400, 8.5],
+    paper: [T('newsreader', 66, 1.22, -0.6, 400, { italic: true }), 'newsreader', 400, 7],
+    blueprint: [T('plex', 58, 1.32, -0.5, 400, { italic: true }), 'fraunces', 400, 6.5],
+    ink: [T('fraunces', 66, 1.2, -0.6, 400, { italic: true }), 'fraunces', 400, 6.5],
+    glacier: [T('newsreader', 64, 1.22, -0.4, 400, { italic: true }), 'newsreader', 400, 7],
+    signal: [T('inter', 58, 1.26, -0.8, 600), 'fraunces', 650, 6.5],
   };
-  for (const [k, [st, face, weight]] of Object.entries(QUOTES)) {
+  for (const [k, [st, face, weight, scale]] of Object.entries(QUOTES)) {
     THEMES[k].type.quote = st;
     THEMES[k].colors.quote = THEMES[k].colors.title;
-    THEMES[k].mark = { font: face, weight };
+    THEMES[k].mark = { font: face, weight, scale };
   }
   // carousels made with the first themes open in their nearest new one
   const LEGACY = { editorial: 'ink', bold_sans: 'midnight', punch: 'signal', ocean: 'blueprint', soft_serif: 'paper', minimal_mono: 'glacier' };
@@ -237,7 +238,7 @@
     hit = { lines, lineH, h: Math.max(lineH, lines.length * lineH), widths: lines.map((l) => widthOf(ctx, l, st)), top: 0, mark: null };
     if (mk) {
       // the mark's ink sits on the box's top edge; the words start below it
-      const font = `${mk.weight} ${Math.round(st.size * 3.1)}px ${FONTS[mk.font] || FONTS.serif}`;
+      const font = `${mk.weight} ${Math.round(st.size * (mk.scale || 4))}px ${FONTS[mk.font] || FONTS.serif}`;
       ctx.font = font;
       if (HAS_LS) ctx.letterSpacing = '0px';
       const m = ctx.measureText('\u201C');
@@ -245,7 +246,7 @@
       const ink = asc + (m.actualBoundingBoxDescent || -st.size * 1.1);
       const left = m.actualBoundingBoxLeft || 0;
       hit.mark = { font, asc, left, w: left + (m.actualBoundingBoxRight || m.width) };
-      hit.top = Math.round(ink + st.size * 0.3);
+      hit.top = Math.round(ink + st.size * 0.22);
       hit.h += hit.top;
     }
     if (layoutCache.size > 400) layoutCache.clear();
@@ -679,31 +680,25 @@
 
   // A background in a sequence melts into the next: its edges fade out over
   // `fadeL` / `fadeR` carousel pixels (an eased ramp). Drawn into a scratch
-  // canvas the size of what this slide shows of it, masked, then laid on.
+  // canvas pixel for pixel with the target (so nothing is resampled and the
+  // slides still meet exactly), masked, then laid on.
   let fadeCanvas = null;
   const EASE = [0, 0.1, 0.25, 0.4, 0.55, 0.7, 0.85, 1].map((t) => [t, t * t * (3 - 2 * t)]);
   function drawFaded(ctx, layer, pic) {
     const m = ctx.getTransform();
-    const sx = Math.hypot(m.a, m.b) || 1;
-    const sy = Math.hypot(m.c, m.d) || 1;
-    const x0 = Math.max(layer.x, -m.e / sx);
-    const x1 = Math.min(layer.x + layer.w, (ctx.canvas.width - m.e) / sx);
-    const y0 = Math.max(layer.y, -m.f / sy);
-    const y1 = Math.min(layer.y + layer.h, (ctx.canvas.height - m.f) / sy);
-    if (x1 <= x0 || y1 <= y0) return;
-    const ow = Math.max(1, Math.ceil((x1 - x0) * sx));
-    const oh = Math.max(1, Math.ceil((y1 - y0) * sy));
+    const cw = ctx.canvas.width;
+    const ch = ctx.canvas.height;
     if (!fadeCanvas) fadeCanvas = document.createElement('canvas');
     const c = fadeCanvas;
-    if (c.width < ow || c.height < oh) {
-      c.width = Math.max(c.width, ow);
-      c.height = Math.max(c.height, oh);
+    if (c.width < cw || c.height < ch) {
+      c.width = Math.max(c.width, cw);
+      c.height = Math.max(c.height, ch);
     }
     const f = c.getContext('2d');
     f.setTransform(1, 0, 0, 1, 0, 0);
     f.globalCompositeOperation = 'source-over';
-    f.clearRect(0, 0, ow, oh);
-    f.setTransform(sx, 0, 0, sy, -x0 * sx, -y0 * sy);
+    f.clearRect(0, 0, cw, ch);
+    f.setTransform(m);
     const p = placement(layer, pic.w, pic.h);
     f.imageSmoothingQuality = 'high';
     f.drawImage(pic.bmp, p.x, p.y, p.w, p.h);
@@ -716,8 +711,11 @@
     if (Rt) for (const [t, a] of EASE) g.addColorStop(1 - Rt + t * Rt, `rgba(0,0,0,${1 - a})`);
     else g.addColorStop(1, '#000');
     f.fillStyle = g;
-    f.fillRect(x0, y0, x1 - x0, y1 - y0);
-    ctx.drawImage(c, 0, 0, ow, oh, x0, y0, x1 - x0, y1 - y0);
+    f.fillRect(layer.x, layer.y, layer.w, layer.h);
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.drawImage(c, 0, 0, cw, ch, 0, 0, cw, ch);
+    ctx.restore();
   }
 
   /* ------------------------------------------------------------------ shade, logo */
