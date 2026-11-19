@@ -35,9 +35,9 @@ test.after(async () => {
 });
 
 // A paper's source: a tar.gz with a TeX file and two figures.
-function sourceTarball() {
+function sourceTarball(tex = '\\documentclass{article}\\begin{document}Hi\\end{document}') {
   const entries = [
-    ['main.tex', Buffer.from('\\documentclass{article}\\begin{document}Hi\\end{document}')],
+    ['main.tex', Buffer.from(tex)],
     ['figs/flux.png', fs.readFileSync(path.join(ROOT, 'web', 'img', 'logo-light.png'))],
     ['figs/layout.svg', Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10"/></svg>')],
   ];
@@ -139,6 +139,45 @@ test('Lite keeps carousels on the device and exports them', async () => {
   await page.waitForFunction(() => /Saved 3 files to Downloads/.test(document.querySelector('#sheet-body').textContent), null, { timeout: 30000 });
   await page.waitForTimeout(300);
   assert.deepEqual(downloads.sort(), [1, 2, 3].map((i) => `a-better-way-to-collide-muons-0${i}.jpg`));
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+test('Lite on a phone: an arXiv link fills in the paper from its source', async () => {
+  const { ctx, page, errors } = await openLite({ ...devices['iPhone 13'] });
+  const tex = String.raw`\documentclass[aps,prd]{revtex4-2}
+\begin{document}
+\title{Probing $\tau$ lepton dipole moments\thanks{Supported by the DOE.} at multi-TeV muon colliders}
+\author{Dario Buttazzo}
+\affiliation{INFN, Sezione di Pisa, Italy}
+\author{Yang Ma}
+\email{yang@example.org}
+\affiliation{INFN, Sezione di Bologna, Italy}
+\begin{abstract}
+We investigate the sensitivity of a $\qty{10}{TeV}$ muon collider to the dipole moments of the $\tau$ lepton.
+\end{abstract}
+\maketitle
+\end{document}`;
+  const tgz = sourceTarball(tex);
+  let downloads = 0;
+  await ctx.route('https://arxiv.org/src/**', (route) => {
+    downloads++;
+    route.fulfill({ status: 200, body: tgz, headers: { 'Content-Type': 'application/gzip', 'Access-Control-Allow-Origin': '*' } });
+  });
+  await page.tap('#toolbar [data-cmd=paper]');
+  await page.fill('#sheet-body textarea', 'https://arxiv.org/abs/2611.21813v2');
+  await page.keyboard.press('Enter');
+  await page.waitForFunction(() => S.doc.paper && S.doc.paper.paperTitle, null, { timeout: 10000 });
+  const P = await page.evaluate(() => S.doc.paper);
+  assert.equal(P.paperTitle, 'Probing τ lepton dipole moments at multi-TeV muon colliders');
+  assert.equal(P.authors, 'Dario Buttazzo, Yang Ma');
+  assert.equal(P.publicAbstract, 'We investigate the sensitivity of a 10 TeV muon collider to the dipole moments of the τ lepton.');
+  assert.equal(P.paperLink, 'https://arxiv.org/abs/2611.21813');
+  assert.equal(P.publicationDate, '2026-11');
+  assert.match(await page.textContent('#sheet-body .note'), /Filled in from arXiv 2611\.21813/);
+  // the figures come from the same download
+  await page.waitForTimeout(500);
+  assert.equal(downloads, 1);
   assert.deepEqual(errors, []);
   await ctx.close();
 });

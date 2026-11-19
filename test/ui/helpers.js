@@ -46,7 +46,7 @@ const launch = () => chromium.launch(process.env.CHROMIUM_PATH ? { executablePat
 
 // A photo (JPEG, 4000×3000) and a plot (PNG, 1600×1000), drawn in the page.
 async function pictures(page, dir) {
-  const [photo, plot] = await page.evaluate(() => {
+  const [photo, plot, red] = await page.evaluate(() => {
     const mk = (w, h, plot) => {
       const c = document.createElement('canvas');
       c.width = w;
@@ -75,11 +75,19 @@ async function pictures(page, dir) {
       }
       return c.toDataURL('image/jpeg', 0.9).split(',')[1];
     };
-    return [mk(4000, 3000, false), mk(1600, 1000, true)];
+    // a second photo, plain red (to tell where one background gives way)
+    const r = document.createElement('canvas');
+    r.width = 2400;
+    r.height = 1600;
+    const rx = r.getContext('2d');
+    rx.fillStyle = '#c0281e';
+    rx.fillRect(0, 0, 2400, 1600);
+    return [mk(4000, 3000, false), mk(1600, 1000, true), r.toDataURL('image/jpeg', 0.9).split(',')[1]];
   });
-  const p = { photo: path.join(dir, 'photo.jpg'), plot: path.join(dir, 'plot.png') };
+  const p = { photo: path.join(dir, 'photo.jpg'), plot: path.join(dir, 'plot.png'), red: path.join(dir, 'red.jpg') };
   fs.writeFileSync(p.photo, Buffer.from(photo, 'base64'));
   fs.writeFileSync(p.plot, Buffer.from(plot, 'base64'));
+  fs.writeFileSync(p.red, Buffer.from(red, 'base64'));
   return p;
 }
 
