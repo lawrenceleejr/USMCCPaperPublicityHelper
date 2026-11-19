@@ -1475,7 +1475,10 @@ pub fn meta_from_archive(bytes: &[u8]) -> Result<PaperRow, String> {
         return Err("The paper's source has no TeX files".into());
     }
     let tex = expanded_tex(&texs);
-    let title = cmd_args(&tex, "title").into_iter().next().map(|t| clean_meta(&t)).unwrap_or_default();
+    let mut title = cmd_args(&tex, "title").into_iter().next().map(|t| clean_meta(&t)).unwrap_or_default();
+    if title.is_empty() {
+        title = title_page(&tex);
+    }
     let mut names: Vec<String> = Vec::new();
     for a in cmd_args(&tex, "author") {
         for n in split_names(&a) {
@@ -1500,6 +1503,29 @@ pub fn meta_from_archive(bytes: &[u8]) -> Result<PaperRow, String> {
         public_abstract: abstract_,
         ..Default::default()
     })
+}
+
+/// A hand-made title page: the first `{\Large …}` (or `\LARGE`, `\huge`,
+/// `\Huge`) group between `\begin{document}` and the first section.
+fn title_page(tex: &str) -> String {
+    let start = tex.find("\\begin{document}").map(|p| p + 16).unwrap_or(0);
+    let end = tex[start..].find("\\section").map(|p| start + p).unwrap_or(tex.len());
+    let body = &tex[start..end];
+    let mut from = 0;
+    while let Some(p) = body[from..].find('{') {
+        let at = from + p;
+        let inner = body[at + 1..].trim_start();
+        if ["\\Large", "\\LARGE", "\\huge", "\\Huge"].iter().any(|c| inner.starts_with(c) && !inner[c.len()..].starts_with(|ch: char| ch.is_ascii_alphabetic())) {
+            if let Some((g, _)) = brace_group(body, at) {
+                let t = clean_meta(g);
+                if t.split_whitespace().count() >= 2 {
+                    return t;
+                }
+            }
+        }
+        from = at + 1;
+    }
+    String::new()
 }
 
 /// The `{…}` arguments of every `\name` (not `\namefoo`), after any `[…]`.
@@ -1985,6 +2011,7 @@ We investigate $\mu^+\mu^-\to\tau^+\tau^-$ at a $10\,\mathrm{TeV}$ collider.
         assert_eq!(detex(r"$\gtrsim\qty{e34}{\cm\tothe{-2} \s\tothe{-1}}$ in a $\qty{10}{TeV}$, $\sim\qty{22}{\micro\metre}$"), "≳10³⁴ cm⁻² s⁻¹ in a 10 TeV, ∼22 µm");
         assert_eq!(clean_meta(r"\vspace*{1.2em} We investigate"), "We investigate");
         assert_eq!(id_date("2611.21813"), "2026-11");
+        assert_eq!(title_page("\\begin{document}\n\\begin{center}{\\Large\\bfseries Input to the SCAC from the \\textit{U.S.} Collaboration}\\end{center}\n\\section{Intro} {\\Large x y}"), "Input to the SCAC from the U.S. Collaboration");
         assert_eq!(id_date("hep-ph/0601001"), "2006-01");
         assert_eq!(split_names(r"I. Karaaslan\thanks{x@y.edu}, K. DiPetrillo, University of Chicago, Chicago, IL, USA\\ D. Neuffer"), vec!["I. Karaaslan", "K. DiPetrillo", "D. Neuffer"]);
     }
