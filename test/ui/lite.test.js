@@ -172,9 +172,9 @@ We investigate the sensitivity of a $\qty{10}{TeV}$ muon collider to the dipole 
   assert.equal(P.paperTitle, 'Probing τ lepton dipole moments at multi-TeV muon colliders');
   assert.equal(P.authors, 'Dario Buttazzo, Yang Ma');
   assert.equal(P.publicAbstract, 'We investigate the sensitivity of a 10 TeV muon collider to the dipole moments of the τ lepton.');
-  assert.equal(P.paperLink, 'https://arxiv.org/abs/2611.21813');
+  assert.equal(P.paperLink, 'https://arxiv.org/abs/2611.21813v2'); // the version pasted
   assert.equal(P.publicationDate, '2026-11');
-  assert.match(await page.textContent('#sheet-body .note'), /Filled in from arXiv 2611\.21813/);
+  assert.match(await page.textContent('#sheet-body .note'), /Filled in from arXiv 2611\.21813v2/);
   // the figures come from the same download
   await page.waitForTimeout(500);
   assert.equal(downloads, 1);
