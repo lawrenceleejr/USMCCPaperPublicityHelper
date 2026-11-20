@@ -215,7 +215,10 @@ test('Lite on a phone: fits the screen, and a finger moves text', async () => {
   const y1 = await page.evaluate(() => S.doc.slides[0].layers.find((l) => l.role === 'title').y);
   assert.ok(y1 < at.y0 - 100, `the title moved from ${at.y0} to ${y1}`);
   // undo is a button on phones
-  await page.waitForTimeout(150); // a person's next tap comes later than a script's
+  // a person's next tap comes later than a script's: Chrome drops the click
+  // of a tap that follows the scripted drag within ~300 ms (it does on main
+  // too), so wait as a person would
+  await page.waitForTimeout(500);
   await page.tap('#undo-btn');
   assert.equal(await page.evaluate(() => S.doc.slides[0].layers.find((l) => l.role === 'title').y), at.y0);
   // the screen doesn't zoom like a web page: no pinch or double-tap zoom, and
