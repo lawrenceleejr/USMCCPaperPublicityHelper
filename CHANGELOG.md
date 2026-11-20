@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+**Cleaner slides**
+- No labels above titles by default; Paper → Labels turns them back on for
+  new slides.
+- The author line lists every author; switch it to "First author et al."
+  in Paper or on the selected line (lines edited by hand are kept). A long
+  list shrinks to fit the slide.
+
 **Quotes, backgrounds in sequence, arXiv on a phone**
 - A quote style: the words in the theme's italic serif under a large open
   quotation mark in the accent colour, with a line for who said it (`Q`).

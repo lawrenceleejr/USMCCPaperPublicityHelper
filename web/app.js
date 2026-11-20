@@ -15,6 +15,16 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
 const TOUCH = matchMedia('(hover: none) and (pointer: coarse)').matches;
+if (TOUCH) {
+  // the screen stays put like a native app: Safari ignores user-scalable=no,
+  // so pinching the page itself is stopped here (the slide does its own
+  // pinch with pointer events), and the page snaps back when the keyboard
+  // goes away
+  for (const t of ['gesturestart', 'gesturechange']) document.addEventListener(t, (e) => e.preventDefault(), { passive: false });
+  document.addEventListener('focusout', () => setTimeout(() => {
+    if (!/INPUT|TEXTAREA|SELECT/.test((document.activeElement || {}).tagName || '')) window.scrollTo(0, 0);
+  }, 60));
+}
 const MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 const PHONE = () => TOUCH && matchMedia('(max-width: 760px)').matches;
 
@@ -115,9 +125,17 @@ function reflow(s, t = theme(), sz = size()) {
       l.k = k;
       while (k > 0.6 && R.textLayout(l, t).lines.length > (t.fit || 4)) l.k = k = Math.round((k - 0.04) * 100) / 100;
     }
-    let total = 0;
-    texts.forEach((l, i) => (total += R.bounds(l, t, W, H).h + (i ? l.flow.gap || 0 : 0)));
     const lh = logo ? logo.h : 0;
+    const measure = () => texts.reduce((sum, l, i) => sum + R.bounds(l, t, W, H).h + (i ? l.flow.gap || 0 : 0), 0);
+    // a long author line shrinks (to 60%) until the group fits beside the logo
+    const room = H - 2 * R.SAFE - (lh ? lh + 40 : 0);
+    for (const l of texts) {
+      if (l.role !== 'caption' || l.size) continue;
+      let k = l.flow.k || 1;
+      l.k = k;
+      while (k > 0.6 && measure() > room) l.k = k = Math.round((k - 0.04) * 100) / 100;
+    }
+    const total = measure();
     let y = t.valign === 'top' ? R.SAFE : t.valign === 'middle' ? (H - total) / 2 + lh / 3 : H - R.SAFE - total;
     texts.forEach((l, i) => {
       if (i) y += l.flow.gap || 0;
@@ -837,8 +855,7 @@ function placePicture(id, opts = {}) {
     const n = S.doc.slides.filter((x) => x.layers.some((m) => m.fig)).length + 1;
     const lh = 92;
     s.layers.push({ id: uid(), kind: 'logo', h: lh, x: Math.round(W - R.SAFE - lh * R.LOGO_RATIO), y: R.SAFE - 14 });
-    const eb = { id: uid(), kind: 'text', role: 'eyebrow', text: `Figure ${n}`, x: R.SAFE, w: W - 2 * R.SAFE - lh, y: R.SAFE + 10 };
-    s.layers.push(eb);
+    if (S.settings.eyebrows) s.layers.push({ id: uid(), kind: 'text', role: 'eyebrow', text: `Figure ${n}`, x: R.SAFE, w: W - 2 * R.SAFE - lh, y: R.SAFE + 10 });
     top = R.SAFE + lh + 30;
     const cap = shortCaption(opts.caption || '');
     if (cap) {
@@ -1842,6 +1859,25 @@ function textPanel(l) {
     if (e.key === 'Escape') ta.blur();
   };
   insp.append(grp('', ta));
+  const P = S.doc.paper;
+  if (l.authors && Sheets.canEtAl(P) && [true, false].some((e) => l.text === Sheets.authorText(P, l.authors, e))) {
+    insp.append(
+      grp(
+        'Authors',
+        seg(
+          [
+            ['all', 'Every name'],
+            ['etal', 'Et al.'],
+          ],
+          l.text === Sheets.authorText(P, l.authors, true) ? 'etal' : 'all',
+          (v) => {
+            Sheets.setEtAl(v === 'etal');
+            renderInspector(true);
+          }
+        )
+      )
+    );
+  }
   insp.append(
     grp(
       'Style',
